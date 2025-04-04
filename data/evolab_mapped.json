@@ -119,8 +119,8 @@
       "rolesPlusPlusArchetypes": [],
       "bodytype": "Lean Medium",
       "positions": [
-        "ST",
         "RM",
+        "ST",
         "RW"
       ],
       "metaRatings": []
@@ -241,9 +241,9 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "RB",
         "LB",
-        "CB"
+        "CB",
+        "RB"
       ],
       "metaRatings": []
     },
@@ -379,14 +379,14 @@
       "rolesPlusPlusArchetypes": [
         "half_winger",
         "box_to_box",
-        "classic_ten",
         "playmaker",
-        "shadow_striker"
+        "shadow_striker",
+        "classic_ten"
       ],
       "bodytype": "Unique",
       "positions": [
-        "CAM",
-        "CM"
+        "CM",
+        "CAM"
       ],
       "metaRatings": []
     },
@@ -457,8 +457,8 @@
       ],
       "bodytype": "Average Tall",
       "positions": [
-        "RB",
-        "CB"
+        "CB",
+        "RB"
       ],
       "metaRatings": []
     },
@@ -529,15 +529,15 @@
       "attributePenalties": 75,
       "commonName": "Thomas Thiesson Kristensen",
       "rolesPlusPlusArchetypes": [
-        "defender",
+        "deep_lying_playmaker",
         "holding",
-        "deep_lying_playmaker"
+        "defender"
       ],
       "bodytype": "Average Tall",
       "positions": [
-        "CM",
         "CDM",
-        "CB"
+        "CB",
+        "CM"
       ],
       "metaRatings": []
     },
@@ -607,10 +607,10 @@
       ],
       "bodytype": "Average Medium",
       "positions": [
-        "LM",
         "RM",
-        "RW",
-        "ST"
+        "LM",
+        "ST",
+        "RW"
       ],
       "metaRatings": []
     },
@@ -671,14 +671,14 @@
       "attributePenalties": 64,
       "commonName": "Jamal Musiala",
       "rolesPlusPlusArchetypes": [
-        "classic_ten",
-        "shadow_striker"
+        "shadow_striker",
+        "classic_ten"
       ],
       "bodytype": "Lean Medium",
       "positions": [
         "LM",
-        "CAM",
-        "CM"
+        "CM",
+        "CAM"
       ],
       "metaRatings": []
     },
@@ -746,14 +746,14 @@
       "attributePenalties": 66,
       "commonName": "Koni De Winter",
       "rolesPlusPlusArchetypes": [
-        "stopper",
+        "defender",
         "fullback",
-        "defender"
+        "stopper"
       ],
       "bodytype": "Average Tall",
       "positions": [
-        "RB",
-        "CB"
+        "CB",
+        "RB"
       ],
       "metaRatings": []
     },
@@ -823,9 +823,9 @@
       "attributePenalties": 92,
       "commonName": "Hakan Çalhanoğlu",
       "rolesPlusPlusArchetypes": [
+        "deep_lying_playmaker",
         "box_to_box",
-        "centre_half",
-        "deep_lying_playmaker"
+        "centre_half"
       ],
       "bodytype": "Average Medium",
       "positions": [
@@ -902,10 +902,10 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "RM",
+        "RW",
         "LW",
         "CAM",
-        "RW"
+        "RM"
       ],
       "metaRatings": []
     },
@@ -975,11 +975,11 @@
       "attributePenalties": 68,
       "commonName": "Abner Vinícius",
       "rolesPlusPlusArchetypes": [
-        "winger",
-        "playmaker",
-        "fullback",
         "falseback",
-        "deep_lying_playmaker"
+        "fullback",
+        "deep_lying_playmaker",
+        "winger",
+        "playmaker"
       ],
       "bodytype": "Average Medium",
       "positions": [
@@ -1047,9 +1047,9 @@
       "attributePenalties": 55,
       "commonName": "Ethan Pinnock",
       "rolesPlusPlusArchetypes": [
-        "stopper",
         "defender",
-        "ball_playing_defender"
+        "ball_playing_defender",
+        "stopper"
       ],
       "bodytype": "Lean Tall",
       "positions": [
@@ -1122,17 +1122,17 @@
       "attributePenalties": 55,
       "commonName": "Moïse Bombito",
       "rolesPlusPlusArchetypes": [
-        "stopper",
         "ball_playing_defender",
-        "holding",
         "defender",
-        "fullback"
+        "holding",
+        "fullback",
+        "stopper"
       ],
       "bodytype": "Average Tall",
       "positions": [
-        "CDM",
         "LB",
-        "CB"
+        "CB",
+        "CDM"
       ],
       "metaRatings": []
     },
@@ -1195,8 +1195,8 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "ST",
-        "LM"
+        "LM",
+        "ST"
       ],
       "metaRatings": []
     },
@@ -1259,8 +1259,8 @@
       "attributePenalties": 45,
       "commonName": "Isaak Touré",
       "rolesPlusPlusArchetypes": [
-        "ball_playing_defender",
-        "defender"
+        "defender",
+        "ball_playing_defender"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -1325,13 +1325,13 @@
       "attributePenalties": 65,
       "commonName": "Víctor Ibarbo",
       "rolesPlusPlusArchetypes": [
-        "winger",
-        "inside_forward"
+        "inside_forward",
+        "winger"
       ],
       "bodytype": "Average Tall",
       "positions": [
-        "RM",
-        "RW"
+        "RW",
+        "RM"
       ],
       "metaRatings": []
     },
@@ -1463,8 +1463,8 @@
       ],
       "bodytype": "Lean Medium",
       "positions": [
-        "LM",
-        "LW"
+        "LW",
+        "LM"
       ],
       "metaRatings": []
     },
@@ -1527,13 +1527,13 @@
       "attributePenalties": 85,
       "commonName": "Neymar Jr",
       "rolesPlusPlusArchetypes": [
-        "wide_playmaker",
-        "inside_forward"
+        "inside_forward",
+        "wide_playmaker"
       ],
       "bodytype": "Unique",
       "positions": [
-        "LM",
         "LW",
+        "LM",
         "CAM"
       ],
       "metaRatings": []
@@ -1603,9 +1603,9 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "ST",
         "RM",
-        "CAM"
+        "CAM",
+        "ST"
       ],
       "metaRatings": []
     },
@@ -1674,8 +1674,8 @@
       "attributePenalties": 76,
       "commonName": "Jude Bellingham",
       "rolesPlusPlusArchetypes": [
-        "box_to_box",
-        "playmaker"
+        "playmaker",
+        "box_to_box"
       ],
       "bodytype": "Average Medium",
       "positions": [
@@ -1744,9 +1744,9 @@
       "attributePenalties": 75,
       "commonName": "Mats Hummels",
       "rolesPlusPlusArchetypes": [
-        "stopper",
         "defender",
-        "ball_playing_defender"
+        "ball_playing_defender",
+        "stopper"
       ],
       "bodytype": "Stocky Tall",
       "positions": [
@@ -1821,15 +1821,15 @@
       "attributePenalties": 89,
       "commonName": "Fridolina Rolfö",
       "rolesPlusPlusArchetypes": [
-        "falseback",
+        "inside_forward",
         "attacking_wingback",
-        "inside_forward"
+        "falseback"
       ],
       "bodytype": "Lean Medium",
       "positions": [
         "LM",
-        "LW",
-        "LB"
+        "LB",
+        "LW"
       ],
       "metaRatings": []
     },
@@ -1896,8 +1896,8 @@
       "attributePenalties": 84,
       "commonName": "Lucas Bergvall",
       "rolesPlusPlusArchetypes": [
-        "playmaker",
-        "deep_lying_playmaker"
+        "deep_lying_playmaker",
+        "playmaker"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -1974,8 +1974,8 @@
       ],
       "bodytype": "Lean Tall",
       "positions": [
-        "ST",
         "RM",
+        "ST",
         "RW"
       ],
       "metaRatings": []
