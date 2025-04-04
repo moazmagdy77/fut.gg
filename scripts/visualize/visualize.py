@@ -104,9 +104,6 @@ rpp_to_archetype = {
 st.sidebar.header("Filter Players")
 filters = {}
 
-#attribute_fields = visual_df[visual_df["field"].str.startswith("attribute")]
-#non_attribute_fields = visual_df[~visual_df["field"].str.startswith("attribute")]
-
 # Define attribute filter order
 attribute_filter_order = [
     "acceleration", "sprintSpeed", "positioning", "finishing", "shotPower", "longShots",
