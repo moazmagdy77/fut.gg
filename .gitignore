@@ -2,10 +2,10 @@ node_modules/
 __pycache__/
 .DS_Store
 .env
-data/
 supplementary_data/
 scripts/retratin_model/models
 *.pkl
 *.csv
 *.json
+data/*
 !data/final.json
