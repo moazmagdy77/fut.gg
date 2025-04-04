@@ -15,21 +15,27 @@ visual_df = pd.read_csv(data_dir / "visual.csv", sep="\t")
 visual_df["field"] = visual_df["field"].apply(lambda x: x.replace("attribute", "", 1) if isinstance(x, str) and x.startswith("attribute") else x)
 visual_df["field"] = visual_df["field"].apply(lambda x: x[0].lower() + x[1:] if isinstance(x, str) and x else x)
 
-custom_filter_order = [
+non_attribute_filter_order = [
     "RolesPlusPlus", "RolesPlus", "skillMoves", "weakFoot", "PlaystylesPlus", "Playstyles",
-    "positions", "foot", "bodytype", "accelerateType", "height", "weight",
-    "acceleration", "sprintSpeed", "positioning", "finishing",
-    "shotPower", "longShots", "volleys", "penalties",
-    "vision", "crossing", "fkAccuracy", "shortPassing",
-    "longPassing", "curve", "agility", "balance",
-    "reactions", "ballControl", "dribbling", "composure",
-    "interceptions", "headingAccuracy", "defensiveAwareness",
-    "standingTackle", "slidingTackle", "jumping", "stamina",
-    "strength", "aggression", "gkDiving", "gkHandling",
-    "gkKicking", "gkPositioning", "gkReflexes"
+    "positions", "foot", "bodytype", "accelerateType", "height", "weight"
 ]
-visual_df["sort_index"] = visual_df["field"].apply(lambda x: custom_filter_order.index(x.replace("attribute", "").lower()) if x.replace("attribute", "").lower() in custom_filter_order else -1)
-visual_df = visual_df.sort_values(by="sort_index").drop(columns=["sort_index"])
+
+attribute_filter_order = [
+    "acceleration", "sprintSpeed", "positioning", "finishing", "shotPower", "longShots",
+    "volleys", "penalties", "vision", "crossing", "fkAccuracy", "shortPassing",
+    "longPassing", "curve", "agility", "balance", "reactions", "ballControl",
+    "dribbling", "composure", "interceptions", "headingAccuracy", "defensiveAwareness",
+    "standingTackle", "slidingTackle", "jumping", "stamina", "strength", "aggression",
+    "gkDiving", "gkHandling", "gkKicking", "gkPositioning", "gkReflexes"
+]
+
+attribute_fields = visual_df[visual_df["field"].isin(attribute_filter_order)].copy()
+attribute_fields["sort_index"] = attribute_fields["field"].apply(lambda x: attribute_filter_order.index(x))
+attribute_fields = attribute_fields.sort_values(by="sort_index")
+
+non_attribute_fields = visual_df[visual_df["field"].isin(non_attribute_filter_order)].copy()
+non_attribute_fields["sort_index"] = non_attribute_fields["field"].apply(lambda x: non_attribute_filter_order.index(x))
+non_attribute_fields = non_attribute_fields.sort_values(by="sort_index") 
 
 # Load and normalize JSON data
 with open(data_dir / "final.json", "r") as f:
