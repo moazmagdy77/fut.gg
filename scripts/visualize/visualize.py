@@ -208,7 +208,7 @@ filtered_df = filtered_df[existing_columns + remaining_columns]
 st.title("Mostashar Moza Player Database")
 st.markdown(f"### Showing {filtered_df['player_origin_id'].nunique()} unique players")
 sort_by = "metarating" if "metarating" in filtered_df.columns else "overall"
-filtered_df = filtered_df.drop(columns=["__true_player_id", "player_origin_id"], errors="ignore")
+filtered_df = filtered_df.drop(columns=["__true_player_id", "player_origin_id", "debug_index", "__player_id"], errors="ignore")
 st.dataframe(filtered_df.sort_values(by=sort_by, ascending=False), use_container_width=True, hide_index=True)
 
 df.to_csv(data_dir / "debug_full_output.csv", index=False)
