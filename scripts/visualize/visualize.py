@@ -106,6 +106,18 @@ filters = {}
 attribute_fields = visual_df[visual_df["field"].str.startswith("attribute")]
 non_attribute_fields = visual_df[~visual_df["field"].str.startswith("attribute")]
 
+# Define attribute filter order
+attribute_filter_order = [
+    "acceleration", "sprintSpeed", "positioning", "finishing", "shotPower", "longShots",
+    "volleys", "penalties", "vision", "crossing", "fkAccuracy", "shortPassing",
+    "longPassing", "curve", "agility", "balance", "reactions", "ballControl",
+    "dribbling", "composure", "interceptions", "headingAccuracy", "defensiveAwareness",
+    "standingTackle", "slidingTackle", "jumping", "stamina", "strength", "aggression",
+    "gkDiving", "gkHandling", "gkKicking", "gkPositioning", "gkReflexes"
+]
+attribute_fields["sort_index"] = attribute_fields["field"].apply(lambda x: attribute_filter_order.index(x) if x in attribute_filter_order else -1)
+attribute_fields = attribute_fields.sort_values(by="sort_index")
+
 # Process non-attribute fields first
 for _, row in non_attribute_fields.iterrows():
     col = row["field"]
