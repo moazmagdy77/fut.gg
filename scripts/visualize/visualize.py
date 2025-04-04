@@ -9,7 +9,7 @@ st.set_page_config(layout="wide")
 data_dir = Path(__file__).resolve().parents[2] / "data"
 
 # Load metadata from visual.csv
-visual_df = pd.read_csv(data_dir / "visual.csv", sep="\t")
+visual_df = pd.read_csv(data_dir / "visual.csv")
 
 # Rename attribute fields
 visual_df["field"] = visual_df["field"].apply(lambda x: x.replace("attribute", "", 1) if isinstance(x, str) and x.startswith("attribute") else x)
