@@ -11,20 +11,24 @@ data_dir = Path(__file__).resolve().parents[2] / "data"
 # Load metadata from visual.csv
 visual_df = pd.read_csv(data_dir / "visual.csv", sep="\t")
 
+# Rename attribute fields
+visual_df["field"] = visual_df["field"].apply(lambda x: x.replace("attribute", "", 1) if isinstance(x, str) and x.startswith("attribute") else x)
+visual_df["field"] = visual_df["field"].apply(lambda x: x[0].lower() + x[1:] if isinstance(x, str) and x else x)
+
 custom_filter_order = [
     "RolesPlusPlus", "RolesPlus", "skillMoves", "weakFoot", "PlaystylesPlus", "Playstyles",
     "positions", "foot", "bodytype", "accelerateType", "height", "weight",
-    "attributeAcceleration", "attributeSprintSpeed", "attributePositioning", "attributeFinishing",
-    "attributeShotPower", "attributeLongShots", "attributeVolleys", "attributePenalties",
-    "attributeVision", "attributeCrossing", "attributeFkAccuracy", "attributeShortPassing",
-    "attributeLongPassing", "attributeCurve", "attributeAgility", "attributeBalance",
-    "attributeReactions", "attributeBallControl", "attributeDribbling", "attributeComposure",
-    "attributeInterceptions", "attributeHeadingAccuracy", "attributeDefensiveAwareness",
-    "attributeStandingTackle", "attributeSlidingTackle", "attributeJumping", "attributeStamina",
-    "attributeStrength", "attributeAggression", "attributeGkDiving", "attributeGkHandling",
-    "attributeGkKicking", "attributeGkPositioning", "attributeGkReflexes"
+    "acceleration", "sprintSpeed", "positioning", "finishing",
+    "shotPower", "longShots", "volleys", "penalties",
+    "vision", "crossing", "fkAccuracy", "shortPassing",
+    "longPassing", "curve", "agility", "balance",
+    "reactions", "ballControl", "dribbling", "composure",
+    "interceptions", "headingAccuracy", "defensiveAwareness",
+    "standingTackle", "slidingTackle", "jumping", "stamina",
+    "strength", "aggression", "gkDiving", "gkHandling",
+    "gkKicking", "gkPositioning", "gkReflexes"
 ]
-visual_df["sort_index"] = visual_df["field"].apply(lambda x: custom_filter_order.index(x) if x in custom_filter_order else -1)
+visual_df["sort_index"] = visual_df["field"].apply(lambda x: custom_filter_order.index(x.replace("attribute", "").lower()) if x.replace("attribute", "").lower() in custom_filter_order else -1)
 visual_df = visual_df.sort_values(by="sort_index").drop(columns=["sort_index"])
 
 # Load and normalize JSON data
@@ -53,6 +57,9 @@ print("After normalization:", df["debug_index"].nunique())
 
 df["eaId"] = df["eaId"].astype(str)
 df["__true_player_id"] = df["eaId"].fillna(df["commonName"])
+
+# Rename attribute columns
+df.rename(columns={col: col.replace("attribute", "", 1)[0].lower() + col.replace("attribute", "", 1)[1:] for col in df.columns if col.startswith("attribute")}, inplace=True)
 
 # Expand metaRatings into one row per archetype and metaRating
 if "metaRatings" in df.columns:
@@ -96,8 +103,8 @@ rpp_to_archetype = {
 st.sidebar.header("Filter Players")
 filters = {}
 
-attribute_fields = visual_df[visual_df["field"].str.contains("attribute_", na=False)]
-non_attribute_fields = visual_df[~visual_df["field"].str.contains("attribute_", na=False)]
+attribute_fields = visual_df[visual_df["field"].str.startswith("attribute")]
+non_attribute_fields = visual_df[~visual_df["field"].str.startswith("attribute")]
 
 for _, row in non_attribute_fields.iterrows():
     col = row["field"]
@@ -183,15 +190,15 @@ column_order = [
     "commonName", "archetype", "metarating", "rolesPlusPlus", "rolesPlus",
     "skillMoves", "weakFoot", "playstylesPlus", "playstyles", "positions", "foot",
     "bodytype", "accelerateType", "height", "weight", "overall",
-    "attributeAcceleration", "attributeSprintSpeed", "attributePositioning", "attributeFinishing",
-    "attributeShotPower", "attributeLongShots", "attributeVolleys", "attributePenalties",
-    "attributeVision", "attributeCrossing", "attributeFkAccuracy", "attributeShortPassing",
-    "attributeLongPassing", "attributeCurve", "attributeAgility", "attributeBalance",
-    "attributeReactions", "attributeBallControl", "attributeDribbling", "attributeComposure",
-    "attributeInterceptions", "attributeHeadingAccuracy", "attributeDefensiveAwareness",
-    "attributeStandingTackle", "attributeSlidingTackle", "attributeJumping", "attributeStamina",
-    "attributeStrength", "attributeAggression", "attributeGkDiving", "attributeGkHandling",
-    "attributeGkKicking", "attributeGkPositioning", "attributeGkReflexes"
+    "acceleration", "sprintSpeed", "positioning", "finishing",
+    "shotPower", "longShots", "volleys", "penalties",
+    "vision", "crossing", "fkAccuracy", "shortPassing",
+    "longPassing", "curve", "agility", "balance",
+    "reactions", "ballControl", "dribbling", "composure",
+    "interceptions", "headingAccuracy", "defensiveAwareness",
+    "standingTackle", "slidingTackle", "jumping", "stamina",
+    "strength", "aggression", "gkDiving", "gkHandling",
+    "gkKicking", "gkPositioning", "gkReflexes"
 ]
 existing_columns = [col for col in column_order if col in filtered_df.columns]
 remaining_columns = [col for col in filtered_df.columns if col not in existing_columns]
