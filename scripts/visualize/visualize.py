@@ -59,7 +59,6 @@ def ensure_meta_list(p):
 data = [ensure_meta_list(p) for p in data]
 df = pd.json_normalize(data)
 df["player_origin_id"] = df["player_origin_id"].astype(str)
-print("After normalization:", df["debug_index"].nunique())
 
 df["eaId"] = df["eaId"].astype(str)
 df["__true_player_id"] = df["eaId"].fillna(df["commonName"])
@@ -71,9 +70,6 @@ df.rename(columns={col: col.replace("attribute", "", 1)[0].lower() + col.replace
 if "metaRatings" in df.columns:
     df["metaRatings"] = df["metaRatings"].apply(lambda x: x if isinstance(x, list) else [{}])
     multi_meta = df[df["metaRatings"].apply(lambda x: isinstance(x, list) and len(x) > 1)]
-    print("Players with multiple metaRatings:", len(multi_meta))
-    for _, row in multi_meta.iterrows():
-        print(row.get("commonName", "N/A"), row["metaRatings"])
     df = df.explode("metaRatings", ignore_index=True)
     df["metaRatings"] = df["metaRatings"].apply(lambda x: x if isinstance(x, dict) else {})
     df["archetype"] = df["metaRatings"].apply(lambda x: x.get("archetype"))
@@ -83,7 +79,6 @@ if "metaRatings" in df.columns:
     df["metarating"] = df["metarating"].fillna(0)
 
     df = df.drop(columns=["metaRatings"])
-print("After exploding metaRatings:", df["debug_index"].nunique())
 
 df["height"] = pd.to_numeric(df["height"], errors="coerce")
 df["weight"] = pd.to_numeric(df["weight"], errors="coerce")
@@ -203,8 +198,6 @@ for col, val in filters.items():
     elif isinstance(val, tuple) and len(val) == 2:
         filtered_df = filtered_df[filtered_df[col].between(val[0], val[1])]
 
-print("After disabling filters:", filtered_df["debug_index"].nunique())
-
 # Custom column order
 column_order = [
     "commonName", "archetype", "metarating", "rolesPlusPlus", "rolesPlus",
@@ -230,5 +223,3 @@ st.markdown(f"### Showing {filtered_df['player_origin_id'].nunique()} unique pla
 sort_by = "metarating" if "metarating" in filtered_df.columns else "overall"
 filtered_df = filtered_df.drop(columns=["__true_player_id", "player_origin_id", "debug_index", "__player_id"], errors="ignore")
 st.dataframe(filtered_df.sort_values(by=sort_by, ascending=False), use_container_width=True, hide_index=True)
-
-df.to_csv(data_dir / "debug_full_output.csv", index=False)
