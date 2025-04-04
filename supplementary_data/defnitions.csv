@@ -1,0 +1,84 @@
+﻿field,details,min ,max
+archetype,category for which the metarating is calculated,N/A,N/A
+metaRating,target field for regression and prediction,0,99.99
+height, player in-game height in centimeters,149,206
+weight, player in-game weight in kilograms,45,105
+skillMoves, player skill move rating from 1 to 5,1,5
+weakFoot, player weak foot rating from 1 to 5,1,5
+attributeAcceleration, in-game attributes for the player between 1 and 99,1,99
+attributeSprintSpeed, in-game attributes for the player between 1 and 99,1,99
+attributePositioning, in-game attributes for the player between 1 and 99,1,99
+attributeFinishing, in-game attributes for the player between 1 and 99,1,99
+attributeShotPower, in-game attributes for the player between 1 and 99,1,99
+attributeLongShots, in-game attributes for the player between 1 and 99,1,99
+attributeVolleys, in-game attributes for the player between 1 and 99,1,99
+attributePenalties, in-game attributes for the player between 1 and 99,1,99
+attributeVision, in-game attributes for the player between 1 and 99,1,99
+attributeCrossing, in-game attributes for the player between 1 and 99,1,99
+attributeFkAccuracy, in-game attributes for the player between 1 and 99,1,99
+attributeShortPassing, in-game attributes for the player between 1 and 99,1,99
+attributeLongPassing, in-game attributes for the player between 1 and 99,1,99
+attributeCurve, in-game attributes for the player between 1 and 99,1,99
+attributeAgility, in-game attributes for the player between 1 and 99,1,99
+attributeBalance, in-game attributes for the player between 1 and 99,1,99
+attributeReactions, in-game attributes for the player between 1 and 99,1,99
+attributeBallControl, in-game attributes for the player between 1 and 99,1,99
+attributeDribbling, in-game attributes for the player between 1 and 99,1,99
+attributeComposure, in-game attributes for the player between 1 and 99,1,99
+attributeInterceptions, in-game attributes for the player between 1 and 99,1,99
+attributeHeadingAccuracy, in-game attributes for the player between 1 and 99,1,99
+attributeDefensiveAwareness, in-game attributes for the player between 1 and 99,1,99
+attributeStandingTackle, in-game attributes for the player between 1 and 99,1,99
+attributeSlidingTackle, in-game attributes for the player between 1 and 99,1,99
+attributeJumping, in-game attributes for the player between 1 and 99,1,99
+attributeStamina, in-game attributes for the player between 1 and 99,1,99
+attributeStrength, in-game attributes for the player between 1 and 99,1,99
+attributeAggression, in-game attributes for the player between 1 and 99,1,99
+Finesse Shot, special skill,0,2
+Chip Shot, special skill,0,2
+Power Shot, special skill,0,2
+Dead Ball, special skill,0,2
+Power Header, special skill,0,2
+Low Driven Shot, special skill,0,2
+Incisive Pass, special skill,0,2
+Pinged Pass, special skill,0,2
+Long Ball Pass, special skill,0,2
+Tiki Taka, special skill,0,2
+Whipped Pass, special skill,0,2
+Jockey, special skill,0,2
+Block, special skill,0,2
+Intercept, special skill,0,2
+Anticipate, special skill,0,2
+Slide Tackle, special skill,0,2
+Bruiser, special skill,0,2
+Technical, special skill,0,2
+Rapid, special skill,0,2
+Flair, special skill,0,2
+First Touch, special skill,0,2
+Trickster, special skill,0,2
+Press Proven, special skill,0,2
+Quick Step, special skill,0,2
+Relentless, special skill,0,2
+Trivela, special skill,0,2
+Acrobatic, special skill,0,2
+Long Throw, special skill,0,2
+Aerial, special skill,0,2
+accelerateType_EXPLOSIVE,categorical field 1 (encoded with one-hot),0,1
+accelerateType_MOSTLY_EXPLOSIVE,categorical field 1 (encoded with one-hot),0,1
+accelerateType_CONTROLLED_EXPLOSIVE,categorical field 1 (encoded with one-hot),0,1
+accelerateType_CONTROLLED,categorical field 1 (encoded with one-hot),0,1
+accelerateType_CONTROLLED_LENGTHY,categorical field 1 (encoded with one-hot),0,1
+accelerateType_MOSTLY_LENGTHY,categorical field 1 (encoded with one-hot),0,1
+accelerateType_LENGTHY,categorical field 1 (encoded with one-hot),0,1
+bodytype_Lean Medium,categorical field 2 (encoded with one-hot),0,1
+bodytype_Average Medium,categorical field 2 (encoded with one-hot),0,1
+bodytype_Stocky Medium,categorical field 2 (encoded with one-hot),0,1
+bodytype_Lean Tall,categorical field 2 (encoded with one-hot),0,1
+bodytype_Average Tall,categorical field 2 (encoded with one-hot),0,1
+bodytype_Stocky Tall,categorical field 2 (encoded with one-hot),0,1
+bodytype_Lean Short,categorical field 2 (encoded with one-hot),0,1
+bodytype_Average Short,categorical field 2 (encoded with one-hot),0,1
+bodytype_Stocky Short,categorical field 2 (encoded with one-hot),0,1
+bodytype_Unique,categorical field 2 (encoded with one-hot),0,1
+eaId,nominal field to identify player,N/A,N/A
+commonName,nominal field to identify player,N/A,N/A

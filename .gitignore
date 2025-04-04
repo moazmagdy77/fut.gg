@@ -1,8 +1,9 @@
 node_modules/
 __pycache__/
 *.pkl
-*.log
+.DS_Store
 .env
-*.csv
-*.json
-data/
+git rm --cached .DS_Store
+git add .gitignore
+git commit -m "Ignore macOS .DS_Store files"
+git push
