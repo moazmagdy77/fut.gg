@@ -106,6 +106,7 @@ filters = {}
 attribute_fields = visual_df[visual_df["field"].str.startswith("attribute")]
 non_attribute_fields = visual_df[~visual_df["field"].str.startswith("attribute")]
 
+# Process non-attribute fields first
 for _, row in non_attribute_fields.iterrows():
     col = row["field"]
     if col not in df.columns:
@@ -142,6 +143,7 @@ if selected_rpp:
     filters["archetype"] = mapped_archetypes
 
 with st.sidebar.expander("In-Game Stats", expanded=False):
+    # Process attribute fields
     for _, row in attribute_fields.iterrows():
         col = row["field"]
         if col not in df.columns:
