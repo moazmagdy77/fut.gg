@@ -53,8 +53,8 @@
       "Long Ball Pass"
     ],
     "positions": [
-      "CDM",
-      "CM"
+      "CM",
+      "CDM"
     ],
     "rolesPlus": [
       "CM Box to Box",
@@ -237,7 +237,7 @@
     "metaRatings": [
       {
         "archetype": "falseback",
-        "metaRating": 78.50668011626448
+        "metaRating": 78.97883892645753
       }
     ],
     "overall": 84,
@@ -309,7 +309,7 @@
     "metaRatings": [
       {
         "archetype": "defender",
-        "metaRating": 81.47589941569849
+        "metaRating": 81.4792505597577
       }
     ],
     "overall": 87,
@@ -380,24 +380,24 @@
     "height": 185,
     "metaRatings": [
       {
-        "archetype": "half_winger",
-        "metaRating": 84.71378846680892
-      },
-      {
-        "archetype": "box_to_box",
-        "metaRating": 89.24136291809441
+        "archetype": "playmaker",
+        "metaRating": 89.17194125874664
       },
       {
         "archetype": "classic_ten",
         "metaRating": 89.76941053033791
       },
       {
-        "archetype": "playmaker",
-        "metaRating": 89.1844714723584
+        "archetype": "shadow_striker",
+        "metaRating": 88.94121279005418
       },
       {
-        "archetype": "shadow_striker",
-        "metaRating": 88.93564502611153
+        "archetype": "box_to_box",
+        "metaRating": 89.24136291809442
+      },
+      {
+        "archetype": "half_winger",
+        "metaRating": 84.71378846680891
       }
     ],
     "overall": 94,
@@ -415,8 +415,8 @@
       "Pinged Pass"
     ],
     "positions": [
-      "CAM",
-      "CM"
+      "CM",
+      "CAM"
     ],
     "rolesPlus": [
       "CAM Half Winger",
@@ -478,11 +478,11 @@
     "metaRatings": [
       {
         "archetype": "fullback",
-        "metaRating": 86.05815598477983
+        "metaRating": 86.14454845389479
       },
       {
         "archetype": "defender",
-        "metaRating": 85.09651228411327
+        "metaRating": 85.09122461469717
       }
     ],
     "overall": 90,
@@ -559,16 +559,16 @@
     "height": 198,
     "metaRatings": [
       {
-        "archetype": "defender",
-        "metaRating": 91.0362438279994
-      },
-      {
         "archetype": "holding",
-        "metaRating": 90.65467519130188
+        "metaRating": 90.584908833548
       },
       {
         "archetype": "deep_lying_playmaker",
-        "metaRating": 88.95254826344208
+        "metaRating": 88.90500672447456
+      },
+      {
+        "archetype": "defender",
+        "metaRating": 91.04113733831213
       }
     ],
     "overall": 92,
@@ -651,12 +651,12 @@
     "height": 173,
     "metaRatings": [
       {
-        "archetype": "inside_forward",
-        "metaRating": 85.44817311431045
+        "archetype": "advanced_forward",
+        "metaRating": 86.31930425694568
       },
       {
-        "archetype": "advanced_forward",
-        "metaRating": 86.42531340950725
+        "archetype": "inside_forward",
+        "metaRating": 85.40558872394507
       }
     ],
     "overall": 89,
@@ -674,8 +674,8 @@
     ],
     "positions": [
       "LM",
-      "RM",
       "RW",
+      "RM",
       "ST"
     ],
     "rolesPlus": [
@@ -739,7 +739,7 @@
       },
       {
         "archetype": "shadow_striker",
-        "metaRating": 85.79130762628756
+        "metaRating": 85.78936971737737
       }
     ],
     "overall": 89,
@@ -754,9 +754,9 @@
       "Technical"
     ],
     "positions": [
+      "CM",
       "LM",
-      "CAM",
-      "CM"
+      "CAM"
     ],
     "rolesPlus": [
       "LM Inside Forward"
@@ -812,16 +812,16 @@
     "height": 191,
     "metaRatings": [
       {
-        "archetype": "stopper",
-        "metaRating": 87.874613340532
-      },
-      {
         "archetype": "fullback",
-        "metaRating": 90.3670809509456
+        "metaRating": 90.5336386184558
       },
       {
         "archetype": "defender",
-        "metaRating": 89.3167898186428
+        "metaRating": 89.30918585419305
+      },
+      {
+        "archetype": "stopper",
+        "metaRating": 87.86266212805403
       }
     ],
     "overall": 91,
@@ -909,7 +909,7 @@
       },
       {
         "archetype": "deep_lying_playmaker",
-        "metaRating": 90.91795953493092
+        "metaRating": 90.93510424579316
       }
     ],
     "overall": 90,
@@ -929,8 +929,8 @@
       "Anticipate"
     ],
     "positions": [
-      "CDM",
-      "CM"
+      "CM",
+      "CDM"
     ],
     "rolesPlus": [
       "CM Holding",
@@ -991,7 +991,7 @@
     "metaRatings": [
       {
         "archetype": "inside_forward",
-        "metaRating": 85.11442383461808
+        "metaRating": 85.16478215744398
       }
     ],
     "overall": 89,
@@ -1009,10 +1009,10 @@
       "Technical"
     ],
     "positions": [
-      "RM",
-      "LW",
       "CAM",
-      "RW"
+      "RW",
+      "RM",
+      "LW"
     ],
     "rolesPlus": [
       "RW Winger",
@@ -1072,24 +1072,24 @@
     "height": 182,
     "metaRatings": [
       {
-        "archetype": "winger",
-        "metaRating": 86.88015862421463
-      },
-      {
         "archetype": "playmaker",
-        "metaRating": 86.38513965858934
+        "metaRating": 86.33564410706953
       },
       {
         "archetype": "fullback",
-        "metaRating": 89.61214425245271
-      },
-      {
-        "archetype": "falseback",
-        "metaRating": 86.87591912637225
+        "metaRating": 89.66904866096915
       },
       {
         "archetype": "deep_lying_playmaker",
-        "metaRating": 86.43645527914944
+        "metaRating": 86.39466820147194
+      },
+      {
+        "archetype": "winger",
+        "metaRating": 86.68108215312927
+      },
+      {
+        "archetype": "falseback",
+        "metaRating": 86.91476952250997
       }
     ],
     "overall": 89,
@@ -1106,9 +1106,9 @@
       "Pinged Pass"
     ],
     "positions": [
+      "CM",
       "LM",
-      "LB",
-      "CM"
+      "LB"
     ],
     "rolesPlus": [
       "CM Box to Box",
@@ -1171,16 +1171,16 @@
     "height": 194,
     "metaRatings": [
       {
-        "archetype": "stopper",
-        "metaRating": 83.84369852356511
+        "archetype": "ball_playing_defender",
+        "metaRating": 82.46749974292035
       },
       {
         "archetype": "defender",
-        "metaRating": 84.45500550135557
+        "metaRating": 84.45761009437597
       },
       {
-        "archetype": "ball_playing_defender",
-        "metaRating": 82.48363625795764
+        "archetype": "stopper",
+        "metaRating": 83.8283440476719
       }
     ],
     "overall": 89,
@@ -1252,24 +1252,24 @@
     "height": 190,
     "metaRatings": [
       {
-        "archetype": "stopper",
-        "metaRating": 88.06863226380366
-      },
-      {
-        "archetype": "ball_playing_defender",
-        "metaRating": 88.38094865939716
-      },
-      {
-        "archetype": "holding",
-        "metaRating": 89.42730736208364
+        "archetype": "fullback",
+        "metaRating": 92.02855058234375
       },
       {
         "archetype": "defender",
-        "metaRating": 89.76810485142593
+        "metaRating": 89.77911336349422
       },
       {
-        "archetype": "fullback",
-        "metaRating": 91.96240359301711
+        "archetype": "holding",
+        "metaRating": 89.37887852234974
+      },
+      {
+        "archetype": "ball_playing_defender",
+        "metaRating": 88.40752259381901
+      },
+      {
+        "archetype": "stopper",
+        "metaRating": 88.07772699791799
       }
     ],
     "overall": 90,
@@ -1287,8 +1287,8 @@
       "Bruiser"
     ],
     "positions": [
-      "CDM",
       "LB",
+      "CDM",
       "CB"
     ],
     "rolesPlus": [
@@ -1351,7 +1351,7 @@
     "metaRatings": [
       {
         "archetype": "advanced_forward",
-        "metaRating": 83.90525538604977
+        "metaRating": 83.90096355835394
       }
     ],
     "overall": 87,
@@ -1364,8 +1364,8 @@
       "Finesse Shot"
     ],
     "positions": [
-      "ST",
-      "LM"
+      "LM",
+      "ST"
     ],
     "rolesPlus": [
       "ST False 9",
@@ -1422,11 +1422,11 @@
     "metaRatings": [
       {
         "archetype": "ball_playing_defender",
-        "metaRating": 90.25483560030216
+        "metaRating": 90.26771586631254
       },
       {
         "archetype": "defender",
-        "metaRating": 89.41408551672887
+        "metaRating": 89.4034399330199
       }
     ],
     "overall": 90,
@@ -1499,12 +1499,12 @@
     "height": 188,
     "metaRatings": [
       {
-        "archetype": "winger",
-        "metaRating": 74.66554591859551
+        "archetype": "inside_forward",
+        "metaRating": 73.18149364083231
       },
       {
-        "archetype": "inside_forward",
-        "metaRating": 73.24174528475713
+        "archetype": "winger",
+        "metaRating": 74.44827704257712
       }
     ],
     "overall": 78,
@@ -1518,8 +1518,8 @@
       "Press Proven"
     ],
     "positions": [
-      "RM",
-      "RW"
+      "RW",
+      "RM"
     ],
     "rolesPlus": [
       "RM Inside Forward",
@@ -1576,12 +1576,12 @@
     "height": 179,
     "metaRatings": [
       {
-        "archetype": "poacher",
-        "metaRating": 77.34135420576351
+        "archetype": "advanced_forward",
+        "metaRating": 77.96516299709427
       },
       {
-        "archetype": "advanced_forward",
-        "metaRating": 78.14037555941265
+        "archetype": "poacher",
+        "metaRating": 77.31280682270014
       }
     ],
     "overall": 82,
@@ -1652,12 +1652,12 @@
     "height": 179,
     "metaRatings": [
       {
-        "archetype": "winger",
-        "metaRating": 76.27840058389066
+        "archetype": "inside_forward",
+        "metaRating": 75.10847150655258
       },
       {
-        "archetype": "inside_forward",
-        "metaRating": 75.18275448620403
+        "archetype": "winger",
+        "metaRating": 76.14353947854973
       }
     ],
     "overall": 81,
@@ -1729,12 +1729,12 @@
     "height": 175,
     "metaRatings": [
       {
-        "archetype": "wide_playmaker",
-        "metaRating": 77.51803590679323
+        "archetype": "inside_forward",
+        "metaRating": 79.67165569743858
       },
       {
-        "archetype": "inside_forward",
-        "metaRating": 79.62142912020843
+        "archetype": "wide_playmaker",
+        "metaRating": 77.52720626740353
       }
     ],
     "overall": 87,
@@ -1750,8 +1750,8 @@
     ],
     "positions": [
       "LM",
-      "LW",
-      "CAM"
+      "CAM",
+      "LW"
     ],
     "rolesPlus": [
       "CAM Shadow Striker",
@@ -1809,12 +1809,12 @@
     "height": 178,
     "metaRatings": [
       {
-        "archetype": "winger",
-        "metaRating": 89.87629836868336
+        "archetype": "shadow_striker",
+        "metaRating": 87.77772218788175
       },
       {
-        "archetype": "shadow_striker",
-        "metaRating": 87.77780532792829
+        "archetype": "winger",
+        "metaRating": 90.05712782692179
       }
     ],
     "overall": 90,
@@ -1890,12 +1890,12 @@
     "height": 186,
     "metaRatings": [
       {
-        "archetype": "box_to_box",
-        "metaRating": 90.67658495912065
+        "archetype": "playmaker",
+        "metaRating": 89.35089849822484
       },
       {
-        "archetype": "playmaker",
-        "metaRating": 89.36409445872042
+        "archetype": "box_to_box",
+        "metaRating": 90.67658495912065
       }
     ],
     "overall": 91,
@@ -1914,8 +1914,8 @@
       "Incisive Pass"
     ],
     "positions": [
-      "CAM",
-      "CM"
+      "CM",
+      "CAM"
     ],
     "rolesPlus": [
       "CAM Shadow Striker",
@@ -1975,16 +1975,16 @@
     "height": 191,
     "metaRatings": [
       {
-        "archetype": "stopper",
-        "metaRating": 88.96424493207819
+        "archetype": "ball_playing_defender",
+        "metaRating": 89.281343717479
       },
       {
         "archetype": "defender",
-        "metaRating": 90.67634709014898
+        "metaRating": 90.67400344114496
       },
       {
-        "archetype": "ball_playing_defender",
-        "metaRating": 89.28092048567866
+        "archetype": "stopper",
+        "metaRating": 88.95115066167214
       }
     ],
     "overall": 91,
@@ -2014,98 +2014,6 @@
     "skillMoves": 5,
     "weakFoot": 5,
     "weight": 94
-  },
-  {
-    "accelerateType": null,
-    "attributeAcceleration": 92,
-    "attributeAggression": 71,
-    "attributeAgility": 87,
-    "attributeBalance": 85,
-    "attributeBallControl": 92,
-    "attributeComposure": 92,
-    "attributeCrossing": 85,
-    "attributeCurve": 79,
-    "attributeDefensiveAwareness": 90,
-    "attributeDribbling": 91,
-    "attributeFinishing": 86,
-    "attributeFkAccuracy": 67,
-    "attributeGkDiving": 1,
-    "attributeGkHandling": 1,
-    "attributeGkKicking": 1,
-    "attributeGkPositioning": 1,
-    "attributeGkReflexes": 1,
-    "attributeHeadingAccuracy": 85,
-    "attributeInterceptions": 90,
-    "attributeJumping": 91,
-    "attributeLongPassing": 80,
-    "attributeLongShots": 85,
-    "attributePenalties": 89,
-    "attributePositioning": 88,
-    "attributeReactions": 89,
-    "attributeShortPassing": 95,
-    "attributeShotPower": 89,
-    "attributeSlidingTackle": 87,
-    "attributeSprintSpeed": 89,
-    "attributeStamina": 85,
-    "attributeStandingTackle": 92,
-    "attributeStrength": 95,
-    "attributeVision": 87,
-    "attributeVolleys": 85,
-    "bodytype": "Lean Medium",
-    "commonName": "Fridolina Rolf\u00f6",
-    "eaId": 50558661,
-    "foot": "Left",
-    "height": 179,
-    "metaRatings": [
-      {
-        "archetype": "falseback",
-        "metaRating": 88.85078289030454
-      },
-      {
-        "archetype": "attacking_wingback",
-        "metaRating": 87.98041125481113
-      },
-      {
-        "archetype": "inside_forward",
-        "metaRating": 85.39976614261445
-      }
-    ],
-    "overall": 91,
-    "playstyles": [
-      "Incisive Pass",
-      "Long Ball Pass",
-      "Whipped Pass",
-      "Anticipate",
-      "Bruiser",
-      "Technical",
-      "First Touch",
-      "Trickster",
-      "Quick Step",
-      "Relentless"
-    ],
-    "playstylesPlus": [
-      "Jockey",
-      "Intercept"
-    ],
-    "positions": [
-      "LM",
-      "LW",
-      "LB"
-    ],
-    "rolesPlus": [
-      "LW Wide Playmaker",
-      "LB Wingback",
-      "LM Winger",
-      "LM Wide Midfielder"
-    ],
-    "rolesPlusPlus": [
-      "LM Inside Forward",
-      "LB Falseback",
-      "LB Attacking Wingback"
-    ],
-    "skillMoves": 5,
-    "weakFoot": 5,
-    "weight": 69
   },
   {
     "accelerateType": null,
@@ -2151,17 +2059,16 @@
     "metaRatings": [
       {
         "archetype": "playmaker",
-        "metaRating": 89.24540173060373
+        "metaRating": 88.47269453675747
       },
       {
         "archetype": "deep_lying_playmaker",
-        "metaRating": 86.21079942948651
+        "metaRating": 85.36951351416695
       }
     ],
     "overall": 89,
     "playstyles": [
       "Incisive Pass",
-      "Tiki Taka",
       "Intercept",
       "Technical",
       "Rapid",
@@ -2173,8 +2080,8 @@
       "Long Ball Pass"
     ],
     "positions": [
-      "CDM",
-      "CM"
+      "CM",
+      "CDM"
     ],
     "rolesPlus": [
       "CDM Wide Half",
@@ -2189,6 +2096,98 @@
     "skillMoves": 4,
     "weakFoot": 4,
     "weight": 74
+  },
+  {
+    "accelerateType": null,
+    "attributeAcceleration": 92,
+    "attributeAggression": 71,
+    "attributeAgility": 87,
+    "attributeBalance": 85,
+    "attributeBallControl": 92,
+    "attributeComposure": 92,
+    "attributeCrossing": 85,
+    "attributeCurve": 79,
+    "attributeDefensiveAwareness": 90,
+    "attributeDribbling": 91,
+    "attributeFinishing": 86,
+    "attributeFkAccuracy": 67,
+    "attributeGkDiving": 1,
+    "attributeGkHandling": 1,
+    "attributeGkKicking": 1,
+    "attributeGkPositioning": 1,
+    "attributeGkReflexes": 1,
+    "attributeHeadingAccuracy": 85,
+    "attributeInterceptions": 90,
+    "attributeJumping": 91,
+    "attributeLongPassing": 80,
+    "attributeLongShots": 85,
+    "attributePenalties": 89,
+    "attributePositioning": 88,
+    "attributeReactions": 89,
+    "attributeShortPassing": 95,
+    "attributeShotPower": 89,
+    "attributeSlidingTackle": 87,
+    "attributeSprintSpeed": 89,
+    "attributeStamina": 85,
+    "attributeStandingTackle": 92,
+    "attributeStrength": 95,
+    "attributeVision": 87,
+    "attributeVolleys": 85,
+    "bodytype": "Lean Medium",
+    "commonName": "Fridolina Rolf\u00f6",
+    "eaId": 50558661,
+    "foot": "Left",
+    "height": 179,
+    "metaRatings": [
+      {
+        "archetype": "inside_forward",
+        "metaRating": 85.44271831880249
+      },
+      {
+        "archetype": "falseback",
+        "metaRating": 88.70333422615427
+      },
+      {
+        "archetype": "attacking_wingback",
+        "metaRating": 88.02778604772688
+      }
+    ],
+    "overall": 91,
+    "playstyles": [
+      "Incisive Pass",
+      "Long Ball Pass",
+      "Whipped Pass",
+      "Anticipate",
+      "Bruiser",
+      "Technical",
+      "First Touch",
+      "Trickster",
+      "Quick Step",
+      "Relentless"
+    ],
+    "playstylesPlus": [
+      "Jockey",
+      "Intercept"
+    ],
+    "positions": [
+      "LM",
+      "LW",
+      "LB"
+    ],
+    "rolesPlus": [
+      "LW Wide Playmaker",
+      "LB Wingback",
+      "LM Winger",
+      "LM Wide Midfielder"
+    ],
+    "rolesPlusPlus": [
+      "LM Inside Forward",
+      "LB Falseback",
+      "LB Attacking Wingback"
+    ],
+    "skillMoves": 5,
+    "weakFoot": 5,
+    "weight": 69
   },
   {
     "accelerateType": null,
@@ -2233,17 +2232,18 @@
     "height": 195,
     "metaRatings": [
       {
-        "archetype": "inside_forward",
-        "metaRating": 82.98081793867277
+        "archetype": "advanced_forward",
+        "metaRating": 85.67841110547106
       },
       {
-        "archetype": "advanced_forward",
-        "metaRating": 85.58544823498785
+        "archetype": "inside_forward",
+        "metaRating": 83.05820857163361
       }
     ],
     "overall": 86,
     "playstyles": [
       "Finesse Shot",
+      "Chip Shot",
       "Power Shot",
       "Low Driven Shot",
       "Incisive Pass",
@@ -2257,9 +2257,9 @@
       "Trickster"
     ],
     "positions": [
-      "ST",
+      "RW",
       "RM",
-      "RW"
+      "ST"
     ],
     "rolesPlus": [
       "RM Wide Playmaker",
@@ -2273,6 +2273,90 @@
     "skillMoves": 5,
     "weakFoot": 4,
     "weight": 89
+  },
+  {
+    "accelerateType": null,
+    "attributeAcceleration": 86,
+    "attributeAggression": 90,
+    "attributeAgility": 85,
+    "attributeBalance": 82,
+    "attributeBallControl": 92,
+    "attributeComposure": 85,
+    "attributeCrossing": 85,
+    "attributeCurve": 90,
+    "attributeDefensiveAwareness": 73,
+    "attributeDribbling": 89,
+    "attributeFinishing": 89,
+    "attributeFkAccuracy": 95,
+    "attributeGkDiving": 1,
+    "attributeGkHandling": 1,
+    "attributeGkKicking": 1,
+    "attributeGkPositioning": 1,
+    "attributeGkReflexes": 1,
+    "attributeHeadingAccuracy": 75,
+    "attributeInterceptions": 75,
+    "attributeJumping": 75,
+    "attributeLongPassing": 93,
+    "attributeLongShots": 90,
+    "attributePenalties": 98,
+    "attributePositioning": 92,
+    "attributeReactions": 95,
+    "attributeShortPassing": 93,
+    "attributeShotPower": 91,
+    "attributeSlidingTackle": 78,
+    "attributeSprintSpeed": 82,
+    "attributeStamina": 97,
+    "attributeStandingTackle": 84,
+    "attributeStrength": 70,
+    "attributeVision": 97,
+    "attributeVolleys": 92,
+    "bodytype": "Unique",
+    "commonName": "Bruno Fernandes",
+    "eaId": 100875494,
+    "foot": "Right",
+    "height": 179,
+    "metaRatings": [
+      {
+        "archetype": "playmaker",
+        "metaRating": 87.48657595067796
+      },
+      {
+        "archetype": "shadow_striker",
+        "metaRating": 86.99234852765993
+      }
+    ],
+    "overall": 89,
+    "playstyles": [
+      "Finesse Shot",
+      "Incisive Pass",
+      "Pinged Pass",
+      "Tiki Taka",
+      "Flair",
+      "First Touch",
+      "Relentless",
+      "Trivela"
+    ],
+    "playstylesPlus": [
+      "Dead Ball",
+      "Long Ball Pass"
+    ],
+    "positions": [
+      "CM",
+      "CAM"
+    ],
+    "rolesPlus": [
+      "CAM Half Winger",
+      "CAM Classic 10",
+      "CM Half-Winger"
+    ],
+    "rolesPlusPlus": [
+      "CM Playmaker",
+      "CAM Playmaker",
+      "CAM Shadow Striker"
+    ],
+    "skillMoves": 4,
+    "weakFoot": 4,
+    "weight": 69
   },
   {
     "accelerateType": "CONTROLLED",
@@ -7533,6 +7617,74 @@
   },
   {
     "accelerateType": "CONTROLLED",
+    "attributeAcceleration": 66,
+    "attributeAggression": 73,
+    "attributeAgility": 73,
+    "attributeBalance": 74,
+    "attributeBallControl": 80,
+    "attributeComposure": 70,
+    "attributeCrossing": 57,
+    "attributeCurve": 70,
+    "attributeDefensiveAwareness": 82,
+    "attributeDribbling": 79,
+    "attributeFinishing": 79,
+    "attributeFkAccuracy": 69,
+    "attributeGkDiving": 9,
+    "attributeGkHandling": 14,
+    "attributeGkKicking": 8,
+    "attributeGkPositioning": 6,
+    "attributeGkReflexes": 9,
+    "attributeHeadingAccuracy": 54,
+    "attributeInterceptions": 83,
+    "attributeJumping": 71,
+    "attributeLongPassing": 79,
+    "attributeLongShots": 80,
+    "attributePenalties": 65,
+    "attributePositioning": 78,
+    "attributeReactions": 86,
+    "attributeShortPassing": 85,
+    "attributeShotPower": 71,
+    "attributeSlidingTackle": 75,
+    "attributeSprintSpeed": 39,
+    "attributeStamina": 90,
+    "attributeStandingTackle": 80,
+    "attributeStrength": 80,
+    "attributeVision": 83,
+    "attributeVolleys": 59,
+    "bodytype": "Average Short",
+    "commonName": "Tanja Pawollek",
+    "eaId": 264954,
+    "foot": "Left",
+    "height": 170,
+    "metaRatings": [
+      {
+        "archetype": "deep_lying_playmaker",
+        "metaRating": 63.23551235057749
+      }
+    ],
+    "overall": 82,
+    "playstyles": [
+      "Long Ball Pass",
+      "Press Proven",
+      "Aerial"
+    ],
+    "playstylesPlus": [],
+    "positions": [
+      "CM",
+      "CDM"
+    ],
+    "rolesPlus": [
+      "CDM Deep-Lying Playmaker"
+    ],
+    "rolesPlusPlus": [
+      "CM Deep-Lying Playmaker"
+    ],
+    "skillMoves": 3,
+    "weakFoot": 4,
+    "weight": 63
+  },
+  {
+    "accelerateType": "CONTROLLED",
     "attributeAcceleration": 93,
     "attributeAggression": 68,
     "attributeAgility": 69,
@@ -7935,16 +8087,16 @@
     "height": 182,
     "metaRatings": [
       {
-        "archetype": "playmaker",
-        "metaRating": 89.9996281505053
-      },
-      {
         "archetype": "half_winger",
         "metaRating": 85.99009466063626
       },
       {
         "archetype": "shadow_striker",
         "metaRating": 91.16545090150834
+      },
+      {
+        "archetype": "playmaker",
+        "metaRating": 89.9996281505053
       }
     ],
     "overall": 93,
@@ -8258,12 +8410,12 @@
     "height": 188,
     "metaRatings": [
       {
-        "archetype": "ball_playing_defender",
-        "metaRating": 82.60128395719332
-      },
-      {
         "archetype": "defender",
         "metaRating": 83.7992139163008
+      },
+      {
+        "archetype": "ball_playing_defender",
+        "metaRating": 82.60128395719332
       }
     ],
     "overall": 88,
@@ -8412,16 +8564,16 @@
     "height": 188,
     "metaRatings": [
       {
+        "archetype": "advanced_forward",
+        "metaRating": 89.37686015866767
+      },
+      {
         "archetype": "target_forward",
         "metaRating": 88.89571272475536
       },
       {
         "archetype": "false_nine",
         "metaRating": 89.47436310477642
-      },
-      {
-        "archetype": "advanced_forward",
-        "metaRating": 89.37686015866767
       }
     ],
     "overall": 92,
@@ -8496,16 +8648,16 @@
     "height": 174,
     "metaRatings": [
       {
-        "archetype": "playmaker",
-        "metaRating": 85.27466542826504
+        "archetype": "shadow_striker",
+        "metaRating": 88.06675651079162
       },
       {
         "archetype": "wide_playmaker",
         "metaRating": 88.79865130586485
       },
       {
-        "archetype": "shadow_striker",
-        "metaRating": 88.06675651079162
+        "archetype": "playmaker",
+        "metaRating": 85.27466542826504
       }
     ],
     "overall": 90,
@@ -8583,16 +8735,16 @@
     "height": 181,
     "metaRatings": [
       {
+        "archetype": "defender",
+        "metaRating": 81.44488450934958
+      },
+      {
         "archetype": "deep_lying_playmaker",
         "metaRating": 84.05476795720398
       },
       {
         "archetype": "holding",
         "metaRating": 86.21367665007222
-      },
-      {
-        "archetype": "defender",
-        "metaRating": 81.44488450934958
       }
     ],
     "overall": 91,
@@ -8742,12 +8894,12 @@
     "height": 181,
     "metaRatings": [
       {
-        "archetype": "attacking_wingback",
-        "metaRating": 86.44021777053773
-      },
-      {
         "archetype": "wingback",
         "metaRating": 87.51772751012732
+      },
+      {
+        "archetype": "attacking_wingback",
+        "metaRating": 86.44021777053773
       },
       {
         "archetype": "fullback",
@@ -8781,6 +8933,79 @@
     "skillMoves": 4,
     "weakFoot": 4,
     "weight": 80
+  },
+  {
+    "accelerateType": "CONTROLLED_LENGTHY",
+    "attributeAcceleration": 58,
+    "attributeAggression": 40,
+    "attributeAgility": 55,
+    "attributeBalance": 51,
+    "attributeBallControl": 22,
+    "attributeComposure": 65,
+    "attributeCrossing": 12,
+    "attributeCurve": 16,
+    "attributeDefensiveAwareness": 20,
+    "attributeDribbling": 11,
+    "attributeFinishing": 12,
+    "attributeFkAccuracy": 14,
+    "attributeGkDiving": 90,
+    "attributeGkHandling": 86,
+    "attributeGkKicking": 80,
+    "attributeGkPositioning": 90,
+    "attributeGkReflexes": 92,
+    "attributeHeadingAccuracy": 16,
+    "attributeInterceptions": 15,
+    "attributeJumping": 69,
+    "attributeLongPassing": 66,
+    "attributeLongShots": 14,
+    "attributePenalties": 18,
+    "attributePositioning": 14,
+    "attributeReactions": 80,
+    "attributeShortPassing": 51,
+    "attributeShotPower": 56,
+    "attributeSlidingTackle": 12,
+    "attributeSprintSpeed": 54,
+    "attributeStamina": 45,
+    "attributeStandingTackle": 13,
+    "attributeStrength": 65,
+    "attributeVision": 48,
+    "attributeVolleys": 14,
+    "bodytype": "Lean Tall",
+    "commonName": "Wojciech Szcz\u0119sny",
+    "eaId": 50517801,
+    "foot": "Right",
+    "height": 196,
+    "metaRatings": [
+      {
+        "archetype": "goalkeeper",
+        "metaRating": 87.99552493470206
+      },
+      {
+        "archetype": "sweeper_keeper",
+        "metaRating": 87.33109914572425
+      }
+    ],
+    "overall": 92,
+    "playstyles": [
+      "GK Far Throw",
+      "GK Rush Out",
+      "GK Far Reach"
+    ],
+    "playstylesPlus": [
+      "GK Footwork",
+      "GK Cross Claimer"
+    ],
+    "positions": [
+      "GK"
+    ],
+    "rolesPlus": [],
+    "rolesPlusPlus": [
+      "GK Goalkeeper",
+      "GK Sweeper Keeper"
+    ],
+    "skillMoves": 1,
+    "weakFoot": 4,
+    "weight": 90
   },
   {
     "accelerateType": "MOSTLY_EXPLOSIVE",
@@ -9510,16 +9735,16 @@
     "height": 187,
     "metaRatings": [
       {
-        "archetype": "wide_midfielder",
-        "metaRating": 83.17532050734766
-      },
-      {
         "archetype": "wingback",
         "metaRating": 86.54918378545456
       },
       {
         "archetype": "attacking_wingback",
         "metaRating": 86.43311546462195
+      },
+      {
+        "archetype": "wide_midfielder",
+        "metaRating": 83.17532050734766
       }
     ],
     "overall": 88,
@@ -9597,12 +9822,12 @@
     "height": 193,
     "metaRatings": [
       {
-        "archetype": "ball_playing_defender",
-        "metaRating": 89.4196343701853
-      },
-      {
         "archetype": "defender",
         "metaRating": 90.15899871484439
+      },
+      {
+        "archetype": "ball_playing_defender",
+        "metaRating": 89.4196343701853
       },
       {
         "archetype": "stopper",
@@ -9750,12 +9975,12 @@
     "height": 176,
     "metaRatings": [
       {
-        "archetype": "inside_forward",
-        "metaRating": 88.93268689524959
-      },
-      {
         "archetype": "false_nine",
         "metaRating": 89.19356517106847
+      },
+      {
+        "archetype": "inside_forward",
+        "metaRating": 88.93268689524959
       }
     ],
     "overall": 91,
@@ -9834,16 +10059,16 @@
     "height": 181,
     "metaRatings": [
       {
+        "archetype": "advanced_forward",
+        "metaRating": 84.79570701537031
+      },
+      {
         "archetype": "playmaker",
         "metaRating": 85.99919853611777
       },
       {
         "archetype": "inside_forward",
         "metaRating": 84.62152142956688
-      },
-      {
-        "archetype": "advanced_forward",
-        "metaRating": 84.79570701537031
       }
     ],
     "overall": 87,
@@ -9919,12 +10144,12 @@
     "height": 185,
     "metaRatings": [
       {
-        "archetype": "target_forward",
-        "metaRating": 81.00837822201547
-      },
-      {
         "archetype": "poacher",
         "metaRating": 82.46333026170333
+      },
+      {
+        "archetype": "target_forward",
+        "metaRating": 81.00837822201547
       }
     ],
     "overall": 88,
@@ -10142,12 +10367,12 @@
     "height": 175,
     "metaRatings": [
       {
-        "archetype": "inside_forward",
-        "metaRating": 87.94593403768847
-      },
-      {
         "archetype": "false_nine",
         "metaRating": 86.30361831925559
+      },
+      {
+        "archetype": "inside_forward",
+        "metaRating": 87.94593403768847
       }
     ],
     "overall": 90,
@@ -10593,12 +10818,12 @@
     "height": 182,
     "metaRatings": [
       {
-        "archetype": "playmaker",
-        "metaRating": 84.65053659662497
-      },
-      {
         "archetype": "wide_playmaker",
         "metaRating": 82.91659658093029
+      },
+      {
+        "archetype": "playmaker",
+        "metaRating": 84.65053659662497
       }
     ],
     "overall": 87,
@@ -10675,12 +10900,12 @@
     "height": 196,
     "metaRatings": [
       {
-        "archetype": "ball_playing_defender",
-        "metaRating": 85.58911862885842
-      },
-      {
         "archetype": "defender",
         "metaRating": 86.53016897076691
+      },
+      {
+        "archetype": "ball_playing_defender",
+        "metaRating": 85.58911862885842
       },
       {
         "archetype": "stopper",
@@ -10754,12 +10979,12 @@
     "height": 194,
     "metaRatings": [
       {
-        "archetype": "target_forward",
-        "metaRating": 83.54106748996686
-      },
-      {
         "archetype": "poacher",
         "metaRating": 81.28860945511607
+      },
+      {
+        "archetype": "target_forward",
+        "metaRating": 83.54106748996686
       }
     ],
     "overall": 86,
@@ -10835,12 +11060,12 @@
         "metaRating": 82.94382291356878
       },
       {
-        "archetype": "inside_forward",
-        "metaRating": 86.53674091376195
-      },
-      {
         "archetype": "false_nine",
         "metaRating": 85.22198222860919
+      },
+      {
+        "archetype": "inside_forward",
+        "metaRating": 86.53674091376195
       }
     ],
     "overall": 87,
@@ -11166,6 +11391,85 @@
     "weight": 77
   },
   {
+    "accelerateType": "MOSTLY_EXPLOSIVE",
+    "attributeAcceleration": 90,
+    "attributeAggression": 56,
+    "attributeAgility": 91,
+    "attributeBalance": 85,
+    "attributeBallControl": 87,
+    "attributeComposure": 80,
+    "attributeCrossing": 86,
+    "attributeCurve": 83,
+    "attributeDefensiveAwareness": 71,
+    "attributeDribbling": 87,
+    "attributeFinishing": 81,
+    "attributeFkAccuracy": 76,
+    "attributeGkDiving": 9,
+    "attributeGkHandling": 15,
+    "attributeGkKicking": 5,
+    "attributeGkPositioning": 11,
+    "attributeGkReflexes": 6,
+    "attributeHeadingAccuracy": 78,
+    "attributeInterceptions": 74,
+    "attributeJumping": 94,
+    "attributeLongPassing": 82,
+    "attributeLongShots": 89,
+    "attributePenalties": 77,
+    "attributePositioning": 84,
+    "attributeReactions": 81,
+    "attributeShortPassing": 87,
+    "attributeShotPower": 90,
+    "attributeSlidingTackle": 64,
+    "attributeSprintSpeed": 96,
+    "attributeStamina": 99,
+    "attributeStandingTackle": 69,
+    "attributeStrength": 78,
+    "attributeVision": 83,
+    "attributeVolleys": 83,
+    "bodytype": "Lean Medium",
+    "commonName": "Mathias Pereira Lage",
+    "eaId": 50564709,
+    "foot": "Right",
+    "height": 180,
+    "metaRatings": [
+      {
+        "archetype": "winger",
+        "metaRating": 85.2698311290826
+      },
+      {
+        "archetype": "inside_forward",
+        "metaRating": 82.77793083417752
+      }
+    ],
+    "overall": 85,
+    "playstyles": [
+      "Finesse Shot",
+      "Pinged Pass",
+      "Whipped Pass",
+      "Technical",
+      "First Touch"
+    ],
+    "playstylesPlus": [
+      "Rapid"
+    ],
+    "positions": [
+      "LW",
+      "LM"
+    ],
+    "rolesPlus": [
+      "LM Winger",
+      "LW Inside Forward",
+      "LW Wide Playmaker"
+    ],
+    "rolesPlusPlus": [
+      "LM Inside Forward",
+      "LW Winger"
+    ],
+    "skillMoves": 4,
+    "weakFoot": 4,
+    "weight": 69
+  },
+  {
     "accelerateType": "CONTROLLED_LENGTHY",
     "attributeAcceleration": 81,
     "attributeAggression": 90,
@@ -11288,16 +11592,16 @@
         "metaRating": 90.394479041026
       },
       {
-        "archetype": "false_nine",
-        "metaRating": 87.74861568902469
-      },
-      {
         "archetype": "advanced_forward",
         "metaRating": 90.57818208067128
       },
       {
         "archetype": "target_forward",
         "metaRating": 81.96444322461075
+      },
+      {
+        "archetype": "false_nine",
+        "metaRating": 87.74861568902469
       }
     ],
     "overall": 92,
@@ -11372,12 +11676,12 @@
     "height": 178,
     "metaRatings": [
       {
-        "archetype": "playmaker",
-        "metaRating": 88.20849207334605
-      },
-      {
         "archetype": "centre_half",
         "metaRating": 87.09065352080968
+      },
+      {
+        "archetype": "playmaker",
+        "metaRating": 88.20849207334605
       }
     ],
     "overall": 90,
@@ -11531,16 +11835,16 @@
     "height": 190,
     "metaRatings": [
       {
-        "archetype": "inside_forward",
-        "metaRating": 88.23121329213404
-      },
-      {
         "archetype": "advanced_forward",
         "metaRating": 87.9964478579354
       },
       {
         "archetype": "false_nine",
         "metaRating": 90.0883182402595
+      },
+      {
+        "archetype": "inside_forward",
+        "metaRating": 88.23121329213404
       }
     ],
     "overall": 91,
@@ -11654,6 +11958,172 @@
     "skillMoves": 3,
     "weakFoot": 4,
     "weight": 91
+  },
+  {
+    "accelerateType": "CONTROLLED",
+    "attributeAcceleration": 84,
+    "attributeAggression": 87,
+    "attributeAgility": 88,
+    "attributeBalance": 85,
+    "attributeBallControl": 93,
+    "attributeComposure": 93,
+    "attributeCrossing": 80,
+    "attributeCurve": 87,
+    "attributeDefensiveAwareness": 92,
+    "attributeDribbling": 85,
+    "attributeFinishing": 84,
+    "attributeFkAccuracy": 85,
+    "attributeGkDiving": 13,
+    "attributeGkHandling": 9,
+    "attributeGkKicking": 8,
+    "attributeGkPositioning": 12,
+    "attributeGkReflexes": 8,
+    "attributeHeadingAccuracy": 85,
+    "attributeInterceptions": 90,
+    "attributeJumping": 77,
+    "attributeLongPassing": 92,
+    "attributeLongShots": 84,
+    "attributePenalties": 95,
+    "attributePositioning": 84,
+    "attributeReactions": 94,
+    "attributeShortPassing": 93,
+    "attributeShotPower": 88,
+    "attributeSlidingTackle": 88,
+    "attributeSprintSpeed": 88,
+    "attributeStamina": 88,
+    "attributeStandingTackle": 93,
+    "attributeStrength": 85,
+    "attributeVision": 88,
+    "attributeVolleys": 86,
+    "bodytype": "Average Tall",
+    "commonName": "Laurent Blanc",
+    "eaId": 50570091,
+    "foot": "Right",
+    "height": 192,
+    "metaRatings": [
+      {
+        "archetype": "classic_ten",
+        "metaRating": 86.35503387846528
+      },
+      {
+        "archetype": "playmaker",
+        "metaRating": 86.984038230868
+      }
+    ],
+    "overall": 89,
+    "playstyles": [
+      "Finesse Shot",
+      "Incisive Pass",
+      "Tiki Taka",
+      "Anticipate",
+      "Technical",
+      "Quick Step",
+      "Aerial"
+    ],
+    "playstylesPlus": [
+      "First Touch",
+      "Pinged Pass"
+    ],
+    "positions": [
+      "CAM",
+      "CB",
+      "CM"
+    ],
+    "rolesPlus": [
+      "CB Ball-Playing Defender",
+      "CM Box to Box",
+      "CAM Half Winger"
+    ],
+    "rolesPlusPlus": [
+      "CM Playmaker",
+      "CAM Playmaker",
+      "CAM Classic 10"
+    ],
+    "skillMoves": 4,
+    "weakFoot": 4,
+    "weight": 82
+  },
+  {
+    "accelerateType": "CONTROLLED_LENGTHY",
+    "attributeAcceleration": 89,
+    "attributeAggression": 73,
+    "attributeAgility": 85,
+    "attributeBalance": 84,
+    "attributeBallControl": 88,
+    "attributeComposure": 87,
+    "attributeCrossing": 86,
+    "attributeCurve": 90,
+    "attributeDefensiveAwareness": 40,
+    "attributeDribbling": 92,
+    "attributeFinishing": 91,
+    "attributeFkAccuracy": 49,
+    "attributeGkDiving": 10,
+    "attributeGkHandling": 11,
+    "attributeGkKicking": 14,
+    "attributeGkPositioning": 15,
+    "attributeGkReflexes": 7,
+    "attributeHeadingAccuracy": 94,
+    "attributeInterceptions": 32,
+    "attributeJumping": 98,
+    "attributeLongPassing": 69,
+    "attributeLongShots": 78,
+    "attributePenalties": 62,
+    "attributePositioning": 87,
+    "attributeReactions": 86,
+    "attributeShortPassing": 92,
+    "attributeShotPower": 93,
+    "attributeSlidingTackle": 63,
+    "attributeSprintSpeed": 96,
+    "attributeStamina": 84,
+    "attributeStandingTackle": 53,
+    "attributeStrength": 94,
+    "attributeVision": 88,
+    "attributeVolleys": 68,
+    "bodytype": "Stocky Tall",
+    "commonName": "Antoine Semenyo",
+    "eaId": 50572884,
+    "foot": "Right",
+    "height": 185,
+    "metaRatings": [
+      {
+        "archetype": "winger",
+        "metaRating": 87.7914066415148
+      }
+    ],
+    "overall": 88,
+    "playstyles": [
+      "Finesse Shot",
+      "Power Header",
+      "Whipped Pass",
+      "Rapid",
+      "Flair",
+      "Trickster",
+      "Acrobatic"
+    ],
+    "playstylesPlus": [
+      "Power Shot",
+      "Quick Step"
+    ],
+    "positions": [
+      "RM",
+      "LM",
+      "RW",
+      "ST"
+    ],
+    "rolesPlus": [
+      "RM Wide Midfielder",
+      "RM Inside Forward",
+      "LM Inside Forward",
+      "RW Inside Forward"
+    ],
+    "rolesPlusPlus": [
+      "RM Winger",
+      "LM Winger",
+      "RW Winger"
+    ],
+    "skillMoves": 5,
+    "weakFoot": 5,
+    "weight": 79
   },
   {
     "accelerateType": "CONTROLLED",
@@ -11786,12 +12256,12 @@
         "metaRating": 90.8472555737975
       },
       {
-        "archetype": "inside_forward",
-        "metaRating": 88.03562832546635
-      },
-      {
         "archetype": "half_winger",
         "metaRating": 85.973605424224
+      },
+      {
+        "archetype": "inside_forward",
+        "metaRating": 88.03562832546635
       }
     ],
     "overall": 91,
@@ -11878,16 +12348,16 @@
     "height": 182,
     "metaRatings": [
       {
-        "archetype": "falseback",
-        "metaRating": 88.09228744155045
-      },
-      {
         "archetype": "holding",
         "metaRating": 90.02606354286351
       },
       {
         "archetype": "stopper",
         "metaRating": 85.32633139415978
+      },
+      {
+        "archetype": "falseback",
+        "metaRating": 88.09228744155045
       }
     ],
     "overall": 91,
@@ -12188,12 +12658,12 @@
     "height": 163,
     "metaRatings": [
       {
-        "archetype": "playmaker",
-        "metaRating": 81.20077050642828
-      },
-      {
         "archetype": "centre_half",
         "metaRating": 76.43705006921445
+      },
+      {
+        "archetype": "playmaker",
+        "metaRating": 81.20077050642828
       }
     ],
     "overall": 87,
@@ -12269,12 +12739,12 @@
     "height": 168,
     "metaRatings": [
       {
-        "archetype": "ball_playing_defender",
-        "metaRating": 80.23671574159773
-      },
-      {
         "archetype": "defender",
         "metaRating": 74.64893308728901
+      },
+      {
+        "archetype": "ball_playing_defender",
+        "metaRating": 80.23671574159773
       },
       {
         "archetype": "stopper",
@@ -12349,12 +12819,12 @@
     "height": 186,
     "metaRatings": [
       {
-        "archetype": "playmaker",
-        "metaRating": 84.37373368572415
-      },
-      {
         "archetype": "wide_playmaker",
         "metaRating": 84.0540453489996
+      },
+      {
+        "archetype": "playmaker",
+        "metaRating": 84.37373368572415
       }
     ],
     "overall": 89,
@@ -12432,12 +12902,12 @@
     "height": 182,
     "metaRatings": [
       {
-        "archetype": "playmaker",
-        "metaRating": 87.85777145262716
-      },
-      {
         "archetype": "box_to_box",
         "metaRating": 90.04794948262281
+      },
+      {
+        "archetype": "playmaker",
+        "metaRating": 87.85777145262716
       }
     ],
     "overall": 90,
@@ -12468,6 +12938,83 @@
     "skillMoves": 4,
     "weakFoot": 3,
     "weight": 74
+  },
+  {
+    "accelerateType": "CONTROLLED",
+    "attributeAcceleration": 87,
+    "attributeAggression": 90,
+    "attributeAgility": 93,
+    "attributeBalance": 97,
+    "attributeBallControl": 86,
+    "attributeComposure": 72,
+    "attributeCrossing": 72,
+    "attributeCurve": 80,
+    "attributeDefensiveAwareness": 52,
+    "attributeDribbling": 81,
+    "attributeFinishing": 86,
+    "attributeFkAccuracy": 62,
+    "attributeGkDiving": 10,
+    "attributeGkHandling": 6,
+    "attributeGkKicking": 10,
+    "attributeGkPositioning": 10,
+    "attributeGkReflexes": 11,
+    "attributeHeadingAccuracy": 99,
+    "attributeInterceptions": 40,
+    "attributeJumping": 90,
+    "attributeLongPassing": 68,
+    "attributeLongShots": 78,
+    "attributePenalties": 80,
+    "attributePositioning": 86,
+    "attributeReactions": 86,
+    "attributeShortPassing": 91,
+    "attributeShotPower": 94,
+    "attributeSlidingTackle": 59,
+    "attributeSprintSpeed": 96,
+    "attributeStamina": 80,
+    "attributeStandingTackle": 64,
+    "attributeStrength": 95,
+    "attributeVision": 83,
+    "attributeVolleys": 78,
+    "bodytype": "Stocky Tall",
+    "commonName": "Oh Hyeon Gyu",
+    "eaId": 50580360,
+    "foot": "Right",
+    "height": 185,
+    "metaRatings": [
+      {
+        "archetype": "poacher",
+        "metaRating": 78.68072135397006
+      },
+      {
+        "archetype": "target_forward",
+        "metaRating": 81.46761229934506
+      }
+    ],
+    "overall": 85,
+    "playstyles": [
+      "Finesse Shot",
+      "Power Shot",
+      "Rapid",
+      "Flair",
+      "Press Proven"
+    ],
+    "playstylesPlus": [
+      "Acrobatic"
+    ],
+    "positions": [
+      "ST"
+    ],
+    "rolesPlus": [
+      "ST Advanced Forward",
+      "ST False 9"
+    ],
+    "rolesPlusPlus": [
+      "ST Poacher",
+      "ST Target Forward"
+    ],
+    "skillMoves": 4,
+    "weakFoot": 4,
+    "weight": 83
   },
   {
     "accelerateType": "CONTROLLED_EXPLOSIVE",
@@ -12546,6 +13093,96 @@
     "weight": 69
   },
   {
+    "accelerateType": "MOSTLY_LENGTHY",
+    "attributeAcceleration": 83,
+    "attributeAggression": 92,
+    "attributeAgility": 80,
+    "attributeBalance": 80,
+    "attributeBallControl": 83,
+    "attributeComposure": 84,
+    "attributeCrossing": 83,
+    "attributeCurve": 77,
+    "attributeDefensiveAwareness": 85,
+    "attributeDribbling": 83,
+    "attributeFinishing": 64,
+    "attributeFkAccuracy": 47,
+    "attributeGkDiving": 11,
+    "attributeGkHandling": 6,
+    "attributeGkKicking": 7,
+    "attributeGkPositioning": 13,
+    "attributeGkReflexes": 7,
+    "attributeHeadingAccuracy": 88,
+    "attributeInterceptions": 86,
+    "attributeJumping": 95,
+    "attributeLongPassing": 80,
+    "attributeLongShots": 59,
+    "attributePenalties": 52,
+    "attributePositioning": 76,
+    "attributeReactions": 87,
+    "attributeShortPassing": 86,
+    "attributeShotPower": 83,
+    "attributeSlidingTackle": 89,
+    "attributeSprintSpeed": 88,
+    "attributeStamina": 86,
+    "attributeStandingTackle": 91,
+    "attributeStrength": 93,
+    "attributeVision": 73,
+    "attributeVolleys": 57,
+    "bodytype": "Average Tall",
+    "commonName": "Wilfried Singo",
+    "eaId": 50584450,
+    "foot": "Right",
+    "height": 190,
+    "metaRatings": [
+      {
+        "archetype": "defender",
+        "metaRating": 85.83654327247262
+      },
+      {
+        "archetype": "ball_playing_defender",
+        "metaRating": 84.00724792463522
+      },
+      {
+        "archetype": "stopper",
+        "metaRating": 83.7788395933813
+      },
+      {
+        "archetype": "fullback",
+        "metaRating": 86.01083155537904
+      }
+    ],
+    "overall": 88,
+    "playstyles": [
+      "Power Header",
+      "Intercept",
+      "Anticipate",
+      "Slide Tackle",
+      "Rapid"
+    ],
+    "playstylesPlus": [
+      "Jockey",
+      "Block"
+    ],
+    "positions": [
+      "CB",
+      "RB"
+    ],
+    "rolesPlus": [
+      "RB Falseback",
+      "RB Wingback",
+      "RB Attacking Wingback"
+    ],
+    "rolesPlusPlus": [
+      "RB Fullback",
+      "CB Defender",
+      "CB Stopper",
+      "CB Ball-Playing Defender"
+    ],
+    "skillMoves": 5,
+    "weakFoot": 5,
+    "weight": 79
+  },
+  {
     "accelerateType": "CONTROLLED",
     "attributeAcceleration": 88,
     "attributeAggression": 97,
@@ -12588,12 +13225,12 @@
     "height": 180,
     "metaRatings": [
       {
-        "archetype": "falseback",
-        "metaRating": 81.64719315124181
-      },
-      {
         "archetype": "wingback",
         "metaRating": 83.81676695957232
+      },
+      {
+        "archetype": "falseback",
+        "metaRating": 81.64719315124181
       },
       {
         "archetype": "attacking_wingback",
@@ -12669,12 +13306,12 @@
     "height": 194,
     "metaRatings": [
       {
-        "archetype": "ball_playing_defender",
-        "metaRating": 83.63048939608323
-      },
-      {
         "archetype": "defender",
         "metaRating": 83.7299467236648
+      },
+      {
+        "archetype": "ball_playing_defender",
+        "metaRating": 83.63048939608323
       },
       {
         "archetype": "stopper",
@@ -12755,12 +13392,12 @@
     "height": 166,
     "metaRatings": [
       {
-        "archetype": "target_forward",
-        "metaRating": 74.09114741695741
-      },
-      {
         "archetype": "poacher",
         "metaRating": 83.4696362158934
+      },
+      {
+        "archetype": "target_forward",
+        "metaRating": 74.09114741695741
       }
     ],
     "overall": 88,
@@ -12916,16 +13553,16 @@
     "height": 180,
     "metaRatings": [
       {
-        "archetype": "falseback",
-        "metaRating": 88.70925419474173
+        "archetype": "winger",
+        "metaRating": 85.41665767857884
       },
       {
         "archetype": "wingback",
         "metaRating": 90.05532763077795
       },
       {
-        "archetype": "winger",
-        "metaRating": 85.41665767857884
+        "archetype": "falseback",
+        "metaRating": 88.70925419474173
       }
     ],
     "overall": 88,
@@ -13001,16 +13638,16 @@
     "height": 170,
     "metaRatings": [
       {
+        "archetype": "classic_ten",
+        "metaRating": 91.88552781867043
+      },
+      {
         "archetype": "playmaker",
         "metaRating": 91.1435204349027
       },
       {
         "archetype": "false_nine",
         "metaRating": 90.57484379370156
-      },
-      {
-        "archetype": "classic_ten",
-        "metaRating": 91.88552781867043
       }
     ],
     "overall": 91,
@@ -13092,12 +13729,12 @@
     "height": 181,
     "metaRatings": [
       {
-        "archetype": "falseback",
-        "metaRating": 81.95385232778821
-      },
-      {
         "archetype": "wingback",
         "metaRating": 85.67603654144055
+      },
+      {
+        "archetype": "falseback",
+        "metaRating": 81.95385232778821
       },
       {
         "archetype": "attacking_wingback",
@@ -13249,12 +13886,12 @@
     "height": 194,
     "metaRatings": [
       {
-        "archetype": "ball_playing_defender",
-        "metaRating": 82.43344583814529
-      },
-      {
         "archetype": "defender",
         "metaRating": 84.86089508178102
+      },
+      {
+        "archetype": "ball_playing_defender",
+        "metaRating": 82.43344583814529
       },
       {
         "archetype": "stopper",
@@ -13486,16 +14123,16 @@
     "height": 176,
     "metaRatings": [
       {
-        "archetype": "playmaker",
-        "metaRating": 86.29223599273845
-      },
-      {
         "archetype": "holding",
         "metaRating": 86.45925982309497
       },
       {
         "archetype": "box_to_box",
         "metaRating": 89.1267109300934
+      },
+      {
+        "archetype": "playmaker",
+        "metaRating": 86.29223599273845
       }
     ],
     "overall": 91,
@@ -13652,12 +14289,12 @@
     "height": 168,
     "metaRatings": [
       {
-        "archetype": "attacking_wingback",
-        "metaRating": 83.766920464241
-      },
-      {
         "archetype": "wingback",
         "metaRating": 84.90009153934552
+      },
+      {
+        "archetype": "attacking_wingback",
+        "metaRating": 83.766920464241
       },
       {
         "archetype": "fullback",
@@ -13735,16 +14372,16 @@
     "height": 187,
     "metaRatings": [
       {
-        "archetype": "playmaker",
-        "metaRating": 84.04174185021864
+        "archetype": "centre_half",
+        "metaRating": 83.82187067209105
       },
       {
         "archetype": "box_to_box",
         "metaRating": 86.00983036868462
       },
       {
-        "archetype": "centre_half",
-        "metaRating": 83.82187067209105
+        "archetype": "playmaker",
+        "metaRating": 84.04174185021864
       }
     ],
     "overall": 87,
@@ -13897,12 +14534,12 @@
     "height": 189,
     "metaRatings": [
       {
-        "archetype": "ball_playing_defender",
-        "metaRating": 85.66852262346694
-      },
-      {
         "archetype": "defender",
         "metaRating": 88.89034322359028
+      },
+      {
+        "archetype": "ball_playing_defender",
+        "metaRating": 85.66852262346694
       },
       {
         "archetype": "stopper",
@@ -14137,16 +14774,16 @@
     "height": 172,
     "metaRatings": [
       {
-        "archetype": "wide_midfielder",
-        "metaRating": 80.9762528497041
-      },
-      {
         "archetype": "wide_playmaker",
         "metaRating": 80.22078243907121
       },
       {
         "archetype": "box_to_box",
         "metaRating": 86.00522996627906
+      },
+      {
+        "archetype": "wide_midfielder",
+        "metaRating": 80.9762528497041
       }
     ],
     "overall": 87,
@@ -14180,6 +14817,83 @@
     "skillMoves": 4,
     "weakFoot": 5,
     "weight": 62
+  },
+  {
+    "accelerateType": "CONTROLLED",
+    "attributeAcceleration": 86,
+    "attributeAggression": 44,
+    "attributeAgility": 85,
+    "attributeBalance": 83,
+    "attributeBallControl": 94,
+    "attributeComposure": 84,
+    "attributeCrossing": 76,
+    "attributeCurve": 93,
+    "attributeDefensiveAwareness": 39,
+    "attributeDribbling": 84,
+    "attributeFinishing": 89,
+    "attributeFkAccuracy": 87,
+    "attributeGkDiving": 7,
+    "attributeGkHandling": 11,
+    "attributeGkKicking": 7,
+    "attributeGkPositioning": 14,
+    "attributeGkReflexes": 13,
+    "attributeHeadingAccuracy": 99,
+    "attributeInterceptions": 45,
+    "attributeJumping": 94,
+    "attributeLongPassing": 77,
+    "attributeLongShots": 89,
+    "attributePenalties": 74,
+    "attributePositioning": 85,
+    "attributeReactions": 85,
+    "attributeShortPassing": 94,
+    "attributeShotPower": 87,
+    "attributeSlidingTackle": 31,
+    "attributeSprintSpeed": 90,
+    "attributeStamina": 85,
+    "attributeStandingTackle": 49,
+    "attributeStrength": 94,
+    "attributeVision": 80,
+    "attributeVolleys": 80,
+    "bodytype": "Lean Short",
+    "commonName": "Lorena Azzaro",
+    "eaId": 50607047,
+    "foot": "Left",
+    "height": 169,
+    "metaRatings": [
+      {
+        "archetype": "advanced_forward",
+        "metaRating": 81.8982226965135
+      },
+      {
+        "archetype": "false_nine",
+        "metaRating": 81.91142540943503
+      }
+    ],
+    "overall": 85,
+    "playstyles": [
+      "Power Shot",
+      "Tiki Taka",
+      "First Touch",
+      "Quick Step",
+      "Trivela"
+    ],
+    "playstylesPlus": [
+      "Low Driven Shot"
+    ],
+    "positions": [
+      "ST"
+    ],
+    "rolesPlus": [
+      "ST Poacher",
+      "ST Target Forward"
+    ],
+    "rolesPlusPlus": [
+      "ST Advanced Forward",
+      "ST False 9"
+    ],
+    "skillMoves": 4,
+    "weakFoot": 4,
+    "weight": 57
   },
   {
     "accelerateType": "CONTROLLED",
@@ -14224,12 +14938,12 @@
     "height": 172,
     "metaRatings": [
       {
-        "archetype": "winger",
-        "metaRating": 82.436102542728
-      },
-      {
         "archetype": "poacher",
         "metaRating": 82.28047565057365
+      },
+      {
+        "archetype": "winger",
+        "metaRating": 82.436102542728
       }
     ],
     "overall": 88,
@@ -14538,16 +15252,16 @@
     "height": 180,
     "metaRatings": [
       {
-        "archetype": "falseback",
-        "metaRating": 89.83350518777756
-      },
-      {
         "archetype": "defender",
         "metaRating": 83.36986872413412
       },
       {
         "archetype": "stopper",
         "metaRating": 86.86429578511002
+      },
+      {
+        "archetype": "falseback",
+        "metaRating": 89.83350518777756
       }
     ],
     "overall": 93,
@@ -14625,16 +15339,16 @@
     "height": 176,
     "metaRatings": [
       {
-        "archetype": "playmaker",
-        "metaRating": 86.84960733872343
+        "archetype": "half_winger",
+        "metaRating": 84.67682566855954
       },
       {
         "archetype": "wide_playmaker",
         "metaRating": 84.58168399076577
       },
       {
-        "archetype": "half_winger",
-        "metaRating": 84.67682566855954
+        "archetype": "playmaker",
+        "metaRating": 86.84960733872343
       }
     ],
     "overall": 91,
@@ -15024,12 +15738,12 @@
     "height": 189,
     "metaRatings": [
       {
-        "archetype": "ball_playing_defender",
-        "metaRating": 88.47133767433802
-      },
-      {
         "archetype": "defender",
         "metaRating": 88.50360120935318
+      },
+      {
+        "archetype": "ball_playing_defender",
+        "metaRating": 88.47133767433802
       },
       {
         "archetype": "stopper",
@@ -15105,12 +15819,12 @@
     "height": 186,
     "metaRatings": [
       {
-        "archetype": "inside_forward",
-        "metaRating": 85.46557291730933
-      },
-      {
         "archetype": "winger",
         "metaRating": 87.48369440917912
+      },
+      {
+        "archetype": "inside_forward",
+        "metaRating": 85.46557291730933
       }
     ],
     "overall": 90,
@@ -15186,12 +15900,12 @@
     "height": 170,
     "metaRatings": [
       {
-        "archetype": "deep_lying_playmaker",
-        "metaRating": 88.4590637523629
-      },
-      {
         "archetype": "holding",
         "metaRating": 85.96880843375777
+      },
+      {
+        "archetype": "deep_lying_playmaker",
+        "metaRating": 88.4590637523629
       },
       {
         "archetype": "centre_half",
@@ -15275,12 +15989,12 @@
     "height": 172,
     "metaRatings": [
       {
-        "archetype": "false_nine",
-        "metaRating": 83.96974014812554
-      },
-      {
         "archetype": "shadow_striker",
         "metaRating": 85.8394922472308
+      },
+      {
+        "archetype": "false_nine",
+        "metaRating": 83.96974014812554
       }
     ],
     "overall": 87,
@@ -15400,6 +16114,89 @@
     "weight": 80
   },
   {
+    "accelerateType": "CONTROLLED",
+    "attributeAcceleration": 86,
+    "attributeAggression": 83,
+    "attributeAgility": 87,
+    "attributeBalance": 86,
+    "attributeBallControl": 86,
+    "attributeComposure": 90,
+    "attributeCrossing": 74,
+    "attributeCurve": 81,
+    "attributeDefensiveAwareness": 50,
+    "attributeDribbling": 88,
+    "attributeFinishing": 95,
+    "attributeFkAccuracy": 70,
+    "attributeGkDiving": 14,
+    "attributeGkHandling": 14,
+    "attributeGkKicking": 14,
+    "attributeGkPositioning": 6,
+    "attributeGkReflexes": 10,
+    "attributeHeadingAccuracy": 91,
+    "attributeInterceptions": 60,
+    "attributeJumping": 96,
+    "attributeLongPassing": 71,
+    "attributeLongShots": 86,
+    "attributePenalties": 80,
+    "attributePositioning": 94,
+    "attributeReactions": 92,
+    "attributeShortPassing": 87,
+    "attributeShotPower": 91,
+    "attributeSlidingTackle": 40,
+    "attributeSprintSpeed": 94,
+    "attributeStamina": 93,
+    "attributeStandingTackle": 51,
+    "attributeStrength": 87,
+    "attributeVision": 84,
+    "attributeVolleys": 87,
+    "bodytype": "Average Medium",
+    "commonName": "Ollie Watkins",
+    "eaId": 67330561,
+    "foot": "Right",
+    "height": 180,
+    "metaRatings": [
+      {
+        "archetype": "poacher",
+        "metaRating": 87.56908482359856
+      },
+      {
+        "archetype": "advanced_forward",
+        "metaRating": 88.3066394703436
+      },
+      {
+        "archetype": "false_nine",
+        "metaRating": 84.78599001256896
+      }
+    ],
+    "overall": 90,
+    "playstyles": [
+      "Finesse Shot",
+      "Chip Shot",
+      "Technical",
+      "First Touch",
+      "Press Proven",
+      "Relentless"
+    ],
+    "playstylesPlus": [
+      "Power Shot",
+      "Rapid"
+    ],
+    "positions": [
+      "ST"
+    ],
+    "rolesPlus": [
+      "ST Target Forward"
+    ],
+    "rolesPlusPlus": [
+      "ST Advanced Forward",
+      "ST Poacher",
+      "ST False 9"
+    ],
+    "skillMoves": 4,
+    "weakFoot": 4,
+    "weight": 70
+  },
+  {
     "accelerateType": "MOSTLY_EXPLOSIVE",
     "attributeAcceleration": 87,
     "attributeAggression": 65,
@@ -15477,6 +16274,81 @@
     "weight": 70
   },
   {
+    "accelerateType": "CONTROLLED",
+    "attributeAcceleration": 63,
+    "attributeAggression": 52,
+    "attributeAgility": 61,
+    "attributeBalance": 61,
+    "attributeBallControl": 26,
+    "attributeComposure": 64,
+    "attributeCrossing": 12,
+    "attributeCurve": 20,
+    "attributeDefensiveAwareness": 27,
+    "attributeDribbling": 13,
+    "attributeFinishing": 12,
+    "attributeFkAccuracy": 18,
+    "attributeGkDiving": 95,
+    "attributeGkHandling": 92,
+    "attributeGkKicking": 85,
+    "attributeGkPositioning": 95,
+    "attributeGkReflexes": 97,
+    "attributeHeadingAccuracy": 9,
+    "attributeInterceptions": 29,
+    "attributeJumping": 73,
+    "attributeLongPassing": 32,
+    "attributeLongShots": 11,
+    "attributePenalties": 23,
+    "attributePositioning": 12,
+    "attributeReactions": 93,
+    "attributeShortPassing": 35,
+    "attributeShotPower": 59,
+    "attributeSlidingTackle": 26,
+    "attributeSprintSpeed": 60,
+    "attributeStamina": 43,
+    "attributeStandingTackle": 21,
+    "attributeStrength": 70,
+    "attributeVision": 63,
+    "attributeVolleys": 11,
+    "bodytype": "Average Medium",
+    "commonName": "Nadine Angerer",
+    "eaId": 67335157,
+    "foot": "Right",
+    "height": 175,
+    "metaRatings": [
+      {
+        "archetype": "goalkeeper",
+        "metaRating": 82.17665979809028
+      },
+      {
+        "archetype": "sweeper_keeper",
+        "metaRating": 85.65681775570906
+      }
+    ],
+    "overall": 95,
+    "playstyles": [
+      "Pinged Pass",
+      "Long Ball Pass",
+      "GK Far Throw",
+      "GK Footwork",
+      "GK Deflector"
+    ],
+    "playstylesPlus": [
+      "GK Far Reach",
+      "GK Cross Claimer"
+    ],
+    "positions": [
+      "GK"
+    ],
+    "rolesPlus": [],
+    "rolesPlusPlus": [
+      "GK Goalkeeper",
+      "GK Sweeper Keeper"
+    ],
+    "skillMoves": 1,
+    "weakFoot": 4,
+    "weight": 71
+  },
+  {
     "accelerateType": "CONTROLLED_EXPLOSIVE",
     "attributeAcceleration": 93,
     "attributeAggression": 83,
@@ -15519,20 +16391,20 @@
     "height": 155,
     "metaRatings": [
       {
-        "archetype": "attacking_wingback",
-        "metaRating": 91.88546978719197
+        "archetype": "wide_playmaker",
+        "metaRating": 92.18015061810014
       },
       {
-        "archetype": "wingback",
-        "metaRating": 91.29336719636488
+        "archetype": "attacking_wingback",
+        "metaRating": 91.88546978719197
       },
       {
         "archetype": "box_to_box",
         "metaRating": 93.85422145295095
       },
       {
-        "archetype": "wide_playmaker",
-        "metaRating": 92.18015061810014
+        "archetype": "wingback",
+        "metaRating": 91.29336719636488
       },
       {
         "archetype": "half_winger",
@@ -15816,6 +16688,86 @@
   },
   {
     "accelerateType": "CONTROLLED",
+    "attributeAcceleration": 86,
+    "attributeAggression": 84,
+    "attributeAgility": 83,
+    "attributeBalance": 88,
+    "attributeBallControl": 90,
+    "attributeComposure": 87,
+    "attributeCrossing": 87,
+    "attributeCurve": 88,
+    "attributeDefensiveAwareness": 87,
+    "attributeDribbling": 87,
+    "attributeFinishing": 82,
+    "attributeFkAccuracy": 84,
+    "attributeGkDiving": 16,
+    "attributeGkHandling": 8,
+    "attributeGkKicking": 9,
+    "attributeGkPositioning": 10,
+    "attributeGkReflexes": 7,
+    "attributeHeadingAccuracy": 56,
+    "attributeInterceptions": 85,
+    "attributeJumping": 80,
+    "attributeLongPassing": 92,
+    "attributeLongShots": 85,
+    "attributePenalties": 64,
+    "attributePositioning": 86,
+    "attributeReactions": 85,
+    "attributeShortPassing": 90,
+    "attributeShotPower": 83,
+    "attributeSlidingTackle": 84,
+    "attributeSprintSpeed": 85,
+    "attributeStamina": 92,
+    "attributeStandingTackle": 90,
+    "attributeStrength": 81,
+    "attributeVision": 90,
+    "attributeVolleys": 70,
+    "bodytype": "Average Medium",
+    "commonName": "Aleix Garc\u00eda",
+    "eaId": 67337677,
+    "foot": "Right",
+    "height": 173,
+    "metaRatings": [
+      {
+        "archetype": "holding",
+        "metaRating": 84.2195034985097
+      },
+      {
+        "archetype": "deep_lying_playmaker",
+        "metaRating": 86.06134620499057
+      }
+    ],
+    "overall": 87,
+    "playstyles": [
+      "Dead Ball",
+      "Incisive Pass",
+      "Block",
+      "Intercept",
+      "Relentless"
+    ],
+    "playstylesPlus": [
+      "Tiki Taka",
+      "Press Proven"
+    ],
+    "positions": [
+      "CM",
+      "CDM"
+    ],
+    "rolesPlus": [
+      "CDM Centre-Half",
+      "CM Box to Box",
+      "CM Deep-Lying Playmaker"
+    ],
+    "rolesPlusPlus": [
+      "CDM Deep-Lying Playmaker",
+      "CM Holding"
+    ],
+    "skillMoves": 4,
+    "weakFoot": 4,
+    "weight": 68
+  },
+  {
+    "accelerateType": "CONTROLLED",
     "attributeAcceleration": 87,
     "attributeAggression": 76,
     "attributeAgility": 88,
@@ -16016,12 +16968,12 @@
     "height": 180,
     "metaRatings": [
       {
-        "archetype": "inside_forward",
-        "metaRating": 86.40895832149678
-      },
-      {
         "archetype": "winger",
         "metaRating": 87.03737127626036
+      },
+      {
+        "archetype": "inside_forward",
+        "metaRating": 86.40895832149678
       }
     ],
     "overall": 90,
@@ -16054,6 +17006,85 @@
     "skillMoves": 5,
     "weakFoot": 4,
     "weight": 76
+  },
+  {
+    "accelerateType": "CONTROLLED",
+    "attributeAcceleration": 84,
+    "attributeAggression": 82,
+    "attributeAgility": 82,
+    "attributeBalance": 81,
+    "attributeBallControl": 82,
+    "attributeComposure": 89,
+    "attributeCrossing": 50,
+    "attributeCurve": 52,
+    "attributeDefensiveAwareness": 86,
+    "attributeDribbling": 80,
+    "attributeFinishing": 49,
+    "attributeFkAccuracy": 52,
+    "attributeGkDiving": 13,
+    "attributeGkHandling": 6,
+    "attributeGkKicking": 9,
+    "attributeGkPositioning": 10,
+    "attributeGkReflexes": 12,
+    "attributeHeadingAccuracy": 80,
+    "attributeInterceptions": 89,
+    "attributeJumping": 89,
+    "attributeLongPassing": 86,
+    "attributeLongShots": 43,
+    "attributePenalties": 46,
+    "attributePositioning": 58,
+    "attributeReactions": 87,
+    "attributeShortPassing": 90,
+    "attributeShotPower": 80,
+    "attributeSlidingTackle": 90,
+    "attributeSprintSpeed": 86,
+    "attributeStamina": 82,
+    "attributeStandingTackle": 88,
+    "attributeStrength": 82,
+    "attributeVision": 78,
+    "attributeVolleys": 41,
+    "bodytype": null,
+    "commonName": "Ko Itakura",
+    "eaId": 67342016,
+    "foot": "Right",
+    "height": 188,
+    "metaRatings": [
+      {
+        "archetype": "defender",
+        "metaRating": 83.29711947213647
+      },
+      {
+        "archetype": "holding",
+        "metaRating": 82.36854408333684
+      }
+    ],
+    "overall": 85,
+    "playstyles": [
+      "Jockey",
+      "Block",
+      "Slide Tackle",
+      "Bruiser",
+      "Aerial"
+    ],
+    "playstylesPlus": [
+      "Intercept"
+    ],
+    "positions": [
+      "CB",
+      "CDM"
+    ],
+    "rolesPlus": [
+      "CB Stopper",
+      "CB Ball-Playing Defender",
+      "CDM Deep-Lying Playmaker"
+    ],
+    "rolesPlusPlus": [
+      "CB Defender",
+      "CDM Holding"
+    ],
+    "skillMoves": 3,
+    "weakFoot": 4,
+    "weight": null
   },
   {
     "accelerateType": "CONTROLLED_EXPLOSIVE",
@@ -16261,16 +17292,16 @@
     "height": 179,
     "metaRatings": [
       {
-        "archetype": "playmaker",
-        "metaRating": 87.62451818775968
-      },
-      {
         "archetype": "half_winger",
         "metaRating": 86.16514642370117
       },
       {
         "archetype": "classic_ten",
         "metaRating": 88.04464085666785
+      },
+      {
+        "archetype": "playmaker",
+        "metaRating": 87.62451818775968
       }
     ],
     "overall": 89,
@@ -16348,12 +17379,12 @@
     "height": 178,
     "metaRatings": [
       {
-        "archetype": "playmaker",
-        "metaRating": 89.50211037092217
-      },
-      {
         "archetype": "box_to_box",
         "metaRating": 91.69510163151536
+      },
+      {
+        "archetype": "playmaker",
+        "metaRating": 89.50211037092217
       }
     ],
     "overall": 90,
@@ -16505,12 +17536,12 @@
     "height": 180,
     "metaRatings": [
       {
-        "archetype": "wide_midfielder",
-        "metaRating": 90.77152666077262
-      },
-      {
         "archetype": "wide_playmaker",
         "metaRating": 89.265181610258
+      },
+      {
+        "archetype": "wide_midfielder",
+        "metaRating": 90.77152666077262
       },
       {
         "archetype": "inside_forward",
@@ -16901,16 +17932,16 @@
     "height": 179,
     "metaRatings": [
       {
-        "archetype": "playmaker",
-        "metaRating": 89.32551446209175
+        "archetype": "shadow_striker",
+        "metaRating": 89.82007291985911
       },
       {
         "archetype": "box_to_box",
         "metaRating": 89.10243829587384
       },
       {
-        "archetype": "shadow_striker",
-        "metaRating": 89.82007291985911
+        "archetype": "playmaker",
+        "metaRating": 89.32551446209175
       }
     ],
     "overall": 92,
@@ -17064,12 +18095,12 @@
     "height": 170,
     "metaRatings": [
       {
-        "archetype": "deep_lying_playmaker",
-        "metaRating": 84.72843228952634
-      },
-      {
         "archetype": "holding",
         "metaRating": 83.63006674272994
+      },
+      {
+        "archetype": "deep_lying_playmaker",
+        "metaRating": 84.72843228952634
       }
     ],
     "overall": 89,
@@ -17217,16 +18248,16 @@
     "height": 191,
     "metaRatings": [
       {
-        "archetype": "fullback",
-        "metaRating": 87.54891430062757
-      },
-      {
         "archetype": "defender",
         "metaRating": 89.80056711805446
       },
       {
         "archetype": "stopper",
         "metaRating": 87.22206204069514
+      },
+      {
+        "archetype": "fullback",
+        "metaRating": 87.54891430062757
       }
     ],
     "overall": 92,
@@ -17611,12 +18642,12 @@
     "height": 185,
     "metaRatings": [
       {
-        "archetype": "playmaker",
-        "metaRating": 81.58032510938196
-      },
-      {
         "archetype": "box_to_box",
         "metaRating": 80.15186776230497
+      },
+      {
+        "archetype": "playmaker",
+        "metaRating": 81.58032510938196
       }
     ],
     "overall": 86,
@@ -17690,12 +18721,12 @@
     "height": 172,
     "metaRatings": [
       {
-        "archetype": "inside_forward",
-        "metaRating": 83.27720723340789
-      },
-      {
         "archetype": "attacking_wingback",
         "metaRating": 87.54916556426247
+      },
+      {
+        "archetype": "inside_forward",
+        "metaRating": 83.27720723340789
       }
     ],
     "overall": 91,
@@ -18107,16 +19138,16 @@
     "height": 187,
     "metaRatings": [
       {
-        "archetype": "playmaker",
-        "metaRating": 87.0852433103642
-      },
-      {
         "archetype": "half_winger",
         "metaRating": 84.17340321416611
       },
       {
         "archetype": "shadow_striker",
         "metaRating": 87.44304458740736
+      },
+      {
+        "archetype": "playmaker",
+        "metaRating": 87.0852433103642
       }
     ],
     "overall": 89,
@@ -18191,12 +19222,12 @@
     "height": 186,
     "metaRatings": [
       {
-        "archetype": "ball_playing_defender",
-        "metaRating": 87.63301787047867
-      },
-      {
         "archetype": "defender",
         "metaRating": 88.04907298929649
+      },
+      {
+        "archetype": "ball_playing_defender",
+        "metaRating": 87.63301787047867
       },
       {
         "archetype": "stopper",
@@ -18271,12 +19302,12 @@
     "height": 180,
     "metaRatings": [
       {
-        "archetype": "wide_midfielder",
-        "metaRating": 90.0846136897485
-      },
-      {
         "archetype": "winger",
         "metaRating": 89.46311830328742
+      },
+      {
+        "archetype": "wide_midfielder",
+        "metaRating": 90.0846136897485
       }
     ],
     "overall": 90,
@@ -18436,16 +19467,16 @@
     "height": 164,
     "metaRatings": [
       {
-        "archetype": "attacking_wingback",
-        "metaRating": 88.20887128863738
+        "archetype": "wingback",
+        "metaRating": 88.55956963729747
       },
       {
         "archetype": "wide_midfielder",
         "metaRating": 84.52653953689355
       },
       {
-        "archetype": "wingback",
-        "metaRating": 88.55956963729747
+        "archetype": "attacking_wingback",
+        "metaRating": 88.20887128863738
       },
       {
         "archetype": "fullback",
@@ -18527,12 +19558,12 @@
     "height": 161,
     "metaRatings": [
       {
-        "archetype": "wide_playmaker",
-        "metaRating": 84.0301526090055
-      },
-      {
         "archetype": "wingback",
         "metaRating": 89.21883282492627
+      },
+      {
+        "archetype": "wide_playmaker",
+        "metaRating": 84.0301526090055
       },
       {
         "archetype": "attacking_wingback",
@@ -18613,10 +19644,6 @@
     "height": 170,
     "metaRatings": [
       {
-        "archetype": "inside_forward",
-        "metaRating": 89.07780774776317
-      },
-      {
         "archetype": "winger",
         "metaRating": 91.41843279168643
       },
@@ -18627,6 +19654,10 @@
       {
         "archetype": "false_nine",
         "metaRating": 87.51221818529956
+      },
+      {
+        "archetype": "inside_forward",
+        "metaRating": 89.07780774776317
       }
     ],
     "overall": 90,
@@ -18702,12 +19733,12 @@
     "height": 180,
     "metaRatings": [
       {
-        "archetype": "half_winger",
-        "metaRating": 87.33804581473366
-      },
-      {
         "archetype": "winger",
         "metaRating": 89.90773434698757
+      },
+      {
+        "archetype": "half_winger",
+        "metaRating": 87.33804581473366
       }
     ],
     "overall": 92,
@@ -18942,12 +19973,12 @@
     "height": 170,
     "metaRatings": [
       {
-        "archetype": "falseback",
-        "metaRating": 87.751900276647
-      },
-      {
         "archetype": "wingback",
         "metaRating": 87.51492707691925
+      },
+      {
+        "archetype": "falseback",
+        "metaRating": 87.751900276647
       },
       {
         "archetype": "fullback",
@@ -19190,16 +20221,16 @@
     "height": 174,
     "metaRatings": [
       {
-        "archetype": "playmaker",
-        "metaRating": 94.52884710607479
-      },
-      {
         "archetype": "winger",
         "metaRating": 91.81751459851708
       },
       {
         "archetype": "classic_ten",
         "metaRating": 95.05727576034
+      },
+      {
+        "archetype": "playmaker",
+        "metaRating": 94.52884710607479
       }
     ],
     "overall": 90,
@@ -19278,16 +20309,16 @@
     "height": 182,
     "metaRatings": [
       {
+        "archetype": "poacher",
+        "metaRating": 90.09955011158827
+      },
+      {
         "archetype": "target_forward",
         "metaRating": 87.02332949822768
       },
       {
         "archetype": "false_nine",
         "metaRating": 88.24506387586574
-      },
-      {
-        "archetype": "poacher",
-        "metaRating": 90.09955011158827
       }
     ],
     "overall": 90,
@@ -19434,12 +20465,12 @@
     "height": 182,
     "metaRatings": [
       {
-        "archetype": "ball_playing_defender",
-        "metaRating": 87.41537624311776
-      },
-      {
         "archetype": "defender",
         "metaRating": 85.58573297067231
+      },
+      {
+        "archetype": "ball_playing_defender",
+        "metaRating": 87.41537624311776
       },
       {
         "archetype": "stopper",
@@ -19514,12 +20545,12 @@
     "height": 175,
     "metaRatings": [
       {
-        "archetype": "inside_forward",
-        "metaRating": 85.96711599908771
-      },
-      {
         "archetype": "advanced_forward",
         "metaRating": 85.16222668210766
+      },
+      {
+        "archetype": "inside_forward",
+        "metaRating": 85.96711599908771
       }
     ],
     "overall": 91,
@@ -19593,12 +20624,12 @@
     "height": 183,
     "metaRatings": [
       {
-        "archetype": "wide_playmaker",
-        "metaRating": 76.10583111595922
-      },
-      {
         "archetype": "wingback",
         "metaRating": 86.70940434590133
+      },
+      {
+        "archetype": "wide_playmaker",
+        "metaRating": 76.10583111595922
       },
       {
         "archetype": "attacking_wingback",
@@ -19636,6 +20667,97 @@
     "skillMoves": 4,
     "weakFoot": 4,
     "weight": 82
+  },
+  {
+    "accelerateType": "CONTROLLED_EXPLOSIVE",
+    "attributeAcceleration": 92,
+    "attributeAggression": 70,
+    "attributeAgility": 87,
+    "attributeBalance": 87,
+    "attributeBallControl": 95,
+    "attributeComposure": 91,
+    "attributeCrossing": 92,
+    "attributeCurve": 95,
+    "attributeDefensiveAwareness": 51,
+    "attributeDribbling": 92,
+    "attributeFinishing": 90,
+    "attributeFkAccuracy": 86,
+    "attributeGkDiving": 13,
+    "attributeGkHandling": 9,
+    "attributeGkKicking": 6,
+    "attributeGkPositioning": 12,
+    "attributeGkReflexes": 10,
+    "attributeHeadingAccuracy": 73,
+    "attributeInterceptions": 58,
+    "attributeJumping": 88,
+    "attributeLongPassing": 93,
+    "attributeLongShots": 97,
+    "attributePenalties": 74,
+    "attributePositioning": 92,
+    "attributeReactions": 90,
+    "attributeShortPassing": 92,
+    "attributeShotPower": 93,
+    "attributeSlidingTackle": 50,
+    "attributeSprintSpeed": 88,
+    "attributeStamina": 88,
+    "attributeStandingTackle": 54,
+    "attributeStrength": 80,
+    "attributeVision": 91,
+    "attributeVolleys": 91,
+    "bodytype": "Average Medium",
+    "commonName": "Marco Asensio",
+    "eaId": 84106914,
+    "foot": "Left",
+    "height": 182,
+    "metaRatings": [
+      {
+        "archetype": "shadow_striker",
+        "metaRating": 89.19030905121146
+      },
+      {
+        "archetype": "playmaker",
+        "metaRating": 87.91835625374237
+      },
+      {
+        "archetype": "inside_forward",
+        "metaRating": 87.54694733720744
+      }
+    ],
+    "overall": 90,
+    "playstyles": [
+      "Finesse Shot",
+      "Dead Ball",
+      "Incisive Pass",
+      "Pinged Pass",
+      "Whipped Pass",
+      "Flair",
+      "Trickster"
+    ],
+    "playstylesPlus": [
+      "Technical",
+      "Trivela"
+    ],
+    "positions": [
+      "RW",
+      "RM",
+      "CM",
+      "CAM"
+    ],
+    "rolesPlus": [
+      "CM Half-Winger",
+      "RM Winger",
+      "CAM Half Winger",
+      "RW Winger"
+    ],
+    "rolesPlusPlus": [
+      "CM Playmaker",
+      "RM Inside Forward",
+      "CAM Shadow Striker",
+      "RW Inside Forward"
+    ],
+    "skillMoves": 5,
+    "weakFoot": 4,
+    "weight": 76
   },
   {
     "accelerateType": "CONTROLLED_LENGTHY",
@@ -19761,12 +20883,12 @@
     "height": 174,
     "metaRatings": [
       {
-        "archetype": "false_nine",
-        "metaRating": 84.37165065480437
-      },
-      {
         "archetype": "advanced_forward",
         "metaRating": 85.51674737477207
+      },
+      {
+        "archetype": "false_nine",
+        "metaRating": 84.37165065480437
       }
     ],
     "overall": 90,
@@ -19801,68 +20923,70 @@
   {
     "accelerateType": "CONTROLLED_EXPLOSIVE",
     "attributeAcceleration": 99,
-    "attributeAggression": 77,
-    "attributeAgility": 94,
-    "attributeBalance": 93,
-    "attributeBallControl": 92,
-    "attributeComposure": 86,
-    "attributeCrossing": 87,
-    "attributeCurve": 89,
-    "attributeDefensiveAwareness": 41,
-    "attributeDribbling": 93,
-    "attributeFinishing": 92,
-    "attributeFkAccuracy": 69,
+    "attributeAggression": 78,
+    "attributeAgility": 95,
+    "attributeBalance": 94,
+    "attributeBallControl": 93,
+    "attributeComposure": 87,
+    "attributeCrossing": 88,
+    "attributeCurve": 90,
+    "attributeDefensiveAwareness": 42,
+    "attributeDribbling": 94,
+    "attributeFinishing": 93,
+    "attributeFkAccuracy": 70,
     "attributeGkDiving": 7,
     "attributeGkHandling": 9,
     "attributeGkKicking": 9,
     "attributeGkPositioning": 10,
     "attributeGkReflexes": 14,
-    "attributeHeadingAccuracy": 85,
-    "attributeInterceptions": 39,
-    "attributeJumping": 96,
-    "attributeLongPassing": 76,
-    "attributeLongShots": 79,
-    "attributePenalties": 81,
-    "attributePositioning": 92,
-    "attributeReactions": 89,
-    "attributeShortPassing": 91,
-    "attributeShotPower": 94,
-    "attributeSlidingTackle": 43,
-    "attributeSprintSpeed": 93,
-    "attributeStamina": 89,
-    "attributeStandingTackle": 44,
-    "attributeStrength": 83,
-    "attributeVision": 89,
-    "attributeVolleys": 89,
+    "attributeHeadingAccuracy": 86,
+    "attributeInterceptions": 40,
+    "attributeJumping": 97,
+    "attributeLongPassing": 77,
+    "attributeLongShots": 80,
+    "attributePenalties": 82,
+    "attributePositioning": 93,
+    "attributeReactions": 90,
+    "attributeShortPassing": 92,
+    "attributeShotPower": 95,
+    "attributeSlidingTackle": 44,
+    "attributeSprintSpeed": 95,
+    "attributeStamina": 90,
+    "attributeStandingTackle": 45,
+    "attributeStrength": 84,
+    "attributeVision": 90,
+    "attributeVolleys": 90,
     "bodytype": "Unique",
     "commonName": "Donyell Malen",
     "eaId": 84117527,
     "foot": "Right",
-    "height": 176,
+    "height": 178,
     "metaRatings": [
       {
         "archetype": "winger",
-        "metaRating": 91.526675179552
-      },
-      {
-        "archetype": "inside_forward",
-        "metaRating": 89.35099985360824
+        "metaRating": 93.6824533821635
       },
       {
         "archetype": "advanced_forward",
-        "metaRating": 90.83090497415311
+        "metaRating": 93.44351345090234
+      },
+      {
+        "archetype": "inside_forward",
+        "metaRating": 91.69961389911168
       }
     ],
-    "overall": 92,
+    "overall": 93,
     "playstyles": [
       "Chip Shot",
       "Power Shot",
       "Incisive Pass",
+      "Tiki Taka",
       "Whipped Pass",
       "Technical",
       "Flair",
       "Quick Step",
-      "Trivela"
+      "Trivela",
+      "Low Driven Shot"
     ],
     "playstylesPlus": [
       "Rapid",
@@ -19886,7 +21010,7 @@
       "RW Inside Forward",
       "ST Advanced Forward"
     ],
-    "skillMoves": 4,
+    "skillMoves": 5,
     "weakFoot": 5,
     "weight": 68
   },
@@ -19933,12 +21057,12 @@
     "height": 190,
     "metaRatings": [
       {
-        "archetype": "ball_playing_defender",
-        "metaRating": 89.72458845288784
-      },
-      {
         "archetype": "defender",
         "metaRating": 91.1217477900612
+      },
+      {
+        "archetype": "ball_playing_defender",
+        "metaRating": 89.72458845288784
       },
       {
         "archetype": "stopper",
@@ -20013,16 +21137,16 @@
     "height": 193,
     "metaRatings": [
       {
-        "archetype": "playmaker",
-        "metaRating": 86.16762213468
+        "archetype": "centre_half",
+        "metaRating": 90.25713279502838
       },
       {
         "archetype": "box_to_box",
         "metaRating": 89.51445900459743
       },
       {
-        "archetype": "centre_half",
-        "metaRating": 90.25713279502838
+        "archetype": "playmaker",
+        "metaRating": 86.16762213468
       }
     ],
     "overall": 92,
@@ -20177,16 +21301,16 @@
         "metaRating": 89.007627112428
       },
       {
-        "archetype": "false_nine",
-        "metaRating": 88.58208223925513
-      },
-      {
         "archetype": "advanced_forward",
         "metaRating": 89.8563322205097
       },
       {
         "archetype": "target_forward",
         "metaRating": 85.0514251523051
+      },
+      {
+        "archetype": "false_nine",
+        "metaRating": 88.58208223925513
       }
     ],
     "overall": 91,
@@ -20262,16 +21386,16 @@
     "height": 170,
     "metaRatings": [
       {
-        "archetype": "false_nine",
-        "metaRating": 89.96769899665856
-      },
-      {
         "archetype": "poacher",
         "metaRating": 90.62521919585609
       },
       {
         "archetype": "shadow_striker",
         "metaRating": 91.25139275268133
+      },
+      {
+        "archetype": "false_nine",
+        "metaRating": 89.96769899665856
       }
     ],
     "overall": 94,
@@ -20549,40 +21673,40 @@
   },
   {
     "accelerateType": "CONTROLLED_LENGTHY",
-    "attributeAcceleration": 92,
-    "attributeAggression": 88,
-    "attributeAgility": 82,
-    "attributeBalance": 82,
-    "attributeBallControl": 87,
-    "attributeComposure": 83,
-    "attributeCrossing": 77,
-    "attributeCurve": 83,
-    "attributeDefensiveAwareness": 45,
-    "attributeDribbling": 85,
-    "attributeFinishing": 90,
-    "attributeFkAccuracy": 68,
+    "attributeAcceleration": 93,
+    "attributeAggression": 89,
+    "attributeAgility": 83,
+    "attributeBalance": 83,
+    "attributeBallControl": 88,
+    "attributeComposure": 84,
+    "attributeCrossing": 78,
+    "attributeCurve": 84,
+    "attributeDefensiveAwareness": 46,
+    "attributeDribbling": 86,
+    "attributeFinishing": 91,
+    "attributeFkAccuracy": 69,
     "attributeGkDiving": 14,
     "attributeGkHandling": 10,
     "attributeGkKicking": 12,
     "attributeGkPositioning": 10,
     "attributeGkReflexes": 13,
-    "attributeHeadingAccuracy": 90,
-    "attributeInterceptions": 51,
-    "attributeJumping": 98,
-    "attributeLongPassing": 76,
-    "attributeLongShots": 87,
-    "attributePenalties": 87,
-    "attributePositioning": 97,
-    "attributeReactions": 88,
-    "attributeShortPassing": 82,
-    "attributeShotPower": 97,
-    "attributeSlidingTackle": 42,
-    "attributeSprintSpeed": 96,
-    "attributeStamina": 92,
-    "attributeStandingTackle": 54,
-    "attributeStrength": 89,
-    "attributeVision": 87,
-    "attributeVolleys": 88,
+    "attributeHeadingAccuracy": 91,
+    "attributeInterceptions": 52,
+    "attributeJumping": 99,
+    "attributeLongPassing": 77,
+    "attributeLongShots": 88,
+    "attributePenalties": 88,
+    "attributePositioning": 98,
+    "attributeReactions": 89,
+    "attributeShortPassing": 83,
+    "attributeShotPower": 98,
+    "attributeSlidingTackle": 43,
+    "attributeSprintSpeed": 97,
+    "attributeStamina": 93,
+    "attributeStandingTackle": 55,
+    "attributeStrength": 90,
+    "attributeVision": 88,
+    "attributeVolleys": 89,
     "bodytype": "Lean Tall",
     "commonName": "Darwin N\u00fa\u00f1ez",
     "eaId": 84139152,
@@ -20591,18 +21715,22 @@
     "metaRatings": [
       {
         "archetype": "poacher",
-        "metaRating": 88.53085481183113
+        "metaRating": 89.53917794570143
       },
       {
         "archetype": "advanced_forward",
-        "metaRating": 89.38009461632409
+        "metaRating": 90.4283746112203
       },
       {
         "archetype": "target_forward",
-        "metaRating": 88.90184417427218
+        "metaRating": 89.92155303564358
+      },
+      {
+        "archetype": "false_nine",
+        "metaRating": 85.98537052716925
       }
     ],
-    "overall": 91,
+    "overall": 92,
     "playstyles": [
       "Chip Shot",
       "Power Shot",
@@ -20621,12 +21749,11 @@
     "positions": [
       "ST"
     ],
-    "rolesPlus": [
-      "ST False 9"
-    ],
+    "rolesPlus": [],
     "rolesPlusPlus": [
       "ST Advanced Forward",
       "ST Poacher",
+      "ST False 9",
       "ST Target Forward"
     ],
     "skillMoves": 4,
@@ -20676,12 +21803,12 @@
     "height": 185,
     "metaRatings": [
       {
-        "archetype": "inside_forward",
-        "metaRating": 88.38492452520813
-      },
-      {
         "archetype": "advanced_forward",
         "metaRating": 90.11150146178109
+      },
+      {
+        "archetype": "inside_forward",
+        "metaRating": 88.38492452520813
       }
     ],
     "overall": 91,
@@ -20758,12 +21885,12 @@
     "height": 177,
     "metaRatings": [
       {
-        "archetype": "classic_ten",
-        "metaRating": 87.55431833959877
-      },
-      {
         "archetype": "shadow_striker",
         "metaRating": 87.09381800409695
+      },
+      {
+        "archetype": "classic_ten",
+        "metaRating": 87.55431833959877
       }
     ],
     "overall": 91,
@@ -20837,12 +21964,12 @@
     "height": 163,
     "metaRatings": [
       {
-        "archetype": "inside_forward",
-        "metaRating": 80.36055804348123
-      },
-      {
         "archetype": "advanced_forward",
         "metaRating": 81.60044666044739
+      },
+      {
+        "archetype": "inside_forward",
+        "metaRating": 80.36055804348123
       }
     ],
     "overall": 85,
@@ -20955,6 +22082,86 @@
     "weight": 55
   },
   {
+    "accelerateType": "MOSTLY_EXPLOSIVE",
+    "attributeAcceleration": 95,
+    "attributeAggression": 62,
+    "attributeAgility": 95,
+    "attributeBalance": 88,
+    "attributeBallControl": 90,
+    "attributeComposure": 74,
+    "attributeCrossing": 90,
+    "attributeCurve": 92,
+    "attributeDefensiveAwareness": 49,
+    "attributeDribbling": 92,
+    "attributeFinishing": 79,
+    "attributeFkAccuracy": 77,
+    "attributeGkDiving": 7,
+    "attributeGkHandling": 14,
+    "attributeGkKicking": 8,
+    "attributeGkPositioning": 9,
+    "attributeGkReflexes": 7,
+    "attributeHeadingAccuracy": 82,
+    "attributeInterceptions": 52,
+    "attributeJumping": 86,
+    "attributeLongPassing": 83,
+    "attributeLongShots": 87,
+    "attributePenalties": 80,
+    "attributePositioning": 82,
+    "attributeReactions": 72,
+    "attributeShortPassing": 90,
+    "attributeShotPower": 91,
+    "attributeSlidingTackle": 64,
+    "attributeSprintSpeed": 92,
+    "attributeStamina": 95,
+    "attributeStandingTackle": 66,
+    "attributeStrength": 70,
+    "attributeVision": 80,
+    "attributeVolleys": 83,
+    "bodytype": "Lean Medium",
+    "commonName": "Samuel Iling-Junior",
+    "eaId": 84158459,
+    "foot": "Left",
+    "height": 182,
+    "metaRatings": [
+      {
+        "archetype": "winger",
+        "metaRating": 84.72645300123655
+      },
+      {
+        "archetype": "attacking_wingback",
+        "metaRating": 82.02995967576513
+      }
+    ],
+    "overall": 85,
+    "playstyles": [
+      "Incisive Pass",
+      "Whipped Pass",
+      "Jockey",
+      "Technical",
+      "Rapid"
+    ],
+    "playstylesPlus": [
+      "Pinged Pass"
+    ],
+    "positions": [
+      "LB",
+      "LM",
+      "LW"
+    ],
+    "rolesPlus": [
+      "LB Fullback",
+      "LM Wide Playmaker",
+      "LW Winger"
+    ],
+    "rolesPlusPlus": [
+      "LB Attacking Wingback",
+      "LM Winger"
+    ],
+    "skillMoves": 4,
+    "weakFoot": 4,
+    "weight": 75
+  },
+  {
     "accelerateType": "CONTROLLED_EXPLOSIVE",
     "attributeAcceleration": 94,
     "attributeAggression": 90,
@@ -21038,6 +22245,86 @@
     "weight": 66
   },
   {
+    "accelerateType": "CONTROLLED",
+    "attributeAcceleration": 89,
+    "attributeAggression": 85,
+    "attributeAgility": 82,
+    "attributeBalance": 84,
+    "attributeBallControl": 83,
+    "attributeComposure": 80,
+    "attributeCrossing": 84,
+    "attributeCurve": 74,
+    "attributeDefensiveAwareness": 86,
+    "attributeDribbling": 82,
+    "attributeFinishing": 72,
+    "attributeFkAccuracy": 75,
+    "attributeGkDiving": 8,
+    "attributeGkHandling": 10,
+    "attributeGkKicking": 8,
+    "attributeGkPositioning": 10,
+    "attributeGkReflexes": 7,
+    "attributeHeadingAccuracy": 77,
+    "attributeInterceptions": 87,
+    "attributeJumping": 91,
+    "attributeLongPassing": 80,
+    "attributeLongShots": 75,
+    "attributePenalties": 64,
+    "attributePositioning": 76,
+    "attributeReactions": 84,
+    "attributeShortPassing": 84,
+    "attributeShotPower": 78,
+    "attributeSlidingTackle": 86,
+    "attributeSprintSpeed": 89,
+    "attributeStamina": 95,
+    "attributeStandingTackle": 88,
+    "attributeStrength": 84,
+    "attributeVision": 78,
+    "attributeVolleys": 65,
+    "bodytype": "Average Medium",
+    "commonName": "Giovanni Di Lorenzo",
+    "eaId": 100881166,
+    "foot": "Right",
+    "height": 183,
+    "metaRatings": [
+      {
+        "archetype": "attacking_wingback",
+        "metaRating": 82.81963249250889
+      },
+      {
+        "archetype": "fullback",
+        "metaRating": 86.9564610817322
+      }
+    ],
+    "overall": 87,
+    "playstyles": [
+      "Whipped Pass",
+      "Intercept",
+      "Rapid",
+      "First Touch",
+      "Relentless"
+    ],
+    "playstylesPlus": [
+      "Incisive Pass",
+      "Jockey"
+    ],
+    "positions": [
+      "RB",
+      "RM"
+    ],
+    "rolesPlus": [
+      "RB Wingback",
+      "RM Winger",
+      "RM Wide Playmaker"
+    ],
+    "rolesPlusPlus": [
+      "RB Fullback",
+      "RB Attacking Wingback"
+    ],
+    "skillMoves": 3,
+    "weakFoot": 4,
+    "weight": 82
+  },
+  {
     "accelerateType": "CONTROLLED_LENGTHY",
     "attributeAcceleration": 92,
     "attributeAggression": 91,
@@ -21080,12 +22367,12 @@
     "height": 187,
     "metaRatings": [
       {
-        "archetype": "target_forward",
-        "metaRating": 88.80126444063941
-      },
-      {
         "archetype": "poacher",
         "metaRating": 87.5674667234294
+      },
+      {
+        "archetype": "target_forward",
+        "metaRating": 88.80126444063941
       }
     ],
     "overall": 91,
@@ -21164,12 +22451,12 @@
         "metaRating": 87.4781223439267
       },
       {
-        "archetype": "inside_forward",
-        "metaRating": 88.85652845215886
-      },
-      {
         "archetype": "false_nine",
         "metaRating": 87.04058052104831
+      },
+      {
+        "archetype": "inside_forward",
+        "metaRating": 88.85652845215886
       }
     ],
     "overall": 91,
@@ -21899,12 +23186,12 @@
     "height": 177,
     "metaRatings": [
       {
-        "archetype": "false_nine",
-        "metaRating": 79.79930449774915
-      },
-      {
         "archetype": "advanced_forward",
         "metaRating": 85.10189124992624
+      },
+      {
+        "archetype": "false_nine",
+        "metaRating": 79.79930449774915
       }
     ],
     "overall": 87,
@@ -21976,12 +23263,12 @@
     "height": 187,
     "metaRatings": [
       {
-        "archetype": "target_forward",
-        "metaRating": 92.28035304277957
-      },
-      {
         "archetype": "winger",
         "metaRating": 90.86861224940165
+      },
+      {
+        "archetype": "target_forward",
+        "metaRating": 92.28035304277957
       },
       {
         "archetype": "advanced_forward",

@@ -8775,6 +8775,115 @@
   },
   {
     "playerType": "players",
+    "id": 90717,
+    "eaId": 264954,
+    "evolutionId": null,
+    "cosmeticEvolutionId": null,
+    "partialEvolutionId": null,
+    "basePlayerEaId": 264954,
+    "nickname": null,
+    "overall": 82,
+    "height": 170,
+    "foot": 2,
+    "skillMoves": 3,
+    "weakFoot": 4,
+    "position": 14,
+    "alternativePositionIds": [
+      10
+    ],
+    "playstyles": [
+      7,
+      21,
+      27
+    ],
+    "playstylesPlus": [],
+    "rolesPlus": [
+      16
+    ],
+    "rolesPlusPlus": [
+      120
+    ],
+    "accelerateType": "CONTROLLED",
+    "url": "/players/264954-tanja-pawollek/25-264954/",
+    "bodytypeCode": 8,
+    "isRealFace": true,
+    "weight": 63,
+    "attributeAcceleration": 66,
+    "attributeSprintSpeed": 39,
+    "attributeAgility": 73,
+    "attributeBalance": 74,
+    "attributeJumping": 71,
+    "attributeStamina": 90,
+    "attributeStrength": 80,
+    "attributeReactions": 86,
+    "attributeAggression": 73,
+    "attributeComposure": 70,
+    "attributeInterceptions": 83,
+    "attributePositioning": 78,
+    "attributeVision": 83,
+    "attributeBallControl": 80,
+    "attributeCrossing": 57,
+    "attributeDribbling": 79,
+    "attributeFinishing": 79,
+    "attributeFkAccuracy": 69,
+    "attributeHeadingAccuracy": 54,
+    "attributeLongPassing": 79,
+    "attributeShortPassing": 85,
+    "attributeDefensiveAwareness": 82,
+    "attributeShotPower": 71,
+    "attributeLongShots": 80,
+    "attributeStandingTackle": 80,
+    "attributeSlidingTackle": 75,
+    "attributeVolleys": 59,
+    "attributeCurve": 70,
+    "attributePenalties": 65,
+    "attributeGkDiving": 9,
+    "attributeGkHandling": 14,
+    "attributeGkKicking": 8,
+    "attributeGkReflexes": 9,
+    "attributeGkPositioning": 6,
+    "facePace": 51,
+    "faceShooting": 76,
+    "facePassing": 77,
+    "faceDribbling": 78,
+    "faceDefending": 78,
+    "facePhysicality": 81,
+    "gkFaceDiving": 0,
+    "gkFaceHandling": 0,
+    "gkFaceKicking": 0,
+    "gkFaceReflexes": 0,
+    "gkFaceSpeed": 0,
+    "gkFacePositioning": 0,
+    "isUserEvolutions": false,
+    "isEvoLabPlayerItem": false,
+    "shirtNumber": 31,
+    "commonName": "Tanja Pawollek",
+    "totalFaceStats": 441,
+    "totalIgs": 2130,
+    "archetype": [
+      "deep_lying_playmaker"
+    ],
+    "alternativePositionIdsMapped": [
+      "CDM"
+    ],
+    "bodytypeCodeMapped": "Average Short",
+    "footMapped": "Left",
+    "playstylesMapped": [
+      "Long Ball Pass",
+      "Press Proven",
+      "Aerial"
+    ],
+    "playstylesPlusMapped": [],
+    "positionMapped": "CM",
+    "rolesPlusMapped": [
+      "CDM Deep-Lying Playmaker"
+    ],
+    "rolesPlusPlusMapped": [
+      "CM Deep-Lying Playmaker"
+    ]
+  },
+  {
+    "playerType": "players",
     "id": 90397,
     "eaId": 265249,
     "evolutionId": null,
@@ -9460,8 +9569,8 @@
     "totalFaceStats": 487,
     "totalIgs": 2393,
     "archetype": [
-      "shadow_striker",
       "half_winger",
+      "shadow_striker",
       "playmaker"
     ],
     "alternativePositionIdsMapped": [
@@ -9707,8 +9816,8 @@
     "totalFaceStats": 485,
     "totalIgs": 2325,
     "archetype": [
-      "advanced_forward",
-      "poacher"
+      "poacher",
+      "advanced_forward"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Unique",
@@ -9829,9 +9938,9 @@
     "totalFaceStats": 507,
     "totalIgs": 2430,
     "archetype": [
-      "advanced_forward",
+      "poacher",
       "winger",
-      "poacher"
+      "advanced_forward"
     ],
     "alternativePositionIdsMapped": [
       "RM"
@@ -10201,9 +10310,9 @@
     "totalFaceStats": 510,
     "totalIgs": 2482,
     "archetype": [
-      "false_nine",
       "advanced_forward",
-      "target_forward"
+      "target_forward",
+      "false_nine"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Average Tall",
@@ -10461,8 +10570,8 @@
     "totalIgs": 2559,
     "archetype": [
       "defender",
-      "holding",
-      "deep_lying_playmaker"
+      "deep_lying_playmaker",
+      "holding"
     ],
     "alternativePositionIdsMapped": [
       "CDM"
@@ -10825,9 +10934,9 @@
     "totalFaceStats": 518,
     "totalIgs": 2475,
     "archetype": [
-      "fullback",
+      "wingback",
       "attacking_wingback",
-      "wingback"
+      "fullback"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Average Medium",
@@ -10852,6 +10961,116 @@
       "LB Fullback",
       "LB Wingback",
       "LB Attacking Wingback"
+    ]
+  },
+  {
+    "playerType": "players",
+    "id": 112850,
+    "eaId": 50517801,
+    "evolutionId": null,
+    "cosmeticEvolutionId": null,
+    "partialEvolutionId": null,
+    "basePlayerEaId": 186153,
+    "nickname": null,
+    "overall": 92,
+    "height": 196,
+    "foot": 1,
+    "skillMoves": 1,
+    "weakFoot": 4,
+    "position": 0,
+    "alternativePositionIds": [],
+    "playstyles": [
+      28,
+      31,
+      32
+    ],
+    "playstylesPlus": [
+      29,
+      30
+    ],
+    "rolesPlus": [],
+    "rolesPlusPlus": [
+      101,
+      102
+    ],
+    "accelerateType": "CONTROLLED_LENGTHY",
+    "url": "/players/186153-wojciech-szczesny/25-50517801/",
+    "bodytypeCode": 4,
+    "isRealFace": true,
+    "weight": 90,
+    "attributeAcceleration": 58,
+    "attributeSprintSpeed": 54,
+    "attributeAgility": 55,
+    "attributeBalance": 51,
+    "attributeJumping": 69,
+    "attributeStamina": 45,
+    "attributeStrength": 65,
+    "attributeReactions": 80,
+    "attributeAggression": 40,
+    "attributeComposure": 65,
+    "attributeInterceptions": 15,
+    "attributePositioning": 14,
+    "attributeVision": 48,
+    "attributeBallControl": 22,
+    "attributeCrossing": 12,
+    "attributeDribbling": 11,
+    "attributeFinishing": 12,
+    "attributeFkAccuracy": 14,
+    "attributeHeadingAccuracy": 16,
+    "attributeLongPassing": 66,
+    "attributeShortPassing": 51,
+    "attributeDefensiveAwareness": 20,
+    "attributeShotPower": 56,
+    "attributeLongShots": 14,
+    "attributeStandingTackle": 13,
+    "attributeSlidingTackle": 12,
+    "attributeVolleys": 14,
+    "attributeCurve": 16,
+    "attributePenalties": 18,
+    "attributeGkDiving": 90,
+    "attributeGkHandling": 86,
+    "attributeGkKicking": 80,
+    "attributeGkReflexes": 92,
+    "attributeGkPositioning": 90,
+    "facePace": 56,
+    "faceShooting": 22,
+    "facePassing": 41,
+    "faceDribbling": 27,
+    "faceDefending": 16,
+    "facePhysicality": 55,
+    "gkFaceDiving": 90,
+    "gkFaceHandling": 86,
+    "gkFaceKicking": 80,
+    "gkFaceReflexes": 92,
+    "gkFaceSpeed": 56,
+    "gkFacePositioning": 90,
+    "isUserEvolutions": false,
+    "isEvoLabPlayerItem": false,
+    "shirtNumber": 25,
+    "commonName": "Wojciech Szcz\u0119sny",
+    "totalFaceStats": 494,
+    "totalIgs": 438,
+    "archetype": [
+      "goalkeeper",
+      "sweeper_keeper"
+    ],
+    "alternativePositionIdsMapped": [],
+    "bodytypeCodeMapped": "Lean Tall",
+    "footMapped": "Right",
+    "playstylesMapped": [
+      "GK Far Throw",
+      "GK Rush Out",
+      "GK Far Reach"
+    ],
+    "playstylesPlusMapped": [
+      "GK Footwork",
+      "GK Cross Claimer"
+    ],
+    "positionMapped": "GK",
+    "rolesPlusMapped": [],
+    "rolesPlusPlusMapped": [
+      "GK Goalkeeper",
+      "GK Sweeper Keeper"
     ]
   },
   {
@@ -11311,9 +11530,9 @@
     "totalFaceStats": 468,
     "totalIgs": 2288,
     "archetype": [
-      "target_forward",
+      "poacher",
       "advanced_forward",
-      "poacher"
+      "target_forward"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Lean Tall",
@@ -12042,9 +12261,9 @@
     "totalFaceStats": 514,
     "totalIgs": 2450,
     "archetype": [
+      "wingback",
       "attacking_wingback",
-      "wide_midfielder",
-      "wingback"
+      "wide_midfielder"
     ],
     "alternativePositionIdsMapped": [
       "RM"
@@ -12281,8 +12500,8 @@
     "totalFaceStats": 499,
     "totalIgs": 441,
     "archetype": [
-      "sweeper_keeper",
-      "goalkeeper"
+      "goalkeeper",
+      "sweeper_keeper"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Lean Tall",
@@ -12535,8 +12754,8 @@
     "totalIgs": 2374,
     "archetype": [
       "advanced_forward",
-      "inside_forward",
-      "playmaker"
+      "playmaker",
+      "inside_forward"
     ],
     "alternativePositionIdsMapped": [
       "LM",
@@ -12657,8 +12876,8 @@
     "totalFaceStats": 478,
     "totalIgs": 2290,
     "archetype": [
-      "target_forward",
-      "poacher"
+      "poacher",
+      "target_forward"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Lean Tall",
@@ -14102,8 +14321,8 @@
     "totalFaceStats": 476,
     "totalIgs": 2170,
     "archetype": [
-      "fullback",
-      "defender"
+      "defender",
+      "fullback"
     ],
     "alternativePositionIdsMapped": [
       "RB"
@@ -14223,8 +14442,8 @@
     "totalFaceStats": 476,
     "totalIgs": 2274,
     "archetype": [
-      "target_forward",
-      "poacher"
+      "poacher",
+      "target_forward"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Average Tall",
@@ -14347,9 +14566,9 @@
     "totalFaceStats": 488,
     "totalIgs": 2332,
     "archetype": [
+      "playmaker",
       "false_nine",
-      "inside_forward",
-      "playmaker"
+      "inside_forward"
     ],
     "alternativePositionIdsMapped": [
       "CAM",
@@ -14478,8 +14697,8 @@
     "totalFaceStats": 524,
     "totalIgs": 2470,
     "archetype": [
-      "attacking_wingback",
-      "falseback"
+      "falseback",
+      "attacking_wingback"
     ],
     "alternativePositionIdsMapped": [
       "LM",
@@ -14839,8 +15058,8 @@
     "totalFaceStats": 473,
     "totalIgs": 2306,
     "archetype": [
-      "advanced_forward",
-      "poacher"
+      "poacher",
+      "advanced_forward"
     ],
     "alternativePositionIdsMapped": [
       "LM",
@@ -14971,6 +15190,130 @@
     "rolesPlusMapped": [],
     "rolesPlusPlusMapped": [
       "ST Poacher"
+    ]
+  },
+  {
+    "playerType": "players",
+    "id": 112819,
+    "eaId": 50564709,
+    "evolutionId": null,
+    "cosmeticEvolutionId": null,
+    "partialEvolutionId": null,
+    "basePlayerEaId": 233061,
+    "nickname": null,
+    "overall": 85,
+    "height": 180,
+    "foot": 1,
+    "skillMoves": 4,
+    "weakFoot": 4,
+    "position": 27,
+    "alternativePositionIds": [
+      16
+    ],
+    "playstyles": [
+      0,
+      6,
+      9,
+      16,
+      19
+    ],
+    "playstylesPlus": [
+      17
+    ],
+    "rolesPlus": [
+      27,
+      39,
+      40
+    ],
+    "rolesPlusPlus": [
+      130,
+      138
+    ],
+    "accelerateType": "MOSTLY_EXPLOSIVE",
+    "url": "/players/233061-mathias-pereira-lage/25-50564709/",
+    "bodytypeCode": 1,
+    "isRealFace": true,
+    "weight": 69,
+    "attributeAcceleration": 90,
+    "attributeSprintSpeed": 96,
+    "attributeAgility": 91,
+    "attributeBalance": 85,
+    "attributeJumping": 94,
+    "attributeStamina": 99,
+    "attributeStrength": 78,
+    "attributeReactions": 81,
+    "attributeAggression": 56,
+    "attributeComposure": 80,
+    "attributeInterceptions": 74,
+    "attributePositioning": 84,
+    "attributeVision": 83,
+    "attributeBallControl": 87,
+    "attributeCrossing": 86,
+    "attributeDribbling": 87,
+    "attributeFinishing": 81,
+    "attributeFkAccuracy": 76,
+    "attributeHeadingAccuracy": 78,
+    "attributeLongPassing": 82,
+    "attributeShortPassing": 87,
+    "attributeDefensiveAwareness": 71,
+    "attributeShotPower": 90,
+    "attributeLongShots": 89,
+    "attributeStandingTackle": 69,
+    "attributeSlidingTackle": 64,
+    "attributeVolleys": 83,
+    "attributeCurve": 83,
+    "attributePenalties": 77,
+    "attributeGkDiving": 9,
+    "attributeGkHandling": 15,
+    "attributeGkKicking": 5,
+    "attributeGkReflexes": 6,
+    "attributeGkPositioning": 11,
+    "facePace": 93,
+    "faceShooting": 84,
+    "facePassing": 85,
+    "faceDribbling": 87,
+    "faceDefending": 71,
+    "facePhysicality": 80,
+    "gkFaceDiving": 0,
+    "gkFaceHandling": 0,
+    "gkFaceKicking": 0,
+    "gkFaceReflexes": 0,
+    "gkFaceSpeed": 0,
+    "gkFacePositioning": 0,
+    "isUserEvolutions": false,
+    "isEvoLabPlayerItem": false,
+    "shirtNumber": 26,
+    "commonName": "Mathias Pereira Lage",
+    "totalFaceStats": 500,
+    "totalIgs": 2381,
+    "archetype": [
+      "winger",
+      "inside_forward"
+    ],
+    "alternativePositionIdsMapped": [
+      "LM"
+    ],
+    "bodytypeCodeMapped": "Lean Medium",
+    "footMapped": "Right",
+    "playstylesMapped": [
+      "Finesse Shot",
+      "Pinged Pass",
+      "Whipped Pass",
+      "Technical",
+      "First Touch"
+    ],
+    "playstylesPlusMapped": [
+      "Rapid"
+    ],
+    "positionMapped": "LW",
+    "rolesPlusMapped": [
+      "LM Winger",
+      "LW Inside Forward",
+      "LW Wide Playmaker"
+    ],
+    "rolesPlusPlusMapped": [
+      "LM Inside Forward",
+      "LW Winger"
     ]
   },
   {
@@ -15193,10 +15536,10 @@
     "totalFaceStats": 502,
     "totalIgs": 2406,
     "archetype": [
-      "false_nine",
+      "poacher",
       "advanced_forward",
       "target_forward",
-      "poacher"
+      "false_nine"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Average Medium",
@@ -15583,8 +15926,8 @@
     "totalFaceStats": 525,
     "totalIgs": 2502,
     "archetype": [
-      "false_nine",
       "advanced_forward",
+      "false_nine",
       "inside_forward"
     ],
     "alternativePositionIdsMapped": [
@@ -15712,8 +16055,8 @@
     "totalFaceStats": 512,
     "totalIgs": 2446,
     "archetype": [
-      "attacking_wingback",
-      "wingback"
+      "wingback",
+      "attacking_wingback"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Stocky Medium",
@@ -15736,6 +16079,140 @@
     "rolesPlusPlusMapped": [
       "RB Wingback",
       "RB Attacking Wingback"
+    ]
+  },
+  {
+    "playerType": "players",
+    "id": 112846,
+    "eaId": 50570091,
+    "evolutionId": null,
+    "cosmeticEvolutionId": null,
+    "partialEvolutionId": null,
+    "basePlayerEaId": 238443,
+    "nickname": null,
+    "overall": 89,
+    "height": 192,
+    "foot": 1,
+    "skillMoves": 4,
+    "weakFoot": 4,
+    "position": 18,
+    "alternativePositionIds": [
+      5,
+      14
+    ],
+    "playstyles": [
+      0,
+      5,
+      8,
+      13,
+      16,
+      22,
+      27
+    ],
+    "playstylesPlus": [
+      19,
+      6
+    ],
+    "rolesPlus": [
+      13,
+      18,
+      33
+    ],
+    "rolesPlusPlus": [
+      121,
+      131,
+      134
+    ],
+    "accelerateType": "CONTROLLED",
+    "url": "/players/238443-laurent-blanc/25-50570091/",
+    "bodytypeCode": 5,
+    "isRealFace": true,
+    "weight": 82,
+    "attributeAcceleration": 84,
+    "attributeSprintSpeed": 88,
+    "attributeAgility": 88,
+    "attributeBalance": 85,
+    "attributeJumping": 77,
+    "attributeStamina": 88,
+    "attributeStrength": 85,
+    "attributeReactions": 94,
+    "attributeAggression": 87,
+    "attributeComposure": 93,
+    "attributeInterceptions": 90,
+    "attributePositioning": 84,
+    "attributeVision": 88,
+    "attributeBallControl": 93,
+    "attributeCrossing": 80,
+    "attributeDribbling": 85,
+    "attributeFinishing": 84,
+    "attributeFkAccuracy": 85,
+    "attributeHeadingAccuracy": 85,
+    "attributeLongPassing": 92,
+    "attributeShortPassing": 93,
+    "attributeDefensiveAwareness": 92,
+    "attributeShotPower": 88,
+    "attributeLongShots": 84,
+    "attributeStandingTackle": 93,
+    "attributeSlidingTackle": 88,
+    "attributeVolleys": 86,
+    "attributeCurve": 87,
+    "attributePenalties": 95,
+    "attributeGkDiving": 13,
+    "attributeGkHandling": 9,
+    "attributeGkKicking": 8,
+    "attributeGkReflexes": 8,
+    "attributeGkPositioning": 12,
+    "facePace": 86,
+    "faceShooting": 85,
+    "facePassing": 89,
+    "faceDribbling": 89,
+    "faceDefending": 91,
+    "facePhysicality": 86,
+    "gkFaceDiving": 0,
+    "gkFaceHandling": 0,
+    "gkFaceKicking": 0,
+    "gkFaceReflexes": 0,
+    "gkFaceSpeed": 0,
+    "gkFacePositioning": 0,
+    "isUserEvolutions": false,
+    "isEvoLabPlayerItem": false,
+    "shirtNumber": null,
+    "commonName": "Laurent Blanc",
+    "totalFaceStats": 526,
+    "totalIgs": 2541,
+    "archetype": [
+      "classic_ten",
+      "playmaker"
+    ],
+    "alternativePositionIdsMapped": [
+      "CB",
+      "CM"
+    ],
+    "bodytypeCodeMapped": "Average Tall",
+    "footMapped": "Right",
+    "playstylesMapped": [
+      "Finesse Shot",
+      "Incisive Pass",
+      "Tiki Taka",
+      "Anticipate",
+      "Technical",
+      "Quick Step",
+      "Aerial"
+    ],
+    "playstylesPlusMapped": [
+      "First Touch",
+      "Pinged Pass"
+    ],
+    "positionMapped": "CAM",
+    "rolesPlusMapped": [
+      "CB Ball-Playing Defender",
+      "CM Box to Box",
+      "CAM Half Winger"
+    ],
+    "rolesPlusPlusMapped": [
+      "CM Playmaker",
+      "CAM Playmaker",
+      "CAM Classic 10"
     ]
   },
   {
@@ -15855,6 +16332,143 @@
   },
   {
     "playerType": "players",
+    "id": 112201,
+    "eaId": 50572884,
+    "evolutionId": null,
+    "cosmeticEvolutionId": null,
+    "partialEvolutionId": null,
+    "basePlayerEaId": 241236,
+    "nickname": null,
+    "overall": 88,
+    "height": 185,
+    "foot": 1,
+    "skillMoves": 5,
+    "weakFoot": 5,
+    "position": 12,
+    "alternativePositionIds": [
+      16,
+      23,
+      25
+    ],
+    "playstyles": [
+      0,
+      4,
+      9,
+      17,
+      18,
+      20,
+      25
+    ],
+    "playstylesPlus": [
+      2,
+      22
+    ],
+    "rolesPlus": [
+      24,
+      26,
+      30,
+      36
+    ],
+    "rolesPlusPlus": [
+      123,
+      127,
+      135
+    ],
+    "accelerateType": "CONTROLLED_LENGTHY",
+    "url": "/players/241236-antoine-semenyo/25-50572884/",
+    "bodytypeCode": 6,
+    "isRealFace": true,
+    "weight": 79,
+    "attributeAcceleration": 89,
+    "attributeSprintSpeed": 96,
+    "attributeAgility": 85,
+    "attributeBalance": 84,
+    "attributeJumping": 98,
+    "attributeStamina": 84,
+    "attributeStrength": 94,
+    "attributeReactions": 86,
+    "attributeAggression": 73,
+    "attributeComposure": 87,
+    "attributeInterceptions": 32,
+    "attributePositioning": 87,
+    "attributeVision": 88,
+    "attributeBallControl": 88,
+    "attributeCrossing": 86,
+    "attributeDribbling": 92,
+    "attributeFinishing": 91,
+    "attributeFkAccuracy": 49,
+    "attributeHeadingAccuracy": 94,
+    "attributeLongPassing": 69,
+    "attributeShortPassing": 92,
+    "attributeDefensiveAwareness": 40,
+    "attributeShotPower": 93,
+    "attributeLongShots": 78,
+    "attributeStandingTackle": 53,
+    "attributeSlidingTackle": 63,
+    "attributeVolleys": 68,
+    "attributeCurve": 90,
+    "attributePenalties": 62,
+    "attributeGkDiving": 10,
+    "attributeGkHandling": 11,
+    "attributeGkKicking": 14,
+    "attributeGkReflexes": 7,
+    "attributeGkPositioning": 15,
+    "facePace": 93,
+    "faceShooting": 86,
+    "facePassing": 84,
+    "faceDribbling": 89,
+    "faceDefending": 50,
+    "facePhysicality": 88,
+    "gkFaceDiving": 0,
+    "gkFaceHandling": 0,
+    "gkFaceKicking": 0,
+    "gkFaceReflexes": 0,
+    "gkFaceSpeed": 0,
+    "gkFacePositioning": 0,
+    "isUserEvolutions": false,
+    "isEvoLabPlayerItem": false,
+    "shirtNumber": 24,
+    "commonName": "Antoine Semenyo",
+    "totalFaceStats": 490,
+    "totalIgs": 2291,
+    "archetype": [
+      "winger"
+    ],
+    "alternativePositionIdsMapped": [
+      "LM",
+      "RW",
+      "ST"
+    ],
+    "bodytypeCodeMapped": "Stocky Tall",
+    "footMapped": "Right",
+    "playstylesMapped": [
+      "Finesse Shot",
+      "Power Header",
+      "Whipped Pass",
+      "Rapid",
+      "Flair",
+      "Trickster",
+      "Acrobatic"
+    ],
+    "playstylesPlusMapped": [
+      "Power Shot",
+      "Quick Step"
+    ],
+    "positionMapped": "RM",
+    "rolesPlusMapped": [
+      "RM Wide Midfielder",
+      "RM Inside Forward",
+      "LM Inside Forward",
+      "RW Inside Forward"
+    ],
+    "rolesPlusPlusMapped": [
+      "RM Winger",
+      "LM Winger",
+      "RW Winger"
+    ]
+  },
+  {
+    "playerType": "players",
     "id": 112363,
     "eaId": 50574851,
     "evolutionId": null,
@@ -15948,9 +16562,9 @@
     "totalFaceStats": 496,
     "totalIgs": 2352,
     "archetype": [
-      "target_forward",
+      "poacher",
       "advanced_forward",
-      "poacher"
+      "target_forward"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Average Tall",
@@ -16086,9 +16700,9 @@
     "totalFaceStats": 496,
     "totalIgs": 2375,
     "archetype": [
+      "winger",
       "half_winger",
-      "inside_forward",
-      "winger"
+      "inside_forward"
     ],
     "alternativePositionIdsMapped": [
       "CM",
@@ -16229,8 +16843,8 @@
     "totalIgs": 2315,
     "archetype": [
       "holding",
-      "falseback",
-      "stopper"
+      "stopper",
+      "falseback"
     ],
     "alternativePositionIdsMapped": [
       "RB",
@@ -17123,6 +17737,124 @@
   },
   {
     "playerType": "players",
+    "id": 112824,
+    "eaId": 50580360,
+    "evolutionId": null,
+    "cosmeticEvolutionId": null,
+    "partialEvolutionId": null,
+    "basePlayerEaId": 248712,
+    "nickname": "Oh Hyeon Gyu",
+    "overall": 85,
+    "height": 185,
+    "foot": 1,
+    "skillMoves": 4,
+    "weakFoot": 4,
+    "position": 25,
+    "alternativePositionIds": [],
+    "playstyles": [
+      0,
+      2,
+      17,
+      18,
+      21
+    ],
+    "playstylesPlus": [
+      25
+    ],
+    "rolesPlus": [
+      41,
+      43
+    ],
+    "rolesPlusPlus": [
+      142,
+      144
+    ],
+    "accelerateType": "CONTROLLED",
+    "url": "/players/248712-oh-hyun-gyu/25-50580360/",
+    "bodytypeCode": 6,
+    "isRealFace": true,
+    "weight": 83,
+    "attributeAcceleration": 87,
+    "attributeSprintSpeed": 96,
+    "attributeAgility": 93,
+    "attributeBalance": 97,
+    "attributeJumping": 90,
+    "attributeStamina": 80,
+    "attributeStrength": 95,
+    "attributeReactions": 86,
+    "attributeAggression": 90,
+    "attributeComposure": 72,
+    "attributeInterceptions": 40,
+    "attributePositioning": 86,
+    "attributeVision": 83,
+    "attributeBallControl": 86,
+    "attributeCrossing": 72,
+    "attributeDribbling": 81,
+    "attributeFinishing": 86,
+    "attributeFkAccuracy": 62,
+    "attributeHeadingAccuracy": 99,
+    "attributeLongPassing": 68,
+    "attributeShortPassing": 91,
+    "attributeDefensiveAwareness": 52,
+    "attributeShotPower": 94,
+    "attributeLongShots": 78,
+    "attributeStandingTackle": 64,
+    "attributeSlidingTackle": 59,
+    "attributeVolleys": 78,
+    "attributeCurve": 80,
+    "attributePenalties": 80,
+    "attributeGkDiving": 10,
+    "attributeGkHandling": 6,
+    "attributeGkKicking": 10,
+    "attributeGkReflexes": 11,
+    "attributeGkPositioning": 10,
+    "facePace": 92,
+    "faceShooting": 85,
+    "facePassing": 80,
+    "faceDribbling": 84,
+    "faceDefending": 59,
+    "facePhysicality": 90,
+    "gkFaceDiving": 0,
+    "gkFaceHandling": 0,
+    "gkFaceKicking": 0,
+    "gkFaceReflexes": 0,
+    "gkFaceSpeed": 0,
+    "gkFacePositioning": 0,
+    "isUserEvolutions": false,
+    "isEvoLabPlayerItem": false,
+    "shirtNumber": 9,
+    "commonName": "Oh Hyeon Gyu",
+    "totalFaceStats": 490,
+    "totalIgs": 2325,
+    "archetype": [
+      "poacher",
+      "target_forward"
+    ],
+    "alternativePositionIdsMapped": [],
+    "bodytypeCodeMapped": "Stocky Tall",
+    "footMapped": "Right",
+    "playstylesMapped": [
+      "Finesse Shot",
+      "Power Shot",
+      "Rapid",
+      "Flair",
+      "Press Proven"
+    ],
+    "playstylesPlusMapped": [
+      "Acrobatic"
+    ],
+    "positionMapped": "ST",
+    "rolesPlusMapped": [
+      "ST Advanced Forward",
+      "ST False 9"
+    ],
+    "rolesPlusPlusMapped": [
+      "ST Poacher",
+      "ST Target Forward"
+    ]
+  },
+  {
+    "playerType": "players",
     "id": 110716,
     "eaId": 50583093,
     "evolutionId": null,
@@ -17248,6 +17980,138 @@
   },
   {
     "playerType": "players",
+    "id": 111831,
+    "eaId": 50584450,
+    "evolutionId": null,
+    "cosmeticEvolutionId": null,
+    "partialEvolutionId": null,
+    "basePlayerEaId": 252802,
+    "nickname": null,
+    "overall": 88,
+    "height": 190,
+    "foot": 1,
+    "skillMoves": 5,
+    "weakFoot": 5,
+    "position": 5,
+    "alternativePositionIds": [
+      3
+    ],
+    "playstyles": [
+      4,
+      12,
+      13,
+      14,
+      17
+    ],
+    "playstylesPlus": [
+      10,
+      11
+    ],
+    "rolesPlus": [
+      4,
+      5,
+      6
+    ],
+    "rolesPlusPlus": [
+      103,
+      111,
+      112,
+      113
+    ],
+    "accelerateType": "MOSTLY_LENGTHY",
+    "url": "/players/252802-wilfried-singo/25-50584450/",
+    "bodytypeCode": 5,
+    "isRealFace": true,
+    "weight": 79,
+    "attributeAcceleration": 83,
+    "attributeSprintSpeed": 88,
+    "attributeAgility": 80,
+    "attributeBalance": 80,
+    "attributeJumping": 95,
+    "attributeStamina": 86,
+    "attributeStrength": 93,
+    "attributeReactions": 87,
+    "attributeAggression": 92,
+    "attributeComposure": 84,
+    "attributeInterceptions": 86,
+    "attributePositioning": 76,
+    "attributeVision": 73,
+    "attributeBallControl": 83,
+    "attributeCrossing": 83,
+    "attributeDribbling": 83,
+    "attributeFinishing": 64,
+    "attributeFkAccuracy": 47,
+    "attributeHeadingAccuracy": 88,
+    "attributeLongPassing": 80,
+    "attributeShortPassing": 86,
+    "attributeDefensiveAwareness": 85,
+    "attributeShotPower": 83,
+    "attributeLongShots": 59,
+    "attributeStandingTackle": 91,
+    "attributeSlidingTackle": 89,
+    "attributeVolleys": 57,
+    "attributeCurve": 77,
+    "attributePenalties": 52,
+    "attributeGkDiving": 11,
+    "attributeGkHandling": 6,
+    "attributeGkKicking": 7,
+    "attributeGkReflexes": 7,
+    "attributeGkPositioning": 13,
+    "facePace": 86,
+    "faceShooting": 66,
+    "facePassing": 80,
+    "faceDribbling": 83,
+    "faceDefending": 88,
+    "facePhysicality": 91,
+    "gkFaceDiving": 0,
+    "gkFaceHandling": 0,
+    "gkFaceKicking": 0,
+    "gkFaceReflexes": 0,
+    "gkFaceSpeed": 0,
+    "gkFacePositioning": 0,
+    "isUserEvolutions": false,
+    "isEvoLabPlayerItem": false,
+    "shirtNumber": 17,
+    "commonName": "Wilfried Singo",
+    "totalFaceStats": 494,
+    "totalIgs": 2310,
+    "archetype": [
+      "defender",
+      "ball_playing_defender",
+      "stopper",
+      "fullback"
+    ],
+    "alternativePositionIdsMapped": [
+      "RB"
+    ],
+    "bodytypeCodeMapped": "Average Tall",
+    "footMapped": "Right",
+    "playstylesMapped": [
+      "Power Header",
+      "Intercept",
+      "Anticipate",
+      "Slide Tackle",
+      "Rapid"
+    ],
+    "playstylesPlusMapped": [
+      "Jockey",
+      "Block"
+    ],
+    "positionMapped": "CB",
+    "rolesPlusMapped": [
+      "RB Falseback",
+      "RB Wingback",
+      "RB Attacking Wingback"
+    ],
+    "rolesPlusPlusMapped": [
+      "RB Fullback",
+      "CB Defender",
+      "CB Stopper",
+      "CB Ball-Playing Defender"
+    ]
+  },
+  {
+    "playerType": "players",
     "id": 110341,
     "eaId": 50587755,
     "evolutionId": null,
@@ -17338,9 +18202,9 @@
     "totalFaceStats": 495,
     "totalIgs": 2295,
     "archetype": [
-      "attacking_wingback",
+      "wingback",
       "falseback",
-      "wingback"
+      "attacking_wingback"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Average Medium",
@@ -17588,8 +18452,8 @@
     "totalFaceStats": 467,
     "totalIgs": 2235,
     "archetype": [
-      "target_forward",
-      "poacher"
+      "poacher",
+      "target_forward"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Average Short",
@@ -17709,9 +18573,9 @@
     "totalFaceStats": 484,
     "totalIgs": 2304,
     "archetype": [
-      "target_forward",
+      "poacher",
       "advanced_forward",
-      "poacher"
+      "target_forward"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Average Tall",
@@ -17837,8 +18701,8 @@
     "totalIgs": 2434,
     "archetype": [
       "winger",
-      "falseback",
-      "wingback"
+      "wingback",
+      "falseback"
     ],
     "alternativePositionIdsMapped": [
       "LM"
@@ -17971,9 +18835,9 @@
     "totalFaceStats": 531,
     "totalIgs": 2572,
     "archetype": [
-      "false_nine",
       "classic_ten",
-      "playmaker"
+      "playmaker",
+      "false_nine"
     ],
     "alternativePositionIdsMapped": [
       "CM",
@@ -18340,9 +19204,9 @@
     "totalFaceStats": 507,
     "totalIgs": 2401,
     "archetype": [
-      "fullback",
       "winger",
-      "falseback"
+      "falseback",
+      "fullback"
     ],
     "alternativePositionIdsMapped": [
       "LM"
@@ -18461,9 +19325,9 @@
     "totalFaceStats": 501,
     "totalIgs": 2305,
     "archetype": [
-      "attacking_wingback",
+      "wingback",
       "falseback",
-      "wingback"
+      "attacking_wingback"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Lean Medium",
@@ -18819,8 +19683,8 @@
     "totalFaceStats": 487,
     "totalIgs": 2329,
     "archetype": [
-      "fullback",
-      "attacking_wingback"
+      "attacking_wingback",
+      "fullback"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Average Short",
@@ -18942,8 +19806,8 @@
     "totalFaceStats": 460,
     "totalIgs": 2183,
     "archetype": [
-      "inside_forward",
-      "wide_midfielder"
+      "wide_midfielder",
+      "inside_forward"
     ],
     "alternativePositionIdsMapped": [
       "RM"
@@ -19071,8 +19935,8 @@
     "totalFaceStats": 528,
     "totalIgs": 2496,
     "archetype": [
-      "box_to_box",
       "holding",
+      "box_to_box",
       "playmaker"
     ],
     "alternativePositionIdsMapped": [
@@ -19191,9 +20055,9 @@
     "totalFaceStats": 442,
     "totalIgs": 2093,
     "archetype": [
-      "fullback",
       "defender",
-      "stopper"
+      "stopper",
+      "fullback"
     ],
     "alternativePositionIdsMapped": [
       "RB"
@@ -19306,9 +20170,9 @@
     "totalFaceStats": 479,
     "totalIgs": 2269,
     "archetype": [
-      "target_forward",
+      "poacher",
       "advanced_forward",
-      "poacher"
+      "target_forward"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Average Medium",
@@ -19427,9 +20291,9 @@
     "totalFaceStats": 488,
     "totalIgs": 2336,
     "archetype": [
-      "fullback",
+      "wingback",
       "attacking_wingback",
-      "wingback"
+      "fullback"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Average Short",
@@ -19677,8 +20541,8 @@
     "totalFaceStats": 505,
     "totalIgs": 2402,
     "archetype": [
-      "box_to_box",
-      "holding"
+      "holding",
+      "box_to_box"
     ],
     "alternativePositionIdsMapped": [
       "CM"
@@ -20185,8 +21049,8 @@
     "totalFaceStats": 509,
     "totalIgs": 2441,
     "archetype": [
-      "playmaker",
-      "deep_lying_playmaker"
+      "deep_lying_playmaker",
+      "playmaker"
     ],
     "alternativePositionIdsMapped": [
       "CDM"
@@ -20315,8 +21179,8 @@
     "totalFaceStats": 512,
     "totalIgs": 2406,
     "archetype": [
-      "box_to_box",
       "wide_playmaker",
+      "box_to_box",
       "wide_midfielder"
     ],
     "alternativePositionIdsMapped": [
@@ -20347,6 +21211,124 @@
       "CM Box to Box",
       "RM Wide Midfielder",
       "LW Wide Playmaker"
+    ]
+  },
+  {
+    "playerType": "players",
+    "id": 112820,
+    "eaId": 50607047,
+    "evolutionId": null,
+    "cosmeticEvolutionId": null,
+    "partialEvolutionId": null,
+    "basePlayerEaId": 275399,
+    "nickname": null,
+    "overall": 85,
+    "height": 169,
+    "foot": 2,
+    "skillMoves": 4,
+    "weakFoot": 4,
+    "position": 25,
+    "alternativePositionIds": [],
+    "playstyles": [
+      2,
+      8,
+      19,
+      22,
+      24
+    ],
+    "playstylesPlus": [
+      34
+    ],
+    "rolesPlus": [
+      42,
+      44
+    ],
+    "rolesPlusPlus": [
+      141,
+      143
+    ],
+    "accelerateType": "CONTROLLED",
+    "url": "/players/275399-lorena-azzaro/25-50607047/",
+    "bodytypeCode": 7,
+    "isRealFace": true,
+    "weight": 57,
+    "attributeAcceleration": 86,
+    "attributeSprintSpeed": 90,
+    "attributeAgility": 85,
+    "attributeBalance": 83,
+    "attributeJumping": 94,
+    "attributeStamina": 85,
+    "attributeStrength": 94,
+    "attributeReactions": 85,
+    "attributeAggression": 44,
+    "attributeComposure": 84,
+    "attributeInterceptions": 45,
+    "attributePositioning": 85,
+    "attributeVision": 80,
+    "attributeBallControl": 94,
+    "attributeCrossing": 76,
+    "attributeDribbling": 84,
+    "attributeFinishing": 89,
+    "attributeFkAccuracy": 87,
+    "attributeHeadingAccuracy": 99,
+    "attributeLongPassing": 77,
+    "attributeShortPassing": 94,
+    "attributeDefensiveAwareness": 39,
+    "attributeShotPower": 87,
+    "attributeLongShots": 89,
+    "attributeStandingTackle": 49,
+    "attributeSlidingTackle": 31,
+    "attributeVolleys": 80,
+    "attributeCurve": 93,
+    "attributePenalties": 74,
+    "attributeGkDiving": 7,
+    "attributeGkHandling": 11,
+    "attributeGkKicking": 7,
+    "attributeGkReflexes": 13,
+    "attributeGkPositioning": 14,
+    "facePace": 88,
+    "faceShooting": 87,
+    "facePassing": 85,
+    "faceDribbling": 87,
+    "faceDefending": 48,
+    "facePhysicality": 82,
+    "gkFaceDiving": 0,
+    "gkFaceHandling": 0,
+    "gkFaceKicking": 0,
+    "gkFaceReflexes": 0,
+    "gkFaceSpeed": 0,
+    "gkFacePositioning": 0,
+    "isUserEvolutions": false,
+    "isEvoLabPlayerItem": false,
+    "shirtNumber": 10,
+    "commonName": "Lorena Azzaro",
+    "totalFaceStats": 477,
+    "totalIgs": 2282,
+    "archetype": [
+      "advanced_forward",
+      "false_nine"
+    ],
+    "alternativePositionIdsMapped": [],
+    "bodytypeCodeMapped": "Lean Short",
+    "footMapped": "Left",
+    "playstylesMapped": [
+      "Power Shot",
+      "Tiki Taka",
+      "First Touch",
+      "Quick Step",
+      "Trivela"
+    ],
+    "playstylesPlusMapped": [
+      "Low Driven Shot"
+    ],
+    "positionMapped": "ST",
+    "rolesPlusMapped": [
+      "ST Poacher",
+      "ST Target Forward"
+    ],
+    "rolesPlusPlusMapped": [
+      "ST Advanced Forward",
+      "ST False 9"
     ]
   },
   {
@@ -20446,8 +21428,8 @@
     "totalFaceStats": 463,
     "totalIgs": 2226,
     "archetype": [
-      "winger",
-      "poacher"
+      "poacher",
+      "winger"
     ],
     "alternativePositionIdsMapped": [
       "RW",
@@ -20576,8 +21558,8 @@
     "totalFaceStats": 521,
     "totalIgs": 2490,
     "archetype": [
-      "box_to_box",
-      "holding"
+      "holding",
+      "box_to_box"
     ],
     "alternativePositionIdsMapped": [
       "CDM"
@@ -20706,8 +21688,8 @@
     "totalFaceStats": 513,
     "totalIgs": 2481,
     "archetype": [
-      "box_to_box",
       "half_winger",
+      "box_to_box",
       "playmaker"
     ],
     "alternativePositionIdsMapped": [
@@ -20829,8 +21811,8 @@
     "totalFaceStats": 532,
     "totalIgs": 460,
     "archetype": [
-      "sweeper_keeper",
-      "goalkeeper"
+      "goalkeeper",
+      "sweeper_keeper"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Average Medium",
@@ -20943,8 +21925,8 @@
     "totalFaceStats": 507,
     "totalIgs": 449,
     "archetype": [
-      "sweeper_keeper",
-      "goalkeeper"
+      "goalkeeper",
+      "sweeper_keeper"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Average Tall",
@@ -21057,8 +22039,8 @@
     "totalFaceStats": 421,
     "totalIgs": 1968,
     "archetype": [
-      "inside_forward",
-      "winger"
+      "winger",
+      "inside_forward"
     ],
     "alternativePositionIdsMapped": [
       "LM"
@@ -21171,8 +22153,8 @@
     "totalFaceStats": 436,
     "totalIgs": 2080,
     "archetype": [
-      "advanced_forward",
-      "poacher"
+      "poacher",
+      "advanced_forward"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Stocky Medium",
@@ -21294,8 +22276,8 @@
     "totalIgs": 2552,
     "archetype": [
       "defender",
-      "falseback",
-      "stopper"
+      "stopper",
+      "falseback"
     ],
     "alternativePositionIdsMapped": [
       "LB"
@@ -21676,8 +22658,8 @@
     "totalFaceStats": 435,
     "totalIgs": 2042,
     "archetype": [
-      "inside_forward",
-      "winger"
+      "winger",
+      "inside_forward"
     ],
     "alternativePositionIdsMapped": [
       "RM"
@@ -21921,8 +22903,8 @@
     "totalFaceStats": 532,
     "totalIgs": 2580,
     "archetype": [
-      "centre_half",
-      "deep_lying_playmaker"
+      "deep_lying_playmaker",
+      "centre_half"
     ],
     "alternativePositionIdsMapped": [
       "CDM"
@@ -22051,8 +23033,8 @@
     "totalFaceStats": 510,
     "totalIgs": 2483,
     "archetype": [
-      "centre_half",
-      "deep_lying_playmaker"
+      "deep_lying_playmaker",
+      "centre_half"
     ],
     "alternativePositionIdsMapped": [
       "CM"
@@ -22179,8 +23161,8 @@
     "totalFaceStats": 509,
     "totalIgs": 2424,
     "archetype": [
-      "box_to_box",
-      "deep_lying_playmaker"
+      "deep_lying_playmaker",
+      "box_to_box"
     ],
     "alternativePositionIdsMapped": [
       "CDM"
@@ -22424,8 +23406,8 @@
     "totalFaceStats": 499,
     "totalIgs": 2366,
     "archetype": [
-      "inside_forward",
-      "winger"
+      "winger",
+      "inside_forward"
     ],
     "alternativePositionIdsMapped": [
       "LM",
@@ -22556,9 +23538,9 @@
     "totalFaceStats": 514,
     "totalIgs": 2427,
     "archetype": [
-      "centre_half",
       "holding",
-      "deep_lying_playmaker"
+      "deep_lying_playmaker",
+      "centre_half"
     ],
     "alternativePositionIdsMapped": [
       "CDM"
@@ -22688,8 +23670,8 @@
     "totalFaceStats": 491,
     "totalIgs": 2314,
     "archetype": [
-      "false_nine",
-      "shadow_striker"
+      "shadow_striker",
+      "false_nine"
     ],
     "alternativePositionIdsMapped": [
       "ST"
@@ -22821,8 +23803,8 @@
     "totalFaceStats": 534,
     "totalIgs": 2556,
     "archetype": [
-      "box_to_box",
-      "deep_lying_playmaker"
+      "deep_lying_playmaker",
+      "box_to_box"
     ],
     "alternativePositionIdsMapped": [
       "CDM",
@@ -22856,6 +23838,129 @@
       "CDM Deep-Lying Playmaker",
       "CM Box to Box",
       "CM Deep-Lying Playmaker"
+    ]
+  },
+  {
+    "playerType": "players",
+    "id": 111078,
+    "eaId": 67330561,
+    "evolutionId": null,
+    "cosmeticEvolutionId": null,
+    "partialEvolutionId": null,
+    "basePlayerEaId": 221697,
+    "nickname": null,
+    "overall": 90,
+    "height": 180,
+    "foot": 1,
+    "skillMoves": 4,
+    "weakFoot": 4,
+    "position": 25,
+    "alternativePositionIds": [],
+    "playstyles": [
+      0,
+      1,
+      16,
+      19,
+      21,
+      23
+    ],
+    "playstylesPlus": [
+      2,
+      17
+    ],
+    "rolesPlus": [
+      44
+    ],
+    "rolesPlusPlus": [
+      141,
+      142,
+      143
+    ],
+    "accelerateType": "CONTROLLED",
+    "url": "/players/221697-ollie-watkins/25-67330561/",
+    "bodytypeCode": 2,
+    "isRealFace": true,
+    "weight": 70,
+    "attributeAcceleration": 86,
+    "attributeSprintSpeed": 94,
+    "attributeAgility": 87,
+    "attributeBalance": 86,
+    "attributeJumping": 96,
+    "attributeStamina": 93,
+    "attributeStrength": 87,
+    "attributeReactions": 92,
+    "attributeAggression": 83,
+    "attributeComposure": 90,
+    "attributeInterceptions": 60,
+    "attributePositioning": 94,
+    "attributeVision": 84,
+    "attributeBallControl": 86,
+    "attributeCrossing": 74,
+    "attributeDribbling": 88,
+    "attributeFinishing": 95,
+    "attributeFkAccuracy": 70,
+    "attributeHeadingAccuracy": 91,
+    "attributeLongPassing": 71,
+    "attributeShortPassing": 87,
+    "attributeDefensiveAwareness": 50,
+    "attributeShotPower": 91,
+    "attributeLongShots": 86,
+    "attributeStandingTackle": 51,
+    "attributeSlidingTackle": 40,
+    "attributeVolleys": 87,
+    "attributeCurve": 81,
+    "attributePenalties": 80,
+    "attributeGkDiving": 14,
+    "attributeGkHandling": 14,
+    "attributeGkKicking": 14,
+    "attributeGkReflexes": 10,
+    "attributeGkPositioning": 6,
+    "facePace": 90,
+    "faceShooting": 91,
+    "facePassing": 80,
+    "faceDribbling": 88,
+    "faceDefending": 55,
+    "facePhysicality": 88,
+    "gkFaceDiving": 0,
+    "gkFaceHandling": 0,
+    "gkFaceKicking": 0,
+    "gkFaceReflexes": 0,
+    "gkFaceSpeed": 0,
+    "gkFacePositioning": 0,
+    "isUserEvolutions": false,
+    "isEvoLabPlayerItem": false,
+    "shirtNumber": 11,
+    "commonName": "Ollie Watkins",
+    "totalFaceStats": 492,
+    "totalIgs": 2360,
+    "archetype": [
+      "poacher",
+      "advanced_forward",
+      "false_nine"
+    ],
+    "alternativePositionIdsMapped": [],
+    "bodytypeCodeMapped": "Average Medium",
+    "footMapped": "Right",
+    "playstylesMapped": [
+      "Finesse Shot",
+      "Chip Shot",
+      "Technical",
+      "First Touch",
+      "Press Proven",
+      "Relentless"
+    ],
+    "playstylesPlusMapped": [
+      "Power Shot",
+      "Rapid"
+    ],
+    "positionMapped": "ST",
+    "rolesPlusMapped": [
+      "ST Target Forward"
+    ],
+    "rolesPlusPlusMapped": [
+      "ST Advanced Forward",
+      "ST Poacher",
+      "ST False 9"
     ]
   },
   {
@@ -22987,6 +24092,120 @@
   },
   {
     "playerType": "players",
+    "id": 112837,
+    "eaId": 67335157,
+    "evolutionId": null,
+    "cosmeticEvolutionId": null,
+    "partialEvolutionId": null,
+    "basePlayerEaId": 226293,
+    "nickname": null,
+    "overall": 95,
+    "height": 175,
+    "foot": 1,
+    "skillMoves": 1,
+    "weakFoot": 4,
+    "position": 0,
+    "alternativePositionIds": [],
+    "playstyles": [
+      6,
+      7,
+      28,
+      29,
+      33
+    ],
+    "playstylesPlus": [
+      32,
+      30
+    ],
+    "rolesPlus": [],
+    "rolesPlusPlus": [
+      101,
+      102
+    ],
+    "accelerateType": "CONTROLLED",
+    "url": "/players/226293-nadine-angerer/25-67335157/",
+    "bodytypeCode": 2,
+    "isRealFace": true,
+    "weight": 71,
+    "attributeAcceleration": 63,
+    "attributeSprintSpeed": 60,
+    "attributeAgility": 61,
+    "attributeBalance": 61,
+    "attributeJumping": 73,
+    "attributeStamina": 43,
+    "attributeStrength": 70,
+    "attributeReactions": 93,
+    "attributeAggression": 52,
+    "attributeComposure": 64,
+    "attributeInterceptions": 29,
+    "attributePositioning": 12,
+    "attributeVision": 63,
+    "attributeBallControl": 26,
+    "attributeCrossing": 12,
+    "attributeDribbling": 13,
+    "attributeFinishing": 12,
+    "attributeFkAccuracy": 18,
+    "attributeHeadingAccuracy": 9,
+    "attributeLongPassing": 32,
+    "attributeShortPassing": 35,
+    "attributeDefensiveAwareness": 27,
+    "attributeShotPower": 59,
+    "attributeLongShots": 11,
+    "attributeStandingTackle": 21,
+    "attributeSlidingTackle": 26,
+    "attributeVolleys": 11,
+    "attributeCurve": 20,
+    "attributePenalties": 23,
+    "attributeGkDiving": 95,
+    "attributeGkHandling": 92,
+    "attributeGkKicking": 85,
+    "attributeGkReflexes": 97,
+    "attributeGkPositioning": 95,
+    "facePace": 61,
+    "faceShooting": 22,
+    "facePassing": 34,
+    "faceDribbling": 31,
+    "faceDefending": 24,
+    "facePhysicality": 60,
+    "gkFaceDiving": 95,
+    "gkFaceHandling": 92,
+    "gkFaceKicking": 85,
+    "gkFaceReflexes": 97,
+    "gkFaceSpeed": 62,
+    "gkFacePositioning": 95,
+    "isUserEvolutions": false,
+    "isEvoLabPlayerItem": false,
+    "shirtNumber": null,
+    "commonName": "Nadine Angerer",
+    "totalFaceStats": 526,
+    "totalIgs": 464,
+    "archetype": [
+      "goalkeeper",
+      "sweeper_keeper"
+    ],
+    "alternativePositionIdsMapped": [],
+    "bodytypeCodeMapped": "Average Medium",
+    "footMapped": "Right",
+    "playstylesMapped": [
+      "Pinged Pass",
+      "Long Ball Pass",
+      "GK Far Throw",
+      "GK Footwork",
+      "GK Deflector"
+    ],
+    "playstylesPlusMapped": [
+      "GK Far Reach",
+      "GK Cross Claimer"
+    ],
+    "positionMapped": "GK",
+    "rolesPlusMapped": [],
+    "rolesPlusPlusMapped": [
+      "GK Goalkeeper",
+      "GK Sweeper Keeper"
+    ]
+  },
+  {
+    "playerType": "players",
     "id": 111270,
     "eaId": 67335200,
     "evolutionId": null,
@@ -23091,11 +24310,11 @@
     "totalFaceStats": 548,
     "totalIgs": 2639,
     "archetype": [
+      "wide_playmaker",
       "attacking_wingback",
-      "half_winger",
-      "wingback",
       "box_to_box",
-      "wide_playmaker"
+      "wingback",
+      "half_winger"
     ],
     "alternativePositionIdsMapped": [
       "RB",
@@ -23232,8 +24451,8 @@
     "totalFaceStats": 516,
     "totalIgs": 2499,
     "archetype": [
-      "half_winger",
-      "holding"
+      "holding",
+      "half_winger"
     ],
     "alternativePositionIdsMapped": [
       "CM",
@@ -23361,8 +24580,8 @@
     "totalFaceStats": 466,
     "totalIgs": 2269,
     "archetype": [
-      "false_nine",
-      "half_winger"
+      "half_winger",
+      "false_nine"
     ],
     "alternativePositionIdsMapped": [
       "RM",
@@ -23513,6 +24732,132 @@
   },
   {
     "playerType": "players",
+    "id": 112807,
+    "eaId": 67337677,
+    "evolutionId": null,
+    "cosmeticEvolutionId": null,
+    "partialEvolutionId": null,
+    "basePlayerEaId": 228813,
+    "nickname": "Aleix Garc\u00eda",
+    "overall": 87,
+    "height": 173,
+    "foot": 1,
+    "skillMoves": 4,
+    "weakFoot": 4,
+    "position": 14,
+    "alternativePositionIds": [
+      10
+    ],
+    "playstyles": [
+      3,
+      5,
+      11,
+      12,
+      23
+    ],
+    "playstylesPlus": [
+      8,
+      21
+    ],
+    "rolesPlus": [
+      15,
+      18,
+      20
+    ],
+    "rolesPlusPlus": [
+      116,
+      119
+    ],
+    "accelerateType": "CONTROLLED",
+    "url": "/players/228813-aleix-garcia/25-67337677/",
+    "bodytypeCode": 2,
+    "isRealFace": true,
+    "weight": 68,
+    "attributeAcceleration": 86,
+    "attributeSprintSpeed": 85,
+    "attributeAgility": 83,
+    "attributeBalance": 88,
+    "attributeJumping": 80,
+    "attributeStamina": 92,
+    "attributeStrength": 81,
+    "attributeReactions": 85,
+    "attributeAggression": 84,
+    "attributeComposure": 87,
+    "attributeInterceptions": 85,
+    "attributePositioning": 86,
+    "attributeVision": 90,
+    "attributeBallControl": 90,
+    "attributeCrossing": 87,
+    "attributeDribbling": 87,
+    "attributeFinishing": 82,
+    "attributeFkAccuracy": 84,
+    "attributeHeadingAccuracy": 56,
+    "attributeLongPassing": 92,
+    "attributeShortPassing": 90,
+    "attributeDefensiveAwareness": 87,
+    "attributeShotPower": 83,
+    "attributeLongShots": 85,
+    "attributeStandingTackle": 90,
+    "attributeSlidingTackle": 84,
+    "attributeVolleys": 70,
+    "attributeCurve": 88,
+    "attributePenalties": 64,
+    "attributeGkDiving": 16,
+    "attributeGkHandling": 8,
+    "attributeGkKicking": 9,
+    "attributeGkReflexes": 7,
+    "attributeGkPositioning": 10,
+    "facePace": 85,
+    "faceShooting": 82,
+    "facePassing": 89,
+    "faceDribbling": 87,
+    "faceDefending": 84,
+    "facePhysicality": 84,
+    "gkFaceDiving": 0,
+    "gkFaceHandling": 0,
+    "gkFaceKicking": 0,
+    "gkFaceReflexes": 0,
+    "gkFaceSpeed": 0,
+    "gkFacePositioning": 0,
+    "isUserEvolutions": false,
+    "isEvoLabPlayerItem": false,
+    "shirtNumber": 24,
+    "commonName": "Aleix Garc\u00eda",
+    "totalFaceStats": 511,
+    "totalIgs": 2431,
+    "archetype": [
+      "holding",
+      "deep_lying_playmaker"
+    ],
+    "alternativePositionIdsMapped": [
+      "CDM"
+    ],
+    "bodytypeCodeMapped": "Average Medium",
+    "footMapped": "Right",
+    "playstylesMapped": [
+      "Dead Ball",
+      "Incisive Pass",
+      "Block",
+      "Intercept",
+      "Relentless"
+    ],
+    "playstylesPlusMapped": [
+      "Tiki Taka",
+      "Press Proven"
+    ],
+    "positionMapped": "CM",
+    "rolesPlusMapped": [
+      "CDM Centre-Half",
+      "CM Box to Box",
+      "CM Deep-Lying Playmaker"
+    ],
+    "rolesPlusPlusMapped": [
+      "CDM Deep-Lying Playmaker",
+      "CM Holding"
+    ]
+  },
+  {
+    "playerType": "players",
     "id": 111797,
     "eaId": 67340216,
     "evolutionId": null,
@@ -23606,9 +24951,9 @@
     "totalFaceStats": 471,
     "totalIgs": 2254,
     "archetype": [
-      "target_forward",
+      "poacher",
       "advanced_forward",
-      "poacher"
+      "target_forward"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Lean Tall",
@@ -23857,8 +25202,8 @@
     "totalFaceStats": 458,
     "totalIgs": 2185,
     "archetype": [
-      "inside_forward",
-      "winger"
+      "winger",
+      "inside_forward"
     ],
     "alternativePositionIdsMapped": [
       "RM",
@@ -23887,6 +25232,130 @@
     "rolesPlusPlusMapped": [
       "RM Winger",
       "LM Inside Forward"
+    ]
+  },
+  {
+    "playerType": "players",
+    "id": 112814,
+    "eaId": 67342016,
+    "evolutionId": null,
+    "cosmeticEvolutionId": null,
+    "partialEvolutionId": null,
+    "basePlayerEaId": 233152,
+    "nickname": null,
+    "overall": 85,
+    "height": 188,
+    "foot": 1,
+    "skillMoves": 3,
+    "weakFoot": 4,
+    "position": 5,
+    "alternativePositionIds": [
+      10
+    ],
+    "playstyles": [
+      10,
+      11,
+      14,
+      15,
+      27
+    ],
+    "playstylesPlus": [
+      12
+    ],
+    "rolesPlus": [
+      12,
+      13,
+      16
+    ],
+    "rolesPlusPlus": [
+      111,
+      114
+    ],
+    "accelerateType": "CONTROLLED",
+    "url": "/players/233152-ko-itakura/25-67342016/",
+    "bodytypeCode": null,
+    "isRealFace": false,
+    "weight": null,
+    "attributeAcceleration": 84,
+    "attributeSprintSpeed": 86,
+    "attributeAgility": 82,
+    "attributeBalance": 81,
+    "attributeJumping": 89,
+    "attributeStamina": 82,
+    "attributeStrength": 82,
+    "attributeReactions": 87,
+    "attributeAggression": 82,
+    "attributeComposure": 89,
+    "attributeInterceptions": 89,
+    "attributePositioning": 58,
+    "attributeVision": 78,
+    "attributeBallControl": 82,
+    "attributeCrossing": 50,
+    "attributeDribbling": 80,
+    "attributeFinishing": 49,
+    "attributeFkAccuracy": 52,
+    "attributeHeadingAccuracy": 80,
+    "attributeLongPassing": 86,
+    "attributeShortPassing": 90,
+    "attributeDefensiveAwareness": 86,
+    "attributeShotPower": 80,
+    "attributeLongShots": 43,
+    "attributeStandingTackle": 88,
+    "attributeSlidingTackle": 90,
+    "attributeVolleys": 41,
+    "attributeCurve": 52,
+    "attributePenalties": 46,
+    "attributeGkDiving": 13,
+    "attributeGkHandling": 6,
+    "attributeGkKicking": 9,
+    "attributeGkReflexes": 12,
+    "attributeGkPositioning": 10,
+    "facePace": 85,
+    "faceShooting": 54,
+    "facePassing": 75,
+    "faceDribbling": 82,
+    "faceDefending": 87,
+    "facePhysicality": 82,
+    "gkFaceDiving": 0,
+    "gkFaceHandling": 0,
+    "gkFaceKicking": 0,
+    "gkFaceReflexes": 0,
+    "gkFaceSpeed": 0,
+    "gkFacePositioning": 0,
+    "isUserEvolutions": false,
+    "isEvoLabPlayerItem": false,
+    "shirtNumber": 3,
+    "commonName": "Ko Itakura",
+    "totalFaceStats": 465,
+    "totalIgs": 2164,
+    "archetype": [
+      "defender",
+      "holding"
+    ],
+    "alternativePositionIdsMapped": [
+      "CDM"
+    ],
+    "bodytypeCodeMapped": null,
+    "footMapped": "Right",
+    "playstylesMapped": [
+      "Jockey",
+      "Block",
+      "Slide Tackle",
+      "Bruiser",
+      "Aerial"
+    ],
+    "playstylesPlusMapped": [
+      "Intercept"
+    ],
+    "positionMapped": "CB",
+    "rolesPlusMapped": [
+      "CB Stopper",
+      "CB Ball-Playing Defender",
+      "CDM Deep-Lying Playmaker"
+    ],
+    "rolesPlusPlusMapped": [
+      "CB Defender",
+      "CDM Holding"
     ]
   },
   {
@@ -23989,8 +25458,8 @@
     "totalFaceStats": 495,
     "totalIgs": 2383,
     "archetype": [
-      "inside_forward",
-      "wide_midfielder"
+      "wide_midfielder",
+      "inside_forward"
     ],
     "alternativePositionIdsMapped": [
       "LM"
@@ -24118,8 +25587,8 @@
     "totalFaceStats": 472,
     "totalIgs": 2245,
     "archetype": [
-      "false_nine",
-      "winger"
+      "winger",
+      "false_nine"
     ],
     "alternativePositionIdsMapped": [
       "RW",
@@ -24634,9 +26103,9 @@
     "totalFaceStats": 523,
     "totalIgs": 2489,
     "archetype": [
-      "inside_forward",
       "wide_playmaker",
-      "wide_midfielder"
+      "wide_midfielder",
+      "inside_forward"
     ],
     "alternativePositionIdsMapped": [
       "RM",
@@ -25136,8 +26605,8 @@
     "totalFaceStats": 509,
     "totalIgs": 2432,
     "archetype": [
-      "box_to_box",
-      "holding"
+      "holding",
+      "box_to_box"
     ],
     "alternativePositionIdsMapped": [
       "CM"
@@ -25765,9 +27234,9 @@
     "totalFaceStats": 498,
     "totalIgs": 2327,
     "archetype": [
-      "fullback",
       "defender",
-      "stopper"
+      "stopper",
+      "fullback"
     ],
     "alternativePositionIdsMapped": [
       "LB"
@@ -26029,8 +27498,8 @@
     "totalFaceStats": 529,
     "totalIgs": 2505,
     "archetype": [
-      "box_to_box",
-      "holding"
+      "holding",
+      "box_to_box"
     ],
     "alternativePositionIdsMapped": [
       "CDM"
@@ -26648,8 +28117,8 @@
     "totalFaceStats": 487,
     "totalIgs": 2352,
     "archetype": [
-      "inside_forward",
-      "playmaker"
+      "playmaker",
+      "inside_forward"
     ],
     "alternativePositionIdsMapped": [
       "RB",
@@ -26779,8 +28248,8 @@
     "totalFaceStats": 489,
     "totalIgs": 2333,
     "archetype": [
-      "inside_forward",
-      "wide_playmaker"
+      "wide_playmaker",
+      "inside_forward"
     ],
     "alternativePositionIdsMapped": [
       "RM"
@@ -26912,8 +28381,8 @@
     "totalFaceStats": 501,
     "totalIgs": 2420,
     "archetype": [
-      "false_nine",
-      "winger"
+      "winger",
+      "false_nine"
     ],
     "alternativePositionIdsMapped": [
       "RM",
@@ -27046,9 +28515,9 @@
     "totalFaceStats": 489,
     "totalIgs": 2338,
     "archetype": [
-      "advanced_forward",
+      "poacher",
       "winger",
-      "poacher"
+      "advanced_forward"
     ],
     "alternativePositionIdsMapped": [
       "RM"
@@ -27177,8 +28646,8 @@
     "totalFaceStats": 522,
     "totalIgs": 2482,
     "archetype": [
-      "shadow_striker",
       "half_winger",
+      "shadow_striker",
       "playmaker"
     ],
     "alternativePositionIdsMapped": [
@@ -27686,10 +29155,10 @@
     "totalFaceStats": 502,
     "totalIgs": 2366,
     "archetype": [
-      "fullback",
-      "attacking_wingback",
+      "wingback",
       "wide_midfielder",
-      "wingback"
+      "attacking_wingback",
+      "fullback"
     ],
     "alternativePositionIdsMapped": [
       "LM"
@@ -27819,9 +29288,9 @@
     "totalFaceStats": 523,
     "totalIgs": 2505,
     "archetype": [
-      "attacking_wingback",
+      "wingback",
       "wide_playmaker",
-      "wingback"
+      "attacking_wingback"
     ],
     "alternativePositionIdsMapped": [
       "LW"
@@ -27949,10 +29418,10 @@
     "totalFaceStats": 496,
     "totalIgs": 2338,
     "archetype": [
-      "false_nine",
+      "winger",
       "advanced_forward",
-      "inside_forward",
-      "winger"
+      "false_nine",
+      "inside_forward"
     ],
     "alternativePositionIdsMapped": [
       "RW"
@@ -28082,8 +29551,8 @@
     "totalFaceStats": 518,
     "totalIgs": 2503,
     "archetype": [
-      "half_winger",
-      "winger"
+      "winger",
+      "half_winger"
     ],
     "alternativePositionIdsMapped": [
       "LM",
@@ -28342,8 +29811,8 @@
     "totalFaceStats": 532,
     "totalIgs": 2520,
     "archetype": [
-      "box_to_box",
-      "deep_lying_playmaker"
+      "deep_lying_playmaker",
+      "box_to_box"
     ],
     "alternativePositionIdsMapped": [
       "CDM"
@@ -28588,9 +30057,9 @@
     "totalFaceStats": 512,
     "totalIgs": 2411,
     "archetype": [
-      "fullback",
+      "wingback",
       "falseback",
-      "wingback"
+      "fullback"
     ],
     "alternativePositionIdsMapped": [
       "CB"
@@ -28717,8 +30186,8 @@
     "totalFaceStats": 519,
     "totalIgs": 2484,
     "archetype": [
-      "centre_half",
-      "holding"
+      "holding",
+      "centre_half"
     ],
     "alternativePositionIdsMapped": [
       "CM"
@@ -28847,8 +30316,8 @@
     "totalFaceStats": 512,
     "totalIgs": 2424,
     "archetype": [
-      "box_to_box",
-      "holding"
+      "holding",
+      "box_to_box"
     ],
     "alternativePositionIdsMapped": [
       "CDM"
@@ -28974,9 +30443,9 @@
     "totalFaceStats": 483,
     "totalIgs": 2152,
     "archetype": [
-      "fullback",
       "ball_playing_defender",
-      "stopper"
+      "stopper",
+      "fullback"
     ],
     "alternativePositionIdsMapped": [
       "LB"
@@ -29232,9 +30701,9 @@
     "totalFaceStats": 497,
     "totalIgs": 2419,
     "archetype": [
+      "poacher",
       "target_forward",
-      "false_nine",
-      "poacher"
+      "false_nine"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Unique",
@@ -29719,9 +31188,9 @@
     "totalFaceStats": 504,
     "totalIgs": 2392,
     "archetype": [
-      "attacking_wingback",
+      "wingback",
       "wide_playmaker",
-      "wingback"
+      "attacking_wingback"
     ],
     "alternativePositionIdsMapped": [
       "RM"
@@ -29751,6 +31220,147 @@
       "RB Wingback",
       "RB Attacking Wingback",
       "RM Wide Playmaker"
+    ]
+  },
+  {
+    "playerType": "players",
+    "id": 112826,
+    "eaId": 84106914,
+    "evolutionId": null,
+    "cosmeticEvolutionId": null,
+    "partialEvolutionId": null,
+    "basePlayerEaId": 220834,
+    "nickname": "Marco Asensio",
+    "overall": 90,
+    "height": 182,
+    "foot": 2,
+    "skillMoves": 5,
+    "weakFoot": 4,
+    "position": 23,
+    "alternativePositionIds": [
+      12,
+      14,
+      18
+    ],
+    "playstyles": [
+      0,
+      3,
+      5,
+      6,
+      9,
+      18,
+      20
+    ],
+    "playstylesPlus": [
+      16,
+      24
+    ],
+    "rolesPlus": [
+      22,
+      23,
+      33,
+      35
+    ],
+    "rolesPlusPlus": [
+      121,
+      126,
+      132,
+      136
+    ],
+    "accelerateType": "CONTROLLED_EXPLOSIVE",
+    "url": "/players/220834-marco-asensio/25-84106914/",
+    "bodytypeCode": 2,
+    "isRealFace": true,
+    "weight": 76,
+    "attributeAcceleration": 92,
+    "attributeSprintSpeed": 88,
+    "attributeAgility": 87,
+    "attributeBalance": 87,
+    "attributeJumping": 88,
+    "attributeStamina": 88,
+    "attributeStrength": 80,
+    "attributeReactions": 90,
+    "attributeAggression": 70,
+    "attributeComposure": 91,
+    "attributeInterceptions": 58,
+    "attributePositioning": 92,
+    "attributeVision": 91,
+    "attributeBallControl": 95,
+    "attributeCrossing": 92,
+    "attributeDribbling": 92,
+    "attributeFinishing": 90,
+    "attributeFkAccuracy": 86,
+    "attributeHeadingAccuracy": 73,
+    "attributeLongPassing": 93,
+    "attributeShortPassing": 92,
+    "attributeDefensiveAwareness": 51,
+    "attributeShotPower": 93,
+    "attributeLongShots": 97,
+    "attributeStandingTackle": 54,
+    "attributeSlidingTackle": 50,
+    "attributeVolleys": 91,
+    "attributeCurve": 95,
+    "attributePenalties": 74,
+    "attributeGkDiving": 13,
+    "attributeGkHandling": 9,
+    "attributeGkKicking": 6,
+    "attributeGkReflexes": 10,
+    "attributeGkPositioning": 12,
+    "facePace": 90,
+    "faceShooting": 91,
+    "facePassing": 92,
+    "faceDribbling": 92,
+    "faceDefending": 55,
+    "facePhysicality": 80,
+    "gkFaceDiving": 0,
+    "gkFaceHandling": 0,
+    "gkFaceKicking": 0,
+    "gkFaceReflexes": 0,
+    "gkFaceSpeed": 0,
+    "gkFacePositioning": 0,
+    "isUserEvolutions": false,
+    "isEvoLabPlayerItem": false,
+    "shirtNumber": 11,
+    "commonName": "Marco Asensio",
+    "totalFaceStats": 500,
+    "totalIgs": 2420,
+    "archetype": [
+      "shadow_striker",
+      "playmaker",
+      "inside_forward"
+    ],
+    "alternativePositionIdsMapped": [
+      "RM",
+      "CM",
+      "CAM"
+    ],
+    "bodytypeCodeMapped": "Average Medium",
+    "footMapped": "Left",
+    "playstylesMapped": [
+      "Finesse Shot",
+      "Dead Ball",
+      "Incisive Pass",
+      "Pinged Pass",
+      "Whipped Pass",
+      "Flair",
+      "Trickster"
+    ],
+    "playstylesPlusMapped": [
+      "Technical",
+      "Trivela"
+    ],
+    "positionMapped": "RW",
+    "rolesPlusMapped": [
+      "CM Half-Winger",
+      "RM Winger",
+      "CAM Half Winger",
+      "RW Winger"
+    ],
+    "rolesPlusPlusMapped": [
+      "CM Playmaker",
+      "RM Inside Forward",
+      "CAM Shadow Striker",
+      "RW Inside Forward"
     ]
   },
   {
@@ -29850,8 +31460,8 @@
     "totalFaceStats": 528,
     "totalIgs": 2520,
     "archetype": [
-      "box_to_box",
-      "deep_lying_playmaker"
+      "deep_lying_playmaker",
+      "box_to_box"
     ],
     "alternativePositionIdsMapped": [
       "CDM"
@@ -29977,8 +31587,8 @@
     "totalFaceStats": 464,
     "totalIgs": 2232,
     "archetype": [
-      "false_nine",
-      "advanced_forward"
+      "advanced_forward",
+      "false_nine"
     ],
     "alternativePositionIdsMapped": [
       "CAM",
@@ -30113,9 +31723,9 @@
     "totalFaceStats": 499,
     "totalIgs": 2393,
     "archetype": [
+      "winger",
       "advanced_forward",
-      "inside_forward",
-      "winger"
+      "inside_forward"
     ],
     "alternativePositionIdsMapped": [
       "LM",
@@ -30619,10 +32229,10 @@
     "totalFaceStats": 513,
     "totalIgs": 2419,
     "archetype": [
-      "false_nine",
+      "poacher",
       "advanced_forward",
       "target_forward",
-      "poacher"
+      "false_nine"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Average Medium",
@@ -30748,9 +32358,9 @@
     "totalFaceStats": 516,
     "totalIgs": 2495,
     "archetype": [
-      "false_nine",
       "poacher",
-      "shadow_striker"
+      "shadow_striker",
+      "false_nine"
     ],
     "alternativePositionIdsMapped": [
       "CAM"
@@ -30878,8 +32488,8 @@
     "totalFaceStats": 485,
     "totalIgs": 2264,
     "archetype": [
-      "attacking_wingback",
-      "wingback"
+      "wingback",
+      "attacking_wingback"
     ],
     "alternativePositionIdsMapped": [
       "CB",
@@ -31267,10 +32877,10 @@
     "totalFaceStats": 499,
     "totalIgs": 2392,
     "archetype": [
-      "false_nine",
+      "poacher",
       "advanced_forward",
       "target_forward",
-      "poacher"
+      "false_nine"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Lean Tall",
@@ -31524,8 +33134,8 @@
     "totalFaceStats": 480,
     "totalIgs": 2292,
     "archetype": [
-      "classic_ten",
-      "shadow_striker"
+      "shadow_striker",
+      "classic_ten"
     ],
     "alternativePositionIdsMapped": [
       "LM"
@@ -31774,8 +33384,8 @@
     "totalFaceStats": 496,
     "totalIgs": 2347,
     "archetype": [
-      "half_winger",
-      "winger"
+      "winger",
+      "half_winger"
     ],
     "alternativePositionIdsMapped": [
       "CM",
@@ -31803,6 +33413,132 @@
     "rolesPlusPlusMapped": [
       "CM Half-Winger",
       "LW Winger"
+    ]
+  },
+  {
+    "playerType": "players",
+    "id": 112821,
+    "eaId": 84158459,
+    "evolutionId": null,
+    "cosmeticEvolutionId": null,
+    "partialEvolutionId": null,
+    "basePlayerEaId": 272379,
+    "nickname": null,
+    "overall": 85,
+    "height": 182,
+    "foot": 2,
+    "skillMoves": 4,
+    "weakFoot": 4,
+    "position": 7,
+    "alternativePositionIds": [
+      16,
+      27
+    ],
+    "playstyles": [
+      5,
+      9,
+      10,
+      16,
+      17
+    ],
+    "playstylesPlus": [
+      6
+    ],
+    "rolesPlus": [
+      7,
+      29,
+      38
+    ],
+    "rolesPlusPlus": [
+      110,
+      127
+    ],
+    "accelerateType": "MOSTLY_EXPLOSIVE",
+    "url": "/players/272379-samuel-iling-junior/25-84158459/",
+    "bodytypeCode": 1,
+    "isRealFace": true,
+    "weight": 75,
+    "attributeAcceleration": 95,
+    "attributeSprintSpeed": 92,
+    "attributeAgility": 95,
+    "attributeBalance": 88,
+    "attributeJumping": 86,
+    "attributeStamina": 95,
+    "attributeStrength": 70,
+    "attributeReactions": 72,
+    "attributeAggression": 62,
+    "attributeComposure": 74,
+    "attributeInterceptions": 52,
+    "attributePositioning": 82,
+    "attributeVision": 80,
+    "attributeBallControl": 90,
+    "attributeCrossing": 90,
+    "attributeDribbling": 92,
+    "attributeFinishing": 79,
+    "attributeFkAccuracy": 77,
+    "attributeHeadingAccuracy": 82,
+    "attributeLongPassing": 83,
+    "attributeShortPassing": 90,
+    "attributeDefensiveAwareness": 49,
+    "attributeShotPower": 91,
+    "attributeLongShots": 87,
+    "attributeStandingTackle": 66,
+    "attributeSlidingTackle": 64,
+    "attributeVolleys": 83,
+    "attributeCurve": 92,
+    "attributePenalties": 80,
+    "attributeGkDiving": 7,
+    "attributeGkHandling": 14,
+    "attributeGkKicking": 8,
+    "attributeGkReflexes": 7,
+    "attributeGkPositioning": 9,
+    "facePace": 93,
+    "faceShooting": 83,
+    "facePassing": 86,
+    "faceDribbling": 90,
+    "faceDefending": 60,
+    "facePhysicality": 75,
+    "gkFaceDiving": 0,
+    "gkFaceHandling": 0,
+    "gkFaceKicking": 0,
+    "gkFaceReflexes": 0,
+    "gkFaceSpeed": 0,
+    "gkFacePositioning": 0,
+    "isUserEvolutions": false,
+    "isEvoLabPlayerItem": false,
+    "shirtNumber": 14,
+    "commonName": "Samuel Iling-Junior",
+    "totalFaceStats": 487,
+    "totalIgs": 2338,
+    "archetype": [
+      "winger",
+      "attacking_wingback"
+    ],
+    "alternativePositionIdsMapped": [
+      "LM",
+      "LW"
+    ],
+    "bodytypeCodeMapped": "Lean Medium",
+    "footMapped": "Left",
+    "playstylesMapped": [
+      "Incisive Pass",
+      "Whipped Pass",
+      "Jockey",
+      "Technical",
+      "Rapid"
+    ],
+    "playstylesPlusMapped": [
+      "Pinged Pass"
+    ],
+    "positionMapped": "LB",
+    "rolesPlusMapped": [
+      "LB Fullback",
+      "LM Wide Playmaker",
+      "LW Winger"
+    ],
+    "rolesPlusPlusMapped": [
+      "LB Attacking Wingback",
+      "LM Winger"
     ]
   },
   {
@@ -31904,8 +33640,8 @@
     "totalFaceStats": 499,
     "totalIgs": 2349,
     "archetype": [
-      "inside_forward",
-      "wide_midfielder"
+      "wide_midfielder",
+      "inside_forward"
     ],
     "alternativePositionIdsMapped": [
       "LW"
@@ -32069,6 +33805,132 @@
   },
   {
     "playerType": "players",
+    "id": 112803,
+    "eaId": 100881166,
+    "evolutionId": null,
+    "cosmeticEvolutionId": null,
+    "partialEvolutionId": null,
+    "basePlayerEaId": 217870,
+    "nickname": null,
+    "overall": 87,
+    "height": 183,
+    "foot": 1,
+    "skillMoves": 3,
+    "weakFoot": 4,
+    "position": 3,
+    "alternativePositionIds": [
+      12
+    ],
+    "playstyles": [
+      9,
+      12,
+      17,
+      19,
+      23
+    ],
+    "playstylesPlus": [
+      5,
+      10
+    ],
+    "rolesPlus": [
+      5,
+      23,
+      25
+    ],
+    "rolesPlusPlus": [
+      103,
+      106
+    ],
+    "accelerateType": "CONTROLLED",
+    "url": "/players/217870-giovanni-di-lorenzo/25-100881166/",
+    "bodytypeCode": 2,
+    "isRealFace": true,
+    "weight": 82,
+    "attributeAcceleration": 89,
+    "attributeSprintSpeed": 89,
+    "attributeAgility": 82,
+    "attributeBalance": 84,
+    "attributeJumping": 91,
+    "attributeStamina": 95,
+    "attributeStrength": 84,
+    "attributeReactions": 84,
+    "attributeAggression": 85,
+    "attributeComposure": 80,
+    "attributeInterceptions": 87,
+    "attributePositioning": 76,
+    "attributeVision": 78,
+    "attributeBallControl": 83,
+    "attributeCrossing": 84,
+    "attributeDribbling": 82,
+    "attributeFinishing": 72,
+    "attributeFkAccuracy": 75,
+    "attributeHeadingAccuracy": 77,
+    "attributeLongPassing": 80,
+    "attributeShortPassing": 84,
+    "attributeDefensiveAwareness": 86,
+    "attributeShotPower": 78,
+    "attributeLongShots": 75,
+    "attributeStandingTackle": 88,
+    "attributeSlidingTackle": 86,
+    "attributeVolleys": 65,
+    "attributeCurve": 74,
+    "attributePenalties": 64,
+    "attributeGkDiving": 8,
+    "attributeGkHandling": 10,
+    "attributeGkKicking": 8,
+    "attributeGkReflexes": 7,
+    "attributeGkPositioning": 10,
+    "facePace": 89,
+    "faceShooting": 73,
+    "facePassing": 81,
+    "faceDribbling": 82,
+    "faceDefending": 86,
+    "facePhysicality": 87,
+    "gkFaceDiving": 0,
+    "gkFaceHandling": 0,
+    "gkFaceKicking": 0,
+    "gkFaceReflexes": 0,
+    "gkFaceSpeed": 0,
+    "gkFacePositioning": 0,
+    "isUserEvolutions": false,
+    "isEvoLabPlayerItem": false,
+    "shirtNumber": 22,
+    "commonName": "Giovanni Di Lorenzo",
+    "totalFaceStats": 498,
+    "totalIgs": 2357,
+    "archetype": [
+      "attacking_wingback",
+      "fullback"
+    ],
+    "alternativePositionIdsMapped": [
+      "RM"
+    ],
+    "bodytypeCodeMapped": "Average Medium",
+    "footMapped": "Right",
+    "playstylesMapped": [
+      "Whipped Pass",
+      "Intercept",
+      "Rapid",
+      "First Touch",
+      "Relentless"
+    ],
+    "playstylesPlusMapped": [
+      "Incisive Pass",
+      "Jockey"
+    ],
+    "positionMapped": "RB",
+    "rolesPlusMapped": [
+      "RB Wingback",
+      "RM Winger",
+      "RM Wide Playmaker"
+    ],
+    "rolesPlusPlusMapped": [
+      "RB Fullback",
+      "RB Attacking Wingback"
+    ]
+  },
+  {
+    "playerType": "players",
     "id": 110681,
     "eaId": 100904947,
     "evolutionId": null,
@@ -32163,8 +34025,8 @@
     "totalFaceStats": 487,
     "totalIgs": 2308,
     "archetype": [
-      "target_forward",
-      "poacher"
+      "poacher",
+      "target_forward"
     ],
     "alternativePositionIdsMapped": [
       "LW"
@@ -32295,9 +34157,9 @@
     "totalFaceStats": 493,
     "totalIgs": 2314,
     "archetype": [
+      "wide_playmaker",
       "false_nine",
-      "inside_forward",
-      "wide_playmaker"
+      "inside_forward"
     ],
     "alternativePositionIdsMapped": [
       "CAM",
@@ -32426,9 +34288,9 @@
     "totalFaceStats": 490,
     "totalIgs": 2303,
     "archetype": [
-      "target_forward",
+      "poacher",
       "advanced_forward",
-      "poacher"
+      "target_forward"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Average Tall",
@@ -32681,8 +34543,8 @@
     "totalFaceStats": 516,
     "totalIgs": 2453,
     "archetype": [
-      "box_to_box",
-      "deep_lying_playmaker"
+      "deep_lying_playmaker",
+      "box_to_box"
     ],
     "alternativePositionIdsMapped": [
       "LM",
@@ -32813,8 +34675,8 @@
     "totalFaceStats": 518,
     "totalIgs": 2451,
     "archetype": [
-      "inside_forward",
-      "playmaker"
+      "playmaker",
+      "inside_forward"
     ],
     "alternativePositionIdsMapped": [
       "CM",
@@ -33080,8 +34942,8 @@
     "totalFaceStats": 501,
     "totalIgs": 2319,
     "archetype": [
-      "inside_forward",
-      "playmaker"
+      "playmaker",
+      "inside_forward"
     ],
     "alternativePositionIdsMapped": [
       "LM",
@@ -33208,9 +35070,9 @@
     "totalFaceStats": 480,
     "totalIgs": 2312,
     "archetype": [
-      "target_forward",
+      "poacher",
       "advanced_forward",
-      "poacher"
+      "target_forward"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Average Tall",
@@ -33451,8 +35313,8 @@
     "totalFaceStats": 473,
     "totalIgs": 2290,
     "archetype": [
-      "inside_forward",
-      "wide_playmaker"
+      "wide_playmaker",
+      "inside_forward"
     ],
     "alternativePositionIdsMapped": [
       "CAM",
@@ -33574,8 +35436,8 @@
     "totalFaceStats": 469,
     "totalIgs": 2194,
     "archetype": [
-      "false_nine",
-      "advanced_forward"
+      "advanced_forward",
+      "false_nine"
     ],
     "alternativePositionIdsMapped": [],
     "bodytypeCodeMapped": "Unique",
@@ -33701,9 +35563,9 @@
     "totalFaceStats": 486,
     "totalIgs": 2375,
     "archetype": [
+      "winger",
       "target_forward",
-      "advanced_forward",
-      "winger"
+      "advanced_forward"
     ],
     "alternativePositionIdsMapped": [
       "LW"
@@ -33735,147 +35597,6 @@
       "LW Winger",
       "ST Advanced Forward",
       "ST Target Forward"
-    ]
-  },
-  {
-    "playerType": "players",
-    "id": 112826,
-    "eaId": 84106914,
-    "evolutionId": null,
-    "cosmeticEvolutionId": null,
-    "partialEvolutionId": null,
-    "basePlayerEaId": 220834,
-    "nickname": "Marco Asensio",
-    "overall": 90,
-    "height": 182,
-    "foot": 2,
-    "skillMoves": 5,
-    "weakFoot": 4,
-    "position": 23,
-    "alternativePositionIds": [
-      12,
-      14,
-      18
-    ],
-    "playstyles": [
-      0,
-      3,
-      5,
-      6,
-      9,
-      18,
-      20
-    ],
-    "playstylesPlus": [
-      16,
-      24
-    ],
-    "rolesPlus": [
-      22,
-      23,
-      33,
-      35
-    ],
-    "rolesPlusPlus": [
-      121,
-      126,
-      132,
-      136
-    ],
-    "accelerateType": "CONTROLLED_EXPLOSIVE",
-    "url": "/players/220834-marco-asensio/25-84106914/",
-    "bodytypeCode": 2,
-    "isRealFace": true,
-    "weight": 76,
-    "attributeAcceleration": 92,
-    "attributeSprintSpeed": 88,
-    "attributeAgility": 87,
-    "attributeBalance": 87,
-    "attributeJumping": 88,
-    "attributeStamina": 88,
-    "attributeStrength": 80,
-    "attributeReactions": 90,
-    "attributeAggression": 70,
-    "attributeComposure": 91,
-    "attributeInterceptions": 58,
-    "attributePositioning": 92,
-    "attributeVision": 91,
-    "attributeBallControl": 95,
-    "attributeCrossing": 92,
-    "attributeDribbling": 92,
-    "attributeFinishing": 90,
-    "attributeFkAccuracy": 86,
-    "attributeHeadingAccuracy": 73,
-    "attributeLongPassing": 93,
-    "attributeShortPassing": 92,
-    "attributeDefensiveAwareness": 51,
-    "attributeShotPower": 93,
-    "attributeLongShots": 97,
-    "attributeStandingTackle": 54,
-    "attributeSlidingTackle": 50,
-    "attributeVolleys": 91,
-    "attributeCurve": 95,
-    "attributePenalties": 74,
-    "attributeGkDiving": 13,
-    "attributeGkHandling": 9,
-    "attributeGkKicking": 6,
-    "attributeGkReflexes": 10,
-    "attributeGkPositioning": 12,
-    "facePace": 90,
-    "faceShooting": 91,
-    "facePassing": 92,
-    "faceDribbling": 92,
-    "faceDefending": 55,
-    "facePhysicality": 80,
-    "gkFaceDiving": 0,
-    "gkFaceHandling": 0,
-    "gkFaceKicking": 0,
-    "gkFaceReflexes": 0,
-    "gkFaceSpeed": 0,
-    "gkFacePositioning": 0,
-    "isUserEvolutions": false,
-    "isEvoLabPlayerItem": false,
-    "shirtNumber": 11,
-    "commonName": "Marco Asensio",
-    "totalFaceStats": 500,
-    "totalIgs": 2420,
-    "archetype": [
-      "shadow_striker",
-      "inside_forward",
-      "playmaker"
-    ],
-    "alternativePositionIdsMapped": [
-      "RM",
-      "CM",
-      "CAM"
-    ],
-    "bodytypeCodeMapped": "Average Medium",
-    "footMapped": "Left",
-    "playstylesMapped": [
-      "Finesse Shot",
-      "Dead Ball",
-      "Incisive Pass",
-      "Pinged Pass",
-      "Whipped Pass",
-      "Flair",
-      "Trickster"
-    ],
-    "playstylesPlusMapped": [
-      "Technical",
-      "Trivela"
-    ],
-    "positionMapped": "RW",
-    "rolesPlusMapped": [
-      "CM Half-Winger",
-      "RM Winger",
-      "CAM Half Winger",
-      "RW Winger"
-    ],
-    "rolesPlusPlusMapped": [
-      "CM Playmaker",
-      "RM Inside Forward",
-      "CAM Shadow Striker",
-      "RW Inside Forward"
     ]
   }
 ]
