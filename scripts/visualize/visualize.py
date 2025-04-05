@@ -16,7 +16,7 @@ visual_df["field"] = visual_df["field"].apply(lambda x: x.replace("attribute", "
 visual_df["field"] = visual_df["field"].apply(lambda x: x[0].lower() + x[1:] if isinstance(x, str) and x else x)
 
 non_attribute_filter_order = [
-    "RolesPlusPlus", "RolesPlus", "skillMoves", "weakFoot", "PlaystylesPlus", "Playstyles",
+    "rolesPlusPlus", "rolesPlus", "skillMoves", "weakFoot", "playstylesPlus", "playstyles",
     "positions", "foot", "bodytype", "accelerateType", "height", "weight"
 ]
 
