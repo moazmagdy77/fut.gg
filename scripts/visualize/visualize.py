@@ -21,7 +21,7 @@ non_attribute_filter_order = [
 ]
 
 attribute_filter_order = [
-    "acceleration", "sprintSpeed", "positioning", "finishing", "shotPower", "longShots",
+    "overall", "acceleration", "sprintSpeed", "positioning", "finishing", "shotPower", "longShots",
     "volleys", "penalties", "vision", "crossing", "fkAccuracy", "shortPassing",
     "longPassing", "curve", "agility", "balance", "reactions", "ballControl",
     "dribbling", "composure", "interceptions", "headingAccuracy", "defensiveAwareness",
