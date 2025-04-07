@@ -17,11 +17,11 @@ visual_df["field"] = visual_df["field"].apply(lambda x: x[0].lower() + x[1:] if 
 
 non_attribute_filter_order = [
     "rolesPlusPlus", "rolesPlus", "skillMoves", "weakFoot", "playstylesPlus", "playstyles",
-    "positions", "foot", "bodytype", "accelerateType", "height", "weight"
+    "positions", "foot", "bodytype", "accelerateType", "height", "weight", "overall"
 ]
 
 attribute_filter_order = [
-    "overall", "acceleration", "sprintSpeed", "positioning", "finishing", "shotPower", "longShots",
+    "acceleration", "sprintSpeed", "positioning", "finishing", "shotPower", "longShots",
     "volleys", "penalties", "vision", "crossing", "fkAccuracy", "shortPassing",
     "longPassing", "curve", "agility", "balance", "reactions", "ballControl",
     "dribbling", "composure", "interceptions", "headingAccuracy", "defensiveAwareness",
