@@ -1,6 +1,6 @@
 [
   {
-    "accelerateType": null,
+    "accelerateType": "CONTROLLED",
     "attributeAcceleration": 72,
     "attributeAggression": 84,
     "attributeAgility": 77,
@@ -67,7 +67,7 @@
     "weight": 78
   },
   {
-    "accelerateType": null,
+    "accelerateType": "CONTROLLED",
     "attributeAcceleration": 89,
     "attributeAggression": 82,
     "attributeAgility": 83,
@@ -133,7 +133,7 @@
     "weight": 59
   },
   {
-    "accelerateType": null,
+    "accelerateType": "CONTROLLED",
     "attributeAcceleration": 78,
     "attributeAggression": 91,
     "attributeAgility": 77,
@@ -194,7 +194,7 @@
     "weight": 77
   },
   {
-    "accelerateType": null,
+    "accelerateType": "CONTROLLED_LENGTHY",
     "attributeAcceleration": 82,
     "attributeAggression": 81,
     "attributeAgility": 75,
@@ -634,7 +634,7 @@
     "weight": 69
   },
   {
-    "accelerateType": null,
+    "accelerateType": "MOSTLY_EXPLOSIVE",
     "attributeAcceleration": 91,
     "attributeAggression": 72,
     "attributeAgility": 88,
@@ -877,7 +877,7 @@
     "weight": 60
   },
   {
-    "accelerateType": null,
+    "accelerateType": "MOSTLY_LENGTHY",
     "attributeAcceleration": 82,
     "attributeAggression": 90,
     "attributeAgility": 80,
@@ -920,7 +920,7 @@
     "metaRatings": [
       {
         "archetype": "defender",
-        "metaRating": 91.04113733831213
+        "metaRating": 91.27592049511324
       },
       {
         "archetype": "holding",
@@ -1379,7 +1379,7 @@
     "weight": 78
   },
   {
-    "accelerateType": null,
+    "accelerateType": "CONTROLLED_LENGTHY",
     "attributeAcceleration": 75,
     "attributeAggression": 97,
     "attributeAgility": 86,
@@ -1422,11 +1422,11 @@
     "metaRatings": [
       {
         "archetype": "ball_playing_defender",
-        "metaRating": 90.26771586631254
+        "metaRating": 90.38782712204365
       },
       {
         "archetype": "defender",
-        "metaRating": 89.4034399330199
+        "metaRating": 89.27358299129914
       }
     ],
     "overall": 90,

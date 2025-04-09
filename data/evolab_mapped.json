@@ -23,7 +23,7 @@
         "CDM Holding"
       ],
       "rolesPlusPlus": [],
-      "accelerateType": null,
+      "accelerateType": "CONTROLLED",
       "weight": 78,
       "attributeAcceleration": 72,
       "attributeSprintSpeed": 70,
@@ -84,7 +84,7 @@
         "RM Winger"
       ],
       "rolesPlusPlus": [],
-      "accelerateType": null,
+      "accelerateType": "CONTROLLED",
       "weight": 59,
       "attributeAcceleration": 89,
       "attributeSprintSpeed": 90,
@@ -143,7 +143,7 @@
         "CB Ball-Playing Defender"
       ],
       "rolesPlusPlus": [],
-      "accelerateType": null,
+      "accelerateType": "CONTROLLED",
       "weight": 77,
       "attributeAcceleration": 78,
       "attributeSprintSpeed": 78,
@@ -204,7 +204,7 @@
       "rolesPlusPlus": [
         "RB Falseback"
       ],
-      "accelerateType": null,
+      "accelerateType": "CONTROLLED_LENGTHY",
       "weight": 77,
       "attributeAcceleration": 82,
       "attributeSprintSpeed": 94,
@@ -582,7 +582,7 @@
         "LW Inside Forward",
         "RM Inside Forward"
       ],
-      "accelerateType": null,
+      "accelerateType": "MOSTLY_EXPLOSIVE",
       "weight": 70,
       "attributeAcceleration": 91,
       "attributeSprintSpeed": 87,
@@ -801,7 +801,7 @@
         "CM Holding",
         "CB Defender"
       ],
-      "accelerateType": null,
+      "accelerateType": "MOSTLY_LENGTHY",
       "weight": 85,
       "attributeAcceleration": 82,
       "attributeSprintSpeed": 89,
@@ -1226,7 +1226,7 @@
         "CB Ball-Playing Defender",
         "CB Defender"
       ],
-      "accelerateType": null,
+      "accelerateType": "CONTROLLED_LENGTHY",
       "weight": 98,
       "attributeAcceleration": 75,
       "attributeSprintSpeed": 82,

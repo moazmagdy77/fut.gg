@@ -23,7 +23,7 @@
         "CDM Holding"
       ],
       "rolesPlusPlus": [],
-      "accelerateType": null,
+      "accelerateType": "CONTROLLED",
       "weight": 78,
       "attributeAcceleration": 72,
       "attributeSprintSpeed": 70,
@@ -84,7 +84,7 @@
         "RM Winger"
       ],
       "rolesPlusPlus": [],
-      "accelerateType": null,
+      "accelerateType": "CONTROLLED",
       "weight": 59,
       "attributeAcceleration": 89,
       "attributeSprintSpeed": 90,
@@ -143,7 +143,7 @@
         "CB Ball-Playing Defender"
       ],
       "rolesPlusPlus": [],
-      "accelerateType": null,
+      "accelerateType": "CONTROLLED",
       "weight": 77,
       "attributeAcceleration": 78,
       "attributeSprintSpeed": 78,
@@ -204,7 +204,7 @@
       "rolesPlusPlus": [
         "RB Falseback"
       ],
-      "accelerateType": null,
+      "accelerateType": "CONTROLLED_LENGTHY",
       "weight": 77,
       "attributeAcceleration": 82,
       "attributeSprintSpeed": 94,
@@ -655,7 +655,7 @@
         "LW Inside Forward",
         "RM Inside Forward"
       ],
-      "accelerateType": null,
+      "accelerateType": "MOSTLY_EXPLOSIVE",
       "weight": 70,
       "attributeAcceleration": 91,
       "attributeSprintSpeed": 87,
@@ -897,7 +897,7 @@
         "CM Holding",
         "CB Defender"
       ],
-      "accelerateType": null,
+      "accelerateType": "MOSTLY_LENGTHY",
       "weight": 85,
       "attributeAcceleration": 82,
       "attributeSprintSpeed": 89,
@@ -943,7 +943,7 @@
       "metaRatings": [
         {
           "archetype": "defender",
-          "metaRating": 91.04113733831213
+          "metaRating": 91.27592049511324
         },
         {
           "archetype": "holding",
@@ -1388,7 +1388,7 @@
         "CB Ball-Playing Defender",
         "CB Defender"
       ],
-      "accelerateType": null,
+      "accelerateType": "CONTROLLED_LENGTHY",
       "weight": 98,
       "attributeAcceleration": 75,
       "attributeSprintSpeed": 82,
@@ -1431,11 +1431,11 @@
       "metaRatings": [
         {
           "archetype": "ball_playing_defender",
-          "metaRating": 90.26771586631254
+          "metaRating": 90.38782712204365
         },
         {
           "archetype": "defender",
-          "metaRating": 89.4034399330199
+          "metaRating": 89.27358299129914
         }
       ]
     },
