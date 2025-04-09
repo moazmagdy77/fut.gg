@@ -56,9 +56,9 @@
       "rolesPlusPlusArchetypes": [],
       "bodytype": "Lean Medium",
       "positions": [
-        "ST",
+        "RM",
         "RW",
-        "RM"
+        "ST"
       ],
       "metaRatings": []
     },
@@ -177,9 +177,9 @@
       "attributePenalties": 55,
       "commonName": "Ethan Pinnock",
       "rolesPlusPlusArchetypes": [
-        "ball_playing_defender",
+        "defender",
         "stopper",
-        "defender"
+        "ball_playing_defender"
       ],
       "bodytype": "Lean Tall",
       "positions": [
@@ -253,9 +253,9 @@
       "attributePenalties": 92,
       "commonName": "Hakan Çalhanoğlu",
       "rolesPlusPlusArchetypes": [
+        "box_to_box",
         "centre_half",
-        "deep_lying_playmaker",
-        "box_to_box"
+        "deep_lying_playmaker"
       ],
       "bodytype": "Average Medium",
       "positions": [
@@ -295,7 +295,7 @@
         "LW Inside Forward",
         "RM Inside Forward"
       ],
-      "accelerateType": "MOSTLY_EXPLOSIVE",
+      "accelerateType": "EXPLOSIVE",
       "weight": 70,
       "attributeAcceleration": 91,
       "attributeSprintSpeed": 87,
@@ -332,10 +332,10 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "LW",
         "CAM",
         "RW",
-        "RM"
+        "RM",
+        "LW"
       ],
       "metaRatings": []
     },
@@ -401,9 +401,9 @@
       ],
       "bodytype": "Lean Medium",
       "positions": [
+        "LM",
         "CAM",
-        "CM",
-        "LM"
+        "CM"
       ],
       "metaRatings": []
     },
@@ -473,10 +473,10 @@
       ],
       "bodytype": "Average Medium",
       "positions": [
-        "ST",
-        "RW",
         "LM",
-        "RM"
+        "RM",
+        "RW",
+        "ST"
       ],
       "metaRatings": []
     },
@@ -548,8 +548,8 @@
       "commonName": "Thomas Thiesson Kristensen",
       "rolesPlusPlusArchetypes": [
         "defender",
-        "deep_lying_playmaker",
-        "holding"
+        "holding",
+        "deep_lying_playmaker"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -623,9 +623,9 @@
       "attributePenalties": 66,
       "commonName": "Koni De Winter",
       "rolesPlusPlusArchetypes": [
+        "defender",
         "stopper",
-        "fullback",
-        "defender"
+        "fullback"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -764,11 +764,11 @@
       "attributePenalties": 92,
       "commonName": "Zinedine Zidane",
       "rolesPlusPlusArchetypes": [
-        "box_to_box",
+        "classic_ten",
+        "half_winger",
         "playmaker",
         "shadow_striker",
-        "classic_ten",
-        "half_winger"
+        "box_to_box"
       ],
       "bodytype": "Unique",
       "positions": [
@@ -839,8 +839,8 @@
       "attributePenalties": 44,
       "commonName": "Lukas Klostermann",
       "rolesPlusPlusArchetypes": [
-        "fullback",
-        "defender"
+        "defender",
+        "fullback"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -908,8 +908,8 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "ST",
-        "LM"
+        "LM",
+        "ST"
       ],
       "metaRatings": []
     },
@@ -939,7 +939,7 @@
         "CB Ball-Playing Defender",
         "CB Defender"
       ],
-      "accelerateType": "CONTROLLED_LENGTHY",
+      "accelerateType": "LENGTHY",
       "weight": 98,
       "attributeAcceleration": 75,
       "attributeSprintSpeed": 82,
@@ -972,8 +972,8 @@
       "attributePenalties": 45,
       "commonName": "Isaak Touré",
       "rolesPlusPlusArchetypes": [
-        "ball_playing_defender",
-        "defender"
+        "defender",
+        "ball_playing_defender"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -1043,8 +1043,8 @@
       ],
       "bodytype": "Lean Medium",
       "positions": [
-        "LW",
-        "LM"
+        "LM",
+        "LW"
       ],
       "metaRatings": []
     },
@@ -1178,9 +1178,9 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "LW",
+        "LM",
         "CAM",
-        "LM"
+        "LW"
       ],
       "metaRatings": []
     },
@@ -1249,9 +1249,9 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "ST",
+        "RM",
         "CAM",
-        "RM"
+        "ST"
       ],
       "metaRatings": []
     },
@@ -1390,9 +1390,9 @@
       "attributePenalties": 75,
       "commonName": "Mats Hummels",
       "rolesPlusPlusArchetypes": [
-        "ball_playing_defender",
+        "defender",
         "stopper",
-        "defender"
+        "ball_playing_defender"
       ],
       "bodytype": "Stocky Tall",
       "positions": [
@@ -1473,9 +1473,9 @@
       ],
       "bodytype": "Lean Medium",
       "positions": [
-        "LW",
+        "LM",
         "LB",
-        "LM"
+        "LW"
       ],
       "metaRatings": []
     },
@@ -1541,8 +1541,8 @@
       "attributePenalties": 84,
       "commonName": "Lucas Bergvall",
       "rolesPlusPlusArchetypes": [
-        "deep_lying_playmaker",
-        "playmaker"
+        "playmaker",
+        "deep_lying_playmaker"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -1573,7 +1573,7 @@
       "rolesPlusPlus": [
         "RB Falseback"
       ],
-      "accelerateType": "CONTROLLED_LENGTHY",
+      "accelerateType": "MOSTLY_LENGTHY",
       "weight": 77,
       "attributeAcceleration": 82,
       "attributeSprintSpeed": 94,
@@ -1611,8 +1611,8 @@
       "bodytype": "Unique",
       "positions": [
         "CB",
-        "LB",
-        "RB"
+        "RB",
+        "LB"
       ],
       "metaRatings": []
     },
@@ -1680,8 +1680,8 @@
       "attributePenalties": 98,
       "commonName": "Bruno Fernandes",
       "rolesPlusPlusArchetypes": [
-        "shadow_striker",
-        "playmaker"
+        "playmaker",
+        "shadow_striker"
       ],
       "bodytype": "Unique",
       "positions": [
@@ -1758,9 +1758,9 @@
       ],
       "bodytype": "Lean Tall",
       "positions": [
-        "ST",
+        "RM",
         "RW",
-        "RM"
+        "ST"
       ],
       "metaRatings": []
     },
@@ -1826,78 +1826,67 @@
       ],
       "bodytype": "Average Tall",
       "positions": [
-        "RW",
-        "RM"
+        "RM",
+        "RW"
       ],
       "metaRatings": []
     },
     {
       "eaId": 247090,
-      "overall": 92,
+      "overall": 84,
       "height": 178,
       "foot": "Right",
-      "skillMoves": 5,
-      "weakFoot": 5,
+      "skillMoves": 3,
+      "weakFoot": 4,
       "playstyles": [
         "Incisive Pass",
-        "Tiki Taka",
         "Flair",
         "First Touch",
         "Press Proven",
         "Relentless"
       ],
       "playstylesPlus": [
-        "Intercept",
         "Long Ball Pass"
       ],
       "rolesPlus": [
-        "CM Holding"
-      ],
-      "rolesPlusPlus": [
-        "CDM Holding",
-        "CDM Deep-Lying Playmaker",
         "CM Box to Box",
-        "CM Deep-Lying Playmaker",
-        "CM Playmaker"
+        "CM Holding",
+        "CDM Holding"
       ],
+      "rolesPlusPlus": [],
       "accelerateType": "CONTROLLED",
       "weight": 78,
-      "attributeAcceleration": 89,
-      "attributeSprintSpeed": 87,
-      "attributeAgility": 82,
-      "attributeBalance": 84,
-      "attributeJumping": 84,
-      "attributeStamina": 92,
-      "attributeStrength": 83,
-      "attributeReactions": 87,
-      "attributeAggression": 92,
-      "attributeComposure": 89,
-      "attributeInterceptions": 94,
-      "attributePositioning": 89,
-      "attributeVision": 94,
-      "attributeBallControl": 91,
-      "attributeCrossing": 75,
-      "attributeDribbling": 86,
-      "attributeFinishing": 79,
-      "attributeFkAccuracy": 85,
-      "attributeHeadingAccuracy": 79,
-      "attributeLongPassing": 98,
-      "attributeShortPassing": 96,
-      "attributeDefensiveAwareness": 92,
-      "attributeShotPower": 96,
-      "attributeLongShots": 89,
-      "attributeStandingTackle": 94,
-      "attributeSlidingTackle": 92,
-      "attributeVolleys": 88,
-      "attributeCurve": 91,
-      "attributePenalties": 85,
+      "attributeAcceleration": 72,
+      "attributeSprintSpeed": 70,
+      "attributeAgility": 77,
+      "attributeBalance": 79,
+      "attributeJumping": 76,
+      "attributeStamina": 84,
+      "attributeStrength": 75,
+      "attributeReactions": 82,
+      "attributeAggression": 84,
+      "attributeComposure": 84,
+      "attributeInterceptions": 77,
+      "attributePositioning": 78,
+      "attributeVision": 88,
+      "attributeBallControl": 86,
+      "attributeCrossing": 70,
+      "attributeDribbling": 81,
+      "attributeFinishing": 69,
+      "attributeFkAccuracy": 79,
+      "attributeHeadingAccuracy": 64,
+      "attributeLongPassing": 92,
+      "attributeShortPassing": 90,
+      "attributeDefensiveAwareness": 75,
+      "attributeShotPower": 84,
+      "attributeLongShots": 78,
+      "attributeStandingTackle": 77,
+      "attributeSlidingTackle": 75,
+      "attributeVolleys": 77,
+      "attributeCurve": 85,
+      "attributePenalties": 74,
       "commonName": "Enzo Fernández",
-      "rolesPlusPlusArchetypes": [
-        "playmaker",
-        "deep_lying_playmaker",
-        "box_to_box",
-        "holding"
-      ],
+      "rolesPlusPlusArchetypes": [],
       "bodytype": "Average Medium",
       "positions": [
         "CDM",
@@ -1971,17 +1960,17 @@
       "attributePenalties": 68,
       "commonName": "Abner Vinícius",
       "rolesPlusPlusArchetypes": [
-        "winger",
-        "deep_lying_playmaker",
         "playmaker",
         "fullback",
+        "deep_lying_playmaker",
+        "winger",
         "falseback"
       ],
       "bodytype": "Average Medium",
       "positions": [
+        "LM",
         "LB",
-        "CM",
-        "LM"
+        "CM"
       ],
       "metaRatings": []
     },
@@ -2050,92 +2039,17 @@
       "attributePenalties": 55,
       "commonName": "Moïse Bombito",
       "rolesPlusPlusArchetypes": [
+        "defender",
         "ball_playing_defender",
         "fullback",
-        "defender",
-        "stopper",
-        "holding"
+        "holding",
+        "stopper"
       ],
       "bodytype": "Average Tall",
       "positions": [
-        "CDM",
         "CB",
-        "LB"
-      ],
-      "metaRatings": []
-    },
-    {
-      "eaId": 50556841,
-      "overall": 92,
-      "height": 189,
-      "foot": "Left",
-      "skillMoves": 5,
-      "weakFoot": 5,
-      "playstyles": [
-        "Power Shot",
-        "Incisive Pass",
-        "Tiki Taka",
-        "Jockey",
-        "Relentless",
-        "Aerial"
-      ],
-      "playstylesPlus": [
-        "Intercept",
-        "Anticipate"
-      ],
-      "rolesPlus": [
-        "CAM Playmaker"
-      ],
-      "rolesPlusPlus": [
-        "CDM Holding",
-        "CDM Deep-Lying Playmaker",
-        "CM Box to Box",
-        "CM Deep-Lying Playmaker",
-        "CM Playmaker"
-      ],
-      "accelerateType": "CONTROLLED_LENGTHY",
-      "weight": 83,
-      "attributeAcceleration": 88,
-      "attributeSprintSpeed": 88,
-      "attributeAgility": 79,
-      "attributeBalance": 78,
-      "attributeJumping": 93,
-      "attributeStamina": 88,
-      "attributeStrength": 85,
-      "attributeReactions": 91,
-      "attributeAggression": 88,
-      "attributeComposure": 85,
-      "attributeInterceptions": 94,
-      "attributePositioning": 90,
-      "attributeVision": 92,
-      "attributeBallControl": 90,
-      "attributeCrossing": 86,
-      "attributeDribbling": 88,
-      "attributeFinishing": 86,
-      "attributeFkAccuracy": 77,
-      "attributeHeadingAccuracy": 97,
-      "attributeLongPassing": 93,
-      "attributeShortPassing": 95,
-      "attributeDefensiveAwareness": 89,
-      "attributeShotPower": 92,
-      "attributeLongShots": 86,
-      "attributeStandingTackle": 93,
-      "attributeSlidingTackle": 84,
-      "attributeVolleys": 63,
-      "attributeCurve": 89,
-      "attributePenalties": 77,
-      "commonName": "Mikel Merino",
-      "rolesPlusPlusArchetypes": [
-        "playmaker",
-        "deep_lying_playmaker",
-        "box_to_box",
-        "holding"
-      ],
-      "bodytype": "Lean Tall",
-      "positions": [
         "CDM",
-        "CAM",
-        "CM"
+        "LB"
       ],
       "metaRatings": []
     }

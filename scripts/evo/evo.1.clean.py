@@ -14,10 +14,17 @@ with open(evolab_path, "r", encoding="utf-8") as f:
 with open(maps_path, "r", encoding="utf-8") as f:
     maps = json.load(f)
 
-club_players_path = data_dir / "club_players_with_meta.json"
+# Load club_players.json
+club_players_path = data_dir / "club_players.json"
 with open(club_players_path, "r", encoding="utf-8") as f:
-    club_players_meta = json.load(f)
-club_players_lookup = {player["eaId"]: player for player in club_players_meta}
+    club_players_raw = json.load(f)
+
+# Create a lookup dict using eaId as key
+club_players_lookup = {
+    p["data"]["eaId"]: p["data"].get("accelerateType")
+    for p in club_players_raw
+    if "eaId" in p["data"]
+}
 
 # Fields to map and their corresponding mapping dicts
 fields_to_map = {
@@ -42,11 +49,6 @@ def map_value(value, mapping):
 for item in evolab["data"]:
     player_def = item.get("playerItemDefinition", {})
     
-    ea_id = player_def.get("eaId")
-    accelerate_type = club_players_lookup.get(ea_id, {}).get("accelerateType")
-    if accelerate_type is not None:
-        player_def["accelerateType"] = accelerate_type
-
     # Remove unneeded fields
     fields_to_remove = [
         "playerType", "game", "id", "evolutionId", "cosmeticEvolutionId", "partialEvolutionId", "basePlayerEaId",
@@ -95,6 +97,12 @@ for item in evolab["data"]:
 
     # Add empty metaRatings field
     item["metaRatings"] = []
+
+# Fill in missing accelerateType fields
+for item in evolab["data"]:
+    ea_id = item.get("eaId")
+    if item.get("accelerateType") is None and ea_id in club_players_lookup:
+        item["accelerateType"] = club_players_lookup[ea_id]
 
 # Save the updated result to a new JSON file
 output_path = data_dir / "evolab_mapped.json"

@@ -38,6 +38,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Ally Watt",
     "eaId": 50598861,
+    "evolution": true,
     "foot": "Right",
     "height": 173,
     "metaRatings": [],
@@ -51,9 +52,9 @@
     ],
     "playstylesPlus": [],
     "positions": [
-      "ST",
+      "RM",
       "RW",
-      "RM"
+      "ST"
     ],
     "rolesPlus": [
       "ST Advanced Forward",
@@ -104,6 +105,7 @@
     "bodytype": "Average Medium",
     "commonName": "Lisandro Mart\u00ednez",
     "eaId": 239301,
+    "evolution": true,
     "foot": "Left",
     "height": 178,
     "metaRatings": [],
@@ -165,20 +167,21 @@
     "bodytype": "Lean Tall",
     "commonName": "Ethan Pinnock",
     "eaId": 50570365,
+    "evolution": true,
     "foot": "Left",
     "height": 194,
     "metaRatings": [
       {
-        "archetype": "ball_playing_defender",
-        "metaRating": 82.46749974292035
+        "archetype": "defender",
+        "metaRating": 84.45761009437597
       },
       {
         "archetype": "stopper",
         "metaRating": 83.8283440476719
       },
       {
-        "archetype": "defender",
-        "metaRating": 84.45761009437597
+        "archetype": "ball_playing_defender",
+        "metaRating": 82.46749974292035
       }
     ],
     "overall": 89,
@@ -246,9 +249,14 @@
     "bodytype": "Average Medium",
     "commonName": "Hakan \u00c7alhano\u011flu",
     "eaId": 67316992,
+    "evolution": true,
     "foot": "Right",
     "height": 178,
     "metaRatings": [
+      {
+        "archetype": "box_to_box",
+        "metaRating": 91.39042093698922
+      },
       {
         "archetype": "centre_half",
         "metaRating": 87.66940357637692
@@ -256,10 +264,6 @@
       {
         "archetype": "deep_lying_playmaker",
         "metaRating": 90.8504267222052
-      },
-      {
-        "archetype": "box_to_box",
-        "metaRating": 91.39042093698922
       }
     ],
     "overall": 90,
@@ -298,7 +302,7 @@
     "weight": 69
   },
   {
-    "accelerateType": "MOSTLY_EXPLOSIVE",
+    "accelerateType": "EXPLOSIVE",
     "attributeAcceleration": 91,
     "attributeAggression": 72,
     "attributeAgility": 88,
@@ -336,12 +340,13 @@
     "bodytype": "Unique",
     "commonName": "Diego Maradona",
     "eaId": 50521690,
+    "evolution": true,
     "foot": "Left",
     "height": 165,
     "metaRatings": [
       {
         "archetype": "inside_forward",
-        "metaRating": 85.16478215744398
+        "metaRating": 85.15047954085513
       }
     ],
     "overall": 89,
@@ -359,10 +364,10 @@
       "Technical"
     ],
     "positions": [
-      "LW",
       "CAM",
       "RW",
-      "RM"
+      "RM",
+      "LW"
     ],
     "rolesPlus": [
       "RW Winger",
@@ -418,6 +423,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Jamal Musiala",
     "eaId": 256790,
+    "evolution": true,
     "foot": "Right",
     "height": 184,
     "metaRatings": [
@@ -442,9 +448,9 @@
       "Technical"
     ],
     "positions": [
+      "LM",
       "CAM",
-      "CM",
-      "LM"
+      "CM"
     ],
     "rolesPlus": [
       "LM Inside Forward"
@@ -496,6 +502,7 @@
     "bodytype": "Average Medium",
     "commonName": "Trinity Rodman",
     "eaId": 67375792,
+    "evolution": true,
     "foot": "Right",
     "height": 173,
     "metaRatings": [
@@ -522,10 +529,10 @@
       "Trickster"
     ],
     "positions": [
-      "ST",
-      "RW",
       "LM",
-      "RM"
+      "RM",
+      "RW",
+      "ST"
     ],
     "rolesPlus": [
       "RM Wide Midfielder",
@@ -579,6 +586,7 @@
     "bodytype": "Average Tall",
     "commonName": "Thomas Thiesson Kristensen",
     "eaId": 261573,
+    "evolution": true,
     "foot": "Right",
     "height": 198,
     "metaRatings": [
@@ -587,12 +595,12 @@
         "metaRating": 91.27592049511324
       },
       {
-        "archetype": "deep_lying_playmaker",
-        "metaRating": 88.90500672447456
-      },
-      {
         "archetype": "holding",
         "metaRating": 90.584908833548
+      },
+      {
+        "archetype": "deep_lying_playmaker",
+        "metaRating": 88.90500672447456
       }
     ],
     "overall": 92,
@@ -671,9 +679,14 @@
     "bodytype": "Average Tall",
     "commonName": "Koni De Winter",
     "eaId": 50597422,
+    "evolution": true,
     "foot": "Right",
     "height": 191,
     "metaRatings": [
+      {
+        "archetype": "defender",
+        "metaRating": 89.17932891247229
+      },
       {
         "archetype": "stopper",
         "metaRating": 87.9015521513838
@@ -681,10 +694,6 @@
       {
         "archetype": "fullback",
         "metaRating": 90.5336386184558
-      },
-      {
-        "archetype": "defender",
-        "metaRating": 89.17932891247229
       }
     ],
     "overall": 91,
@@ -759,6 +768,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Castello Lukeba",
     "eaId": 50593786,
+    "evolution": true,
     "foot": "Left",
     "height": 184,
     "metaRatings": [
@@ -831,12 +841,17 @@
     "bodytype": "Unique",
     "commonName": "Zinedine Zidane",
     "eaId": 67110261,
+    "evolution": true,
     "foot": "Right",
     "height": 185,
     "metaRatings": [
       {
-        "archetype": "box_to_box",
-        "metaRating": 89.24136291809442
+        "archetype": "classic_ten",
+        "metaRating": 89.76941053033791
+      },
+      {
+        "archetype": "half_winger",
+        "metaRating": 84.71378846680891
       },
       {
         "archetype": "playmaker",
@@ -847,12 +862,8 @@
         "metaRating": 88.99013254582086
       },
       {
-        "archetype": "classic_ten",
-        "metaRating": 89.76941053033791
-      },
-      {
-        "archetype": "half_winger",
-        "metaRating": 84.71378846680891
+        "archetype": "box_to_box",
+        "metaRating": 89.24136291809442
       }
     ],
     "overall": 94,
@@ -928,16 +939,17 @@
     "bodytype": "Average Tall",
     "commonName": "Lukas Klostermann",
     "eaId": 50553979,
+    "evolution": true,
     "foot": "Right",
     "height": 187,
     "metaRatings": [
       {
-        "archetype": "fullback",
-        "metaRating": 86.14454845389479
-      },
-      {
         "archetype": "defender",
         "metaRating": 85.32600777149828
+      },
+      {
+        "archetype": "fullback",
+        "metaRating": 86.14454845389479
       }
     ],
     "overall": 90,
@@ -1010,6 +1022,7 @@
     "bodytype": "Unique",
     "commonName": "Heung Min Son",
     "eaId": 200104,
+    "evolution": true,
     "foot": "Right",
     "height": 183,
     "metaRatings": [
@@ -1028,8 +1041,8 @@
       "Finesse Shot"
     ],
     "positions": [
-      "ST",
-      "LM"
+      "LM",
+      "ST"
     ],
     "rolesPlus": [
       "ST False 9",
@@ -1043,7 +1056,7 @@
     "weight": 78
   },
   {
-    "accelerateType": "CONTROLLED_LENGTHY",
+    "accelerateType": "LENGTHY",
     "attributeAcceleration": 75,
     "attributeAggression": 97,
     "attributeAgility": 86,
@@ -1081,16 +1094,17 @@
     "bodytype": "Average Tall",
     "commonName": "Isaak Tour\u00e9",
     "eaId": 50590620,
+    "evolution": true,
     "foot": "Left",
     "height": 206,
     "metaRatings": [
       {
-        "archetype": "ball_playing_defender",
-        "metaRating": 90.38782712204365
+        "archetype": "defender",
+        "metaRating": 89.4034399330199
       },
       {
-        "archetype": "defender",
-        "metaRating": 89.27358299129914
+        "archetype": "ball_playing_defender",
+        "metaRating": 90.26771586631254
       }
     ],
     "overall": 90,
@@ -1159,6 +1173,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Gervinho",
     "eaId": 67279597,
+    "evolution": true,
     "foot": "Right",
     "height": 179,
     "metaRatings": [
@@ -1182,8 +1197,8 @@
       "Technical"
     ],
     "positions": [
-      "LW",
-      "LM"
+      "LM",
+      "LW"
     ],
     "rolesPlus": [
       "LM Winger",
@@ -1236,6 +1251,7 @@
     "bodytype": "Stocky Medium",
     "commonName": "Seydou Doumbia",
     "eaId": 67297292,
+    "evolution": true,
     "foot": "Right",
     "height": 179,
     "metaRatings": [
@@ -1312,6 +1328,7 @@
     "bodytype": "Unique",
     "commonName": "Neymar Jr",
     "eaId": 190871,
+    "evolution": true,
     "foot": "Right",
     "height": 175,
     "metaRatings": [
@@ -1336,9 +1353,9 @@
       "Trickster"
     ],
     "positions": [
-      "LW",
+      "LM",
       "CAM",
-      "LM"
+      "LW"
     ],
     "rolesPlus": [
       "CAM Shadow Striker",
@@ -1392,6 +1409,7 @@
     "bodytype": "Unique",
     "commonName": "Adama Traor\u00e9",
     "eaId": 50545604,
+    "evolution": true,
     "foot": "Right",
     "height": 178,
     "metaRatings": [
@@ -1418,9 +1436,9 @@
       "Quick Step"
     ],
     "positions": [
-      "ST",
+      "RM",
       "CAM",
-      "RM"
+      "ST"
     ],
     "rolesPlus": [
       "ST Advanced Forward",
@@ -1473,6 +1491,7 @@
     "bodytype": "Average Medium",
     "commonName": "Jude Bellingham",
     "eaId": 100915667,
+    "evolution": true,
     "foot": "Right",
     "height": 186,
     "metaRatings": [
@@ -1558,20 +1577,21 @@
     "bodytype": "Stocky Tall",
     "commonName": "Mats Hummels",
     "eaId": 50510251,
+    "evolution": true,
     "foot": "Right",
     "height": 191,
     "metaRatings": [
       {
-        "archetype": "ball_playing_defender",
-        "metaRating": 89.281343717479
+        "archetype": "defender",
+        "metaRating": 90.67400344114496
       },
       {
         "archetype": "stopper",
         "metaRating": 88.95115066167214
       },
       {
-        "archetype": "defender",
-        "metaRating": 90.67400344114496
+        "archetype": "ball_playing_defender",
+        "metaRating": 89.281343717479
       }
     ],
     "overall": 91,
@@ -1641,6 +1661,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Fridolina Rolf\u00f6",
     "eaId": 50558661,
+    "evolution": true,
     "foot": "Left",
     "height": 179,
     "metaRatings": [
@@ -1675,9 +1696,9 @@
       "Intercept"
     ],
     "positions": [
-      "LW",
+      "LM",
       "LB",
-      "LM"
+      "LW"
     ],
     "rolesPlus": [
       "LW Wide Playmaker",
@@ -1733,16 +1754,17 @@
     "bodytype": "Average Tall",
     "commonName": "Lucas Bergvall",
     "eaId": 50604574,
+    "evolution": true,
     "foot": "Right",
     "height": 186,
     "metaRatings": [
       {
-        "archetype": "deep_lying_playmaker",
-        "metaRating": 85.36951351416695
-      },
-      {
         "archetype": "playmaker",
         "metaRating": 88.47269453675747
+      },
+      {
+        "archetype": "deep_lying_playmaker",
+        "metaRating": 85.36951351416695
       }
     ],
     "overall": 89,
@@ -1777,7 +1799,7 @@
     "weight": 74
   },
   {
-    "accelerateType": "CONTROLLED_LENGTHY",
+    "accelerateType": "MOSTLY_LENGTHY",
     "attributeAcceleration": 82,
     "attributeAggression": 81,
     "attributeAgility": 74,
@@ -1815,6 +1837,7 @@
     "bodytype": "Unique",
     "commonName": "Joe Gomez",
     "eaId": 225100,
+    "evolution": true,
     "foot": "Right",
     "height": 188,
     "metaRatings": [
@@ -1833,8 +1856,8 @@
     "playstylesPlus": [],
     "positions": [
       "CB",
-      "LB",
-      "RB"
+      "RB",
+      "LB"
     ],
     "rolesPlus": [
       "RB Fullback",
@@ -1887,16 +1910,17 @@
     "bodytype": "Unique",
     "commonName": "Bruno Fernandes",
     "eaId": 100875494,
+    "evolution": true,
     "foot": "Right",
     "height": 179,
     "metaRatings": [
       {
-        "archetype": "shadow_striker",
-        "metaRating": 88.61882700640594
-      },
-      {
         "archetype": "playmaker",
         "metaRating": 88.45868379678333
+      },
+      {
+        "archetype": "shadow_striker",
+        "metaRating": 88.61882700640594
       }
     ],
     "overall": 89,
@@ -1971,6 +1995,7 @@
     "bodytype": "Lean Tall",
     "commonName": "Jovon Makama",
     "eaId": 50594763,
+    "evolution": true,
     "foot": "Right",
     "height": 195,
     "metaRatings": [
@@ -1999,9 +2024,9 @@
       "Trickster"
     ],
     "positions": [
-      "ST",
+      "RM",
       "RW",
-      "RM"
+      "ST"
     ],
     "rolesPlus": [
       "RM Wide Playmaker",
@@ -2055,6 +2080,7 @@
     "bodytype": "Average Tall",
     "commonName": "V\u00edctor Ibarbo",
     "eaId": 67313414,
+    "evolution": true,
     "foot": "Right",
     "height": 188,
     "metaRatings": [
@@ -2078,8 +2104,8 @@
       "Press Proven"
     ],
     "positions": [
-      "RW",
-      "RM"
+      "RM",
+      "RW"
     ],
     "rolesPlus": [
       "RM Inside Forward",
@@ -2095,74 +2121,56 @@
   },
   {
     "accelerateType": "CONTROLLED",
-    "attributeAcceleration": 89,
-    "attributeAggression": 92,
-    "attributeAgility": 82,
-    "attributeBalance": 84,
-    "attributeBallControl": 91,
-    "attributeComposure": 89,
-    "attributeCrossing": 75,
-    "attributeCurve": 91,
-    "attributeDefensiveAwareness": 92,
-    "attributeDribbling": 86,
-    "attributeFinishing": 79,
-    "attributeFkAccuracy": 85,
+    "attributeAcceleration": 72,
+    "attributeAggression": 84,
+    "attributeAgility": 77,
+    "attributeBalance": 79,
+    "attributeBallControl": 86,
+    "attributeComposure": 84,
+    "attributeCrossing": 70,
+    "attributeCurve": 85,
+    "attributeDefensiveAwareness": 75,
+    "attributeDribbling": 81,
+    "attributeFinishing": 69,
+    "attributeFkAccuracy": 79,
     "attributeGkDiving": 1,
     "attributeGkHandling": 1,
     "attributeGkKicking": 1,
     "attributeGkPositioning": 1,
     "attributeGkReflexes": 1,
-    "attributeHeadingAccuracy": 79,
-    "attributeInterceptions": 94,
-    "attributeJumping": 84,
-    "attributeLongPassing": 98,
-    "attributeLongShots": 89,
-    "attributePenalties": 85,
-    "attributePositioning": 89,
-    "attributeReactions": 87,
-    "attributeShortPassing": 96,
-    "attributeShotPower": 96,
-    "attributeSlidingTackle": 92,
-    "attributeSprintSpeed": 87,
-    "attributeStamina": 92,
-    "attributeStandingTackle": 94,
-    "attributeStrength": 83,
-    "attributeVision": 94,
-    "attributeVolleys": 88,
+    "attributeHeadingAccuracy": 64,
+    "attributeInterceptions": 77,
+    "attributeJumping": 76,
+    "attributeLongPassing": 92,
+    "attributeLongShots": 78,
+    "attributePenalties": 74,
+    "attributePositioning": 78,
+    "attributeReactions": 82,
+    "attributeShortPassing": 90,
+    "attributeShotPower": 84,
+    "attributeSlidingTackle": 75,
+    "attributeSprintSpeed": 70,
+    "attributeStamina": 84,
+    "attributeStandingTackle": 77,
+    "attributeStrength": 75,
+    "attributeVision": 88,
+    "attributeVolleys": 77,
     "bodytype": "Average Medium",
     "commonName": "Enzo Fern\u00e1ndez",
     "eaId": 247090,
+    "evolution": true,
     "foot": "Right",
     "height": 178,
-    "metaRatings": [
-      {
-        "archetype": "playmaker",
-        "metaRating": 88.92763689750456
-      },
-      {
-        "archetype": "deep_lying_playmaker",
-        "metaRating": 91.59070296465684
-      },
-      {
-        "archetype": "box_to_box",
-        "metaRating": 92.34365122154304
-      },
-      {
-        "archetype": "holding",
-        "metaRating": 90.674510254312
-      }
-    ],
-    "overall": 92,
+    "metaRatings": [],
+    "overall": 84,
     "playstyles": [
       "Incisive Pass",
-      "Tiki Taka",
       "Flair",
       "First Touch",
       "Press Proven",
       "Relentless"
     ],
     "playstylesPlus": [
-      "Intercept",
       "Long Ball Pass"
     ],
     "positions": [
@@ -2170,17 +2178,13 @@
       "CM"
     ],
     "rolesPlus": [
-      "CM Holding"
-    ],
-    "rolesPlusPlus": [
-      "CDM Holding",
-      "CDM Deep-Lying Playmaker",
       "CM Box to Box",
-      "CM Deep-Lying Playmaker",
-      "CM Playmaker"
+      "CM Holding",
+      "CDM Holding"
     ],
-    "skillMoves": 5,
-    "weakFoot": 5,
+    "rolesPlusPlus": [],
+    "skillMoves": 3,
+    "weakFoot": 4,
     "weight": 78
   },
   {
@@ -2222,17 +2226,10 @@
     "bodytype": "Average Medium",
     "commonName": "Abner Vin\u00edcius",
     "eaId": 50595463,
+    "evolution": true,
     "foot": "Left",
     "height": 182,
     "metaRatings": [
-      {
-        "archetype": "winger",
-        "metaRating": 86.68108215312927
-      },
-      {
-        "archetype": "deep_lying_playmaker",
-        "metaRating": 86.30999067788397
-      },
       {
         "archetype": "playmaker",
         "metaRating": 86.33564410706953
@@ -2240,6 +2237,14 @@
       {
         "archetype": "fullback",
         "metaRating": 89.66057275654455
+      },
+      {
+        "archetype": "deep_lying_playmaker",
+        "metaRating": 86.30999067788397
+      },
+      {
+        "archetype": "winger",
+        "metaRating": 86.68108215312927
       },
       {
         "archetype": "falseback",
@@ -2260,9 +2265,9 @@
       "Pinged Pass"
     ],
     "positions": [
+      "LM",
       "LB",
-      "CM",
-      "LM"
+      "CM"
     ],
     "rolesPlus": [
       "CM Box to Box",
@@ -2321,9 +2326,14 @@
     "bodytype": "Average Tall",
     "commonName": "Mo\u00efse Bombito",
     "eaId": 67383400,
+    "evolution": true,
     "foot": "Right",
     "height": 190,
     "metaRatings": [
+      {
+        "archetype": "defender",
+        "metaRating": 90.01389652029533
+      },
       {
         "archetype": "ball_playing_defender",
         "metaRating": 88.40752259381901
@@ -2333,16 +2343,12 @@
         "metaRating": 92.02855058234375
       },
       {
-        "archetype": "defender",
-        "metaRating": 90.01389652029533
+        "archetype": "holding",
+        "metaRating": 89.37887852234974
       },
       {
         "archetype": "stopper",
         "metaRating": 88.07772699791799
-      },
-      {
-        "archetype": "holding",
-        "metaRating": 89.37887852234974
       }
     ],
     "overall": 90,
@@ -2360,8 +2366,8 @@
       "Bruiser"
     ],
     "positions": [
-      "CDM",
       "CB",
+      "CDM",
       "LB"
     ],
     "rolesPlus": [
@@ -2379,97 +2385,6 @@
     "skillMoves": 4,
     "weakFoot": 4,
     "weight": 81
-  },
-  {
-    "accelerateType": "CONTROLLED_LENGTHY",
-    "attributeAcceleration": 88,
-    "attributeAggression": 88,
-    "attributeAgility": 79,
-    "attributeBalance": 78,
-    "attributeBallControl": 90,
-    "attributeComposure": 85,
-    "attributeCrossing": 86,
-    "attributeCurve": 89,
-    "attributeDefensiveAwareness": 89,
-    "attributeDribbling": 88,
-    "attributeFinishing": 86,
-    "attributeFkAccuracy": 77,
-    "attributeGkDiving": 1,
-    "attributeGkHandling": 1,
-    "attributeGkKicking": 1,
-    "attributeGkPositioning": 1,
-    "attributeGkReflexes": 1,
-    "attributeHeadingAccuracy": 97,
-    "attributeInterceptions": 94,
-    "attributeJumping": 93,
-    "attributeLongPassing": 93,
-    "attributeLongShots": 86,
-    "attributePenalties": 77,
-    "attributePositioning": 90,
-    "attributeReactions": 91,
-    "attributeShortPassing": 95,
-    "attributeShotPower": 92,
-    "attributeSlidingTackle": 84,
-    "attributeSprintSpeed": 88,
-    "attributeStamina": 88,
-    "attributeStandingTackle": 93,
-    "attributeStrength": 85,
-    "attributeVision": 92,
-    "attributeVolleys": 63,
-    "bodytype": "Lean Tall",
-    "commonName": "Mikel Merino",
-    "eaId": 50556841,
-    "foot": "Left",
-    "height": 189,
-    "metaRatings": [
-      {
-        "archetype": "playmaker",
-        "metaRating": 86.54655893217179
-      },
-      {
-        "archetype": "deep_lying_playmaker",
-        "metaRating": 89.53844717544995
-      },
-      {
-        "archetype": "box_to_box",
-        "metaRating": 89.7737042000407
-      },
-      {
-        "archetype": "holding",
-        "metaRating": 90.48204158808176
-      }
-    ],
-    "overall": 92,
-    "playstyles": [
-      "Power Shot",
-      "Incisive Pass",
-      "Tiki Taka",
-      "Jockey",
-      "Relentless",
-      "Aerial"
-    ],
-    "playstylesPlus": [
-      "Intercept",
-      "Anticipate"
-    ],
-    "positions": [
-      "CDM",
-      "CAM",
-      "CM"
-    ],
-    "rolesPlus": [
-      "CAM Playmaker"
-    ],
-    "rolesPlusPlus": [
-      "CDM Holding",
-      "CDM Deep-Lying Playmaker",
-      "CM Box to Box",
-      "CM Deep-Lying Playmaker",
-      "CM Playmaker"
-    ],
-    "skillMoves": 5,
-    "weakFoot": 5,
-    "weight": 83
   },
   {
     "accelerateType": "CONTROLLED",
@@ -2510,6 +2425,7 @@
     "bodytype": "Unique",
     "commonName": "Cristiano Ronaldo",
     "eaId": 20801,
+    "evolution": false,
     "foot": "Right",
     "height": 187,
     "metaRatings": [
@@ -2582,6 +2498,7 @@
     "bodytype": "Unique",
     "commonName": "Lionel Messi",
     "eaId": 158023,
+    "evolution": false,
     "foot": "Left",
     "height": 169,
     "metaRatings": [
@@ -2658,6 +2575,7 @@
     "bodytype": "Average Medium",
     "commonName": "Karim Benzema",
     "eaId": 165153,
+    "evolution": false,
     "foot": "Right",
     "height": 185,
     "metaRatings": [
@@ -2727,6 +2645,7 @@
     "bodytype": "Unique",
     "commonName": "Robert Lewandowski",
     "eaId": 188545,
+    "evolution": false,
     "foot": "Right",
     "height": 185,
     "metaRatings": [
@@ -2799,6 +2718,7 @@
     "bodytype": "Unique",
     "commonName": "Thibaut Courtois",
     "eaId": 192119,
+    "evolution": false,
     "foot": "Left",
     "height": 200,
     "metaRatings": [
@@ -2865,6 +2785,7 @@
     "bodytype": "Unique",
     "commonName": "Marc-Andr\u00e9 ter Stegen",
     "eaId": 192448,
+    "evolution": false,
     "foot": "Right",
     "height": 187,
     "metaRatings": [
@@ -2930,6 +2851,7 @@
     "bodytype": "Unique",
     "commonName": "Kevin De Bruyne",
     "eaId": 192985,
+    "evolution": false,
     "foot": "Right",
     "height": 181,
     "metaRatings": [
@@ -3003,6 +2925,7 @@
     "bodytype": "Unique",
     "commonName": "Antoine Griezmann",
     "eaId": 194765,
+    "evolution": false,
     "foot": "Left",
     "height": 176,
     "metaRatings": [
@@ -3075,6 +2998,7 @@
     "bodytype": "Average Tall",
     "commonName": "Granit Xhaka",
     "eaId": 199503,
+    "evolution": false,
     "foot": "Left",
     "height": 186,
     "metaRatings": [
@@ -3148,6 +3072,7 @@
     "bodytype": "Unique",
     "commonName": "Harry Kane",
     "eaId": 202126,
+    "evolution": false,
     "foot": "Right",
     "height": 188,
     "metaRatings": [
@@ -3219,6 +3144,7 @@
     "bodytype": "Unique",
     "commonName": "Virgil van Dijk",
     "eaId": 203376,
+    "evolution": false,
     "foot": "Right",
     "height": 193,
     "metaRatings": [
@@ -3291,6 +3217,7 @@
     "bodytype": "Unique",
     "commonName": "Riyad Mahrez",
     "eaId": 204485,
+    "evolution": false,
     "foot": "Left",
     "height": 179,
     "metaRatings": [
@@ -3361,6 +3288,7 @@
     "bodytype": "Unique",
     "commonName": "Carvajal",
     "eaId": 204963,
+    "evolution": false,
     "foot": "Right",
     "height": 173,
     "metaRatings": [
@@ -3425,6 +3353,7 @@
     "bodytype": "Lean Tall",
     "commonName": "Antonio R\u00fcdiger",
     "eaId": 205452,
+    "evolution": false,
     "foot": "Right",
     "height": 190,
     "metaRatings": [
@@ -3493,6 +3422,7 @@
     "bodytype": "Unique",
     "commonName": "Mohamed Salah",
     "eaId": 209331,
+    "evolution": false,
     "foot": "Left",
     "height": 175,
     "metaRatings": [
@@ -3563,6 +3493,7 @@
     "bodytype": "Average Medium",
     "commonName": "Grimaldo",
     "eaId": 210035,
+    "evolution": false,
     "foot": "Left",
     "height": 171,
     "metaRatings": [
@@ -3633,6 +3564,7 @@
     "bodytype": "Unique",
     "commonName": "Ederson",
     "eaId": 210257,
+    "evolution": false,
     "foot": "Left",
     "height": 188,
     "metaRatings": [
@@ -3699,6 +3631,7 @@
     "bodytype": "Unique",
     "commonName": "Bruno Fernandes",
     "eaId": 212198,
+    "evolution": false,
     "foot": "Right",
     "height": 179,
     "metaRatings": [
@@ -3772,6 +3705,7 @@
     "bodytype": "Unique",
     "commonName": "Alisson",
     "eaId": 212831,
+    "evolution": false,
     "foot": "Right",
     "height": 193,
     "metaRatings": [
@@ -3838,6 +3772,7 @@
     "bodytype": "Stocky Tall",
     "commonName": "Jonathan Tah",
     "eaId": 213331,
+    "evolution": false,
     "foot": "Right",
     "height": 195,
     "metaRatings": [
@@ -3903,6 +3838,7 @@
     "bodytype": "Unique",
     "commonName": "N'Golo Kant\u00e9",
     "eaId": 215914,
+    "evolution": false,
     "foot": "Right",
     "height": 168,
     "metaRatings": [
@@ -3973,6 +3909,7 @@
     "bodytype": "Unique",
     "commonName": "Andrew Robertson",
     "eaId": 216267,
+    "evolution": false,
     "foot": "Left",
     "height": 178,
     "metaRatings": [
@@ -4039,6 +3976,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Bernardo Silva",
     "eaId": 218667,
+    "evolution": false,
     "foot": "Left",
     "height": 173,
     "metaRatings": [
@@ -4111,6 +4049,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Martin \u00d8degaard",
     "eaId": 222665,
+    "evolution": false,
     "foot": "Left",
     "height": 178,
     "metaRatings": [
@@ -4184,6 +4123,7 @@
     "bodytype": "Unique",
     "commonName": "Debinha",
     "eaId": 226893,
+    "evolution": false,
     "foot": "Right",
     "height": 155,
     "metaRatings": [
@@ -4258,6 +4198,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Fridolina Rolf\u00f6",
     "eaId": 227013,
+    "evolution": false,
     "foot": "Left",
     "height": 179,
     "metaRatings": [
@@ -4330,6 +4271,7 @@
     "bodytype": "Average Short",
     "commonName": "Fara Williams",
     "eaId": 227271,
+    "evolution": false,
     "foot": "Right",
     "height": 164,
     "metaRatings": [
@@ -4401,6 +4343,7 @@
     "bodytype": "Average Short",
     "commonName": "Guro Reiten",
     "eaId": 227323,
+    "evolution": false,
     "foot": "Left",
     "height": 167,
     "metaRatings": [
@@ -4474,6 +4417,7 @@
     "bodytype": "Lean Short",
     "commonName": "Svenja Huth",
     "eaId": 227337,
+    "evolution": false,
     "foot": "Right",
     "height": 163,
     "metaRatings": [
@@ -4547,6 +4491,7 @@
     "bodytype": "Average Short",
     "commonName": "Kadidiatou Diani",
     "eaId": 227361,
+    "evolution": false,
     "foot": "Right",
     "height": 168,
     "metaRatings": [
@@ -4618,6 +4563,7 @@
     "bodytype": "Unique",
     "commonName": "Gianluigi Donnarumma",
     "eaId": 230621,
+    "evolution": false,
     "foot": "Right",
     "height": 196,
     "metaRatings": [
@@ -4683,6 +4629,7 @@
     "bodytype": "Unique",
     "commonName": "Trent Alexander-Arnold",
     "eaId": 231281,
+    "evolution": false,
     "foot": "Right",
     "height": 180,
     "metaRatings": [
@@ -4753,6 +4700,7 @@
     "bodytype": "Unique",
     "commonName": "Ousmane Demb\u00e9l\u00e9",
     "eaId": 231443,
+    "evolution": false,
     "foot": "Left",
     "height": 178,
     "metaRatings": [
@@ -4826,6 +4774,7 @@
     "bodytype": "Unique",
     "commonName": "Lautaro Mart\u00ednez",
     "eaId": 231478,
+    "evolution": false,
     "foot": "Right",
     "height": 174,
     "metaRatings": [
@@ -4893,6 +4842,7 @@
     "bodytype": "Average Tall",
     "commonName": "Rodri",
     "eaId": 231866,
+    "evolution": false,
     "foot": "Right",
     "height": 191,
     "metaRatings": [
@@ -4966,6 +4916,7 @@
     "bodytype": "Lean Short",
     "commonName": "Mallory Swanson",
     "eaId": 232073,
+    "evolution": false,
     "foot": "Right",
     "height": 163,
     "metaRatings": [
@@ -5037,6 +4988,7 @@
     "bodytype": "Average Short",
     "commonName": "Rose Lavelle",
     "eaId": 232075,
+    "evolution": false,
     "foot": "Left",
     "height": 163,
     "metaRatings": [
@@ -5109,6 +5061,7 @@
     "bodytype": "Lean Tall",
     "commonName": "Gabriel",
     "eaId": 232580,
+    "evolution": false,
     "foot": "Left",
     "height": 190,
     "metaRatings": [
@@ -5178,6 +5131,7 @@
     "bodytype": "Average Tall",
     "commonName": "Gregor Kobel",
     "eaId": 235073,
+    "evolution": false,
     "foot": "Right",
     "height": 195,
     "metaRatings": [
@@ -5244,6 +5198,7 @@
     "bodytype": "Average Short",
     "commonName": "Rachel Daly",
     "eaId": 235657,
+    "evolution": false,
     "foot": "Right",
     "height": 167,
     "metaRatings": [
@@ -5310,6 +5265,7 @@
     "bodytype": "Unique",
     "commonName": "Mapi Le\u00f3n",
     "eaId": 236479,
+    "evolution": false,
     "foot": "Left",
     "height": 170,
     "metaRatings": [
@@ -5381,6 +5337,7 @@
     "bodytype": "Unique",
     "commonName": "Phil Foden",
     "eaId": 237692,
+    "evolution": false,
     "foot": "Left",
     "height": 171,
     "metaRatings": [
@@ -5452,6 +5409,7 @@
     "bodytype": "Unique",
     "commonName": "Erling Haaland",
     "eaId": 239085,
+    "evolution": false,
     "foot": "Left",
     "height": 195,
     "metaRatings": [
@@ -5520,6 +5478,7 @@
     "bodytype": "Stocky Tall",
     "commonName": "Bremer",
     "eaId": 239580,
+    "evolution": false,
     "foot": "Right",
     "height": 187,
     "metaRatings": [
@@ -5590,6 +5549,7 @@
     "bodytype": "Average Tall",
     "commonName": "R\u00faben Dias",
     "eaId": 239818,
+    "evolution": false,
     "foot": "Right",
     "height": 187,
     "metaRatings": [
@@ -5657,6 +5617,7 @@
     "bodytype": "Average Medium",
     "commonName": "Alexis Mac Allister",
     "eaId": 239837,
+    "evolution": false,
     "foot": "Right",
     "height": 176,
     "metaRatings": [
@@ -5728,6 +5689,7 @@
     "bodytype": "Average Medium",
     "commonName": "Jill Roord",
     "eaId": 240714,
+    "evolution": false,
     "foot": "Right",
     "height": 175,
     "metaRatings": [
@@ -5797,6 +5759,7 @@
     "bodytype": "Average Tall",
     "commonName": "William Saliba",
     "eaId": 243715,
+    "evolution": false,
     "foot": "Right",
     "height": 193,
     "metaRatings": [
@@ -5865,6 +5828,7 @@
     "bodytype": "Average Short",
     "commonName": "Beth Mead",
     "eaId": 245802,
+    "evolution": false,
     "foot": "Right",
     "height": 163,
     "metaRatings": [
@@ -5935,6 +5899,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Christiane Endler",
     "eaId": 245956,
+    "evolution": false,
     "foot": "Left",
     "height": 183,
     "metaRatings": [
@@ -6000,6 +5965,7 @@
     "bodytype": "Unique",
     "commonName": "Khadija Shaw",
     "eaId": 246219,
+    "evolution": false,
     "foot": "Right",
     "height": 180,
     "metaRatings": [
@@ -6065,6 +6031,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Marie Katoto",
     "eaId": 246272,
+    "evolution": false,
     "foot": "Right",
     "height": 177,
     "metaRatings": [
@@ -6132,6 +6099,7 @@
     "bodytype": "Unique",
     "commonName": "Chiamaka Nnadozie",
     "eaId": 246641,
+    "evolution": false,
     "foot": "Right",
     "height": 180,
     "metaRatings": [
@@ -6197,6 +6165,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Bukayo Saka",
     "eaId": 246669,
+    "evolution": false,
     "foot": "Left",
     "height": 178,
     "metaRatings": [
@@ -6266,6 +6235,7 @@
     "bodytype": "Average Medium",
     "commonName": "Khvicha Kvaratskhelia",
     "eaId": 247635,
+    "evolution": false,
     "foot": "Right",
     "height": 183,
     "metaRatings": [
@@ -6338,6 +6308,7 @@
     "bodytype": "Average Medium",
     "commonName": "Jude Bellingham",
     "eaId": 252371,
+    "evolution": false,
     "foot": "Right",
     "height": 186,
     "metaRatings": [
@@ -6410,6 +6381,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Nico Williams",
     "eaId": 256516,
+    "evolution": false,
     "foot": "Right",
     "height": 181,
     "metaRatings": [
@@ -6484,6 +6456,7 @@
     "bodytype": "Average Medium",
     "commonName": "Florian Wirtz",
     "eaId": 256630,
+    "evolution": false,
     "foot": "Right",
     "height": 177,
     "metaRatings": [
@@ -6558,6 +6531,7 @@
     "bodytype": "Lean Tall",
     "commonName": "Cole Palmer",
     "eaId": 257534,
+    "evolution": false,
     "foot": "Left",
     "height": 189,
     "metaRatings": [
@@ -6631,6 +6605,7 @@
     "bodytype": "Average Short",
     "commonName": "Sophia Wilson",
     "eaId": 264012,
+    "evolution": false,
     "foot": "Right",
     "height": 164,
     "metaRatings": [
@@ -6704,6 +6679,7 @@
     "bodytype": "Stocky Medium",
     "commonName": "Lauren James",
     "eaId": 265249,
+    "evolution": false,
     "foot": "Right",
     "height": 175,
     "metaRatings": [
@@ -6779,6 +6755,7 @@
     "bodytype": "Average Short",
     "commonName": "Selma Bacha",
     "eaId": 265674,
+    "evolution": false,
     "foot": "Left",
     "height": 161,
     "metaRatings": [
@@ -6852,6 +6829,7 @@
     "bodytype": "Average Medium",
     "commonName": "Trinity Rodman",
     "eaId": 266928,
+    "evolution": false,
     "foot": "Right",
     "height": 173,
     "metaRatings": [
@@ -6926,6 +6904,7 @@
     "bodytype": "Average Medium",
     "commonName": "Jari Litmanen",
     "eaId": 50337321,
+    "evolution": false,
     "foot": "Right",
     "height": 182,
     "metaRatings": [
@@ -7014,6 +6993,7 @@
     "bodytype": "Average Medium",
     "commonName": "Landon Donovan",
     "eaId": 50339391,
+    "evolution": false,
     "foot": "Right",
     "height": 173,
     "metaRatings": [
@@ -7088,6 +7068,7 @@
     "bodytype": "Average Medium",
     "commonName": "Aleksandr Mostovoi",
     "eaId": 50340033,
+    "evolution": false,
     "foot": "Right",
     "height": 177,
     "metaRatings": [
@@ -7175,6 +7156,7 @@
     "bodytype": "Unique",
     "commonName": "Ronaldo",
     "eaId": 50369224,
+    "evolution": false,
     "foot": "Right",
     "height": 183,
     "metaRatings": [
@@ -7251,6 +7233,7 @@
     "bodytype": "Average Medium",
     "commonName": "Sidney Govou",
     "eaId": 50372546,
+    "evolution": false,
     "foot": "Right",
     "height": 175,
     "metaRatings": [
@@ -7336,6 +7319,7 @@
     "bodytype": "Average Tall",
     "commonName": "Dante",
     "eaId": 50490273,
+    "evolution": false,
     "foot": "Left",
     "height": 188,
     "metaRatings": [
@@ -7413,6 +7397,7 @@
     "bodytype": "Average Medium",
     "commonName": "Gheorghe Hagi",
     "eaId": 50497772,
+    "evolution": false,
     "foot": "Left",
     "height": 172,
     "metaRatings": [
@@ -7490,6 +7475,7 @@
     "bodytype": "Average Tall",
     "commonName": "Eric Cantona",
     "eaId": 50498846,
+    "evolution": false,
     "foot": "Right",
     "height": 188,
     "metaRatings": [
@@ -7574,6 +7560,7 @@
     "bodytype": "Average Medium",
     "commonName": "Abedi Pel\u00e9",
     "eaId": 50499073,
+    "evolution": false,
     "foot": "Left",
     "height": 174,
     "metaRatings": [
@@ -7661,6 +7648,7 @@
     "bodytype": "Average Medium",
     "commonName": "Ronald Koeman",
     "eaId": 50499328,
+    "evolution": false,
     "foot": "Right",
     "height": 181,
     "metaRatings": [
@@ -7745,6 +7733,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Luka Modri\u0107",
     "eaId": 50508651,
+    "evolution": false,
     "foot": "Right",
     "height": 172,
     "metaRatings": [
@@ -7820,6 +7809,7 @@
     "bodytype": "Average Medium",
     "commonName": "Yuri Berchiche",
     "eaId": 50515160,
+    "evolution": false,
     "foot": "Left",
     "height": 181,
     "metaRatings": [
@@ -7903,6 +7893,7 @@
     "bodytype": "Lean Tall",
     "commonName": "Wojciech Szcz\u0119sny",
     "eaId": 50517801,
+    "evolution": false,
     "foot": "Right",
     "height": 196,
     "metaRatings": [
@@ -7976,6 +7967,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Oscar",
     "eaId": 50519800,
+    "evolution": false,
     "foot": "Right",
     "height": 179,
     "metaRatings": [
@@ -8054,6 +8046,7 @@
     "bodytype": "Unique",
     "commonName": "Robert Lewandowski",
     "eaId": 50520193,
+    "evolution": false,
     "foot": "Right",
     "height": 185,
     "metaRatings": [
@@ -8126,6 +8119,7 @@
     "bodytype": "Average Tall",
     "commonName": "Luuk de Jong",
     "eaId": 50521453,
+    "evolution": false,
     "foot": "Right",
     "height": 189,
     "metaRatings": [
@@ -8199,6 +8193,7 @@
     "bodytype": "Lean Tall",
     "commonName": "Marco van Basten",
     "eaId": 50523829,
+    "evolution": false,
     "foot": "Right",
     "height": 188,
     "metaRatings": [
@@ -8284,6 +8279,7 @@
     "bodytype": "Average Medium",
     "commonName": "Nicol\u00e1s Otamendi",
     "eaId": 50524014,
+    "evolution": false,
     "foot": "Right",
     "height": 183,
     "metaRatings": [
@@ -8354,6 +8350,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Juanmi",
     "eaId": 50529539,
+    "evolution": false,
     "foot": "Right",
     "height": 172,
     "metaRatings": [
@@ -8435,6 +8432,7 @@
     "bodytype": "Stocky Medium",
     "commonName": "Sam Morsy",
     "eaId": 50529623,
+    "evolution": false,
     "foot": "Right",
     "height": 175,
     "metaRatings": [
@@ -8507,6 +8505,7 @@
     "bodytype": "Average Tall",
     "commonName": "Granit Xhaka",
     "eaId": 50531151,
+    "evolution": false,
     "foot": "Left",
     "height": 186,
     "metaRatings": [
@@ -8582,6 +8581,7 @@
     "bodytype": "Unique",
     "commonName": "Kalidou Koulibaly",
     "eaId": 50532672,
+    "evolution": false,
     "foot": "Right",
     "height": 186,
     "metaRatings": [
@@ -8661,6 +8661,7 @@
     "bodytype": "Average Tall",
     "commonName": "Danny da Costa",
     "eaId": 50534077,
+    "evolution": false,
     "foot": "Right",
     "height": 187,
     "metaRatings": [
@@ -8748,6 +8749,7 @@
     "bodytype": "Stocky Tall",
     "commonName": "Harry Maguire",
     "eaId": 50534911,
+    "evolution": false,
     "foot": "Right",
     "height": 193,
     "metaRatings": [
@@ -8828,6 +8830,7 @@
     "bodytype": "Lean Tall",
     "commonName": "Nick Pope",
     "eaId": 50535489,
+    "evolution": false,
     "foot": "Right",
     "height": 199,
     "metaRatings": [
@@ -8901,6 +8904,7 @@
     "bodytype": "Unique",
     "commonName": "Serge Gnabry",
     "eaId": 50537761,
+    "evolution": false,
     "foot": "Right",
     "height": 176,
     "metaRatings": [
@@ -8985,6 +8989,7 @@
     "bodytype": "Average Medium",
     "commonName": "Alassane Plea",
     "eaId": 50538115,
+    "evolution": false,
     "foot": "Right",
     "height": 181,
     "metaRatings": [
@@ -9070,6 +9075,7 @@
     "bodytype": "Lean Tall",
     "commonName": "Patrick Bamford",
     "eaId": 50538182,
+    "evolution": false,
     "foot": "Left",
     "height": 185,
     "metaRatings": [
@@ -9146,6 +9152,7 @@
     "bodytype": "Average Medium",
     "commonName": "Lucas V\u00e1zquez",
     "eaId": 50540266,
+    "evolution": false,
     "foot": "Right",
     "height": 173,
     "metaRatings": [
@@ -9231,6 +9238,7 @@
     "bodytype": "Unique",
     "commonName": "Jo\u00e3o Cancelo",
     "eaId": 50542162,
+    "evolution": false,
     "foot": "Right",
     "height": 182,
     "metaRatings": [
@@ -9303,6 +9311,7 @@
     "bodytype": "Stocky Tall",
     "commonName": "Niklas S\u00fcle",
     "eaId": 50543838,
+    "evolution": false,
     "foot": "Right",
     "height": 195,
     "metaRatings": [
@@ -9378,6 +9387,7 @@
     "bodytype": "Average Medium",
     "commonName": "Paulo Futre",
     "eaId": 50545749,
+    "evolution": false,
     "foot": "Left",
     "height": 175,
     "metaRatings": [
@@ -9464,6 +9474,7 @@
     "bodytype": "Average Tall",
     "commonName": "Mike Maignan",
     "eaId": 50547346,
+    "evolution": false,
     "foot": "Right",
     "height": 191,
     "metaRatings": [
@@ -9534,6 +9545,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Luke O'Nien",
     "eaId": 50547348,
+    "evolution": false,
     "foot": "Right",
     "height": 179,
     "metaRatings": [
@@ -9606,6 +9618,7 @@
     "bodytype": "Stocky Tall",
     "commonName": "Aleksandar Mitrovi\u0107",
     "eaId": 50547364,
+    "evolution": false,
     "foot": "Right",
     "height": 189,
     "metaRatings": [
@@ -9679,6 +9692,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Rafa",
     "eaId": 50548195,
+    "evolution": false,
     "foot": "Right",
     "height": 172,
     "metaRatings": [
@@ -9753,6 +9767,7 @@
     "bodytype": "Average Tall",
     "commonName": "Alexander S\u00f8rloth",
     "eaId": 50548197,
+    "evolution": false,
     "foot": "Left",
     "height": 195,
     "metaRatings": [
@@ -9829,6 +9844,7 @@
     "bodytype": "Average Medium",
     "commonName": "Marco Asensio",
     "eaId": 50552482,
+    "evolution": false,
     "foot": "Left",
     "height": 182,
     "metaRatings": [
@@ -9911,6 +9927,7 @@
     "bodytype": "Lean Tall",
     "commonName": "Tosin Adarabioyo",
     "eaId": 50553752,
+    "evolution": false,
     "foot": "Right",
     "height": 196,
     "metaRatings": [
@@ -9990,6 +10007,7 @@
     "bodytype": "Average Tall",
     "commonName": "Vedat Muriqi",
     "eaId": 50555358,
+    "evolution": false,
     "foot": "Left",
     "height": 194,
     "metaRatings": [
@@ -10067,6 +10085,7 @@
     "bodytype": "Average Medium",
     "commonName": "Cesinha",
     "eaId": 50557381,
+    "evolution": false,
     "foot": "Right",
     "height": 177,
     "metaRatings": [
@@ -10153,6 +10172,7 @@
     "bodytype": "Lean Tall",
     "commonName": "\u00c1lex Remiro",
     "eaId": 50558775,
+    "evolution": false,
     "foot": "Right",
     "height": 192,
     "metaRatings": [
@@ -10224,6 +10244,7 @@
     "bodytype": "Unique",
     "commonName": "Wendie Renard",
     "eaId": 50558964,
+    "evolution": false,
     "foot": "Right",
     "height": 187,
     "metaRatings": [
@@ -10297,6 +10318,7 @@
     "bodytype": "Stocky Tall",
     "commonName": "Dayot Upamecano",
     "eaId": 50561206,
+    "evolution": false,
     "foot": "Right",
     "height": 186,
     "metaRatings": [
@@ -10377,6 +10399,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Oyarzabal",
     "eaId": 50561790,
+    "evolution": false,
     "foot": "Left",
     "height": 181,
     "metaRatings": [
@@ -10458,6 +10481,7 @@
     "bodytype": "Lean Tall",
     "commonName": "Benjamin White",
     "eaId": 50563584,
+    "evolution": false,
     "foot": "Right",
     "height": 185,
     "metaRatings": [
@@ -10544,6 +10568,7 @@
     "bodytype": "Average Tall",
     "commonName": "Declan Rice",
     "eaId": 50566026,
+    "evolution": false,
     "foot": "Right",
     "height": 185,
     "metaRatings": [
@@ -10620,6 +10645,7 @@
     "bodytype": "Average Medium",
     "commonName": "Cucho Hern\u00e1ndez",
     "eaId": 50568682,
+    "evolution": false,
     "foot": "Right",
     "height": 176,
     "metaRatings": [
@@ -10708,6 +10734,7 @@
     "bodytype": "Average Medium",
     "commonName": "Kiernan Dewsbury-Hall",
     "eaId": 50569034,
+    "evolution": false,
     "foot": "Left",
     "height": 178,
     "metaRatings": [
@@ -10792,6 +10819,7 @@
     "bodytype": "Average Medium",
     "commonName": "Pervis Estupi\u00f1\u00e1n",
     "eaId": 50569590,
+    "evolution": false,
     "foot": "Left",
     "height": 175,
     "metaRatings": [
@@ -10867,6 +10895,7 @@
     "bodytype": "Unique",
     "commonName": "Nicol\u00f2 Zaniolo",
     "eaId": 50569715,
+    "evolution": false,
     "foot": "Left",
     "height": 190,
     "metaRatings": [
@@ -10957,6 +10986,7 @@
     "bodytype": "Stocky Medium",
     "commonName": "Reece James",
     "eaId": 50569722,
+    "evolution": false,
     "foot": "Right",
     "height": 179,
     "metaRatings": [
@@ -11034,6 +11064,7 @@
     "bodytype": "Average Tall",
     "commonName": "Laurent Blanc",
     "eaId": 50570091,
+    "evolution": false,
     "foot": "Right",
     "height": 192,
     "metaRatings": [
@@ -11118,6 +11149,7 @@
     "bodytype": "Stocky Tall",
     "commonName": "Antoine Semenyo",
     "eaId": 50572884,
+    "evolution": false,
     "foot": "Right",
     "height": 185,
     "metaRatings": [
@@ -11200,6 +11232,7 @@
     "bodytype": "Average Tall",
     "commonName": "Kasper H\u00f8gh",
     "eaId": 50574851,
+    "evolution": false,
     "foot": "Right",
     "height": 186,
     "metaRatings": [
@@ -11284,6 +11317,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Viktor Tsygankov",
     "eaId": 50576017,
+    "evolution": false,
     "foot": "Left",
     "height": 178,
     "metaRatings": [
@@ -11380,6 +11414,7 @@
     "bodytype": "Average Medium",
     "commonName": "Eric Garc\u00eda",
     "eaId": 50576685,
+    "evolution": false,
     "foot": "Right",
     "height": 182,
     "metaRatings": [
@@ -11467,6 +11502,7 @@
     "bodytype": "Average Medium",
     "commonName": "Santiago Gim\u00e9nez",
     "eaId": 50576800,
+    "evolution": false,
     "foot": "Left",
     "height": 182,
     "metaRatings": [
@@ -11534,6 +11570,7 @@
     "bodytype": "Lean Short",
     "commonName": "Yui Hasegawa",
     "eaId": 50577478,
+    "evolution": false,
     "foot": "Right",
     "height": 156,
     "metaRatings": [
@@ -11616,6 +11653,7 @@
     "bodytype": "Average Medium",
     "commonName": "Jen Beattie",
     "eaId": 50577521,
+    "evolution": false,
     "foot": "Right",
     "height": 177,
     "metaRatings": [
@@ -11690,6 +11728,7 @@
     "bodytype": "Average Short",
     "commonName": "Erin Cuthbert",
     "eaId": 50577530,
+    "evolution": false,
     "foot": "Right",
     "height": 163,
     "metaRatings": [
@@ -11771,6 +11810,7 @@
     "bodytype": "Average Short",
     "commonName": "Aldana Cometti",
     "eaId": 50578012,
+    "evolution": false,
     "foot": "Right",
     "height": 168,
     "metaRatings": [
@@ -11851,6 +11891,7 @@
     "bodytype": "Lean Tall",
     "commonName": "Dejan Kulusevski",
     "eaId": 50579042,
+    "evolution": false,
     "foot": "Left",
     "height": 186,
     "metaRatings": [
@@ -11934,6 +11975,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Bruno Guimar\u00e3es",
     "eaId": 50579499,
+    "evolution": false,
     "foot": "Right",
     "height": 182,
     "metaRatings": [
@@ -12014,6 +12056,7 @@
     "bodytype": "Stocky Tall",
     "commonName": "Oh Hyeon Gyu",
     "eaId": 50580360,
+    "evolution": false,
     "foot": "Right",
     "height": 185,
     "metaRatings": [
@@ -12091,6 +12134,7 @@
     "bodytype": "Lean Short",
     "commonName": "Samuel Lino",
     "eaId": 50583093,
+    "evolution": false,
     "foot": "Right",
     "height": 170,
     "metaRatings": [
@@ -12167,6 +12211,7 @@
     "bodytype": "Average Tall",
     "commonName": "Wilfried Singo",
     "eaId": 50584450,
+    "evolution": false,
     "foot": "Right",
     "height": 190,
     "metaRatings": [
@@ -12257,6 +12302,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Vitinha",
     "eaId": 50586901,
+    "evolution": false,
     "foot": "Right",
     "height": 172,
     "metaRatings": [
@@ -12337,6 +12383,7 @@
     "bodytype": "Average Medium",
     "commonName": "Alistair Johnston",
     "eaId": 50587755,
+    "evolution": false,
     "foot": "Right",
     "height": 180,
     "metaRatings": [
@@ -12418,6 +12465,7 @@
     "bodytype": "Average Tall",
     "commonName": "Malick Thiaw",
     "eaId": 50587909,
+    "evolution": false,
     "foot": "Right",
     "height": 194,
     "metaRatings": [
@@ -12504,6 +12552,7 @@
     "bodytype": "Average Short",
     "commonName": "Bethany England",
     "eaId": 50588137,
+    "evolution": false,
     "foot": "Right",
     "height": 166,
     "metaRatings": [
@@ -12581,6 +12630,7 @@
     "bodytype": "Average Tall",
     "commonName": "Rasmus H\u00f8jlund",
     "eaId": 50591047,
+    "evolution": false,
     "foot": "Left",
     "height": 191,
     "metaRatings": [
@@ -12665,6 +12715,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Hugo Bueno",
     "eaId": 50592872,
+    "evolution": false,
     "foot": "Left",
     "height": 180,
     "metaRatings": [
@@ -12750,6 +12801,7 @@
     "bodytype": "Lean Short",
     "commonName": "Kika Nazareth",
     "eaId": 50593503,
+    "evolution": false,
     "foot": "Right",
     "height": 170,
     "metaRatings": [
@@ -12841,6 +12893,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Conor Bradley",
     "eaId": 50595946,
+    "evolution": false,
     "foot": "Right",
     "height": 181,
     "metaRatings": [
@@ -12922,6 +12975,7 @@
     "bodytype": "Average Short",
     "commonName": "Janina Minge",
     "eaId": 50596711,
+    "evolution": false,
     "foot": "Right",
     "height": 170,
     "metaRatings": [
@@ -12998,6 +13052,7 @@
     "bodytype": "Average Tall",
     "commonName": "Giorgio Scalvini",
     "eaId": 50596836,
+    "evolution": false,
     "foot": "Right",
     "height": 194,
     "metaRatings": [
@@ -13077,6 +13132,7 @@
     "bodytype": "Average Short",
     "commonName": "Mayumi Pacheco",
     "eaId": 50596967,
+    "evolution": false,
     "foot": "Left",
     "height": 164,
     "metaRatings": [
@@ -13153,6 +13209,7 @@
     "bodytype": "Average Medium",
     "commonName": "Johan Bakayoko",
     "eaId": 50597098,
+    "evolution": false,
     "foot": "Left",
     "height": 179,
     "metaRatings": [
@@ -13235,6 +13292,7 @@
     "bodytype": "Average Medium",
     "commonName": "Damaris Egurrola",
     "eaId": 50597184,
+    "evolution": false,
     "foot": "Left",
     "height": 176,
     "metaRatings": [
@@ -13320,6 +13378,7 @@
     "bodytype": "Average Medium",
     "commonName": "Elisabeth Terland",
     "eaId": 50597902,
+    "evolution": false,
     "foot": "Right",
     "height": 171,
     "metaRatings": [
@@ -13401,6 +13460,7 @@
     "bodytype": "Average Tall",
     "commonName": "Roman Celentano",
     "eaId": 50598030,
+    "evolution": false,
     "foot": "Right",
     "height": 192,
     "metaRatings": [
@@ -13474,6 +13534,7 @@
     "bodytype": "Average Short",
     "commonName": "Ryan Williams",
     "eaId": 50598895,
+    "evolution": false,
     "foot": "Right",
     "height": 168,
     "metaRatings": [
@@ -13557,6 +13618,7 @@
     "bodytype": "Lean Tall",
     "commonName": "Hugo Larsson",
     "eaId": 50600544,
+    "evolution": false,
     "foot": "Right",
     "height": 187,
     "metaRatings": [
@@ -13641,6 +13703,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Kobbie Mainoo",
     "eaId": 50600784,
+    "evolution": false,
     "foot": "Right",
     "height": 181,
     "metaRatings": [
@@ -13719,6 +13782,7 @@
     "bodytype": "Average Tall",
     "commonName": "Alexsandro",
     "eaId": 50601141,
+    "evolution": false,
     "foot": "Left",
     "height": 189,
     "metaRatings": [
@@ -13802,6 +13866,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Wilson Odobert",
     "eaId": 50602227,
+    "evolution": false,
     "foot": "Right",
     "height": 182,
     "metaRatings": [
@@ -13885,6 +13950,7 @@
     "bodytype": "Stocky Short",
     "commonName": "Manuela Vanegas",
     "eaId": 50603856,
+    "evolution": false,
     "foot": "Left",
     "height": 167,
     "metaRatings": [
@@ -13959,6 +14025,7 @@
     "bodytype": "Average Medium",
     "commonName": "Korbin Albert",
     "eaId": 50605594,
+    "evolution": false,
     "foot": "Right",
     "height": 172,
     "metaRatings": [
@@ -14046,6 +14113,7 @@
     "bodytype": "Lean Short",
     "commonName": "Lorena Azzaro",
     "eaId": 50607047,
+    "evolution": false,
     "foot": "Left",
     "height": 169,
     "metaRatings": [
@@ -14123,6 +14191,7 @@
     "bodytype": "Stocky Medium",
     "commonName": "Vitor Roque",
     "eaId": 50608237,
+    "evolution": false,
     "foot": "Right",
     "height": 172,
     "metaRatings": [
@@ -14204,6 +14273,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Ethan Mbapp\u00e9",
     "eaId": 50609820,
+    "evolution": false,
     "foot": "Left",
     "height": 176,
     "metaRatings": [
@@ -14287,6 +14357,7 @@
     "bodytype": "Average Medium",
     "commonName": "Casillas",
     "eaId": 67114343,
+    "evolution": false,
     "foot": "Left",
     "height": 185,
     "metaRatings": [
@@ -14363,6 +14434,7 @@
     "bodytype": "Average Tall",
     "commonName": "Tim Howard",
     "eaId": 67125118,
+    "evolution": false,
     "foot": "Right",
     "height": 191,
     "metaRatings": [
@@ -14437,6 +14509,7 @@
     "bodytype": "Average Medium",
     "commonName": "David Alaba",
     "eaId": 67306309,
+    "evolution": false,
     "foot": "Left",
     "height": 180,
     "metaRatings": [
@@ -14524,6 +14597,7 @@
     "bodytype": "Average Medium",
     "commonName": "Isco",
     "eaId": 67306645,
+    "evolution": false,
     "foot": "Right",
     "height": 176,
     "metaRatings": [
@@ -14613,6 +14687,7 @@
     "bodytype": "Unique",
     "commonName": "Mauro Icardi",
     "eaId": 67310263,
+    "evolution": false,
     "foot": "Right",
     "height": 181,
     "metaRatings": [
@@ -14688,6 +14763,7 @@
     "bodytype": "Average Tall",
     "commonName": "Willi Orban",
     "eaId": 67313502,
+    "evolution": false,
     "foot": "Right",
     "height": 186,
     "metaRatings": [
@@ -14763,6 +14839,7 @@
     "bodytype": "Average Medium",
     "commonName": "Leandro Paredes",
     "eaId": 67316303,
+    "evolution": false,
     "foot": "Right",
     "height": 180,
     "metaRatings": [
@@ -14844,6 +14921,7 @@
     "bodytype": "Unique",
     "commonName": "Leon Goretzka",
     "eaId": 67318522,
+    "evolution": false,
     "foot": "Right",
     "height": 189,
     "metaRatings": [
@@ -14923,6 +15001,7 @@
     "bodytype": "Unique",
     "commonName": "Aymeric Laporte",
     "eaId": 67321082,
+    "evolution": false,
     "foot": "Left",
     "height": 189,
     "metaRatings": [
@@ -15004,6 +15083,7 @@
     "bodytype": "Lean Tall",
     "commonName": "I\u00f1aki Williams",
     "eaId": 67325065,
+    "evolution": false,
     "foot": "Right",
     "height": 186,
     "metaRatings": [
@@ -15085,6 +15165,7 @@
     "bodytype": "Average Short",
     "commonName": "Stanislav Lobotka",
     "eaId": 67325299,
+    "evolution": false,
     "foot": "Right",
     "height": 170,
     "metaRatings": [
@@ -15174,6 +15255,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Rafa",
     "eaId": 67325411,
+    "evolution": false,
     "foot": "Right",
     "height": 172,
     "metaRatings": [
@@ -15254,6 +15336,7 @@
     "bodytype": "Lean Tall",
     "commonName": "Philip Billing",
     "eaId": 67329578,
+    "evolution": false,
     "foot": "Left",
     "height": 197,
     "metaRatings": [
@@ -15341,6 +15424,7 @@
     "bodytype": "Average Medium",
     "commonName": "Ollie Watkins",
     "eaId": 67330561,
+    "evolution": false,
     "foot": "Right",
     "height": 180,
     "metaRatings": [
@@ -15424,6 +15508,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Todd Cantwell",
     "eaId": 67334612,
+    "evolution": false,
     "foot": "Right",
     "height": 177,
     "metaRatings": [
@@ -15501,6 +15586,7 @@
     "bodytype": "Average Medium",
     "commonName": "Nadine Angerer",
     "eaId": 67335157,
+    "evolution": false,
     "foot": "Right",
     "height": 175,
     "metaRatings": [
@@ -15576,6 +15662,7 @@
     "bodytype": "Unique",
     "commonName": "Crystal Dunn",
     "eaId": 67335200,
+    "evolution": false,
     "foot": "Right",
     "height": 155,
     "metaRatings": [
@@ -15678,6 +15765,7 @@
     "bodytype": "Average Medium",
     "commonName": "Isma\u00ebl Bennacer",
     "eaId": 67335618,
+    "evolution": false,
     "foot": "Left",
     "height": 175,
     "metaRatings": [
@@ -15760,6 +15848,7 @@
     "bodytype": "Unique",
     "commonName": "Debinha",
     "eaId": 67335757,
+    "evolution": false,
     "foot": "Right",
     "height": 155,
     "metaRatings": [
@@ -15841,6 +15930,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Christian Pulisic",
     "eaId": 67336660,
+    "evolution": false,
     "foot": "Right",
     "height": 177,
     "metaRatings": [
@@ -15914,6 +16004,7 @@
     "bodytype": "Average Medium",
     "commonName": "Aleix Garc\u00eda",
     "eaId": 67337677,
+    "evolution": false,
     "foot": "Right",
     "height": 173,
     "metaRatings": [
@@ -15994,6 +16085,7 @@
     "bodytype": "Lean Tall",
     "commonName": "Tammy Abraham",
     "eaId": 67340216,
+    "evolution": false,
     "foot": "Right",
     "height": 195,
     "metaRatings": [
@@ -16078,6 +16170,7 @@
     "bodytype": "Unique",
     "commonName": "Ousmane Demb\u00e9l\u00e9",
     "eaId": 67340307,
+    "evolution": false,
     "foot": "Left",
     "height": 178,
     "metaRatings": [
@@ -16153,6 +16246,7 @@
     "bodytype": "Unique",
     "commonName": "Jadon Sancho",
     "eaId": 67341913,
+    "evolution": false,
     "foot": "Right",
     "height": 180,
     "metaRatings": [
@@ -16235,6 +16329,7 @@
     "bodytype": null,
     "commonName": "Ko Itakura",
     "eaId": 67342016,
+    "evolution": false,
     "foot": "Right",
     "height": 188,
     "metaRatings": [
@@ -16314,6 +16409,7 @@
     "bodytype": "Average Short",
     "commonName": "Lieke Martens van Leer",
     "eaId": 67342612,
+    "evolution": false,
     "foot": "Right",
     "height": 170,
     "metaRatings": [
@@ -16398,6 +16494,7 @@
     "bodytype": "Average Short",
     "commonName": "Nikita Parris",
     "eaId": 67344523,
+    "evolution": false,
     "foot": "Right",
     "height": 162,
     "metaRatings": [
@@ -16477,6 +16574,7 @@
     "bodytype": "Average Medium",
     "commonName": "Nedim Bajrami",
     "eaId": 67346504,
+    "evolution": false,
     "foot": "Right",
     "height": 179,
     "metaRatings": [
@@ -16564,6 +16662,7 @@
     "bodytype": "Average Medium",
     "commonName": "Davide Frattesi",
     "eaId": 67348671,
+    "evolution": false,
     "foot": "Right",
     "height": 178,
     "metaRatings": [
@@ -16648,6 +16747,7 @@
     "bodytype": "Average Medium",
     "commonName": "Sergio G\u00f3mez",
     "eaId": 67350675,
+    "evolution": false,
     "foot": "Left",
     "height": 171,
     "metaRatings": [
@@ -16721,6 +16821,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Alexis Saelemaekers",
     "eaId": 67351528,
+    "evolution": false,
     "foot": "Right",
     "height": 180,
     "metaRatings": [
@@ -16812,6 +16913,7 @@
     "bodytype": "Average Medium",
     "commonName": "Bryan Mbeumo",
     "eaId": 67351878,
+    "evolution": false,
     "foot": "Right",
     "height": 171,
     "metaRatings": [
@@ -16889,6 +16991,7 @@
     "bodytype": "Average Short",
     "commonName": "Georgia Stanway",
     "eaId": 67352268,
+    "evolution": false,
     "foot": "Right",
     "height": 162,
     "metaRatings": [
@@ -16963,6 +17066,7 @@
     "bodytype": "Average Medium",
     "commonName": "Lo\u00efs Openda",
     "eaId": 67352444,
+    "evolution": false,
     "foot": "Right",
     "height": 177,
     "metaRatings": [
@@ -17038,6 +17142,7 @@
     "bodytype": null,
     "commonName": "Uro\u0161 Ra\u010di\u0107",
     "eaId": 67353117,
+    "evolution": false,
     "foot": "Right",
     "height": 193,
     "metaRatings": [
@@ -17117,6 +17222,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Dani Olmo",
     "eaId": 67353124,
+    "evolution": false,
     "foot": "Right",
     "height": 179,
     "metaRatings": [
@@ -17204,6 +17310,7 @@
     "bodytype": "Average Medium",
     "commonName": "Sem Steijn",
     "eaId": 67353592,
+    "evolution": false,
     "foot": "Right",
     "height": 173,
     "metaRatings": [
@@ -17280,6 +17387,7 @@
     "bodytype": "Lean Short",
     "commonName": "Billy Gilmour",
     "eaId": 67354856,
+    "evolution": false,
     "foot": "Right",
     "height": 170,
     "metaRatings": [
@@ -17359,6 +17467,7 @@
     "bodytype": "Average Medium",
     "commonName": "Saud Abdulhamid",
     "eaId": 67355552,
+    "evolution": false,
     "foot": "Right",
     "height": 175,
     "metaRatings": [
@@ -17433,6 +17542,7 @@
     "bodytype": "Average Tall",
     "commonName": "Nico Schlotterbeck",
     "eaId": 67356683,
+    "evolution": false,
     "foot": "Left",
     "height": 191,
     "metaRatings": [
@@ -17518,6 +17628,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Michael Olise",
     "eaId": 67356691,
+    "evolution": false,
     "foot": "Left",
     "height": 184,
     "metaRatings": [
@@ -17598,6 +17709,7 @@
     "bodytype": "Lean Tall",
     "commonName": "Kouadio Manu Kon\u00e9",
     "eaId": 67359587,
+    "evolution": false,
     "foot": "Right",
     "height": 185,
     "metaRatings": [
@@ -17681,6 +17793,7 @@
     "bodytype": null,
     "commonName": "Dilane Bakwa",
     "eaId": 67359653,
+    "evolution": false,
     "foot": "Left",
     "height": 179,
     "metaRatings": [
@@ -17756,6 +17869,7 @@
     "bodytype": "Average Tall",
     "commonName": "Jo\u0161ko Gvardiol",
     "eaId": 67360381,
+    "evolution": false,
     "foot": "Left",
     "height": 185,
     "metaRatings": [
@@ -17827,6 +17941,7 @@
     "bodytype": "Lean Tall",
     "commonName": "Finn Azaz",
     "eaId": 67360930,
+    "evolution": false,
     "foot": "Right",
     "height": 185,
     "metaRatings": [
@@ -17906,6 +18021,7 @@
     "bodytype": "Average Medium",
     "commonName": "Jeremie Frimpong",
     "eaId": 67362013,
+    "evolution": false,
     "foot": "Right",
     "height": 172,
     "metaRatings": [
@@ -17986,6 +18102,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Amad Diallo",
     "eaId": 67362952,
+    "evolution": false,
     "foot": "Left",
     "height": 173,
     "metaRatings": [
@@ -18068,6 +18185,7 @@
     "bodytype": "Lean Short",
     "commonName": "Chloe Kelly",
     "eaId": 67365865,
+    "evolution": false,
     "foot": "Right",
     "height": 168,
     "metaRatings": [
@@ -18151,6 +18269,7 @@
     "bodytype": "Lean Medium",
     "commonName": "\u00c1lex Baena",
     "eaId": 67366143,
+    "evolution": false,
     "foot": "Right",
     "height": 174,
     "metaRatings": [
@@ -18235,6 +18354,7 @@
     "bodytype": "Average Tall",
     "commonName": "Evann Guessand",
     "eaId": 67367308,
+    "evolution": false,
     "foot": "Right",
     "height": 188,
     "metaRatings": [
@@ -18323,6 +18443,7 @@
     "bodytype": "Lean Tall",
     "commonName": "Carney Chukwuemeka",
     "eaId": 67368220,
+    "evolution": false,
     "foot": "Right",
     "height": 187,
     "metaRatings": [
@@ -18407,6 +18528,7 @@
     "bodytype": "Average Tall",
     "commonName": "Aitor Paredes",
     "eaId": 67368388,
+    "evolution": false,
     "foot": "Right",
     "height": 186,
     "metaRatings": [
@@ -18487,6 +18609,7 @@
     "bodytype": "Lean Medium",
     "commonName": "H\u00e1kon Arnar Haraldsson",
     "eaId": 67370952,
+    "evolution": false,
     "foot": "Right",
     "height": 180,
     "metaRatings": [
@@ -18570,6 +18693,7 @@
     "bodytype": "Average Short",
     "commonName": "Ella Toone",
     "eaId": 67371875,
+    "evolution": false,
     "foot": "Right",
     "height": 163,
     "metaRatings": [
@@ -18652,6 +18776,7 @@
     "bodytype": "Average Short",
     "commonName": "Janou Levels",
     "eaId": 67374273,
+    "evolution": false,
     "foot": "Left",
     "height": 164,
     "metaRatings": [
@@ -18743,6 +18868,7 @@
     "bodytype": "Average Short",
     "commonName": "Selma Bacha",
     "eaId": 67374538,
+    "evolution": false,
     "foot": "Left",
     "height": 161,
     "metaRatings": [
@@ -18829,6 +18955,7 @@
     "bodytype": "Average Short",
     "commonName": "Naomie Feller",
     "eaId": 67374764,
+    "evolution": false,
     "foot": "Right",
     "height": 170,
     "metaRatings": [
@@ -18918,6 +19045,7 @@
     "bodytype": "Average Medium",
     "commonName": "Harry Kewell",
     "eaId": 67375665,
+    "evolution": false,
     "foot": "Left",
     "height": 180,
     "metaRatings": [
@@ -19002,6 +19130,7 @@
     "bodytype": "Lean Tall",
     "commonName": "Hugo Larsson",
     "eaId": 67377760,
+    "evolution": false,
     "foot": "Right",
     "height": 187,
     "metaRatings": [
@@ -19085,6 +19214,7 @@
     "bodytype": "Stocky Medium",
     "commonName": "Mayra Ram\u00edrez",
     "eaId": 67380865,
+    "evolution": false,
     "foot": "Right",
     "height": 178,
     "metaRatings": [
@@ -19158,6 +19288,7 @@
     "bodytype": "Average Short",
     "commonName": "Ant\u00f4nia Silva",
     "eaId": 67380873,
+    "evolution": false,
     "foot": "Right",
     "height": 170,
     "metaRatings": [
@@ -19242,6 +19373,7 @@
     "bodytype": "Average Tall",
     "commonName": "Gabriela Garc\u00eda",
     "eaId": 67381065,
+    "evolution": false,
     "foot": "Right",
     "height": 185,
     "metaRatings": [
@@ -19324,6 +19456,7 @@
     "bodytype": "Average Medium",
     "commonName": "Andrey Santos",
     "eaId": 67381882,
+    "evolution": false,
     "foot": "Right",
     "height": 180,
     "metaRatings": [
@@ -19406,6 +19539,7 @@
     "bodytype": "Lean Tall",
     "commonName": "Mat\u00edas Moreno",
     "eaId": 67385684,
+    "evolution": false,
     "foot": "Right",
     "height": 193,
     "metaRatings": [
@@ -19487,6 +19621,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Ferm\u00edn",
     "eaId": 67386043,
+    "evolution": false,
     "foot": "Right",
     "height": 174,
     "metaRatings": [
@@ -19575,6 +19710,7 @@
     "bodytype": "Average Medium",
     "commonName": "Pavel Nedv\u011bd",
     "eaId": 83892315,
+    "evolution": false,
     "foot": "Right",
     "height": 177,
     "metaRatings": [
@@ -19664,6 +19800,7 @@
     "bodytype": "Unique",
     "commonName": "Luis Su\u00e1rez",
     "eaId": 84062660,
+    "evolution": false,
     "foot": "Right",
     "height": 182,
     "metaRatings": [
@@ -19746,6 +19883,7 @@
     "bodytype": "Lean Tall",
     "commonName": "Chris Smalling",
     "eaId": 84075961,
+    "evolution": false,
     "foot": "Right",
     "height": 194,
     "metaRatings": [
@@ -19820,6 +19958,7 @@
     "bodytype": "Average Medium",
     "commonName": "I\u00f1igo Mart\u00ednez",
     "eaId": 84090605,
+    "evolution": false,
     "foot": "Left",
     "height": 182,
     "metaRatings": [
@@ -19900,6 +20039,7 @@
     "bodytype": "Unique",
     "commonName": "Mohamed Salah",
     "eaId": 84095411,
+    "evolution": false,
     "foot": "Left",
     "height": 175,
     "metaRatings": [
@@ -19979,6 +20119,7 @@
     "bodytype": "Average Medium",
     "commonName": "Giovanni Di Lorenzo",
     "eaId": 84103950,
+    "evolution": false,
     "foot": "Right",
     "height": 183,
     "metaRatings": [
@@ -20066,6 +20207,7 @@
     "bodytype": "Average Medium",
     "commonName": "Marco Asensio",
     "eaId": 84106914,
+    "evolution": false,
     "foot": "Left",
     "height": 182,
     "metaRatings": [
@@ -20157,6 +20299,7 @@
     "bodytype": "Average Tall",
     "commonName": "Sergej Milinkovi\u0107-Savi\u0107",
     "eaId": 84109928,
+    "evolution": false,
     "foot": "Right",
     "height": 192,
     "metaRatings": [
@@ -20238,6 +20381,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Ademola Lookman",
     "eaId": 84116979,
+    "evolution": false,
     "foot": "Right",
     "height": 174,
     "metaRatings": [
@@ -20318,6 +20462,7 @@
     "bodytype": "Unique",
     "commonName": "Donyell Malen",
     "eaId": 84117527,
+    "evolution": false,
     "foot": "Right",
     "height": 178,
     "metaRatings": [
@@ -20412,6 +20557,7 @@
     "bodytype": "Lean Tall",
     "commonName": "Gabriel",
     "eaId": 84118660,
+    "evolution": false,
     "foot": "Left",
     "height": 190,
     "metaRatings": [
@@ -20492,6 +20638,7 @@
     "bodytype": "Unique",
     "commonName": "Kai Havertz",
     "eaId": 84121870,
+    "evolution": false,
     "foot": "Left",
     "height": 193,
     "metaRatings": [
@@ -20577,6 +20724,7 @@
     "bodytype": "Lean Tall",
     "commonName": "Matt\u00e9o Guendouzi",
     "eaId": 84122576,
+    "evolution": false,
     "foot": "Right",
     "height": 185,
     "metaRatings": [
@@ -20652,6 +20800,7 @@
     "bodytype": "Average Medium",
     "commonName": "Cucho Hern\u00e1ndez",
     "eaId": 84123114,
+    "evolution": false,
     "foot": "Right",
     "height": 176,
     "metaRatings": [
@@ -20729,6 +20878,7 @@
     "bodytype": "Average Medium",
     "commonName": "Jonathan Burkardt",
     "eaId": 84130337,
+    "evolution": false,
     "foot": "Right",
     "height": 181,
     "metaRatings": [
@@ -20818,6 +20968,7 @@
     "bodytype": "Average Short",
     "commonName": "Juli\u00e1n \u00c1lvarez",
     "eaId": 84132271,
+    "evolution": false,
     "foot": "Right",
     "height": 170,
     "metaRatings": [
@@ -20903,6 +21054,7 @@
     "bodytype": "Average Medium",
     "commonName": "Saud Abdulhamid",
     "eaId": 84132768,
+    "evolution": false,
     "foot": "Right",
     "height": 175,
     "metaRatings": [
@@ -20985,6 +21137,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Karim Adeyemi",
     "eaId": 84137932,
+    "evolution": false,
     "foot": "Left",
     "height": 180,
     "metaRatings": [
@@ -21065,6 +21218,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Isaiah Jones",
     "eaId": 84139135,
+    "evolution": false,
     "foot": "Right",
     "height": 176,
     "metaRatings": [
@@ -21146,6 +21300,7 @@
     "bodytype": "Lean Tall",
     "commonName": "Darwin N\u00fa\u00f1ez",
     "eaId": 84139152,
+    "evolution": false,
     "foot": "Right",
     "height": 187,
     "metaRatings": [
@@ -21235,6 +21390,7 @@
     "bodytype": "Lean Tall",
     "commonName": "Maximilian Beier",
     "eaId": 84140197,
+    "evolution": false,
     "foot": "Right",
     "height": 185,
     "metaRatings": [
@@ -21317,6 +21473,7 @@
     "bodytype": "Average Medium",
     "commonName": "Florian Wirtz",
     "eaId": 84142710,
+    "evolution": false,
     "foot": "Right",
     "height": 177,
     "metaRatings": [
@@ -21396,6 +21553,7 @@
     "bodytype": "Average Short",
     "commonName": "Gia Corley",
     "eaId": 84151069,
+    "evolution": false,
     "foot": "Right",
     "height": 159,
     "metaRatings": [
@@ -21477,6 +21635,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Samuel Iling-Junior",
     "eaId": 84158459,
+    "evolution": false,
     "foot": "Left",
     "height": 182,
     "metaRatings": [
@@ -21557,6 +21716,7 @@
     "bodytype": "Lean Short",
     "commonName": "Sonia Bompastor",
     "eaId": 84161172,
+    "evolution": false,
     "foot": "Left",
     "height": 163,
     "metaRatings": [
@@ -21644,6 +21804,7 @@
     "bodytype": "Unique",
     "commonName": "Wilfried Zaha",
     "eaId": 100862013,
+    "evolution": false,
     "foot": "Right",
     "height": 180,
     "metaRatings": [
@@ -21727,6 +21888,7 @@
     "bodytype": "Average Medium",
     "commonName": "Giovanni Di Lorenzo",
     "eaId": 100881166,
+    "evolution": false,
     "foot": "Right",
     "height": 183,
     "metaRatings": [
@@ -21807,6 +21969,7 @@
     "bodytype": "Average Tall",
     "commonName": "Viktor Gy\u00f6keres",
     "eaId": 100904947,
+    "evolution": false,
     "foot": "Right",
     "height": 187,
     "metaRatings": [
@@ -21887,6 +22050,7 @@
     "bodytype": "Average Short",
     "commonName": "Moussa Diaby",
     "eaId": 100905148,
+    "evolution": false,
     "foot": "Left",
     "height": 170,
     "metaRatings": [
@@ -21977,6 +22141,7 @@
     "bodytype": "Average Tall",
     "commonName": "Jhon Dur\u00e1n",
     "eaId": 100910468,
+    "evolution": false,
     "foot": "Left",
     "height": 187,
     "metaRatings": [
@@ -22060,6 +22225,7 @@
     "bodytype": "Average Medium",
     "commonName": "Florian Wirtz",
     "eaId": 100919926,
+    "evolution": false,
     "foot": "Right",
     "height": 177,
     "metaRatings": [
@@ -22142,6 +22308,7 @@
     "bodytype": "Lean Medium",
     "commonName": "Jamal Musiala",
     "eaId": 100920086,
+    "evolution": false,
     "foot": "Right",
     "height": 184,
     "metaRatings": [
@@ -22226,6 +22393,7 @@
     "bodytype": "Average Medium",
     "commonName": "Trinity Rodman",
     "eaId": 100930224,
+    "evolution": false,
     "foot": "Right",
     "height": 173,
     "metaRatings": [
@@ -22306,6 +22474,7 @@
     "bodytype": "Unique",
     "commonName": "Linda Caicedo",
     "eaId": 100936449,
+    "evolution": false,
     "foot": "Right",
     "height": 163,
     "metaRatings": [
@@ -22390,6 +22559,7 @@
     "bodytype": "Average Tall",
     "commonName": "Serhou Guirassy",
     "eaId": 117655953,
+    "evolution": false,
     "foot": "Right",
     "height": 187,
     "metaRatings": [
@@ -22473,6 +22643,7 @@
     "bodytype": "Average Medium",
     "commonName": "Khvicha Kvaratskhelia",
     "eaId": 117688147,
+    "evolution": false,
     "foot": "Right",
     "height": 183,
     "metaRatings": [
@@ -22545,6 +22716,7 @@
     "bodytype": null,
     "commonName": "Michael Olise",
     "eaId": 117688339,
+    "evolution": false,
     "foot": "Left",
     "height": 184,
     "metaRatings": [
@@ -22626,6 +22798,7 @@
     "bodytype": "Unique",
     "commonName": "Barbra Banda",
     "eaId": 117716871,
+    "evolution": false,
     "foot": "Right",
     "height": 177,
     "metaRatings": [
@@ -22703,6 +22876,7 @@
     "bodytype": "Unique",
     "commonName": "Cristiano Ronaldo",
     "eaId": 134238529,
+    "evolution": false,
     "foot": "Right",
     "height": 187,
     "metaRatings": [

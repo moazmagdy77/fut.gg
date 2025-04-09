@@ -104,6 +104,11 @@ rpp_to_archetype = {
 st.sidebar.header("Filter Players")
 filters = {}
 
+evolution_values = [True, False]
+selected_evolution = st.sidebar.selectbox("evolution", options=["All"] + evolution_values)
+if selected_evolution != "All":
+    filters["evolution"] = selected_evolution
+
 # Define attribute filter order
 attribute_filter_order = [
     "acceleration", "sprintSpeed", "positioning", "finishing", "shotPower", "longShots",
@@ -182,6 +187,9 @@ df["metarating"] = pd.to_numeric(df["metarating"], errors="coerce").fillna(0)
 # Apply filters
 filtered_df = df.copy()
 for col, val in filters.items():
+    if col == "evolution":
+        filtered_df = filtered_df[filtered_df[col] == val]
+        continue
     if col in ["playstyles", "playstylesPlus"]:
         filtered_df = filtered_df[filtered_df.apply(
             lambda row: any(i in (row.get("playstyles") or []) for i in val) or any(i in (row.get("playstylesPlus") or []) for i in val),

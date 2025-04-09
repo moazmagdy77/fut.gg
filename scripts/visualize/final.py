@@ -14,6 +14,9 @@ with club_players_path.open() as f:
 with evolab_meta_path.open() as f:
     evolab_meta = json.load(f)["data"]
 
+# Create a dictionary mapping eaId to player data for club players
+club_players_by_eaid = {player["eaId"]: player for player in club_players}
+
 # Index evolab_meta by eaId for quick lookup
 evolab_meta_by_eaid = {player["eaId"]: player for player in evolab_meta}
 
@@ -24,6 +27,7 @@ used_eaids = set()
 # Add all unique evolab_meta players first
 for player in evolab_meta:
     combined_players.append(player)
+    player["evolution"] = True
     used_eaids.add(player["eaId"])
 
     # Remove rolesPlusPlusArchetypes if present
@@ -79,6 +83,7 @@ for player in club_players:
             if old_field in player:
                 player[new_field] = player.pop(old_field)
 
+        player["evolution"] = False
         combined_players.append(player)
 
 # Output combined list
