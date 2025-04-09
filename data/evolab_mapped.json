@@ -119,9 +119,9 @@
       "rolesPlusPlusArchetypes": [],
       "bodytype": "Lean Medium",
       "positions": [
-        "RM",
+        "ST",
         "RW",
-        "ST"
+        "RM"
       ],
       "metaRatings": []
     },
@@ -241,89 +241,9 @@
       ],
       "bodytype": "Unique",
       "positions": [
+        "LB",
         "RB",
-        "CB",
-        "LB"
-      ],
-      "metaRatings": []
-    },
-    {
-      "eaId": 50595463,
-      "overall": 89,
-      "height": 182,
-      "foot": "Left",
-      "skillMoves": 4,
-      "weakFoot": 4,
-      "playstyles": [
-        "Incisive Pass",
-        "Whipped Pass",
-        "Block",
-        "Intercept",
-        "Press Proven",
-        "Relentless"
-      ],
-      "playstylesPlus": [
-        "Quick Step",
-        "Pinged Pass"
-      ],
-      "rolesPlus": [
-        "CM Box to Box",
-        "CM Holding",
-        "CM Half-Winger",
-        "LM Wide Midfielder",
-        "LM Wide Playmaker"
-      ],
-      "rolesPlusPlus": [
-        "LB Fullback",
-        "LB Falseback",
-        "CM Deep-Lying Playmaker",
-        "CM Playmaker",
-        "LM Winger"
-      ],
-      "accelerateType": "MOSTLY_EXPLOSIVE",
-      "weight": 74,
-      "attributeAcceleration": 92,
-      "attributeSprintSpeed": 96,
-      "attributeAgility": 93,
-      "attributeBalance": 86,
-      "attributeJumping": 90,
-      "attributeStamina": 93,
-      "attributeStrength": 78,
-      "attributeReactions": 82,
-      "attributeAggression": 92,
-      "attributeComposure": 84,
-      "attributeInterceptions": 82,
-      "attributePositioning": 99,
-      "attributeVision": 81,
-      "attributeBallControl": 88,
-      "attributeCrossing": 92,
-      "attributeDribbling": 88,
-      "attributeFinishing": 78,
-      "attributeFkAccuracy": 45,
-      "attributeHeadingAccuracy": 71,
-      "attributeLongPassing": 89,
-      "attributeShortPassing": 91,
-      "attributeDefensiveAwareness": 82,
-      "attributeShotPower": 92,
-      "attributeLongShots": 83,
-      "attributeStandingTackle": 91,
-      "attributeSlidingTackle": 92,
-      "attributeVolleys": 85,
-      "attributeCurve": 91,
-      "attributePenalties": 68,
-      "commonName": "Abner Vinícius",
-      "rolesPlusPlusArchetypes": [
-        "playmaker",
-        "winger",
-        "deep_lying_playmaker",
-        "fullback",
-        "falseback"
-      ],
-      "bodytype": "Average Medium",
-      "positions": [
-        "CM",
-        "LM",
-        "LB"
+        "CB"
       ],
       "metaRatings": []
     },
@@ -385,92 +305,13 @@
       "attributePenalties": 55,
       "commonName": "Ethan Pinnock",
       "rolesPlusPlusArchetypes": [
+        "stopper",
         "ball_playing_defender",
-        "defender",
-        "stopper"
+        "defender"
       ],
       "bodytype": "Lean Tall",
       "positions": [
         "CB"
-      ],
-      "metaRatings": []
-    },
-    {
-      "eaId": 67383400,
-      "overall": 90,
-      "height": 190,
-      "foot": "Right",
-      "skillMoves": 4,
-      "weakFoot": 4,
-      "playstyles": [
-        "Pinged Pass",
-        "Long Ball Pass",
-        "Block",
-        "Intercept",
-        "Slide Tackle",
-        "Rapid",
-        "Press Proven"
-      ],
-      "playstylesPlus": [
-        "Anticipate",
-        "Bruiser"
-      ],
-      "rolesPlus": [
-        "LB Falseback",
-        "LB Wingback",
-        "CDM Deep-Lying Playmaker"
-      ],
-      "rolesPlusPlus": [
-        "LB Fullback",
-        "CB Defender",
-        "CB Stopper",
-        "CB Ball-Playing Defender",
-        "CDM Holding"
-      ],
-      "accelerateType": "MOSTLY_LENGTHY",
-      "weight": 81,
-      "attributeAcceleration": 98,
-      "attributeSprintSpeed": 96,
-      "attributeAgility": 88,
-      "attributeBalance": 88,
-      "attributeJumping": 92,
-      "attributeStamina": 85,
-      "attributeStrength": 90,
-      "attributeReactions": 90,
-      "attributeAggression": 85,
-      "attributeComposure": 90,
-      "attributeInterceptions": 84,
-      "attributePositioning": 99,
-      "attributeVision": 90,
-      "attributeBallControl": 82,
-      "attributeCrossing": 83,
-      "attributeDribbling": 80,
-      "attributeFinishing": 95,
-      "attributeFkAccuracy": 57,
-      "attributeHeadingAccuracy": 73,
-      "attributeLongPassing": 94,
-      "attributeShortPassing": 90,
-      "attributeDefensiveAwareness": 87,
-      "attributeShotPower": 69,
-      "attributeLongShots": 72,
-      "attributeStandingTackle": 87,
-      "attributeSlidingTackle": 80,
-      "attributeVolleys": 39,
-      "attributeCurve": 64,
-      "attributePenalties": 55,
-      "commonName": "Moïse Bombito",
-      "rolesPlusPlusArchetypes": [
-        "stopper",
-        "ball_playing_defender",
-        "defender",
-        "fullback",
-        "holding"
-      ],
-      "bodytype": "Average Tall",
-      "positions": [
-        "CB",
-        "CDM",
-        "LB"
       ],
       "metaRatings": []
     },
@@ -540,9 +381,9 @@
       "attributePenalties": 92,
       "commonName": "Hakan Çalhanoğlu",
       "rolesPlusPlusArchetypes": [
+        "deep_lying_playmaker",
         "centre_half",
-        "box_to_box",
-        "deep_lying_playmaker"
+        "box_to_box"
       ],
       "bodytype": "Average Medium",
       "positions": [
@@ -619,9 +460,9 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "RW",
         "CAM",
         "LW",
+        "RW",
         "RM"
       ],
       "metaRatings": []
@@ -683,8 +524,8 @@
       "attributePenalties": 64,
       "commonName": "Jamal Musiala",
       "rolesPlusPlusArchetypes": [
-        "shadow_striker",
-        "classic_ten"
+        "classic_ten",
+        "shadow_striker"
       ],
       "bodytype": "Lean Medium",
       "positions": [
@@ -755,8 +596,8 @@
       "attributePenalties": 85,
       "commonName": "Trinity Rodman",
       "rolesPlusPlusArchetypes": [
-        "inside_forward",
-        "advanced_forward"
+        "advanced_forward",
+        "inside_forward"
       ],
       "bodytype": "Average Medium",
       "positions": [
@@ -834,9 +675,9 @@
       "attributePenalties": 75,
       "commonName": "Thomas Thiesson Kristensen",
       "rolesPlusPlusArchetypes": [
-        "defender",
+        "deep_lying_playmaker",
         "holding",
-        "deep_lying_playmaker"
+        "defender"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -910,9 +751,9 @@
       "attributePenalties": 66,
       "commonName": "Koni De Winter",
       "rolesPlusPlusArchetypes": [
-        "defender",
+        "stopper",
         "fullback",
-        "stopper"
+        "defender"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -1051,11 +892,11 @@
       "attributePenalties": 92,
       "commonName": "Zinedine Zidane",
       "rolesPlusPlusArchetypes": [
-        "classic_ten",
-        "playmaker",
-        "shadow_striker",
         "half_winger",
-        "box_to_box"
+        "box_to_box",
+        "shadow_striker",
+        "playmaker",
+        "classic_ten"
       ],
       "bodytype": "Unique",
       "positions": [
@@ -1126,8 +967,8 @@
       "attributePenalties": 44,
       "commonName": "Lukas Klostermann",
       "rolesPlusPlusArchetypes": [
-        "defender",
-        "fullback"
+        "fullback",
+        "defender"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -1402,73 +1243,6 @@
       "metaRatings": []
     },
     {
-      "eaId": 67313414,
-      "overall": 78,
-      "height": 188,
-      "foot": "Right",
-      "skillMoves": 4,
-      "weakFoot": 4,
-      "playstyles": [
-        "Rapid",
-        "Aerial",
-        "Quick Step",
-        "Bruiser"
-      ],
-      "playstylesPlus": [
-        "Press Proven"
-      ],
-      "rolesPlus": [
-        "RM Inside Forward",
-        "RM Winger"
-      ],
-      "rolesPlusPlus": [
-        "RW Inside Forward",
-        "RW Winger"
-      ],
-      "accelerateType": "CONTROLLED",
-      "weight": 79,
-      "attributeAcceleration": 88,
-      "attributeSprintSpeed": 93,
-      "attributeAgility": 81,
-      "attributeBalance": 80,
-      "attributeJumping": 73,
-      "attributeStamina": 80,
-      "attributeStrength": 82,
-      "attributeReactions": 80,
-      "attributeAggression": 74,
-      "attributeComposure": 80,
-      "attributeInterceptions": 36,
-      "attributePositioning": 77,
-      "attributeVision": 67,
-      "attributeBallControl": 81,
-      "attributeCrossing": 76,
-      "attributeDribbling": 83,
-      "attributeFinishing": 75,
-      "attributeFkAccuracy": 63,
-      "attributeHeadingAccuracy": 68,
-      "attributeLongPassing": 59,
-      "attributeShortPassing": 71,
-      "attributeDefensiveAwareness": 30,
-      "attributeShotPower": 81,
-      "attributeLongShots": 68,
-      "attributeStandingTackle": 44,
-      "attributeSlidingTackle": 39,
-      "attributeVolleys": 75,
-      "attributeCurve": 73,
-      "attributePenalties": 65,
-      "commonName": "Víctor Ibarbo",
-      "rolesPlusPlusArchetypes": [
-        "winger",
-        "inside_forward"
-      ],
-      "bodytype": "Average Tall",
-      "positions": [
-        "RW",
-        "RM"
-      ],
-      "metaRatings": []
-    },
-    {
       "eaId": 190871,
       "overall": 87,
       "height": 175,
@@ -1527,8 +1301,8 @@
       "attributePenalties": 85,
       "commonName": "Neymar Jr",
       "rolesPlusPlusArchetypes": [
-        "wide_playmaker",
-        "inside_forward"
+        "inside_forward",
+        "wide_playmaker"
       ],
       "bodytype": "Unique",
       "positions": [
@@ -1744,9 +1518,9 @@
       "attributePenalties": 75,
       "commonName": "Mats Hummels",
       "rolesPlusPlusArchetypes": [
+        "stopper",
         "ball_playing_defender",
-        "defender",
-        "stopper"
+        "defender"
       ],
       "bodytype": "Stocky Tall",
       "positions": [
@@ -1821,15 +1595,15 @@
       "attributePenalties": 89,
       "commonName": "Fridolina Rolfö",
       "rolesPlusPlusArchetypes": [
+        "attacking_wingback",
         "falseback",
-        "inside_forward",
-        "attacking_wingback"
+        "inside_forward"
       ],
       "bodytype": "Lean Medium",
       "positions": [
+        "LB",
         "LW",
-        "LM",
-        "LB"
+        "LM"
       ],
       "metaRatings": []
     },
@@ -1895,8 +1669,8 @@
       "attributePenalties": 84,
       "commonName": "Lucas Bergvall",
       "rolesPlusPlusArchetypes": [
-        "playmaker",
-        "deep_lying_playmaker"
+        "deep_lying_playmaker",
+        "playmaker"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -1906,12 +1680,97 @@
       "metaRatings": []
     },
     {
+      "eaId": 50595463,
+      "overall": 91,
+      "height": 182,
+      "foot": "Left",
+      "skillMoves": 4,
+      "weakFoot": 5,
+      "playstyles": [
+        "Incisive Pass",
+        "Whipped Pass",
+        "Jockey",
+        "Block",
+        "Intercept",
+        "Slide Tackle",
+        "Bruiser",
+        "Press Proven",
+        "Relentless"
+      ],
+      "playstylesPlus": [
+        "Quick Step",
+        "Pinged Pass"
+      ],
+      "rolesPlus": [
+        "CM Box to Box",
+        "CM Holding",
+        "CM Half-Winger",
+        "LM Wide Midfielder",
+        "LM Wide Playmaker"
+      ],
+      "rolesPlusPlus": [
+        "LB Fullback",
+        "LB Falseback",
+        "LB Attacking Wingback",
+        "CM Deep-Lying Playmaker",
+        "CM Playmaker",
+        "LM Winger"
+      ],
+      "accelerateType": "MOSTLY_EXPLOSIVE",
+      "weight": 74,
+      "attributeAcceleration": 92,
+      "attributeSprintSpeed": 96,
+      "attributeAgility": 93,
+      "attributeBalance": 86,
+      "attributeJumping": 90,
+      "attributeStamina": 98,
+      "attributeStrength": 81,
+      "attributeReactions": 82,
+      "attributeAggression": 94,
+      "attributeComposure": 89,
+      "attributeInterceptions": 87,
+      "attributePositioning": 99,
+      "attributeVision": 81,
+      "attributeBallControl": 88,
+      "attributeCrossing": 92,
+      "attributeDribbling": 88,
+      "attributeFinishing": 78,
+      "attributeFkAccuracy": 45,
+      "attributeHeadingAccuracy": 71,
+      "attributeLongPassing": 89,
+      "attributeShortPassing": 91,
+      "attributeDefensiveAwareness": 87,
+      "attributeShotPower": 92,
+      "attributeLongShots": 83,
+      "attributeStandingTackle": 91,
+      "attributeSlidingTackle": 92,
+      "attributeVolleys": 85,
+      "attributeCurve": 91,
+      "attributePenalties": 68,
+      "commonName": "Abner Vinícius",
+      "rolesPlusPlusArchetypes": [
+        "deep_lying_playmaker",
+        "attacking_wingback",
+        "falseback",
+        "playmaker",
+        "winger",
+        "fullback"
+      ],
+      "bodytype": "Average Medium",
+      "positions": [
+        "LB",
+        "CM",
+        "LM"
+      ],
+      "metaRatings": []
+    },
+    {
       "eaId": 100875494,
       "overall": 89,
       "height": 179,
       "foot": "Right",
-      "skillMoves": 4,
-      "weakFoot": 4,
+      "skillMoves": 5,
+      "weakFoot": 5,
       "playstyles": [
         "Finesse Shot",
         "Incisive Pass",
@@ -1987,11 +1846,14 @@
       "skillMoves": 5,
       "weakFoot": 4,
       "playstyles": [
+        "Finesse Shot",
         "Power Shot",
+        "Low Driven Shot",
         "Incisive Pass",
         "Tiki Taka",
         "Technical",
-        "Rapid"
+        "Rapid",
+        "Acrobatic"
       ],
       "playstylesPlus": [
         "Power Header",
@@ -2039,14 +1901,174 @@
       "attributePenalties": 81,
       "commonName": "Jovon Makama",
       "rolesPlusPlusArchetypes": [
-        "inside_forward",
-        "advanced_forward"
+        "advanced_forward",
+        "inside_forward"
       ],
       "bodytype": "Lean Tall",
       "positions": [
         "RM",
-        "RW",
-        "ST"
+        "ST",
+        "RW"
+      ],
+      "metaRatings": []
+    },
+    {
+      "eaId": 67383400,
+      "overall": 90,
+      "height": 190,
+      "foot": "Right",
+      "skillMoves": 5,
+      "weakFoot": 5,
+      "playstyles": [
+        "Pinged Pass",
+        "Long Ball Pass",
+        "Block",
+        "Intercept",
+        "Slide Tackle",
+        "Rapid",
+        "Press Proven"
+      ],
+      "playstylesPlus": [
+        "Anticipate",
+        "Bruiser"
+      ],
+      "rolesPlus": [
+        "LB Falseback",
+        "LB Wingback",
+        "CDM Deep-Lying Playmaker"
+      ],
+      "rolesPlusPlus": [
+        "LB Fullback",
+        "CB Defender",
+        "CB Stopper",
+        "CB Ball-Playing Defender",
+        "CDM Holding"
+      ],
+      "accelerateType": "MOSTLY_LENGTHY",
+      "weight": 81,
+      "attributeAcceleration": 98,
+      "attributeSprintSpeed": 96,
+      "attributeAgility": 88,
+      "attributeBalance": 88,
+      "attributeJumping": 92,
+      "attributeStamina": 85,
+      "attributeStrength": 90,
+      "attributeReactions": 90,
+      "attributeAggression": 85,
+      "attributeComposure": 90,
+      "attributeInterceptions": 84,
+      "attributePositioning": 99,
+      "attributeVision": 90,
+      "attributeBallControl": 82,
+      "attributeCrossing": 83,
+      "attributeDribbling": 80,
+      "attributeFinishing": 95,
+      "attributeFkAccuracy": 57,
+      "attributeHeadingAccuracy": 73,
+      "attributeLongPassing": 94,
+      "attributeShortPassing": 90,
+      "attributeDefensiveAwareness": 87,
+      "attributeShotPower": 69,
+      "attributeLongShots": 72,
+      "attributeStandingTackle": 87,
+      "attributeSlidingTackle": 80,
+      "attributeVolleys": 39,
+      "attributeCurve": 64,
+      "attributePenalties": 55,
+      "commonName": "Moïse Bombito",
+      "rolesPlusPlusArchetypes": [
+        "stopper",
+        "fullback",
+        "ball_playing_defender",
+        "holding",
+        "defender"
+      ],
+      "bodytype": "Average Tall",
+      "positions": [
+        "LB",
+        "CB",
+        "CDM"
+      ],
+      "metaRatings": []
+    },
+    {
+      "eaId": 67313414,
+      "overall": 92,
+      "height": 188,
+      "foot": "Right",
+      "skillMoves": 4,
+      "weakFoot": 4,
+      "playstyles": [
+        "Dead Ball",
+        "Pinged Pass",
+        "Long Ball Pass",
+        "Jockey",
+        "Intercept",
+        "Rapid",
+        "Quick Step",
+        "Aerial"
+      ],
+      "playstylesPlus": [
+        "Press Proven",
+        "Bruiser"
+      ],
+      "rolesPlus": [
+        "RB Falseback",
+        "RB Wingback",
+        "CM Box to Box",
+        "RM Winger",
+        "RM Inside Forward"
+      ],
+      "rolesPlusPlus": [
+        "RW Inside Forward",
+        "CM Deep-Lying Playmaker",
+        "RB Fullback",
+        "RW Winger"
+      ],
+      "accelerateType": "CONTROLLED",
+      "weight": 79,
+      "attributeAcceleration": 90,
+      "attributeSprintSpeed": 95,
+      "attributeAgility": 86,
+      "attributeBalance": 85,
+      "attributeJumping": 83,
+      "attributeStamina": 91,
+      "attributeStrength": 93,
+      "attributeReactions": 85,
+      "attributeAggression": 84,
+      "attributeComposure": 85,
+      "attributeInterceptions": 89,
+      "attributePositioning": 77,
+      "attributeVision": 80,
+      "attributeBallControl": 86,
+      "attributeCrossing": 90,
+      "attributeDribbling": 88,
+      "attributeFinishing": 75,
+      "attributeFkAccuracy": 75,
+      "attributeHeadingAccuracy": 99,
+      "attributeLongPassing": 71,
+      "attributeShortPassing": 84,
+      "attributeDefensiveAwareness": 75,
+      "attributeShotPower": 81,
+      "attributeLongShots": 68,
+      "attributeStandingTackle": 99,
+      "attributeSlidingTackle": 96,
+      "attributeVolleys": 75,
+      "attributeCurve": 87,
+      "attributePenalties": 65,
+      "commonName": "Víctor Ibarbo",
+      "rolesPlusPlusArchetypes": [
+        "deep_lying_playmaker",
+        "winger",
+        "fullback",
+        "inside_forward"
+      ],
+      "bodytype": "Average Tall",
+      "positions": [
+        "RM",
+        "RB",
+        "CM",
+        "RW"
       ],
       "metaRatings": []
     }
