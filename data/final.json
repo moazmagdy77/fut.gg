@@ -53,8 +53,8 @@
     "playstylesPlus": [],
     "positions": [
       "RM",
-      "RW",
-      "ST"
+      "ST",
+      "RW"
     ],
     "rolesPlus": [
       "ST Advanced Forward",
@@ -172,16 +172,16 @@
     "height": 194,
     "metaRatings": [
       {
+        "archetype": "ball_playing_defender",
+        "metaRating": 82.46749974292035
+      },
+      {
         "archetype": "defender",
         "metaRating": 84.45761009437597
       },
       {
         "archetype": "stopper",
         "metaRating": 83.8283440476719
-      },
-      {
-        "archetype": "ball_playing_defender",
-        "metaRating": 82.46749974292035
       }
     ],
     "overall": 89,
@@ -258,12 +258,12 @@
         "metaRating": 91.39042093698922
       },
       {
-        "archetype": "deep_lying_playmaker",
-        "metaRating": 90.8504267222052
-      },
-      {
         "archetype": "centre_half",
         "metaRating": 87.66940357637692
+      },
+      {
+        "archetype": "deep_lying_playmaker",
+        "metaRating": 90.8504267222052
       }
     ],
     "overall": 90,
@@ -364,10 +364,10 @@
       "Technical"
     ],
     "positions": [
-      "LW",
+      "CAM",
       "RM",
       "RW",
-      "CAM"
+      "LW"
     ],
     "rolesPlus": [
       "RW Winger",
@@ -428,12 +428,12 @@
     "height": 184,
     "metaRatings": [
       {
-        "archetype": "classic_ten",
-        "metaRating": 86.02709353202134
-      },
-      {
         "archetype": "shadow_striker",
         "metaRating": 85.83828947314404
+      },
+      {
+        "archetype": "classic_ten",
+        "metaRating": 86.02709353202134
       }
     ],
     "overall": 89,
@@ -449,8 +449,8 @@
     ],
     "positions": [
       "CM",
-      "LM",
-      "CAM"
+      "CAM",
+      "LM"
     ],
     "rolesPlus": [
       "LM Inside Forward"
@@ -530,9 +530,9 @@
     ],
     "positions": [
       "RM",
+      "RW",
       "LM",
-      "ST",
-      "RW"
+      "ST"
     ],
     "rolesPlus": [
       "RM Wide Midfielder",
@@ -595,12 +595,12 @@
         "metaRating": 90.584908833548
       },
       {
-        "archetype": "deep_lying_playmaker",
-        "metaRating": 88.90500672447456
-      },
-      {
         "archetype": "defender",
         "metaRating": 91.27592049511324
+      },
+      {
+        "archetype": "deep_lying_playmaker",
+        "metaRating": 88.90500672447456
       }
     ],
     "overall": 92,
@@ -621,9 +621,9 @@
       "Anticipate"
     ],
     "positions": [
+      "CM",
       "CB",
-      "CDM",
-      "CM"
+      "CDM"
     ],
     "rolesPlus": [
       "CM Box to Box",
@@ -684,12 +684,12 @@
     "height": 191,
     "metaRatings": [
       {
-        "archetype": "fullback",
-        "metaRating": 90.5336386184558
-      },
-      {
         "archetype": "defender",
         "metaRating": 89.17932891247229
+      },
+      {
+        "archetype": "fullback",
+        "metaRating": 90.5336386184558
       },
       {
         "archetype": "stopper",
@@ -850,20 +850,20 @@
         "metaRating": 89.76941053033791
       },
       {
-        "archetype": "shadow_striker",
-        "metaRating": 88.99013254582086
-      },
-      {
-        "archetype": "playmaker",
-        "metaRating": 89.17194125874664
+        "archetype": "half_winger",
+        "metaRating": 84.71378846680891
       },
       {
         "archetype": "box_to_box",
         "metaRating": 89.24136291809442
       },
       {
-        "archetype": "half_winger",
-        "metaRating": 84.71378846680891
+        "archetype": "shadow_striker",
+        "metaRating": 88.99013254582086
+      },
+      {
+        "archetype": "playmaker",
+        "metaRating": 89.17194125874664
       }
     ],
     "overall": 94,
@@ -944,12 +944,12 @@
     "height": 187,
     "metaRatings": [
       {
-        "archetype": "fullback",
-        "metaRating": 86.14454845389479
-      },
-      {
         "archetype": "defender",
         "metaRating": 85.32600777149828
+      },
+      {
+        "archetype": "fullback",
+        "metaRating": 86.14454845389479
       }
     ],
     "overall": 90,
@@ -1041,8 +1041,8 @@
       "Finesse Shot"
     ],
     "positions": [
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "rolesPlus": [
       "ST False 9",
@@ -1099,12 +1099,12 @@
     "height": 206,
     "metaRatings": [
       {
-        "archetype": "defender",
-        "metaRating": 89.4034399330199
-      },
-      {
         "archetype": "ball_playing_defender",
         "metaRating": 90.26771586631254
+      },
+      {
+        "archetype": "defender",
+        "metaRating": 89.4034399330199
       }
     ],
     "overall": 90,
@@ -1197,8 +1197,8 @@
       "Technical"
     ],
     "positions": [
-      "LW",
-      "LM"
+      "LM",
+      "LW"
     ],
     "rolesPlus": [
       "LM Winger",
@@ -1256,12 +1256,12 @@
     "height": 179,
     "metaRatings": [
       {
-        "archetype": "poacher",
-        "metaRating": 77.31280682270014
-      },
-      {
         "archetype": "advanced_forward",
         "metaRating": 77.82627224207698
+      },
+      {
+        "archetype": "poacher",
+        "metaRating": 77.31280682270014
       }
     ],
     "overall": 82,
@@ -1353,9 +1353,9 @@
       "Trickster"
     ],
     "positions": [
-      "LW",
+      "CAM",
       "LM",
-      "CAM"
+      "LW"
     ],
     "rolesPlus": [
       "CAM Shadow Striker",
@@ -1414,12 +1414,12 @@
     "height": 178,
     "metaRatings": [
       {
-        "archetype": "winger",
-        "metaRating": 90.01269860005367
-      },
-      {
         "archetype": "shadow_striker",
         "metaRating": 87.82664194364844
+      },
+      {
+        "archetype": "winger",
+        "metaRating": 90.01269860005367
       }
     ],
     "overall": 90,
@@ -1613,8 +1613,8 @@
     ],
     "positions": [
       "LW",
-      "LM",
-      "LB"
+      "LB",
+      "LM"
     ],
     "rolesPlus": [
       "LW Wide Playmaker",
@@ -1675,12 +1675,12 @@
     "height": 186,
     "metaRatings": [
       {
-        "archetype": "deep_lying_playmaker",
-        "metaRating": 85.36951351416695
-      },
-      {
         "archetype": "playmaker",
         "metaRating": 88.47269453675747
+      },
+      {
+        "archetype": "deep_lying_playmaker",
+        "metaRating": 85.36951351416695
       }
     ],
     "overall": 89,
@@ -1758,16 +1758,16 @@
     "height": 191,
     "metaRatings": [
       {
+        "archetype": "ball_playing_defender",
+        "metaRating": 89.281343717479
+      },
+      {
         "archetype": "defender",
         "metaRating": 90.67400344114496
       },
       {
         "archetype": "stopper",
         "metaRating": 88.95115066167214
-      },
-      {
-        "archetype": "ball_playing_defender",
-        "metaRating": 89.281343717479
       }
     ],
     "overall": 91,
@@ -1842,24 +1842,24 @@
     "height": 190,
     "metaRatings": [
       {
-        "archetype": "fullback",
-        "metaRating": 92.02855058234375
+        "archetype": "holding",
+        "metaRating": 89.37887852234974
       },
       {
         "archetype": "ball_playing_defender",
         "metaRating": 88.40752259381901
       },
       {
-        "archetype": "holding",
-        "metaRating": 89.37887852234974
+        "archetype": "stopper",
+        "metaRating": 88.07772699791799
+      },
+      {
+        "archetype": "fullback",
+        "metaRating": 92.02855058234375
       },
       {
         "archetype": "defender",
         "metaRating": 90.01389652029533
-      },
-      {
-        "archetype": "stopper",
-        "metaRating": 88.07772699791799
       }
     ],
     "overall": 90,
@@ -1941,16 +1941,12 @@
     "height": 182,
     "metaRatings": [
       {
-        "archetype": "fullback",
-        "metaRating": 89.66057275654455
-      },
-      {
-        "archetype": "playmaker",
-        "metaRating": 86.33564410706953
-      },
-      {
         "archetype": "deep_lying_playmaker",
         "metaRating": 86.30999067788397
+      },
+      {
+        "archetype": "fullback",
+        "metaRating": 89.66057275654455
       },
       {
         "archetype": "falseback",
@@ -1959,6 +1955,10 @@
       {
         "archetype": "winger",
         "metaRating": 86.68108215312927
+      },
+      {
+        "archetype": "playmaker",
+        "metaRating": 86.33564410706953
       }
     ],
     "overall": 89,
@@ -1976,8 +1976,8 @@
     ],
     "positions": [
       "CM",
-      "LM",
-      "LB"
+      "LB",
+      "LM"
     ],
     "rolesPlus": [
       "CM Box to Box",
@@ -2385,95 +2385,6 @@
   },
   {
     "accelerateType": "CONTROLLED_LENGTHY",
-    "attributeAcceleration": 90,
-    "attributeAggression": 78,
-    "attributeAgility": 79,
-    "attributeBalance": 76,
-    "attributeBallControl": 89,
-    "attributeComposure": 87,
-    "attributeCrossing": 86,
-    "attributeCurve": 86,
-    "attributeDefensiveAwareness": 93,
-    "attributeDribbling": 89,
-    "attributeFinishing": 87,
-    "attributeFkAccuracy": 66,
-    "attributeGkDiving": 1,
-    "attributeGkHandling": 1,
-    "attributeGkKicking": 1,
-    "attributeGkPositioning": 1,
-    "attributeGkReflexes": 1,
-    "attributeHeadingAccuracy": 92,
-    "attributeInterceptions": 92,
-    "attributeJumping": 97,
-    "attributeLongPassing": 92,
-    "attributeLongShots": 84,
-    "attributePenalties": 73,
-    "attributePositioning": 93,
-    "attributeReactions": 86,
-    "attributeShortPassing": 96,
-    "attributeShotPower": 89,
-    "attributeSlidingTackle": 90,
-    "attributeSprintSpeed": 87,
-    "attributeStamina": 89,
-    "attributeStandingTackle": 93,
-    "attributeStrength": 89,
-    "attributeVision": 92,
-    "attributeVolleys": 69,
-    "bodytype": "Average Tall",
-    "commonName": "Kh\u00e9phren Thuram",
-    "eaId": 67356110,
-    "evolution": true,
-    "foot": "Right",
-    "height": 192,
-    "metaRatings": [
-      {
-        "archetype": "holding",
-        "metaRating": 90.97910434062172
-      },
-      {
-        "archetype": "box_to_box",
-        "metaRating": 89.91690315058086
-      },
-      {
-        "archetype": "deep_lying_playmaker",
-        "metaRating": 89.99309090504838
-      },
-      {
-        "archetype": "playmaker",
-        "metaRating": 86.80360799801385
-      }
-    ],
-    "overall": 92,
-    "playstyles": [
-      "Incisive Pass",
-      "Pinged Pass",
-      "Tiki Taka",
-      "Jockey",
-      "Press Proven",
-      "Relentless"
-    ],
-    "playstylesPlus": [
-      "Intercept",
-      "Anticipate"
-    ],
-    "positions": [
-      "CM",
-      "CDM"
-    ],
-    "rolesPlus": [],
-    "rolesPlusPlus": [
-      "CDM Holding",
-      "CDM Deep-Lying Playmaker",
-      "CM Box to Box",
-      "CM Deep-Lying Playmaker",
-      "CM Playmaker"
-    ],
-    "skillMoves": 4,
-    "weakFoot": 5,
-    "weight": 80
-  },
-  {
-    "accelerateType": "CONTROLLED_LENGTHY",
     "attributeAcceleration": 89,
     "attributeAggression": 89,
     "attributeAgility": 80,
@@ -2516,20 +2427,20 @@
     "height": 189,
     "metaRatings": [
       {
-        "archetype": "holding",
-        "metaRating": 93.22380500712288
-      },
-      {
         "archetype": "box_to_box",
         "metaRating": 92.60523061539352
       },
       {
-        "archetype": "deep_lying_playmaker",
-        "metaRating": 92.95631326289832
-      },
-      {
         "archetype": "playmaker",
         "metaRating": 89.38153318747105
+      },
+      {
+        "archetype": "holding",
+        "metaRating": 93.22380500712288
+      },
+      {
+        "archetype": "deep_lying_playmaker",
+        "metaRating": 92.95631326289832
       }
     ],
     "overall": 94,
@@ -2566,6 +2477,97 @@
     "skillMoves": 5,
     "weakFoot": 5,
     "weight": 83
+  },
+  {
+    "accelerateType": "CONTROLLED_LENGTHY",
+    "attributeAcceleration": 91,
+    "attributeAggression": 79,
+    "attributeAgility": 80,
+    "attributeBalance": 77,
+    "attributeBallControl": 90,
+    "attributeComposure": 88,
+    "attributeCrossing": 87,
+    "attributeCurve": 87,
+    "attributeDefensiveAwareness": 94,
+    "attributeDribbling": 90,
+    "attributeFinishing": 88,
+    "attributeFkAccuracy": 67,
+    "attributeGkDiving": 1,
+    "attributeGkHandling": 1,
+    "attributeGkKicking": 1,
+    "attributeGkPositioning": 1,
+    "attributeGkReflexes": 1,
+    "attributeHeadingAccuracy": 93,
+    "attributeInterceptions": 93,
+    "attributeJumping": 98,
+    "attributeLongPassing": 93,
+    "attributeLongShots": 85,
+    "attributePenalties": 74,
+    "attributePositioning": 94,
+    "attributeReactions": 87,
+    "attributeShortPassing": 97,
+    "attributeShotPower": 90,
+    "attributeSlidingTackle": 91,
+    "attributeSprintSpeed": 88,
+    "attributeStamina": 90,
+    "attributeStandingTackle": 94,
+    "attributeStrength": 90,
+    "attributeVision": 93,
+    "attributeVolleys": 70,
+    "bodytype": "Average Tall",
+    "commonName": "Kh\u00e9phren Thuram",
+    "eaId": 67356110,
+    "evolution": true,
+    "foot": "Right",
+    "height": 192,
+    "metaRatings": [
+      {
+        "archetype": "box_to_box",
+        "metaRating": 92.6816461567003
+      },
+      {
+        "archetype": "playmaker",
+        "metaRating": 89.25236314106085
+      },
+      {
+        "archetype": "holding",
+        "metaRating": 93.39564187837728
+      },
+      {
+        "archetype": "deep_lying_playmaker",
+        "metaRating": 93.11379406539592
+      }
+    ],
+    "overall": 94,
+    "playstyles": [
+      "Incisive Pass",
+      "Tiki Taka",
+      "Jockey",
+      "Block",
+      "Trickster",
+      "Press Proven",
+      "Relentless"
+    ],
+    "playstylesPlus": [
+      "Intercept",
+      "Anticipate",
+      "Pinged Pass"
+    ],
+    "positions": [
+      "CM",
+      "CDM"
+    ],
+    "rolesPlus": [],
+    "rolesPlusPlus": [
+      "CDM Holding",
+      "CDM Deep-Lying Playmaker",
+      "CM Box to Box",
+      "CM Deep-Lying Playmaker",
+      "CM Playmaker"
+    ],
+    "skillMoves": 5,
+    "weakFoot": 5,
+    "weight": 80
   },
   {
     "accelerateType": "CONTROLLED",

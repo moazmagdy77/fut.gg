@@ -57,8 +57,8 @@
       "bodytype": "Lean Medium",
       "positions": [
         "RM",
-        "RW",
-        "ST"
+        "ST",
+        "RW"
       ],
       "metaRatings": []
     },
@@ -177,9 +177,9 @@
       "attributePenalties": 55,
       "commonName": "Ethan Pinnock",
       "rolesPlusPlusArchetypes": [
+        "ball_playing_defender",
         "defender",
-        "stopper",
-        "ball_playing_defender"
+        "stopper"
       ],
       "bodytype": "Lean Tall",
       "positions": [
@@ -254,8 +254,8 @@
       "commonName": "Hakan Çalhanoğlu",
       "rolesPlusPlusArchetypes": [
         "box_to_box",
-        "deep_lying_playmaker",
-        "centre_half"
+        "centre_half",
+        "deep_lying_playmaker"
       ],
       "bodytype": "Average Medium",
       "positions": [
@@ -332,10 +332,10 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "LW",
+        "CAM",
         "RM",
         "RW",
-        "CAM"
+        "LW"
       ],
       "metaRatings": []
     },
@@ -396,14 +396,14 @@
       "attributePenalties": 64,
       "commonName": "Jamal Musiala",
       "rolesPlusPlusArchetypes": [
-        "classic_ten",
-        "shadow_striker"
+        "shadow_striker",
+        "classic_ten"
       ],
       "bodytype": "Lean Medium",
       "positions": [
         "CM",
-        "LM",
-        "CAM"
+        "CAM",
+        "LM"
       ],
       "metaRatings": []
     },
@@ -474,9 +474,9 @@
       "bodytype": "Average Medium",
       "positions": [
         "RM",
+        "RW",
         "LM",
-        "ST",
-        "RW"
+        "ST"
       ],
       "metaRatings": []
     },
@@ -548,14 +548,14 @@
       "commonName": "Thomas Thiesson Kristensen",
       "rolesPlusPlusArchetypes": [
         "holding",
-        "deep_lying_playmaker",
-        "defender"
+        "defender",
+        "deep_lying_playmaker"
       ],
       "bodytype": "Average Tall",
       "positions": [
+        "CM",
         "CB",
-        "CDM",
-        "CM"
+        "CDM"
       ],
       "metaRatings": []
     },
@@ -623,8 +623,8 @@
       "attributePenalties": 66,
       "commonName": "Koni De Winter",
       "rolesPlusPlusArchetypes": [
-        "fullback",
         "defender",
+        "fullback",
         "stopper"
       ],
       "bodytype": "Average Tall",
@@ -765,10 +765,10 @@
       "commonName": "Zinedine Zidane",
       "rolesPlusPlusArchetypes": [
         "classic_ten",
-        "shadow_striker",
-        "playmaker",
+        "half_winger",
         "box_to_box",
-        "half_winger"
+        "shadow_striker",
+        "playmaker"
       ],
       "bodytype": "Unique",
       "positions": [
@@ -839,8 +839,8 @@
       "attributePenalties": 44,
       "commonName": "Lukas Klostermann",
       "rolesPlusPlusArchetypes": [
-        "fullback",
-        "defender"
+        "defender",
+        "fullback"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -908,8 +908,8 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "LM",
-        "ST"
+        "ST",
+        "LM"
       ],
       "metaRatings": []
     },
@@ -972,8 +972,8 @@
       "attributePenalties": 45,
       "commonName": "Isaak Touré",
       "rolesPlusPlusArchetypes": [
-        "defender",
-        "ball_playing_defender"
+        "ball_playing_defender",
+        "defender"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -1043,8 +1043,8 @@
       ],
       "bodytype": "Lean Medium",
       "positions": [
-        "LW",
-        "LM"
+        "LM",
+        "LW"
       ],
       "metaRatings": []
     },
@@ -1105,8 +1105,8 @@
       "attributePenalties": 80,
       "commonName": "Seydou Doumbia",
       "rolesPlusPlusArchetypes": [
-        "poacher",
-        "advanced_forward"
+        "advanced_forward",
+        "poacher"
       ],
       "bodytype": "Stocky Medium",
       "positions": [
@@ -1178,9 +1178,9 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "LW",
+        "CAM",
         "LM",
-        "CAM"
+        "LW"
       ],
       "metaRatings": []
     },
@@ -1244,8 +1244,8 @@
       "attributePenalties": 56,
       "commonName": "Adama Traoré",
       "rolesPlusPlusArchetypes": [
-        "winger",
-        "shadow_striker"
+        "shadow_striker",
+        "winger"
       ],
       "bodytype": "Unique",
       "positions": [
@@ -1404,8 +1404,8 @@
       "bodytype": "Lean Medium",
       "positions": [
         "LW",
-        "LM",
-        "LB"
+        "LB",
+        "LM"
       ],
       "metaRatings": []
     },
@@ -1471,8 +1471,8 @@
       "attributePenalties": 84,
       "commonName": "Lucas Bergvall",
       "rolesPlusPlusArchetypes": [
-        "deep_lying_playmaker",
-        "playmaker"
+        "playmaker",
+        "deep_lying_playmaker"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -1541,9 +1541,9 @@
       "attributePenalties": 75,
       "commonName": "Mats Hummels",
       "rolesPlusPlusArchetypes": [
+        "ball_playing_defender",
         "defender",
-        "stopper",
-        "ball_playing_defender"
+        "stopper"
       ],
       "bodytype": "Stocky Tall",
       "positions": [
@@ -1616,11 +1616,11 @@
       "attributePenalties": 55,
       "commonName": "Moïse Bombito",
       "rolesPlusPlusArchetypes": [
-        "fullback",
-        "ball_playing_defender",
         "holding",
-        "defender",
-        "stopper"
+        "ball_playing_defender",
+        "stopper",
+        "fullback",
+        "defender"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -1696,17 +1696,17 @@
       "attributePenalties": 68,
       "commonName": "Abner Vinícius",
       "rolesPlusPlusArchetypes": [
-        "fullback",
-        "playmaker",
         "deep_lying_playmaker",
+        "fullback",
         "falseback",
-        "winger"
+        "winger",
+        "playmaker"
       ],
       "bodytype": "Average Medium",
       "positions": [
         "CM",
-        "LM",
-        "LB"
+        "LB",
+        "LM"
       ],
       "metaRatings": []
     },
@@ -2051,78 +2051,6 @@
       "metaRatings": []
     },
     {
-      "eaId": 67356110,
-      "overall": 92,
-      "height": 192,
-      "foot": "Right",
-      "skillMoves": 4,
-      "weakFoot": 5,
-      "playstyles": [
-        "Incisive Pass",
-        "Pinged Pass",
-        "Tiki Taka",
-        "Jockey",
-        "Press Proven",
-        "Relentless"
-      ],
-      "playstylesPlus": [
-        "Intercept",
-        "Anticipate"
-      ],
-      "rolesPlus": [],
-      "rolesPlusPlus": [
-        "CDM Holding",
-        "CDM Deep-Lying Playmaker",
-        "CM Box to Box",
-        "CM Deep-Lying Playmaker",
-        "CM Playmaker"
-      ],
-      "accelerateType": "CONTROLLED_LENGTHY",
-      "weight": 80,
-      "attributeAcceleration": 90,
-      "attributeSprintSpeed": 87,
-      "attributeAgility": 79,
-      "attributeBalance": 76,
-      "attributeJumping": 97,
-      "attributeStamina": 89,
-      "attributeStrength": 89,
-      "attributeReactions": 86,
-      "attributeAggression": 78,
-      "attributeComposure": 87,
-      "attributeInterceptions": 92,
-      "attributePositioning": 93,
-      "attributeVision": 92,
-      "attributeBallControl": 89,
-      "attributeCrossing": 86,
-      "attributeDribbling": 89,
-      "attributeFinishing": 87,
-      "attributeFkAccuracy": 66,
-      "attributeHeadingAccuracy": 92,
-      "attributeLongPassing": 92,
-      "attributeShortPassing": 96,
-      "attributeDefensiveAwareness": 93,
-      "attributeShotPower": 89,
-      "attributeLongShots": 84,
-      "attributeStandingTackle": 93,
-      "attributeSlidingTackle": 90,
-      "attributeVolleys": 69,
-      "attributeCurve": 86,
-      "attributePenalties": 73,
-      "commonName": "Khéphren Thuram",
-      "rolesPlusPlusArchetypes": [
-        "holding",
-        "box_to_box",
-        "deep_lying_playmaker",
-        "playmaker"
-      ],
-      "bodytype": "Average Tall",
-      "positions": [
-        "CM",
-        "CDM"
-      ],
-      "metaRatings": []
-    },
-    {
       "eaId": 50556841,
       "overall": 94,
       "height": 189,
@@ -2187,15 +2115,89 @@
       "attributePenalties": 78,
       "commonName": "Mikel Merino",
       "rolesPlusPlusArchetypes": [
-        "holding",
         "box_to_box",
-        "deep_lying_playmaker",
-        "playmaker"
+        "playmaker",
+        "holding",
+        "deep_lying_playmaker"
       ],
       "bodytype": "Lean Tall",
       "positions": [
         "CM",
         "CAM",
+        "CDM"
+      ],
+      "metaRatings": []
+    },
+    {
+      "eaId": 67356110,
+      "overall": 94,
+      "height": 192,
+      "foot": "Right",
+      "skillMoves": 5,
+      "weakFoot": 5,
+      "playstyles": [
+        "Incisive Pass",
+        "Tiki Taka",
+        "Jockey",
+        "Block",
+        "Trickster",
+        "Press Proven",
+        "Relentless"
+      ],
+      "playstylesPlus": [
+        "Intercept",
+        "Anticipate",
+        "Pinged Pass"
+      ],
+      "rolesPlus": [],
+      "rolesPlusPlus": [
+        "CDM Holding",
+        "CDM Deep-Lying Playmaker",
+        "CM Box to Box",
+        "CM Deep-Lying Playmaker",
+        "CM Playmaker"
+      ],
+      "accelerateType": "CONTROLLED_LENGTHY",
+      "weight": 80,
+      "attributeAcceleration": 91,
+      "attributeSprintSpeed": 88,
+      "attributeAgility": 80,
+      "attributeBalance": 77,
+      "attributeJumping": 98,
+      "attributeStamina": 90,
+      "attributeStrength": 90,
+      "attributeReactions": 87,
+      "attributeAggression": 79,
+      "attributeComposure": 88,
+      "attributeInterceptions": 93,
+      "attributePositioning": 94,
+      "attributeVision": 93,
+      "attributeBallControl": 90,
+      "attributeCrossing": 87,
+      "attributeDribbling": 90,
+      "attributeFinishing": 88,
+      "attributeFkAccuracy": 67,
+      "attributeHeadingAccuracy": 93,
+      "attributeLongPassing": 93,
+      "attributeShortPassing": 97,
+      "attributeDefensiveAwareness": 94,
+      "attributeShotPower": 90,
+      "attributeLongShots": 85,
+      "attributeStandingTackle": 94,
+      "attributeSlidingTackle": 91,
+      "attributeVolleys": 70,
+      "attributeCurve": 87,
+      "attributePenalties": 74,
+      "commonName": "Khéphren Thuram",
+      "rolesPlusPlusArchetypes": [
+        "box_to_box",
+        "playmaker",
+        "holding",
+        "deep_lying_playmaker"
+      ],
+      "bodytype": "Average Tall",
+      "positions": [
+        "CM",
         "CDM"
       ],
       "metaRatings": []
