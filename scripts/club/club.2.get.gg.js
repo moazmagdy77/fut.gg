@@ -44,29 +44,69 @@ const fetchWithRetry = async (browser, id, retries = 2) => {
   const MAX_CONCURRENT = 5;
   const DELAY_BETWEEN_BATCHES_MS = 1000;
 
-  const browser = await puppeteer.launch({
-    headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
-  });
+  let browser;
+  const launchBrowser = async () => {
+    return puppeteer.launch({
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
+  };
+  browser = await launchBrowser();
 
   const playerData = [];
 
   for (let i = 0; i < playerIds.length; i += MAX_CONCURRENT) {
     const batch = playerIds.slice(i, i + MAX_CONCURRENT);
+    
+    if (i > 0 && i % (MAX_CONCURRENT * 50) === 0) {
+      console.log(`🔁 Restarting browser to free resources...`);
+      try {
+        await browser.close();
+      } catch (err) {
+        console.warn('⚠️ Error closing browser during restart:', err.message);
+      }
+      browser = await launchBrowser();
+    }
+
+    console.time(`⏱ Batch ${i / MAX_CONCURRENT + 1}`);
 
     const results = await Promise.allSettled(
       batch.map(async (id) => {
         const json = await fetchWithRetry(browser, id);
+        console.log(`📥 Finished ID ${id}`);
         if (json) playerData.push(json);
       })
     );
+    console.timeEnd(`⏱ Batch ${i / MAX_CONCURRENT + 1}`);
 
     await new Promise(resolve => setTimeout(resolve, DELAY_BETWEEN_BATCHES_MS));
     console.log(`✅ Completed batch ${i / MAX_CONCURRENT + 1}/${Math.ceil(playerIds.length / MAX_CONCURRENT)}`);
   }
 
-  fs.writeFileSync(path.join(dataDir, 'club_players.json'), JSON.stringify(playerData, null, 2));
-  await browser.close();
+  console.log(`💾 Writing output to file...`);
+  try {
+    await Promise.race([
+      new Promise((resolve, reject) => {
+        fs.writeFile(path.join(dataDir, 'club_players.json'), JSON.stringify(playerData, null, 2), (err) => {
+          if (err) return reject(err);
+          return resolve();
+        });
+      }),
+      new Promise((_, reject) => setTimeout(() => reject(new Error('❌ File write timed out')), 30000))
+    ]);
+    console.log(`💾 Successfully wrote output file.`);
+  } catch (err) {
+    console.error(`❌ Failed to write file: ${err.message}`);
+  }
+  
+  try {
+    await Promise.race([
+      browser.close(),
+      new Promise((_, reject) => setTimeout(() => reject(new Error('❌ Browser.close() timed out')), 20000))
+    ]);
+  } catch (err) {
+    console.error(err.message);
+  }
   console.log(`✅ Saved data for ${playerData.length} players to club_players.json`);
   process.exit(0);
 })();
