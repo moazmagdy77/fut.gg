@@ -59,8 +59,8 @@
       "bodytype": "Lean Medium",
       "positions": [
         "RM",
-        "RW",
-        "ST"
+        "ST",
+        "RW"
       ],
       "metaRatings": []
     },
@@ -184,8 +184,8 @@
       "commonName": "Ethan Pinnock",
       "rolesPlusPlusArchetypes": [
         "stopper",
-        "defender",
-        "ball_playing_defender"
+        "ball_playing_defender",
+        "defender"
       ],
       "bodytype": "Lean Tall",
       "positions": [
@@ -261,14 +261,14 @@
       "evolutionIgsBoost": 0,
       "commonName": "Hakan Çalhanoğlu",
       "rolesPlusPlusArchetypes": [
-        "box_to_box",
         "centre_half",
-        "deep_lying_playmaker"
+        "deep_lying_playmaker",
+        "box_to_box"
       ],
       "bodytype": "Average Medium",
       "positions": [
-        "CDM",
-        "CM"
+        "CM",
+        "CDM"
       ],
       "metaRatings": []
     },
@@ -342,10 +342,10 @@
       ],
       "bodytype": "Unique",
       "positions": [
+        "RW",
         "RM",
-        "CAM",
         "LW",
-        "RW"
+        "CAM"
       ],
       "metaRatings": []
     },
@@ -413,9 +413,9 @@
       ],
       "bodytype": "Lean Medium",
       "positions": [
-        "CAM",
         "LM",
-        "CM"
+        "CM",
+        "CAM"
       ],
       "metaRatings": []
     },
@@ -482,15 +482,15 @@
       "evolutionIgsBoost": 0,
       "commonName": "Trinity Rodman",
       "rolesPlusPlusArchetypes": [
-        "advanced_forward",
-        "inside_forward"
+        "inside_forward",
+        "advanced_forward"
       ],
       "bodytype": "Average Medium",
       "positions": [
         "RM",
-        "RW",
+        "LM",
         "ST",
-        "LM"
+        "RW"
       ],
       "metaRatings": []
     },
@@ -563,15 +563,15 @@
       "evolutionIgsBoost": 0,
       "commonName": "Thomas Thiesson Kristensen",
       "rolesPlusPlusArchetypes": [
-        "holding",
         "defender",
-        "deep_lying_playmaker"
+        "deep_lying_playmaker",
+        "holding"
       ],
       "bodytype": "Average Tall",
       "positions": [
-        "CDM",
+        "CM",
         "CB",
-        "CM"
+        "CDM"
       ],
       "metaRatings": []
     },
@@ -642,8 +642,8 @@
       "commonName": "Koni De Winter",
       "rolesPlusPlusArchetypes": [
         "stopper",
-        "defender",
-        "fullback"
+        "fullback",
+        "defender"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -786,16 +786,16 @@
       "evolutionIgsBoost": 0,
       "commonName": "Zinedine Zidane",
       "rolesPlusPlusArchetypes": [
-        "box_to_box",
         "half_winger",
+        "box_to_box",
+        "shadow_striker",
         "playmaker",
-        "classic_ten",
-        "shadow_striker"
+        "classic_ten"
       ],
       "bodytype": "Unique",
       "positions": [
-        "CAM",
-        "CM"
+        "CM",
+        "CAM"
       ],
       "metaRatings": []
     },
@@ -863,8 +863,8 @@
       "evolutionIgsBoost": 0,
       "commonName": "Lukas Klostermann",
       "rolesPlusPlusArchetypes": [
-        "defender",
-        "fullback"
+        "fullback",
+        "defender"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -1001,8 +1001,8 @@
       "evolutionIgsBoost": 0,
       "commonName": "Seydou Doumbia",
       "rolesPlusPlusArchetypes": [
-        "poacher",
-        "advanced_forward"
+        "advanced_forward",
+        "poacher"
       ],
       "bodytype": "Stocky Medium",
       "positions": [
@@ -1072,14 +1072,14 @@
       "evolutionIgsBoost": 0,
       "commonName": "Adama Traoré",
       "rolesPlusPlusArchetypes": [
-        "shadow_striker",
-        "winger"
+        "winger",
+        "shadow_striker"
       ],
       "bodytype": "Unique",
       "positions": [
         "RM",
-        "CAM",
-        "ST"
+        "ST",
+        "CAM"
       ],
       "metaRatings": []
     },
@@ -1155,8 +1155,8 @@
       ],
       "bodytype": "Average Medium",
       "positions": [
-        "CAM",
-        "CM"
+        "CM",
+        "CAM"
       ],
       "metaRatings": []
     },
@@ -1230,14 +1230,14 @@
       "commonName": "Fridolina Rolfö",
       "rolesPlusPlusArchetypes": [
         "attacking_wingback",
-        "falseback",
-        "inside_forward"
+        "inside_forward",
+        "falseback"
       ],
       "bodytype": "Lean Medium",
       "positions": [
         "LB",
-        "LW",
-        "LM"
+        "LM",
+        "LW"
       ],
       "metaRatings": []
     },
@@ -1310,8 +1310,8 @@
       ],
       "bodytype": "Average Tall",
       "positions": [
-        "CDM",
-        "CM"
+        "CM",
+        "CDM"
       ],
       "metaRatings": []
     },
@@ -1378,8 +1378,8 @@
       "commonName": "Mats Hummels",
       "rolesPlusPlusArchetypes": [
         "stopper",
-        "defender",
-        "ball_playing_defender"
+        "ball_playing_defender",
+        "defender"
       ],
       "bodytype": "Stocky Tall",
       "positions": [
@@ -1456,15 +1456,15 @@
       "rolesPlusPlusArchetypes": [
         "defender",
         "stopper",
+        "ball_playing_defender",
         "holding",
-        "fullback",
-        "ball_playing_defender"
+        "fullback"
       ],
       "bodytype": "Average Tall",
       "positions": [
         "LB",
-        "CDM",
-        "CB"
+        "CB",
+        "CDM"
       ],
       "metaRatings": []
     },
@@ -1536,11 +1536,11 @@
       "evolutionIgsBoost": 0,
       "commonName": "Abner Vinícius",
       "rolesPlusPlusArchetypes": [
-        "playmaker",
-        "fullback",
-        "winger",
         "deep_lying_playmaker",
-        "falseback"
+        "falseback",
+        "winger",
+        "playmaker",
+        "fullback"
       ],
       "bodytype": "Average Medium",
       "positions": [
@@ -1609,13 +1609,13 @@
       "evolutionIgsBoost": 0,
       "commonName": "Víctor Ibarbo",
       "rolesPlusPlusArchetypes": [
-        "winger",
-        "inside_forward"
+        "inside_forward",
+        "winger"
       ],
       "bodytype": "Average Tall",
       "positions": [
-        "RM",
-        "RW"
+        "RW",
+        "RM"
       ],
       "metaRatings": []
     },
@@ -1679,8 +1679,8 @@
       "rolesPlusPlusArchetypes": [],
       "bodytype": "Average Medium",
       "positions": [
-        "CDM",
-        "CM"
+        "CM",
+        "CDM"
       ],
       "metaRatings": []
     },
@@ -1813,91 +1813,14 @@
       "evolutionIgsBoost": 0,
       "commonName": "Jovon Makama",
       "rolesPlusPlusArchetypes": [
-        "advanced_forward",
-        "inside_forward"
+        "inside_forward",
+        "advanced_forward"
       ],
       "bodytype": "Lean Tall",
       "positions": [
         "RM",
-        "RW",
-        "ST"
-      ],
-      "metaRatings": []
-    },
-    {
-      "eaId": 67109905,
-      "overall": 90,
-      "height": 178,
-      "foot": "Right",
-      "skillMoves": 4,
-      "weakFoot": 4,
-      "playstyles": [
-        "Power Shot",
-        "Low Driven Shot",
-        "Incisive Pass",
-        "Long Ball Pass",
-        "Jockey",
-        "Anticipate",
-        "Technical",
-        "Press Proven",
-        "Relentless"
-      ],
-      "playstylesPlus": [
-        "Intercept",
-        "Pinged Pass"
-      ],
-      "rolesPlus": [
-        "CM Holding",
-        "CM Playmaker",
-        "CDM Holding"
-      ],
-      "rolesPlusPlus": [
-        "CM Deep-Lying Playmaker",
-        "CDM Deep-Lying Playmaker",
-        "CM Box to Box"
-      ],
-      "accelerateType": "CONTROLLED_EXPLOSIVE",
-      "weight": 74,
-      "attributeAcceleration": 91,
-      "attributeSprintSpeed": 90,
-      "attributeAgility": 86,
-      "attributeBalance": 87,
-      "attributeJumping": 54,
-      "attributeStamina": 96,
-      "attributeStrength": 80,
-      "attributeReactions": 90,
-      "attributeAggression": 90,
-      "attributeComposure": 89,
-      "attributeInterceptions": 94,
-      "attributePositioning": 95,
-      "attributeVision": 94,
-      "attributeBallControl": 91,
-      "attributeCrossing": 94,
-      "attributeDribbling": 85,
-      "attributeFinishing": 91,
-      "attributeFkAccuracy": 62,
-      "attributeHeadingAccuracy": 86,
-      "attributeLongPassing": 95,
-      "attributeShortPassing": 97,
-      "attributeDefensiveAwareness": 90,
-      "attributeShotPower": 95,
-      "attributeLongShots": 91,
-      "attributeStandingTackle": 92,
-      "attributeSlidingTackle": 90,
-      "attributeVolleys": 88,
-      "attributeCurve": 71,
-      "attributePenalties": 99,
-      "totalIgsBoost": 0,
-      "evolutionIgsBoost": 0,
-      "commonName": "Javier Zanetti",
-      "rolesPlusPlusArchetypes": [
-        "box_to_box",
-        "deep_lying_playmaker"
-      ],
-      "bodytype": "Average Medium",
-      "positions": [
-        "CDM",
-        "CM"
+        "ST",
+        "RW"
       ],
       "metaRatings": []
     },
@@ -1968,13 +1891,13 @@
       "evolutionIgsBoost": 0,
       "commonName": "Bruno Fernandes",
       "rolesPlusPlusArchetypes": [
-        "shadow_striker",
-        "playmaker"
+        "playmaker",
+        "shadow_striker"
       ],
       "bodytype": "Unique",
       "positions": [
-        "CAM",
-        "CM"
+        "CM",
+        "CAM"
       ],
       "metaRatings": []
     },
@@ -2050,15 +1973,15 @@
       "evolutionIgsBoost": 0,
       "commonName": "Gianluca Zambrotta",
       "rolesPlusPlusArchetypes": [
-        "wide_midfielder",
-        "fullback",
         "attacking_wingback",
-        "inside_forward"
+        "inside_forward",
+        "wide_midfielder",
+        "fullback"
       ],
       "bodytype": "Average Medium",
       "positions": [
-        "LB",
         "RM",
+        "LB",
         "LM",
         "RB"
       ],
@@ -2126,8 +2049,8 @@
       "evolutionIgsBoost": 0,
       "commonName": "Isaak Touré",
       "rolesPlusPlusArchetypes": [
-        "defender",
-        "ball_playing_defender"
+        "ball_playing_defender",
+        "defender"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -2196,14 +2119,14 @@
       "evolutionIgsBoost": 0,
       "commonName": "Neymar Jr",
       "rolesPlusPlusArchetypes": [
-        "wide_playmaker",
-        "inside_forward"
+        "inside_forward",
+        "wide_playmaker"
       ],
       "bodytype": "Unique",
       "positions": [
-        "CAM",
         "LM",
-        "LW"
+        "LW",
+        "CAM"
       ],
       "metaRatings": []
     },
@@ -2268,77 +2191,7 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "ST",
-        "LM"
-      ],
-      "metaRatings": []
-    },
-    {
-      "eaId": 151015745,
-      "overall": 89,
-      "height": 187,
-      "foot": "Right",
-      "skillMoves": 5,
-      "weakFoot": 4,
-      "playstyles": [
-        "Power Header",
-        "Flair",
-        "Trickster",
-        "Trivela",
-        "Acrobatic"
-      ],
-      "playstylesPlus": [
-        "Power Shot",
-        "Aerial"
-      ],
-      "rolesPlus": [
-        "ST Poacher",
-        "ST False 9"
-      ],
-      "rolesPlusPlus": [
-        "ST Target Forward",
-        "ST Advanced Forward"
-      ],
-      "accelerateType": "CONTROLLED",
-      "weight": 85,
-      "attributeAcceleration": 81,
-      "attributeSprintSpeed": 88,
-      "attributeAgility": 82,
-      "attributeBalance": 66,
-      "attributeJumping": 99,
-      "attributeStamina": 85,
-      "attributeStrength": 84,
-      "attributeReactions": 94,
-      "attributeAggression": 67,
-      "attributeComposure": 99,
-      "attributeInterceptions": 32,
-      "attributePositioning": 93,
-      "attributeVision": 83,
-      "attributeBallControl": 92,
-      "attributeCrossing": 83,
-      "attributeDribbling": 83,
-      "attributeFinishing": 90,
-      "attributeFkAccuracy": 81,
-      "attributeHeadingAccuracy": 95,
-      "attributeLongPassing": 75,
-      "attributeShortPassing": 84,
-      "attributeDefensiveAwareness": 26,
-      "attributeShotPower": 95,
-      "attributeLongShots": 88,
-      "attributeStandingTackle": 35,
-      "attributeSlidingTackle": 26,
-      "attributeVolleys": 86,
-      "attributeCurve": 84,
-      "attributePenalties": 93,
-      "totalIgsBoost": 0,
-      "evolutionIgsBoost": 0,
-      "commonName": "Cristiano Ronaldo",
-      "rolesPlusPlusArchetypes": [
-        "advanced_forward",
-        "target_forward"
-      ],
-      "bodytype": "Unique",
-      "positions": [
+        "LM",
         "ST"
       ],
       "metaRatings": []
