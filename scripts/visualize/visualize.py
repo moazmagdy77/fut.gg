@@ -192,7 +192,11 @@ for col, val in filters.items():
         continue
     if col in ["playstyles", "playstylesPlus"]:
         filtered_df = filtered_df[filtered_df.apply(
-            lambda row: any(i in (row.get("playstyles") or []) for i in val) or any(i in (row.get("playstylesPlus") or []) for i in val),
+            lambda row: all(
+                any(i in (row.get("playstyles") or []) for i in [v]) or
+                any(i in (row.get("playstylesPlus") or []) for i in [v])
+                for v in val
+            ),
             axis=1
         )]
     elif isinstance(val, list):
