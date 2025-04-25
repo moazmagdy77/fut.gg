@@ -261,8 +261,8 @@
       "evolutionIgsBoost": 0,
       "commonName": "Hakan Çalhanoğlu",
       "rolesPlusPlusArchetypes": [
-        "deep_lying_playmaker",
         "centre_half",
+        "deep_lying_playmaker",
         "box_to_box"
       ],
       "bodytype": "Average Medium",
@@ -413,9 +413,9 @@
       ],
       "bodytype": "Lean Medium",
       "positions": [
+        "CM",
         "CAM",
-        "LM",
-        "CM"
+        "LM"
       ],
       "metaRatings": []
     },
@@ -482,8 +482,8 @@
       "evolutionIgsBoost": 0,
       "commonName": "Trinity Rodman",
       "rolesPlusPlusArchetypes": [
-        "inside_forward",
-        "advanced_forward"
+        "advanced_forward",
+        "inside_forward"
       ],
       "bodytype": "Average Medium",
       "positions": [
@@ -563,8 +563,8 @@
       "evolutionIgsBoost": 0,
       "commonName": "Thomas Thiesson Kristensen",
       "rolesPlusPlusArchetypes": [
-        "deep_lying_playmaker",
         "holding",
+        "deep_lying_playmaker",
         "defender"
       ],
       "bodytype": "Average Tall",
@@ -641,14 +641,14 @@
       "evolutionIgsBoost": 0,
       "commonName": "Koni De Winter",
       "rolesPlusPlusArchetypes": [
-        "fullback",
         "stopper",
+        "fullback",
         "defender"
       ],
       "bodytype": "Average Tall",
       "positions": [
-        "CB",
-        "RB"
+        "RB",
+        "CB"
       ],
       "metaRatings": []
     },
@@ -786,16 +786,16 @@
       "evolutionIgsBoost": 0,
       "commonName": "Zinedine Zidane",
       "rolesPlusPlusArchetypes": [
-        "shadow_striker",
-        "playmaker",
-        "box_to_box",
+        "half_winger",
         "classic_ten",
-        "half_winger"
+        "box_to_box",
+        "playmaker",
+        "shadow_striker"
       ],
       "bodytype": "Unique",
       "positions": [
-        "CAM",
-        "CM"
+        "CM",
+        "CAM"
       ],
       "metaRatings": []
     },
@@ -868,8 +868,8 @@
       ],
       "bodytype": "Average Tall",
       "positions": [
-        "CB",
-        "RB"
+        "RB",
+        "CB"
       ],
       "metaRatings": []
     },
@@ -1001,8 +1001,8 @@
       "evolutionIgsBoost": 0,
       "commonName": "Seydou Doumbia",
       "rolesPlusPlusArchetypes": [
-        "poacher",
-        "advanced_forward"
+        "advanced_forward",
+        "poacher"
       ],
       "bodytype": "Stocky Medium",
       "positions": [
@@ -1235,9 +1235,9 @@
       ],
       "bodytype": "Lean Medium",
       "positions": [
-        "LM",
         "LW",
-        "LB"
+        "LB",
+        "LM"
       ],
       "metaRatings": []
     },
@@ -1454,11 +1454,11 @@
       "evolutionIgsBoost": 0,
       "commonName": "Moïse Bombito",
       "rolesPlusPlusArchetypes": [
-        "ball_playing_defender",
         "holding",
+        "ball_playing_defender",
         "stopper",
-        "defender",
-        "fullback"
+        "fullback",
+        "defender"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -1536,17 +1536,17 @@
       "evolutionIgsBoost": 0,
       "commonName": "Abner Vinícius",
       "rolesPlusPlusArchetypes": [
-        "deep_lying_playmaker",
-        "playmaker",
         "falseback",
+        "fullback",
         "winger",
-        "fullback"
+        "playmaker",
+        "deep_lying_playmaker"
       ],
       "bodytype": "Average Medium",
       "positions": [
-        "LM",
         "CM",
-        "LB"
+        "LB",
+        "LM"
       ],
       "metaRatings": []
     },
@@ -1745,8 +1745,8 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "CB",
         "RB",
+        "CB",
         "LB"
       ],
       "metaRatings": []
@@ -1813,8 +1813,8 @@
       "evolutionIgsBoost": 0,
       "commonName": "Jovon Makama",
       "rolesPlusPlusArchetypes": [
-        "inside_forward",
-        "advanced_forward"
+        "advanced_forward",
+        "inside_forward"
       ],
       "bodytype": "Lean Tall",
       "positions": [
@@ -1896,8 +1896,8 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "CAM",
-        "CM"
+        "CM",
+        "CAM"
       ],
       "metaRatings": []
     },
@@ -1974,16 +1974,16 @@
       "commonName": "Gianluca Zambrotta",
       "rolesPlusPlusArchetypes": [
         "inside_forward",
+        "fullback",
         "attacking_wingback",
-        "wide_midfielder",
-        "fullback"
+        "wide_midfielder"
       ],
       "bodytype": "Average Medium",
       "positions": [
-        "LM",
-        "RM",
         "RB",
-        "LB"
+        "RM",
+        "LB",
+        "LM"
       ],
       "metaRatings": []
     },
@@ -2014,7 +2014,7 @@
         "CB Ball-Playing Defender",
         "CB Defender"
       ],
-      "accelerateType": "LENGTHY",
+      "accelerateType": "MOSTLY_LENGTHY",
       "weight": 98,
       "attributeAcceleration": 75,
       "attributeSprintSpeed": 82,
