@@ -6,8 +6,8 @@ const path = require('path');
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
-  const TOP_PLAYER_PAGES = 73;
-  const NEW_PLAYER_PAGES = 20;
+  const TOP_PLAYER_PAGES = 78;
+  const NEW_PLAYER_PAGES = 0;
 
   const dataDir = path.resolve(__dirname, '..', '..', 'data');
   const progressFile = path.join(dataDir, 'scraping_progress.json');

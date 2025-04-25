@@ -58,9 +58,9 @@
       "rolesPlusPlusArchetypes": [],
       "bodytype": "Lean Medium",
       "positions": [
-        "RW",
         "ST",
-        "RM"
+        "RM",
+        "RW"
       ],
       "metaRatings": []
     },
@@ -183,9 +183,9 @@
       "evolutionIgsBoost": 0,
       "commonName": "Ethan Pinnock",
       "rolesPlusPlusArchetypes": [
+        "ball_playing_defender",
         "stopper",
-        "defender",
-        "ball_playing_defender"
+        "defender"
       ],
       "bodytype": "Lean Tall",
       "positions": [
@@ -193,16 +193,16 @@
       ],
       "metaRatings": [
         {
+          "archetype": "ball_playing_defender",
+          "metaRating": 81.33586591566035
+        },
+        {
           "archetype": "stopper",
-          "metaRating": 83.8283440476719
+          "metaRating": 82.623405310984
         },
         {
           "archetype": "defender",
-          "metaRating": 84.45761009437597
-        },
-        {
-          "archetype": "ball_playing_defender",
-          "metaRating": 82.46749974292035
+          "metaRating": 82.65066283544924
         }
       ]
     },
@@ -274,27 +274,27 @@
       "evolutionIgsBoost": 0,
       "commonName": "Hakan \u00c7alhano\u011flu",
       "rolesPlusPlusArchetypes": [
-        "box_to_box",
         "deep_lying_playmaker",
-        "centre_half"
+        "centre_half",
+        "box_to_box"
       ],
       "bodytype": "Average Medium",
       "positions": [
-        "CM",
-        "CDM"
+        "CDM",
+        "CM"
       ],
       "metaRatings": [
         {
-          "archetype": "box_to_box",
-          "metaRating": 91.39042093698922
-        },
-        {
           "archetype": "deep_lying_playmaker",
-          "metaRating": 90.8504267222052
+          "metaRating": 89.03581883951658
         },
         {
           "archetype": "centre_half",
-          "metaRating": 87.66940357637692
+          "metaRating": 85.99154030470935
+        },
+        {
+          "archetype": "box_to_box",
+          "metaRating": 89.32164561912388
         }
       ]
     },
@@ -368,15 +368,15 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "LW",
+        "RM",
         "CAM",
         "RW",
-        "RM"
+        "LW"
       ],
       "metaRatings": [
         {
           "archetype": "inside_forward",
-          "metaRating": 85.15047954085513
+          "metaRating": 84.45836641874091
         }
       ]
     },
@@ -439,23 +439,23 @@
       "evolutionIgsBoost": 0,
       "commonName": "Jamal Musiala",
       "rolesPlusPlusArchetypes": [
-        "classic_ten",
-        "shadow_striker"
+        "shadow_striker",
+        "classic_ten"
       ],
       "bodytype": "Lean Medium",
       "positions": [
+        "CAM",
         "LM",
-        "CM",
-        "CAM"
+        "CM"
       ],
       "metaRatings": [
         {
-          "archetype": "classic_ten",
-          "metaRating": 86.02709353202134
+          "archetype": "shadow_striker",
+          "metaRating": 85.0511036220561
         },
         {
-          "archetype": "shadow_striker",
-          "metaRating": 85.83828947314404
+          "archetype": "classic_ten",
+          "metaRating": 85.09562325711609
         }
       ]
     },
@@ -527,19 +527,19 @@
       ],
       "bodytype": "Average Medium",
       "positions": [
-        "LM",
-        "RW",
         "ST",
-        "RM"
+        "RM",
+        "RW",
+        "LM"
       ],
       "metaRatings": [
         {
           "archetype": "inside_forward",
-          "metaRating": 85.40558872394507
+          "metaRating": 84.84052290336231
         },
         {
           "archetype": "advanced_forward",
-          "metaRating": 86.31930425694568
+          "metaRating": 85.00753692952712
         }
       ]
     },
@@ -612,28 +612,28 @@
       "evolutionIgsBoost": 0,
       "commonName": "Thomas Thiesson Kristensen",
       "rolesPlusPlusArchetypes": [
-        "holding",
         "deep_lying_playmaker",
+        "holding",
         "defender"
       ],
       "bodytype": "Average Tall",
       "positions": [
-        "CM",
+        "CDM",
         "CB",
-        "CDM"
+        "CM"
       ],
       "metaRatings": [
         {
-          "archetype": "holding",
-          "metaRating": 90.584908833548
+          "archetype": "deep_lying_playmaker",
+          "metaRating": 87.63875491202872
         },
         {
-          "archetype": "deep_lying_playmaker",
-          "metaRating": 88.90500672447456
+          "archetype": "holding",
+          "metaRating": 90.57195159032842
         },
         {
           "archetype": "defender",
-          "metaRating": 91.27592049511324
+          "metaRating": 89.98646577314679
         }
       ]
     },
@@ -703,27 +703,27 @@
       "evolutionIgsBoost": 0,
       "commonName": "Koni De Winter",
       "rolesPlusPlusArchetypes": [
+        "fullback",
         "stopper",
-        "defender",
-        "fullback"
+        "defender"
       ],
       "bodytype": "Average Tall",
       "positions": [
-        "RB",
-        "CB"
+        "CB",
+        "RB"
       ],
       "metaRatings": [
         {
+          "archetype": "fullback",
+          "metaRating": 89.84230743794363
+        },
+        {
           "archetype": "stopper",
-          "metaRating": 87.9015521513838
+          "metaRating": 86.25239839808796
         },
         {
           "archetype": "defender",
-          "metaRating": 89.17932891247229
-        },
-        {
-          "archetype": "fullback",
-          "metaRating": 90.5336386184558
+          "metaRating": 88.17154585483402
         }
       ]
     },
@@ -795,7 +795,7 @@
       "metaRatings": [
         {
           "archetype": "defender",
-          "metaRating": 81.34939361803693
+          "metaRating": 80.15408967174139
         }
       ]
     },
@@ -866,37 +866,37 @@
       "evolutionIgsBoost": 0,
       "commonName": "Zinedine Zidane",
       "rolesPlusPlusArchetypes": [
-        "box_to_box",
         "shadow_striker",
-        "classic_ten",
         "playmaker",
+        "box_to_box",
+        "classic_ten",
         "half_winger"
       ],
       "bodytype": "Unique",
       "positions": [
-        "CM",
-        "CAM"
+        "CAM",
+        "CM"
       ],
       "metaRatings": [
         {
-          "archetype": "box_to_box",
-          "metaRating": 89.24136291809442
-        },
-        {
           "archetype": "shadow_striker",
-          "metaRating": 88.99013254582086
-        },
-        {
-          "archetype": "classic_ten",
-          "metaRating": 89.76941053033791
+          "metaRating": 88.02595054374581
         },
         {
           "archetype": "playmaker",
-          "metaRating": 89.17194125874664
+          "metaRating": 87.72799181334423
+        },
+        {
+          "archetype": "box_to_box",
+          "metaRating": 87.6488200339162
+        },
+        {
+          "archetype": "classic_ten",
+          "metaRating": 87.89869508513662
         },
         {
           "archetype": "half_winger",
-          "metaRating": 84.71378846680891
+          "metaRating": 83.51954528926227
         }
       ]
     },
@@ -964,22 +964,22 @@
       "evolutionIgsBoost": 0,
       "commonName": "Lukas Klostermann",
       "rolesPlusPlusArchetypes": [
-        "defender",
-        "fullback"
+        "fullback",
+        "defender"
       ],
       "bodytype": "Average Tall",
       "positions": [
-        "RB",
-        "CB"
+        "CB",
+        "RB"
       ],
       "metaRatings": [
         {
-          "archetype": "defender",
-          "metaRating": 85.32600777149828
+          "archetype": "fullback",
+          "metaRating": 85.25233673551521
         },
         {
-          "archetype": "fullback",
-          "metaRating": 86.14454845389479
+          "archetype": "defender",
+          "metaRating": 84.66407231945205
         }
       ]
     },
@@ -1047,17 +1047,17 @@
       ],
       "bodytype": "Lean Medium",
       "positions": [
-        "LM",
-        "LW"
+        "LW",
+        "LM"
       ],
       "metaRatings": [
         {
           "archetype": "inside_forward",
-          "metaRating": 75.10847150655258
+          "metaRating": 74.52491948542664
         },
         {
           "archetype": "winger",
-          "metaRating": 76.14353947854973
+          "metaRating": 75.48941719842351
         }
       ]
     },
@@ -1130,11 +1130,11 @@
       "metaRatings": [
         {
           "archetype": "poacher",
-          "metaRating": 77.31280682270014
+          "metaRating": 76.68820930940139
         },
         {
           "archetype": "advanced_forward",
-          "metaRating": 77.82627224207698
+          "metaRating": 77.84225123672893
         }
       ]
     },
@@ -1205,18 +1205,18 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "CAM",
         "ST",
-        "RM"
+        "RM",
+        "CAM"
       ],
       "metaRatings": [
         {
           "archetype": "shadow_striker",
-          "metaRating": 87.82664194364844
+          "metaRating": 87.26748977327306
         },
         {
           "archetype": "winger",
-          "metaRating": 90.01269860005367
+          "metaRating": 88.31567771503006
         }
       ]
     },
@@ -1292,17 +1292,17 @@
       ],
       "bodytype": "Average Medium",
       "positions": [
-        "CM",
-        "CAM"
+        "CAM",
+        "CM"
       ],
       "metaRatings": [
         {
           "archetype": "playmaker",
-          "metaRating": 89.35089849822484
+          "metaRating": 87.98067211957986
         },
         {
           "archetype": "box_to_box",
-          "metaRating": 90.67658495912065
+          "metaRating": 88.94597260052164
         }
       ]
     },
@@ -1375,9 +1375,9 @@
       "evolutionIgsBoost": 0,
       "commonName": "Fridolina Rolf\u00f6",
       "rolesPlusPlusArchetypes": [
-        "falseback",
         "inside_forward",
-        "attacking_wingback"
+        "attacking_wingback",
+        "falseback"
       ],
       "bodytype": "Lean Medium",
       "positions": [
@@ -1387,16 +1387,16 @@
       ],
       "metaRatings": [
         {
-          "archetype": "falseback",
-          "metaRating": 88.70333422615427
-        },
-        {
           "archetype": "inside_forward",
-          "metaRating": 85.44271831880249
+          "metaRating": 84.78636388781246
         },
         {
           "archetype": "attacking_wingback",
-          "metaRating": 88.02778604772688
+          "metaRating": 87.26193132890698
+        },
+        {
+          "archetype": "falseback",
+          "metaRating": 87.42634588236858
         }
       ]
     },
@@ -1464,22 +1464,22 @@
       "evolutionIgsBoost": 0,
       "commonName": "Lucas Bergvall",
       "rolesPlusPlusArchetypes": [
-        "playmaker",
-        "deep_lying_playmaker"
+        "deep_lying_playmaker",
+        "playmaker"
       ],
       "bodytype": "Average Tall",
       "positions": [
-        "CM",
-        "CDM"
+        "CDM",
+        "CM"
       ],
       "metaRatings": [
         {
-          "archetype": "playmaker",
-          "metaRating": 88.47269453675747
+          "archetype": "deep_lying_playmaker",
+          "metaRating": 83.9157480829915
         },
         {
-          "archetype": "deep_lying_playmaker",
-          "metaRating": 85.36951351416695
+          "archetype": "playmaker",
+          "metaRating": 87.05946499849297
         }
       ]
     },
@@ -1545,9 +1545,9 @@
       "evolutionIgsBoost": 0,
       "commonName": "Mats Hummels",
       "rolesPlusPlusArchetypes": [
+        "ball_playing_defender",
         "stopper",
-        "defender",
-        "ball_playing_defender"
+        "defender"
       ],
       "bodytype": "Stocky Tall",
       "positions": [
@@ -1555,16 +1555,16 @@
       ],
       "metaRatings": [
         {
+          "archetype": "ball_playing_defender",
+          "metaRating": 88.1083421790296
+        },
+        {
           "archetype": "stopper",
-          "metaRating": 88.95115066167214
+          "metaRating": 87.16848742913372
         },
         {
           "archetype": "defender",
-          "metaRating": 90.67400344114496
-        },
-        {
-          "archetype": "ball_playing_defender",
-          "metaRating": 89.281343717479
+          "metaRating": 88.58015701074466
         }
       ]
     },
@@ -1635,38 +1635,38 @@
       "evolutionIgsBoost": 0,
       "commonName": "Mo\u00efse Bombito",
       "rolesPlusPlusArchetypes": [
-        "defender",
+        "ball_playing_defender",
         "holding",
         "stopper",
-        "fullback",
-        "ball_playing_defender"
+        "defender",
+        "fullback"
       ],
       "bodytype": "Average Tall",
       "positions": [
+        "CDM",
         "CB",
-        "LB",
-        "CDM"
+        "LB"
       ],
       "metaRatings": [
         {
-          "archetype": "defender",
-          "metaRating": 90.01389652029533
+          "archetype": "ball_playing_defender",
+          "metaRating": 87.73543025703854
         },
         {
           "archetype": "holding",
-          "metaRating": 89.37887852234974
+          "metaRating": 89.10088683133792
         },
         {
           "archetype": "stopper",
-          "metaRating": 88.07772699791799
+          "metaRating": 86.47575023576242
+        },
+        {
+          "archetype": "defender",
+          "metaRating": 88.80541175712096
         },
         {
           "archetype": "fullback",
-          "metaRating": 92.02855058234375
-        },
-        {
-          "archetype": "ball_playing_defender",
-          "metaRating": 88.40752259381901
+          "metaRating": 90.54868249684566
         }
       ]
     },
@@ -1741,8 +1741,8 @@
         "deep_lying_playmaker",
         "playmaker",
         "falseback",
-        "fullback",
-        "winger"
+        "winger",
+        "fullback"
       ],
       "bodytype": "Average Medium",
       "positions": [
@@ -1753,23 +1753,23 @@
       "metaRatings": [
         {
           "archetype": "deep_lying_playmaker",
-          "metaRating": 86.30999067788397
+          "metaRating": 85.3474810977876
         },
         {
           "archetype": "playmaker",
-          "metaRating": 86.33564410706953
+          "metaRating": 84.73549751982405
         },
         {
           "archetype": "falseback",
-          "metaRating": 86.91476952250997
-        },
-        {
-          "archetype": "fullback",
-          "metaRating": 89.66057275654455
+          "metaRating": 86.00706405957797
         },
         {
           "archetype": "winger",
-          "metaRating": 86.68108215312927
+          "metaRating": 85.63648363650387
+        },
+        {
+          "archetype": "fullback",
+          "metaRating": 88.4438403181277
         }
       ]
     },
@@ -1837,17 +1837,17 @@
       ],
       "bodytype": "Average Tall",
       "positions": [
-        "RW",
-        "RM"
+        "RM",
+        "RW"
       ],
       "metaRatings": [
         {
           "archetype": "inside_forward",
-          "metaRating": 73.18149364083231
+          "metaRating": 72.72352185099739
         },
         {
           "archetype": "winger",
-          "metaRating": 74.403847815709
+          "metaRating": 73.67487735725783
         }
       ]
     },
@@ -1911,8 +1911,8 @@
       "rolesPlusPlusArchetypes": [],
       "bodytype": "Average Medium",
       "positions": [
-        "CM",
-        "CDM"
+        "CDM",
+        "CM"
       ],
       "metaRatings": []
     },
@@ -1977,14 +1977,14 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "RB",
         "CB",
+        "RB",
         "LB"
       ],
       "metaRatings": [
         {
           "archetype": "falseback",
-          "metaRating": 78.91120705461925
+          "metaRating": 77.2381119761676
         }
       ]
     },
@@ -2055,18 +2055,18 @@
       ],
       "bodytype": "Lean Tall",
       "positions": [
-        "RW",
         "ST",
-        "RM"
+        "RM",
+        "RW"
       ],
       "metaRatings": [
         {
           "archetype": "inside_forward",
-          "metaRating": 82.0266479494825
+          "metaRating": 81.49986098547411
         },
         {
           "archetype": "advanced_forward",
-          "metaRating": 83.96584893480782
+          "metaRating": 83.378110630494
         }
       ]
     },
@@ -2137,22 +2137,22 @@
       "evolutionIgsBoost": 0,
       "commonName": "Bruno Fernandes",
       "rolesPlusPlusArchetypes": [
-        "playmaker",
-        "shadow_striker"
+        "shadow_striker",
+        "playmaker"
       ],
       "bodytype": "Unique",
       "positions": [
-        "CM",
-        "CAM"
+        "CAM",
+        "CM"
       ],
       "metaRatings": [
         {
-          "archetype": "playmaker",
-          "metaRating": 89.77814004628118
+          "archetype": "shadow_striker",
+          "metaRating": 89.00366259487309
         },
         {
-          "archetype": "shadow_striker",
-          "metaRating": 90.14348450879052
+          "archetype": "playmaker",
+          "metaRating": 88.25833378580909
         }
       ]
     },
@@ -2228,34 +2228,34 @@
       "evolutionIgsBoost": 0,
       "commonName": "Gianluca Zambrotta",
       "rolesPlusPlusArchetypes": [
-        "fullback",
-        "attacking_wingback",
         "inside_forward",
-        "wide_midfielder"
+        "attacking_wingback",
+        "wide_midfielder",
+        "fullback"
       ],
       "bodytype": "Average Medium",
       "positions": [
-        "RB",
         "LM",
-        "LB",
-        "RM"
+        "RM",
+        "RB",
+        "LB"
       ],
       "metaRatings": [
         {
-          "archetype": "fullback",
-          "metaRating": 92.97343971217892
+          "archetype": "inside_forward",
+          "metaRating": 87.41733529878228
         },
         {
           "archetype": "attacking_wingback",
-          "metaRating": 91.58128872776068
-        },
-        {
-          "archetype": "inside_forward",
-          "metaRating": 87.82308783619422
+          "metaRating": 90.72414058438956
         },
         {
           "archetype": "wide_midfielder",
-          "metaRating": 90.07397583876966
+          "metaRating": 89.79554183574513
+        },
+        {
+          "archetype": "fullback",
+          "metaRating": 91.53525893585804
         }
       ]
     },
@@ -2321,8 +2321,8 @@
       "evolutionIgsBoost": 0,
       "commonName": "Isaak Tour\u00e9",
       "rolesPlusPlusArchetypes": [
-        "defender",
-        "ball_playing_defender"
+        "ball_playing_defender",
+        "defender"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -2330,12 +2330,12 @@
       ],
       "metaRatings": [
         {
-          "archetype": "defender",
-          "metaRating": 91.21570421418345
+          "archetype": "ball_playing_defender",
+          "metaRating": 90.98171649495748
         },
         {
-          "archetype": "ball_playing_defender",
-          "metaRating": 91.54499903423796
+          "archetype": "defender",
+          "metaRating": 89.5025050112987
         }
       ]
     },
@@ -2405,18 +2405,18 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "LM",
+        "CAM",
         "LW",
-        "CAM"
+        "LM"
       ],
       "metaRatings": [
         {
           "archetype": "inside_forward",
-          "metaRating": 79.65735308084973
+          "metaRating": 79.25070294729221
         },
         {
           "archetype": "wide_playmaker",
-          "metaRating": 77.70646179553722
+          "metaRating": 76.87153149382428
         }
       ]
     },
@@ -2481,13 +2481,13 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "LM",
-        "ST"
+        "ST",
+        "LM"
       ],
       "metaRatings": [
         {
           "archetype": "advanced_forward",
-          "metaRating": 83.76207280333665
+          "metaRating": 82.26186805603474
         }
       ]
     },
@@ -2558,22 +2558,22 @@
       "evolutionIgsBoost": 0,
       "commonName": "Javier Zanetti",
       "rolesPlusPlusArchetypes": [
-        "box_to_box",
-        "deep_lying_playmaker"
+        "deep_lying_playmaker",
+        "box_to_box"
       ],
       "bodytype": "Average Medium",
       "positions": [
-        "CM",
-        "CDM"
+        "CDM",
+        "CM"
       ],
       "metaRatings": [
         {
-          "archetype": "box_to_box",
-          "metaRating": 91.0629980217626
+          "archetype": "deep_lying_playmaker",
+          "metaRating": 89.89072416807934
         },
         {
-          "archetype": "deep_lying_playmaker",
-          "metaRating": 91.26744266233804
+          "archetype": "box_to_box",
+          "metaRating": 91.11925923162752
         }
       ]
     }
