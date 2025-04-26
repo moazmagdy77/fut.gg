@@ -16,6 +16,21 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   const maps = JSON.parse(fs.readFileSync(path.join(dataDir, 'maps.json'), 'utf-8'));
   const chemStyleMap = maps.chemStyles;
 
+  const positionToArchetypes = {
+    GK: ['goalkeeper', 'sweeper_keeper'],
+    RB: ['fullback', 'falseback', 'wingback', 'attacking_wingback'],
+    LB: ['fullback', 'falseback', 'wingback', 'attacking_wingback'],
+    CB: ['defender', 'stopper', 'ball_playing_defender'],
+    CDM: ['holding', 'centre_half', 'deep_lying_playmaker', 'wide_half'],
+    CM: ['box_to_box', 'holding', 'deep_lying_playmaker', 'playmaker', 'half_winger'],
+    CAM: ['playmaker', 'shadow_striker', 'half_winger', 'classic_ten'],
+    RM: ['winger', 'wide_midfielder', 'wide_playmaker', 'inside_forward'],
+    LM: ['winger', 'wide_midfielder', 'wide_playmaker', 'inside_forward'],
+    RW: ['winger', 'inside_forward', 'wide_playmaker'],
+    LW: ['winger', 'inside_forward', 'wide_playmaker'],
+    ST: ['advanced_forward', 'poacher', 'false_nine', 'target_forward']
+  };
+
   const MAX_CONCURRENT = 5;
   const DELAY_BETWEEN_BATCHES_MS = 1000;
   const MAX_RETRIES = 2;
@@ -66,9 +81,22 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
     await Promise.allSettled(batch.map(async player => {
       player.metaRatings = [];
 
-      if (!player.archetype || !player.eaId) return;
+      if (!player.eaId) return;
 
-      for (const archetype of player.archetype) {
+      let positions = [];
+      if (player.position) positions.push(player.position);
+      if (Array.isArray(player.alternativePositionIds)) positions = positions.concat(player.alternativePositionIds);
+
+      const archetypesSet = new Set();
+
+      for (const pos of positions) {
+        const mappedArchetypes = positionToArchetypes[pos];
+        if (mappedArchetypes) {
+          mappedArchetypes.forEach(archetype => archetypesSet.add(archetype));
+        }
+      }
+
+      for (const archetype of archetypesSet) {
         const ratingData = await fetchMetaRatingsWithRetry(player, archetype);
 
         if (!ratingData.ratings.length) {
