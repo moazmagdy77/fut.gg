@@ -233,7 +233,7 @@ filtered_df["hasRolePlus"] = filtered_df["hasRolePlus"].apply(format_boolean)
 filtered_df["hasRolePlusPlus"] = filtered_df["hasRolePlusPlus"].apply(format_boolean)
 
 # Display
-st.title("Mostashar Moza Player Database")
+st.title("El Mostashar Player Database")
 st.markdown(f"### Showing {filtered_df['player_origin_id'].nunique()} unique players")
 filtered_df = filtered_df.drop(columns=["__true_player_id", "player_origin_id", "debug_index", "__player_id"], errors="ignore")
 st.dataframe(filtered_df.sort_values(by=sort_by, ascending=False), use_container_width=True, hide_index=True)
