@@ -90,7 +90,7 @@ rpp_to_archetype = {
     "LB Fullback": "fullback", "LB Falseback": "falseback", "LB Wingback": "wingback", "LB Attacking Wingback": "attacking_wingback",
     "CB Defender": "defender", "CB Stopper": "stopper", "CB Ball-Playing Defender": "ball_playing_defender",
     "CDM Holding": "holding", "CDM Centre-Half": "centre_half", "CDM Deep-Lying Playmaker": "deep_lying_playmaker", "CDM Wide Half": "wide_half",
-    "CM Box to Box": "box_to_box", "CM Holding": "holding", "CM Deep-Lying Playmaker": "deep_lying_playmaker", "CM Playmaker": "playmaker", "CM Half-Winger": "half_winger",
+    "CM Box to Box": "box_to_box", "CM Holding": "holding", "CM Deep-Lying Playmaker": "deep_lying_playmaker", "CM Playmaker": "playmaker", "CM Half-Winger": "half_ winger",
     "RM Winger": "winger", "RM Wide Midfielder": "wide_midfielder", "RM Wide Playmaker": "wide_playmaker", "RM Inside Forward": "inside_forward",
     "LM Winger": "winger", "LM Wide Midfielder": "wide_midfielder", "LM Wide Playmaker": "wide_playmaker", "LM Inside Forward": "inside_forward",
     "CAM Playmaker": "playmaker", "CAM Shadow Striker": "shadow_striker", "CAM Half Winger": "half_winger", "CAM Classic 10": "classic_ten",
@@ -183,10 +183,22 @@ for col, val in filters.items():
     if col == "evolution":
         filtered_df = filtered_df[filtered_df[col] == val]
     elif isinstance(val, list):
-        if df[col].apply(lambda x: isinstance(x, list)).any():
-            filtered_df = filtered_df[filtered_df[col].apply(lambda x: any(i in x for i in val) if isinstance(x, list) else False)]
+        if col in ["playstylesPlus", "playstyles"]:
+            # Special handling: players must have ALL selected styles across playstylesPlus and playstyles
+            def has_all_styles(row):
+                combined_styles = []
+                if isinstance(row.get("playstylesPlus"), list):
+                    combined_styles.extend(row.get("playstylesPlus"))
+                if isinstance(row.get("playstyles"), list):
+                    combined_styles.extend(row.get("playstyles"))
+                return all(v in combined_styles for v in val)
+
+            filtered_df = filtered_df[filtered_df.apply(has_all_styles, axis=1)]
         else:
-            filtered_df = filtered_df[filtered_df[col].isin(val)]
+            if df[col].apply(lambda x: isinstance(x, list)).any():
+                filtered_df = filtered_df[filtered_df[col].apply(lambda x: any(i in x for i in val) if isinstance(x, list) else False)]
+            else:
+                filtered_df = filtered_df[filtered_df[col].isin(val)]
     elif isinstance(val, tuple) and len(val) == 2:
         filtered_df = filtered_df[filtered_df[col].between(val[0], val[1])]
     else:
