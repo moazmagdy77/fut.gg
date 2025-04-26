@@ -39,7 +39,7 @@ const fetchWithRetry = async (browser, id, retries = 2) => {
 };
 
 (async () => {
-  const dataDir = path.resolve(__dirname, '..', '..', 'data');
+  const dataDir = path.resolve(__dirname, '..', 'data');
   const playerIds = JSON.parse(fs.readFileSync(path.join(dataDir, 'club_ids.json')));
   const MAX_CONCURRENT = 5;
   const DELAY_BETWEEN_BATCHES_MS = 1000;

@@ -8,9 +8,9 @@ from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.metrics import r2_score, mean_squared_error
 
 # Define paths
-base_dir = Path(__file__).resolve().parents[2]
+base_dir = Path(__file__).resolve().parents[1]
 data_path = base_dir / "data" / "training_dataset.csv"
-model_dir = Path(__file__).resolve().parent / "models"
+model_dir = Path(__file__).resolve().parents[1] / "models"
 
 # Load preprocessed dataset
 df = pd.read_csv(data_path)

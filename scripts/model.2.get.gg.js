@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 (async () => {
-  const dataDir = path.resolve(__dirname, '..', '..', 'data');
+  const dataDir = path.resolve(__dirname, '..', 'data');
   const playerIds = JSON.parse(fs.readFileSync(path.join(dataDir, 'player_ids.json')));
   const MAX_CONCURRENT = 5;
   const DELAY_BETWEEN_BATCHES_MS = 1000;

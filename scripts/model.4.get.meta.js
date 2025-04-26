@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
 
-const dataDir = path.resolve(__dirname, '..', '..', 'data');
+const dataDir = path.resolve(__dirname, '..', 'data');
 
 const players = JSON.parse(fs.readFileSync(path.join(dataDir, 'enhanced_players.json'), 'utf-8'));
 const maps = JSON.parse(fs.readFileSync(path.join(dataDir, 'maps.json'), 'utf-8'));

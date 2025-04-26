@@ -2,7 +2,13 @@ import json
 from pathlib import Path
 
 # Define data directory
-data_dir = Path(__file__).resolve().parents[2] / "data"
+data_dir = Path(__file__).resolve().parents[1] / "data"
+
+# Load maps.json
+maps_path = data_dir / "maps.json"
+with open(maps_path) as f:
+    maps = json.load(f)
+roles_plusplus_archetype = maps["rolesPlusPlusArchetype"]
 
 # Load the data from the files
 club_players_path = data_dir / "club_players_with_meta.json"
@@ -24,10 +30,38 @@ evolab_meta_by_eaid = {player["eaId"]: player for player in evolab_meta}
 combined_players = []
 used_eaids = set()
 
+# Prepare reverse mapping: text value -> ID
+roles_text_to_id = {v: k for k, v in maps["rolesPlusPlus"].items()}
+
 # Add all unique evolab_meta players first
 for player in evolab_meta:
     combined_players.append(player)
     player["evolution"] = True
+
+    player_roles_plus = player.get("rolesPlus", [])
+    player_roles_plusplus = player.get("rolesPlusPlus", [])
+    player_roles_archetypes = set()
+    player_rolesplusplus_archetypes = set()
+
+    for role_text in player_roles_plus:
+        role_id = roles_text_to_id.get(role_text)
+        if role_id:
+            mapped_archetype = maps["rolesPlusPlusArchetype"].get(role_id)
+            if mapped_archetype:
+                player_roles_archetypes.add(mapped_archetype)
+
+    for role_text in player_roles_plusplus:
+        role_id = roles_text_to_id.get(role_text)
+        if role_id:
+            mapped_archetype = maps["rolesPlusPlusArchetype"].get(role_id)
+            if mapped_archetype:
+                player_rolesplusplus_archetypes.add(mapped_archetype)
+
+    for meta_rating in player.get("metaRatings", []):
+        archetype = meta_rating.get("archetype")
+        meta_rating["hasRolePlus"] = archetype in player_roles_archetypes
+        meta_rating["hasRolePlusPlus"] = archetype in player_rolesplusplus_archetypes
+
     used_eaids.add(player["eaId"])
 
     # Remove rolesPlusPlusArchetypes if present
@@ -82,6 +116,30 @@ for player in club_players:
         for old_field, new_field in field_renames.items():
             if old_field in player:
                 player[new_field] = player.pop(old_field)
+
+        player_roles_plus = player.get("rolesPlus", [])
+        player_roles_plusplus = player.get("rolesPlusPlus", [])
+        player_roles_archetypes = set()
+        player_rolesplusplus_archetypes = set()
+
+        for role_text in player_roles_plus:
+            role_id = roles_text_to_id.get(role_text)
+            if role_id:
+                mapped_archetype = maps["rolesPlusPlusArchetype"].get(role_id)
+                if mapped_archetype:
+                    player_roles_archetypes.add(mapped_archetype)
+
+        for role_text in player_roles_plusplus:
+            role_id = roles_text_to_id.get(role_text)
+            if role_id:
+                mapped_archetype = maps["rolesPlusPlusArchetype"].get(role_id)
+                if mapped_archetype:
+                    player_rolesplusplus_archetypes.add(mapped_archetype)
+
+        for meta_rating in player.get("metaRatings", []):
+            archetype = meta_rating.get("archetype")
+            meta_rating["hasRolePlus"] = archetype in player_roles_archetypes
+            meta_rating["hasRolePlusPlus"] = archetype in player_rolesplusplus_archetypes
 
         player["evolution"] = False
         combined_players.append(player)

@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 
 # Define data directory
-data_dir = Path(__file__).resolve().parents[2] / "data"
+data_dir = Path(__file__).resolve().parents[1] / "data"
 
 # Load the HTML content
 with open(data_dir / "club-analyzer.html", encoding="utf-8") as f:

@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 # Define data directory
-data_dir = Path(__file__).resolve().parents[2] / "data"
+data_dir = Path(__file__).resolve().parents[1] / "data"
 
 # Load data
 player_data_path = data_dir / "club_players.json"

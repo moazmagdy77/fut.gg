@@ -54,13 +54,15 @@
       "attributePenalties": 82,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Ally Watt",
       "rolesPlusPlusArchetypes": [],
       "bodytype": "Lean Medium",
       "positions": [
+        "RW",
         "ST",
-        "RM",
-        "RW"
+        "RM"
       ],
       "metaRatings": []
     },
@@ -115,6 +117,8 @@
       "attributePenalties": 55,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Lisandro Martínez",
       "rolesPlusPlusArchetypes": [],
       "bodytype": "Average Medium",
@@ -181,11 +185,13 @@
       "attributePenalties": 55,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Ethan Pinnock",
       "rolesPlusPlusArchetypes": [
+        "defender",
         "ball_playing_defender",
-        "stopper",
-        "defender"
+        "stopper"
       ],
       "bodytype": "Lean Tall",
       "positions": [
@@ -226,7 +232,7 @@
         "CDM Deep-Lying Playmaker",
         "CM Box to Box"
       ],
-      "accelerateType": "MOSTLY_EXPLOSIVE",
+      "accelerateType": "CONTROLLED_EXPLOSIVE",
       "weight": 69,
       "attributeAcceleration": 88,
       "attributeSprintSpeed": 88,
@@ -259,6 +265,8 @@
       "attributePenalties": 92,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Hakan Çalhanoğlu",
       "rolesPlusPlusArchetypes": [
         "centre_half",
@@ -267,8 +275,8 @@
       ],
       "bodytype": "Average Medium",
       "positions": [
-        "CDM",
-        "CM"
+        "CM",
+        "CDM"
       ],
       "metaRatings": []
     },
@@ -303,7 +311,7 @@
         "LW Inside Forward",
         "RM Inside Forward"
       ],
-      "accelerateType": "EXPLOSIVE",
+      "accelerateType": "MOSTLY_EXPLOSIVE",
       "weight": 70,
       "attributeAcceleration": 91,
       "attributeSprintSpeed": 87,
@@ -336,16 +344,18 @@
       "attributePenalties": 88,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Diego Maradona",
       "rolesPlusPlusArchetypes": [
         "inside_forward"
       ],
       "bodytype": "Unique",
       "positions": [
-        "RM",
-        "CAM",
         "RW",
-        "LW"
+        "RM",
+        "LW",
+        "CAM"
       ],
       "metaRatings": []
     },
@@ -406,6 +416,8 @@
       "attributePenalties": 64,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Jamal Musiala",
       "rolesPlusPlusArchetypes": [
         "shadow_striker",
@@ -414,8 +426,8 @@
       "bodytype": "Lean Medium",
       "positions": [
         "CM",
-        "CAM",
-        "LM"
+        "LM",
+        "CAM"
       ],
       "metaRatings": []
     },
@@ -480,6 +492,8 @@
       "attributePenalties": 85,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Trinity Rodman",
       "rolesPlusPlusArchetypes": [
         "advanced_forward",
@@ -487,10 +501,10 @@
       ],
       "bodytype": "Average Medium",
       "positions": [
-        "ST",
-        "RM",
         "RW",
-        "LM"
+        "ST",
+        "LM",
+        "RM"
       ],
       "metaRatings": []
     },
@@ -561,17 +575,19 @@
       "attributePenalties": 75,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Thomas Thiesson Kristensen",
       "rolesPlusPlusArchetypes": [
         "holding",
-        "deep_lying_playmaker",
-        "defender"
+        "defender",
+        "deep_lying_playmaker"
       ],
       "bodytype": "Average Tall",
       "positions": [
-        "CDM",
+        "CM",
         "CB",
-        "CM"
+        "CDM"
       ],
       "metaRatings": []
     },
@@ -639,11 +655,13 @@
       "attributePenalties": 66,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Koni De Winter",
       "rolesPlusPlusArchetypes": [
+        "defender",
         "stopper",
-        "fullback",
-        "defender"
+        "fullback"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -676,7 +694,7 @@
       "rolesPlusPlus": [
         "CB Defender"
       ],
-      "accelerateType": "CONTROLLED_LENGTHY",
+      "accelerateType": "CONTROLLED",
       "weight": 73,
       "attributeAcceleration": 86,
       "attributeSprintSpeed": 84,
@@ -709,6 +727,8 @@
       "attributePenalties": 45,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Castello Lukeba",
       "rolesPlusPlusArchetypes": [
         "defender"
@@ -751,7 +771,7 @@
         "CM Playmaker",
         "CM Half-Winger"
       ],
-      "accelerateType": "CONTROLLED",
+      "accelerateType": "CONTROLLED_LENGTHY",
       "weight": 77,
       "attributeAcceleration": 87,
       "attributeSprintSpeed": 85,
@@ -784,11 +804,13 @@
       "attributePenalties": 92,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Zinedine Zidane",
       "rolesPlusPlusArchetypes": [
-        "half_winger",
         "classic_ten",
         "box_to_box",
+        "half_winger",
         "playmaker",
         "shadow_striker"
       ],
@@ -861,10 +883,12 @@
       "attributePenalties": 44,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Lukas Klostermann",
       "rolesPlusPlusArchetypes": [
-        "fullback",
-        "defender"
+        "defender",
+        "fullback"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -930,6 +954,8 @@
       "attributePenalties": 59,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Gervinho",
       "rolesPlusPlusArchetypes": [
         "inside_forward",
@@ -937,8 +963,8 @@
       ],
       "bodytype": "Lean Medium",
       "positions": [
-        "LW",
-        "LM"
+        "LM",
+        "LW"
       ],
       "metaRatings": []
     },
@@ -999,6 +1025,8 @@
       "attributePenalties": 80,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Seydou Doumbia",
       "rolesPlusPlusArchetypes": [
         "advanced_forward",
@@ -1070,6 +1098,8 @@
       "attributePenalties": 56,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Adama Traoré",
       "rolesPlusPlusArchetypes": [
         "shadow_striker",
@@ -1148,15 +1178,17 @@
       "attributePenalties": 76,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Jude Bellingham",
       "rolesPlusPlusArchetypes": [
-        "playmaker",
-        "box_to_box"
+        "box_to_box",
+        "playmaker"
       ],
       "bodytype": "Average Medium",
       "positions": [
-        "CAM",
-        "CM"
+        "CM",
+        "CAM"
       ],
       "metaRatings": []
     },
@@ -1227,17 +1259,19 @@
       "attributePenalties": 89,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Fridolina Rolfö",
       "rolesPlusPlusArchetypes": [
+        "falseback",
         "inside_forward",
-        "attacking_wingback",
-        "falseback"
+        "attacking_wingback"
       ],
       "bodytype": "Lean Medium",
       "positions": [
-        "LW",
         "LB",
-        "LM"
+        "LM",
+        "LW"
       ],
       "metaRatings": []
     },
@@ -1303,6 +1337,8 @@
       "attributePenalties": 84,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Lucas Bergvall",
       "rolesPlusPlusArchetypes": [
         "deep_lying_playmaker",
@@ -1310,8 +1346,8 @@
       ],
       "bodytype": "Average Tall",
       "positions": [
-        "CDM",
-        "CM"
+        "CM",
+        "CDM"
       ],
       "metaRatings": []
     },
@@ -1375,11 +1411,13 @@
       "attributePenalties": 75,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Mats Hummels",
       "rolesPlusPlusArchetypes": [
+        "defender",
         "ball_playing_defender",
-        "stopper",
-        "defender"
+        "stopper"
       ],
       "bodytype": "Stocky Tall",
       "positions": [
@@ -1419,7 +1457,7 @@
         "CB Ball-Playing Defender",
         "CDM Holding"
       ],
-      "accelerateType": "MOSTLY_LENGTHY",
+      "accelerateType": "CONTROLLED",
       "weight": 81,
       "attributeAcceleration": 98,
       "attributeSprintSpeed": 96,
@@ -1452,19 +1490,21 @@
       "attributePenalties": 55,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Moïse Bombito",
       "rolesPlusPlusArchetypes": [
+        "defender",
         "holding",
-        "ball_playing_defender",
-        "stopper",
         "fullback",
-        "defender"
+        "ball_playing_defender",
+        "stopper"
       ],
       "bodytype": "Average Tall",
       "positions": [
-        "CDM",
+        "LB",
         "CB",
-        "LB"
+        "CDM"
       ],
       "metaRatings": []
     },
@@ -1534,19 +1574,21 @@
       "attributePenalties": 68,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Abner Vinícius",
       "rolesPlusPlusArchetypes": [
         "falseback",
         "fullback",
-        "winger",
         "playmaker",
-        "deep_lying_playmaker"
+        "deep_lying_playmaker",
+        "winger"
       ],
       "bodytype": "Average Medium",
       "positions": [
-        "CM",
         "LB",
-        "LM"
+        "LM",
+        "CM"
       ],
       "metaRatings": []
     },
@@ -1607,6 +1649,8 @@
       "attributePenalties": 65,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Víctor Ibarbo",
       "rolesPlusPlusArchetypes": [
         "inside_forward",
@@ -1614,8 +1658,8 @@
       ],
       "bodytype": "Average Tall",
       "positions": [
-        "RM",
-        "RW"
+        "RW",
+        "RM"
       ],
       "metaRatings": []
     },
@@ -1675,12 +1719,14 @@
       "attributePenalties": 74,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Enzo Fernández",
       "rolesPlusPlusArchetypes": [],
       "bodytype": "Average Medium",
       "positions": [
-        "CDM",
-        "CM"
+        "CM",
+        "CDM"
       ],
       "metaRatings": []
     },
@@ -1706,7 +1752,7 @@
       "rolesPlusPlus": [
         "RB Falseback"
       ],
-      "accelerateType": "MOSTLY_LENGTHY",
+      "accelerateType": "CONTROLLED_LENGTHY",
       "weight": 77,
       "attributeAcceleration": 82,
       "attributeSprintSpeed": 94,
@@ -1739,15 +1785,17 @@
       "attributePenalties": 33,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Joe Gomez",
       "rolesPlusPlusArchetypes": [
         "falseback"
       ],
       "bodytype": "Unique",
       "positions": [
+        "LB",
         "RB",
-        "CB",
-        "LB"
+        "CB"
       ],
       "metaRatings": []
     },
@@ -1811,6 +1859,8 @@
       "attributePenalties": 81,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Jovon Makama",
       "rolesPlusPlusArchetypes": [
         "advanced_forward",
@@ -1818,9 +1868,9 @@
       ],
       "bodytype": "Lean Tall",
       "positions": [
+        "RW",
         "ST",
-        "RM",
-        "RW"
+        "RM"
       ],
       "metaRatings": []
     },
@@ -1856,7 +1906,7 @@
         "CAM Playmaker",
         "CAM Shadow Striker"
       ],
-      "accelerateType": "MOSTLY_EXPLOSIVE",
+      "accelerateType": "CONTROLLED_EXPLOSIVE",
       "weight": 69,
       "attributeAcceleration": 89,
       "attributeSprintSpeed": 85,
@@ -1889,6 +1939,8 @@
       "attributePenalties": 98,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Bruno Fernandes",
       "rolesPlusPlusArchetypes": [
         "shadow_striker",
@@ -1971,19 +2023,21 @@
       "attributePenalties": 84,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Gianluca Zambrotta",
       "rolesPlusPlusArchetypes": [
-        "inside_forward",
         "fullback",
-        "attacking_wingback",
-        "wide_midfielder"
+        "wide_midfielder",
+        "inside_forward",
+        "attacking_wingback"
       ],
       "bodytype": "Average Medium",
       "positions": [
-        "RB",
-        "RM",
         "LB",
-        "LM"
+        "RB",
+        "LM",
+        "RM"
       ],
       "metaRatings": []
     },
@@ -2047,14 +2101,84 @@
       "attributePenalties": 45,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Isaak Touré",
       "rolesPlusPlusArchetypes": [
-        "ball_playing_defender",
-        "defender"
+        "defender",
+        "ball_playing_defender"
       ],
       "bodytype": "Average Tall",
       "positions": [
         "CB"
+      ],
+      "metaRatings": []
+    },
+    {
+      "eaId": 200104,
+      "overall": 87,
+      "height": 183,
+      "foot": "Right",
+      "skillMoves": 5,
+      "weakFoot": 5,
+      "playstyles": [
+        "Rapid",
+        "Trickster",
+        "Quick Step"
+      ],
+      "playstylesPlus": [
+        "Finesse Shot"
+      ],
+      "rolesPlus": [
+        "ST False 9",
+        "LM Inside Forward"
+      ],
+      "rolesPlusPlus": [
+        "ST Advanced Forward"
+      ],
+      "accelerateType": "CONTROLLED",
+      "weight": 78,
+      "attributeAcceleration": 86,
+      "attributeSprintSpeed": 88,
+      "attributeAgility": 81,
+      "attributeBalance": 74,
+      "attributeJumping": 82,
+      "attributeStamina": 88,
+      "attributeStrength": 69,
+      "attributeReactions": 90,
+      "attributeAggression": 62,
+      "attributeComposure": 88,
+      "attributeInterceptions": 39,
+      "attributePositioning": 91,
+      "attributeVision": 82,
+      "attributeBallControl": 85,
+      "attributeCrossing": 84,
+      "attributeDribbling": 87,
+      "attributeFinishing": 90,
+      "attributeFkAccuracy": 74,
+      "attributeHeadingAccuracy": 72,
+      "attributeLongPassing": 72,
+      "attributeShortPassing": 83,
+      "attributeDefensiveAwareness": 45,
+      "attributeShotPower": 89,
+      "attributeLongShots": 89,
+      "attributeStandingTackle": 34,
+      "attributeSlidingTackle": 33,
+      "attributeVolleys": 83,
+      "attributeCurve": 87,
+      "attributePenalties": 75,
+      "totalIgsBoost": 0,
+      "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
+      "commonName": "Heung Min Son",
+      "rolesPlusPlusArchetypes": [
+        "advanced_forward"
+      ],
+      "bodytype": "Unique",
+      "positions": [
+        "ST",
+        "LM"
       ],
       "metaRatings": []
     },
@@ -2117,82 +2241,18 @@
       "attributePenalties": 85,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Neymar Jr",
       "rolesPlusPlusArchetypes": [
-        "inside_forward",
-        "wide_playmaker"
+        "wide_playmaker",
+        "inside_forward"
       ],
       "bodytype": "Unique",
       "positions": [
-        "CAM",
+        "LM",
         "LW",
-        "LM"
-      ],
-      "metaRatings": []
-    },
-    {
-      "eaId": 200104,
-      "overall": 87,
-      "height": 183,
-      "foot": "Right",
-      "skillMoves": 5,
-      "weakFoot": 5,
-      "playstyles": [
-        "Rapid",
-        "Trickster",
-        "Quick Step"
-      ],
-      "playstylesPlus": [
-        "Finesse Shot"
-      ],
-      "rolesPlus": [
-        "ST False 9",
-        "LM Inside Forward"
-      ],
-      "rolesPlusPlus": [
-        "ST Advanced Forward"
-      ],
-      "accelerateType": "MOSTLY_EXPLOSIVE",
-      "weight": 78,
-      "attributeAcceleration": 86,
-      "attributeSprintSpeed": 88,
-      "attributeAgility": 81,
-      "attributeBalance": 74,
-      "attributeJumping": 82,
-      "attributeStamina": 88,
-      "attributeStrength": 69,
-      "attributeReactions": 90,
-      "attributeAggression": 62,
-      "attributeComposure": 88,
-      "attributeInterceptions": 39,
-      "attributePositioning": 91,
-      "attributeVision": 82,
-      "attributeBallControl": 85,
-      "attributeCrossing": 84,
-      "attributeDribbling": 87,
-      "attributeFinishing": 90,
-      "attributeFkAccuracy": 74,
-      "attributeHeadingAccuracy": 72,
-      "attributeLongPassing": 72,
-      "attributeShortPassing": 83,
-      "attributeDefensiveAwareness": 45,
-      "attributeShotPower": 89,
-      "attributeLongShots": 89,
-      "attributeStandingTackle": 34,
-      "attributeSlidingTackle": 33,
-      "attributeVolleys": 83,
-      "attributeCurve": 87,
-      "attributePenalties": 75,
-      "totalIgsBoost": 0,
-      "evolutionIgsBoost": 0,
-      "commonName": "Heung Min Son",
-      "rolesPlusPlusArchetypes": [
-        "advanced_forward"
-      ],
-      "bodytype": "Unique",
-      "positions": [
-        "ST",
-        "LM"
+        "CAM"
       ],
       "metaRatings": []
     },
@@ -2261,6 +2321,8 @@
       "attributePenalties": 99,
       "totalIgsBoost": 0,
       "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
       "commonName": "Javier Zanetti",
       "rolesPlusPlusArchetypes": [
         "deep_lying_playmaker",
@@ -2268,8 +2330,90 @@
       ],
       "bodytype": "Average Medium",
       "positions": [
-        "CDM",
-        "CM"
+        "CM",
+        "CDM"
+      ],
+      "metaRatings": []
+    },
+    {
+      "eaId": 100881166,
+      "overall": 92,
+      "height": 183,
+      "foot": "Right",
+      "skillMoves": 4,
+      "weakFoot": 5,
+      "playstyles": [
+        "Long Ball Pass",
+        "Tiki Taka",
+        "Whipped Pass",
+        "Block",
+        "Intercept",
+        "Bruiser",
+        "Rapid",
+        "First Touch",
+        "Relentless"
+      ],
+      "playstylesPlus": [
+        "Jockey",
+        "Incisive Pass"
+      ],
+      "rolesPlus": [
+        "RM Wide Playmaker",
+        "RB Wingback",
+        "CDM Holding",
+        "RM Winger"
+      ],
+      "rolesPlusPlus": [
+        "RB Attacking Wingback",
+        "CDM Deep-Lying Playmaker",
+        "RB Fullback"
+      ],
+      "accelerateType": "CONTROLLED",
+      "weight": 82,
+      "attributeAcceleration": 93,
+      "attributeSprintSpeed": 93,
+      "attributeAgility": 94,
+      "attributeBalance": 94,
+      "attributeJumping": 93,
+      "attributeStamina": 97,
+      "attributeStrength": 86,
+      "attributeReactions": 94,
+      "attributeAggression": 87,
+      "attributeComposure": 90,
+      "attributeInterceptions": 93,
+      "attributePositioning": 89,
+      "attributeVision": 87,
+      "attributeBallControl": 92,
+      "attributeCrossing": 93,
+      "attributeDribbling": 92,
+      "attributeFinishing": 85,
+      "attributeFkAccuracy": 83,
+      "attributeHeadingAccuracy": 87,
+      "attributeLongPassing": 89,
+      "attributeShortPassing": 93,
+      "attributeDefensiveAwareness": 92,
+      "attributeShotPower": 92,
+      "attributeLongShots": 88,
+      "attributeStandingTackle": 93,
+      "attributeSlidingTackle": 91,
+      "attributeVolleys": 76,
+      "attributeCurve": 82,
+      "attributePenalties": 75,
+      "totalIgsBoost": 0,
+      "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
+      "commonName": "Giovanni Di Lorenzo",
+      "rolesPlusPlusArchetypes": [
+        "deep_lying_playmaker",
+        "fullback",
+        "attacking_wingback"
+      ],
+      "bodytype": "Average Medium",
+      "positions": [
+        "RB",
+        "RM",
+        "CDM"
       ],
       "metaRatings": []
     }

@@ -4,9 +4,9 @@ import pandas as pd
 from pathlib import Path
 
 # Define paths
-base_dir = Path(__file__).resolve().parents[2]
+base_dir = Path(__file__).resolve().parents[1]
 data_dir = base_dir / "data"
-model_dir = base_dir / "scripts" / "retrain_model" / "models"
+model_dir = base_dir / "models"
 
 PREDICTION_FILE = data_dir / "prediction_ready.csv"
 OUTPUT_FILE = data_dir / "predicted_metaratings.csv"
@@ -15,7 +15,7 @@ OUTPUT_FILE = data_dir / "predicted_metaratings.csv"
 df = pd.read_csv(PREDICTION_FILE)
 
 # Columns to ignore during prediction
-ignore_cols = ['eaId', 'commonName', 'meta_rating']
+ignore_cols = ['eaId', 'commonName', 'chemstyle', "position"]
 
 # Placeholder for predictions
 predictions = []
@@ -45,8 +45,30 @@ for idx, row in df.iterrows():
     pred = target_scaler.inverse_transform([[pred_scaled]])[0][0]
     predictions.append(pred)
 
-# Append predictions and export
+# Append predictions
 df['predicted_meta_rating'] = predictions
-df.to_csv(OUTPUT_FILE, index=False)
+
+# Keep only two rows per (eaId, archetype): 
+# 1. Chemstyle == "none"
+# 2. Highest predicted meta rating (best chemstyle)
+keep_rows = []
+
+for (eaId, archetype), group in df.groupby(["eaId", "archetype"]):
+    # Row with chemstyle == none
+    none_row = group[group["chemstyle"] == "none"]
+    if not none_row.empty:
+        keep_rows.append(none_row.iloc[0])
+    
+    # Row with highest predicted meta rating (skip NaNs)
+    valid_preds = group.dropna(subset=["predicted_meta_rating"])
+    if not valid_preds.empty:
+        best_row = valid_preds.loc[valid_preds["predicted_meta_rating"].idxmax()]
+        keep_rows.append(best_row)
+
+# Create final dataframe
+final_df = pd.DataFrame(keep_rows)
+
+# Save output
+final_df.to_csv(OUTPUT_FILE, index=False)
 
 print(f"✅ Prediction complete. Results saved to {OUTPUT_FILE}")

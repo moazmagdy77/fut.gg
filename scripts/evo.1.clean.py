@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 # Define data directory
-data_dir = Path(__file__).resolve().parents[2] / "data"
+data_dir = Path(__file__).resolve().parents[1] / "data"
 
 # Load files
 evolab_path = data_dir / "evolab.json"
@@ -13,18 +13,6 @@ with open(evolab_path, "r", encoding="utf-8") as f:
 
 with open(maps_path, "r", encoding="utf-8") as f:
     maps = json.load(f)
-
-# Load club_players.json
-club_players_path = data_dir / "club_players.json"
-with open(club_players_path, "r", encoding="utf-8") as f:
-    club_players_raw = json.load(f)
-
-# Create a lookup dict using eaId as key
-club_players_lookup = {
-    p["data"]["eaId"]: p["data"].get("accelerateType")
-    for p in club_players_raw
-    if "eaId" in p["data"]
-}
 
 # Fields to map and their corresponding mapping dicts
 fields_to_map = {
@@ -82,27 +70,43 @@ for item in evolab["data"]:
         if field in player_def:
             player_def[field] = map_value(player_def[field], mapping)
 
+    # Rename bodytypeCode to bodytype immediately after mapping
+    if "bodytypeCode" in player_def:
+        player_def["bodytype"] = player_def.pop("bodytypeCode")
+
+    # Combine position and alternativePositionIds into positions and remove them
+    position = player_def.pop("position", None)
+    alt_positions = player_def.pop("alternativePositionIds", [])
+    player_def["positions"] = list({pos for pos in ([position] if position else []) + alt_positions})
+
+    # Calculate accelerateType based on attributes before clearing item
+    accel = player_def.get("attributeAcceleration", 0)
+    strength = player_def.get("attributeStrength", 0)
+    agility = player_def.get("attributeAgility", 0)
+    height = player_def.get("height", 0)
+
+    accelerateType = "CONTROLLED"
+    if (agility - strength) >= 20 and accel >= 80 and height <= 175:
+        accelerateType = "EXPLOSIVE"
+    elif (agility - strength) >= 12 and accel >= 80 and height <= 182:
+        accelerateType = "MOSTLY_EXPLOSIVE"
+    elif (agility - strength) >= 4 and accel >= 70 and height <= 182:
+        accelerateType = "CONTROLLED_EXPLOSIVE"
+    elif (strength - agility) >= 20 and strength >= 80 and height >= 188:
+        accelerateType = "LENGTHY"
+    elif (strength - agility) >= 12 and strength >= 75 and height >= 183:
+        accelerateType = "MOSTLY_LENGTHY"
+    elif (strength - agility) >= 4 and strength >= 65 and height >= 181:
+        accelerateType = "CONTROLLED_LENGTHY"
+
+    player_def["accelerateType"] = accelerateType
+
     # Replace item content with just the mapped playerItemDefinition
     item.clear()
     item.update(player_def)
 
-    # Rename bodytypeCode to bodytype
-    if "bodytypeCode" in item:
-        item["bodytype"] = item.pop("bodytypeCode")
-
-    # Combine position and alternativePositionIds into positions
-    position = item.pop("position", None)
-    alt_positions = item.pop("alternativePositionIds", [])
-    item["positions"] = list({pos for pos in ([position] if position else []) + alt_positions})
-
     # Add empty metaRatings field
     item["metaRatings"] = []
-
-# Fill in missing accelerateType fields
-for item in evolab["data"]:
-    ea_id = item.get("eaId")
-    if item.get("accelerateType") is None and ea_id in club_players_lookup:
-        item["accelerateType"] = club_players_lookup[ea_id]
 
 # Save the updated result to a new JSON file
 output_path = data_dir / "evolab_mapped.json"

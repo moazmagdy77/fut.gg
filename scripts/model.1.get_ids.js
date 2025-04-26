@@ -9,7 +9,7 @@ const path = require('path');
   const TOP_PLAYER_PAGES = 78;
   const NEW_PLAYER_PAGES = 0;
 
-  const dataDir = path.resolve(__dirname, '..', '..', 'data');
+  const dataDir = path.resolve(__dirname, '..', 'data');
   const progressFile = path.join(dataDir, 'scraping_progress.json');
   const outputFile = path.join(dataDir, 'player_ids.json');
 

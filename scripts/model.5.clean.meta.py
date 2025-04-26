@@ -3,7 +3,7 @@ import pandas as pd
 from pathlib import Path
 
 # Set data directory path
-data_dir = Path(__file__).resolve().parents[2] / "data"
+data_dir = Path(__file__).resolve().parents[1] / "data"
 
 # --- STEP 1: Load & clean original players data ---
 with open(data_dir / "players_with_meta.json") as f:

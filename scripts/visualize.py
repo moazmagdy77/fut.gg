@@ -6,18 +6,18 @@ from pathlib import Path
 st.set_page_config(layout="wide")
 
 # Define data directory
-data_dir = Path(__file__).resolve().parents[2] / "data"
+data_dir = Path(__file__).resolve().parents[1] / "data"
 
-# Load metadata from visual.csv
+# Load metadata
 visual_df = pd.read_csv(data_dir / "visual.csv")
 
-# Rename attribute fields
+# Process visual fields
 visual_df["field"] = visual_df["field"].apply(lambda x: x.replace("attribute", "", 1) if isinstance(x, str) and x.startswith("attribute") else x)
 visual_df["field"] = visual_df["field"].apply(lambda x: x[0].lower() + x[1:] if isinstance(x, str) and x else x)
 
 non_attribute_filter_order = [
-    "rolesPlusPlus", "rolesPlus", "skillMoves", "weakFoot", "playstylesPlus", "playstyles",
-    "positions", "foot", "bodytype", "accelerateType", "height", "weight", "overall"
+    "overall", "rolesPlusPlus", "rolesPlus", "skillMoves", "weakFoot", "playstylesPlus", "playstyles",
+    "positions", "foot", "bodytype", "accelerateType", "height", "weight"
 ]
 
 attribute_filter_order = [
@@ -35,9 +35,9 @@ attribute_fields = attribute_fields.sort_values(by="sort_index")
 
 non_attribute_fields = visual_df[visual_df["field"].isin(non_attribute_filter_order)].copy()
 non_attribute_fields["sort_index"] = non_attribute_fields["field"].apply(lambda x: non_attribute_filter_order.index(x))
-non_attribute_fields = non_attribute_fields.sort_values(by="sort_index") 
+non_attribute_fields = non_attribute_fields.sort_values(by="sort_index")
 
-# Load and normalize JSON data
+# Load and normalize JSON
 with open(data_dir / "final.json", "r") as f:
     data = json.load(f)
 
@@ -45,46 +45,45 @@ for idx, p in enumerate(data):
     p["player_origin_id"] = f"{p.get('eaId', 'unknown')}_{idx}"
     p["debug_index"] = idx
 
-# Ensure all players have a proper metaRatings format
+# Ensure all players have a metaRatings list
 def ensure_meta_list(p):
     if not isinstance(p.get("metaRatings"), list):
         if isinstance(p.get("metaRatings"), dict):
             p["metaRatings"] = [p["metaRatings"]]
         else:
-            p["metaRatings"] = [{"archetype": "N/A", "metaRating": 0}]
+            p["metaRatings"] = [{"archetype": "N/A", "metaRating_0chem": 0, "metaRating_3chem": 0}]
     elif len(p["metaRatings"]) == 0:
-        p["metaRatings"] = [{"archetype": "N/A", "metaRating": 0}]
+        p["metaRatings"] = [{"archetype": "N/A", "metaRating_0chem": 0, "metaRating_3chem": 0}]
     return p
 
 data = [ensure_meta_list(p) for p in data]
 df = pd.json_normalize(data)
 df["player_origin_id"] = df["player_origin_id"].astype(str)
-
 df["eaId"] = df["eaId"].astype(str)
 df["__true_player_id"] = df["eaId"].fillna(df["commonName"])
 
 # Rename attribute columns
 df.rename(columns={col: col.replace("attribute", "", 1)[0].lower() + col.replace("attribute", "", 1)[1:] for col in df.columns if col.startswith("attribute")}, inplace=True)
 
-# Expand metaRatings into one row per archetype and metaRating
+# Explode metaRatings properly
 if "metaRatings" in df.columns:
     df["metaRatings"] = df["metaRatings"].apply(lambda x: x if isinstance(x, list) else [{}])
-    multi_meta = df[df["metaRatings"].apply(lambda x: isinstance(x, list) and len(x) > 1)]
     df = df.explode("metaRatings", ignore_index=True)
     df["metaRatings"] = df["metaRatings"].apply(lambda x: x if isinstance(x, dict) else {})
-    df["archetype"] = df["metaRatings"].apply(lambda x: x.get("archetype"))
-    df["metarating"] = df["metaRatings"].apply(lambda x: x.get("metaRating"))
-
-    df["archetype"] = df["archetype"].fillna("N/A")
-    df["metarating"] = df["metarating"].fillna(0)
-
+    df["archetype"] = df["metaRatings"].apply(lambda x: x.get("archetype", "N/A"))
+    df["metaRating_0chem"] = df["metaRatings"].apply(lambda x: x.get("metaR_0chem", 0))
+    df["metaRating_3chem"] = df["metaRatings"].apply(lambda x: x.get("metaR_3chem", 0))
+    df["bestChemStyle"] = df["metaRatings"].apply(lambda x: x.get("bestChemStyle", "None"))
+    df["accelerateType_chem"] = df["metaRatings"].apply(lambda x: x.get("accelerateType_chem", "Unknown"))
+    df["hasRolePlus"] = df["metaRatings"].apply(lambda x: x.get("hasRolePlus", False))
+    df["hasRolePlusPlus"] = df["metaRatings"].apply(lambda x: x.get("hasRolePlusPlus", False))
     df = df.drop(columns=["metaRatings"])
 
 df["height"] = pd.to_numeric(df["height"], errors="coerce")
 df["weight"] = pd.to_numeric(df["weight"], errors="coerce")
 df["__player_id"] = df["player_origin_id"] + "_" + df["archetype"].astype(str)
 
-# Define the rolesPlusPlus → archetype mapping
+# Add mapping from rolesPlusPlus to archetype keys
 rpp_to_archetype = {
     "GK Goalkeeper": "goalkeeper", "GK Sweeper Keeper": "sweeper_keeper",
     "RB Fullback": "fullback", "RB Falseback": "falseback", "RB Wingback": "wingback", "RB Attacking Wingback": "attacking_wingback",
@@ -100,33 +99,27 @@ rpp_to_archetype = {
     "ST Advanced Forward": "advanced_forward", "ST Poacher": "poacher", "ST False 9": "false_nine", "ST Target Forward": "target_forward"
 }
 
-# Sidebar for filtering
+# Sidebar filters
 st.sidebar.header("Filter Players")
 filters = {}
 
+# Evolution filter (if exists)
 evolution_values = [True, False]
 selected_evolution = st.sidebar.selectbox("evolution", options=["All"] + evolution_values)
 if selected_evolution != "All":
     filters["evolution"] = selected_evolution
 
-# Define attribute filter order
-attribute_filter_order = [
-    "acceleration", "sprintSpeed", "positioning", "finishing", "shotPower", "longShots",
-    "volleys", "penalties", "vision", "crossing", "fkAccuracy", "shortPassing",
-    "longPassing", "curve", "agility", "balance", "reactions", "ballControl",
-    "dribbling", "composure", "interceptions", "headingAccuracy", "defensiveAwareness",
-    "standingTackle", "slidingTackle", "jumping", "stamina", "strength", "aggression",
-    "gkDiving", "gkHandling", "gkKicking", "gkPositioning", "gkReflexes"
-]
-attribute_fields["sort_index"] = attribute_fields["field"].apply(lambda x: attribute_filter_order.index(x) if x in attribute_filter_order else -1)
-attribute_fields = attribute_fields.sort_values(by="sort_index")
+# Archetype filter
+archetypes = sorted(df["archetype"].dropna().unique())
+selected_archetypes = st.sidebar.multiselect("Archetype", options=archetypes)
+if selected_archetypes:
+    filters["archetype"] = selected_archetypes
 
-# Process non-attribute fields first
+# Process non-attribute fields
 for _, row in non_attribute_fields.iterrows():
     col = row["field"]
     if col not in df.columns:
         continue
-
     filter_type = row["filter type"]
     if filter_type == "dropdown/selection":
         series = df[col].dropna()
@@ -140,65 +133,55 @@ for _, row in non_attribute_fields.iterrows():
     elif filter_type == "min/max boxes in one line":
         min_val = row["min"] if not pd.isna(row["min"]) else df[col].min()
         max_val = row["max"] if not pd.isna(row["max"]) else df[col].max()
-        min_val, max_val = int(min_val), int(max_val)
-        selected_range = st.sidebar.slider(f"{col}", min_val, max_val, (min_val, max_val))
-        filters[col] = selected_range
-    if col == "archetype":
-        continue
-    if col in ["height", "weight"] and col not in filters:
-        min_val = int(df[col].min())
-        max_val = int(df[col].max())
-        selected_range = st.sidebar.slider(f"{col}", min_val, max_val, (min_val, max_val))
+        selected_range = st.sidebar.slider(f"{col}", int(min_val), int(max_val), (int(min_val), int(max_val)))
         filters[col] = selected_range
 
-# Auto-control archetype filter if rolesPlusPlus is selected
-selected_rpp = filters.get("rolesPlusPlus", [])
-if selected_rpp:
-    mapped_archetypes = sorted(set(rpp_to_archetype[r] for r in selected_rpp if r in rpp_to_archetype))
-    filters["archetype"] = mapped_archetypes
+# Recompute hasRolePlus and hasRolePlusPlus dynamically based on archetype and rolesPlus/rolesPlusPlus
+def recompute_role_flags(row):
+    roles_plus = row.get("rolesPlus", [])
+    roles_plus_plus = row.get("rolesPlusPlus", [])
+    archetype = row.get("archetype", "N/A")
+    mapped_roles_plus = [rpp_to_archetype.get(role, None) for role in roles_plus]
+    mapped_roles_plus_plus = [rpp_to_archetype.get(role, None) for role in roles_plus_plus]
+    has_role_plus = archetype in mapped_roles_plus
+    has_role_plus_plus = archetype in mapped_roles_plus_plus
+    return pd.Series({"hasRolePlus": has_role_plus, "hasRolePlusPlus": has_role_plus_plus})
+
+role_flags = df.apply(recompute_role_flags, axis=1)
+df["hasRolePlus"] = role_flags["hasRolePlus"]
+df["hasRolePlusPlus"] = role_flags["hasRolePlusPlus"]
+
+# Additional filters for hasRolePlus and hasRolePlusPlus
+with st.sidebar.expander("Role Familiarity", expanded=True):
+    has_role_plus = st.checkbox("Has Role Plus")
+    has_role_plus_plus = st.checkbox("Has Role Plus Plus")
+    if has_role_plus:
+        filters["hasRolePlus"] = True
+    if has_role_plus_plus:
+        filters["hasRolePlusPlus"] = True
 
 with st.sidebar.expander("In-Game Stats", expanded=False):
-    # Process attribute fields
     for _, row in attribute_fields.iterrows():
         col = row["field"]
         if col not in df.columns:
             continue
-
         filter_type = row["filter type"]
         if filter_type == "dropdown/selection":
-            series = df[col].dropna()
-            if series.apply(lambda x: isinstance(x, list)).any():
-                unique_vals = sorted(set(item for sublist in series if isinstance(sublist, list) for item in sublist))
-            else:
-                unique_vals = sorted(series.unique())
+            unique_vals = sorted(df[col].dropna().unique())
             selected_vals = st.multiselect(f"{col}", unique_vals)
             if selected_vals:
                 filters[col] = selected_vals
         elif filter_type == "min/max boxes in one line":
-            min_val = row["min"] if not pd.isna(row["min"]) else df[col].min()
-            max_val = row["max"] if not pd.isna(row["max"]) else df[col].max()
-            min_val, max_val = int(min_val), int(max_val)
-            selected_range = st.slider(f"{col}", min_val, max_val, (min_val, max_val))
+            min_val = df[col].min()
+            max_val = df[col].max()
+            selected_range = st.slider(f"{col}", int(min_val), int(max_val), (int(min_val), int(max_val)))
             filters[col] = selected_range
-
-# Include all players by default, even those with metaRating = 0
-df["metarating"] = pd.to_numeric(df["metarating"], errors="coerce").fillna(0)
 
 # Apply filters
 filtered_df = df.copy()
 for col, val in filters.items():
     if col == "evolution":
         filtered_df = filtered_df[filtered_df[col] == val]
-        continue
-    if col in ["playstyles", "playstylesPlus"]:
-        filtered_df = filtered_df[filtered_df.apply(
-            lambda row: all(
-                any(i in (row.get("playstyles") or []) for i in [v]) or
-                any(i in (row.get("playstylesPlus") or []) for i in [v])
-                for v in val
-            ),
-            axis=1
-        )]
     elif isinstance(val, list):
         if df[col].apply(lambda x: isinstance(x, list)).any():
             filtered_df = filtered_df[filtered_df[col].apply(lambda x: any(i in x for i in val) if isinstance(x, list) else False)]
@@ -206,29 +189,39 @@ for col, val in filters.items():
             filtered_df = filtered_df[filtered_df[col].isin(val)]
     elif isinstance(val, tuple) and len(val) == 2:
         filtered_df = filtered_df[filtered_df[col].between(val[0], val[1])]
+    else:
+        filtered_df = filtered_df[filtered_df[col] == val]
 
-# Custom column order
-column_order = [
-    "commonName", "archetype", "metarating", "rolesPlusPlus", "rolesPlus",
+# Sort option
+sort_by = st.sidebar.selectbox("Sort By", options=["metaRating_3chem", "metaRating_0chem", "overall"], index=0)
+
+# Columns to display
+columns_to_display = [
+    "commonName", "archetype", "metaRating_0chem", "metaRating_3chem",
+    "bestChemStyle", "accelerateType_chem", "hasRolePlus", "hasRolePlusPlus",
     "skillMoves", "weakFoot", "playstylesPlus", "playstyles", "positions", "foot",
-    "bodytype", "accelerateType", "height", "weight", "overall",
-    "acceleration", "sprintSpeed", "positioning", "finishing",
-    "shotPower", "longShots", "volleys", "penalties",
-    "vision", "crossing", "fkAccuracy", "shortPassing",
-    "longPassing", "curve", "agility", "balance",
-    "reactions", "ballControl", "dribbling", "composure",
-    "interceptions", "headingAccuracy", "defensiveAwareness",
-    "standingTackle", "slidingTackle", "jumping", "stamina",
-    "strength", "aggression", "gkDiving", "gkHandling",
-    "gkKicking", "gkPositioning", "gkReflexes"
-]
-existing_columns = [col for col in column_order if col in filtered_df.columns]
+    "bodytype", "accelerateType", "height", "weight", "overall"
+] + [col for col in attribute_filter_order if col in filtered_df.columns]
+
+existing_columns = [col for col in columns_to_display if col in filtered_df.columns]
+columns_to_hide = ["evolutionIgsBoost", "premiumSeasonPassLevel", "standardSeasonPassLevel", "totalIgsBoost"]
+filtered_df = filtered_df.drop(columns=[col for col in columns_to_hide if col in filtered_df.columns], errors="ignore")
 remaining_columns = [col for col in filtered_df.columns if col not in existing_columns]
 filtered_df = filtered_df[existing_columns + remaining_columns]
+
+def format_boolean(value):
+    if value is True:
+        return "✅"
+    elif value is False:
+        return "❌"
+    else:
+        return ""
+
+filtered_df["hasRolePlus"] = filtered_df["hasRolePlus"].apply(format_boolean)
+filtered_df["hasRolePlusPlus"] = filtered_df["hasRolePlusPlus"].apply(format_boolean)
 
 # Display
 st.title("Mostashar Moza Player Database")
 st.markdown(f"### Showing {filtered_df['player_origin_id'].nunique()} unique players")
-sort_by = "metarating" if "metarating" in filtered_df.columns else "overall"
 filtered_df = filtered_df.drop(columns=["__true_player_id", "player_origin_id", "debug_index", "__player_id"], errors="ignore")
 st.dataframe(filtered_df.sort_values(by=sort_by, ascending=False), use_container_width=True, hide_index=True)
