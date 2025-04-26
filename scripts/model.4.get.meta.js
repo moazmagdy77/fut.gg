@@ -8,95 +8,112 @@ const players = JSON.parse(fs.readFileSync(path.join(dataDir, 'enhanced_players.
 const maps = JSON.parse(fs.readFileSync(path.join(dataDir, 'maps.json'), 'utf-8'));
 const chemStyleMap = maps.chemStyles;
 
+let MAX_CONCURRENT = 5;
+const DELAY_BETWEEN_BATCHES_MS = 1000;
+const MAX_RETRIES = 3;
+const HARD_TIMEOUT_MS = 20000;
+
+const MIN_CONCURRENT = 3;
+const MAX_CONCURRENT_LIMIT = 10;
+
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-(async () => {
-  const dataDir = path.resolve(__dirname, '..', '..', 'data');
-  const players = JSON.parse(fs.readFileSync(path.join(dataDir, 'enhanced_players.json'), 'utf-8'));
-  const maps = JSON.parse(fs.readFileSync(path.join(dataDir, 'maps.json'), 'utf-8'));
-  const chemStyleMap = maps.chemStyles;
+const positionToArchetypes = {
+  GK: ['goalkeeper', 'sweeper_keeper'],
+  RB: ['fullback', 'falseback', 'wingback', 'attacking_wingback'],
+  LB: ['fullback', 'falseback', 'wingback', 'attacking_wingback'],
+  CB: ['defender', 'stopper', 'ball_playing_defender'],
+  CDM: ['holding', 'centre_half', 'deep_lying_playmaker', 'wide_half'],
+  CM: ['box_to_box', 'holding', 'deep_lying_playmaker', 'playmaker', 'half_winger'],
+  CAM: ['playmaker', 'shadow_striker', 'half_winger', 'classic_ten'],
+  RM: ['winger', 'wide_midfielder', 'wide_playmaker', 'inside_forward'],
+  LM: ['winger', 'wide_midfielder', 'wide_playmaker', 'inside_forward'],
+  RW: ['winger', 'inside_forward', 'wide_playmaker'],
+  LW: ['winger', 'inside_forward', 'wide_playmaker'],
+  ST: ['advanced_forward', 'poacher', 'false_nine', 'target_forward']
+};
 
-  const positionToArchetypes = {
-    GK: ['goalkeeper', 'sweeper_keeper'],
-    RB: ['fullback', 'falseback', 'wingback', 'attacking_wingback'],
-    LB: ['fullback', 'falseback', 'wingback', 'attacking_wingback'],
-    CB: ['defender', 'stopper', 'ball_playing_defender'],
-    CDM: ['holding', 'centre_half', 'deep_lying_playmaker', 'wide_half'],
-    CM: ['box_to_box', 'holding', 'deep_lying_playmaker', 'playmaker', 'half_winger'],
-    CAM: ['playmaker', 'shadow_striker', 'half_winger', 'classic_ten'],
-    RM: ['winger', 'wide_midfielder', 'wide_playmaker', 'inside_forward'],
-    LM: ['winger', 'wide_midfielder', 'wide_playmaker', 'inside_forward'],
-    RW: ['winger', 'inside_forward', 'wide_playmaker'],
-    LW: ['winger', 'inside_forward', 'wide_playmaker'],
-    ST: ['advanced_forward', 'poacher', 'false_nine', 'target_forward']
-  };
+const fetchMetaRatingsWithRetry = async (player, archetype) => {
+  const url = `https://api.easysbc.io/squad-builder/meta-ratings?archetypeId=${archetype}&resourceId=${player.eaId}`;
+  console.log(`📦 Fetching meta rating for player ${player.commonName} - Archetype: ${archetype}`);
 
-  const MAX_CONCURRENT = 5;
-  const DELAY_BETWEEN_BATCHES_MS = 1000;
-  const MAX_RETRIES = 2;
-  const HARD_TIMEOUT_MS = 20000;
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+    try {
+      const response = await Promise.race([
+        axios.get(url),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('⏰ Hard timeout exceeded')), HARD_TIMEOUT_MS))
+      ]);
 
-  const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+      const ratings = Array.isArray(response.data) ? response.data : [];
+      const mappedRatings = ratings.map(r => ({
+        ...r,
+        chemStyle: chemStyleMap[r.chemstyleId?.toString()] || r.chemstyleId
+      }));
 
-  const fetchMetaRatingsWithRetry = async (player, archetype) => {
-    const url = `https://api.easysbc.io/squad-builder/meta-ratings?archetypeId=${archetype}&resourceId=${player.eaId}`;
-    console.log(`📦 Fetching meta rating for player ${player.commonName} - Archetype: ${archetype}`);
-
-    for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
-      try {
-        const response = await Promise.race([
-          axios.get(url),
-          new Promise((_, reject) => setTimeout(() => reject(new Error('⏰ Hard timeout exceeded')), HARD_TIMEOUT_MS))
-        ]);
-
-        const ratings = Array.isArray(response.data) ? response.data : [];
-        const mappedRatings = ratings.map(r => ({
-          ...r,
-          chemStyle: chemStyleMap[r.chemstyleId.toString()] || r.chemstyleId
-        }));
-
+      return {
+        archetype,
+        ratings: mappedRatings
+      };
+    } catch (err) {
+      if (attempt < MAX_RETRIES) {
+        const backoffTime = 1000 * (2 ** attempt); // 1s, 2s, 4s
+        console.warn(`⚠️ Retry ${attempt + 1} for ${player.commonName} - Archetype: ${archetype} after ${backoffTime / 1000}s`);
+        await delay(backoffTime);
+      } else {
+        console.error(`❌ Failed for ${player.commonName} with archetype ${archetype} after ${MAX_RETRIES + 1} tries:`, err.message);
         return {
           archetype,
-          ratings: mappedRatings
+          ratings: []
         };
-      } catch (err) {
-        if (attempt < MAX_RETRIES) {
-          console.warn(`⚠️ Retry ${attempt + 1} for ${player.commonName} - Archetype: ${archetype}`);
-          await delay(1000);
-        } else {
-          console.error(`❌ Failed for ${player.commonName} with archetype ${archetype}:`, err.message);
-          return {
-            archetype,
-            ratings: []
-          };
-        }
       }
     }
-  };
+  }
+};
+
+const safeSave = async (players, filePath) => {
+  try {
+    await fs.promises.writeFile(filePath, JSON.stringify(players, null, 2));
+    console.log(`💾 Progress saved to ${filePath}`);
+  } catch (err) {
+    console.error(`❌ Failed to save progress: ${err.message}`);
+  }
+};
+
+(async () => {
+  const outputFile = path.join(dataDir, 'players_with_meta.json');
 
   for (let i = 0; i < players.length; i += MAX_CONCURRENT) {
     const batch = players.slice(i, i + MAX_CONCURRENT);
-    console.time(`⏱ Batch ${i / MAX_CONCURRENT + 1}`);
 
-    await Promise.allSettled(batch.map(async player => {
+    console.log(`🚀 Starting batch ${(i / MAX_CONCURRENT) + 1} with concurrency: ${MAX_CONCURRENT}`);
+    const batchStart = Date.now();
+
+    await Promise.allSettled(batch.map(async (player) => {
       player.metaRatings = [];
 
       if (!player.eaId) return;
 
-      let positions = [];
-      if (player.position) positions.push(player.position);
-      if (Array.isArray(player.alternativePositionIds)) positions = positions.concat(player.alternativePositionIds);
+      const playablePositions = [];
+      if (player.positionMapped) playablePositions.push(player.positionMapped);
+      if (Array.isArray(player.alternativePositionIdsMapped)) {
+        playablePositions.push(...player.alternativePositionIdsMapped);
+      }
 
-      const archetypesSet = new Set();
-
-      for (const pos of positions) {
-        const mappedArchetypes = positionToArchetypes[pos];
-        if (mappedArchetypes) {
-          mappedArchetypes.forEach(archetype => archetypesSet.add(archetype));
+      const allArchetypes = new Set();
+      for (const pos of playablePositions) {
+        if (positionToArchetypes[pos]) {
+          positionToArchetypes[pos].forEach(arch => allArchetypes.add(arch));
         }
       }
 
-      for (const archetype of archetypesSet) {
+      if (allArchetypes.size === 0) {
+        console.warn(`⚠️ No archetypes found for ${player.commonName}`);
+        return;
+      }
+
+      console.log(`✨ Processing ${player.commonName} with archetypes:`, [...allArchetypes]);
+
+      for (const archetype of allArchetypes) {
         const ratingData = await fetchMetaRatingsWithRetry(player, archetype);
 
         if (!ratingData.ratings.length) {
@@ -104,31 +121,32 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
         }
 
         player.metaRatings.push(ratingData);
-        await delay(250);
+        await delay(200);
       }
 
       console.log(`📥 Finished ${player.commonName}`);
     }));
 
-    console.timeEnd(`⏱ Batch ${i / MAX_CONCURRENT + 1}`);
-    console.log(`✅ Completed batch ${i / MAX_CONCURRENT + 1}/${Math.ceil(players.length / MAX_CONCURRENT)}`);
+    const batchEnd = Date.now();
+    const batchDuration = (batchEnd - batchStart) / 1000;
+    console.log(`⏱ Batch ${(i / MAX_CONCURRENT) + 1} finished in ${batchDuration.toFixed(2)} seconds`);
+
+    // Save after each batch
+    await safeSave(players, outputFile);
+
+    // Adjust concurrency
+    if (batchDuration < 20 && MAX_CONCURRENT < MAX_CONCURRENT_LIMIT) {
+      MAX_CONCURRENT++;
+      console.log(`⬆️ Increasing concurrency to ${MAX_CONCURRENT}`);
+    } else if (batchDuration > 40 && MAX_CONCURRENT > MIN_CONCURRENT) {
+      MAX_CONCURRENT--;
+      console.log(`⬇️ Decreasing concurrency to ${MAX_CONCURRENT}`);
+    }
+
+    console.log(`✅ Completed batch ${(i / MAX_CONCURRENT)}/${Math.ceil(players.length / MAX_CONCURRENT)}`);
     await delay(DELAY_BETWEEN_BATCHES_MS);
   }
 
-  try {
-    await Promise.race([
-      new Promise((resolve, reject) => {
-        fs.writeFile(path.join(dataDir, 'players_with_meta.json'), JSON.stringify(players, null, 2), (err) => {
-          if (err) return reject(err);
-          return resolve();
-        });
-      }),
-      new Promise((_, reject) => setTimeout(() => reject(new Error('❌ File write timed out')), 30000))
-    ]);
-    console.log(`💾 Successfully wrote output file.`);
-  } catch (err) {
-    console.error(`❌ Failed to write file: ${err.message}`);
-  }
-
+  console.log(`🎉 Finished processing all players`);
   process.exit(0);
 })();
