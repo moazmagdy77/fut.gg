@@ -6,7 +6,7 @@ const path = require('path');
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
-  const TOP_PLAYER_PAGES = 150;
+  const TOP_PLAYER_PAGES = 81;
   const NEW_PLAYER_PAGES = 0;
 
   const dataDir = path.resolve(__dirname, '..', 'data');
@@ -25,7 +25,7 @@ const path = require('path');
   }
 
   const pageConfigs = [
-    { baseUrl: 'https://www.fut.gg/players/?page=', pages: TOP_PLAYER_PAGES, label: 'top' },
+    { baseUrl: 'https://www.fut.gg/players/?role_plus_plus_count__gte=1&page=', pages: TOP_PLAYER_PAGES, label: 'top' },
     { baseUrl: 'https://www.fut.gg/players/new/?page=', pages: NEW_PLAYER_PAGES, label: 'new' }
   ];
 

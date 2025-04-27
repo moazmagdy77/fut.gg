@@ -60,8 +60,8 @@
       "rolesPlusPlusArchetypes": [],
       "bodytype": "Lean Medium",
       "positions": [
-        "RM",
         "ST",
+        "RM",
         "RW"
       ],
       "metaRatings": []
@@ -190,8 +190,8 @@
       "commonName": "Ethan Pinnock",
       "rolesPlusPlusArchetypes": [
         "stopper",
-        "defender",
-        "ball_playing_defender"
+        "ball_playing_defender",
+        "defender"
       ],
       "bodytype": "Lean Tall",
       "positions": [
@@ -269,9 +269,9 @@
       "standardSeasonPassLevel": null,
       "commonName": "Hakan Çalhanoğlu",
       "rolesPlusPlusArchetypes": [
+        "deep_lying_playmaker",
         "centre_half",
-        "box_to_box",
-        "deep_lying_playmaker"
+        "box_to_box"
       ],
       "bodytype": "Average Medium",
       "positions": [
@@ -352,10 +352,10 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "RW",
         "CAM",
-        "LW",
-        "RM"
+        "RM",
+        "RW",
+        "LW"
       ],
       "metaRatings": []
     },
@@ -420,8 +420,8 @@
       "standardSeasonPassLevel": null,
       "commonName": "Jamal Musiala",
       "rolesPlusPlusArchetypes": [
-        "classic_ten",
-        "shadow_striker"
+        "shadow_striker",
+        "classic_ten"
       ],
       "bodytype": "Lean Medium",
       "positions": [
@@ -501,9 +501,9 @@
       ],
       "bodytype": "Average Medium",
       "positions": [
-        "RW",
-        "RM",
         "ST",
+        "RM",
+        "RW",
         "LM"
       ],
       "metaRatings": []
@@ -579,15 +579,15 @@
       "standardSeasonPassLevel": null,
       "commonName": "Thomas Thiesson Kristensen",
       "rolesPlusPlusArchetypes": [
-        "defender",
         "deep_lying_playmaker",
-        "holding"
+        "holding",
+        "defender"
       ],
       "bodytype": "Average Tall",
       "positions": [
         "CM",
-        "CDM",
-        "CB"
+        "CB",
+        "CDM"
       ],
       "metaRatings": []
     },
@@ -659,9 +659,9 @@
       "standardSeasonPassLevel": null,
       "commonName": "Koni De Winter",
       "rolesPlusPlusArchetypes": [
-        "fullback",
         "stopper",
-        "defender"
+        "defender",
+        "fullback"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -808,10 +808,10 @@
       "standardSeasonPassLevel": null,
       "commonName": "Zinedine Zidane",
       "rolesPlusPlusArchetypes": [
-        "classic_ten",
-        "box_to_box",
-        "playmaker",
         "shadow_striker",
+        "playmaker",
+        "box_to_box",
+        "classic_ten",
         "half_winger"
       ],
       "bodytype": "Unique",
@@ -887,8 +887,8 @@
       "standardSeasonPassLevel": null,
       "commonName": "Lukas Klostermann",
       "rolesPlusPlusArchetypes": [
-        "fullback",
-        "defender"
+        "defender",
+        "fullback"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -963,8 +963,8 @@
       ],
       "bodytype": "Lean Medium",
       "positions": [
-        "LW",
-        "LM"
+        "LM",
+        "LW"
       ],
       "metaRatings": []
     },
@@ -1107,9 +1107,9 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "RM",
+        "ST",
         "CAM",
-        "ST"
+        "RM"
       ],
       "metaRatings": []
     },
@@ -1182,8 +1182,8 @@
       "standardSeasonPassLevel": null,
       "commonName": "Jude Bellingham",
       "rolesPlusPlusArchetypes": [
-        "box_to_box",
-        "playmaker"
+        "playmaker",
+        "box_to_box"
       ],
       "bodytype": "Average Medium",
       "positions": [
@@ -1263,15 +1263,15 @@
       "standardSeasonPassLevel": null,
       "commonName": "Fridolina Rolfö",
       "rolesPlusPlusArchetypes": [
+        "attacking_wingback",
         "falseback",
-        "inside_forward",
-        "attacking_wingback"
+        "inside_forward"
       ],
       "bodytype": "Lean Medium",
       "positions": [
-        "LM",
+        "LB",
         "LW",
-        "LB"
+        "LM"
       ],
       "metaRatings": []
     },
@@ -1341,8 +1341,8 @@
       "standardSeasonPassLevel": null,
       "commonName": "Lucas Bergvall",
       "rolesPlusPlusArchetypes": [
-        "playmaker",
-        "deep_lying_playmaker"
+        "deep_lying_playmaker",
+        "playmaker"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -1416,8 +1416,8 @@
       "commonName": "Mats Hummels",
       "rolesPlusPlusArchetypes": [
         "stopper",
-        "defender",
-        "ball_playing_defender"
+        "ball_playing_defender",
+        "defender"
       ],
       "bodytype": "Stocky Tall",
       "positions": [
@@ -1494,17 +1494,17 @@
       "standardSeasonPassLevel": null,
       "commonName": "Moïse Bombito",
       "rolesPlusPlusArchetypes": [
-        "fullback",
-        "holding",
         "stopper",
+        "holding",
         "defender",
+        "fullback",
         "ball_playing_defender"
       ],
       "bodytype": "Average Tall",
       "positions": [
-        "CDM",
+        "LB",
         "CB",
-        "LB"
+        "CDM"
       ],
       "metaRatings": []
     },
@@ -1578,17 +1578,17 @@
       "standardSeasonPassLevel": null,
       "commonName": "Abner Vinícius",
       "rolesPlusPlusArchetypes": [
-        "fullback",
-        "playmaker",
         "deep_lying_playmaker",
+        "playmaker",
+        "fullback",
         "falseback",
         "winger"
       ],
       "bodytype": "Average Medium",
       "positions": [
-        "LM",
         "CM",
-        "LB"
+        "LB",
+        "LM"
       ],
       "metaRatings": []
     },
@@ -1658,8 +1658,8 @@
       ],
       "bodytype": "Average Tall",
       "positions": [
-        "RW",
-        "RM"
+        "RM",
+        "RW"
       ],
       "metaRatings": []
     },
@@ -1794,8 +1794,8 @@
       "bodytype": "Unique",
       "positions": [
         "RB",
-        "CB",
-        "LB"
+        "LB",
+        "CB"
       ],
       "metaRatings": []
     },
@@ -1868,8 +1868,8 @@
       ],
       "bodytype": "Lean Tall",
       "positions": [
-        "RM",
         "ST",
+        "RM",
         "RW"
       ],
       "metaRatings": []
@@ -2027,17 +2027,17 @@
       "standardSeasonPassLevel": null,
       "commonName": "Gianluca Zambrotta",
       "rolesPlusPlusArchetypes": [
-        "fullback",
+        "attacking_wingback",
         "inside_forward",
         "wide_midfielder",
-        "attacking_wingback"
+        "fullback"
       ],
       "bodytype": "Average Medium",
       "positions": [
-        "LM",
-        "RM",
         "RB",
-        "LB"
+        "LB",
+        "RM",
+        "LM"
       ],
       "metaRatings": []
     },
@@ -2105,8 +2105,8 @@
       "standardSeasonPassLevel": null,
       "commonName": "Isaak Touré",
       "rolesPlusPlusArchetypes": [
-        "defender",
-        "ball_playing_defender"
+        "ball_playing_defender",
+        "defender"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -2177,14 +2177,14 @@
       "standardSeasonPassLevel": null,
       "commonName": "Neymar Jr",
       "rolesPlusPlusArchetypes": [
-        "inside_forward",
-        "wide_playmaker"
+        "wide_playmaker",
+        "inside_forward"
       ],
       "bodytype": "Unique",
       "positions": [
+        "LM",
         "CAM",
-        "LW",
-        "LM"
+        "LW"
       ],
       "metaRatings": []
     },
@@ -2325,8 +2325,8 @@
       "standardSeasonPassLevel": null,
       "commonName": "Javier Zanetti",
       "rolesPlusPlusArchetypes": [
-        "box_to_box",
-        "deep_lying_playmaker"
+        "deep_lying_playmaker",
+        "box_to_box"
       ],
       "bodytype": "Average Medium",
       "positions": [
@@ -2405,14 +2405,14 @@
       "standardSeasonPassLevel": null,
       "commonName": "Giovanni Di Lorenzo",
       "rolesPlusPlusArchetypes": [
-        "fullback",
         "deep_lying_playmaker",
-        "attacking_wingback"
+        "attacking_wingback",
+        "fullback"
       ],
       "bodytype": "Average Medium",
       "positions": [
-        "RM",
         "RB",
+        "RM",
         "CDM"
       ],
       "metaRatings": []
@@ -2483,14 +2483,14 @@
       "standardSeasonPassLevel": null,
       "commonName": "Marcos Acuña",
       "rolesPlusPlusArchetypes": [
-        "fullback",
-        "deep_lying_playmaker"
+        "deep_lying_playmaker",
+        "fullback"
       ],
       "bodytype": "Stocky Medium",
       "positions": [
-        "LM",
         "CM",
-        "LB"
+        "LB",
+        "LM"
       ],
       "metaRatings": []
     }
