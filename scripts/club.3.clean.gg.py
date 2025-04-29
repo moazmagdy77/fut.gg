@@ -46,7 +46,11 @@ def apply_mappings(player, maps):
 # Process players
 cleaned_players = []
 
-for player_wrapper in raw_players:
+for i, player_wrapper in enumerate(raw_players):
+    if "data" not in player_wrapper:
+        print(f"Skipping index {i}, no 'data' key: {player_wrapper}")
+        continue
+
     player = player_wrapper["data"]
 
     # Skip if rolesPlusPlus is missing or empty
