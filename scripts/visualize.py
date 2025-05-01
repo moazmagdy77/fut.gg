@@ -109,6 +109,20 @@ selected_evolution = st.sidebar.selectbox("evolution", options=["All"] + evoluti
 if selected_evolution != "All":
     filters["evolution"] = selected_evolution
 
+# Height filter
+if "height" in df.columns:
+    min_height = int(df["height"].min())
+    max_height = int(df["height"].max())
+    selected_height = st.sidebar.slider("Height (cm)", min_height, max_height, (min_height, max_height))
+    filters["height"] = selected_height
+
+# Weight filter
+if "weight" in df.columns:
+    min_weight = int(df["weight"].min())
+    max_weight = int(df["weight"].max())
+    selected_weight = st.sidebar.slider("Weight (kg)", min_weight, max_weight, (min_weight, max_weight))
+    filters["weight"] = selected_weight
+
 # Archetype filter
 archetypes = sorted(df["archetype"].dropna().unique())
 selected_archetypes = st.sidebar.multiselect("Archetype", options=archetypes)
