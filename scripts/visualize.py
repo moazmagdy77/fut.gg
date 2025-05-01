@@ -81,6 +81,8 @@ if "metaRatings" in df.columns:
 
 df["height"] = pd.to_numeric(df["height"], errors="coerce")
 df["weight"] = pd.to_numeric(df["weight"], errors="coerce")
+df["height"] = df["height"].fillna(0).astype(int)
+df["weight"] = df["weight"].fillna(0).astype(int)
 df["__player_id"] = df["player_origin_id"] + "_" + df["archetype"].astype(str)
 
 # Add mapping from rolesPlusPlus to archetype keys
@@ -110,14 +112,14 @@ if selected_evolution != "All":
     filters["evolution"] = selected_evolution
 
 # Height filter
-if "height" in df.columns:
+if "height" in df.columns and not df["height"].isnull().all():
     min_height = int(df["height"].min())
     max_height = int(df["height"].max())
     selected_height = st.sidebar.slider("Height (cm)", min_height, max_height, (min_height, max_height))
     filters["height"] = selected_height
 
 # Weight filter
-if "weight" in df.columns:
+if "weight" in df.columns and not df["weight"].isnull().all():
     min_weight = int(df["weight"].min())
     max_weight = int(df["weight"].max())
     selected_weight = st.sidebar.slider("Weight (kg)", min_weight, max_weight, (min_weight, max_weight))
