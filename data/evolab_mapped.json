@@ -62,8 +62,8 @@
       "bodytype": "Lean Medium",
       "positions": [
         "RM",
-        "ST",
-        "RW"
+        "RW",
+        "ST"
       ],
       "metaRatings": []
     },
@@ -211,9 +211,9 @@
       "metarankScores": null,
       "commonName": "Hakan Çalhanoğlu",
       "rolesPlusPlusArchetypes": [
+        "centre_half",
         "box_to_box",
-        "deep_lying_playmaker",
-        "centre_half"
+        "deep_lying_playmaker"
       ],
       "bodytype": "Average Medium",
       "positions": [
@@ -296,8 +296,8 @@
       "bodytype": "Unique",
       "positions": [
         "RM",
-        "CAM",
         "RW",
+        "CAM",
         "LW"
       ],
       "metaRatings": []
@@ -369,9 +369,9 @@
       ],
       "bodytype": "Lean Medium",
       "positions": [
+        "LM",
         "CM",
-        "CAM",
-        "LM"
+        "CAM"
       ],
       "metaRatings": []
     },
@@ -446,10 +446,10 @@
       ],
       "bodytype": "Average Medium",
       "positions": [
+        "LM",
         "RM",
-        "ST",
         "RW",
-        "LM"
+        "ST"
       ],
       "metaRatings": []
     },
@@ -606,8 +606,8 @@
       "metarankScores": null,
       "commonName": "Koni De Winter",
       "rolesPlusPlusArchetypes": [
-        "fullback",
         "defender",
+        "fullback",
         "stopper"
       ],
       "bodytype": "Average Tall",
@@ -757,11 +757,11 @@
       "metarankScores": null,
       "commonName": "Zinedine Zidane",
       "rolesPlusPlusArchetypes": [
-        "half_winger",
-        "box_to_box",
-        "playmaker",
         "classic_ten",
-        "shadow_striker"
+        "half_winger",
+        "shadow_striker",
+        "box_to_box",
+        "playmaker"
       ],
       "bodytype": "Unique",
       "positions": [
@@ -837,8 +837,8 @@
       "metarankScores": null,
       "commonName": "Lukas Klostermann",
       "rolesPlusPlusArchetypes": [
-        "fullback",
-        "defender"
+        "defender",
+        "fullback"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -912,8 +912,8 @@
       "metarankScores": null,
       "commonName": "Adama Traoré",
       "rolesPlusPlusArchetypes": [
-        "shadow_striker",
-        "winger"
+        "winger",
+        "shadow_striker"
       ],
       "bodytype": "Unique",
       "positions": [
@@ -993,8 +993,8 @@
       "metarankScores": null,
       "commonName": "Jude Bellingham",
       "rolesPlusPlusArchetypes": [
-        "box_to_box",
-        "playmaker"
+        "playmaker",
+        "box_to_box"
       ],
       "bodytype": "Average Medium",
       "positions": [
@@ -1075,14 +1075,14 @@
       "metarankScores": null,
       "commonName": "Fridolina Rolfö",
       "rolesPlusPlusArchetypes": [
-        "inside_forward",
         "attacking_wingback",
-        "falseback"
+        "falseback",
+        "inside_forward"
       ],
       "bodytype": "Lean Medium",
       "positions": [
-        "LB",
         "LM",
+        "LB",
         "LW"
       ],
       "metaRatings": []
@@ -1309,11 +1309,11 @@
       "metarankScores": null,
       "commonName": "Moïse Bombito",
       "rolesPlusPlusArchetypes": [
-        "stopper",
-        "fullback",
+        "ball_playing_defender",
         "defender",
+        "fullback",
         "holding",
-        "ball_playing_defender"
+        "stopper"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -1394,17 +1394,17 @@
       "metarankScores": null,
       "commonName": "Abner Vinícius",
       "rolesPlusPlusArchetypes": [
-        "winger",
+        "falseback",
         "fullback",
         "playmaker",
-        "deep_lying_playmaker",
-        "falseback"
+        "winger",
+        "deep_lying_playmaker"
       ],
       "bodytype": "Average Medium",
       "positions": [
-        "LB",
+        "LM",
         "CM",
-        "LM"
+        "LB"
       ],
       "metaRatings": []
     },
@@ -1563,17 +1563,17 @@
       "metarankScores": null,
       "commonName": "Gianluca Zambrotta",
       "rolesPlusPlusArchetypes": [
-        "fullback",
-        "inside_forward",
+        "wide_midfielder",
         "attacking_wingback",
-        "wide_midfielder"
+        "inside_forward",
+        "fullback"
       ],
       "bodytype": "Average Medium",
       "positions": [
+        "LM",
         "RB",
         "RM",
-        "LB",
-        "LM"
+        "LB"
       ],
       "metaRatings": []
     },
@@ -1722,8 +1722,8 @@
       "bodytype": "Lean Tall",
       "positions": [
         "RM",
-        "ST",
-        "RW"
+        "RW",
+        "ST"
       ],
       "metaRatings": []
     },
@@ -1798,15 +1798,15 @@
       "metarankScores": null,
       "commonName": "Giovanni Di Lorenzo",
       "rolesPlusPlusArchetypes": [
-        "fullback",
         "attacking_wingback",
-        "deep_lying_playmaker"
+        "deep_lying_playmaker",
+        "fullback"
       ],
       "bodytype": "Average Medium",
       "positions": [
         "RB",
-        "CDM",
-        "RM"
+        "RM",
+        "CDM"
       ],
       "metaRatings": []
     },
@@ -1877,14 +1877,14 @@
       "metarankScores": null,
       "commonName": "Marcos Acuña",
       "rolesPlusPlusArchetypes": [
-        "fullback",
-        "deep_lying_playmaker"
+        "deep_lying_playmaker",
+        "fullback"
       ],
       "bodytype": "Stocky Medium",
       "positions": [
-        "LB",
+        "LM",
         "CM",
-        "LM"
+        "LB"
       ],
       "metaRatings": []
     },
@@ -2037,94 +2037,13 @@
       "metarankScores": null,
       "commonName": "Kouadio Manu Koné",
       "rolesPlusPlusArchetypes": [
-        "box_to_box",
-        "holding"
+        "holding",
+        "box_to_box"
       ],
       "bodytype": "Lean Tall",
       "positions": [
         "CM",
         "CDM"
-      ],
-      "metaRatings": []
-    },
-    {
-      "eaId": 190871,
-      "overall": 90,
-      "height": 175,
-      "foot": "Right",
-      "skillMoves": 5,
-      "weakFoot": 5,
-      "playstyles": [
-        "Incisive Pass",
-        "Technical",
-        "Flair",
-        "First Touch",
-        "Press Proven",
-        "Quick Step",
-        "Trivela"
-      ],
-      "playstylesPlus": [
-        "Rapid",
-        "Trickster"
-      ],
-      "rolesPlus": [
-        "CAM Shadow Striker",
-        "LM Winger",
-        "RM Winger",
-        "LW Inside Forward"
-      ],
-      "rolesPlusPlus": [
-        "LM Inside Forward",
-        "LW Wide Playmaker",
-        "RM Inside Forward"
-      ],
-      "accelerateType": "EXPLOSIVE",
-      "weight": 68,
-      "attributeAcceleration": 93,
-      "attributeSprintSpeed": 91,
-      "attributeAgility": 90,
-      "attributeBalance": 90,
-      "attributeJumping": 72,
-      "attributeStamina": 73,
-      "attributeStrength": 52,
-      "attributeReactions": 90,
-      "attributeAggression": 63,
-      "attributeComposure": 92,
-      "attributeInterceptions": 37,
-      "attributePositioning": 89,
-      "attributeVision": 86,
-      "attributeBallControl": 93,
-      "attributeCrossing": 82,
-      "attributeDribbling": 94,
-      "attributeFinishing": 88,
-      "attributeFkAccuracy": 88,
-      "attributeHeadingAccuracy": 63,
-      "attributeLongPassing": 81,
-      "attributeShortPassing": 86,
-      "attributeDefensiveAwareness": 35,
-      "attributeShotPower": 85,
-      "attributeLongShots": 82,
-      "attributeStandingTackle": 32,
-      "attributeSlidingTackle": 29,
-      "attributeVolleys": 92,
-      "attributeCurve": 87,
-      "attributePenalties": 93,
-      "totalIgsBoost": 0,
-      "evolutionIgsBoost": 0,
-      "premiumSeasonPassLevel": null,
-      "standardSeasonPassLevel": null,
-      "metarankScores": null,
-      "commonName": "Neymar Jr",
-      "rolesPlusPlusArchetypes": [
-        "wide_playmaker",
-        "inside_forward"
-      ],
-      "bodytype": "Unique",
-      "positions": [
-        "RM",
-        "CAM",
-        "LM",
-        "LW"
       ],
       "metaRatings": []
     },
@@ -2195,8 +2114,88 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "ST",
-        "LM"
+        "LM",
+        "ST"
+      ],
+      "metaRatings": []
+    },
+    {
+      "eaId": 190871,
+      "overall": 90,
+      "height": 175,
+      "foot": "Right",
+      "skillMoves": 5,
+      "weakFoot": 5,
+      "playstyles": [
+        "Incisive Pass",
+        "Technical",
+        "Rapid",
+        "Flair",
+        "First Touch",
+        "Press Proven",
+        "Trivela"
+      ],
+      "playstylesPlus": [
+        "Trickster"
+      ],
+      "rolesPlus": [
+        "CAM Shadow Striker",
+        "LM Winger",
+        "RM Winger",
+        "LW Inside Forward"
+      ],
+      "rolesPlusPlus": [
+        "LM Inside Forward",
+        "LW Wide Playmaker",
+        "RM Inside Forward"
+      ],
+      "accelerateType": "EXPLOSIVE",
+      "weight": 68,
+      "attributeAcceleration": 93,
+      "attributeSprintSpeed": 91,
+      "attributeAgility": 90,
+      "attributeBalance": 90,
+      "attributeJumping": 72,
+      "attributeStamina": 73,
+      "attributeStrength": 52,
+      "attributeReactions": 78,
+      "attributeAggression": 63,
+      "attributeComposure": 92,
+      "attributeInterceptions": 37,
+      "attributePositioning": 86,
+      "attributeVision": 86,
+      "attributeBallControl": 93,
+      "attributeCrossing": 82,
+      "attributeDribbling": 94,
+      "attributeFinishing": 85,
+      "attributeFkAccuracy": 88,
+      "attributeHeadingAccuracy": 63,
+      "attributeLongPassing": 81,
+      "attributeShortPassing": 86,
+      "attributeDefensiveAwareness": 35,
+      "attributeShotPower": 82,
+      "attributeLongShots": 80,
+      "attributeStandingTackle": 32,
+      "attributeSlidingTackle": 29,
+      "attributeVolleys": 89,
+      "attributeCurve": 87,
+      "attributePenalties": 90,
+      "totalIgsBoost": 0,
+      "evolutionIgsBoost": 0,
+      "premiumSeasonPassLevel": null,
+      "standardSeasonPassLevel": null,
+      "metarankScores": null,
+      "commonName": "Neymar Jr",
+      "rolesPlusPlusArchetypes": [
+        "wide_playmaker",
+        "inside_forward"
+      ],
+      "bodytype": "Unique",
+      "positions": [
+        "LM",
+        "RM",
+        "CAM",
+        "LW"
       ],
       "metaRatings": []
     }
