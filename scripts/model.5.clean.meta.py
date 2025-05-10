@@ -52,6 +52,61 @@ attribute_cols = [k for k in players[0].keys() if k.startswith("attribute")]
 categorical_cols = ["accelerateType", "bodytype"]
 numeric_cols = ["height", "weight", "skillMoves", "weakFoot"]
 
+roles_archetypes = [
+    "goalkeeper", "sweeper_keeper", "fullback", "falseback", "wingback", "attacking_wingback",
+    "defender", "stopper", "ball_playing_defender", "holding", "centre_half", "deep_lying_playmaker",
+    "wide_half", "box_to_box", "playmaker", "half_winger", "winger", "wide_midfielder",
+    "wide_playmaker", "inside_forward", "shadow_striker", "classic_ten", "advanced_forward",
+    "poacher", "false_nine", "target_forward"
+]
+
+role_mapping = {
+    "GK Goalkeeper": "goalkeeper",
+    "GK Sweeper Keeper": "sweeper_keeper",
+    "RB Fullback": "fullback",
+    "RB Falseback": "falseback",
+    "RB Wingback": "wingback",
+    "RB Attacking Wingback": "attacking_wingback",
+    "LB Fullback": "fullback",
+    "LB Falseback": "falseback",
+    "LB Wingback": "wingback",
+    "LB Attacking Wingback": "attacking_wingback",
+    "CB Defender": "defender",
+    "CB Stopper": "stopper",
+    "CB Ball-Playing Defender": "ball_playing_defender",
+    "CDM Holding": "holding",
+    "CDM Centre-Half": "centre_half",
+    "CDM Deep-Lying Playmaker": "deep_lying_playmaker",
+    "CDM Wide Half": "wide_half",
+    "CM Box to Box": "box_to_box",
+    "CM Holding": "holding",
+    "CM Deep-Lying Playmaker": "deep_lying_playmaker",
+    "CM Playmaker": "playmaker",
+    "CM Half-Winger": "half_winger",
+    "RM Winger": "winger",
+    "RM Wide Midfielder": "wide_midfielder",
+    "RM Wide Playmaker": "wide_playmaker",
+    "RM Inside Forward": "inside_forward",
+    "LM Winger": "winger",
+    "LM Wide Midfielder": "wide_midfielder",
+    "LM Wide Playmaker": "wide_playmaker",
+    "LM Inside Forward": "inside_forward",
+    "CAM Playmaker": "playmaker",
+    "CAM Shadow Striker": "shadow_striker",
+    "CAM Half Winger": "half_winger",
+    "CAM Classic 10": "classic_ten",
+    "RW Winger": "winger",
+    "RW Inside Forward": "inside_forward",
+    "RW Wide Playmaker": "wide_playmaker",
+    "LW Winger": "winger",
+    "LW Inside Forward": "inside_forward",
+    "LW Wide Playmaker": "wide_playmaker",
+    "ST Advanced Forward": "advanced_forward",
+    "ST Poacher": "poacher",
+    "ST False 9": "false_nine",
+    "ST Target Forward": "target_forward"
+}
+
 # Gather all playstyles
 all_playstyles = set()
 for player in players:
@@ -85,6 +140,17 @@ for player in players:
         base_row[attr] = player.get(attr)
 
     base_row.update(encode_playstyles(player))
+
+    role_cols = {v: 0 for v in roles_archetypes}
+    for r in player.get("rolesPlusMapped", []):
+        arch = role_mapping.get(r)
+        if arch:
+            role_cols[arch] = max(role_cols[arch], 1)
+    for r in player.get("rolesPlusPlusMapped", []):
+        arch = role_mapping.get(r)
+        if arch:
+            role_cols[arch] = 2
+    base_row.update(role_cols)
 
     for rating in player.get("metaRatings", []):
         row = base_row.copy()
@@ -123,6 +189,11 @@ ordered_columns = [
     "Jockey", "Block", "Intercept", "Anticipate", "Slide Tackle", "Bruiser",
     "Technical", "Rapid", "Flair", "First Touch", "Trickster", "Press Proven",
     "Quick Step",  "Relentless", "Trivela", "Acrobatic", "Long Throw", "Aerial",
+    "goalkeeper", "sweeper_keeper", "fullback", "falseback", "wingback", "attacking_wingback",
+    "defender", "stopper", "ball_playing_defender", "holding", "centre_half", "deep_lying_playmaker",
+    "wide_half", "box_to_box", "playmaker", "half_winger", "winger", "wide_midfielder",
+    "wide_playmaker", "inside_forward", "shadow_striker", "classic_ten", "advanced_forward",
+    "poacher", "false_nine", "target_forward",
     "accelerateType_EXPLOSIVE", "accelerateType_MOSTLY_EXPLOSIVE",
     "accelerateType_CONTROLLED_EXPLOSIVE", "accelerateType_CONTROLLED",
     "accelerateType_CONTROLLED_LENGTHY", "accelerateType_MOSTLY_LENGTHY", "accelerateType_LENGTHY",    
