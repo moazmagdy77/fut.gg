@@ -61,9 +61,9 @@
       "rolesPlusPlusArchetypes": [],
       "bodytype": "Lean Medium",
       "positions": [
+        "RW",
         "ST",
-        "RM",
-        "RW"
+        "RM"
       ],
       "metaRatings": []
     },
@@ -131,8 +131,8 @@
       "commonName": "Ethan Pinnock",
       "rolesPlusPlusArchetypes": [
         "ball_playing_defender",
-        "defender",
-        "stopper"
+        "stopper",
+        "defender"
       ],
       "bodytype": "Lean Tall",
       "positions": [
@@ -212,8 +212,8 @@
       "commonName": "Hakan Çalhanoğlu",
       "rolesPlusPlusArchetypes": [
         "deep_lying_playmaker",
-        "centre_half",
-        "box_to_box"
+        "box_to_box",
+        "centre_half"
       ],
       "bodytype": "Average Medium",
       "positions": [
@@ -296,9 +296,9 @@
       "bodytype": "Unique",
       "positions": [
         "LW",
+        "RM",
         "RW",
-        "CAM",
-        "RM"
+        "CAM"
       ],
       "metaRatings": []
     },
@@ -369,8 +369,8 @@
       ],
       "bodytype": "Lean Medium",
       "positions": [
-        "LM",
         "CM",
+        "LM",
         "CAM"
       ],
       "metaRatings": []
@@ -525,9 +525,9 @@
       "metarankScores": null,
       "commonName": "Thomas Thiesson Kristensen",
       "rolesPlusPlusArchetypes": [
-        "deep_lying_playmaker",
         "defender",
-        "holding"
+        "holding",
+        "deep_lying_playmaker"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -606,8 +606,8 @@
       "metarankScores": null,
       "commonName": "Koni De Winter",
       "rolesPlusPlusArchetypes": [
-        "defender",
         "stopper",
+        "defender",
         "fullback"
       ],
       "bodytype": "Average Tall",
@@ -757,11 +757,11 @@
       "metarankScores": null,
       "commonName": "Zinedine Zidane",
       "rolesPlusPlusArchetypes": [
+        "playmaker",
         "box_to_box",
         "shadow_striker",
-        "half_winger",
-        "playmaker",
-        "classic_ten"
+        "classic_ten",
+        "half_winger"
       ],
       "bodytype": "Unique",
       "positions": [
@@ -837,8 +837,8 @@
       "metarankScores": null,
       "commonName": "Lukas Klostermann",
       "rolesPlusPlusArchetypes": [
-        "fullback",
-        "defender"
+        "defender",
+        "fullback"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -917,8 +917,8 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "ST",
         "CAM",
+        "ST",
         "RM"
       ],
       "metaRatings": []
@@ -1075,15 +1075,15 @@
       "metarankScores": null,
       "commonName": "Fridolina Rolfö",
       "rolesPlusPlusArchetypes": [
+        "attacking_wingback",
         "falseback",
-        "inside_forward",
-        "attacking_wingback"
+        "inside_forward"
       ],
       "bodytype": "Lean Medium",
       "positions": [
         "LB",
-        "LW",
-        "LM"
+        "LM",
+        "LW"
       ],
       "metaRatings": []
     },
@@ -1230,8 +1230,8 @@
       "commonName": "Mats Hummels",
       "rolesPlusPlusArchetypes": [
         "ball_playing_defender",
-        "defender",
-        "stopper"
+        "stopper",
+        "defender"
       ],
       "bodytype": "Stocky Tall",
       "positions": [
@@ -1309,17 +1309,17 @@
       "metarankScores": null,
       "commonName": "Moïse Bombito",
       "rolesPlusPlusArchetypes": [
-        "fullback",
         "ball_playing_defender",
+        "defender",
         "stopper",
-        "holding",
-        "defender"
+        "fullback",
+        "holding"
       ],
       "bodytype": "Average Tall",
       "positions": [
         "CB",
-        "CDM",
-        "LB"
+        "LB",
+        "CDM"
       ],
       "metaRatings": []
     },
@@ -1395,10 +1395,10 @@
       "commonName": "Abner Vinícius",
       "rolesPlusPlusArchetypes": [
         "falseback",
-        "deep_lying_playmaker",
-        "fullback",
         "playmaker",
-        "winger"
+        "winger",
+        "deep_lying_playmaker",
+        "fullback"
       ],
       "bodytype": "Average Medium",
       "positions": [
@@ -1563,16 +1563,16 @@
       "metarankScores": null,
       "commonName": "Gianluca Zambrotta",
       "rolesPlusPlusArchetypes": [
-        "fullback",
         "attacking_wingback",
+        "wide_midfielder",
         "inside_forward",
-        "wide_midfielder"
+        "fullback"
       ],
       "bodytype": "Average Medium",
       "positions": [
         "LB",
-        "LM",
         "RB",
+        "LM",
         "RM"
       ],
       "metaRatings": []
@@ -1721,8 +1721,8 @@
       ],
       "bodytype": "Lean Tall",
       "positions": [
-        "ST",
         "RW",
+        "ST",
         "RM"
       ],
       "metaRatings": []
@@ -1798,14 +1798,14 @@
       "metarankScores": null,
       "commonName": "Giovanni Di Lorenzo",
       "rolesPlusPlusArchetypes": [
+        "attacking_wingback",
         "deep_lying_playmaker",
-        "fullback",
-        "attacking_wingback"
+        "fullback"
       ],
       "bodytype": "Average Medium",
       "positions": [
-        "CDM",
         "RB",
+        "CDM",
         "RM"
       ],
       "metaRatings": []
@@ -2114,8 +2114,8 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "ST",
-        "LM"
+        "LM",
+        "ST"
       ],
       "metaRatings": []
     },
@@ -2192,10 +2192,10 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "LW",
+        "RM",
         "CAM",
         "LM",
-        "RM"
+        "LW"
       ],
       "metaRatings": []
     }

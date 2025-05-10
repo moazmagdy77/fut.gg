@@ -61,29 +61,29 @@
       "rolesPlusPlusArchetypes": [],
       "bodytype": "Lean Medium",
       "positions": [
+        "RW",
         "ST",
-        "RM",
-        "RW"
+        "RM"
       ],
       "metaRatings": [
         {
           "archetype": "advanced_forward",
-          "metaR_0chem": 76.82,
-          "metaR_3chem": 82.02,
+          "metaR_0chem": 76.79,
+          "metaR_3chem": 81.99,
           "bestChemStyle": "hunter",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "false_nine",
-          "metaR_0chem": 76.58,
-          "metaR_3chem": 80.52,
+          "metaR_0chem": 76.56,
+          "metaR_3chem": 80.49,
           "bestChemStyle": "finisher",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "inside_forward",
-          "metaR_0chem": 76.81,
-          "metaR_3chem": 81.33,
+          "metaR_0chem": 76.79,
+          "metaR_3chem": 81.3,
           "bestChemStyle": "finisher",
           "accelerateType_chem": "CONTROLLED"
         },
@@ -96,29 +96,29 @@
         },
         {
           "archetype": "target_forward",
-          "metaR_0chem": 69.79,
-          "metaR_3chem": 74.22,
+          "metaR_0chem": 69.86,
+          "metaR_3chem": 74.3,
           "bestChemStyle": "hawk",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "wide_midfielder",
-          "metaR_0chem": 76.07,
-          "metaR_3chem": 79.99,
+          "metaR_0chem": 76.03,
+          "metaR_3chem": 79.94,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "wide_playmaker",
-          "metaR_0chem": 73.79,
-          "metaR_3chem": 77.86,
+          "metaR_0chem": 73.75,
+          "metaR_3chem": 77.81,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "winger",
-          "metaR_0chem": 76.96,
-          "metaR_3chem": 81.46,
+          "metaR_0chem": 76.91,
+          "metaR_3chem": 81.39,
           "bestChemStyle": "hunter",
           "accelerateType_chem": "CONTROLLED"
         }
@@ -188,8 +188,8 @@
       "commonName": "Ethan Pinnock",
       "rolesPlusPlusArchetypes": [
         "ball_playing_defender",
-        "defender",
-        "stopper"
+        "stopper",
+        "defender"
       ],
       "bodytype": "Lean Tall",
       "positions": [
@@ -199,21 +199,21 @@
         {
           "archetype": "ball_playing_defender",
           "metaR_0chem": 78.12,
-          "metaR_3chem": 82.7,
+          "metaR_3chem": 82.68,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "LENGTHY"
         },
         {
           "archetype": "defender",
-          "metaR_0chem": 81.93,
-          "metaR_3chem": 88.31,
+          "metaR_0chem": 81.87,
+          "metaR_3chem": 88.28,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "LENGTHY"
         },
         {
           "archetype": "stopper",
-          "metaR_0chem": 79.38,
-          "metaR_3chem": 86.06,
+          "metaR_0chem": 79.37,
+          "metaR_3chem": 86.03,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "LENGTHY"
         }
@@ -291,8 +291,8 @@
       "commonName": "Hakan \u00c7alhano\u011flu",
       "rolesPlusPlusArchetypes": [
         "deep_lying_playmaker",
-        "centre_half",
-        "box_to_box"
+        "box_to_box",
+        "centre_half"
       ],
       "bodytype": "Average Medium",
       "positions": [
@@ -302,50 +302,50 @@
       "metaRatings": [
         {
           "archetype": "box_to_box",
-          "metaR_0chem": 86.31,
-          "metaR_3chem": 89.89,
+          "metaR_0chem": 86.37,
+          "metaR_3chem": 89.95,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "centre_half",
-          "metaR_0chem": 83.44,
-          "metaR_3chem": 88.92,
+          "metaR_0chem": 83.41,
+          "metaR_3chem": 88.85,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "deep_lying_playmaker",
-          "metaR_0chem": 85.88,
-          "metaR_3chem": 89.9,
+          "metaR_0chem": 85.89,
+          "metaR_3chem": 89.91,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "half_winger",
-          "metaR_0chem": 81.3,
+          "metaR_0chem": 81.31,
           "metaR_3chem": 85.64,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "holding",
-          "metaR_0chem": 84.53,
-          "metaR_3chem": 91.08,
+          "metaR_0chem": 84.55,
+          "metaR_3chem": 91.09,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "playmaker",
-          "metaR_0chem": 83.49,
-          "metaR_3chem": 87.04,
+          "metaR_0chem": 83.51,
+          "metaR_3chem": 87.06,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "wide_half",
-          "metaR_0chem": 84.39,
-          "metaR_3chem": 90.01,
+          "metaR_0chem": 84.42,
+          "metaR_3chem": 90.0,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         }
@@ -425,64 +425,64 @@
       "bodytype": "Unique",
       "positions": [
         "LW",
+        "RM",
         "RW",
-        "CAM",
-        "RM"
+        "CAM"
       ],
       "metaRatings": [
         {
           "archetype": "classic_ten",
-          "metaR_0chem": 82.33,
-          "metaR_3chem": 86.13,
+          "metaR_0chem": 82.32,
+          "metaR_3chem": 86.1,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "MOSTLY_EXPLOSIVE"
         },
         {
           "archetype": "half_winger",
-          "metaR_0chem": 78.69,
-          "metaR_3chem": 83.12,
+          "metaR_0chem": 78.68,
+          "metaR_3chem": 83.1,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "MOSTLY_EXPLOSIVE"
         },
         {
           "archetype": "inside_forward",
-          "metaR_0chem": 81.29,
-          "metaR_3chem": 85.37,
+          "metaR_0chem": 81.27,
+          "metaR_3chem": 85.33,
           "bestChemStyle": "hunter",
           "accelerateType_chem": "MOSTLY_EXPLOSIVE"
         },
         {
           "archetype": "playmaker",
           "metaR_0chem": 80.52,
-          "metaR_3chem": 84.06,
+          "metaR_3chem": 84.05,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "MOSTLY_EXPLOSIVE"
         },
         {
           "archetype": "shadow_striker",
           "metaR_0chem": 82.88,
-          "metaR_3chem": 86.79,
+          "metaR_3chem": 86.78,
           "bestChemStyle": "hunter",
           "accelerateType_chem": "MOSTLY_EXPLOSIVE"
         },
         {
           "archetype": "wide_midfielder",
           "metaR_0chem": 79.86,
-          "metaR_3chem": 83.78,
+          "metaR_3chem": 83.77,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "MOSTLY_EXPLOSIVE"
         },
         {
           "archetype": "wide_playmaker",
           "metaR_0chem": 79.67,
-          "metaR_3chem": 83.73,
+          "metaR_3chem": 83.72,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "MOSTLY_EXPLOSIVE"
         },
         {
           "archetype": "winger",
-          "metaR_0chem": 81.68,
-          "metaR_3chem": 86.19,
+          "metaR_0chem": 81.61,
+          "metaR_3chem": 86.1,
           "bestChemStyle": "hunter",
           "accelerateType_chem": "MOSTLY_EXPLOSIVE"
         }
@@ -555,14 +555,14 @@
       ],
       "bodytype": "Lean Medium",
       "positions": [
-        "LM",
         "CM",
+        "LM",
         "CAM"
       ],
       "metaRatings": [
         {
           "archetype": "box_to_box",
-          "metaR_0chem": 74.0,
+          "metaR_0chem": 73.99,
           "metaR_3chem": 77.57,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
@@ -570,42 +570,42 @@
         {
           "archetype": "classic_ten",
           "metaR_0chem": 82.1,
-          "metaR_3chem": 85.89,
+          "metaR_3chem": 85.87,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "deep_lying_playmaker",
-          "metaR_0chem": 72.9,
-          "metaR_3chem": 77.07,
+          "metaR_0chem": 72.89,
+          "metaR_3chem": 77.06,
           "bestChemStyle": "powerhouse",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "half_winger",
           "metaR_0chem": 77.74,
-          "metaR_3chem": 82.17,
+          "metaR_3chem": 82.16,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "holding",
-          "metaR_0chem": 63.46,
+          "metaR_0chem": 63.45,
           "metaR_3chem": 70.0,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "inside_forward",
-          "metaR_0chem": 80.49,
-          "metaR_3chem": 84.57,
+          "metaR_0chem": 80.48,
+          "metaR_3chem": 84.55,
           "bestChemStyle": "hunter",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "playmaker",
           "metaR_0chem": 79.98,
-          "metaR_3chem": 83.52,
+          "metaR_3chem": 83.51,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "CONTROLLED"
         },
@@ -619,21 +619,21 @@
         {
           "archetype": "wide_midfielder",
           "metaR_0chem": 79.08,
-          "metaR_3chem": 83.01,
+          "metaR_3chem": 82.99,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "wide_playmaker",
-          "metaR_0chem": 77.97,
-          "metaR_3chem": 82.04,
+          "metaR_0chem": 77.96,
+          "metaR_3chem": 82.01,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "winger",
-          "metaR_0chem": 79.73,
-          "metaR_3chem": 84.23,
+          "metaR_0chem": 79.68,
+          "metaR_3chem": 84.17,
           "bestChemStyle": "hunter",
           "accelerateType_chem": "CONTROLLED"
         }
@@ -718,57 +718,57 @@
       "metaRatings": [
         {
           "archetype": "advanced_forward",
-          "metaR_0chem": 81.52,
+          "metaR_0chem": 81.51,
           "metaR_3chem": 85.68,
           "bestChemStyle": "finisher",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "false_nine",
-          "metaR_0chem": 79.89,
-          "metaR_3chem": 83.96,
+          "metaR_0chem": 79.85,
+          "metaR_3chem": 83.94,
           "bestChemStyle": "deadeye",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "inside_forward",
           "metaR_0chem": 81.74,
-          "metaR_3chem": 86.14,
+          "metaR_3chem": 86.13,
           "bestChemStyle": "finisher",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "poacher",
-          "metaR_0chem": 81.32,
-          "metaR_3chem": 85.16,
+          "metaR_0chem": 81.33,
+          "metaR_3chem": 85.18,
           "bestChemStyle": "finisher",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "target_forward",
-          "metaR_0chem": 72.3,
-          "metaR_3chem": 76.58,
+          "metaR_0chem": 72.27,
+          "metaR_3chem": 76.56,
           "bestChemStyle": "hawk",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "wide_midfielder",
-          "metaR_0chem": 81.38,
+          "metaR_0chem": 81.4,
           "metaR_3chem": 85.16,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "wide_playmaker",
-          "metaR_0chem": 79.48,
-          "metaR_3chem": 83.27,
+          "metaR_0chem": 79.51,
+          "metaR_3chem": 83.29,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "winger",
           "metaR_0chem": 83.14,
-          "metaR_3chem": 86.85,
+          "metaR_3chem": 86.83,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         }
@@ -846,9 +846,9 @@
       "metarankScores": null,
       "commonName": "Thomas Thiesson Kristensen",
       "rolesPlusPlusArchetypes": [
-        "deep_lying_playmaker",
         "defender",
-        "holding"
+        "holding",
+        "deep_lying_playmaker"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -859,71 +859,71 @@
       "metaRatings": [
         {
           "archetype": "ball_playing_defender",
-          "metaR_0chem": 87.59,
-          "metaR_3chem": 92.14,
+          "metaR_0chem": 87.49,
+          "metaR_3chem": 92.01,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "MOSTLY_LENGTHY"
         },
         {
           "archetype": "box_to_box",
-          "metaR_0chem": 84.79,
-          "metaR_3chem": 88.37,
+          "metaR_0chem": 84.82,
+          "metaR_3chem": 88.39,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "MOSTLY_LENGTHY"
         },
         {
           "archetype": "centre_half",
           "metaR_0chem": 89.4,
-          "metaR_3chem": 94.87,
+          "metaR_3chem": 94.83,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "MOSTLY_LENGTHY"
         },
         {
           "archetype": "deep_lying_playmaker",
-          "metaR_0chem": 84.8,
-          "metaR_3chem": 88.82,
+          "metaR_0chem": 84.77,
+          "metaR_3chem": 88.79,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "MOSTLY_LENGTHY"
         },
         {
           "archetype": "defender",
-          "metaR_0chem": 88.64,
-          "metaR_3chem": 94.97,
+          "metaR_0chem": 88.46,
+          "metaR_3chem": 94.8,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "MOSTLY_LENGTHY"
         },
         {
           "archetype": "half_winger",
-          "metaR_0chem": 77.51,
-          "metaR_3chem": 81.26,
+          "metaR_0chem": 77.53,
+          "metaR_3chem": 81.28,
           "bestChemStyle": "hunter",
           "accelerateType_chem": "MOSTLY_LENGTHY"
         },
         {
           "archetype": "holding",
-          "metaR_0chem": 87.37,
-          "metaR_3chem": 93.89,
+          "metaR_0chem": 87.39,
+          "metaR_3chem": 93.91,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "MOSTLY_LENGTHY"
         },
         {
           "archetype": "playmaker",
-          "metaR_0chem": 80.02,
-          "metaR_3chem": 83.09,
+          "metaR_0chem": 80.06,
+          "metaR_3chem": 83.13,
           "bestChemStyle": "hunter",
           "accelerateType_chem": "MOSTLY_LENGTHY"
         },
         {
           "archetype": "stopper",
-          "metaR_0chem": 84.31,
-          "metaR_3chem": 90.91,
+          "metaR_0chem": 84.28,
+          "metaR_3chem": 90.86,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "MOSTLY_LENGTHY"
         },
         {
           "archetype": "wide_half",
-          "metaR_0chem": 84.64,
-          "metaR_3chem": 90.23,
+          "metaR_0chem": 84.69,
+          "metaR_3chem": 90.24,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "MOSTLY_LENGTHY"
         }
@@ -998,8 +998,8 @@
       "metarankScores": null,
       "commonName": "Koni De Winter",
       "rolesPlusPlusArchetypes": [
-        "defender",
         "stopper",
+        "defender",
         "fullback"
       ],
       "bodytype": "Average Tall",
@@ -1010,50 +1010,50 @@
       "metaRatings": [
         {
           "archetype": "attacking_wingback",
-          "metaR_0chem": 81.76,
-          "metaR_3chem": 86.08,
+          "metaR_0chem": 81.72,
+          "metaR_3chem": 86.02,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "CONTROLLED_LENGTHY"
         },
         {
           "archetype": "ball_playing_defender",
-          "metaR_0chem": 85.06,
-          "metaR_3chem": 89.17,
+          "metaR_0chem": 84.9,
+          "metaR_3chem": 89.0,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED_LENGTHY"
         },
         {
           "archetype": "defender",
-          "metaR_0chem": 85.3,
-          "metaR_3chem": 91.02,
+          "metaR_0chem": 85.13,
+          "metaR_3chem": 90.88,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED_LENGTHY"
         },
         {
           "archetype": "falseback",
-          "metaR_0chem": 84.26,
+          "metaR_0chem": 84.27,
           "metaR_3chem": 88.91,
           "bestChemStyle": "powerhouse",
           "accelerateType_chem": "CONTROLLED_LENGTHY"
         },
         {
           "archetype": "fullback",
-          "metaR_0chem": 87.2,
-          "metaR_3chem": 93.43,
+          "metaR_0chem": 87.09,
+          "metaR_3chem": 93.29,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED_LENGTHY"
         },
         {
           "archetype": "stopper",
-          "metaR_0chem": 83.77,
-          "metaR_3chem": 89.61,
+          "metaR_0chem": 83.71,
+          "metaR_3chem": 89.54,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED_LENGTHY"
         },
         {
           "archetype": "wingback",
-          "metaR_0chem": 84.35,
-          "metaR_3chem": 89.88,
+          "metaR_0chem": 84.33,
+          "metaR_3chem": 89.85,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED_LENGTHY"
         }
@@ -1130,22 +1130,22 @@
       "metaRatings": [
         {
           "archetype": "ball_playing_defender",
-          "metaR_0chem": 78.44,
-          "metaR_3chem": 83.03,
+          "metaR_0chem": 78.43,
+          "metaR_3chem": 83.0,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "defender",
-          "metaR_0chem": 75.12,
-          "metaR_3chem": 81.5,
+          "metaR_0chem": 75.15,
+          "metaR_3chem": 81.55,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "stopper",
-          "metaR_0chem": 76.47,
-          "metaR_3chem": 83.15,
+          "metaR_0chem": 76.46,
+          "metaR_3chem": 83.12,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         }
@@ -1221,11 +1221,11 @@
       "metarankScores": null,
       "commonName": "Zinedine Zidane",
       "rolesPlusPlusArchetypes": [
+        "playmaker",
         "box_to_box",
         "shadow_striker",
-        "half_winger",
-        "playmaker",
-        "classic_ten"
+        "classic_ten",
+        "half_winger"
       ],
       "bodytype": "Unique",
       "positions": [
@@ -1235,50 +1235,50 @@
       "metaRatings": [
         {
           "archetype": "box_to_box",
-          "metaR_0chem": 85.34,
-          "metaR_3chem": 88.92,
+          "metaR_0chem": 85.32,
+          "metaR_3chem": 88.9,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED_LENGTHY"
         },
         {
           "archetype": "classic_ten",
-          "metaR_0chem": 85.41,
-          "metaR_3chem": 89.2,
+          "metaR_0chem": 85.35,
+          "metaR_3chem": 89.12,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "CONTROLLED_LENGTHY"
         },
         {
           "archetype": "deep_lying_playmaker",
-          "metaR_0chem": 83.63,
-          "metaR_3chem": 87.65,
+          "metaR_0chem": 83.56,
+          "metaR_3chem": 87.58,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED_LENGTHY"
         },
         {
           "archetype": "half_winger",
-          "metaR_0chem": 81.11,
-          "metaR_3chem": 85.51,
+          "metaR_0chem": 81.07,
+          "metaR_3chem": 85.47,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "CONTROLLED_LENGTHY"
         },
         {
           "archetype": "holding",
-          "metaR_0chem": 81.88,
-          "metaR_3chem": 88.43,
+          "metaR_0chem": 81.91,
+          "metaR_3chem": 88.46,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED_LENGTHY"
         },
         {
           "archetype": "playmaker",
-          "metaR_0chem": 84.55,
-          "metaR_3chem": 88.09,
+          "metaR_0chem": 84.53,
+          "metaR_3chem": 88.06,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "CONTROLLED_LENGTHY"
         },
         {
           "archetype": "shadow_striker",
-          "metaR_0chem": 84.87,
-          "metaR_3chem": 88.62,
+          "metaR_0chem": 84.79,
+          "metaR_3chem": 88.54,
           "bestChemStyle": "hunter",
           "accelerateType_chem": "CONTROLLED_LENGTHY"
         }
@@ -1351,8 +1351,8 @@
       "metarankScores": null,
       "commonName": "Lukas Klostermann",
       "rolesPlusPlusArchetypes": [
-        "fullback",
-        "defender"
+        "defender",
+        "fullback"
       ],
       "bodytype": "Average Tall",
       "positions": [
@@ -1362,22 +1362,22 @@
       "metaRatings": [
         {
           "archetype": "attacking_wingback",
-          "metaR_0chem": 76.1,
-          "metaR_3chem": 80.63,
+          "metaR_0chem": 76.13,
+          "metaR_3chem": 80.64,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "MOSTLY_LENGTHY"
         },
         {
           "archetype": "ball_playing_defender",
-          "metaR_0chem": 79.05,
-          "metaR_3chem": 83.43,
+          "metaR_0chem": 78.97,
+          "metaR_3chem": 83.34,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "MOSTLY_LENGTHY"
         },
         {
           "archetype": "defender",
-          "metaR_0chem": 80.58,
-          "metaR_3chem": 86.68,
+          "metaR_0chem": 80.54,
+          "metaR_3chem": 86.66,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "MOSTLY_LENGTHY"
         },
@@ -1390,22 +1390,22 @@
         },
         {
           "archetype": "fullback",
-          "metaR_0chem": 81.6,
-          "metaR_3chem": 88.28,
+          "metaR_0chem": 81.56,
+          "metaR_3chem": 88.22,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "MOSTLY_LENGTHY"
         },
         {
           "archetype": "stopper",
-          "metaR_0chem": 79.08,
-          "metaR_3chem": 85.36,
+          "metaR_0chem": 79.04,
+          "metaR_3chem": 85.31,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "MOSTLY_LENGTHY"
         },
         {
           "archetype": "wingback",
-          "metaR_0chem": 78.44,
-          "metaR_3chem": 84.4,
+          "metaR_0chem": 78.43,
+          "metaR_3chem": 84.38,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "MOSTLY_LENGTHY"
         }
@@ -1481,35 +1481,35 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "ST",
         "CAM",
+        "ST",
         "RM"
       ],
       "metaRatings": [
         {
           "archetype": "advanced_forward",
-          "metaR_0chem": 81.96,
-          "metaR_3chem": 86.27,
+          "metaR_0chem": 81.95,
+          "metaR_3chem": 86.25,
           "bestChemStyle": "finisher",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "classic_ten",
-          "metaR_0chem": 83.09,
-          "metaR_3chem": 86.79,
+          "metaR_0chem": 83.16,
+          "metaR_3chem": 86.85,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "false_nine",
-          "metaR_0chem": 82.21,
-          "metaR_3chem": 85.97,
+          "metaR_0chem": 82.2,
+          "metaR_3chem": 85.96,
           "bestChemStyle": "finisher",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "half_winger",
-          "metaR_0chem": 80.49,
+          "metaR_0chem": 80.51,
           "metaR_3chem": 84.08,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED"
@@ -1517,56 +1517,56 @@
         {
           "archetype": "inside_forward",
           "metaR_0chem": 82.45,
-          "metaR_3chem": 86.91,
+          "metaR_3chem": 86.9,
           "bestChemStyle": "finisher",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "playmaker",
-          "metaR_0chem": 80.92,
-          "metaR_3chem": 84.25,
+          "metaR_0chem": 80.93,
+          "metaR_3chem": 84.26,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "poacher",
-          "metaR_0chem": 80.27,
-          "metaR_3chem": 84.24,
+          "metaR_0chem": 80.23,
+          "metaR_3chem": 84.21,
           "bestChemStyle": "finisher",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "shadow_striker",
-          "metaR_0chem": 84.28,
-          "metaR_3chem": 87.81,
+          "metaR_0chem": 84.26,
+          "metaR_3chem": 87.79,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "target_forward",
-          "metaR_0chem": 70.36,
-          "metaR_3chem": 74.93,
+          "metaR_0chem": 70.28,
+          "metaR_3chem": 74.86,
           "bestChemStyle": "hawk",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "wide_midfielder",
           "metaR_0chem": 83.92,
-          "metaR_3chem": 87.31,
+          "metaR_3chem": 87.29,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "wide_playmaker",
           "metaR_0chem": 82.63,
-          "metaR_3chem": 86.3,
+          "metaR_3chem": 86.28,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "winger",
-          "metaR_0chem": 85.37,
-          "metaR_3chem": 88.98,
+          "metaR_0chem": 85.3,
+          "metaR_3chem": 88.9,
           "bestChemStyle": "finisher",
           "accelerateType_chem": "CONTROLLED"
         }
@@ -1653,15 +1653,15 @@
       "metaRatings": [
         {
           "archetype": "box_to_box",
-          "metaR_0chem": 86.16,
-          "metaR_3chem": 89.74,
+          "metaR_0chem": 86.13,
+          "metaR_3chem": 89.71,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "classic_ten",
-          "metaR_0chem": 85.52,
-          "metaR_3chem": 89.13,
+          "metaR_0chem": 85.55,
+          "metaR_3chem": 89.14,
           "bestChemStyle": "hunter",
           "accelerateType_chem": "CONTROLLED"
         },
@@ -1674,29 +1674,29 @@
         },
         {
           "archetype": "half_winger",
-          "metaR_0chem": 81.85,
+          "metaR_0chem": 81.86,
           "metaR_3chem": 85.86,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "holding",
-          "metaR_0chem": 83.94,
-          "metaR_3chem": 90.49,
+          "metaR_0chem": 83.96,
+          "metaR_3chem": 90.51,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "playmaker",
           "metaR_0chem": 84.94,
-          "metaR_3chem": 88.04,
+          "metaR_3chem": 88.03,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "shadow_striker",
-          "metaR_0chem": 84.7,
-          "metaR_3chem": 88.53,
+          "metaR_0chem": 84.68,
+          "metaR_3chem": 88.5,
           "bestChemStyle": "hunter",
           "accelerateType_chem": "CONTROLLED"
         }
@@ -1774,35 +1774,35 @@
       "metarankScores": null,
       "commonName": "Fridolina Rolf\u00f6",
       "rolesPlusPlusArchetypes": [
+        "attacking_wingback",
         "falseback",
-        "inside_forward",
-        "attacking_wingback"
+        "inside_forward"
       ],
       "bodytype": "Lean Medium",
       "positions": [
         "LB",
-        "LW",
-        "LM"
+        "LM",
+        "LW"
       ],
       "metaRatings": [
         {
           "archetype": "attacking_wingback",
-          "metaR_0chem": 84.48,
-          "metaR_3chem": 88.81,
+          "metaR_0chem": 84.51,
+          "metaR_3chem": 88.82,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "falseback",
-          "metaR_0chem": 85.14,
-          "metaR_3chem": 89.91,
+          "metaR_0chem": 85.15,
+          "metaR_3chem": 89.92,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "fullback",
-          "metaR_0chem": 88.04,
-          "metaR_3chem": 94.52,
+          "metaR_0chem": 87.98,
+          "metaR_3chem": 94.44,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         },
@@ -1815,14 +1815,14 @@
         },
         {
           "archetype": "wide_midfielder",
-          "metaR_0chem": 82.43,
-          "metaR_3chem": 86.36,
+          "metaR_0chem": 82.47,
+          "metaR_3chem": 86.38,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "wide_playmaker",
-          "metaR_0chem": 80.3,
+          "metaR_0chem": 80.32,
           "metaR_3chem": 84.27,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED"
@@ -1830,14 +1830,14 @@
         {
           "archetype": "wingback",
           "metaR_0chem": 84.78,
-          "metaR_3chem": 90.47,
+          "metaR_3chem": 90.45,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "winger",
-          "metaR_0chem": 83.65,
-          "metaR_3chem": 87.95,
+          "metaR_0chem": 83.64,
+          "metaR_3chem": 87.93,
           "bestChemStyle": "hunter",
           "accelerateType_chem": "CONTROLLED"
         }
@@ -1921,50 +1921,50 @@
       "metaRatings": [
         {
           "archetype": "box_to_box",
-          "metaR_0chem": 83.18,
-          "metaR_3chem": 86.76,
+          "metaR_0chem": 83.23,
+          "metaR_3chem": 86.81,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "centre_half",
-          "metaR_0chem": 80.3,
-          "metaR_3chem": 85.78,
+          "metaR_0chem": 80.35,
+          "metaR_3chem": 85.8,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "deep_lying_playmaker",
-          "metaR_0chem": 81.11,
-          "metaR_3chem": 85.13,
+          "metaR_0chem": 81.12,
+          "metaR_3chem": 85.14,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "half_winger",
-          "metaR_0chem": 81.92,
-          "metaR_3chem": 86.29,
+          "metaR_0chem": 81.96,
+          "metaR_3chem": 86.31,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "holding",
-          "metaR_0chem": 76.37,
-          "metaR_3chem": 82.92,
+          "metaR_0chem": 76.47,
+          "metaR_3chem": 83.02,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "playmaker",
-          "metaR_0chem": 83.8,
-          "metaR_3chem": 87.33,
+          "metaR_0chem": 83.82,
+          "metaR_3chem": 87.34,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "wide_half",
-          "metaR_0chem": 77.25,
-          "metaR_3chem": 82.88,
+          "metaR_0chem": 77.27,
+          "metaR_3chem": 82.85,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         }
@@ -2036,8 +2036,8 @@
       "commonName": "Mats Hummels",
       "rolesPlusPlusArchetypes": [
         "ball_playing_defender",
-        "defender",
-        "stopper"
+        "stopper",
+        "defender"
       ],
       "bodytype": "Stocky Tall",
       "positions": [
@@ -2046,22 +2046,22 @@
       "metaRatings": [
         {
           "archetype": "ball_playing_defender",
-          "metaR_0chem": 85.13,
-          "metaR_3chem": 89.45,
+          "metaR_0chem": 85.06,
+          "metaR_3chem": 89.37,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "LENGTHY"
         },
         {
           "archetype": "defender",
-          "metaR_0chem": 86.38,
-          "metaR_3chem": 92.4,
+          "metaR_0chem": 86.23,
+          "metaR_3chem": 92.28,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "LENGTHY"
         },
         {
           "archetype": "stopper",
-          "metaR_0chem": 84.25,
-          "metaR_3chem": 90.48,
+          "metaR_0chem": 84.18,
+          "metaR_3chem": 90.4,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "LENGTHY"
         }
@@ -2137,93 +2137,93 @@
       "metarankScores": null,
       "commonName": "Mo\u00efse Bombito",
       "rolesPlusPlusArchetypes": [
-        "fullback",
         "ball_playing_defender",
+        "defender",
         "stopper",
-        "holding",
-        "defender"
+        "fullback",
+        "holding"
       ],
       "bodytype": "Average Tall",
       "positions": [
         "CB",
-        "CDM",
-        "LB"
+        "LB",
+        "CDM"
       ],
       "metaRatings": [
         {
           "archetype": "attacking_wingback",
-          "metaR_0chem": 83.21,
-          "metaR_3chem": 86.3,
+          "metaR_0chem": 83.22,
+          "metaR_3chem": 86.31,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "ball_playing_defender",
-          "metaR_0chem": 84.61,
-          "metaR_3chem": 88.2,
+          "metaR_0chem": 84.6,
+          "metaR_3chem": 88.22,
           "bestChemStyle": "powerhouse",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "centre_half",
-          "metaR_0chem": 88.06,
-          "metaR_3chem": 91.93,
+          "metaR_0chem": 88.16,
+          "metaR_3chem": 91.99,
           "bestChemStyle": "anchor",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "deep_lying_playmaker",
-          "metaR_0chem": 83.14,
-          "metaR_3chem": 86.85,
+          "metaR_0chem": 83.19,
+          "metaR_3chem": 86.89,
           "bestChemStyle": "powerhouse",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "defender",
           "metaR_0chem": 83.3,
-          "metaR_3chem": 87.68,
+          "metaR_3chem": 87.71,
           "bestChemStyle": "sentinel",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "falseback",
-          "metaR_0chem": 84.49,
-          "metaR_3chem": 89.14,
+          "metaR_0chem": 84.47,
+          "metaR_3chem": 89.12,
           "bestChemStyle": "powerhouse",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "fullback",
-          "metaR_0chem": 88.78,
-          "metaR_3chem": 92.45,
+          "metaR_0chem": 88.75,
+          "metaR_3chem": 92.41,
           "bestChemStyle": "anchor",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "holding",
-          "metaR_0chem": 85.02,
-          "metaR_3chem": 90.22,
+          "metaR_0chem": 85.14,
+          "metaR_3chem": 90.33,
           "bestChemStyle": "sentinel",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "stopper",
-          "metaR_0chem": 83.26,
-          "metaR_3chem": 87.6,
+          "metaR_0chem": 83.29,
+          "metaR_3chem": 87.62,
           "bestChemStyle": "anchor",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "wide_half",
           "metaR_0chem": 83.52,
-          "metaR_3chem": 87.6,
+          "metaR_3chem": 87.59,
           "bestChemStyle": "backbone",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "wingback",
           "metaR_0chem": 85.42,
-          "metaR_3chem": 88.78,
+          "metaR_3chem": 88.77,
           "bestChemStyle": "guardian",
           "accelerateType_chem": "CONTROLLED"
         }
@@ -2301,10 +2301,10 @@
       "commonName": "Abner Vin\u00edcius",
       "rolesPlusPlusArchetypes": [
         "falseback",
-        "deep_lying_playmaker",
-        "fullback",
         "playmaker",
-        "winger"
+        "winger",
+        "deep_lying_playmaker",
+        "fullback"
       ],
       "bodytype": "Average Medium",
       "positions": [
@@ -2315,92 +2315,92 @@
       "metaRatings": [
         {
           "archetype": "attacking_wingback",
-          "metaR_0chem": 84.39,
-          "metaR_3chem": 88.05,
+          "metaR_0chem": 84.45,
+          "metaR_3chem": 88.1,
           "bestChemStyle": "engine",
           "accelerateType_chem": "MOSTLY_EXPLOSIVE"
         },
         {
           "archetype": "box_to_box",
-          "metaR_0chem": 84.11,
-          "metaR_3chem": 87.36,
+          "metaR_0chem": 84.09,
+          "metaR_3chem": 87.3,
           "bestChemStyle": "powerhouse",
           "accelerateType_chem": "MOSTLY_EXPLOSIVE"
         },
         {
           "archetype": "deep_lying_playmaker",
-          "metaR_0chem": 81.88,
-          "metaR_3chem": 85.92,
+          "metaR_0chem": 81.87,
+          "metaR_3chem": 85.9,
           "bestChemStyle": "powerhouse",
           "accelerateType_chem": "MOSTLY_EXPLOSIVE"
         },
         {
           "archetype": "falseback",
-          "metaR_0chem": 83.28,
-          "metaR_3chem": 88.1,
+          "metaR_0chem": 83.3,
+          "metaR_3chem": 88.11,
           "bestChemStyle": "powerhouse",
           "accelerateType_chem": "MOSTLY_EXPLOSIVE"
         },
         {
           "archetype": "fullback",
-          "metaR_0chem": 85.79,
-          "metaR_3chem": 90.79,
+          "metaR_0chem": 85.78,
+          "metaR_3chem": 90.75,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "MOSTLY_EXPLOSIVE"
         },
         {
           "archetype": "half_winger",
-          "metaR_0chem": 80.79,
-          "metaR_3chem": 84.4,
+          "metaR_0chem": 80.82,
+          "metaR_3chem": 84.41,
           "bestChemStyle": "engine",
           "accelerateType_chem": "MOSTLY_EXPLOSIVE"
         },
         {
           "archetype": "holding",
-          "metaR_0chem": 82.32,
-          "metaR_3chem": 87.77,
+          "metaR_0chem": 82.31,
+          "metaR_3chem": 87.76,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "MOSTLY_EXPLOSIVE"
         },
         {
           "archetype": "inside_forward",
           "metaR_0chem": 81.04,
-          "metaR_3chem": 84.7,
+          "metaR_3chem": 84.69,
           "bestChemStyle": "finisher",
           "accelerateType_chem": "MOSTLY_EXPLOSIVE"
         },
         {
           "archetype": "playmaker",
-          "metaR_0chem": 81.57,
-          "metaR_3chem": 85.02,
+          "metaR_0chem": 81.59,
+          "metaR_3chem": 85.04,
           "bestChemStyle": "engine",
           "accelerateType_chem": "MOSTLY_EXPLOSIVE"
         },
         {
           "archetype": "wide_midfielder",
           "metaR_0chem": 83.56,
-          "metaR_3chem": 87.27,
+          "metaR_3chem": 87.26,
           "bestChemStyle": "engine",
           "accelerateType_chem": "MOSTLY_EXPLOSIVE"
         },
         {
           "archetype": "wide_playmaker",
-          "metaR_0chem": 80.26,
-          "metaR_3chem": 84.04,
+          "metaR_0chem": 80.25,
+          "metaR_3chem": 84.01,
           "bestChemStyle": "engine",
           "accelerateType_chem": "MOSTLY_EXPLOSIVE"
         },
         {
           "archetype": "wingback",
-          "metaR_0chem": 85.18,
-          "metaR_3chem": 89.52,
+          "metaR_0chem": 85.2,
+          "metaR_3chem": 89.53,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "MOSTLY_EXPLOSIVE"
         },
         {
           "archetype": "winger",
-          "metaR_0chem": 82.57,
-          "metaR_3chem": 86.24,
+          "metaR_0chem": 82.56,
+          "metaR_3chem": 86.19,
           "bestChemStyle": "engine",
           "accelerateType_chem": "MOSTLY_EXPLOSIVE"
         }
@@ -2487,50 +2487,50 @@
       "metaRatings": [
         {
           "archetype": "box_to_box",
-          "metaR_0chem": 88.95,
-          "metaR_3chem": 92.28,
+          "metaR_0chem": 89.01,
+          "metaR_3chem": 92.33,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "centre_half",
-          "metaR_0chem": 84.01,
-          "metaR_3chem": 89.08,
+          "metaR_0chem": 84.0,
+          "metaR_3chem": 89.04,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "deep_lying_playmaker",
-          "metaR_0chem": 87.16,
-          "metaR_3chem": 90.96,
+          "metaR_0chem": 87.26,
+          "metaR_3chem": 91.05,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "half_winger",
-          "metaR_0chem": 83.94,
-          "metaR_3chem": 87.74,
+          "metaR_0chem": 83.97,
+          "metaR_3chem": 87.77,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "holding",
-          "metaR_0chem": 87.35,
-          "metaR_3chem": 93.07,
+          "metaR_0chem": 87.38,
+          "metaR_3chem": 93.1,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "playmaker",
-          "metaR_0chem": 85.72,
-          "metaR_3chem": 89.13,
+          "metaR_0chem": 85.73,
+          "metaR_3chem": 89.14,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "wide_half",
-          "metaR_0chem": 84.99,
-          "metaR_3chem": 90.04,
+          "metaR_0chem": 84.93,
+          "metaR_3chem": 89.95,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         }
@@ -2611,23 +2611,23 @@
       "metarankScores": null,
       "commonName": "Gianluca Zambrotta",
       "rolesPlusPlusArchetypes": [
-        "fullback",
         "attacking_wingback",
+        "wide_midfielder",
         "inside_forward",
-        "wide_midfielder"
+        "fullback"
       ],
       "bodytype": "Average Medium",
       "positions": [
         "LB",
-        "LM",
         "RB",
+        "LM",
         "RM"
       ],
       "metaRatings": [
         {
           "archetype": "attacking_wingback",
-          "metaR_0chem": 87.29,
-          "metaR_3chem": 91.38,
+          "metaR_0chem": 87.33,
+          "metaR_3chem": 91.39,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
@@ -2640,8 +2640,8 @@
         },
         {
           "archetype": "fullback",
-          "metaR_0chem": 89.21,
-          "metaR_3chem": 95.61,
+          "metaR_0chem": 89.2,
+          "metaR_3chem": 95.58,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
@@ -2654,29 +2654,29 @@
         },
         {
           "archetype": "wide_midfielder",
-          "metaR_0chem": 85.79,
-          "metaR_3chem": 89.48,
+          "metaR_0chem": 85.8,
+          "metaR_3chem": 89.47,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "wide_playmaker",
-          "metaR_0chem": 83.88,
-          "metaR_3chem": 87.8,
+          "metaR_0chem": 83.87,
+          "metaR_3chem": 87.77,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "wingback",
           "metaR_0chem": 88.11,
-          "metaR_3chem": 93.8,
+          "metaR_3chem": 93.79,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "winger",
-          "metaR_0chem": 85.73,
-          "metaR_3chem": 90.04,
+          "metaR_0chem": 85.69,
+          "metaR_3chem": 89.98,
           "bestChemStyle": "hunter",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         }
@@ -2758,21 +2758,21 @@
         {
           "archetype": "ball_playing_defender",
           "metaR_0chem": 86.89,
-          "metaR_3chem": 91.27,
+          "metaR_3chem": 91.26,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "MOSTLY_LENGTHY"
         },
         {
           "archetype": "defender",
-          "metaR_0chem": 87.41,
-          "metaR_3chem": 93.51,
+          "metaR_0chem": 87.57,
+          "metaR_3chem": 93.7,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "MOSTLY_LENGTHY"
         },
         {
           "archetype": "stopper",
-          "metaR_0chem": 82.43,
-          "metaR_3chem": 88.71,
+          "metaR_0chem": 82.39,
+          "metaR_3chem": 88.66,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "MOSTLY_LENGTHY"
         }
@@ -2848,49 +2848,49 @@
       ],
       "bodytype": "Lean Tall",
       "positions": [
-        "ST",
         "RW",
+        "ST",
         "RM"
       ],
       "metaRatings": [
         {
           "archetype": "advanced_forward",
-          "metaR_0chem": 79.91,
-          "metaR_3chem": 84.15,
+          "metaR_0chem": 79.87,
+          "metaR_3chem": 84.11,
           "bestChemStyle": "hunter",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "false_nine",
-          "metaR_0chem": 75.93,
-          "metaR_3chem": 79.59,
+          "metaR_0chem": 75.89,
+          "metaR_3chem": 79.57,
           "bestChemStyle": "deadeye",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "inside_forward",
-          "metaR_0chem": 78.36,
-          "metaR_3chem": 82.03,
+          "metaR_0chem": 78.35,
+          "metaR_3chem": 82.0,
           "bestChemStyle": "finisher",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "poacher",
-          "metaR_0chem": 78.88,
-          "metaR_3chem": 82.79,
+          "metaR_0chem": 78.86,
+          "metaR_3chem": 82.77,
           "bestChemStyle": "hunter",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "target_forward",
-          "metaR_0chem": 81.93,
-          "metaR_3chem": 85.37,
+          "metaR_0chem": 81.84,
+          "metaR_3chem": 85.28,
           "bestChemStyle": "hunter",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "wide_midfielder",
-          "metaR_0chem": 76.29,
+          "metaR_0chem": 76.3,
           "metaR_3chem": 79.82,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED"
@@ -2898,14 +2898,14 @@
         {
           "archetype": "wide_playmaker",
           "metaR_0chem": 74.73,
-          "metaR_3chem": 78.34,
+          "metaR_3chem": 78.33,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "winger",
-          "metaR_0chem": 79.25,
-          "metaR_3chem": 82.77,
+          "metaR_0chem": 79.21,
+          "metaR_3chem": 82.72,
           "bestChemStyle": "hunter",
           "accelerateType_chem": "CONTROLLED"
         }
@@ -2982,98 +2982,98 @@
       "metarankScores": null,
       "commonName": "Giovanni Di Lorenzo",
       "rolesPlusPlusArchetypes": [
+        "attacking_wingback",
         "deep_lying_playmaker",
-        "fullback",
-        "attacking_wingback"
+        "fullback"
       ],
       "bodytype": "Average Medium",
       "positions": [
-        "CDM",
         "RB",
+        "CDM",
         "RM"
       ],
       "metaRatings": [
         {
           "archetype": "attacking_wingback",
-          "metaR_0chem": 88.05,
-          "metaR_3chem": 91.67,
+          "metaR_0chem": 88.04,
+          "metaR_3chem": 91.64,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "centre_half",
-          "metaR_0chem": 88.0,
-          "metaR_3chem": 92.46,
+          "metaR_0chem": 87.99,
+          "metaR_3chem": 92.43,
           "bestChemStyle": "anchor",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "deep_lying_playmaker",
-          "metaR_0chem": 88.25,
-          "metaR_3chem": 91.87,
+          "metaR_0chem": 88.2,
+          "metaR_3chem": 91.81,
           "bestChemStyle": "powerhouse",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "falseback",
-          "metaR_0chem": 88.57,
-          "metaR_3chem": 92.69,
+          "metaR_0chem": 88.55,
+          "metaR_3chem": 92.65,
           "bestChemStyle": "powerhouse",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "fullback",
-          "metaR_0chem": 90.63,
-          "metaR_3chem": 95.85,
+          "metaR_0chem": 90.56,
+          "metaR_3chem": 95.75,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "holding",
-          "metaR_0chem": 89.33,
-          "metaR_3chem": 94.45,
+          "metaR_0chem": 89.34,
+          "metaR_3chem": 94.46,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "inside_forward",
-          "metaR_0chem": 83.64,
-          "metaR_3chem": 87.55,
+          "metaR_0chem": 83.63,
+          "metaR_3chem": 87.54,
           "bestChemStyle": "finisher",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "wide_half",
-          "metaR_0chem": 87.6,
-          "metaR_3chem": 91.96,
+          "metaR_0chem": 87.58,
+          "metaR_3chem": 91.92,
           "bestChemStyle": "anchor",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "wide_midfielder",
-          "metaR_0chem": 85.49,
-          "metaR_3chem": 89.04,
+          "metaR_0chem": 85.48,
+          "metaR_3chem": 89.03,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "wide_playmaker",
-          "metaR_0chem": 82.45,
-          "metaR_3chem": 86.19,
+          "metaR_0chem": 82.44,
+          "metaR_3chem": 86.17,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "wingback",
-          "metaR_0chem": 89.36,
-          "metaR_3chem": 93.97,
+          "metaR_0chem": 89.33,
+          "metaR_3chem": 93.93,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "winger",
-          "metaR_0chem": 85.05,
-          "metaR_3chem": 88.78,
+          "metaR_0chem": 85.0,
+          "metaR_3chem": 88.72,
           "bestChemStyle": "hunter",
           "accelerateType_chem": "CONTROLLED"
         }
@@ -3158,92 +3158,92 @@
       "metaRatings": [
         {
           "archetype": "attacking_wingback",
-          "metaR_0chem": 76.22,
-          "metaR_3chem": 80.69,
+          "metaR_0chem": 76.25,
+          "metaR_3chem": 80.7,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "box_to_box",
-          "metaR_0chem": 76.76,
-          "metaR_3chem": 80.17,
+          "metaR_0chem": 76.86,
+          "metaR_3chem": 80.26,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "deep_lying_playmaker",
-          "metaR_0chem": 75.91,
-          "metaR_3chem": 79.88,
+          "metaR_0chem": 75.94,
+          "metaR_3chem": 79.89,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "falseback",
-          "metaR_0chem": 77.6,
-          "metaR_3chem": 82.32,
+          "metaR_0chem": 77.58,
+          "metaR_3chem": 82.3,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "fullback",
           "metaR_0chem": 77.83,
-          "metaR_3chem": 84.34,
+          "metaR_3chem": 84.31,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "half_winger",
-          "metaR_0chem": 70.53,
-          "metaR_3chem": 74.93,
+          "metaR_0chem": 70.57,
+          "metaR_3chem": 74.96,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "holding",
           "metaR_0chem": 79.0,
-          "metaR_3chem": 85.16,
+          "metaR_3chem": 85.15,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "inside_forward",
-          "metaR_0chem": 69.58,
-          "metaR_3chem": 74.34,
+          "metaR_0chem": 69.61,
+          "metaR_3chem": 74.35,
           "bestChemStyle": "finisher",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "playmaker",
-          "metaR_0chem": 73.0,
-          "metaR_3chem": 76.57,
+          "metaR_0chem": 73.02,
+          "metaR_3chem": 76.6,
           "bestChemStyle": "deadeye",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "wide_midfielder",
-          "metaR_0chem": 74.91,
-          "metaR_3chem": 78.77,
+          "metaR_0chem": 74.93,
+          "metaR_3chem": 78.78,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "wide_playmaker",
-          "metaR_0chem": 68.97,
+          "metaR_0chem": 68.99,
           "metaR_3chem": 73.03,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "wingback",
-          "metaR_0chem": 78.11,
-          "metaR_3chem": 83.91,
+          "metaR_0chem": 78.1,
+          "metaR_3chem": 83.9,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "winger",
-          "metaR_0chem": 70.05,
-          "metaR_3chem": 74.55,
+          "metaR_0chem": 70.07,
+          "metaR_3chem": 74.56,
           "bestChemStyle": "hunter",
           "accelerateType_chem": "CONTROLLED"
         }
@@ -3330,15 +3330,15 @@
       "metaRatings": [
         {
           "archetype": "box_to_box",
-          "metaR_0chem": 85.56,
-          "metaR_3chem": 89.14,
+          "metaR_0chem": 85.58,
+          "metaR_3chem": 89.16,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "classic_ten",
-          "metaR_0chem": 85.96,
-          "metaR_3chem": 89.73,
+          "metaR_0chem": 86.01,
+          "metaR_3chem": 89.76,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
@@ -3351,29 +3351,29 @@
         },
         {
           "archetype": "half_winger",
-          "metaR_0chem": 82.36,
-          "metaR_3chem": 86.64,
+          "metaR_0chem": 82.38,
+          "metaR_3chem": 86.65,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "holding",
-          "metaR_0chem": 77.73,
-          "metaR_3chem": 84.28,
+          "metaR_0chem": 77.78,
+          "metaR_3chem": 84.32,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "playmaker",
-          "metaR_0chem": 85.33,
-          "metaR_3chem": 88.75,
+          "metaR_0chem": 85.34,
+          "metaR_3chem": 88.76,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         },
         {
           "archetype": "shadow_striker",
-          "metaR_0chem": 85.67,
-          "metaR_3chem": 89.58,
+          "metaR_0chem": 85.71,
+          "metaR_3chem": 89.62,
           "bestChemStyle": "hunter",
           "accelerateType_chem": "CONTROLLED_EXPLOSIVE"
         }
@@ -3459,50 +3459,50 @@
       "metaRatings": [
         {
           "archetype": "box_to_box",
-          "metaR_0chem": 88.02,
-          "metaR_3chem": 91.53,
+          "metaR_0chem": 88.22,
+          "metaR_3chem": 91.72,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "centre_half",
-          "metaR_0chem": 84.51,
-          "metaR_3chem": 89.91,
+          "metaR_0chem": 84.53,
+          "metaR_3chem": 89.89,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "deep_lying_playmaker",
-          "metaR_0chem": 85.77,
-          "metaR_3chem": 89.75,
-          "bestChemStyle": "catalyst",
+          "metaR_0chem": 85.91,
+          "metaR_3chem": 89.87,
+          "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "half_winger",
-          "metaR_0chem": 84.85,
-          "metaR_3chem": 89.28,
+          "metaR_0chem": 84.89,
+          "metaR_3chem": 89.31,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "holding",
-          "metaR_0chem": 83.6,
-          "metaR_3chem": 90.02,
+          "metaR_0chem": 83.66,
+          "metaR_3chem": 90.07,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "playmaker",
-          "metaR_0chem": 86.9,
-          "metaR_3chem": 90.45,
+          "metaR_0chem": 86.91,
+          "metaR_3chem": 90.44,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "wide_half",
-          "metaR_0chem": 83.11,
-          "metaR_3chem": 88.64,
+          "metaR_0chem": 83.08,
+          "metaR_3chem": 88.57,
           "bestChemStyle": "shadow",
           "accelerateType_chem": "CONTROLLED"
         }
@@ -3575,8 +3575,8 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "ST",
-        "LM"
+        "LM",
+        "ST"
       ],
       "metaRatings": [
         {
@@ -3588,8 +3588,8 @@
         },
         {
           "archetype": "false_nine",
-          "metaR_0chem": 85.16,
-          "metaR_3chem": 88.99,
+          "metaR_0chem": 85.14,
+          "metaR_3chem": 88.96,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED"
         },
@@ -3602,36 +3602,36 @@
         },
         {
           "archetype": "poacher",
-          "metaR_0chem": 84.61,
-          "metaR_3chem": 88.45,
+          "metaR_0chem": 84.62,
+          "metaR_3chem": 88.46,
           "bestChemStyle": "hunter",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "target_forward",
-          "metaR_0chem": 77.07,
-          "metaR_3chem": 81.52,
+          "metaR_0chem": 77.08,
+          "metaR_3chem": 81.54,
           "bestChemStyle": "hawk",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "wide_midfielder",
-          "metaR_0chem": 82.86,
-          "metaR_3chem": 86.72,
+          "metaR_0chem": 82.88,
+          "metaR_3chem": 86.73,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "wide_playmaker",
-          "metaR_0chem": 83.53,
-          "metaR_3chem": 87.42,
+          "metaR_0chem": 83.57,
+          "metaR_3chem": 87.44,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED"
         },
         {
           "archetype": "winger",
-          "metaR_0chem": 86.13,
-          "metaR_3chem": 90.01,
+          "metaR_0chem": 86.15,
+          "metaR_3chem": 90.0,
           "bestChemStyle": "engine",
           "accelerateType_chem": "CONTROLLED"
         }
@@ -3710,65 +3710,65 @@
       ],
       "bodytype": "Unique",
       "positions": [
-        "LW",
+        "RM",
         "CAM",
         "LM",
-        "RM"
+        "LW"
       ],
       "metaRatings": [
         {
           "archetype": "classic_ten",
-          "metaR_0chem": 80.31,
-          "metaR_3chem": 84.05,
+          "metaR_0chem": 80.32,
+          "metaR_3chem": 84.08,
           "bestChemStyle": "deadeye",
           "accelerateType_chem": "EXPLOSIVE"
         },
         {
           "archetype": "half_winger",
-          "metaR_0chem": 77.32,
-          "metaR_3chem": 81.37,
+          "metaR_0chem": 77.34,
+          "metaR_3chem": 81.38,
           "bestChemStyle": "catalyst",
           "accelerateType_chem": "EXPLOSIVE"
         },
         {
           "archetype": "inside_forward",
-          "metaR_0chem": 80.68,
-          "metaR_3chem": 84.73,
+          "metaR_0chem": 80.63,
+          "metaR_3chem": 84.69,
           "bestChemStyle": "finisher",
           "accelerateType_chem": "EXPLOSIVE"
         },
         {
           "archetype": "playmaker",
-          "metaR_0chem": 78.15,
-          "metaR_3chem": 81.71,
+          "metaR_0chem": 78.16,
+          "metaR_3chem": 81.74,
           "bestChemStyle": "deadeye",
           "accelerateType_chem": "EXPLOSIVE"
         },
         {
           "archetype": "shadow_striker",
-          "metaR_0chem": 81.52,
-          "metaR_3chem": 85.11,
+          "metaR_0chem": 81.54,
+          "metaR_3chem": 85.13,
           "bestChemStyle": "engine",
           "accelerateType_chem": "EXPLOSIVE"
         },
         {
           "archetype": "wide_midfielder",
-          "metaR_0chem": 78.33,
-          "metaR_3chem": 82.01,
+          "metaR_0chem": 78.31,
+          "metaR_3chem": 81.98,
           "bestChemStyle": "engine",
           "accelerateType_chem": "EXPLOSIVE"
         },
         {
           "archetype": "wide_playmaker",
-          "metaR_0chem": 78.99,
-          "metaR_3chem": 82.68,
-          "bestChemStyle": "catalyst",
+          "metaR_0chem": 78.97,
+          "metaR_3chem": 82.65,
+          "bestChemStyle": "engine",
           "accelerateType_chem": "EXPLOSIVE"
         },
         {
           "archetype": "winger",
-          "metaR_0chem": 81.34,
-          "metaR_3chem": 85.42,
+          "metaR_0chem": 81.26,
+          "metaR_3chem": 85.34,
           "bestChemStyle": "hunter",
           "accelerateType_chem": "EXPLOSIVE"
         }

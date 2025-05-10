@@ -6,7 +6,7 @@ const path = require('path');
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
-  const TOP_PLAYER_PAGES = 81;
+  const TOP_PLAYER_PAGES = 86;
   const NEW_PLAYER_PAGES = 0;
 
   const dataDir = path.resolve(__dirname, '..', 'data');
