@@ -302,5 +302,31 @@
     {"id":267,"name":"catalyst","threeChemistryModifiers":{"attributeAcceleration":8,"attributeSprintSpeed":8,"attributePositioning":0,"attributeFinishing":0,"attributeShotPower":0,"attributeLongShots":0,"attributeVolleys":0,"attributePenalties":0,"attributeVision":0,"attributeCrossing":12,"attributeFkAccuracy":8,"attributeLongPassing":8,"attributeShortPassing":4,"attributeCurve":4,"attributeAgility":0,"attributeBalance":0,"attributeReactions":0,"attributeBallControl":0,"attributeDribbling":0,"attributeInterceptions":0,"attributeHeadingAccuracy":0,"attributeStandingTackle":0,"attributeSlidingTackle":0,"attributeJumping":0,"attributeStamina":0,"attributeStrength":0,"attributeAggression":0,"attributeComposure":0,"attributeDefensiveAwareness":0,"attributeGkDiving":0,"attributeGkHandling":0,"attributeGkKicking":0,"attributeGkReflexes":0,"attributeGkPositioning":0}},
     {"id":268,"name":"shadow","threeChemistryModifiers":{"attributeAcceleration":8,"attributeSprintSpeed":8,"attributePositioning":0,"attributeFinishing":0,"attributeShotPower":0,"attributeLongShots":0,"attributeVolleys":0,"attributePenalties":0,"attributeVision":0,"attributeCrossing":0,"attributeFkAccuracy":0,"attributeLongPassing":0,"attributeShortPassing":0,"attributeCurve":0,"attributeAgility":0,"attributeBalance":0,"attributeReactions":0,"attributeBallControl":0,"attributeDribbling":0,"attributeInterceptions":8,"attributeHeadingAccuracy":4,"attributeStandingTackle":8,"attributeSlidingTackle":12,"attributeJumping":0,"attributeStamina":0,"attributeStrength":0,"attributeAggression":0,"attributeComposure":0,"attributeDefensiveAwareness":4,"attributeGkDiving":0,"attributeGkHandling":0,"attributeGkKicking":0,"attributeGkReflexes":0,"attributeGkPositioning":0}},
     {"id":0,"name":"none","threeChemistryModifiers":{"attributeAcceleration":0,"attributeSprintSpeed":0,"attributePositioning":0,"attributeFinishing":0,"attributeShotPower":0,"attributeLongShots":0,"attributeVolleys":0,"attributePenalties":0,"attributeVision":0,"attributeCrossing":0,"attributeFkAccuracy":0,"attributeLongPassing":0,"attributeShortPassing":0,"attributeCurve":0,"attributeAgility":0,"attributeBalance":0,"attributeReactions":0,"attributeBallControl":0,"attributeDribbling":0,"attributeInterceptions":0,"attributeHeadingAccuracy":0,"attributeStandingTackle":0,"attributeSlidingTackle":0,"attributeJumping":0,"attributeStamina":0,"attributeStrength":0,"attributeAggression":0,"attributeComposure":0,"attributeDefensiveAwareness":0,"attributeGkDiving":0,"attributeGkHandling":0,"attributeGkKicking":0,"attributeGkReflexes":0,"attributeGkPositioning":0}}
-]
+  ],
+  "chemistryStyle": {
+    "1": "basic",
+    "2": "sniper",
+    "3": "finisher",
+    "4": "deadeye",
+    "5": "marksman",
+    "6": "hawk",
+    "7": "artist",
+    "8": "architect",
+    "9": "powerhouse",
+    "10": "maestro",
+    "11": "engine",
+    "12": "sentinel",
+    "13": "guardian",
+    "14": "gladiator",
+    "15": "backbone",
+    "16": "anchor",
+    "17": "hunter",
+    "18": "catalyst",
+    "19": "shadow",
+    "20": "gk wall",
+    "21": "gk shield",
+    "22": "gk cat",
+    "23": "gk glove",
+    "24": "gk basic"
+  }
 }
