@@ -58,16 +58,30 @@ filters = {}
 
 st.sidebar.header("Filter Players")
 
-# Combined PlayStyle and PlayStyle+ filter
-if "PS" in df.columns or "PS+" in df.columns:
-    combined_styles = set()
-    for col in ["PS", "PS+"]:
-        if col in df.columns:
-            combined_styles.update(x for sublist in df[col].dropna() if isinstance(sublist, list) for x in sublist)
-    combined_styles = sorted(combined_styles)
-    selected_styles = st.sidebar.multiselect("PlayStyle (PS & PS+)", combined_styles)
-    if selected_styles:
-        filters["PS_combined"] = selected_styles
+# Evolution filter (if exists)
+evolution_values = [True, False]
+selected_evolution = st.sidebar.selectbox("evolution", options=["All"] + evolution_values)
+if selected_evolution != "All":
+    filters["evolution"] = selected_evolution
+
+# Role filter
+if "role" in df.columns:
+    unique_roles = sorted(df["role"].dropna().unique())
+    selected_roles = st.sidebar.multiselect("Role", unique_roles)
+    if selected_roles:
+        filters["role"] = selected_roles
+
+# Overall rating filter
+if "overall" in df.columns and not df["overall"].isnull().all():
+    min_ovr = int(df["overall"].min())
+    max_ovr = int(df["overall"].max())
+    left_col, right_col = st.sidebar.columns([1, 1])
+    with left_col:
+        min_input = st.number_input("Min Overall", min_ovr, max_ovr, value=min_ovr, key="overall_min")
+    with right_col:
+        max_input = st.number_input("Max Overall", min_ovr, max_ovr, value=max_ovr, key="overall_max")
+    if min_input > min_ovr or max_input < max_ovr:
+        filters["overall"] = (min_input, max_input)
 
 # Height filter
 if "height" in df.columns and not df["height"].isnull().all():
@@ -94,25 +108,47 @@ if "weight" in df.columns and not df["weight"].isnull().all():
     if min_input > min_weight or max_input < max_weight:
         filters["weight"] = (min_input, max_input)
 
-# Evolution filter (if exists)
-evolution_values = [True, False]
-selected_evolution = st.sidebar.selectbox("evolution", options=["All"] + evolution_values)
-if selected_evolution != "All":
-    filters["evolution"] = selected_evolution
+# Skill Moves filter
+if "skillMoves" in df.columns and not df["skillMoves"].isnull().all():
+    min_skill = int(df["skillMoves"].min())
+    max_skill = int(df["skillMoves"].max())
+    left_col, right_col = st.sidebar.columns([1, 1])
+    with left_col:
+        min_input = st.number_input("Min Skill Moves", min_skill, max_skill, value=min_skill, key="skillMoves_min")
+    with right_col:
+        max_input = st.number_input("Max Skill Moves", min_skill, max_skill, value=max_skill, key="skillMoves_max")
+    if min_input > min_skill or max_input < max_skill:
+        filters["skillMoves"] = (min_input, max_input)
 
-# Role filter
-if "role" in df.columns:
-    unique_roles = sorted(df["role"].dropna().unique())
-    selected_roles = st.sidebar.multiselect("Role", unique_roles)
-    if selected_roles:
-        filters["role"] = selected_roles
+# Weak Foot filter
+if "weakFoot" in df.columns and not df["weakFoot"].isnull().all():
+    min_weak = int(df["weakFoot"].min())
+    max_weak = int(df["weakFoot"].max())
+    left_col, right_col = st.sidebar.columns([1, 1])
+    with left_col:
+        min_input = st.number_input("Min Weak Foot", min_weak, max_weak, value=min_weak, key="weakFoot_min")
+    with right_col:
+        max_input = st.number_input("Max Weak Foot", min_weak, max_weak, value=max_weak, key="weakFoot_max")
+    if min_input > min_weak or max_input < max_weak:
+        filters["weakFoot"] = (min_input, max_input)
 
-# GG Chem Style filter
-if "ggChemS" in df.columns:
-    unique_gg_chems = sorted(df["ggChemS"].dropna().unique())
-    selected_gg_chems = st.sidebar.multiselect("GG Chem Style", unique_gg_chems)
-    if selected_gg_chems:
-        filters["ggChemS"] = selected_gg_chems
+# Combined PlayStyle and PlayStyle+ filter
+if "PS" in df.columns or "PS+" in df.columns:
+    combined_styles = set()
+    for col in ["PS", "PS+"]:
+        if col in df.columns:
+            combined_styles.update(x for sublist in df[col].dropna() if isinstance(sublist, list) for x in sublist)
+    combined_styles = sorted(combined_styles)
+    selected_styles = st.sidebar.multiselect("PlayStyle (PS & PS+)", combined_styles)
+    if selected_styles:
+        filters["PS_combined"] = selected_styles
+
+# Acceleration Type (Base) filter
+if "accelerateType" in df.columns:
+    unique_accel_base = sorted(df["accelerateType"].dropna().unique())
+    selected_accel_base = st.sidebar.multiselect("Acceleration Type (Base)", unique_accel_base)
+    if selected_accel_base:
+        filters["accelerateType"] = selected_accel_base
 
 # Acceleration Type (GG) filter
 if "accelTypeGgChem" in df.columns:
@@ -120,6 +156,13 @@ if "accelTypeGgChem" in df.columns:
     selected_accels = st.sidebar.multiselect("Acceleration Type (GG)", unique_accels)
     if selected_accels:
         filters["accelTypeGgChem"] = selected_accels
+
+# Acceleration Type (ES) filter
+if "accelTypeEsChem" in df.columns:
+    unique_accels_es = sorted(df["accelTypeEsChem"].dropna().unique())
+    selected_accels_es = st.sidebar.multiselect("Acceleration Type (ES)", unique_accels_es)
+    if selected_accels_es:
+        filters["accelTypeEsChem"] = selected_accels_es
 
 if "ggMeta" in df.columns and not df["ggMeta"].isnull().all():
     min_gg_meta = float(df["ggMeta"].min())
@@ -204,7 +247,7 @@ for col, val in filters.items():
                 filtered_df = filtered_df[filtered_df[col].isin(val)]
     elif isinstance(val, tuple) and len(val) == 2:
         # Only apply height/weight filter if explicitly set (i.e. user has moved the slider)
-        if col in ["height", "weight"]:
+        if col in ["height", "weight", "overall", "skillMoves", "weakFoot"]:
             # Only filter if the user has changed the slider from the min/max range
             min_val = int(df[col].min())
             max_val = int(df[col].max())
