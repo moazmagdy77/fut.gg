@@ -12,6 +12,11 @@ output_path = data_dir / "enhanced_club_players.json"
 with player_data_path.open() as f:
     raw_players = json.load(f)
 
+metarank_path = data_dir / "club_metarank.json"
+with metarank_path.open() as f:
+    metarank_data = json.load(f)
+metarank_lookup = {entry["data"]["eaId"]: entry["data"]["scores"] for entry in metarank_data}
+
 with maps_path.open() as f:
     maps = json.load(f)
 
@@ -72,6 +77,25 @@ for i, player_wrapper in enumerate(raw_players):
         continue
 
     player["archetype"] = archetypes
+
+    ea_id = player.get("eaId")
+    if ea_id in metarank_lookup:
+        raw_scores = metarank_lookup[ea_id]
+        # Apply role and chemStyle mapping from maps.json
+        role_map = maps.get("role", {})
+        chem_map = maps.get("chemistryStyle", {})
+
+        def map_score(score):
+            return {
+                "role": role_map.get(str(score["role"]), score["role"]),
+                "chemistryStyle": chem_map.get(str(score["chemistryStyle"]), score["chemistryStyle"]),
+                "score": score["score"],
+                "rank": score["rank"],
+                "isPlus": score["isPlus"],
+                "isPlusPlus": score["isPlusPlus"]
+            }
+
+        player["gg.metaRatings"] = [map_score(s) for s in raw_scores]
 
     for field in fields_to_remove:
         player.pop(field, None)

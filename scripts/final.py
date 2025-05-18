@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from collections import defaultdict, OrderedDict
 
 # Define data directory
 data_dir = Path(__file__).resolve().parents[1] / "data"
@@ -8,7 +9,6 @@ data_dir = Path(__file__).resolve().parents[1] / "data"
 maps_path = data_dir / "maps.json"
 with open(maps_path) as f:
     maps = json.load(f)
-roles_plusplus_archetype = maps["rolesPlusPlusArchetype"]
 
 # Load the data from the files
 club_players_path = data_dir / "club_players_with_meta.json"
@@ -57,7 +57,7 @@ for player in evolab_meta:
             if mapped_archetype:
                 player_rolesplusplus_archetypes.add(mapped_archetype)
 
-    for meta_rating in player.get("metaRatings", []):
+    for meta_rating in player.get("metaRatings", []):  # keep for checking role flags
         archetype = meta_rating.get("archetype")
         meta_rating["hasRolePlus"] = archetype in player_roles_archetypes
         meta_rating["hasRolePlusPlus"] = archetype in player_rolesplusplus_archetypes
@@ -88,8 +88,8 @@ for player in club_players:
             "foot", "position", "alternativePositionIds", "playstyles", "playstylesPlus", "rolesPlus", "rolesPlusPlus",
             "url", "bodytypeCode", "isRealFace", "facePace", "faceShooting", "facePassing", "faceDribbling", "faceDefending",
             "facePhysicality", "gkFaceDiving", "gkFaceHandling", "gkFaceKicking", "gkFaceReflexes", "gkFaceSpeed",
-            "gkFacePositioning", "isUserEvolutions", "isEvoLabPlayerItem", "shirtNumber", "totalFaceStats", "totalIgs",
-            "archetype"
+            "gkFacePositioning", "isUserEvolutions", "isEvoLabPlayerItem", "shirtNumber", "premiumSeasonPassLevel", "standardSeasonPassLevel",
+            "metarankStr", "totalFaceStats", "totalIgs", "archetype", "evolutionIgsBoost", "totalIgsBoost"
         }
         for field in fields_to_remove:
             player.pop(field, None)
@@ -108,14 +108,85 @@ for player in club_players:
         field_renames = {
             "bodytypeCodeMapped": "bodytype",
             "footMapped": "foot",
-            "playstylesMapped": "playstyles",
-            "playstylesPlusMapped": "playstylesPlus",
-            "rolesPlusMapped": "rolesPlus",
-            "rolesPlusPlusMapped": "rolesPlusPlus"
+            "playstylesMapped": "PS",
+            "playstylesPlusMapped": "PS+",
+            "rolesPlusMapped": "roles+",
+            "rolesPlusPlusMapped": "roles++"
         }
+        #combine positionMapped and alternativePositionIdsMapped into 'positions'
         for old_field, new_field in field_renames.items():
             if old_field in player:
                 player[new_field] = player.pop(old_field)
+
+        position_to_roles = maps["positionToRole"]
+        role_to_archetype = maps["roleToArchetype"]
+        chemstyle_boosts = {c["name"]: c for c in maps["ChemistryStylesBoosts"]}
+
+        valid_roles = []
+        for pos in positions:
+            valid_roles.extend(position_to_roles.get(pos, []))
+
+        gg_meta = player.get("gg.metaRatings", [])
+        gg_by_role = defaultdict(list)
+        for item in gg_meta:
+            gg_by_role[item["role"]].append(item)
+
+        # Keep only the highest ggMeta per role
+        gg_by_role = {
+            role: sorted(entries, key=lambda x: x.get("score", 0), reverse=True)[0]
+            for role, entries in gg_by_role.items()
+        }
+
+        normalized_meta = []
+        for role in sorted(set(valid_roles)):
+            archetype = role_to_archetype.get(role)
+            es_entry = next((x for x in player.get("metaRatings", []) if x.get("archetype") == archetype), {})
+
+            gg_entry = gg_by_role.get(role, {})
+            chemstyle_name = gg_entry.get("chemistryStyle")
+            chemstyle_boost = {}
+            if chemstyle_name:
+                chemstyle_boost = next((c["threeChemistryModifiers"] for c in maps["ChemistryStylesBoosts"] if c["name"] == chemstyle_name), {})
+
+            # Apply chemstyle boost
+            accel = player.get("attributeAcceleration", 0) + chemstyle_boost.get("attributeAcceleration", 0)
+            agility = player.get("attributeAgility", 0) + chemstyle_boost.get("attributeAgility", 0)
+            strength = player.get("attributeStrength", 0) + chemstyle_boost.get("attributeStrength", 0)
+            height = player.get("height", 0)
+
+            # Compute acceleration type
+            if (agility - strength) >= 20 and accel >= 80 and height <= 175:
+                accel_type = "EXPLOSIVE"
+            elif (agility - strength) >= 12 and accel >= 80 and height <= 182:
+                accel_type = "MOSTLY_EXPLOSIVE"
+            elif (agility - strength) >= 4 and accel >= 70 and height <= 182:
+                accel_type = "CONTROLLED_EXPLOSIVE"
+            elif (strength - agility) >= 20 and strength >= 80 and height >= 188:
+                accel_type = "LENGTHY"
+            elif (strength - agility) >= 12 and strength >= 75 and height >= 183:
+                accel_type = "MOSTLY_LENGTHY"
+            elif (strength - agility) >= 4 and strength >= 65 and height >= 181:
+                accel_type = "CONTROLLED_LENGTHY"
+            else:
+                accel_type = "CONTROLLED"
+
+            normalized_meta.append(OrderedDict([
+                ("role", role),
+                ("esMetaSub", es_entry.get("metaR_0chem")),
+                ("esMetaChem", es_entry.get("metaR_3chem")),
+                ("esChemS", es_entry.get("bestChemStyle")),
+                ("accelTypeEsChem", es_entry.get("accelerateType_chem")),
+                ("ggMeta", gg_entry.get("score")),
+                ("ggRank", gg_entry.get("rank")),
+                ("ggChemS", chemstyle_name),
+                ("accelTypeGgChem", accel_type)
+            ]))
+
+        player["finalMetaRatings"] = normalized_meta
+
+
+        player.pop("metaRatings", None)
+        player.pop("gg.metaRatings", None)
 
         player_roles_plus = player.get("rolesPlus", [])
         player_roles_plusplus = player.get("rolesPlusPlus", [])
@@ -136,10 +207,9 @@ for player in club_players:
                 if mapped_archetype:
                     player_rolesplusplus_archetypes.add(mapped_archetype)
 
-        for meta_rating in player.get("metaRatings", []):
-            archetype = meta_rating.get("archetype")
-            meta_rating["hasRolePlus"] = archetype in player_roles_archetypes
-            meta_rating["hasRolePlusPlus"] = archetype in player_rolesplusplus_archetypes
+        for meta_rating in player.get("finalMetaRatings", []):
+            meta_rating.pop("hasRolePlus", None)
+            meta_rating.pop("hasRolePlusPlus", None)
 
         player["evolution"] = False
         combined_players.append(player)
@@ -147,6 +217,6 @@ for player in club_players:
 # Output combined list
 output_path = data_dir / "final.json"
 with open(output_path, "w") as f:
-    json.dump(combined_players, f, indent=2, sort_keys=True)
+    json.dump(combined_players, f, indent=2)
 
 output_path
