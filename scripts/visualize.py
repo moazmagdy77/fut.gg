@@ -312,16 +312,36 @@ if filters:
             )
 
 
-# Top ggMeta and esMetaChem highlights
-top_gg_meta = filtered_df.loc[filtered_df["ggMeta"].idxmax()] if "ggMeta" in filtered_df.columns and not filtered_df.empty else None
-top_es_meta = filtered_df.loc[filtered_df["esMetaChem"].idxmax()] if "esMetaChem" in filtered_df.columns and not filtered_df.empty else None
 
 st.subheader("Top Meta Ratings")
-col1, col2 = st.columns(2)
-if top_gg_meta is not None:
-    col1.metric("Top GG Meta", f'{top_gg_meta["ggMeta"]:.2f}', top_gg_meta["commonName"])
-if top_es_meta is not None:
-    col2.metric("Top Evolab Meta (3 Chem)", f'{top_es_meta["esMetaChem"]:.2f}', top_es_meta["commonName"])
+col1, col2, col3 = st.columns(3)
+
+# Top 3 GG Meta
+if "ggMeta" in filtered_df.columns and not filtered_df.empty:
+    top_gg_df = filtered_df.nlargest(3, "ggMeta")
+    with col1:
+        st.markdown("**Top GG Meta**")
+        for i, (_, row) in enumerate(top_gg_df.iterrows()):
+            medal = ["🥇", "🥈", "🥉"][i] if i < 3 else ""
+            st.metric(label=f"{medal} {row['commonName']}", value=f'{row["ggMeta"]:.2f}')
+
+# Top 3 ES Meta (3 Chem)
+if "esMetaChem" in filtered_df.columns and not filtered_df.empty:
+    top_es_df = filtered_df.nlargest(3, "esMetaChem")
+    with col2:
+        st.markdown("**Top EasySBC Meta (Full Chem)**")
+        for i, (_, row) in enumerate(top_es_df.iterrows()):
+            medal = ["🥇", "🥈", "🥉"][i] if i < 3 else ""
+            st.metric(label=f"{medal} {row['commonName']}", value=f'{row["esMetaChem"]:.2f}')
+
+# Top 3 ES Meta (0 Chem)
+if "esMetaSub" in filtered_df.columns and not filtered_df.empty:
+    top_es0_df = filtered_df.nlargest(3, "esMetaSub")
+    with col3:
+        st.markdown("**Top EasySBC Meta (Sub)**")
+        for i, (_, row) in enumerate(top_es0_df.iterrows()):
+            medal = ["🥇", "🥈", "🥉"][i] if i < 3 else ""
+            st.metric(label=f"{medal} {row['commonName']}", value=f'{row["esMetaSub"]:.2f}')
 
 filtered_df = filtered_df.drop(columns=["__true_player_id", "player_origin_id", "debug_index"], errors="ignore")
 
