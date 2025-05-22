@@ -223,7 +223,7 @@ if 'PS+' in df.columns:
 if all_ps_styles:
     selected_playstyles = st.sidebar.multiselect("PlayStyles (All Selected)", sorted(list(all_ps_styles))) 
     if selected_playstyles:
-        filters["playstyles_all"] = selected_playstyles # Changed key to playstyles_all
+        filters["playstyles_all"] = selected_playstyles # Key is "playstyles_all"
             
 if "ggAccelType" in df.columns: 
     unique_gg_accel = sorted(df["ggAccelType"].dropna().unique())
@@ -267,37 +267,59 @@ filtered_df = df.copy()
 for col, val in filters.items():
     if col == "playstyles_all": 
         def has_all_selected_styles_combined(row):
-            if not val: return True 
+            # If no playstyles are selected in the filter, all players pass this specific filter
+            if not val: # 'val' is the list of selected playstyles from the filter
+                return True
+            
             combined_player_styles = set() 
             ps_list = row.get("PS", [])
             ps_plus_list = row.get("PS+", [])
-            if isinstance(ps_list, list): combined_player_styles.update(ps_list)
-            if isinstance(ps_plus_list, list): combined_player_styles.update(ps_plus_list)
+
+            if isinstance(ps_list, list): 
+                combined_player_styles.update(ps_list)
+            if isinstance(ps_plus_list, list): 
+                combined_player_styles.update(ps_plus_list)
+            
+            # Check if all styles in 'val' (selected by user) are present in the player's combined styles
             return all(s in combined_player_styles for s in val)
         filtered_df = filtered_df[filtered_df.apply(has_all_selected_styles_combined, axis=1)]
-        continue # Ensure this filter is exclusively handled
+        continue 
     elif col == "roles+_any" or col == "roles++_any": 
         actual_col_name = col.split('_')[0] 
         if actual_col_name in filtered_df.columns: 
-            def has_any_selected_style_single_list(row_styles_list):
-                if not isinstance(row_styles_list, list): return False
-                return any(s in row_styles_list for s in val)
-            filtered_df = filtered_df[filtered_df[actual_col_name].apply(has_any_selected_style_single_list)]
-        # else:
-            # st.warning(f"Filter column '{actual_col_name}' for '{col}' not found during application.")
-        continue # Ensure this filter is exclusively handled
+            def has_any_selected_style_single_list(row_styles_list_item): # Renamed variable to avoid conflict
+                if not isinstance(row_styles_list_item, list): return False
+                return any(s_item in row_styles_list_item for s_item in val) # val is from filters.items()
+            
+            # Added try-except for robustness during apply, though the 'in' check should prevent KeyErrors
+            try:
+                if not filtered_df.empty:
+                     mask = filtered_df[actual_col_name].apply(has_any_selected_style_single_list)
+                     filtered_df = filtered_df[mask]
+            except KeyError as e:
+                st.warning(f"Skipping filter for '{actual_col_name}' due to unexpected issue: {e}")
+
+        continue 
 
     # General filter application for other types
     if isinstance(val, list): 
-        if filtered_df[col].dropna().apply(lambda x: isinstance(x, list)).any():
+        if col in filtered_df.columns and filtered_df[col].dropna().apply(lambda x: isinstance(x, list)).any():
             filtered_df = filtered_df[filtered_df[col].apply(lambda x: any(i in x for i in val) if isinstance(x, list) else False)]
-        else:
+        elif col in filtered_df.columns:
             filtered_df = filtered_df[filtered_df[col].isin(val)]
+        # else:
+            # st.warning(f"Filter column '{col}' not found for list filter.")
     elif isinstance(val, tuple) and len(val) == 2: 
-        numeric_series = pd.to_numeric(filtered_df[col], errors='coerce')
-        filtered_df = filtered_df[numeric_series.between(val[0], val[1], inclusive='both') & numeric_series.notna()]
+        if col in filtered_df.columns:
+            numeric_series = pd.to_numeric(filtered_df[col], errors='coerce')
+            filtered_df = filtered_df[numeric_series.between(val[0], val[1], inclusive='both') & numeric_series.notna()]
+        # else:
+            # st.warning(f"Filter column '{col}' not found for tuple/range filter.")
     else: 
-        filtered_df = filtered_df[filtered_df[col] == val]
+        if col in filtered_df.columns:
+            filtered_df = filtered_df[filtered_df[col] == val]
+        # else:
+            # st.warning(f"Filter column '{col}' not found for direct value filter.")
 
 
 # Default sort by ggMeta descending
