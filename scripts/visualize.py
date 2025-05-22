@@ -369,7 +369,7 @@ if "esMeta" in filtered_df.columns and not filtered_df.empty:
     top_es_players_unique = filtered_df.loc[filtered_df.groupby("__true_player_id")["esMeta"].idxmax()]
     top_es_df = top_es_players_unique.nlargest(3, "esMeta")
     with col2:
-        st.markdown("**Top EasySBC Meta (Full Chem)**")
+        st.markdown("**Top EasySBC Meta**")
         for i, (_, row) in enumerate(top_es_df.iterrows()):
             medal = ["🥇", "🥈", "🥉"][i] if i < 3 else ""
             st.metric(label=f"{medal} {row.get('commonName', 'N/A')}", value=f'{row.get("esMeta", 0.0):.2f}')
