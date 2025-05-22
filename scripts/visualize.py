@@ -82,14 +82,13 @@ if meta_ratings_col_name in df.columns:
     df["esChemStyle"] = df[meta_ratings_col_name].apply(lambda x: x.get("esChemStyle", "None")) 
     df["esAccelType"] = df[meta_ratings_col_name].apply(lambda x: x.get("esAccelType", "Unknown")) 
     df["ggMeta"] = pd.to_numeric(df[meta_ratings_col_name].apply(lambda x: x.get("ggMeta")), errors='coerce').fillna(0)
-    df["ggRank"] = pd.to_numeric(df[meta_ratings_col_name].apply(lambda x: x.get("ggRank")), errors='coerce').fillna(999) # Added ggRank extraction
     df["ggChemStyle"] = df[meta_ratings_col_name].apply(lambda x: x.get("ggChemStyle", "None")) 
     df["ggAccelType"] = df[meta_ratings_col_name].apply(lambda x: x.get("ggAccelType", "Unknown")) 
     df["subAccelType"] = df[meta_ratings_col_name].apply(lambda x: x.get("subAccelType", "CONTROLLED"))
 
     df = df.drop(columns=[meta_ratings_col_name])
 else: 
-    placeholder_cols = ["role", "ggMeta", "ggRank", "ggChemStyle", "ggAccelType", # Added ggRank here
+    placeholder_cols = ["role", "ggMeta", "ggChemStyle", "ggAccelType", 
                          "esMeta", "esChemStyle", "esAccelType", "esMetaSub", "subAccelType"]
     for col in placeholder_cols:
         if col not in df.columns:
@@ -191,7 +190,6 @@ create_min_max_filter(st.sidebar, "weight", "Weight (kg)")
 create_min_max_filter(st.sidebar, "skillMoves", "Skill Moves")
 create_min_max_filter(st.sidebar, "weakFoot", "Weak Foot")
 create_min_max_filter(st.sidebar, "ggMeta", "GG Meta", default_step=0.1, default_format_str="%.1f")
-create_min_max_filter(st.sidebar, "ggRank", "GG Rank", default_step=1) # Added ggRank filter
 create_min_max_filter(st.sidebar, "esMetaSub", "ES Meta (Sub)", default_step=0.1, default_format_str="%.1f")
 create_min_max_filter(st.sidebar, "esMeta", "ES Meta (Chem)", default_step=0.1, default_format_str="%.1f")
 
@@ -333,14 +331,14 @@ elif "overall" in filtered_df.columns: # Fallback
 # Columns to display
 columns_to_display = [
     "commonName", "role", "overall",
-    "ggMeta", "ggChemStyle", "ggAccelType", "ggRank", # Added ggRank
+    "ggMeta", "ggChemStyle", "ggAccelType",
     "esMeta", "esChemStyle", "esAccelType", 
     "esMetaSub","subAccelType", 
     "hasRolePlus", "hasRolePlusPlus",
     "skillMoves", "weakFoot", 
     "PS+", "PS", "roles+", "roles++", 
     "positions", "foot",
-    "bodyType", "accelerateType", 
+    "bodyType",
     "height", "weight"
 ] + [col for col in attribute_filter_order if col in filtered_df.columns]
 
