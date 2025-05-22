@@ -82,14 +82,15 @@ if meta_ratings_col_name in df.columns:
     df["esChemStyle"] = df[meta_ratings_col_name].apply(lambda x: x.get("esChemStyle", "None")) 
     df["esAccelType"] = df[meta_ratings_col_name].apply(lambda x: x.get("esAccelType", "Unknown")) 
     df["ggMeta"] = pd.to_numeric(df[meta_ratings_col_name].apply(lambda x: x.get("ggMeta")), errors='coerce').fillna(0)
+    df["ggRank"] = pd.to_numeric(df[meta_ratings_col_name].apply(lambda x: x.get("ggRank")), errors='coerce').fillna(999) # Added ggRank extraction
     df["ggChemStyle"] = df[meta_ratings_col_name].apply(lambda x: x.get("ggChemStyle", "None")) 
     df["ggAccelType"] = df[meta_ratings_col_name].apply(lambda x: x.get("ggAccelType", "Unknown")) 
     df["subAccelType"] = df[meta_ratings_col_name].apply(lambda x: x.get("subAccelType", "CONTROLLED"))
 
     df = df.drop(columns=[meta_ratings_col_name])
 else: 
-    placeholder_cols = ["role", "ggMeta", "ggChemStyle", "ggAccelType", 
-                        "esMeta", "esChemStyle", "esAccelType""esMetaSub", "subAccelType"]
+    placeholder_cols = ["role", "ggMeta", "ggRank", "ggChemStyle", "ggAccelType", # Added ggRank here
+                         "esMeta", "esChemStyle", "esAccelType", "esMetaSub", "subAccelType"]
     for col in placeholder_cols:
         if col not in df.columns:
             if "Meta" in col or "Rank" in col : df[col] = 0.0 
@@ -172,7 +173,7 @@ def create_min_max_filter(container, column_name, label, default_step=1, default
             val_min_for_input = s_min_val 
             val_max_for_input = s_max_val
             
-            if container is None: # Should not happen if called correctly
+            if container is None: 
                 st.error(f"Error: Filter container for '{label}' is None. Cannot create inputs.")
                 return
 
@@ -190,6 +191,7 @@ create_min_max_filter(st.sidebar, "weight", "Weight (kg)")
 create_min_max_filter(st.sidebar, "skillMoves", "Skill Moves")
 create_min_max_filter(st.sidebar, "weakFoot", "Weak Foot")
 create_min_max_filter(st.sidebar, "ggMeta", "GG Meta", default_step=0.1, default_format_str="%.1f")
+create_min_max_filter(st.sidebar, "ggRank", "GG Rank", default_step=1) # Added ggRank filter
 create_min_max_filter(st.sidebar, "esMetaSub", "ES Meta (Sub)", default_step=0.1, default_format_str="%.1f")
 create_min_max_filter(st.sidebar, "esMeta", "ES Meta (Chem)", default_step=0.1, default_format_str="%.1f")
 
@@ -221,7 +223,7 @@ if 'PS+' in df.columns:
 if all_ps_styles:
     selected_playstyles = st.sidebar.multiselect("PlayStyles (All Selected)", sorted(list(all_ps_styles))) 
     if selected_playstyles:
-        filters["playstyles_all"] = selected_playstyles 
+        filters["playstyles_all"] = selected_playstyles # Changed key to playstyles_all
             
 if "ggAccelType" in df.columns: 
     unique_gg_accel = sorted(df["ggAccelType"].dropna().unique())
@@ -265,23 +267,15 @@ filtered_df = df.copy()
 for col, val in filters.items():
     if col == "playstyles_all": 
         def has_all_selected_styles_combined(row):
-            # If no playstyles are selected in the filter, all players pass this specific filter
-            if not val: # 'val' is the list of selected playstyles from the filter
-                return True
-            
+            if not val: return True 
             combined_player_styles = set() 
             ps_list = row.get("PS", [])
             ps_plus_list = row.get("PS+", [])
-
-            if isinstance(ps_list, list): 
-                combined_player_styles.update(ps_list)
-            if isinstance(ps_plus_list, list): 
-                combined_player_styles.update(ps_plus_list)
-            
-            # Check if all styles in 'val' (selected by user) are present in the player's combined styles
+            if isinstance(ps_list, list): combined_player_styles.update(ps_list)
+            if isinstance(ps_plus_list, list): combined_player_styles.update(ps_plus_list)
             return all(s in combined_player_styles for s in val)
         filtered_df = filtered_df[filtered_df.apply(has_all_selected_styles_combined, axis=1)]
-        continue
+        continue # Ensure this filter is exclusively handled
     elif col == "roles+_any" or col == "roles++_any": 
         actual_col_name = col.split('_')[0] 
         if actual_col_name in filtered_df.columns: 
@@ -289,8 +283,11 @@ for col, val in filters.items():
                 if not isinstance(row_styles_list, list): return False
                 return any(s in row_styles_list for s in val)
             filtered_df = filtered_df[filtered_df[actual_col_name].apply(has_any_selected_style_single_list)]
-        continue
+        # else:
+            # st.warning(f"Filter column '{actual_col_name}' for '{col}' not found during application.")
+        continue # Ensure this filter is exclusively handled
 
+    # General filter application for other types
     if isinstance(val, list): 
         if filtered_df[col].dropna().apply(lambda x: isinstance(x, list)).any():
             filtered_df = filtered_df[filtered_df[col].apply(lambda x: any(i in x for i in val) if isinstance(x, list) else False)]
@@ -299,7 +296,6 @@ for col, val in filters.items():
     elif isinstance(val, tuple) and len(val) == 2: 
         numeric_series = pd.to_numeric(filtered_df[col], errors='coerce')
         filtered_df = filtered_df[numeric_series.between(val[0], val[1], inclusive='both') & numeric_series.notna()]
-
     else: 
         filtered_df = filtered_df[filtered_df[col] == val]
 
@@ -315,7 +311,7 @@ elif "overall" in filtered_df.columns: # Fallback
 # Columns to display
 columns_to_display = [
     "commonName", "role", "overall",
-    "ggMeta", "ggChemStyle", "ggAccelType",  
+    "ggMeta", "ggChemStyle", "ggAccelType", "ggRank", # Added ggRank
     "esMeta", "esChemStyle", "esAccelType", 
     "esMetaSub","subAccelType", 
     "hasRolePlus", "hasRolePlusPlus",
@@ -379,7 +375,7 @@ if "esMeta" in filtered_df.columns and not filtered_df.empty:
     with col2:
         st.markdown("**Top EasySBC Meta (Full Chem)**")
         for i, (_, row) in enumerate(top_es_df.iterrows()):
-            medal = ["🥇", "🥈", "�"][i] if i < 3 else ""
+            medal = ["🥇", "🥈", "🥉"][i] if i < 3 else ""
             st.metric(label=f"{medal} {row.get('commonName', 'N/A')}", value=f'{row.get("esMeta", 0.0):.2f}')
 
 # Top 3 ES Meta (0 Chem)
@@ -406,4 +402,3 @@ else:
     else: 
         st.dataframe(display_df, use_container_width=True, hide_index=True)
 
-�
