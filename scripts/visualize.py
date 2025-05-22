@@ -220,9 +220,9 @@ if 'PS+' in df.columns:
     df['PS+'].dropna().apply(lambda styles: all_ps_styles.update(styles if isinstance(styles, list) else []))
 
 if all_ps_styles:
-    selected_playstyles = st.sidebar.multiselect("PlayStyles (Any)", sorted(list(all_ps_styles)))
+    selected_playstyles = st.sidebar.multiselect("PlayStyles (All Selected)", sorted(list(all_ps_styles))) 
     if selected_playstyles:
-        filters["playstyles_any"] = selected_playstyles
+        filters["playstyles_all"] = selected_playstyles 
             
 if "ggAccelType" in df.columns: 
     unique_gg_accel = sorted(df["ggAccelType"].dropna().unique())
