@@ -1,0 +1,365 @@
+[
+  {
+    "archetype": "ball_playing_defender",
+    "ratings": [
+      {
+        "metaRating": 83.00160740850559,
+        "chemstyleId": 250,
+        "archetypeId": "ball_playing_defender",
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 84.15723688219418,
+        "chemstyleId": 268,
+        "archetypeId": "ball_playing_defender",
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 85.34086470566196,
+        "chemstyleId": 268,
+        "archetypeId": "ball_playing_defender",
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 87.3767425852096,
+        "chemstyleId": 268,
+        "archetypeId": "ball_playing_defender",
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  },
+  {
+    "archetype": "defender",
+    "ratings": [
+      {
+        "metaRating": 82.74184059374714,
+        "chemstyleId": 250,
+        "archetypeId": "defender",
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 84.35856681477402,
+        "chemstyleId": 268,
+        "archetypeId": "defender",
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 86.03420405889304,
+        "chemstyleId": 268,
+        "archetypeId": "defender",
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 88.83490448322401,
+        "chemstyleId": 268,
+        "archetypeId": "defender",
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  },
+  {
+    "archetype": "stopper",
+    "ratings": [
+      {
+        "metaRating": 80.06174646693732,
+        "chemstyleId": 250,
+        "archetypeId": "stopper",
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 81.68125915118112,
+        "chemstyleId": 268,
+        "archetypeId": "stopper",
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 83.3866874974502,
+        "chemstyleId": 268,
+        "archetypeId": "stopper",
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 86.1900583369494,
+        "chemstyleId": 268,
+        "archetypeId": "stopper",
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  },
+  {
+    "archetype": "fullback",
+    "ratings": [
+      {
+        "metaRating": 78.98187589598669,
+        "chemstyleId": 250,
+        "archetypeId": "fullback",
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 80.63687332028027,
+        "chemstyleId": 268,
+        "archetypeId": "fullback",
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 82.30692879614483,
+        "chemstyleId": 268,
+        "archetypeId": "fullback",
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 85.25639154193172,
+        "chemstyleId": 268,
+        "archetypeId": "fullback",
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  },
+  {
+    "archetype": "falseback",
+    "ratings": [
+      {
+        "metaRating": 78.61875300947834,
+        "chemstyleId": 250,
+        "archetypeId": "falseback",
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 79.80006899365566,
+        "chemstyleId": 268,
+        "archetypeId": "falseback",
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 80.9891248647971,
+        "chemstyleId": 268,
+        "archetypeId": "falseback",
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 83.1107235493532,
+        "chemstyleId": 268,
+        "archetypeId": "falseback",
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  },
+  {
+    "archetype": "wingback",
+    "ratings": [
+      {
+        "metaRating": 74.17484810353184,
+        "chemstyleId": 250,
+        "archetypeId": "wingback",
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 75.68607452138444,
+        "chemstyleId": 268,
+        "archetypeId": "wingback",
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 77.2732149057613,
+        "chemstyleId": 267,
+        "archetypeId": "wingback",
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 79.95879241323789,
+        "chemstyleId": 268,
+        "archetypeId": "wingback",
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  },
+  {
+    "archetype": "attacking_wingback",
+    "ratings": [
+      {
+        "metaRating": 72.20101031829743,
+        "chemstyleId": 250,
+        "archetypeId": "attacking_wingback",
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 73.39582451323862,
+        "chemstyleId": 267,
+        "archetypeId": "attacking_wingback",
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 74.71398161321586,
+        "chemstyleId": 267,
+        "archetypeId": "attacking_wingback",
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 76.81523608313555,
+        "chemstyleId": 267,
+        "archetypeId": "attacking_wingback",
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  },
+  {
+    "archetype": "holding",
+    "ratings": [
+      {
+        "metaRating": 81.26339008255657,
+        "chemstyleId": 250,
+        "archetypeId": "holding",
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 82.74218845442427,
+        "chemstyleId": 268,
+        "archetypeId": "holding",
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 84.23978452900478,
+        "chemstyleId": 268,
+        "archetypeId": "holding",
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 86.86176713052159,
+        "chemstyleId": 268,
+        "archetypeId": "holding",
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  },
+  {
+    "archetype": "deep_lying_playmaker",
+    "ratings": [
+      {
+        "metaRating": 74.71349289419673,
+        "chemstyleId": 250,
+        "archetypeId": "deep_lying_playmaker",
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 75.66565124299504,
+        "chemstyleId": 258,
+        "archetypeId": "deep_lying_playmaker",
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 76.7610384771314,
+        "chemstyleId": 258,
+        "archetypeId": "deep_lying_playmaker",
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 78.34662691441463,
+        "chemstyleId": 268,
+        "archetypeId": "deep_lying_playmaker",
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  },
+  {
+    "archetype": "wide_half",
+    "ratings": [
+      {
+        "metaRating": 76.9043231487671,
+        "chemstyleId": 250,
+        "archetypeId": "wide_half",
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 78.21215262642336,
+        "chemstyleId": 268,
+        "archetypeId": "wide_half",
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 79.52428285191873,
+        "chemstyleId": 268,
+        "archetypeId": "wide_half",
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 81.86626263393718,
+        "chemstyleId": 268,
+        "archetypeId": "wide_half",
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  },
+  {
+    "archetype": "centre_half",
+    "ratings": [
+      {
+        "metaRating": 81.33487189579758,
+        "chemstyleId": 250,
+        "archetypeId": "centre_half",
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 82.6295806515317,
+        "chemstyleId": 268,
+        "archetypeId": "centre_half",
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 83.94751811559375,
+        "chemstyleId": 268,
+        "archetypeId": "centre_half",
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 86.25982465302064,
+        "chemstyleId": 268,
+        "archetypeId": "centre_half",
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  }
+]

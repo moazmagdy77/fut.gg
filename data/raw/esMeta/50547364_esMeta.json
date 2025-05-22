@@ -1,0 +1,101 @@
+[
+  {
+    "archetype": "ball_playing_defender",
+    "ratings": [
+      {
+        "metaRating": 79.56295379361525,
+        "chemstyleId": 250,
+        "archetypeId": "ball_playing_defender",
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 80.72084511986733,
+        "chemstyleId": 268,
+        "archetypeId": "ball_playing_defender",
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 81.91936551944309,
+        "chemstyleId": 268,
+        "archetypeId": "ball_playing_defender",
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 84.00191541561887,
+        "chemstyleId": 268,
+        "archetypeId": "ball_playing_defender",
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  },
+  {
+    "archetype": "defender",
+    "ratings": [
+      {
+        "metaRating": 81.02364706580717,
+        "chemstyleId": 250,
+        "archetypeId": "defender",
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 82.64632410382737,
+        "chemstyleId": 268,
+        "archetypeId": "defender",
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 84.35044717853977,
+        "chemstyleId": 268,
+        "archetypeId": "defender",
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 87.23873954801756,
+        "chemstyleId": 268,
+        "archetypeId": "defender",
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  },
+  {
+    "archetype": "stopper",
+    "ratings": [
+      {
+        "metaRating": 80.16297689986301,
+        "chemstyleId": 250,
+        "archetypeId": "stopper",
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 81.78389714955411,
+        "chemstyleId": 268,
+        "archetypeId": "stopper",
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 83.51600831909072,
+        "chemstyleId": 268,
+        "archetypeId": "stopper",
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 86.39582731016459,
+        "chemstyleId": 268,
+        "archetypeId": "stopper",
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  }
+]
