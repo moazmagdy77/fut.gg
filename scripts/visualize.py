@@ -88,8 +88,8 @@ if meta_ratings_col_name in df.columns:
 
     df = df.drop(columns=[meta_ratings_col_name])
 else: 
-    placeholder_cols = ["role", "ggMeta", "ggChemStyle", "ggAccelType",
-                         "esMeta", "esChemStyle", "esAccelType", "esMetaSub", "subAccelType"]
+    placeholder_cols = ["role", "ggMeta", "ggChemStyle", "ggAccelType", 
+                        "esMeta", "esChemStyle", "esAccelType""esMetaSub", "subAccelType"]
     for col in placeholder_cols:
         if col not in df.columns:
             if "Meta" in col or "Rank" in col : df[col] = 0.0 
@@ -172,12 +172,11 @@ def create_min_max_filter(container, column_name, label, default_step=1, default
             val_min_for_input = s_min_val 
             val_max_for_input = s_max_val
             
-            # Ensure container is valid before calling .columns()
-            if container is None:
+            if container is None: # Should not happen if called correctly
                 st.error(f"Error: Filter container for '{label}' is None. Cannot create inputs.")
                 return
 
-            col1, col2 = container.columns(2) # Use the passed container for columns
+            col1, col2 = container.columns(2) 
             user_min = col1.number_input(f"Min {label}", min_value=s_min_val, max_value=s_max_val, value=val_min_for_input, step=default_step, format=current_format_str, key=f"{key_prefix}_min")
             user_max = col2.number_input(f"Max {label}", min_value=s_min_val, max_value=s_max_val, value=val_max_for_input, step=default_step, format=current_format_str, key=f"{key_prefix}_max")
             
@@ -256,27 +255,36 @@ with st.sidebar.expander("Role Familiarity", expanded=True):
         if has_role_plus_plus_checkbox:
             filters["hasRolePlusPlus"] = True
 
-# Changed from 'with ... as igs_expander' to direct assignment
 igs_expander_container = st.sidebar.expander("In-Game Stats", expanded=False)
-# Specific attribute filters are created here, using the expander object as the container
 for attr_col in attribute_filter_order:
-    # Pass the expander object to the function.
     create_min_max_filter(igs_expander_container, attr_col, attr_col.replace("_", " ").title())
 
 
 # Apply filters
 filtered_df = df.copy()
 for col, val in filters.items():
-    if col == "playstyles_any" or col == "roles+_any" or col == "roles++_any": 
+    if col == "playstyles_all": 
+        def has_all_selected_styles_combined(row):
+            # If no playstyles are selected in the filter, all players pass this specific filter
+            if not val: # 'val' is the list of selected playstyles from the filter
+                return True
+            
+            combined_player_styles = set() 
+            ps_list = row.get("PS", [])
+            ps_plus_list = row.get("PS+", [])
+
+            if isinstance(ps_list, list): 
+                combined_player_styles.update(ps_list)
+            if isinstance(ps_plus_list, list): 
+                combined_player_styles.update(ps_plus_list)
+            
+            # Check if all styles in 'val' (selected by user) are present in the player's combined styles
+            return all(s in combined_player_styles for s in val)
+        filtered_df = filtered_df[filtered_df.apply(has_all_selected_styles_combined, axis=1)]
+        continue
+    elif col == "roles+_any" or col == "roles++_any": 
         actual_col_name = col.split('_')[0] 
-        if actual_col_name == "playstyles":
-            def has_any_selected_style_combined(row):
-                combined_player_styles = []
-                if isinstance(row.get("PS"), list): combined_player_styles.extend(row.get("PS"))
-                if isinstance(row.get("PS+"), list): combined_player_styles.extend(row.get("PS+"))
-                return any(s in combined_player_styles for s in val)
-            filtered_df = filtered_df[filtered_df.apply(has_any_selected_style_combined, axis=1)]
-        elif actual_col_name in filtered_df.columns: 
+        if actual_col_name in filtered_df.columns: 
             def has_any_selected_style_single_list(row_styles_list):
                 if not isinstance(row_styles_list, list): return False
                 return any(s in row_styles_list for s in val)
@@ -307,7 +315,7 @@ elif "overall" in filtered_df.columns: # Fallback
 # Columns to display
 columns_to_display = [
     "commonName", "role", "overall",
-    "ggMeta", "ggChemStyle", "ggAccelType",
+    "ggMeta", "ggChemStyle", "ggAccelType",  
     "esMeta", "esChemStyle", "esAccelType", 
     "esMetaSub","subAccelType", 
     "hasRolePlus", "hasRolePlusPlus",
@@ -336,9 +344,9 @@ if filters:
     filter_tags = []
     for key, f_val in filters.items():
         display_name = key.replace("_", " ").title()
-        if key == "playstyles_any": display_name = "PlayStyles"
-        elif key == "roles+_any": display_name = "Roles+"
-        elif key == "roles++_any": display_name = "Roles++"
+        if key == "playstyles_all": display_name = "PlayStyles (All Selected)" 
+        elif key == "roles+_any": display_name = "Roles+ (Any)"
+        elif key == "roles++_any": display_name = "Roles++ (Any)"
         
         if isinstance(f_val, list):
             val_str = ", ".join(map(str,f_val))
@@ -369,9 +377,9 @@ if "esMeta" in filtered_df.columns and not filtered_df.empty:
     top_es_players_unique = filtered_df.loc[filtered_df.groupby("__true_player_id")["esMeta"].idxmax()]
     top_es_df = top_es_players_unique.nlargest(3, "esMeta")
     with col2:
-        st.markdown("**Top EasySBC Meta**")
+        st.markdown("**Top EasySBC Meta (Full Chem)**")
         for i, (_, row) in enumerate(top_es_df.iterrows()):
-            medal = ["🥇", "🥈", "🥉"][i] if i < 3 else ""
+            medal = ["🥇", "🥈", "�"][i] if i < 3 else ""
             st.metric(label=f"{medal} {row.get('commonName', 'N/A')}", value=f'{row.get("esMeta", 0.0):.2f}')
 
 # Top 3 ES Meta (0 Chem)
@@ -398,3 +406,4 @@ else:
     else: 
         st.dataframe(display_df, use_container_width=True, hide_index=True)
 
+�
