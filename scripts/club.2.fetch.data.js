@@ -83,6 +83,114 @@ async function saveData(filePath, data) {
 }
 
 /**
+ * Checks if all data files for a given player ID exist.
+ * @param {string} eaIdStr - The player's EA ID as a string.
+ * @param {string} ggDataDirAbs - Absolute path to fut.gg player item definitions directory.
+ * @param {string} esMetaDirAbs - Absolute path to EasySBC meta ratings directory.
+ * @param {string} ggMetaDirAbs - Absolute path to fut.gg metarank directory.
+ * @returns {Promise<boolean>} True if all files exist, false otherwise.
+ */
+async function checkPlayerDataExists(eaIdStr, ggDataDirAbs, esMetaDirAbs, ggMetaDirAbs) {
+    const ggDataPath = path.join(ggDataDirAbs, `${eaIdStr}_ggData.json`);
+    const esMetaPath = path.join(esMetaDirAbs, `${eaIdStr}_esMeta.json`);
+    const ggMetaPath = path.join(ggMetaDirAbs, `${eaIdStr}_ggMeta.json`);
+
+    try {
+        await fs.access(ggDataPath);
+        await fs.access(esMetaPath);
+        await fs.access(ggMetaPath);
+        return true; // All files are accessible
+    } catch (error) {
+        // If any fs.access throws an error (commonly ENOENT), it means a file doesn't exist
+        return false;
+    }
+}
+
+/**
+ * Deletes all raw data files for a given player ID.
+ * @param {string} eaIdStr - The player's EA ID as a string.
+ * @param {string} ggDataDirAbs - Absolute path to fut.gg player item definitions directory.
+ * @param {string} esMetaDirAbs - Absolute path to EasySBC meta ratings directory.
+ * @param {string} ggMetaDirAbs - Absolute path to fut.gg metarank directory.
+ */
+async function deletePlayerData(eaIdStr, ggDataDirAbs, esMetaDirAbs, ggMetaDirAbs) {
+    const filesToDelete = [
+        path.join(ggDataDirAbs, `${eaIdStr}_ggData.json`),
+        path.join(esMetaDirAbs, `${eaIdStr}_esMeta.json`),
+        path.join(ggMetaDirAbs, `${eaIdStr}_ggMeta.json`)
+    ];
+
+    for (const filePath of filesToDelete) {
+        try {
+            await fs.unlink(filePath);
+            if (VERBOSE_LOGGING) console.log(`🗑️ Deleted stale file: ${filePath}`);
+        } catch (error) {
+            if (error.code === 'ENOENT') { // File not found, already deleted or never existed for this specific type
+                if (VERBOSE_LOGGING) console.log(`ℹ️ Stale file not found during deletion (may not have existed or already removed): ${filePath}`);
+            } else {
+                console.warn(`⚠️ Error deleting stale file ${filePath}: ${error.message}`);
+            }
+        }
+    }
+}
+
+/**
+ * Scans directories for existing player data files and removes data for players
+ * not present in the current playerEaIds list.
+ * @param {Array<string|number>} currentPlayerEaIds - Array of current player EA IDs.
+ * @param {string} ggDataDirAbs - Absolute path to fut.gg player item definitions directory.
+ * @param {string} esMetaDirAbs - Absolute path to EasySBC meta ratings directory.
+ * @param {string} ggMetaDirAbs - Absolute path to fut.gg metarank directory.
+ */
+async function cleanupStalePlayerData(currentPlayerEaIds, ggDataDirAbs, esMetaDirAbs, ggMetaDirAbs) {
+    console.log("\n🧹 Starting cleanup of stale player data...");
+    const currentPlayerEaIdsSet = new Set(currentPlayerEaIds.map(id => String(id)));
+    const existingPlayerIdsInDirs = new Set();
+
+    const directoriesToScan = [
+        { dir: ggDataDirAbs, suffix: '_ggData.json' },
+        { dir: esMetaDirAbs, suffix: '_esMeta.json' },
+        { dir: ggMetaDirAbs, suffix: '_ggMeta.json' }
+    ];
+
+    for (const { dir, suffix } of directoriesToScan) {
+        try {
+            const files = await fs.readdir(dir);
+            for (const file of files) {
+                if (file.endsWith(suffix)) {
+                    const eaIdStr = file.substring(0, file.length - suffix.length);
+                    if (eaIdStr && !isNaN(parseInt(eaIdStr, 10))) { // Basic check to ensure it's likely an ID
+                        existingPlayerIdsInDirs.add(eaIdStr);
+                    }
+                }
+            }
+        } catch (error) {
+            if (error.code === 'ENOENT') {
+                if (VERBOSE_LOGGING) console.log(`ℹ️ Directory not found during cleanup scan (may be created later): ${dir}`);
+            } else {
+                console.warn(`⚠️ Error reading directory ${dir} for cleanup: ${error.message}`);
+            }
+        }
+    }
+
+    let staleCount = 0;
+    for (const existingIdStr of existingPlayerIdsInDirs) {
+        if (!currentPlayerEaIdsSet.has(existingIdStr)) {
+            console.log(`🗑️ Player ID ${existingIdStr} is stale (not in club_ids.json). Deleting its data.`);
+            await deletePlayerData(existingIdStr, ggDataDirAbs, esMetaDirAbs, ggMetaDirAbs);
+            staleCount++;
+        }
+    }
+
+    if (staleCount > 0) {
+        console.log(`✅ Cleanup finished. Deleted data for ${staleCount} stale player(s).`);
+    } else {
+        console.log(`✅ No stale player data found to delete.`);
+    }
+}
+
+
+/**
  * Fetches data from a fut.gg URL using Puppeteer with retry logic.
  * @param {import('puppeteer').Browser} browser - The Puppeteer browser instance.
  * @param {string} url - The URL to fetch.
@@ -95,7 +203,6 @@ async function fetchFutGgWithPuppeteer(browser, url, identifier, dataType) {
         let page;
         try {
             page = await browser.newPage();
-            // Optimize page load by intercepting requests
             await page.setRequestInterception(true);
             page.on('request', (req) => {
                 if (['image', 'stylesheet', 'font', 'media'].includes(req.resourceType())) {
@@ -108,7 +215,7 @@ async function fetchFutGgWithPuppeteer(browser, url, identifier, dataType) {
             await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
             page.setDefaultNavigationTimeout(PUPPETEER_PAGE_TIMEOUT_MS);
 
-            if (VERBOSE_LOGGING || attempt > 0) { // Log first attempt only if verbose, or any retry attempt
+            if (VERBOSE_LOGGING || attempt > 0) {
                 console.log(`📦 [Fut.gg ${dataType}] Attempt ${attempt + 1}/${MAX_RETRIES_API + 1} for ID ${identifier} from ${url}`);
             }
             
@@ -137,7 +244,7 @@ async function fetchFutGgWithPuppeteer(browser, url, identifier, dataType) {
             
             if (attempt < MAX_RETRIES_API) {
                 console.warn(`⚠️ [Fut.gg ${dataType}] Error for ID ${identifier} (Attempt ${attempt + 1}). Retrying... Error: ${err.message}\n${err.stack || ''}`);
-                await delay(1000 * (attempt + 1)); // Exponential backoff
+                await delay(1000 * (attempt + 1));
             } else {
                 console.error(`❌ [Fut.gg ${dataType}] Failed for ID ${identifier} after ${MAX_RETRIES_API + 1} attempts. URL: ${url}. Error: ${err.message}\n${err.stack || ''}`);
                 return null; 
@@ -186,14 +293,12 @@ async function fetchEasySBCWithAxios(eaId, archetypeId) {
     console.log("🚀 Starting API data fetching script...");
     const overallStartTime = Date.now();
 
-    // Resolve absolute paths for directories
     const scriptDir = __dirname;
     const clubIdsFilePath = path.resolve(scriptDir, CLUB_IDS_FILE);
-    const ggDataDir = path.resolve(scriptDir, GG_DATA_DIR);
-    const esMetaDir = path.resolve(scriptDir, ES_META_DIR);
-    const ggMetaDir = path.resolve(scriptDir, GG_META_DIR);
+    const ggDataDirAbs = path.resolve(scriptDir, GG_DATA_DIR);
+    const esMetaDirAbs = path.resolve(scriptDir, ES_META_DIR);
+    const ggMetaDirAbs = path.resolve(scriptDir, GG_META_DIR);
 
-    // 0. Read player IDs
     let playerEaIds;
     try {
         const rawIds = await fs.readFile(clubIdsFilePath, 'utf-8');
@@ -201,26 +306,30 @@ async function fetchEasySBCWithAxios(eaId, archetypeId) {
         if (!Array.isArray(playerEaIds)) throw new Error("Club IDs file is not an array.");
         console.log(`ℹ️ Loaded ${playerEaIds.length} player EA IDs.`);
     } catch (error) {
-        console.error(`❌ Fatal error reading club_ids.json: ${error.message}\n${error.stack || ''}. Exiting.`);
+        console.error(`❌ Fatal error reading ${CLUB_IDS_FILE}: ${error.message}\n${error.stack || ''}. Exiting.`);
         return;
     }
 
-    // Ensure output directories exist
     try {
         await Promise.all([
-            ensureDirExists(ggDataDir),
-            ensureDirExists(esMetaDir),
-            ensureDirExists(ggMetaDir)
+            ensureDirExists(ggDataDirAbs),
+            ensureDirExists(esMetaDirAbs),
+            ensureDirExists(ggMetaDirAbs)
         ]);
     } catch (error) {
         console.error(`❌ Fatal error creating output directories. Exiting.`);
         return;
     }
 
+    await cleanupStalePlayerData(playerEaIds, ggDataDirAbs, esMetaDirAbs, ggMetaDirAbs);
+
     let browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
     let batchesProcessedSinceRestart = 0;
     let successfulPlayerProcessing = 0;
     let failedPlayerProcessing = 0;
+    let skippedExistingCount = 0;
+    let fetchedNewCount = 0;
+
 
     for (let i = 0; i < playerEaIds.length; i += MAX_CONCURRENT_PLAYERS_IN_BATCH) {
         const batchEaIds = playerEaIds.slice(i, i + MAX_CONCURRENT_PLAYERS_IN_BATCH);
@@ -237,51 +346,51 @@ async function fetchEasySBCWithAxios(eaId, archetypeId) {
         }
         
         const playerPromises = batchEaIds.map(async (eaId) => {
-            if (VERBOSE_LOGGING) console.log(`--- Starting processing for EA ID: ${eaId} ---`);
+            const eaIdStr = String(eaId); // Use string version for file operations and logging
+
+            // Check if data already exists for this player
+            const allFilesExist = await checkPlayerDataExists(eaIdStr, ggDataDirAbs, esMetaDirAbs, ggMetaDirAbs);
+            if (allFilesExist) {
+                if (VERBOSE_LOGGING) console.log(`⏭️ [Cache] Data for player ID ${eaIdStr} already exists. Skipping fetch.`);
+                return { eaId: eaIdStr, status: 'skipped_exists', success: true };
+            }
+
+            if (VERBOSE_LOGGING) console.log(`--- Fetching new data for EA ID: ${eaIdStr} ---`);
             let futGgDetailsData = null; 
-            let playerSucceeded = true; // Assume success until a critical part fails
+            let playerSucceeded = true;
 
             const [detailsResult, metarankResult] = await Promise.allSettled([
                 fetchFutGgWithPuppeteer(browser, FUTGG_PLAYER_DETAILS_URL_TEMPLATE(eaId), eaId, "details"),
                 fetchFutGgWithPuppeteer(browser, FUTGG_METARANK_URL_TEMPLATE(eaId), eaId, "metarank")
             ]);
 
-            // Handle fut.gg player details result (Step 1)
             if (detailsResult.status === 'fulfilled' && detailsResult.value) {
                 futGgDetailsData = detailsResult.value; 
                 try {
-                    await saveData(path.join(ggDataDir, `${eaId}_ggData.json`), futGgDetailsData);
-                    if (VERBOSE_LOGGING) console.log(`✅ [Fut.gg details] Saved for ${eaId}`);
-                } catch (saveError) { 
-                    playerSucceeded = false; 
-                    // Error already logged by saveData
-                }
+                    await saveData(path.join(ggDataDirAbs, `${eaIdStr}_ggData.json`), futGgDetailsData);
+                    if (VERBOSE_LOGGING) console.log(`✅ [Fut.gg details] Saved for ${eaIdStr}`);
+                } catch (saveError) { playerSucceeded = false; }
             } else {
-                console.error(`❌ [Fut.gg details] Fetch failed or empty for ${eaId}: ${detailsResult.reason?.message || 'No data returned'}`);
+                console.error(`❌ [Fut.gg details] Fetch failed or empty for ${eaIdStr}: ${detailsResult.reason?.message || 'No data returned'}`);
                 playerSucceeded = false;
             }
 
-            // Handle fut.gg metarank result (Step 3)
             if (metarankResult.status === 'fulfilled' && metarankResult.value) {
                 try {
-                    await saveData(path.join(ggMetaDir, `${eaId}_ggMeta.json`), metarankResult.value);
-                    if (VERBOSE_LOGGING) console.log(`✅ [Fut.gg metarank] Saved for ${eaId}`);
-                } catch (saveError) { 
-                    playerSucceeded = false; 
-                    // Error already logged by saveData
-                }
+                    await saveData(path.join(ggMetaDirAbs, `${eaIdStr}_ggMeta.json`), metarankResult.value);
+                    if (VERBOSE_LOGGING) console.log(`✅ [Fut.gg metarank] Saved for ${eaIdStr}`);
+                } catch (saveError) { playerSucceeded = false; }
             } else {
-                console.error(`❌ [Fut.gg metarank] Fetch failed or empty for ${eaId}: ${metarankResult.reason?.message || 'No data returned'}`);
-                playerSucceeded = false; // Mark as failed if metarank fetch fails
+                console.error(`❌ [Fut.gg metarank] Fetch failed or empty for ${eaIdStr}: ${metarankResult.reason?.message || 'No data returned'}`);
+                playerSucceeded = false;
             }
 
-            // Step 2: Fetch EasySBC meta ratings (dependent on successful fut.gg details)
-            if (playerSucceeded && futGgDetailsData && futGgDetailsData.data) { // Only proceed if details were successful
+            if (playerSucceeded && futGgDetailsData && futGgDetailsData.data) {
                 const playerDefinition = futGgDetailsData.data;
                 const position = playerDefinition.position; 
                 const alternativePositionIds = playerDefinition.alternativePositionIds || []; 
-
                 const archetypesToFetch = new Set();
+
                 if (position !== undefined && positionIdToArchetype[String(position)]) {
                     positionIdToArchetype[String(position)].forEach(arch => archetypesToFetch.add(arch));
                 }
@@ -291,73 +400,76 @@ async function fetchEasySBCWithAxios(eaId, archetypeId) {
                     }
                 });
                 
-                // Placeholder for rolesPlusPlus logic
-                // if (playerDefinition.rolesPlusPlus && Array.isArray(playerDefinition.rolesPlusPlus)) { ... }
-
-
                 if (archetypesToFetch.size > 0) {
-                    if (VERBOSE_LOGGING) console.log(`ℹ️ [EasySBC] Derived archetypes for ${eaId}: ${[...archetypesToFetch].join(', ')}`);
+                    if (VERBOSE_LOGGING) console.log(`ℹ️ [EasySBC] Derived archetypes for ${eaIdStr}: ${[...archetypesToFetch].join(', ')}`);
                     const allArchetypeApiResponses = [];
-                    let esSbcFetchOverallSuccess = true; // Tracks if all attempted archetypes were fetched
+                    let esSbcFetchOverallSuccess = true;
                     
                     for (const archetype of archetypesToFetch) {
-                        const esResponseArray = await fetchEasySBCWithAxios(eaId, archetype);
+                        const esResponseArray = await fetchEasySBCWithAxios(eaId, archetype); // Use original eaId for API
                         if (esResponseArray) { 
                             allArchetypeApiResponses.push({ archetype: archetype, ratings: esResponseArray });
                         } else {
-                            esSbcFetchOverallSuccess = false; // Mark if any single archetype fetch fails
+                            esSbcFetchOverallSuccess = false;
                         }
                         if (archetypesToFetch.size > 1) await delay(DELAY_BETWEEN_ARCHETYPE_CALLS_MS);
                     }
 
-                    if (!esSbcFetchOverallSuccess) { // If any archetype fetch failed for this player
+                    if (!esSbcFetchOverallSuccess) {
                         playerSucceeded = false;
-                        console.warn(`⚠️ [EasySBC] One or more archetype fetches failed for ${eaId}. Data might be incomplete.`);
+                        console.warn(`⚠️ [EasySBC] One or more archetype fetches failed for ${eaIdStr}. Data might be incomplete.`);
                     }
 
                     if (allArchetypeApiResponses.length > 0) {
                         try {
-                            await saveData(path.join(esMetaDir, `${eaId}_esMeta.json`), allArchetypeApiResponses);
-                            if (VERBOSE_LOGGING) console.log(`✅ [EasySBC] Saved meta for ${eaId} (${allArchetypeApiResponses.length} archetypes)`);
-                        } catch (saveError) { 
-                            playerSucceeded = false; 
-                            // Error logged by saveData
-                        }
+                            await saveData(path.join(esMetaDirAbs, `${eaIdStr}_esMeta.json`), allArchetypeApiResponses);
+                            if (VERBOSE_LOGGING) console.log(`✅ [EasySBC] Saved meta for ${eaIdStr} (${allArchetypeApiResponses.length} archetypes)`);
+                        } catch (saveError) { playerSucceeded = false; }
                     } else {
-                        if (VERBOSE_LOGGING && archetypesToFetch.size > 0) console.log(`ℹ️ [EasySBC] No successful responses to save for ${eaId} (all archetypes failed or returned no data).`);
-                        // If archetypes were attempted but nothing was saved, and not already marked by esSbcFetchOverallSuccess
-                        if (archetypesToFetch.size > 0 && esSbcFetchOverallSuccess) { 
-                            // This case means fetches might have returned null/empty but not thrown errors, leading to empty allArchetypeApiResponses
-                            // Consider if this should also mark playerSucceeded as false if data is expected.
-                            // For now, if esSbcFetchOverallSuccess is true, it means individual fetches didn't error out.
+                        if (VERBOSE_LOGGING && archetypesToFetch.size > 0 && esSbcFetchOverallSuccess) {
+                            console.log(`ℹ️ [EasySBC] No successful responses to save for ${eaIdStr} (all archetypes returned no data or failed gracefully).`);
                         }
                     }
                 } else {
-                    if (VERBOSE_LOGGING) console.log(`ℹ️ [EasySBC] No archetypes derived for ${eaId} from positions.`);
+                    if (VERBOSE_LOGGING) console.log(`ℹ️ [EasySBC] No archetypes derived for ${eaIdStr} from positions.`);
                 }
             } else {
-                if (playerSucceeded) { // If not already marked as failed by ggDetails/ggMeta
-                    if (VERBOSE_LOGGING) console.log(`ℹ️ [EasySBC] Skipping for ${eaId} due to missing or failed fut.gg details data.`);
-                    // If futGgDetailsData was the reason for skipping, playerSucceeded is already false.
-                    // This log is for clarity if it was some other reason playerSucceeded was true but futGgDetailsData was still falsy.
+                if (playerSucceeded && VERBOSE_LOGGING) {
+                    console.log(`ℹ️ [EasySBC] Skipping for ${eaIdStr} due to missing or failed fut.gg details data.`);
                 }
             }
-            if (VERBOSE_LOGGING) console.log(`--- Finished processing for EA ID: ${eaId} ---`);
-            return playerSucceeded;
+            if (VERBOSE_LOGGING) console.log(`--- Finished processing for EA ID: ${eaIdStr} ---`);
+            return { eaId: eaIdStr, status: playerSucceeded ? 'fetched_success' : 'fetched_fail', success: playerSucceeded };
         });
 
         const batchResults = await Promise.allSettled(playerPromises);
+        let currentBatchSuccess = 0;
+        let currentBatchFail = 0;
+
         batchResults.forEach(result => {
-            if (result.status === 'fulfilled' && result.value === true) {
-                successfulPlayerProcessing++;
-            } else {
-                failedPlayerProcessing++; // Counts rejections or explicit 'false' returns
+            if (result.status === 'fulfilled') {
+                if (result.value.success) {
+                    successfulPlayerProcessing++;
+                    currentBatchSuccess++;
+                    if (result.value.status === 'skipped_exists') {
+                        skippedExistingCount++;
+                    } else if (result.value.status === 'fetched_success') {
+                        fetchedNewCount++;
+                    }
+                } else {
+                    failedPlayerProcessing++;
+                    currentBatchFail++;
+                }
+            } else { // Promise was rejected (should be rare with try/catch in helpers)
+                failedPlayerProcessing++;
+                currentBatchFail++;
+                console.error(`❌ Critical error processing a player promise (rejected): ${result.reason?.stack || result.reason}`);
             }
         });
 
         batchesProcessedSinceRestart++;
         const batchEndTime = Date.now();
-        console.log(`⏱ Batch ${batchNumber} completed in ${(batchEndTime - batchStartTime) / 1000}s. Success: ${batchResults.filter(r => r.status === 'fulfilled' && r.value === true).length}, Fail/Partial: ${batchResults.filter(r => r.status !== 'fulfilled' || r.value === false).length}.`);
+        console.log(`⏱ Batch ${batchNumber} completed in ${(batchEndTime - batchStartTime) / 1000}s. Success: ${currentBatchSuccess}, Fail/Partial: ${currentBatchFail}.`);
         
         if (i + MAX_CONCURRENT_PLAYERS_IN_BATCH < playerEaIds.length) {
             if (VERBOSE_LOGGING) console.log(`⏳ Delaying ${DELAY_BETWEEN_BATCHES_MS / 1000}s before next batch...`);
@@ -367,8 +479,12 @@ async function fetchEasySBCWithAxios(eaId, archetypeId) {
 
     await browser.close().catch(e => console.warn("⚠️ Error closing main browser instance:", e.message));
     const overallEndTime = Date.now();
-    console.log(`\n🎉 All players processed in ${((overallEndTime - overallStartTime) / 1000 / 60).toFixed(2)} minutes.`);
-    console.log(`📊 Total Players: ${playerEaIds.length}, Fully Successful: ${successfulPlayerProcessing}, Failed/Partially Failed: ${failedPlayerProcessing}`);
+    console.log(`\n🎉 All player ID processing attempts completed in ${((overallEndTime - overallStartTime) / 1000 / 60).toFixed(2)} minutes.`);
+    console.log(`📊 Total Player IDs in input: ${playerEaIds.length}`);
+    console.log(`  Processed Successfully (fetched or already existing): ${successfulPlayerProcessing}`);
+    console.log(`    - Skipped (data already existed): ${skippedExistingCount}`);
+    console.log(`    - Newly Fetched & Saved: ${fetchedNewCount}`);
+    console.log(`  Failed/Partially Failed during fetch: ${failedPlayerProcessing}`);
     console.log("Script finished.");
 
 })();
