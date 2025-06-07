@@ -1,0 +1,542 @@
+[
+  {
+    "archetype": "winger",
+    "ratings": [
+      {
+        "metaRating": 68.3369520388383,
+        "chemstyleId": 250,
+        "archetypeId": "winger",
+        "playerRoleId": 35,
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 68.3369520388383,
+        "chemstyleId": 250,
+        "archetypeId": "winger",
+        "playerRoleId": 23,
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 69.49261332343434,
+        "chemstyleId": 260,
+        "archetypeId": "winger",
+        "playerRoleId": 35,
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 69.49261332343434,
+        "chemstyleId": 260,
+        "archetypeId": "winger",
+        "playerRoleId": 23,
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 70.9645343027839,
+        "chemstyleId": 252,
+        "archetypeId": "winger",
+        "playerRoleId": 35,
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 70.9645343027839,
+        "chemstyleId": 252,
+        "archetypeId": "winger",
+        "playerRoleId": 23,
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 72.87362773137029,
+        "chemstyleId": 260,
+        "archetypeId": "winger",
+        "playerRoleId": 35,
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 72.87362773137029,
+        "chemstyleId": 260,
+        "archetypeId": "winger",
+        "playerRoleId": 23,
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  },
+  {
+    "archetype": "wide_midfielder",
+    "ratings": [
+      {
+        "metaRating": 69.14710810753932,
+        "chemstyleId": 250,
+        "archetypeId": "wide_midfielder",
+        "playerRoleId": 24,
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 70.24470377035715,
+        "chemstyleId": 260,
+        "archetypeId": "wide_midfielder",
+        "playerRoleId": 24,
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 71.33069872095349,
+        "chemstyleId": 260,
+        "archetypeId": "wide_midfielder",
+        "playerRoleId": 24,
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 73.46348292018276,
+        "chemstyleId": 260,
+        "archetypeId": "wide_midfielder",
+        "playerRoleId": 24,
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  },
+  {
+    "archetype": "wide_playmaker",
+    "ratings": [
+      {
+        "metaRating": 66.48832168696673,
+        "chemstyleId": 250,
+        "archetypeId": "wide_playmaker",
+        "playerRoleId": 37,
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 66.48832168696673,
+        "chemstyleId": 250,
+        "archetypeId": "wide_playmaker",
+        "playerRoleId": 25,
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 67.62188992775664,
+        "chemstyleId": 252,
+        "archetypeId": "wide_playmaker",
+        "playerRoleId": 37,
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 67.62188992775664,
+        "chemstyleId": 252,
+        "archetypeId": "wide_playmaker",
+        "playerRoleId": 25,
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 69.12681070569907,
+        "chemstyleId": 252,
+        "archetypeId": "wide_playmaker",
+        "playerRoleId": 37,
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 69.12681070569907,
+        "chemstyleId": 252,
+        "archetypeId": "wide_playmaker",
+        "playerRoleId": 25,
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 70.8143669109229,
+        "chemstyleId": 252,
+        "archetypeId": "wide_playmaker",
+        "playerRoleId": 37,
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 70.8143669109229,
+        "chemstyleId": 252,
+        "archetypeId": "wide_playmaker",
+        "playerRoleId": 25,
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  },
+  {
+    "archetype": "inside_forward",
+    "ratings": [
+      {
+        "metaRating": 70.00960207538085,
+        "chemstyleId": 250,
+        "archetypeId": "inside_forward",
+        "playerRoleId": 26,
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 68.00960207538085,
+        "chemstyleId": 250,
+        "archetypeId": "inside_forward",
+        "playerRoleId": 36,
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 71.19793403083591,
+        "chemstyleId": 252,
+        "archetypeId": "inside_forward",
+        "playerRoleId": 26,
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 69.19793403083591,
+        "chemstyleId": 252,
+        "archetypeId": "inside_forward",
+        "playerRoleId": 36,
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 72.75619602394318,
+        "chemstyleId": 252,
+        "archetypeId": "inside_forward",
+        "playerRoleId": 26,
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 70.75619602394318,
+        "chemstyleId": 252,
+        "archetypeId": "inside_forward",
+        "playerRoleId": 36,
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 74.50903850435978,
+        "chemstyleId": 252,
+        "archetypeId": "inside_forward",
+        "playerRoleId": 26,
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 72.50903850435978,
+        "chemstyleId": 252,
+        "archetypeId": "inside_forward",
+        "playerRoleId": 36,
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  },
+  {
+    "archetype": "playmaker",
+    "ratings": [
+      {
+        "metaRating": 69.52896326797078,
+        "chemstyleId": 250,
+        "archetypeId": "playmaker",
+        "playerRoleId": 31,
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 70.50204151562222,
+        "chemstyleId": 260,
+        "archetypeId": "playmaker",
+        "playerRoleId": 31,
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 71.62930598161726,
+        "chemstyleId": 256,
+        "archetypeId": "playmaker",
+        "playerRoleId": 31,
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 73.36359373382547,
+        "chemstyleId": 260,
+        "archetypeId": "playmaker",
+        "playerRoleId": 31,
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  },
+  {
+    "archetype": "half_winger",
+    "ratings": [
+      {
+        "metaRating": 67.22539257967372,
+        "chemstyleId": 250,
+        "archetypeId": "half_winger",
+        "playerRoleId": 33,
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 68.18292227444681,
+        "chemstyleId": 252,
+        "archetypeId": "half_winger",
+        "playerRoleId": 33,
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 69.47275175571313,
+        "chemstyleId": 252,
+        "archetypeId": "half_winger",
+        "playerRoleId": 33,
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 70.95973540903113,
+        "chemstyleId": 260,
+        "archetypeId": "half_winger",
+        "playerRoleId": 33,
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  },
+  {
+    "archetype": "classic_ten",
+    "ratings": [
+      {
+        "metaRating": 67.24359825753062,
+        "chemstyleId": 250,
+        "archetypeId": "classic_ten",
+        "playerRoleId": 34,
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 68.30170772734527,
+        "chemstyleId": 260,
+        "archetypeId": "classic_ten",
+        "playerRoleId": 34,
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 69.70884729765903,
+        "chemstyleId": 256,
+        "archetypeId": "classic_ten",
+        "playerRoleId": 34,
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 71.4154588650667,
+        "chemstyleId": 260,
+        "archetypeId": "classic_ten",
+        "playerRoleId": 34,
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  },
+  {
+    "archetype": "shadow_striker",
+    "ratings": [
+      {
+        "metaRating": 67.63453055266287,
+        "chemstyleId": 250,
+        "archetypeId": "shadow_striker",
+        "playerRoleId": 32,
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 68.67563973728181,
+        "chemstyleId": 266,
+        "archetypeId": "shadow_striker",
+        "playerRoleId": 32,
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 70.00269454159519,
+        "chemstyleId": 252,
+        "archetypeId": "shadow_striker",
+        "playerRoleId": 32,
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 71.65505150876034,
+        "chemstyleId": 266,
+        "archetypeId": "shadow_striker",
+        "playerRoleId": 32,
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  },
+  {
+    "archetype": "advanced_forward",
+    "ratings": [
+      {
+        "metaRating": 68.79307551574936,
+        "chemstyleId": 250,
+        "archetypeId": "advanced_forward",
+        "playerRoleId": 41,
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 70.27472500237201,
+        "chemstyleId": 266,
+        "archetypeId": "advanced_forward",
+        "playerRoleId": 41,
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 71.80669375212679,
+        "chemstyleId": 266,
+        "archetypeId": "advanced_forward",
+        "playerRoleId": 41,
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 74.5333623018053,
+        "chemstyleId": 266,
+        "archetypeId": "advanced_forward",
+        "playerRoleId": 41,
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  },
+  {
+    "archetype": "target_forward",
+    "ratings": [
+      {
+        "metaRating": 68.46843055527529,
+        "chemstyleId": 250,
+        "archetypeId": "target_forward",
+        "playerRoleId": 44,
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 69.55886828537822,
+        "chemstyleId": 266,
+        "archetypeId": "target_forward",
+        "playerRoleId": 44,
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 70.65946603129574,
+        "chemstyleId": 261,
+        "archetypeId": "target_forward",
+        "playerRoleId": 44,
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 72.68470665118106,
+        "chemstyleId": 266,
+        "archetypeId": "target_forward",
+        "playerRoleId": 44,
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  },
+  {
+    "archetype": "poacher",
+    "ratings": [
+      {
+        "metaRating": 66.01011570042708,
+        "chemstyleId": 250,
+        "archetypeId": "poacher",
+        "playerRoleId": 42,
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 67.68158274329149,
+        "chemstyleId": 266,
+        "archetypeId": "poacher",
+        "playerRoleId": 42,
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 69.40016577084171,
+        "chemstyleId": 266,
+        "archetypeId": "poacher",
+        "playerRoleId": 42,
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 72.4671871499113,
+        "chemstyleId": 266,
+        "archetypeId": "poacher",
+        "playerRoleId": 42,
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  },
+  {
+    "archetype": "false_nine",
+    "ratings": [
+      {
+        "metaRating": 66.77769932721107,
+        "chemstyleId": 250,
+        "archetypeId": "false_nine",
+        "playerRoleId": 43,
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 67.91226822741189,
+        "chemstyleId": 252,
+        "archetypeId": "false_nine",
+        "playerRoleId": 43,
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 69.37586270600872,
+        "chemstyleId": 252,
+        "archetypeId": "false_nine",
+        "playerRoleId": 43,
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 71.05774546423343,
+        "chemstyleId": 252,
+        "archetypeId": "false_nine",
+        "playerRoleId": 43,
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      }
+    ]
+  }
+]
