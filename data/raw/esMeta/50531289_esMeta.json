@@ -5,32 +5,56 @@
       {
         "metaRating": 90.11061346960317,
         "chemstyleId": 250,
-        "archetypeId": "goalkeeper",
         "playerRoleId": 1,
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 89.80319548934698,
+        "chemstyleId": 250,
+        "playerRoleId": 2,
         "chemistry": 0,
         "isBestChemstyleAtChem": true
       },
       {
         "metaRating": 91.21685429611206,
         "chemstyleId": 272,
-        "archetypeId": "goalkeeper",
         "playerRoleId": 1,
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 90.89504943173398,
+        "chemstyleId": 272,
+        "playerRoleId": 2,
         "chemistry": 1,
         "isBestChemstyleAtChem": true
       },
       {
         "metaRating": 92.22102360245881,
         "chemstyleId": 272,
-        "archetypeId": "goalkeeper",
         "playerRoleId": 1,
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 91.88182230561404,
+        "chemstyleId": 272,
+        "playerRoleId": 2,
         "chemistry": 2,
         "isBestChemstyleAtChem": true
       },
       {
         "metaRating": 93.09601626574434,
         "chemstyleId": 273,
-        "archetypeId": "goalkeeper",
         "playerRoleId": 1,
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      },
+      {
+        "metaRating": 92.72377313705735,
+        "chemstyleId": 273,
+        "playerRoleId": 2,
         "chemistry": 3,
         "isBestChemstyleAtChem": true
       }
@@ -40,33 +64,57 @@
     "archetype": "sweeper_keeper",
     "ratings": [
       {
+        "metaRating": 90.11061346960317,
+        "chemstyleId": 250,
+        "playerRoleId": 1,
+        "chemistry": 0,
+        "isBestChemstyleAtChem": true
+      },
+      {
         "metaRating": 89.80319548934698,
         "chemstyleId": 250,
-        "archetypeId": "sweeper_keeper",
         "playerRoleId": 2,
         "chemistry": 0,
         "isBestChemstyleAtChem": true
       },
       {
+        "metaRating": 91.21685429611206,
+        "chemstyleId": 272,
+        "playerRoleId": 1,
+        "chemistry": 1,
+        "isBestChemstyleAtChem": true
+      },
+      {
         "metaRating": 90.89504943173398,
         "chemstyleId": 272,
-        "archetypeId": "sweeper_keeper",
         "playerRoleId": 2,
         "chemistry": 1,
         "isBestChemstyleAtChem": true
       },
       {
+        "metaRating": 92.22102360245881,
+        "chemstyleId": 272,
+        "playerRoleId": 1,
+        "chemistry": 2,
+        "isBestChemstyleAtChem": true
+      },
+      {
         "metaRating": 91.88182230561404,
         "chemstyleId": 272,
-        "archetypeId": "sweeper_keeper",
         "playerRoleId": 2,
         "chemistry": 2,
         "isBestChemstyleAtChem": true
       },
       {
+        "metaRating": 93.09601626574434,
+        "chemstyleId": 273,
+        "playerRoleId": 1,
+        "chemistry": 3,
+        "isBestChemstyleAtChem": true
+      },
+      {
         "metaRating": 92.72377313705735,
         "chemstyleId": 273,
-        "archetypeId": "sweeper_keeper",
         "playerRoleId": 2,
         "chemistry": 3,
         "isBestChemstyleAtChem": true
