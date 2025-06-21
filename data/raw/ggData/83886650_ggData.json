@@ -29,7 +29,7 @@
     "uniqueClubEaId": 114605,
     "uniqueClubSlug": "114605-hero",
     "rarityEaId": 77,
-    "raritySquadId": null,
+    "raritySquadId": 454,
     "guid": "67552354-0344-45eb-a9a5-01e02f5c4489",
     "position": 10,
     "alternativePositionIds": [
@@ -101,7 +101,7 @@
         "guardian"
       ]
     },
-    "hasDynamic": false,
+    "hasDynamic": true,
     "url": "/players/570-jay-jay-okocha/25-83886650/",
     "renderOnlyAsHtml": false,
     "bodytypeCode": 2,
@@ -110,12 +110,12 @@
     "createdAt": "2025-06-13T17:01:01.363912Z",
     "isHidden": false,
     "previousVersionsIds": [],
-    "imagePath": "2025/player-item/25-83886650.47c7a84fae7701d7bca84285970fa6d7ff8e799581fd2b43d543731d34573e8f.webp",
-    "simpleCardImagePath": "2025/player-item-simple-card/25-83886650.6b74b03197592e498baa455c69ed6c081decf6c957131be8d444cef6fe857592.webp",
-    "futggCardImagePath": "2025/futgg-player-item-card/25-83886650.b8b8fe12d66176541d3060dd24f875fb9180c8c5ea1c5db9113ccfdff9929263.webp",
-    "cardImagePath": "2025/player-item-card/25-83886650.368ceb895f07bef7ee18878b68a8d767dd073991e8be3bec29e547ac588000aa.webp",
-    "shareImagePath": "2025/player-item-social/25-83886650.60691565d41cca734ebbee94874a672ff2b0be9aaea5efb7fb5fb98f03f3e886.webp",
-    "socialImagePath": "2025/player-item-social-small/25-83886650.05660553f76c4e9b1a46681cdc0571935f025a4b5d40aa3de813d9f3c094bf2d.webp",
+    "imagePath": "2025/player-item/25-83886650.cf319021d7a9d51e29c39624d0c6de71e223d81828e8195f5a607c0c904cd974.webp",
+    "simpleCardImagePath": "2025/player-item-simple-card/25-83886650.ceea65150736014949bf876945c4bc47ec2f4389eee67fc0a92439ed47458396.webp",
+    "futggCardImagePath": "2025/futgg-player-item-card/25-83886650.7e6b658715155b30f0920f3441761e3a13c37a51359945a905d69423143d79b9.webp",
+    "cardImagePath": "2025/player-item-card/25-83886650.43f3b5d9cf5469fdc5134c9d3148d39645048e8bea3f55fe526ccaeb073c30c1.webp",
+    "shareImagePath": "2025/player-item-social/25-83886650.35fbb155f01719f7ca8c9279dd5507efae1bc30a6b382f3c8c18edd9a8c907f5.webp",
+    "socialImagePath": "2025/player-item-social-small/25-83886650.b69da3a3f5d2b81955599564f11965f9ac2e8ecf9b8703879cb67953d4f8973c.webp",
     "attributeAcceleration": 97,
     "attributeSprintSpeed": 91,
     "attributeAgility": 93,
@@ -181,7 +181,7 @@
     "blurbText": null,
     "smallBlurbText": "Jay-Jay Okocha is 51 years old, and plays for HERO in the Ligue 1 McDonald's. Jay-Jay Okocha's height stands at 173 cm (5'8'), and the nation he represents is Nigeria. This Shapeshifters Hero version of Jay-Jay Okocha is a 95 rated CDM. He is Right footed, with 5 star skill moves and 4 star weak foot. ",
     "upgrades": null,
-    "hasPrice": false,
+    "hasPrice": true,
     "trackerId": null,
     "liveHubTrackerId": null,
     "isUserEvolutions": false,
@@ -200,9 +200,114 @@
     "ggRatingPos": null,
     "ggRatingStr": null,
     "commonName": "Jay-Jay Okocha",
+    "club": null,
+    "uniqueClub": {
+      "id": 2999,
+      "eaId": 114605,
+      "game": "25",
+      "slug": "114605-hero",
+      "name": "HERO",
+      "sisterClubEaId": null,
+      "leagueEaId": 2118,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/114605.df965f0a2745d68ce02cc886839b25fba6480c9813b87a9e4720d4f25e12f86b.png",
+      "lightImagePath": "2025/club-light/114605.df965f0a2745d68ce02cc886839b25fba6480c9813b87a9e4720d4f25e12f86b.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": null,
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": null,
+      "midfieldRating": null,
+      "defenseRating": null,
+      "overallRating": null,
+      "url": "/clubs/114605-hero/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/114605.df965f0a2745d68ce02cc886839b25fba6480c9813b87a9e4720d4f25e12f86b.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/114605.df965f0a2745d68ce02cc886839b25fba6480c9813b87a9e4720d4f25e12f86b.png"
+    },
+    "nation": {
+      "id": 764,
+      "eaId": 133,
+      "slug": "nigeria",
+      "name": "Nigeria",
+      "imagePath": "2025/nation/133.87dc4041397ef2ea3a775c262da9eb59dac40fd6cd9c653283194ade662cbb2b.png",
+      "url": "/nations/nigeria/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/133.87dc4041397ef2ea3a775c262da9eb59dac40fd6cd9c653283194ade662cbb2b.png"
+    },
+    "league": {
+      "id": 179,
+      "eaId": 16,
+      "slug": "ligue-1-mcdonalds",
+      "name": "Ligue 1 McDonald's",
+      "imagePath": "2025/league/16.16d2e597497f719153fb123b2f425ea2446b7eb52e4cb8d902e341fca08d2e88.png",
+      "imageLightPath": "2025/league-light/16.3e2703cc07492132d9414fdf4329d8797fb6ba23e62fd6079560917c784d4a3f.png",
+      "url": "/leagues/ligue-1-mcdonalds/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/16.16d2e597497f719153fb123b2f425ea2446b7eb52e4cb8d902e341fca08d2e88.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/16.3e2703cc07492132d9414fdf4329d8797fb6ba23e62fd6079560917c784d4a3f.png"
+    },
     "isSbcItem": false,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 565,
+      "eaId": 77,
+      "slug": "shapeshifters-hero",
+      "game": "25",
+      "name": "Shapeshifters Hero",
+      "alternateName": null,
+      "url": "/rarities/shapeshifters-hero/",
+      "dominantColor": "1c7309",
+      "imagePath": "2025/rarities-level-0-large/77.3e0ced736aa6301669e67e6a27ffddf200b405c2f66767d50909830dc9557c65.png",
+      "imagePaths": [
+        "2025/rarities-level-0-large/77.3e0ced736aa6301669e67e6a27ffddf200b405c2f66767d50909830dc9557c65.png",
+        "2025/rarities-level-0-large/77.3e0ced736aa6301669e67e6a27ffddf200b405c2f66767d50909830dc9557c65.png",
+        "2025/rarities-level-0-large/77.3e0ced736aa6301669e67e6a27ffddf200b405c2f66767d50909830dc9557c65.png"
+      ],
+      "isSpecial": true,
+      "compactImagePath": "2025/rarities-level-0-small/77.3e0ced736aa6301669e67e6a27ffddf200b405c2f66767d50909830dc9557c65.png",
+      "compactImagePaths": [
+        "2025/rarities-level-0-small/77.3e0ced736aa6301669e67e6a27ffddf200b405c2f66767d50909830dc9557c65.png",
+        "2025/rarities-level-0-small/77.3e0ced736aa6301669e67e6a27ffddf200b405c2f66767d50909830dc9557c65.png",
+        "2025/rarities-level-0-small/77.3e0ced736aa6301669e67e6a27ffddf200b405c2f66767d50909830dc9557c65.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": false,
+      "textColor": [
+        "fffeef",
+        "fffeef",
+        "fffeef"
+      ],
+      "lineColor": [
+        "1c7309",
+        "1c7309",
+        "1c7309"
+      ],
+      "shadowColor": [
+        "",
+        "",
+        ""
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 5,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/77.3e0ced736aa6301669e67e6a27ffddf200b405c2f66767d50909830dc9557c65.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/77.3e0ced736aa6301669e67e6a27ffddf200b405c2f66767d50909830dc9557c65.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/77.3e0ced736aa6301669e67e6a27ffddf200b405c2f66767d50909830dc9557c65.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/77.3e0ced736aa6301669e67e6a27ffddf200b405c2f66767d50909830dc9557c65.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-small/77.3e0ced736aa6301669e67e6a27ffddf200b405c2f66767d50909830dc9557c65.png"
+    },
     "totalFaceStats": 554,
-    "totalIgs": 2666
+    "totalIgs": 2666,
+    "isFullChemistry": true,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 1,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

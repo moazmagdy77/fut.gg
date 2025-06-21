@@ -161,9 +161,9 @@
     "objectiveCampaignLevelId": 1017,
     "campaignProps": null,
     "contentTypeId": 27,
-    "numberOfEvolutions": 1,
+    "numberOfEvolutions": 4,
     "blurbText": null,
-    "smallBlurbText": "Kalidou Koulibaly is 33 years old, and plays for Al Hilal in the ROSHN Saudi League. Kalidou Koulibaly's height stands at 186 cm (6'1'), and the nation he represents is Senegal. This SQUAD FOUNDATIONS version of Kalidou Koulibaly is a 88 rated CB. He is Right footed, with 3 star skill moves and 4 star weak foot. ",
+    "smallBlurbText": "Kalidou Koulibaly is 34 years old, and plays for Al Hilal in the ROSHN Saudi League. Kalidou Koulibaly's height stands at 186 cm (6'1'), and the nation he represents is Senegal. This SQUAD FOUNDATIONS version of Kalidou Koulibaly is a 88 rated CB. He is Right footed, with 3 star skill moves and 4 star weak foot. ",
     "upgrades": null,
     "hasPrice": false,
     "trackerId": null,
@@ -184,9 +184,144 @@
     "ggRatingPos": null,
     "ggRatingStr": null,
     "commonName": "Kalidou Koulibaly",
+    "club": {
+      "id": 2790,
+      "eaId": 605,
+      "game": "25",
+      "slug": "605-al-hilal",
+      "name": "Al Hilal",
+      "sisterClubEaId": null,
+      "leagueEaId": 350,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/605.0e601cc74a1fa8a4e79a0303be52f4f3e0bf0ba0302e8ff146e629132f077498.png",
+      "lightImagePath": "2025/club-light/605.8844d1cd304d03c1b9e4a5aa73729dded264bc2318264afdd24b524790b961a4.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        190871,
+        168886,
+        50542162
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 82,
+      "midfieldRating": 78,
+      "defenseRating": 76,
+      "overallRating": 77,
+      "url": "/clubs/605-al-hilal/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/605.0e601cc74a1fa8a4e79a0303be52f4f3e0bf0ba0302e8ff146e629132f077498.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/605.8844d1cd304d03c1b9e4a5aa73729dded264bc2318264afdd24b524790b961a4.png"
+    },
+    "uniqueClub": {
+      "id": 2790,
+      "eaId": 605,
+      "game": "25",
+      "slug": "605-al-hilal",
+      "name": "Al Hilal",
+      "sisterClubEaId": null,
+      "leagueEaId": 350,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/605.0e601cc74a1fa8a4e79a0303be52f4f3e0bf0ba0302e8ff146e629132f077498.png",
+      "lightImagePath": "2025/club-light/605.8844d1cd304d03c1b9e4a5aa73729dded264bc2318264afdd24b524790b961a4.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        190871,
+        168886,
+        50542162
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 82,
+      "midfieldRating": 78,
+      "defenseRating": 76,
+      "overallRating": 77,
+      "url": "/clubs/605-al-hilal/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/605.0e601cc74a1fa8a4e79a0303be52f4f3e0bf0ba0302e8ff146e629132f077498.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/605.8844d1cd304d03c1b9e4a5aa73729dded264bc2318264afdd24b524790b961a4.png"
+    },
+    "nation": {
+      "id": 766,
+      "eaId": 136,
+      "slug": "senegal",
+      "name": "Senegal",
+      "imagePath": "2025/nation/136.dbcccf7cc0d334b3b58ea20bf43448e05e565fe48823415de64a32af5781a459.png",
+      "url": "/nations/senegal/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/136.dbcccf7cc0d334b3b58ea20bf43448e05e565fe48823415de64a32af5781a459.png"
+    },
+    "league": {
+      "id": 207,
+      "eaId": 350,
+      "slug": "roshn-saudi-league",
+      "name": "ROSHN Saudi League",
+      "imagePath": "2025/league/350.244e0a9e137630f60ab8b8873969fabf8b9098ee99101678e72d92c26c9e3ad9.png",
+      "imageLightPath": "2025/league-light/350.54e48d8c27b4671a61636c8d01a8b88b2276fb176741f8bb7cda29e268c97bca.png",
+      "url": "/leagues/roshn-saudi-league/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/350.244e0a9e137630f60ab8b8873969fabf8b9098ee99101678e72d92c26c9e3ad9.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/350.54e48d8c27b4671a61636c8d01a8b88b2276fb176741f8bb7cda29e268c97bca.png"
+    },
     "isSbcItem": false,
     "isObjectiveItem": true,
+    "rarity": {
+      "id": 464,
+      "eaId": 87,
+      "slug": "squad-foundations",
+      "game": "25",
+      "name": "SQUAD FOUNDATIONS",
+      "alternateName": null,
+      "url": "/rarities/squad-foundations/",
+      "dominantColor": "2b2a26",
+      "imagePath": "2025/rarities-level-0-large/87.97e6c4b7915389187ea4f45e2410d335c88ae6a89df01877c2152f234361e357.png",
+      "imagePaths": [
+        "2025/rarities-level-0-large/87.97e6c4b7915389187ea4f45e2410d335c88ae6a89df01877c2152f234361e357.png",
+        "2025/rarities-level-0-large/87.97e6c4b7915389187ea4f45e2410d335c88ae6a89df01877c2152f234361e357.png",
+        "2025/rarities-level-0-large/87.97e6c4b7915389187ea4f45e2410d335c88ae6a89df01877c2152f234361e357.png"
+      ],
+      "isSpecial": true,
+      "compactImagePath": "2025/rarities-level-0-small/87.1346cd4ba9d5b89e3c3f7e0269b15f30061e5c775a1b7393b780be7fb848ebe5.png",
+      "compactImagePaths": [
+        "2025/rarities-level-0-small/87.1346cd4ba9d5b89e3c3f7e0269b15f30061e5c775a1b7393b780be7fb848ebe5.png",
+        "2025/rarities-level-0-small/87.1346cd4ba9d5b89e3c3f7e0269b15f30061e5c775a1b7393b780be7fb848ebe5.png",
+        "2025/rarities-level-0-small/87.1346cd4ba9d5b89e3c3f7e0269b15f30061e5c775a1b7393b780be7fb848ebe5.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": false,
+      "textColor": [
+        "fcfcf7",
+        "fcfcf7",
+        "fcfcf7"
+      ],
+      "lineColor": [
+        "2b2a26",
+        "2b2a26",
+        "2b2a26"
+      ],
+      "shadowColor": [
+        "",
+        "",
+        ""
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 45,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/87.97e6c4b7915389187ea4f45e2410d335c88ae6a89df01877c2152f234361e357.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/87.97e6c4b7915389187ea4f45e2410d335c88ae6a89df01877c2152f234361e357.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/87.97e6c4b7915389187ea4f45e2410d335c88ae6a89df01877c2152f234361e357.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/87.97e6c4b7915389187ea4f45e2410d335c88ae6a89df01877c2152f234361e357.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-small/87.1346cd4ba9d5b89e3c3f7e0269b15f30061e5c775a1b7393b780be7fb848ebe5.png"
+    },
     "totalFaceStats": 462,
-    "totalIgs": 2156
+    "totalIgs": 2156,
+    "isFullChemistry": false,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 1,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

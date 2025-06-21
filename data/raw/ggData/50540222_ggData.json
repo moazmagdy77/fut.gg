@@ -185,9 +185,174 @@
     "ggRatingPos": null,
     "ggRatingStr": null,
     "commonName": "Filip Kostić",
+    "club": {
+      "id": 2694,
+      "eaId": 326,
+      "game": "25",
+      "slug": "326-fenerbahce",
+      "name": "Fenerbahçe",
+      "sisterClubEaId": null,
+      "leagueEaId": 68,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/326.f6b73d2827295deda2cd3d34b0c54f181505ed6ea63bbaa28375b70c244f173f.png",
+      "lightImagePath": "2025/club-light/326.f6b73d2827295deda2cd3d34b0c54f181505ed6ea63bbaa28375b70c244f173f.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        238430,
+        570,
+        199434
+      ],
+      "competitionIds": [
+        2
+      ],
+      "fixtureIds": [
+        289,
+        166,
+        3718,
+        3689,
+        206,
+        270,
+        3701,
+        245,
+        247,
+        3706,
+        188,
+        222
+      ],
+      "attackRating": 81,
+      "midfieldRating": 79,
+      "defenseRating": 79,
+      "overallRating": 80,
+      "url": "/clubs/326-fenerbahce/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/326.f6b73d2827295deda2cd3d34b0c54f181505ed6ea63bbaa28375b70c244f173f.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/326.f6b73d2827295deda2cd3d34b0c54f181505ed6ea63bbaa28375b70c244f173f.png"
+    },
+    "uniqueClub": {
+      "id": 2694,
+      "eaId": 326,
+      "game": "25",
+      "slug": "326-fenerbahce",
+      "name": "Fenerbahçe",
+      "sisterClubEaId": null,
+      "leagueEaId": 68,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/326.f6b73d2827295deda2cd3d34b0c54f181505ed6ea63bbaa28375b70c244f173f.png",
+      "lightImagePath": "2025/club-light/326.f6b73d2827295deda2cd3d34b0c54f181505ed6ea63bbaa28375b70c244f173f.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        238430,
+        570,
+        199434
+      ],
+      "competitionIds": [
+        2
+      ],
+      "fixtureIds": [
+        289,
+        166,
+        3718,
+        3689,
+        206,
+        270,
+        3701,
+        245,
+        247,
+        3706,
+        188,
+        222
+      ],
+      "attackRating": 81,
+      "midfieldRating": 79,
+      "defenseRating": 79,
+      "overallRating": 80,
+      "url": "/clubs/326-fenerbahce/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/326.f6b73d2827295deda2cd3d34b0c54f181505ed6ea63bbaa28375b70c244f173f.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/326.f6b73d2827295deda2cd3d34b0c54f181505ed6ea63bbaa28375b70c244f173f.png"
+    },
+    "nation": {
+      "id": 701,
+      "eaId": 51,
+      "slug": "serbia",
+      "name": "Serbia",
+      "imagePath": "2025/nation/51.c214147a14be5e378bffaae94056a451ffc9fc66abc0c5e378eddbd32baa1e69.png",
+      "url": "/nations/serbia/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/51.c214147a14be5e378bffaae94056a451ffc9fc66abc0c5e378eddbd32baa1e69.png"
+    },
+    "league": {
+      "id": 196,
+      "eaId": 68,
+      "slug": "trendyol-super-lig",
+      "name": "Trendyol Süper Lig",
+      "imagePath": "2025/league/68.b72bab7165bd125b59c876e6609c8dbf2433de20fe14cca756511946d0bd05a5.png",
+      "imageLightPath": "2025/league-light/68.84305dc146e5cca3edf2625d5709ecd250ececb1fd70a95440a8e0c0669caa9d.png",
+      "url": "/leagues/trendyol-super-lig/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/68.b72bab7165bd125b59c876e6609c8dbf2433de20fe14cca756511946d0bd05a5.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/68.84305dc146e5cca3edf2625d5709ecd250ececb1fd70a95440a8e0c0669caa9d.png"
+    },
     "isSbcItem": false,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 434,
+      "eaId": 1,
+      "slug": "rare",
+      "game": "25",
+      "name": "Rare",
+      "alternateName": null,
+      "url": "/rarities/rare/",
+      "dominantColor": "dd9c79",
+      "imagePath": "2025/rarities-level-3-large/1.b52cea8041cb56b29f51b3bd072a77de34cffc5d76f1ea51d32fcff5ee6bfcb8.png",
+      "imagePaths": [
+        "2025/rarities-level-1-large/1.ff6159fb3f49c4a46fb58bb7ff2edf3443faa545162b5636d1d36484b195af8f.png",
+        "2025/rarities-level-2-large/1.110820e10aee7e71b2a058da6a645b42455e8b52d8209c84906ab13b4ca637e1.png",
+        "2025/rarities-level-3-large/1.b52cea8041cb56b29f51b3bd072a77de34cffc5d76f1ea51d32fcff5ee6bfcb8.png"
+      ],
+      "isSpecial": false,
+      "compactImagePath": "2025/rarities-level-3-small/1.a29ff208b2bf03a548950fe82bd6d1c68195082266dfba5060f57c149635ef7d.png",
+      "compactImagePaths": [
+        "2025/rarities-level-1-small/1.0c997213875cb4e45f25ea3a9d4c8586377af07d992da90277cc443403fd9d26.png",
+        "2025/rarities-level-2-small/1.a31950d31bb7c2b74f1bd0d7ec162d223eda669622761601950d7f24b80c1cbf.png",
+        "2025/rarities-level-3-small/1.a29ff208b2bf03a548950fe82bd6d1c68195082266dfba5060f57c149635ef7d.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": true,
+      "textColor": [
+        "3e281c",
+        "1e252a",
+        "2d2410"
+      ],
+      "lineColor": [
+        "dd9c79",
+        "bfccd1",
+        "e3c075"
+      ],
+      "shadowColor": [
+        "#000000",
+        "#000000",
+        "#000000"
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 6863,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-large/1.b52cea8041cb56b29f51b3bd072a77de34cffc5d76f1ea51d32fcff5ee6bfcb8.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-1-large/1.ff6159fb3f49c4a46fb58bb7ff2edf3443faa545162b5636d1d36484b195af8f.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-2-large/1.110820e10aee7e71b2a058da6a645b42455e8b52d8209c84906ab13b4ca637e1.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-large/1.b52cea8041cb56b29f51b3bd072a77de34cffc5d76f1ea51d32fcff5ee6bfcb8.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-small/1.a29ff208b2bf03a548950fe82bd6d1c68195082266dfba5060f57c149635ef7d.png"
+    },
     "totalFaceStats": 473,
-    "totalIgs": 2258
+    "totalIgs": 2258,
+    "isFullChemistry": false,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 0,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

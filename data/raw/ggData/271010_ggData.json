@@ -149,7 +149,7 @@
     "objectiveCampaignLevelId": null,
     "campaignProps": null,
     "contentTypeId": 27,
-    "numberOfEvolutions": 37,
+    "numberOfEvolutions": 34,
     "blurbText": null,
     "smallBlurbText": "Jocelyn Janneh is 22 years old, and plays for SC Bastia in the Ligue 2 BKT. Jocelyn Janneh's height stands at 178 cm (5'10'), and the nation he represents is Sierra Leone. This Common version of Jocelyn Janneh is a 65 rated CDM. He is Left footed, with 2 star skill moves and 3 star weak foot. ",
     "upgrades": null,
@@ -172,9 +172,144 @@
     "ggRatingPos": null,
     "ggRatingStr": null,
     "commonName": "Jocelyn Janneh",
+    "club": {
+      "id": 2403,
+      "eaId": 58,
+      "game": "25",
+      "slug": "58-sc-bastia",
+      "name": "SC Bastia",
+      "sisterClubEaId": null,
+      "leagueEaId": 17,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/58.bee12455d4fff01d3eaf69f8b924f856551cb6c010613837365a73c47b2fb5a9.png",
+      "lightImagePath": "2025/club-light/58.cee9f9c2d68f78544090713de0e9bda8b6ab22b7c089fdf4c3cdfe3780774a51.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        45674,
+        193105,
+        216320
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 66,
+      "midfieldRating": 66,
+      "defenseRating": 64,
+      "overallRating": 66,
+      "url": "/clubs/58-sc-bastia/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/58.bee12455d4fff01d3eaf69f8b924f856551cb6c010613837365a73c47b2fb5a9.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/58.cee9f9c2d68f78544090713de0e9bda8b6ab22b7c089fdf4c3cdfe3780774a51.png"
+    },
+    "uniqueClub": {
+      "id": 2403,
+      "eaId": 58,
+      "game": "25",
+      "slug": "58-sc-bastia",
+      "name": "SC Bastia",
+      "sisterClubEaId": null,
+      "leagueEaId": 17,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/58.bee12455d4fff01d3eaf69f8b924f856551cb6c010613837365a73c47b2fb5a9.png",
+      "lightImagePath": "2025/club-light/58.cee9f9c2d68f78544090713de0e9bda8b6ab22b7c089fdf4c3cdfe3780774a51.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        45674,
+        193105,
+        216320
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 66,
+      "midfieldRating": 66,
+      "defenseRating": 64,
+      "overallRating": 66,
+      "url": "/clubs/58-sc-bastia/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/58.bee12455d4fff01d3eaf69f8b924f856551cb6c010613837365a73c47b2fb5a9.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/58.cee9f9c2d68f78544090713de0e9bda8b6ab22b7c089fdf4c3cdfe3780774a51.png"
+    },
+    "nation": {
+      "id": 767,
+      "eaId": 138,
+      "slug": "sierra-leone",
+      "name": "Sierra Leone",
+      "imagePath": "2025/nation/138.1d9844aeb1a60e493c76db3ba62c4c81f68ca82ba825259e5a927a045e0c10aa.png",
+      "url": "/nations/sierra-leone/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/138.1d9844aeb1a60e493c76db3ba62c4c81f68ca82ba825259e5a927a045e0c10aa.png"
+    },
+    "league": {
+      "id": 180,
+      "eaId": 17,
+      "slug": "ligue-2-bkt",
+      "name": "Ligue 2 BKT",
+      "imagePath": "2025/league/17.ead67354db17078c8e753ea53f3fcf0c4d762e26f6fd6c2ba06384a130024e8b.png",
+      "imageLightPath": "2025/league-light/17.da2e28acee32d37dfb8ff2a9ef0a9c046190e4e8752ab2b56659d81e1f8b8c1b.png",
+      "url": "/leagues/ligue-2-bkt/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/17.ead67354db17078c8e753ea53f3fcf0c4d762e26f6fd6c2ba06384a130024e8b.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/17.da2e28acee32d37dfb8ff2a9ef0a9c046190e4e8752ab2b56659d81e1f8b8c1b.png"
+    },
     "isSbcItem": false,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 433,
+      "eaId": 0,
+      "slug": "common",
+      "game": "25",
+      "name": "Common",
+      "alternateName": null,
+      "url": "/rarities/common/",
+      "dominantColor": "d39570",
+      "imagePath": "2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png",
+      "imagePaths": [
+        "2025/rarities-level-1-large/0.9e74985cc5fa0235bfd1cdf18524886abec80cb940fb87245dc8eb0fe402e68e.png",
+        "2025/rarities-level-2-large/0.bcc3305230ad572a1c35252bfc76d94661378a3cd0bc6f05053ecadb8b4b8dbe.png",
+        "2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png"
+      ],
+      "isSpecial": false,
+      "compactImagePath": "2025/rarities-level-3-small/0.36979d419602c94f76334ef1a76956cfb9ee4d2b8520bee91e554090f1573149.png",
+      "compactImagePaths": [
+        "2025/rarities-level-1-small/0.07fe8673a441822a263a61409f05124a35882cb798e0cd62868d00dc388d25cd.png",
+        "2025/rarities-level-2-small/0.2d3f30416f2b228ddf7e8eef513c1ffb7af5aadea48ff7a9a24cccd90f40889c.png",
+        "2025/rarities-level-3-small/0.36979d419602c94f76334ef1a76956cfb9ee4d2b8520bee91e554090f1573149.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": true,
+      "textColor": [
+        "3f1208",
+        "192228",
+        "31260c"
+      ],
+      "lineColor": [
+        "d39570",
+        "bfcbd3",
+        "c5a96b"
+      ],
+      "shadowColor": [
+        "#000000",
+        "#000000",
+        "#000000"
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 13417,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-1-large/0.9e74985cc5fa0235bfd1cdf18524886abec80cb940fb87245dc8eb0fe402e68e.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-2-large/0.bcc3305230ad572a1c35252bfc76d94661378a3cd0bc6f05053ecadb8b4b8dbe.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-small/0.36979d419602c94f76334ef1a76956cfb9ee4d2b8520bee91e554090f1573149.png"
+    },
     "totalFaceStats": 362,
-    "totalIgs": 1700
+    "totalIgs": 1700,
+    "isFullChemistry": false,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 0,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

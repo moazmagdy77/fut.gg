@@ -148,7 +148,7 @@
     "objectiveCampaignLevelId": null,
     "campaignProps": null,
     "contentTypeId": 27,
-    "numberOfEvolutions": 333,
+    "numberOfEvolutions": 134,
     "blurbText": null,
     "smallBlurbText": "Sadibou Sané is 21 years old, and plays for FC Metz in the Ligue 2 BKT. Sadibou Sané's height stands at 182 cm (6'0'), and the nation he represents is Senegal. This Common version of Sadibou Sané is a 65 rated CB. He is Right footed, with 2 star skill moves and 3 star weak foot. ",
     "upgrades": null,
@@ -171,9 +171,144 @@
     "ggRatingPos": null,
     "ggRatingStr": null,
     "commonName": "Sadibou Sané",
+    "club": {
+      "id": 2406,
+      "eaId": 68,
+      "game": "25",
+      "slug": "68-fc-metz",
+      "name": "FC Metz",
+      "sisterClubEaId": null,
+      "leagueEaId": 17,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/68.786450a38306c961b8d75a73e3c46305b85ff46b0e139414e5ef478f930f0ec0.png",
+      "lightImagePath": "2025/club-light/68.31f5c9ba30bb7df0151a52c6ada52d94748c1ce4feb04cfcf037cb3911168dde.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        156616,
+        208722,
+        201024
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 68,
+      "midfieldRating": 70,
+      "defenseRating": 69,
+      "overallRating": 70,
+      "url": "/clubs/68-fc-metz/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/68.786450a38306c961b8d75a73e3c46305b85ff46b0e139414e5ef478f930f0ec0.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/68.31f5c9ba30bb7df0151a52c6ada52d94748c1ce4feb04cfcf037cb3911168dde.png"
+    },
+    "uniqueClub": {
+      "id": 2406,
+      "eaId": 68,
+      "game": "25",
+      "slug": "68-fc-metz",
+      "name": "FC Metz",
+      "sisterClubEaId": null,
+      "leagueEaId": 17,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/68.786450a38306c961b8d75a73e3c46305b85ff46b0e139414e5ef478f930f0ec0.png",
+      "lightImagePath": "2025/club-light/68.31f5c9ba30bb7df0151a52c6ada52d94748c1ce4feb04cfcf037cb3911168dde.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        156616,
+        208722,
+        201024
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 68,
+      "midfieldRating": 70,
+      "defenseRating": 69,
+      "overallRating": 70,
+      "url": "/clubs/68-fc-metz/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/68.786450a38306c961b8d75a73e3c46305b85ff46b0e139414e5ef478f930f0ec0.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/68.31f5c9ba30bb7df0151a52c6ada52d94748c1ce4feb04cfcf037cb3911168dde.png"
+    },
+    "nation": {
+      "id": 766,
+      "eaId": 136,
+      "slug": "senegal",
+      "name": "Senegal",
+      "imagePath": "2025/nation/136.dbcccf7cc0d334b3b58ea20bf43448e05e565fe48823415de64a32af5781a459.png",
+      "url": "/nations/senegal/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/136.dbcccf7cc0d334b3b58ea20bf43448e05e565fe48823415de64a32af5781a459.png"
+    },
+    "league": {
+      "id": 180,
+      "eaId": 17,
+      "slug": "ligue-2-bkt",
+      "name": "Ligue 2 BKT",
+      "imagePath": "2025/league/17.ead67354db17078c8e753ea53f3fcf0c4d762e26f6fd6c2ba06384a130024e8b.png",
+      "imageLightPath": "2025/league-light/17.da2e28acee32d37dfb8ff2a9ef0a9c046190e4e8752ab2b56659d81e1f8b8c1b.png",
+      "url": "/leagues/ligue-2-bkt/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/17.ead67354db17078c8e753ea53f3fcf0c4d762e26f6fd6c2ba06384a130024e8b.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/17.da2e28acee32d37dfb8ff2a9ef0a9c046190e4e8752ab2b56659d81e1f8b8c1b.png"
+    },
     "isSbcItem": false,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 433,
+      "eaId": 0,
+      "slug": "common",
+      "game": "25",
+      "name": "Common",
+      "alternateName": null,
+      "url": "/rarities/common/",
+      "dominantColor": "d39570",
+      "imagePath": "2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png",
+      "imagePaths": [
+        "2025/rarities-level-1-large/0.9e74985cc5fa0235bfd1cdf18524886abec80cb940fb87245dc8eb0fe402e68e.png",
+        "2025/rarities-level-2-large/0.bcc3305230ad572a1c35252bfc76d94661378a3cd0bc6f05053ecadb8b4b8dbe.png",
+        "2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png"
+      ],
+      "isSpecial": false,
+      "compactImagePath": "2025/rarities-level-3-small/0.36979d419602c94f76334ef1a76956cfb9ee4d2b8520bee91e554090f1573149.png",
+      "compactImagePaths": [
+        "2025/rarities-level-1-small/0.07fe8673a441822a263a61409f05124a35882cb798e0cd62868d00dc388d25cd.png",
+        "2025/rarities-level-2-small/0.2d3f30416f2b228ddf7e8eef513c1ffb7af5aadea48ff7a9a24cccd90f40889c.png",
+        "2025/rarities-level-3-small/0.36979d419602c94f76334ef1a76956cfb9ee4d2b8520bee91e554090f1573149.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": true,
+      "textColor": [
+        "3f1208",
+        "192228",
+        "31260c"
+      ],
+      "lineColor": [
+        "d39570",
+        "bfcbd3",
+        "c5a96b"
+      ],
+      "shadowColor": [
+        "#000000",
+        "#000000",
+        "#000000"
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 13417,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-1-large/0.9e74985cc5fa0235bfd1cdf18524886abec80cb940fb87245dc8eb0fe402e68e.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-2-large/0.bcc3305230ad572a1c35252bfc76d94661378a3cd0bc6f05053ecadb8b4b8dbe.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-small/0.36979d419602c94f76334ef1a76956cfb9ee4d2b8520bee91e554090f1573149.png"
+    },
     "totalFaceStats": 327,
-    "totalIgs": 1519
+    "totalIgs": 1519,
+    "isFullChemistry": false,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 0,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

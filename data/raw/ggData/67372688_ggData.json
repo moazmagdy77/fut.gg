@@ -171,7 +171,7 @@
     "contentTypeId": 27,
     "numberOfEvolutions": 0,
     "blurbText": null,
-    "smallBlurbText": "Musab Al Juwair is 21 years old, and plays for Al Shabab in the ROSHN Saudi League. Musab Al Juwair's height stands at 178 cm (5'10'), and the nation he represents is Saudi Arabia. This TOTS Honourable Mentions version of Musab Al Juwair is a 94 rated CM. He is Right footed, with 5 star skill moves and 4 star weak foot. ",
+    "smallBlurbText": "Musab Al Juwair is 22 years old, and plays for Al Shabab in the ROSHN Saudi League. Musab Al Juwair's height stands at 178 cm (5'10'), and the nation he represents is Saudi Arabia. This TOTS Honourable Mentions version of Musab Al Juwair is a 94 rated CM. He is Right footed, with 5 star skill moves and 4 star weak foot. ",
     "upgrades": null,
     "hasPrice": false,
     "trackerId": null,
@@ -192,9 +192,144 @@
     "ggRatingPos": null,
     "ggRatingStr": null,
     "commonName": "Musab Al Juwair",
+    "club": {
+      "id": 2792,
+      "eaId": 111674,
+      "game": "25",
+      "slug": "111674-al-shabab",
+      "name": "Al Shabab",
+      "sisterClubEaId": null,
+      "leagueEaId": 350,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/111674.82a468684a303c54140bd33c5d030534a222219feecddef66c6ddebe5587db4b.png",
+      "lightImagePath": "2025/club-light/111674.82a468684a303c54140bd33c5d030534a222219feecddef66c6ddebe5587db4b.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        266694,
+        208418,
+        168651
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 73,
+      "midfieldRating": 70,
+      "defenseRating": 70,
+      "overallRating": 71,
+      "url": "/clubs/111674-al-shabab/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/111674.82a468684a303c54140bd33c5d030534a222219feecddef66c6ddebe5587db4b.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/111674.82a468684a303c54140bd33c5d030534a222219feecddef66c6ddebe5587db4b.png"
+    },
+    "uniqueClub": {
+      "id": 2792,
+      "eaId": 111674,
+      "game": "25",
+      "slug": "111674-al-shabab",
+      "name": "Al Shabab",
+      "sisterClubEaId": null,
+      "leagueEaId": 350,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/111674.82a468684a303c54140bd33c5d030534a222219feecddef66c6ddebe5587db4b.png",
+      "lightImagePath": "2025/club-light/111674.82a468684a303c54140bd33c5d030534a222219feecddef66c6ddebe5587db4b.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        266694,
+        208418,
+        168651
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 73,
+      "midfieldRating": 70,
+      "defenseRating": 70,
+      "overallRating": 71,
+      "url": "/clubs/111674-al-shabab/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/111674.82a468684a303c54140bd33c5d030534a222219feecddef66c6ddebe5587db4b.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/111674.82a468684a303c54140bd33c5d030534a222219feecddef66c6ddebe5587db4b.png"
+    },
+    "nation": {
+      "id": 791,
+      "eaId": 183,
+      "slug": "saudi-arabia",
+      "name": "Saudi Arabia",
+      "imagePath": "2025/nation/183.b48e939d323b1ac256a2c747b7489b1247a5cb5f9699ea3a890f0f4a288f88c1.png",
+      "url": "/nations/saudi-arabia/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/183.b48e939d323b1ac256a2c747b7489b1247a5cb5f9699ea3a890f0f4a288f88c1.png"
+    },
+    "league": {
+      "id": 207,
+      "eaId": 350,
+      "slug": "roshn-saudi-league",
+      "name": "ROSHN Saudi League",
+      "imagePath": "2025/league/350.244e0a9e137630f60ab8b8873969fabf8b9098ee99101678e72d92c26c9e3ad9.png",
+      "imageLightPath": "2025/league-light/350.54e48d8c27b4671a61636c8d01a8b88b2276fb176741f8bb7cda29e268c97bca.png",
+      "url": "/leagues/roshn-saudi-league/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/350.244e0a9e137630f60ab8b8873969fabf8b9098ee99101678e72d92c26c9e3ad9.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/350.54e48d8c27b4671a61636c8d01a8b88b2276fb176741f8bb7cda29e268c97bca.png"
+    },
     "isSbcItem": true,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 553,
+      "eaId": 65,
+      "slug": "tots-honourable-mentions",
+      "game": "25",
+      "name": "TOTS Honourable Mentions",
+      "alternateName": null,
+      "url": "/rarities/tots-honourable-mentions/",
+      "dominantColor": "0b3258",
+      "imagePath": "2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+      "imagePaths": [
+        "2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+        "2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+        "2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png"
+      ],
+      "isSpecial": true,
+      "compactImagePath": "2025/rarities-level-0-small/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+      "compactImagePaths": [
+        "2025/rarities-level-0-small/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+        "2025/rarities-level-0-small/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+        "2025/rarities-level-0-small/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": false,
+      "textColor": [
+        "d0fafb",
+        "d0fafb",
+        "d0fafb"
+      ],
+      "lineColor": [
+        "0b3258",
+        "0b3258",
+        "0b3258"
+      ],
+      "shadowColor": [
+        "",
+        "",
+        ""
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 103,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-small/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png"
+    },
     "totalFaceStats": 552,
-    "totalIgs": 2626
+    "totalIgs": 2626,
+    "isFullChemistry": false,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 4,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

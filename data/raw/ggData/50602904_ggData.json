@@ -148,7 +148,7 @@
     "objectiveCampaignLevelId": null,
     "campaignProps": null,
     "contentTypeId": 27,
-    "numberOfEvolutions": 2,
+    "numberOfEvolutions": 72,
     "blurbText": null,
     "smallBlurbText": "Steve Ngoura is 20 years old, and plays for Cercle Brugge in the 1A Pro League. Steve Ngoura's height stands at 185 cm (6'1'), and the nation he represents is France. This Common version of Steve Ngoura is a 65 rated ST. He is Right footed, with 3 star skill moves and 3 star weak foot. ",
     "upgrades": null,
@@ -171,9 +171,166 @@
     "ggRatingPos": null,
     "ggRatingStr": null,
     "commonName": "Steve Ngoura",
+    "club": {
+      "id": 2318,
+      "eaId": 1750,
+      "game": "25",
+      "slug": "1750-cercle-brugge",
+      "name": "Cercle Brugge",
+      "sisterClubEaId": null,
+      "leagueEaId": 4,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/1750.440a3d175199fb1c2d77cfb0604d82752dfebf1fa5d9af0be14ef7e007eeb812.png",
+      "lightImagePath": "2025/club-light/1750.440a3d175199fb1c2d77cfb0604d82752dfebf1fa5d9af0be14ef7e007eeb812.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        207566,
+        235413,
+        237254
+      ],
+      "competitionIds": [
+        3
+      ],
+      "fixtureIds": [
+        131,
+        100,
+        67,
+        106,
+        141,
+        3664,
+        51,
+        3667
+      ],
+      "attackRating": 67,
+      "midfieldRating": 68,
+      "defenseRating": 66,
+      "overallRating": 68,
+      "url": "/clubs/1750-cercle-brugge/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/1750.440a3d175199fb1c2d77cfb0604d82752dfebf1fa5d9af0be14ef7e007eeb812.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/1750.440a3d175199fb1c2d77cfb0604d82752dfebf1fa5d9af0be14ef7e007eeb812.png"
+    },
+    "uniqueClub": {
+      "id": 2318,
+      "eaId": 1750,
+      "game": "25",
+      "slug": "1750-cercle-brugge",
+      "name": "Cercle Brugge",
+      "sisterClubEaId": null,
+      "leagueEaId": 4,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/1750.440a3d175199fb1c2d77cfb0604d82752dfebf1fa5d9af0be14ef7e007eeb812.png",
+      "lightImagePath": "2025/club-light/1750.440a3d175199fb1c2d77cfb0604d82752dfebf1fa5d9af0be14ef7e007eeb812.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        207566,
+        235413,
+        237254
+      ],
+      "competitionIds": [
+        3
+      ],
+      "fixtureIds": [
+        131,
+        100,
+        67,
+        106,
+        141,
+        3664,
+        51,
+        3667
+      ],
+      "attackRating": 67,
+      "midfieldRating": 68,
+      "defenseRating": 66,
+      "overallRating": 68,
+      "url": "/clubs/1750-cercle-brugge/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/1750.440a3d175199fb1c2d77cfb0604d82752dfebf1fa5d9af0be14ef7e007eeb812.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/1750.440a3d175199fb1c2d77cfb0604d82752dfebf1fa5d9af0be14ef7e007eeb812.png"
+    },
+    "nation": {
+      "id": 669,
+      "eaId": 18,
+      "slug": "france",
+      "name": "France",
+      "imagePath": "2025/nation/18.1913b72e6c1685cc8b67c4126ed88119ac29293b1fc11688ebfb464631a7a654.png",
+      "url": "/nations/france/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/18.1913b72e6c1685cc8b67c4126ed88119ac29293b1fc11688ebfb464631a7a654.png"
+    },
+    "league": {
+      "id": 175,
+      "eaId": 4,
+      "slug": "1a-pro-league",
+      "name": "1A Pro League",
+      "imagePath": "2025/league/4.92eb57bbf802a9cba8633144e760dee82e7039f96bac4853610d0247b8492af5.png",
+      "imageLightPath": "2025/league-light/4.96ab33aac9fc5863e31e228424cbc3ea49c26154e3e6854b5c1e21b5c3f4434f.png",
+      "url": "/leagues/1a-pro-league/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/4.92eb57bbf802a9cba8633144e760dee82e7039f96bac4853610d0247b8492af5.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/4.96ab33aac9fc5863e31e228424cbc3ea49c26154e3e6854b5c1e21b5c3f4434f.png"
+    },
     "isSbcItem": false,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 433,
+      "eaId": 0,
+      "slug": "common",
+      "game": "25",
+      "name": "Common",
+      "alternateName": null,
+      "url": "/rarities/common/",
+      "dominantColor": "d39570",
+      "imagePath": "2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png",
+      "imagePaths": [
+        "2025/rarities-level-1-large/0.9e74985cc5fa0235bfd1cdf18524886abec80cb940fb87245dc8eb0fe402e68e.png",
+        "2025/rarities-level-2-large/0.bcc3305230ad572a1c35252bfc76d94661378a3cd0bc6f05053ecadb8b4b8dbe.png",
+        "2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png"
+      ],
+      "isSpecial": false,
+      "compactImagePath": "2025/rarities-level-3-small/0.36979d419602c94f76334ef1a76956cfb9ee4d2b8520bee91e554090f1573149.png",
+      "compactImagePaths": [
+        "2025/rarities-level-1-small/0.07fe8673a441822a263a61409f05124a35882cb798e0cd62868d00dc388d25cd.png",
+        "2025/rarities-level-2-small/0.2d3f30416f2b228ddf7e8eef513c1ffb7af5aadea48ff7a9a24cccd90f40889c.png",
+        "2025/rarities-level-3-small/0.36979d419602c94f76334ef1a76956cfb9ee4d2b8520bee91e554090f1573149.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": true,
+      "textColor": [
+        "3f1208",
+        "192228",
+        "31260c"
+      ],
+      "lineColor": [
+        "d39570",
+        "bfcbd3",
+        "c5a96b"
+      ],
+      "shadowColor": [
+        "#000000",
+        "#000000",
+        "#000000"
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 13417,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-1-large/0.9e74985cc5fa0235bfd1cdf18524886abec80cb940fb87245dc8eb0fe402e68e.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-2-large/0.bcc3305230ad572a1c35252bfc76d94661378a3cd0bc6f05053ecadb8b4b8dbe.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-small/0.36979d419602c94f76334ef1a76956cfb9ee4d2b8520bee91e554090f1573149.png"
+    },
     "totalFaceStats": 313,
-    "totalIgs": 1501
+    "totalIgs": 1501,
+    "isFullChemistry": false,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 0,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

@@ -94,7 +94,7 @@
         "finisher"
       ]
     },
-    "hasDynamic": false,
+    "hasDynamic": true,
     "url": "/players/188350-marco-reus/25-67297214/",
     "renderOnlyAsHtml": false,
     "bodytypeCode": 10,
@@ -103,12 +103,12 @@
     "createdAt": "2025-06-13T17:00:27.729189Z",
     "isHidden": false,
     "previousVersionsIds": [],
-    "imagePath": "2025/player-item/25-67297214.f5455e32938f005a79a0489f109ad79579df0792335e9c16260243e31a4456fc.webp",
-    "simpleCardImagePath": "2025/player-item-simple-card/25-67297214.c067e7b615db5e31922c41e49e23c883ef073ad7e334bc30755b3ac87d38d0d5.webp",
-    "futggCardImagePath": "2025/futgg-player-item-card/25-67297214.cd020987c21a53408da4964ce3778ffdbfcaffb1737ff246d30ecc5267893f5f.webp",
-    "cardImagePath": "2025/player-item-card/25-67297214.6b7439c3c6aefe9f804b001e31ed34ed6c5b76aead814841acf70c538cf07253.webp",
-    "shareImagePath": "2025/player-item-social/25-67297214.7cf13b414a571640c5f3bb5cfdacc12397f1123b0a646b1d2267731579feede8.webp",
-    "socialImagePath": "2025/player-item-social-small/25-67297214.17344781e59e57367846fd0530aa6f576794b195028e9960811ad7590c5df98e.webp",
+    "imagePath": "2025/player-item/25-67297214.ba6ca0e2c7acf3fb19a2a2eed74c88304444cc219338c296d32184797f89f6da.webp",
+    "simpleCardImagePath": "2025/player-item-simple-card/25-67297214.e333a4453d1cdc2a24b5fbbd0b6d40904b33ebe495fead86469fb7ef5b21de37.webp",
+    "futggCardImagePath": "2025/futgg-player-item-card/25-67297214.a800e1d4b325eec8227968a1c865aa15a6d10b2406e6def00b2d3b9a63157709.webp",
+    "cardImagePath": "2025/player-item-card/25-67297214.4c27f0f2b608e22f3c079dc59e64a15dcab74aab8d45c7f265fb91896399eae4.webp",
+    "shareImagePath": "2025/player-item-social/25-67297214.a86ddcbc6ae7b4e73ded7fa8113e10e72c27542982574ba195be15af05365c6e.webp",
+    "socialImagePath": "2025/player-item-social-small/25-67297214.5153a43b455a27e068286181b48cd9f5b35d3f24c0aca6b5881b46e5dac6d4b7.webp",
     "attributeAcceleration": 92,
     "attributeSprintSpeed": 92,
     "attributeAgility": 90,
@@ -193,9 +193,144 @@
     "ggRatingPos": null,
     "ggRatingStr": null,
     "commonName": "Marco Reus",
+    "club": {
+      "id": 2505,
+      "eaId": 697,
+      "game": "25",
+      "slug": "697-la-galaxy",
+      "name": "LA Galaxy",
+      "sisterClubEaId": null,
+      "leagueEaId": 39,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/697.a15f8dc010e619ee7b08828a4fbfe59fb2135cd610170637cc4318f9c4001d97.png",
+      "lightImagePath": "2025/club-light/697.5bbcda395ec8c18b86404a12571bdd510bc957add4182c7c5dba48a47e2e820a.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        250,
+        191694,
+        50574464
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 72,
+      "midfieldRating": 72,
+      "defenseRating": 70,
+      "overallRating": 71,
+      "url": "/clubs/697-la-galaxy/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/697.a15f8dc010e619ee7b08828a4fbfe59fb2135cd610170637cc4318f9c4001d97.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/697.5bbcda395ec8c18b86404a12571bdd510bc957add4182c7c5dba48a47e2e820a.png"
+    },
+    "uniqueClub": {
+      "id": 2505,
+      "eaId": 697,
+      "game": "25",
+      "slug": "697-la-galaxy",
+      "name": "LA Galaxy",
+      "sisterClubEaId": null,
+      "leagueEaId": 39,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/697.a15f8dc010e619ee7b08828a4fbfe59fb2135cd610170637cc4318f9c4001d97.png",
+      "lightImagePath": "2025/club-light/697.5bbcda395ec8c18b86404a12571bdd510bc957add4182c7c5dba48a47e2e820a.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        250,
+        191694,
+        50574464
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 72,
+      "midfieldRating": 72,
+      "defenseRating": 70,
+      "overallRating": 71,
+      "url": "/clubs/697-la-galaxy/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/697.a15f8dc010e619ee7b08828a4fbfe59fb2135cd610170637cc4318f9c4001d97.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/697.5bbcda395ec8c18b86404a12571bdd510bc957add4182c7c5dba48a47e2e820a.png"
+    },
+    "nation": {
+      "id": 672,
+      "eaId": 21,
+      "slug": "germany",
+      "name": "Germany",
+      "imagePath": "2025/nation/21.09e6201577ad206ca1927900d61876676ce53a98d69a6e8047ccfeac8c133cdd.png",
+      "url": "/nations/germany/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/21.09e6201577ad206ca1927900d61876676ce53a98d69a6e8047ccfeac8c133cdd.png"
+    },
+    "league": {
+      "id": 185,
+      "eaId": 39,
+      "slug": "major-league-soccer",
+      "name": "Major League Soccer",
+      "imagePath": "2025/league/39.ea32ac1d4c5aeb379cec48a5132b135cd9c8767b603cd69fe3083092b4ef9eb3.png",
+      "imageLightPath": "2025/league-light/39.ea32ac1d4c5aeb379cec48a5132b135cd9c8767b603cd69fe3083092b4ef9eb3.png",
+      "url": "/leagues/major-league-soccer/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/39.ea32ac1d4c5aeb379cec48a5132b135cd9c8767b603cd69fe3083092b4ef9eb3.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/39.ea32ac1d4c5aeb379cec48a5132b135cd9c8767b603cd69fe3083092b4ef9eb3.png"
+    },
     "isSbcItem": false,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 560,
+      "eaId": 75,
+      "slug": "shapeshifters",
+      "game": "25",
+      "name": "Shapeshifters",
+      "alternateName": null,
+      "url": "/rarities/shapeshifters/",
+      "dominantColor": "b20074",
+      "imagePath": "2025/rarities-level-0-large/75.3e003f399978e23ef7d68c9451d44d8fe8fed202d91e0d68d0c9bc3ef99907ed.png",
+      "imagePaths": [
+        "2025/rarities-level-0-large/75.3e003f399978e23ef7d68c9451d44d8fe8fed202d91e0d68d0c9bc3ef99907ed.png",
+        "2025/rarities-level-0-large/75.3e003f399978e23ef7d68c9451d44d8fe8fed202d91e0d68d0c9bc3ef99907ed.png",
+        "2025/rarities-level-0-large/75.3e003f399978e23ef7d68c9451d44d8fe8fed202d91e0d68d0c9bc3ef99907ed.png"
+      ],
+      "isSpecial": true,
+      "compactImagePath": "2025/rarities-level-0-small/75.3e003f399978e23ef7d68c9451d44d8fe8fed202d91e0d68d0c9bc3ef99907ed.png",
+      "compactImagePaths": [
+        "2025/rarities-level-0-small/75.3e003f399978e23ef7d68c9451d44d8fe8fed202d91e0d68d0c9bc3ef99907ed.png",
+        "2025/rarities-level-0-small/75.3e003f399978e23ef7d68c9451d44d8fe8fed202d91e0d68d0c9bc3ef99907ed.png",
+        "2025/rarities-level-0-small/75.3e003f399978e23ef7d68c9451d44d8fe8fed202d91e0d68d0c9bc3ef99907ed.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": false,
+      "textColor": [
+        "fff3f9",
+        "fff3f9",
+        "fff3f9"
+      ],
+      "lineColor": [
+        "b20074",
+        "b20074",
+        "b20074"
+      ],
+      "shadowColor": [
+        "",
+        "",
+        ""
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 76,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/75.3e003f399978e23ef7d68c9451d44d8fe8fed202d91e0d68d0c9bc3ef99907ed.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/75.3e003f399978e23ef7d68c9451d44d8fe8fed202d91e0d68d0c9bc3ef99907ed.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/75.3e003f399978e23ef7d68c9451d44d8fe8fed202d91e0d68d0c9bc3ef99907ed.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/75.3e003f399978e23ef7d68c9451d44d8fe8fed202d91e0d68d0c9bc3ef99907ed.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-small/75.3e003f399978e23ef7d68c9451d44d8fe8fed202d91e0d68d0c9bc3ef99907ed.png"
+    },
     "totalFaceStats": 556,
-    "totalIgs": 2665
+    "totalIgs": 2665,
+    "isFullChemistry": false,
+    "extraNationChemistry": 1,
+    "extraLeagueChemistry": 1,
+    "extraClubChemistry": 1,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }
