@@ -170,7 +170,7 @@
     "objectiveCampaignLevelId": null,
     "campaignProps": null,
     "contentTypeId": 27,
-    "numberOfEvolutions": 2,
+    "numberOfEvolutions": 1,
     "blurbText": null,
     "smallBlurbText": "Taylor Allen is 25 years old, and plays for Walsall in the EFL League Two. Taylor Allen's height stands at 185 cm (6'1'), and the nation he represents is England. This TEAM OF THE SEASON version of Taylor Allen is a 92 rated CB. He is Left footed, with 4 star skill moves and 4 star weak foot. ",
     "upgrades": null,
@@ -192,10 +192,146 @@
     "ggRating": null,
     "ggRatingPos": null,
     "ggRatingStr": null,
+    "isHistoricalItem": false,
     "commonName": "Taylor Allen",
+    "club": {
+      "id": 2645,
+      "eaId": 1803,
+      "game": "25",
+      "slug": "1803-walsall",
+      "name": "Walsall",
+      "sisterClubEaId": null,
+      "leagueEaId": 61,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/1803.4b5b299e3b9c760d6cb41154759b29a43dc87bbab8971c08e0408aef7a2726be.png",
+      "lightImagePath": "2025/club-light/1803.4b5b299e3b9c760d6cb41154759b29a43dc87bbab8971c08e0408aef7a2726be.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        248328,
+        274472,
+        265829
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 62,
+      "midfieldRating": 63,
+      "defenseRating": 63,
+      "overallRating": 63,
+      "url": "/clubs/1803-walsall/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/1803.4b5b299e3b9c760d6cb41154759b29a43dc87bbab8971c08e0408aef7a2726be.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/1803.4b5b299e3b9c760d6cb41154759b29a43dc87bbab8971c08e0408aef7a2726be.png"
+    },
+    "uniqueClub": {
+      "id": 2645,
+      "eaId": 1803,
+      "game": "25",
+      "slug": "1803-walsall",
+      "name": "Walsall",
+      "sisterClubEaId": null,
+      "leagueEaId": 61,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/1803.4b5b299e3b9c760d6cb41154759b29a43dc87bbab8971c08e0408aef7a2726be.png",
+      "lightImagePath": "2025/club-light/1803.4b5b299e3b9c760d6cb41154759b29a43dc87bbab8971c08e0408aef7a2726be.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        248328,
+        274472,
+        265829
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 62,
+      "midfieldRating": 63,
+      "defenseRating": 63,
+      "overallRating": 63,
+      "url": "/clubs/1803-walsall/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/1803.4b5b299e3b9c760d6cb41154759b29a43dc87bbab8971c08e0408aef7a2726be.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/1803.4b5b299e3b9c760d6cb41154759b29a43dc87bbab8971c08e0408aef7a2726be.png"
+    },
+    "nation": {
+      "id": 665,
+      "eaId": 14,
+      "slug": "england",
+      "name": "England",
+      "imagePath": "2025/nation/14.78390863cddfae30b0df1723f63159b6dc1c09e4ecde31080b60ba3b9bee500e.png",
+      "url": "/nations/england/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/14.78390863cddfae30b0df1723f63159b6dc1c09e4ecde31080b60ba3b9bee500e.png"
+    },
+    "league": {
+      "id": 192,
+      "eaId": 61,
+      "slug": "efl-league-two",
+      "name": "EFL League Two",
+      "imagePath": "2025/league/61.23f7334d47c2734c979cd985d8ace993faf05c170cb69a3e7ebe6b0ebb546cff.png",
+      "imageLightPath": "2025/league-light/61.23f7334d47c2734c979cd985d8ace993faf05c170cb69a3e7ebe6b0ebb546cff.png",
+      "url": "/leagues/efl-league-two/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/61.23f7334d47c2734c979cd985d8ace993faf05c170cb69a3e7ebe6b0ebb546cff.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/61.23f7334d47c2734c979cd985d8ace993faf05c170cb69a3e7ebe6b0ebb546cff.png"
+    },
     "isSbcItem": false,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 554,
+      "eaId": 11,
+      "slug": "team-of-the-season",
+      "game": "25",
+      "name": "TEAM OF THE SEASON",
+      "alternateName": null,
+      "url": "/rarities/team-of-the-season/",
+      "dominantColor": "104f74",
+      "imagePath": "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+      "imagePaths": [
+        "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+      ],
+      "isSpecial": true,
+      "compactImagePath": "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+      "compactImagePaths": [
+        "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": false,
+      "textColor": [
+        "f8e9b3",
+        "f8e9b3",
+        "f8e9b3"
+      ],
+      "lineColor": [
+        "104f74",
+        "104f74",
+        "104f74"
+      ],
+      "shadowColor": [
+        "",
+        "",
+        ""
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 241,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+    },
     "totalFaceStats": 534,
-    "totalIgs": 2565
+    "totalIgs": 2565,
+    "isFullChemistry": false,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 4,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

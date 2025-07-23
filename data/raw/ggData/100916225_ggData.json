@@ -193,10 +193,146 @@
     "ggRating": null,
     "ggRatingPos": null,
     "ggRatingStr": null,
+    "isHistoricalItem": false,
     "commonName": "Borja Sainz",
+    "club": {
+      "id": 2370,
+      "eaId": 1792,
+      "game": "25",
+      "slug": "1792-norwich",
+      "name": "Norwich",
+      "sisterClubEaId": null,
+      "leagueEaId": 14,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/1792.254cb6d069db5f8fa0277602311a5b5e7f8d7393c30491d286fdca5c7243f504.png",
+      "lightImagePath": "2025/club-light/1792.3b6425dadef1341adfb554e6fdbd2b6d8eecac37e43a323824b72dd38b7a263f.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        202126,
+        252929,
+        206085
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 71,
+      "midfieldRating": 70,
+      "defenseRating": 69,
+      "overallRating": 71,
+      "url": "/clubs/1792-norwich/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/1792.254cb6d069db5f8fa0277602311a5b5e7f8d7393c30491d286fdca5c7243f504.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/1792.3b6425dadef1341adfb554e6fdbd2b6d8eecac37e43a323824b72dd38b7a263f.png"
+    },
+    "uniqueClub": {
+      "id": 2370,
+      "eaId": 1792,
+      "game": "25",
+      "slug": "1792-norwich",
+      "name": "Norwich",
+      "sisterClubEaId": null,
+      "leagueEaId": 14,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/1792.254cb6d069db5f8fa0277602311a5b5e7f8d7393c30491d286fdca5c7243f504.png",
+      "lightImagePath": "2025/club-light/1792.3b6425dadef1341adfb554e6fdbd2b6d8eecac37e43a323824b72dd38b7a263f.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        202126,
+        252929,
+        206085
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 71,
+      "midfieldRating": 70,
+      "defenseRating": 69,
+      "overallRating": 71,
+      "url": "/clubs/1792-norwich/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/1792.254cb6d069db5f8fa0277602311a5b5e7f8d7393c30491d286fdca5c7243f504.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/1792.3b6425dadef1341adfb554e6fdbd2b6d8eecac37e43a323824b72dd38b7a263f.png"
+    },
+    "nation": {
+      "id": 695,
+      "eaId": 45,
+      "slug": "spain",
+      "name": "Spain",
+      "imagePath": "2025/nation/45.307275040b6531f26bb980298820e1a50df6eb288379a2efc5e5eb3abdb5f1ea.png",
+      "url": "/nations/spain/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/45.307275040b6531f26bb980298820e1a50df6eb288379a2efc5e5eb3abdb5f1ea.png"
+    },
+    "league": {
+      "id": 178,
+      "eaId": 14,
+      "slug": "efl-championship",
+      "name": "EFL Championship",
+      "imagePath": "2025/league/14.b7e5b9489c5e59e767ed42d684f00ee24d0a16c70b38cf0dca8c37aca2229f90.png",
+      "imageLightPath": "2025/league-light/14.b7e5b9489c5e59e767ed42d684f00ee24d0a16c70b38cf0dca8c37aca2229f90.png",
+      "url": "/leagues/efl-championship/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/14.b7e5b9489c5e59e767ed42d684f00ee24d0a16c70b38cf0dca8c37aca2229f90.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/14.b7e5b9489c5e59e767ed42d684f00ee24d0a16c70b38cf0dca8c37aca2229f90.png"
+    },
     "isSbcItem": false,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 554,
+      "eaId": 11,
+      "slug": "team-of-the-season",
+      "game": "25",
+      "name": "TEAM OF THE SEASON",
+      "alternateName": null,
+      "url": "/rarities/team-of-the-season/",
+      "dominantColor": "104f74",
+      "imagePath": "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+      "imagePaths": [
+        "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+      ],
+      "isSpecial": true,
+      "compactImagePath": "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+      "compactImagePaths": [
+        "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": false,
+      "textColor": [
+        "f8e9b3",
+        "f8e9b3",
+        "f8e9b3"
+      ],
+      "lineColor": [
+        "104f74",
+        "104f74",
+        "104f74"
+      ],
+      "shadowColor": [
+        "",
+        "",
+        ""
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 241,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+    },
     "totalFaceStats": 520,
-    "totalIgs": 2499
+    "totalIgs": 2499,
+    "isFullChemistry": false,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 4,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

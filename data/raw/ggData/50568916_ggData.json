@@ -170,7 +170,7 @@
     "objectiveCampaignLevelId": null,
     "campaignProps": null,
     "contentTypeId": 27,
-    "numberOfEvolutions": 0,
+    "numberOfEvolutions": 1,
     "blurbText": null,
     "smallBlurbText": "Francis de Vries is 30 years old, and plays for Auckland FC in the Isuzu UTE A League. Francis de Vries's height stands at 188 cm (6'2'), and the nation he represents is New Zealand. This TEAM OF THE SEASON version of Francis de Vries is a 93 rated LB. He is Left footed, with 4 star skill moves and 5 star weak foot. ",
     "upgrades": null,
@@ -192,10 +192,146 @@
     "ggRating": null,
     "ggRatingPos": null,
     "ggRatingStr": null,
+    "isHistoricalItem": false,
     "commonName": "Francis de Vries",
+    "club": {
+      "id": 2820,
+      "eaId": 131739,
+      "game": "25",
+      "slug": "131739-auckland-fc",
+      "name": "Auckland FC",
+      "sisterClubEaId": null,
+      "leagueEaId": 351,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/131739.a84ba2e799f84b44d2fd3d9a343e83c2bd1e932bc971cf202081c6dd0fe3dcf4.png",
+      "lightImagePath": "2025/club-light/131739.a84ba2e799f84b44d2fd3d9a343e83c2bd1e932bc971cf202081c6dd0fe3dcf4.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        237268,
+        208520,
+        263851
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 65,
+      "midfieldRating": 65,
+      "defenseRating": 65,
+      "overallRating": 65,
+      "url": "/clubs/131739-auckland-fc/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/131739.a84ba2e799f84b44d2fd3d9a343e83c2bd1e932bc971cf202081c6dd0fe3dcf4.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/131739.a84ba2e799f84b44d2fd3d9a343e83c2bd1e932bc971cf202081c6dd0fe3dcf4.png"
+    },
+    "uniqueClub": {
+      "id": 2820,
+      "eaId": 131739,
+      "game": "25",
+      "slug": "131739-auckland-fc",
+      "name": "Auckland FC",
+      "sisterClubEaId": null,
+      "leagueEaId": 351,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/131739.a84ba2e799f84b44d2fd3d9a343e83c2bd1e932bc971cf202081c6dd0fe3dcf4.png",
+      "lightImagePath": "2025/club-light/131739.a84ba2e799f84b44d2fd3d9a343e83c2bd1e932bc971cf202081c6dd0fe3dcf4.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        237268,
+        208520,
+        263851
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 65,
+      "midfieldRating": 65,
+      "defenseRating": 65,
+      "overallRating": 65,
+      "url": "/clubs/131739-auckland-fc/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/131739.a84ba2e799f84b44d2fd3d9a343e83c2bd1e932bc971cf202081c6dd0fe3dcf4.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/131739.a84ba2e799f84b44d2fd3d9a343e83c2bd1e932bc971cf202081c6dd0fe3dcf4.png"
+    },
+    "nation": {
+      "id": 799,
+      "eaId": 198,
+      "slug": "new-zealand",
+      "name": "New Zealand",
+      "imagePath": "2025/nation/198.bc171b9bac52d6254ae8b0b3e48e6782d13a4f3e18083c82c20bfc2487e15128.png",
+      "url": "/nations/new-zealand/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/198.bc171b9bac52d6254ae8b0b3e48e6782d13a4f3e18083c82c20bfc2487e15128.png"
+    },
+    "league": {
+      "id": 208,
+      "eaId": 351,
+      "slug": "isuzu-ute-a-league",
+      "name": "Isuzu UTE A League",
+      "imagePath": "2025/league/351.1c8c35f1307cdcc8c4c34d9f4eb20fb1408d87b28655d702d35ba7388792918e.png",
+      "imageLightPath": "2025/league-light/351.f35f2ecebda1446a9e6ebd305a46bb64de79e25b901a1cd3ec2c8d1cec7e2931.png",
+      "url": "/leagues/isuzu-ute-a-league/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/351.1c8c35f1307cdcc8c4c34d9f4eb20fb1408d87b28655d702d35ba7388792918e.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/351.f35f2ecebda1446a9e6ebd305a46bb64de79e25b901a1cd3ec2c8d1cec7e2931.png"
+    },
     "isSbcItem": false,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 554,
+      "eaId": 11,
+      "slug": "team-of-the-season",
+      "game": "25",
+      "name": "TEAM OF THE SEASON",
+      "alternateName": null,
+      "url": "/rarities/team-of-the-season/",
+      "dominantColor": "104f74",
+      "imagePath": "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+      "imagePaths": [
+        "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+      ],
+      "isSpecial": true,
+      "compactImagePath": "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+      "compactImagePaths": [
+        "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": false,
+      "textColor": [
+        "f8e9b3",
+        "f8e9b3",
+        "f8e9b3"
+      ],
+      "lineColor": [
+        "104f74",
+        "104f74",
+        "104f74"
+      ],
+      "shadowColor": [
+        "",
+        "",
+        ""
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 241,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+    },
     "totalFaceStats": 540,
-    "totalIgs": 2604
+    "totalIgs": 2604,
+    "isFullChemistry": false,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 4,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

@@ -188,10 +188,146 @@
     "ggRating": null,
     "ggRatingPos": null,
     "ggRatingStr": null,
+    "isHistoricalItem": false,
     "commonName": "Steven Moreira",
+    "club": {
+      "id": 2497,
+      "eaId": 687,
+      "game": "25",
+      "slug": "687-columbus-crew",
+      "name": "Columbus Crew",
+      "sisterClubEaId": null,
+      "leagueEaId": 39,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/687.0874301d1d6f1e9a971f8d46ccab1380bd57c78044b4ae20cd5e85acddff8fd5.png",
+      "lightImagePath": "2025/club-light/687.c74b9484a5b0f31266589bebf3db9a59850fbfd56eb4b7e878a8be3d2e5fbb94.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        212401,
+        266390,
+        237034
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 65,
+      "midfieldRating": 69,
+      "defenseRating": 68,
+      "overallRating": 68,
+      "url": "/clubs/687-columbus-crew/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/687.0874301d1d6f1e9a971f8d46ccab1380bd57c78044b4ae20cd5e85acddff8fd5.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/687.c74b9484a5b0f31266589bebf3db9a59850fbfd56eb4b7e878a8be3d2e5fbb94.png"
+    },
+    "uniqueClub": {
+      "id": 2497,
+      "eaId": 687,
+      "game": "25",
+      "slug": "687-columbus-crew",
+      "name": "Columbus Crew",
+      "sisterClubEaId": null,
+      "leagueEaId": 39,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/687.0874301d1d6f1e9a971f8d46ccab1380bd57c78044b4ae20cd5e85acddff8fd5.png",
+      "lightImagePath": "2025/club-light/687.c74b9484a5b0f31266589bebf3db9a59850fbfd56eb4b7e878a8be3d2e5fbb94.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        212401,
+        266390,
+        237034
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 65,
+      "midfieldRating": 69,
+      "defenseRating": 68,
+      "overallRating": 68,
+      "url": "/clubs/687-columbus-crew/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/687.0874301d1d6f1e9a971f8d46ccab1380bd57c78044b4ae20cd5e85acddff8fd5.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/687.c74b9484a5b0f31266589bebf3db9a59850fbfd56eb4b7e878a8be3d2e5fbb94.png"
+    },
+    "nation": {
+      "id": 741,
+      "eaId": 104,
+      "slug": "cape-verde-islands",
+      "name": "Cape Verde Islands",
+      "imagePath": "2025/nation/104.c3be029300dc72a1b767218875d7334a499b7a42eae60e59a1b94e9ee2f6d9f1.png",
+      "url": "/nations/cape-verde-islands/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/104.c3be029300dc72a1b767218875d7334a499b7a42eae60e59a1b94e9ee2f6d9f1.png"
+    },
+    "league": {
+      "id": 185,
+      "eaId": 39,
+      "slug": "major-league-soccer",
+      "name": "Major League Soccer",
+      "imagePath": "2025/league/39.ea32ac1d4c5aeb379cec48a5132b135cd9c8767b603cd69fe3083092b4ef9eb3.png",
+      "imageLightPath": "2025/league-light/39.ea32ac1d4c5aeb379cec48a5132b135cd9c8767b603cd69fe3083092b4ef9eb3.png",
+      "url": "/leagues/major-league-soccer/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/39.ea32ac1d4c5aeb379cec48a5132b135cd9c8767b603cd69fe3083092b4ef9eb3.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/39.ea32ac1d4c5aeb379cec48a5132b135cd9c8767b603cd69fe3083092b4ef9eb3.png"
+    },
     "isSbcItem": false,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 554,
+      "eaId": 11,
+      "slug": "team-of-the-season",
+      "game": "25",
+      "name": "TEAM OF THE SEASON",
+      "alternateName": null,
+      "url": "/rarities/team-of-the-season/",
+      "dominantColor": "104f74",
+      "imagePath": "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+      "imagePaths": [
+        "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+      ],
+      "isSpecial": true,
+      "compactImagePath": "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+      "compactImagePaths": [
+        "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": false,
+      "textColor": [
+        "f8e9b3",
+        "f8e9b3",
+        "f8e9b3"
+      ],
+      "lineColor": [
+        "104f74",
+        "104f74",
+        "104f74"
+      ],
+      "shadowColor": [
+        "",
+        "",
+        ""
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 241,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+    },
     "totalFaceStats": 526,
-    "totalIgs": 2500
+    "totalIgs": 2500,
+    "isFullChemistry": false,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 4,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

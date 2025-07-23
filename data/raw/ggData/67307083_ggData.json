@@ -202,10 +202,146 @@
     "ggRating": null,
     "ggRatingPos": null,
     "ggRatingStr": null,
+    "isHistoricalItem": false,
     "commonName": "Lorenzo Insigne",
+    "club": {
+      "id": 2513,
+      "eaId": 111651,
+      "game": "25",
+      "slug": "111651-toronto-fc",
+      "name": "Toronto FC",
+      "sisterClubEaId": null,
+      "leagueEaId": 39,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/111651.362827aa2651ca5f269297e9eae5cdfe1b9744cf4e1cfea26db004d1645657fa.png",
+      "lightImagePath": "2025/club-light/111651.362827aa2651ca5f269297e9eae5cdfe1b9744cf4e1cfea26db004d1645657fa.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        198219,
+        273466,
+        255339
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 66,
+      "midfieldRating": 69,
+      "defenseRating": 66,
+      "overallRating": 68,
+      "url": "/clubs/111651-toronto-fc/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/111651.362827aa2651ca5f269297e9eae5cdfe1b9744cf4e1cfea26db004d1645657fa.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/111651.362827aa2651ca5f269297e9eae5cdfe1b9744cf4e1cfea26db004d1645657fa.png"
+    },
+    "uniqueClub": {
+      "id": 2513,
+      "eaId": 111651,
+      "game": "25",
+      "slug": "111651-toronto-fc",
+      "name": "Toronto FC",
+      "sisterClubEaId": null,
+      "leagueEaId": 39,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/111651.362827aa2651ca5f269297e9eae5cdfe1b9744cf4e1cfea26db004d1645657fa.png",
+      "lightImagePath": "2025/club-light/111651.362827aa2651ca5f269297e9eae5cdfe1b9744cf4e1cfea26db004d1645657fa.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        198219,
+        273466,
+        255339
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 66,
+      "midfieldRating": 69,
+      "defenseRating": 66,
+      "overallRating": 68,
+      "url": "/clubs/111651-toronto-fc/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/111651.362827aa2651ca5f269297e9eae5cdfe1b9744cf4e1cfea26db004d1645657fa.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/111651.362827aa2651ca5f269297e9eae5cdfe1b9744cf4e1cfea26db004d1645657fa.png"
+    },
+    "nation": {
+      "id": 678,
+      "eaId": 27,
+      "slug": "italy",
+      "name": "Italy",
+      "imagePath": "2025/nation/27.a5ab71f91b93d328dc342856fb41e3662d6bed1c17ec374392afe0dfee67e6f9.png",
+      "url": "/nations/italy/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/27.a5ab71f91b93d328dc342856fb41e3662d6bed1c17ec374392afe0dfee67e6f9.png"
+    },
+    "league": {
+      "id": 185,
+      "eaId": 39,
+      "slug": "major-league-soccer",
+      "name": "Major League Soccer",
+      "imagePath": "2025/league/39.ea32ac1d4c5aeb379cec48a5132b135cd9c8767b603cd69fe3083092b4ef9eb3.png",
+      "imageLightPath": "2025/league-light/39.ea32ac1d4c5aeb379cec48a5132b135cd9c8767b603cd69fe3083092b4ef9eb3.png",
+      "url": "/leagues/major-league-soccer/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/39.ea32ac1d4c5aeb379cec48a5132b135cd9c8767b603cd69fe3083092b4ef9eb3.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/39.ea32ac1d4c5aeb379cec48a5132b135cd9c8767b603cd69fe3083092b4ef9eb3.png"
+    },
     "isSbcItem": true,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 553,
+      "eaId": 65,
+      "slug": "tots-honourable-mentions",
+      "game": "25",
+      "name": "TOTS Honourable Mentions",
+      "alternateName": null,
+      "url": "/rarities/tots-honourable-mentions/",
+      "dominantColor": "0b3258",
+      "imagePath": "2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+      "imagePaths": [
+        "2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+        "2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+        "2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png"
+      ],
+      "isSpecial": true,
+      "compactImagePath": "2025/rarities-level-0-small/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+      "compactImagePaths": [
+        "2025/rarities-level-0-small/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+        "2025/rarities-level-0-small/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+        "2025/rarities-level-0-small/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": false,
+      "textColor": [
+        "d0fafb",
+        "d0fafb",
+        "d0fafb"
+      ],
+      "lineColor": [
+        "0b3258",
+        "0b3258",
+        "0b3258"
+      ],
+      "shadowColor": [
+        "",
+        "",
+        ""
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 103,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-small/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png"
+    },
     "totalFaceStats": 508,
-    "totalIgs": 2471
+    "totalIgs": 2471,
+    "isFullChemistry": false,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 4,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

@@ -170,7 +170,7 @@
     "objectiveCampaignLevelId": null,
     "campaignProps": null,
     "contentTypeId": 27,
-    "numberOfEvolutions": 0,
+    "numberOfEvolutions": 1,
     "blurbText": null,
     "smallBlurbText": "Anderson Talisca is 31 years old, and plays for Fenerbahçe in the Trendyol Süper Lig. Anderson Talisca's height stands at 191 cm (6'3'), and the nation he represents is Brazil. This TOTS Highlights version of Anderson Talisca is a 94 rated ST. He is Left footed, with 4 star skill moves and 5 star weak foot. ",
     "upgrades": null,
@@ -192,10 +192,176 @@
     "ggRating": null,
     "ggRatingPos": null,
     "ggRatingStr": null,
+    "isHistoricalItem": false,
     "commonName": "Anderson Talisca",
+    "club": {
+      "id": 2694,
+      "eaId": 326,
+      "game": "25",
+      "slug": "326-fenerbahce",
+      "name": "Fenerbahçe",
+      "sisterClubEaId": null,
+      "leagueEaId": 68,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/326.f6b73d2827295deda2cd3d34b0c54f181505ed6ea63bbaa28375b70c244f173f.png",
+      "lightImagePath": "2025/club-light/326.f6b73d2827295deda2cd3d34b0c54f181505ed6ea63bbaa28375b70c244f173f.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        199434,
+        204529,
+        209297
+      ],
+      "competitionIds": [
+        2
+      ],
+      "fixtureIds": [
+        289,
+        166,
+        3718,
+        3689,
+        206,
+        270,
+        3701,
+        245,
+        247,
+        3706,
+        188,
+        222
+      ],
+      "attackRating": 81,
+      "midfieldRating": 79,
+      "defenseRating": 79,
+      "overallRating": 80,
+      "url": "/clubs/326-fenerbahce/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/326.f6b73d2827295deda2cd3d34b0c54f181505ed6ea63bbaa28375b70c244f173f.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/326.f6b73d2827295deda2cd3d34b0c54f181505ed6ea63bbaa28375b70c244f173f.png"
+    },
+    "uniqueClub": {
+      "id": 2694,
+      "eaId": 326,
+      "game": "25",
+      "slug": "326-fenerbahce",
+      "name": "Fenerbahçe",
+      "sisterClubEaId": null,
+      "leagueEaId": 68,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/326.f6b73d2827295deda2cd3d34b0c54f181505ed6ea63bbaa28375b70c244f173f.png",
+      "lightImagePath": "2025/club-light/326.f6b73d2827295deda2cd3d34b0c54f181505ed6ea63bbaa28375b70c244f173f.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        199434,
+        204529,
+        209297
+      ],
+      "competitionIds": [
+        2
+      ],
+      "fixtureIds": [
+        289,
+        166,
+        3718,
+        3689,
+        206,
+        270,
+        3701,
+        245,
+        247,
+        3706,
+        188,
+        222
+      ],
+      "attackRating": 81,
+      "midfieldRating": 79,
+      "defenseRating": 79,
+      "overallRating": 80,
+      "url": "/clubs/326-fenerbahce/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/326.f6b73d2827295deda2cd3d34b0c54f181505ed6ea63bbaa28375b70c244f173f.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/326.f6b73d2827295deda2cd3d34b0c54f181505ed6ea63bbaa28375b70c244f173f.png"
+    },
+    "nation": {
+      "id": 704,
+      "eaId": 54,
+      "slug": "brazil",
+      "name": "Brazil",
+      "imagePath": "2025/nation/54.d9dc910e9f0757f8cb3980b65ec126b38c7ccd8eacbf33812b324fb0acb499c0.png",
+      "url": "/nations/brazil/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/54.d9dc910e9f0757f8cb3980b65ec126b38c7ccd8eacbf33812b324fb0acb499c0.png"
+    },
+    "league": {
+      "id": 196,
+      "eaId": 68,
+      "slug": "trendyol-super-lig",
+      "name": "Trendyol Süper Lig",
+      "imagePath": "2025/league/68.b72bab7165bd125b59c876e6609c8dbf2433de20fe14cca756511946d0bd05a5.png",
+      "imageLightPath": "2025/league-light/68.84305dc146e5cca3edf2625d5709ecd250ececb1fd70a95440a8e0c0669caa9d.png",
+      "url": "/leagues/trendyol-super-lig/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/68.b72bab7165bd125b59c876e6609c8dbf2433de20fe14cca756511946d0bd05a5.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/68.84305dc146e5cca3edf2625d5709ecd250ececb1fd70a95440a8e0c0669caa9d.png"
+    },
     "isSbcItem": false,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 555,
+      "eaId": 120,
+      "slug": "tots-highlights",
+      "game": "25",
+      "name": "TOTS Highlights",
+      "alternateName": null,
+      "url": "/rarities/tots-highlights/",
+      "dominantColor": "521b5e",
+      "imagePath": "2025/rarities-level-0-large/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png",
+      "imagePaths": [
+        "2025/rarities-level-0-large/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png",
+        "2025/rarities-level-0-large/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png",
+        "2025/rarities-level-0-large/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png"
+      ],
+      "isSpecial": true,
+      "compactImagePath": "2025/rarities-level-0-small/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png",
+      "compactImagePaths": [
+        "2025/rarities-level-0-small/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png",
+        "2025/rarities-level-0-small/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png",
+        "2025/rarities-level-0-small/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": false,
+      "textColor": [
+        "f8e9b3",
+        "f8e9b3",
+        "f8e9b3"
+      ],
+      "lineColor": [
+        "521b5e",
+        "521b5e",
+        "521b5e"
+      ],
+      "shadowColor": [
+        "",
+        "",
+        ""
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 55,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-small/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png"
+    },
     "totalFaceStats": 530,
-    "totalIgs": 2559
+    "totalIgs": 2559,
+    "isFullChemistry": false,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 4,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

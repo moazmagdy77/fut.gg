@@ -195,10 +195,146 @@
     "ggRating": null,
     "ggRatingPos": null,
     "ggRatingStr": null,
+    "isHistoricalItem": false,
     "commonName": "Riyad Mahrez",
+    "club": {
+      "id": 2795,
+      "eaId": 112387,
+      "game": "25",
+      "slug": "112387-al-ahli",
+      "name": "Al Ahli",
+      "sisterClubEaId": null,
+      "leagueEaId": 350,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/112387.93b75a505aa5f5e77a1f49915eaee850a0a66fd46941692c376913a2a51edea8.png",
+      "lightImagePath": "2025/club-light/112387.93b75a505aa5f5e77a1f49915eaee850a0a66fd46941692c376913a2a51edea8.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        204485,
+        247257,
+        212228
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 79,
+      "midfieldRating": 76,
+      "defenseRating": 71,
+      "overallRating": 75,
+      "url": "/clubs/112387-al-ahli/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/112387.93b75a505aa5f5e77a1f49915eaee850a0a66fd46941692c376913a2a51edea8.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/112387.93b75a505aa5f5e77a1f49915eaee850a0a66fd46941692c376913a2a51edea8.png"
+    },
+    "uniqueClub": {
+      "id": 2795,
+      "eaId": 112387,
+      "game": "25",
+      "slug": "112387-al-ahli",
+      "name": "Al Ahli",
+      "sisterClubEaId": null,
+      "leagueEaId": 350,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/112387.93b75a505aa5f5e77a1f49915eaee850a0a66fd46941692c376913a2a51edea8.png",
+      "lightImagePath": "2025/club-light/112387.93b75a505aa5f5e77a1f49915eaee850a0a66fd46941692c376913a2a51edea8.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        204485,
+        247257,
+        212228
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 79,
+      "midfieldRating": 76,
+      "defenseRating": 71,
+      "overallRating": 75,
+      "url": "/clubs/112387-al-ahli/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/112387.93b75a505aa5f5e77a1f49915eaee850a0a66fd46941692c376913a2a51edea8.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/112387.93b75a505aa5f5e77a1f49915eaee850a0a66fd46941692c376913a2a51edea8.png"
+    },
+    "nation": {
+      "id": 735,
+      "eaId": 97,
+      "slug": "algeria",
+      "name": "Algeria",
+      "imagePath": "2025/nation/97.c1bbcce92be82a391b0e22873cc58b6129f39758b953cbeb358d4b1abd6eb4c2.png",
+      "url": "/nations/algeria/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/97.c1bbcce92be82a391b0e22873cc58b6129f39758b953cbeb358d4b1abd6eb4c2.png"
+    },
+    "league": {
+      "id": 207,
+      "eaId": 350,
+      "slug": "roshn-saudi-league",
+      "name": "ROSHN Saudi League",
+      "imagePath": "2025/league/350.244e0a9e137630f60ab8b8873969fabf8b9098ee99101678e72d92c26c9e3ad9.png",
+      "imageLightPath": "2025/league-light/350.54e48d8c27b4671a61636c8d01a8b88b2276fb176741f8bb7cda29e268c97bca.png",
+      "url": "/leagues/roshn-saudi-league/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/350.244e0a9e137630f60ab8b8873969fabf8b9098ee99101678e72d92c26c9e3ad9.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/350.54e48d8c27b4671a61636c8d01a8b88b2276fb176741f8bb7cda29e268c97bca.png"
+    },
     "isSbcItem": true,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 553,
+      "eaId": 65,
+      "slug": "tots-honourable-mentions",
+      "game": "25",
+      "name": "TOTS Honourable Mentions",
+      "alternateName": null,
+      "url": "/rarities/tots-honourable-mentions/",
+      "dominantColor": "0b3258",
+      "imagePath": "2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+      "imagePaths": [
+        "2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+        "2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+        "2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png"
+      ],
+      "isSpecial": true,
+      "compactImagePath": "2025/rarities-level-0-small/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+      "compactImagePaths": [
+        "2025/rarities-level-0-small/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+        "2025/rarities-level-0-small/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+        "2025/rarities-level-0-small/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": false,
+      "textColor": [
+        "d0fafb",
+        "d0fafb",
+        "d0fafb"
+      ],
+      "lineColor": [
+        "0b3258",
+        "0b3258",
+        "0b3258"
+      ],
+      "shadowColor": [
+        "",
+        "",
+        ""
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 103,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-small/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png"
+    },
     "totalFaceStats": 513,
-    "totalIgs": 2465
+    "totalIgs": 2465,
+    "isFullChemistry": false,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 4,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

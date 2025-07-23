@@ -176,7 +176,7 @@
     "objectiveCampaignLevelId": null,
     "campaignProps": null,
     "contentTypeId": 27,
-    "numberOfEvolutions": 0,
+    "numberOfEvolutions": 1,
     "blurbText": null,
     "smallBlurbText": "Luca Orellano is 25 years old, and plays for FC Cincinnati in the Major League Soccer. Luca Orellano's height stands at 177 cm (5'10'), and the nation he represents is Argentina. This TOTS Highlights version of Luca Orellano is a 92 rated LM. He is Left footed, with 5 star skill moves and 4 star weak foot. ",
     "upgrades": null,
@@ -198,10 +198,146 @@
     "ggRating": null,
     "ggRatingPos": null,
     "ggRatingStr": null,
+    "isHistoricalItem": false,
     "commonName": "Luca Orellano",
+    "club": {
+      "id": 2522,
+      "eaId": 113149,
+      "game": "25",
+      "slug": "113149-fc-cincinnati",
+      "name": "FC Cincinnati",
+      "sisterClubEaId": null,
+      "leagueEaId": 39,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/113149.e23a4cc82367b2b10b31422192b6e39bb92dc13d47ee51de769485c5da646dab.png",
+      "lightImagePath": "2025/club-light/113149.e23a4cc82367b2b10b31422192b6e39bb92dc13d47ee51de769485c5da646dab.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        221634,
+        246423,
+        266382
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 71,
+      "midfieldRating": 72,
+      "defenseRating": 69,
+      "overallRating": 70,
+      "url": "/clubs/113149-fc-cincinnati/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/113149.e23a4cc82367b2b10b31422192b6e39bb92dc13d47ee51de769485c5da646dab.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/113149.e23a4cc82367b2b10b31422192b6e39bb92dc13d47ee51de769485c5da646dab.png"
+    },
+    "uniqueClub": {
+      "id": 2522,
+      "eaId": 113149,
+      "game": "25",
+      "slug": "113149-fc-cincinnati",
+      "name": "FC Cincinnati",
+      "sisterClubEaId": null,
+      "leagueEaId": 39,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/113149.e23a4cc82367b2b10b31422192b6e39bb92dc13d47ee51de769485c5da646dab.png",
+      "lightImagePath": "2025/club-light/113149.e23a4cc82367b2b10b31422192b6e39bb92dc13d47ee51de769485c5da646dab.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        221634,
+        246423,
+        266382
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 71,
+      "midfieldRating": 72,
+      "defenseRating": 69,
+      "overallRating": 70,
+      "url": "/clubs/113149-fc-cincinnati/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/113149.e23a4cc82367b2b10b31422192b6e39bb92dc13d47ee51de769485c5da646dab.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/113149.e23a4cc82367b2b10b31422192b6e39bb92dc13d47ee51de769485c5da646dab.png"
+    },
+    "nation": {
+      "id": 702,
+      "eaId": 52,
+      "slug": "argentina",
+      "name": "Argentina",
+      "imagePath": "2025/nation/52.411384d76f978ce88ee08880f79fd0b7c92d9f7a35a091c2fe2e58ad066e8a1a.png",
+      "url": "/nations/argentina/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/52.411384d76f978ce88ee08880f79fd0b7c92d9f7a35a091c2fe2e58ad066e8a1a.png"
+    },
+    "league": {
+      "id": 185,
+      "eaId": 39,
+      "slug": "major-league-soccer",
+      "name": "Major League Soccer",
+      "imagePath": "2025/league/39.ea32ac1d4c5aeb379cec48a5132b135cd9c8767b603cd69fe3083092b4ef9eb3.png",
+      "imageLightPath": "2025/league-light/39.ea32ac1d4c5aeb379cec48a5132b135cd9c8767b603cd69fe3083092b4ef9eb3.png",
+      "url": "/leagues/major-league-soccer/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/39.ea32ac1d4c5aeb379cec48a5132b135cd9c8767b603cd69fe3083092b4ef9eb3.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/39.ea32ac1d4c5aeb379cec48a5132b135cd9c8767b603cd69fe3083092b4ef9eb3.png"
+    },
     "isSbcItem": false,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 555,
+      "eaId": 120,
+      "slug": "tots-highlights",
+      "game": "25",
+      "name": "TOTS Highlights",
+      "alternateName": null,
+      "url": "/rarities/tots-highlights/",
+      "dominantColor": "521b5e",
+      "imagePath": "2025/rarities-level-0-large/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png",
+      "imagePaths": [
+        "2025/rarities-level-0-large/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png",
+        "2025/rarities-level-0-large/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png",
+        "2025/rarities-level-0-large/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png"
+      ],
+      "isSpecial": true,
+      "compactImagePath": "2025/rarities-level-0-small/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png",
+      "compactImagePaths": [
+        "2025/rarities-level-0-small/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png",
+        "2025/rarities-level-0-small/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png",
+        "2025/rarities-level-0-small/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": false,
+      "textColor": [
+        "f8e9b3",
+        "f8e9b3",
+        "f8e9b3"
+      ],
+      "lineColor": [
+        "521b5e",
+        "521b5e",
+        "521b5e"
+      ],
+      "shadowColor": [
+        "",
+        "",
+        ""
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 55,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-small/120.16f44943b4b43f62770f21913fdb910079eb54802bcd92e277924c26b275bf3f.png"
+    },
     "totalFaceStats": 511,
-    "totalIgs": 2466
+    "totalIgs": 2466,
+    "isFullChemistry": false,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 4,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

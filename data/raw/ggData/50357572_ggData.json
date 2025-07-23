@@ -187,10 +187,116 @@
     "ggRating": null,
     "ggRatingPos": null,
     "ggRatingStr": null,
+    "isHistoricalItem": false,
     "commonName": "Capdevila",
+    "club": null,
+    "uniqueClub": {
+      "id": 2999,
+      "eaId": 114605,
+      "game": "25",
+      "slug": "114605-hero",
+      "name": "HERO",
+      "sisterClubEaId": null,
+      "leagueEaId": 2118,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/114605.df965f0a2745d68ce02cc886839b25fba6480c9813b87a9e4720d4f25e12f86b.png",
+      "lightImagePath": "2025/club-light/114605.df965f0a2745d68ce02cc886839b25fba6480c9813b87a9e4720d4f25e12f86b.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": null,
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": null,
+      "midfieldRating": null,
+      "defenseRating": null,
+      "overallRating": null,
+      "url": "/clubs/114605-hero/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/114605.df965f0a2745d68ce02cc886839b25fba6480c9813b87a9e4720d4f25e12f86b.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/114605.df965f0a2745d68ce02cc886839b25fba6480c9813b87a9e4720d4f25e12f86b.png"
+    },
+    "nation": {
+      "id": 695,
+      "eaId": 45,
+      "slug": "spain",
+      "name": "Spain",
+      "imagePath": "2025/nation/45.307275040b6531f26bb980298820e1a50df6eb288379a2efc5e5eb3abdb5f1ea.png",
+      "url": "/nations/spain/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/45.307275040b6531f26bb980298820e1a50df6eb288379a2efc5e5eb3abdb5f1ea.png"
+    },
+    "league": {
+      "id": 188,
+      "eaId": 53,
+      "slug": "laliga-ea-sports",
+      "name": "LALIGA EA SPORTS",
+      "imagePath": "2025/league/53.adf7c6700978e91b81c4fd4b4a82187dfea2d3074a907efa14caebfaffa461eb.png",
+      "imageLightPath": "2025/league-light/53.04c615b8cb52a1d1a704779c32d327cb9a97275e3929016e4673938cc3a6bc22.png",
+      "url": "/leagues/laliga-ea-sports/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/53.adf7c6700978e91b81c4fd4b4a82187dfea2d3074a907efa14caebfaffa461eb.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/53.04c615b8cb52a1d1a704779c32d327cb9a97275e3929016e4673938cc3a6bc22.png"
+    },
     "isSbcItem": false,
     "isObjectiveItem": true,
+    "rarity": {
+      "id": 530,
+      "eaId": 148,
+      "slug": "fut-birthday-hero",
+      "game": "25",
+      "name": "FUT Birthday Hero",
+      "alternateName": null,
+      "url": "/rarities/fut-birthday-hero/",
+      "dominantColor": "c328ff",
+      "imagePath": "2025/rarities-level-0-large/148.b8124b4d5bbbc713babbca26777ad38a10facb584fd5392c04db3b129e11e199.png",
+      "imagePaths": [
+        "2025/rarities-level-0-large/148.b8124b4d5bbbc713babbca26777ad38a10facb584fd5392c04db3b129e11e199.png",
+        "2025/rarities-level-0-large/148.b8124b4d5bbbc713babbca26777ad38a10facb584fd5392c04db3b129e11e199.png",
+        "2025/rarities-level-0-large/148.b8124b4d5bbbc713babbca26777ad38a10facb584fd5392c04db3b129e11e199.png"
+      ],
+      "isSpecial": true,
+      "compactImagePath": "2025/rarities-level-0-small/148.b8124b4d5bbbc713babbca26777ad38a10facb584fd5392c04db3b129e11e199.png",
+      "compactImagePaths": [
+        "2025/rarities-level-0-small/148.b8124b4d5bbbc713babbca26777ad38a10facb584fd5392c04db3b129e11e199.png",
+        "2025/rarities-level-0-small/148.b8124b4d5bbbc713babbca26777ad38a10facb584fd5392c04db3b129e11e199.png",
+        "2025/rarities-level-0-small/148.b8124b4d5bbbc713babbca26777ad38a10facb584fd5392c04db3b129e11e199.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": false,
+      "textColor": [
+        "fff6fb",
+        "fff6fb",
+        "fff6fb"
+      ],
+      "lineColor": [
+        "c328ff",
+        "c328ff",
+        "c328ff"
+      ],
+      "shadowColor": [
+        "",
+        "",
+        ""
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 19,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/148.b8124b4d5bbbc713babbca26777ad38a10facb584fd5392c04db3b129e11e199.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/148.b8124b4d5bbbc713babbca26777ad38a10facb584fd5392c04db3b129e11e199.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/148.b8124b4d5bbbc713babbca26777ad38a10facb584fd5392c04db3b129e11e199.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/148.b8124b4d5bbbc713babbca26777ad38a10facb584fd5392c04db3b129e11e199.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-small/148.b8124b4d5bbbc713babbca26777ad38a10facb584fd5392c04db3b129e11e199.png"
+    },
     "totalFaceStats": 527,
-    "totalIgs": 2541
+    "totalIgs": 2541,
+    "isFullChemistry": true,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 1,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

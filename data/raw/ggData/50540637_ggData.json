@@ -156,7 +156,7 @@
     "objectiveCampaignLevelId": null,
     "campaignProps": null,
     "contentTypeId": 27,
-    "numberOfEvolutions": 2,
+    "numberOfEvolutions": 78,
     "blurbText": null,
     "smallBlurbText": "Freddie Ladapo is 32 years old, and plays for Huddersfield in the EFL League One. Freddie Ladapo's height stands at 185 cm (6'1'), and the nation he represents is England. This Common version of Freddie Ladapo is a 65 rated ST. He is Right footed, with 3 star skill moves and 4 star weak foot. ",
     "upgrades": null,
@@ -178,10 +178,146 @@
     "ggRating": null,
     "ggRatingPos": null,
     "ggRatingStr": null,
+    "isHistoricalItem": false,
     "commonName": "Freddie Ladapo",
+    "club": {
+      "id": 2629,
+      "eaId": 1939,
+      "game": "25",
+      "slug": "1939-huddersfield",
+      "name": "Huddersfield",
+      "sisterClubEaId": null,
+      "leagueEaId": 60,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/1939.0891cf739bbcddca633c064373af3287533cafb3bd0586194ae130f27f7298af.png",
+      "lightImagePath": "2025/club-light/1939.0891cf739bbcddca633c064373af3287533cafb3bd0586194ae130f27f7298af.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        230918,
+        262859,
+        220714
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 66,
+      "midfieldRating": 65,
+      "defenseRating": 66,
+      "overallRating": 66,
+      "url": "/clubs/1939-huddersfield/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/1939.0891cf739bbcddca633c064373af3287533cafb3bd0586194ae130f27f7298af.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/1939.0891cf739bbcddca633c064373af3287533cafb3bd0586194ae130f27f7298af.png"
+    },
+    "uniqueClub": {
+      "id": 2629,
+      "eaId": 1939,
+      "game": "25",
+      "slug": "1939-huddersfield",
+      "name": "Huddersfield",
+      "sisterClubEaId": null,
+      "leagueEaId": 60,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/1939.0891cf739bbcddca633c064373af3287533cafb3bd0586194ae130f27f7298af.png",
+      "lightImagePath": "2025/club-light/1939.0891cf739bbcddca633c064373af3287533cafb3bd0586194ae130f27f7298af.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        230918,
+        262859,
+        220714
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 66,
+      "midfieldRating": 65,
+      "defenseRating": 66,
+      "overallRating": 66,
+      "url": "/clubs/1939-huddersfield/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/1939.0891cf739bbcddca633c064373af3287533cafb3bd0586194ae130f27f7298af.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/1939.0891cf739bbcddca633c064373af3287533cafb3bd0586194ae130f27f7298af.png"
+    },
+    "nation": {
+      "id": 665,
+      "eaId": 14,
+      "slug": "england",
+      "name": "England",
+      "imagePath": "2025/nation/14.78390863cddfae30b0df1723f63159b6dc1c09e4ecde31080b60ba3b9bee500e.png",
+      "url": "/nations/england/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/14.78390863cddfae30b0df1723f63159b6dc1c09e4ecde31080b60ba3b9bee500e.png"
+    },
+    "league": {
+      "id": 191,
+      "eaId": 60,
+      "slug": "efl-league-one",
+      "name": "EFL League One",
+      "imagePath": "2025/league/60.c465a0dffedc82ce54d4c5b6fe93ce90b641dc1eac7cd552fa1d13f9bc472859.png",
+      "imageLightPath": "2025/league-light/60.c465a0dffedc82ce54d4c5b6fe93ce90b641dc1eac7cd552fa1d13f9bc472859.png",
+      "url": "/leagues/efl-league-one/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/60.c465a0dffedc82ce54d4c5b6fe93ce90b641dc1eac7cd552fa1d13f9bc472859.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/60.c465a0dffedc82ce54d4c5b6fe93ce90b641dc1eac7cd552fa1d13f9bc472859.png"
+    },
     "isSbcItem": false,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 433,
+      "eaId": 0,
+      "slug": "common",
+      "game": "25",
+      "name": "Common",
+      "alternateName": null,
+      "url": "/rarities/common/",
+      "dominantColor": "d39570",
+      "imagePath": "2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png",
+      "imagePaths": [
+        "2025/rarities-level-1-large/0.9e74985cc5fa0235bfd1cdf18524886abec80cb940fb87245dc8eb0fe402e68e.png",
+        "2025/rarities-level-2-large/0.bcc3305230ad572a1c35252bfc76d94661378a3cd0bc6f05053ecadb8b4b8dbe.png",
+        "2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png"
+      ],
+      "isSpecial": false,
+      "compactImagePath": "2025/rarities-level-3-small/0.36979d419602c94f76334ef1a76956cfb9ee4d2b8520bee91e554090f1573149.png",
+      "compactImagePaths": [
+        "2025/rarities-level-1-small/0.07fe8673a441822a263a61409f05124a35882cb798e0cd62868d00dc388d25cd.png",
+        "2025/rarities-level-2-small/0.2d3f30416f2b228ddf7e8eef513c1ffb7af5aadea48ff7a9a24cccd90f40889c.png",
+        "2025/rarities-level-3-small/0.36979d419602c94f76334ef1a76956cfb9ee4d2b8520bee91e554090f1573149.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": true,
+      "textColor": [
+        "3f1208",
+        "192228",
+        "31260c"
+      ],
+      "lineColor": [
+        "d39570",
+        "bfcbd3",
+        "c5a96b"
+      ],
+      "shadowColor": [
+        "#000000",
+        "#000000",
+        "#000000"
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 13709,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-1-large/0.9e74985cc5fa0235bfd1cdf18524886abec80cb940fb87245dc8eb0fe402e68e.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-2-large/0.bcc3305230ad572a1c35252bfc76d94661378a3cd0bc6f05053ecadb8b4b8dbe.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-small/0.36979d419602c94f76334ef1a76956cfb9ee4d2b8520bee91e554090f1573149.png"
+    },
     "totalFaceStats": 344,
-    "totalIgs": 1602
+    "totalIgs": 1602,
+    "isFullChemistry": false,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 0,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

@@ -174,7 +174,7 @@
     "objectiveCampaignLevelId": null,
     "campaignProps": null,
     "contentTypeId": 27,
-    "numberOfEvolutions": 0,
+    "numberOfEvolutions": 1,
     "blurbText": null,
     "smallBlurbText": "Toluwalase Arokodare is 24 years old, and plays for KRC Genk in the 1A Pro League. Toluwalase Arokodare's height stands at 197 cm (6'6'), and the nation he represents is Nigeria. This TEAM OF THE SEASON version of Toluwalase Arokodare is a 93 rated ST. He is Right footed, with 4 star skill moves and 5 star weak foot. ",
     "upgrades": null,
@@ -196,10 +196,146 @@
     "ggRating": null,
     "ggRatingPos": null,
     "ggRatingStr": null,
+    "isHistoricalItem": false,
     "commonName": "Toluwalase Arokodare",
+    "club": {
+      "id": 2313,
+      "eaId": 673,
+      "game": "25",
+      "slug": "673-krc-genk",
+      "name": "KRC Genk",
+      "sisterClubEaId": null,
+      "leagueEaId": 4,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/673.71946ed7217d815479ce268ffb094a5a91ef31056286dd588fdedc5e1e4fdf4f.png",
+      "lightImagePath": "2025/club-light/673.71946ed7217d815479ce268ffb094a5a91ef31056286dd588fdedc5e1e4fdf4f.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        184111,
+        192985,
+        223848
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 72,
+      "midfieldRating": 71,
+      "defenseRating": 73,
+      "overallRating": 72,
+      "url": "/clubs/673-krc-genk/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/673.71946ed7217d815479ce268ffb094a5a91ef31056286dd588fdedc5e1e4fdf4f.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/673.71946ed7217d815479ce268ffb094a5a91ef31056286dd588fdedc5e1e4fdf4f.png"
+    },
+    "uniqueClub": {
+      "id": 2313,
+      "eaId": 673,
+      "game": "25",
+      "slug": "673-krc-genk",
+      "name": "KRC Genk",
+      "sisterClubEaId": null,
+      "leagueEaId": 4,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/673.71946ed7217d815479ce268ffb094a5a91ef31056286dd588fdedc5e1e4fdf4f.png",
+      "lightImagePath": "2025/club-light/673.71946ed7217d815479ce268ffb094a5a91ef31056286dd588fdedc5e1e4fdf4f.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        184111,
+        192985,
+        223848
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 72,
+      "midfieldRating": 71,
+      "defenseRating": 73,
+      "overallRating": 72,
+      "url": "/clubs/673-krc-genk/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/673.71946ed7217d815479ce268ffb094a5a91ef31056286dd588fdedc5e1e4fdf4f.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/673.71946ed7217d815479ce268ffb094a5a91ef31056286dd588fdedc5e1e4fdf4f.png"
+    },
+    "nation": {
+      "id": 764,
+      "eaId": 133,
+      "slug": "nigeria",
+      "name": "Nigeria",
+      "imagePath": "2025/nation/133.87dc4041397ef2ea3a775c262da9eb59dac40fd6cd9c653283194ade662cbb2b.png",
+      "url": "/nations/nigeria/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/133.87dc4041397ef2ea3a775c262da9eb59dac40fd6cd9c653283194ade662cbb2b.png"
+    },
+    "league": {
+      "id": 175,
+      "eaId": 4,
+      "slug": "1a-pro-league",
+      "name": "1A Pro League",
+      "imagePath": "2025/league/4.92eb57bbf802a9cba8633144e760dee82e7039f96bac4853610d0247b8492af5.png",
+      "imageLightPath": "2025/league-light/4.96ab33aac9fc5863e31e228424cbc3ea49c26154e3e6854b5c1e21b5c3f4434f.png",
+      "url": "/leagues/1a-pro-league/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/4.92eb57bbf802a9cba8633144e760dee82e7039f96bac4853610d0247b8492af5.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/4.96ab33aac9fc5863e31e228424cbc3ea49c26154e3e6854b5c1e21b5c3f4434f.png"
+    },
     "isSbcItem": false,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 554,
+      "eaId": 11,
+      "slug": "team-of-the-season",
+      "game": "25",
+      "name": "TEAM OF THE SEASON",
+      "alternateName": null,
+      "url": "/rarities/team-of-the-season/",
+      "dominantColor": "104f74",
+      "imagePath": "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+      "imagePaths": [
+        "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+      ],
+      "isSpecial": true,
+      "compactImagePath": "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+      "compactImagePaths": [
+        "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": false,
+      "textColor": [
+        "f8e9b3",
+        "f8e9b3",
+        "f8e9b3"
+      ],
+      "lineColor": [
+        "104f74",
+        "104f74",
+        "104f74"
+      ],
+      "shadowColor": [
+        "",
+        "",
+        ""
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 241,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+    },
     "totalFaceStats": 495,
-    "totalIgs": 2390
+    "totalIgs": 2390,
+    "isFullChemistry": false,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 4,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

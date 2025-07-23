@@ -173,7 +173,7 @@
     "objectiveCampaignLevelId": null,
     "campaignProps": null,
     "contentTypeId": 27,
-    "numberOfEvolutions": 0,
+    "numberOfEvolutions": 1,
     "blurbText": null,
     "smallBlurbText": "Jan Vertonghen is 38 years old, and plays for RSC Anderlecht in the 1A Pro League. Jan Vertonghen's height stands at 189 cm (6'2'), and the nation he represents is Belgium. This End Of An Era version of Jan Vertonghen is a 92 rated CB. He is Left footed, with 4 star skill moves and 4 star weak foot. ",
     "upgrades": null,
@@ -195,10 +195,172 @@
     "ggRating": null,
     "ggRatingPos": null,
     "ggRatingStr": null,
+    "isHistoricalItem": false,
     "commonName": "Jan Vertonghen",
+    "club": {
+      "id": 2307,
+      "eaId": 229,
+      "game": "25",
+      "slug": "229-rsc-anderlecht",
+      "name": "RSC Anderlecht",
+      "sisterClubEaId": null,
+      "leagueEaId": 4,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/229.07518f13aeb44348342d150726889f54be4c3faaf3d6060c2ff62695d3d5c3ee.png",
+      "lightImagePath": "2025/club-light/229.07518f13aeb44348342d150726889f54be4c3faaf3d6060c2ff62695d3d5c3ee.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        192505,
+        251483,
+        199641
+      ],
+      "competitionIds": [
+        2
+      ],
+      "fixtureIds": [
+        227,
+        229,
+        264,
+        3689,
+        202,
+        274,
+        3701,
+        181,
+        284,
+        159
+      ],
+      "attackRating": 77,
+      "midfieldRating": 74,
+      "defenseRating": 71,
+      "overallRating": 73,
+      "url": "/clubs/229-rsc-anderlecht/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/229.07518f13aeb44348342d150726889f54be4c3faaf3d6060c2ff62695d3d5c3ee.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/229.07518f13aeb44348342d150726889f54be4c3faaf3d6060c2ff62695d3d5c3ee.png"
+    },
+    "uniqueClub": {
+      "id": 2307,
+      "eaId": 229,
+      "game": "25",
+      "slug": "229-rsc-anderlecht",
+      "name": "RSC Anderlecht",
+      "sisterClubEaId": null,
+      "leagueEaId": 4,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/229.07518f13aeb44348342d150726889f54be4c3faaf3d6060c2ff62695d3d5c3ee.png",
+      "lightImagePath": "2025/club-light/229.07518f13aeb44348342d150726889f54be4c3faaf3d6060c2ff62695d3d5c3ee.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        192505,
+        251483,
+        199641
+      ],
+      "competitionIds": [
+        2
+      ],
+      "fixtureIds": [
+        227,
+        229,
+        264,
+        3689,
+        202,
+        274,
+        3701,
+        181,
+        284,
+        159
+      ],
+      "attackRating": 77,
+      "midfieldRating": 74,
+      "defenseRating": 71,
+      "overallRating": 73,
+      "url": "/clubs/229-rsc-anderlecht/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/229.07518f13aeb44348342d150726889f54be4c3faaf3d6060c2ff62695d3d5c3ee.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/229.07518f13aeb44348342d150726889f54be4c3faaf3d6060c2ff62695d3d5c3ee.png"
+    },
+    "nation": {
+      "id": 658,
+      "eaId": 7,
+      "slug": "belgium",
+      "name": "Belgium",
+      "imagePath": "2025/nation/7.ac5d909d61d15c23304d9bb4565db31d2b49c36181a95422ef481126060f6793.png",
+      "url": "/nations/belgium/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/7.ac5d909d61d15c23304d9bb4565db31d2b49c36181a95422ef481126060f6793.png"
+    },
+    "league": {
+      "id": 175,
+      "eaId": 4,
+      "slug": "1a-pro-league",
+      "name": "1A Pro League",
+      "imagePath": "2025/league/4.92eb57bbf802a9cba8633144e760dee82e7039f96bac4853610d0247b8492af5.png",
+      "imageLightPath": "2025/league-light/4.96ab33aac9fc5863e31e228424cbc3ea49c26154e3e6854b5c1e21b5c3f4434f.png",
+      "url": "/leagues/1a-pro-league/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/4.92eb57bbf802a9cba8633144e760dee82e7039f96bac4853610d0247b8492af5.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/4.96ab33aac9fc5863e31e228424cbc3ea49c26154e3e6854b5c1e21b5c3f4434f.png"
+    },
     "isSbcItem": false,
     "isObjectiveItem": true,
+    "rarity": {
+      "id": 451,
+      "eaId": 25,
+      "slug": "end-of-an-era",
+      "game": "25",
+      "name": "End Of An Era",
+      "alternateName": null,
+      "url": "/rarities/end-of-an-era/",
+      "dominantColor": "3c195b",
+      "imagePath": "2025/rarities-level-0-large/25.469a778448bd17bf1dfd80b47b10f6a0f856802d004252a2972578ccbdc94c8d.png",
+      "imagePaths": [
+        "2025/rarities-level-0-large/25.469a778448bd17bf1dfd80b47b10f6a0f856802d004252a2972578ccbdc94c8d.png",
+        "2025/rarities-level-0-large/25.469a778448bd17bf1dfd80b47b10f6a0f856802d004252a2972578ccbdc94c8d.png",
+        "2025/rarities-level-0-large/25.469a778448bd17bf1dfd80b47b10f6a0f856802d004252a2972578ccbdc94c8d.png"
+      ],
+      "isSpecial": true,
+      "compactImagePath": "2025/rarities-level-0-small/25.d4504f3415a1ea7205456592eedfb19018551c0e34b5cf4654b3792d36afa49d.png",
+      "compactImagePaths": [
+        "2025/rarities-level-0-small/25.d4504f3415a1ea7205456592eedfb19018551c0e34b5cf4654b3792d36afa49d.png",
+        "2025/rarities-level-0-small/25.d4504f3415a1ea7205456592eedfb19018551c0e34b5cf4654b3792d36afa49d.png",
+        "2025/rarities-level-0-small/25.d4504f3415a1ea7205456592eedfb19018551c0e34b5cf4654b3792d36afa49d.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": false,
+      "textColor": [
+        "fcfaff",
+        "fcfaff",
+        "fcfaff"
+      ],
+      "lineColor": [
+        "3c195b",
+        "3c195b",
+        "3c195b"
+      ],
+      "shadowColor": [
+        "",
+        "",
+        ""
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 16,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/25.469a778448bd17bf1dfd80b47b10f6a0f856802d004252a2972578ccbdc94c8d.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/25.469a778448bd17bf1dfd80b47b10f6a0f856802d004252a2972578ccbdc94c8d.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/25.469a778448bd17bf1dfd80b47b10f6a0f856802d004252a2972578ccbdc94c8d.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/25.469a778448bd17bf1dfd80b47b10f6a0f856802d004252a2972578ccbdc94c8d.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-small/25.d4504f3415a1ea7205456592eedfb19018551c0e34b5cf4654b3792d36afa49d.png"
+    },
     "totalFaceStats": 522,
-    "totalIgs": 2507
+    "totalIgs": 2507,
+    "isFullChemistry": true,
+    "extraNationChemistry": 1,
+    "extraLeagueChemistry": 0,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": true,
+    "extraSquadNationChemistry": false
   }
 }

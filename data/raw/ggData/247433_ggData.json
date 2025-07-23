@@ -152,7 +152,7 @@
     "objectiveCampaignLevelId": null,
     "campaignProps": null,
     "contentTypeId": 27,
-    "numberOfEvolutions": 4,
+    "numberOfEvolutions": 34,
     "blurbText": null,
     "smallBlurbText": "Juan Freytes is 25 years old, and plays for Alianza Lima in the CONMEBOL Libertadores. Juan Freytes's height stands at 182 cm (6'0'), and the nation he represents is Argentina. This Common version of Juan Freytes is a 65 rated CB. He is Left footed, with 2 star skill moves and 2 star weak foot. ",
     "upgrades": null,
@@ -174,10 +174,146 @@
     "ggRating": null,
     "ggRatingPos": null,
     "ggRatingStr": null,
+    "isHistoricalItem": false,
     "commonName": "Juan Freytes",
+    "club": {
+      "id": 2861,
+      "eaId": 111010,
+      "game": "25",
+      "slug": "111010-alianza-lima",
+      "name": "Alianza Lima",
+      "sisterClubEaId": null,
+      "leagueEaId": 1003,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/111010.021b8daf1fc3929ca2ffd80df11ec141ee973362ca974100f3ad447017f76b4c.png",
+      "lightImagePath": "2025/club-light/111010.021b8daf1fc3929ca2ffd80df11ec141ee973362ca974100f3ad447017f76b4c.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        191856,
+        226002,
+        203299
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 72,
+      "midfieldRating": 68,
+      "defenseRating": 70,
+      "overallRating": 70,
+      "url": "/clubs/111010-alianza-lima/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/111010.021b8daf1fc3929ca2ffd80df11ec141ee973362ca974100f3ad447017f76b4c.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/111010.021b8daf1fc3929ca2ffd80df11ec141ee973362ca974100f3ad447017f76b4c.png"
+    },
+    "uniqueClub": {
+      "id": 2861,
+      "eaId": 111010,
+      "game": "25",
+      "slug": "111010-alianza-lima",
+      "name": "Alianza Lima",
+      "sisterClubEaId": null,
+      "leagueEaId": 1003,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/111010.021b8daf1fc3929ca2ffd80df11ec141ee973362ca974100f3ad447017f76b4c.png",
+      "lightImagePath": "2025/club-light/111010.021b8daf1fc3929ca2ffd80df11ec141ee973362ca974100f3ad447017f76b4c.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        191856,
+        226002,
+        203299
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 72,
+      "midfieldRating": 68,
+      "defenseRating": 70,
+      "overallRating": 70,
+      "url": "/clubs/111010-alianza-lima/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/111010.021b8daf1fc3929ca2ffd80df11ec141ee973362ca974100f3ad447017f76b4c.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/111010.021b8daf1fc3929ca2ffd80df11ec141ee973362ca974100f3ad447017f76b4c.png"
+    },
+    "nation": {
+      "id": 702,
+      "eaId": 52,
+      "slug": "argentina",
+      "name": "Argentina",
+      "imagePath": "2025/nation/52.411384d76f978ce88ee08880f79fd0b7c92d9f7a35a091c2fe2e58ad066e8a1a.png",
+      "url": "/nations/argentina/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/52.411384d76f978ce88ee08880f79fd0b7c92d9f7a35a091c2fe2e58ad066e8a1a.png"
+    },
+    "league": {
+      "id": 210,
+      "eaId": 1003,
+      "slug": "conmebol-libertadores",
+      "name": "CONMEBOL Libertadores",
+      "imagePath": "2025/league/1003.8f1a8b8b02c393572c36d1d9ee6e02d167417db61ea20d6875f836c4c595b74c.png",
+      "imageLightPath": "2025/league-light/1003.0e18b1225bdc47e2541cd7b866709f27dd475efdeb5e9ae555c2404d07c8f450.png",
+      "url": "/leagues/conmebol-libertadores/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/1003.8f1a8b8b02c393572c36d1d9ee6e02d167417db61ea20d6875f836c4c595b74c.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/1003.0e18b1225bdc47e2541cd7b866709f27dd475efdeb5e9ae555c2404d07c8f450.png"
+    },
     "isSbcItem": false,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 433,
+      "eaId": 0,
+      "slug": "common",
+      "game": "25",
+      "name": "Common",
+      "alternateName": null,
+      "url": "/rarities/common/",
+      "dominantColor": "d39570",
+      "imagePath": "2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png",
+      "imagePaths": [
+        "2025/rarities-level-1-large/0.9e74985cc5fa0235bfd1cdf18524886abec80cb940fb87245dc8eb0fe402e68e.png",
+        "2025/rarities-level-2-large/0.bcc3305230ad572a1c35252bfc76d94661378a3cd0bc6f05053ecadb8b4b8dbe.png",
+        "2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png"
+      ],
+      "isSpecial": false,
+      "compactImagePath": "2025/rarities-level-3-small/0.36979d419602c94f76334ef1a76956cfb9ee4d2b8520bee91e554090f1573149.png",
+      "compactImagePaths": [
+        "2025/rarities-level-1-small/0.07fe8673a441822a263a61409f05124a35882cb798e0cd62868d00dc388d25cd.png",
+        "2025/rarities-level-2-small/0.2d3f30416f2b228ddf7e8eef513c1ffb7af5aadea48ff7a9a24cccd90f40889c.png",
+        "2025/rarities-level-3-small/0.36979d419602c94f76334ef1a76956cfb9ee4d2b8520bee91e554090f1573149.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": true,
+      "textColor": [
+        "3f1208",
+        "192228",
+        "31260c"
+      ],
+      "lineColor": [
+        "d39570",
+        "bfcbd3",
+        "c5a96b"
+      ],
+      "shadowColor": [
+        "#000000",
+        "#000000",
+        "#000000"
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 13709,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-1-large/0.9e74985cc5fa0235bfd1cdf18524886abec80cb940fb87245dc8eb0fe402e68e.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-2-large/0.bcc3305230ad572a1c35252bfc76d94661378a3cd0bc6f05053ecadb8b4b8dbe.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-small/0.36979d419602c94f76334ef1a76956cfb9ee4d2b8520bee91e554090f1573149.png"
+    },
     "totalFaceStats": 359,
-    "totalIgs": 1668
+    "totalIgs": 1668,
+    "isFullChemistry": false,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 0,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

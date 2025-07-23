@@ -152,7 +152,7 @@
     "objectiveCampaignLevelId": null,
     "campaignProps": null,
     "contentTypeId": 27,
-    "numberOfEvolutions": 13,
+    "numberOfEvolutions": 136,
     "blurbText": null,
     "smallBlurbText": "Niklas Hoffmann is 28 years old, and plays for SV Waldhof in the 3. Liga. Niklas Hoffmann's height stands at 190 cm (6'3'), and the nation he represents is Germany. This Common version of Niklas Hoffmann is a 65 rated CB. He is Right footed, with 2 star skill moves and 3 star weak foot. ",
     "upgrades": null,
@@ -174,10 +174,146 @@
     "ggRating": null,
     "ggRatingPos": null,
     "ggRatingStr": null,
+    "isHistoricalItem": false,
     "commonName": "Niklas Hoffmann",
+    "club": {
+      "id": 2948,
+      "eaId": 110532,
+      "game": "25",
+      "slug": "110532-sv-waldhof",
+      "name": "SV Waldhof",
+      "sisterClubEaId": null,
+      "leagueEaId": 2076,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/110532.4fb23ae44058c5c2f3bc0669d3c0c1d467b9366fcd64c01468596002f0d99540.png",
+      "lightImagePath": "2025/club-light/110532.4fb23ae44058c5c2f3bc0669d3c0c1d467b9366fcd64c01468596002f0d99540.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        239261,
+        238692,
+        248576
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 65,
+      "midfieldRating": 64,
+      "defenseRating": 64,
+      "overallRating": 64,
+      "url": "/clubs/110532-sv-waldhof/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/110532.4fb23ae44058c5c2f3bc0669d3c0c1d467b9366fcd64c01468596002f0d99540.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/110532.4fb23ae44058c5c2f3bc0669d3c0c1d467b9366fcd64c01468596002f0d99540.png"
+    },
+    "uniqueClub": {
+      "id": 2948,
+      "eaId": 110532,
+      "game": "25",
+      "slug": "110532-sv-waldhof",
+      "name": "SV Waldhof",
+      "sisterClubEaId": null,
+      "leagueEaId": 2076,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/110532.4fb23ae44058c5c2f3bc0669d3c0c1d467b9366fcd64c01468596002f0d99540.png",
+      "lightImagePath": "2025/club-light/110532.4fb23ae44058c5c2f3bc0669d3c0c1d467b9366fcd64c01468596002f0d99540.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        239261,
+        238692,
+        248576
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 65,
+      "midfieldRating": 64,
+      "defenseRating": 64,
+      "overallRating": 64,
+      "url": "/clubs/110532-sv-waldhof/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/110532.4fb23ae44058c5c2f3bc0669d3c0c1d467b9366fcd64c01468596002f0d99540.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/110532.4fb23ae44058c5c2f3bc0669d3c0c1d467b9366fcd64c01468596002f0d99540.png"
+    },
+    "nation": {
+      "id": 672,
+      "eaId": 21,
+      "slug": "germany",
+      "name": "Germany",
+      "imagePath": "2025/nation/21.09e6201577ad206ca1927900d61876676ce53a98d69a6e8047ccfeac8c133cdd.png",
+      "url": "/nations/germany/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/21.09e6201577ad206ca1927900d61876676ce53a98d69a6e8047ccfeac8c133cdd.png"
+    },
+    "league": {
+      "id": 213,
+      "eaId": 2076,
+      "slug": "3-liga",
+      "name": "3. Liga",
+      "imagePath": "2025/league/2076.bfb1cc1e9035840236158c1b7d327d4366f87518f5d57cb9f7254ab5d8bbd252.png",
+      "imageLightPath": "2025/league-light/2076.63fa1a4f9cabcc974f7db822e02edaf1e07f07936dfcc6add83044b92f772e84.png",
+      "url": "/leagues/3-liga/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/2076.bfb1cc1e9035840236158c1b7d327d4366f87518f5d57cb9f7254ab5d8bbd252.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/2076.63fa1a4f9cabcc974f7db822e02edaf1e07f07936dfcc6add83044b92f772e84.png"
+    },
     "isSbcItem": false,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 433,
+      "eaId": 0,
+      "slug": "common",
+      "game": "25",
+      "name": "Common",
+      "alternateName": null,
+      "url": "/rarities/common/",
+      "dominantColor": "d39570",
+      "imagePath": "2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png",
+      "imagePaths": [
+        "2025/rarities-level-1-large/0.9e74985cc5fa0235bfd1cdf18524886abec80cb940fb87245dc8eb0fe402e68e.png",
+        "2025/rarities-level-2-large/0.bcc3305230ad572a1c35252bfc76d94661378a3cd0bc6f05053ecadb8b4b8dbe.png",
+        "2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png"
+      ],
+      "isSpecial": false,
+      "compactImagePath": "2025/rarities-level-3-small/0.36979d419602c94f76334ef1a76956cfb9ee4d2b8520bee91e554090f1573149.png",
+      "compactImagePaths": [
+        "2025/rarities-level-1-small/0.07fe8673a441822a263a61409f05124a35882cb798e0cd62868d00dc388d25cd.png",
+        "2025/rarities-level-2-small/0.2d3f30416f2b228ddf7e8eef513c1ffb7af5aadea48ff7a9a24cccd90f40889c.png",
+        "2025/rarities-level-3-small/0.36979d419602c94f76334ef1a76956cfb9ee4d2b8520bee91e554090f1573149.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": true,
+      "textColor": [
+        "3f1208",
+        "192228",
+        "31260c"
+      ],
+      "lineColor": [
+        "d39570",
+        "bfcbd3",
+        "c5a96b"
+      ],
+      "shadowColor": [
+        "#000000",
+        "#000000",
+        "#000000"
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 13709,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-1-large/0.9e74985cc5fa0235bfd1cdf18524886abec80cb940fb87245dc8eb0fe402e68e.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-2-large/0.bcc3305230ad572a1c35252bfc76d94661378a3cd0bc6f05053ecadb8b4b8dbe.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-small/0.36979d419602c94f76334ef1a76956cfb9ee4d2b8520bee91e554090f1573149.png"
+    },
     "totalFaceStats": 317,
-    "totalIgs": 1541
+    "totalIgs": 1541,
+    "isFullChemistry": false,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 0,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

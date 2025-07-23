@@ -173,7 +173,7 @@
     "objectiveCampaignLevelId": null,
     "campaignProps": null,
     "contentTypeId": 27,
-    "numberOfEvolutions": 0,
+    "numberOfEvolutions": 1,
     "blurbText": null,
     "smallBlurbText": "Otar Kiteishvili is 29 years old, and plays for SK Sturm Graz in the Österreichische Fußball-Bundesliga. Otar Kiteishvili's height stands at 173 cm (5'8'), and the nation he represents is Georgia. This TEAM OF THE SEASON version of Otar Kiteishvili is a 93 rated CM. He is Right footed, with 4 star skill moves and 5 star weak foot. ",
     "upgrades": null,
@@ -195,10 +195,168 @@
     "ggRating": null,
     "ggRatingPos": null,
     "ggRatingStr": null,
+    "isHistoricalItem": false,
     "commonName": "Otar Kiteishvili",
+    "club": {
+      "id": 2713,
+      "eaId": 209,
+      "game": "25",
+      "slug": "209-sk-sturm-graz",
+      "name": "SK Sturm Graz",
+      "sisterClubEaId": null,
+      "leagueEaId": 80,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/209.ac615095cca7d8ff36c66c5d8d1d96e5d83084625f5dd843b90e77002f6d0745.png",
+      "lightImagePath": "2025/club-light/209.ac615095cca7d8ff36c66c5d8d1d96e5d83084625f5dd843b90e77002f6d0745.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        270050,
+        258437,
+        245058
+      ],
+      "competitionIds": [
+        1
+      ],
+      "fixtureIds": [
+        358,
+        409,
+        336,
+        401,
+        345,
+        442,
+        317,
+        383
+      ],
+      "attackRating": 67,
+      "midfieldRating": 71,
+      "defenseRating": 68,
+      "overallRating": 69,
+      "url": "/clubs/209-sk-sturm-graz/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/209.ac615095cca7d8ff36c66c5d8d1d96e5d83084625f5dd843b90e77002f6d0745.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/209.ac615095cca7d8ff36c66c5d8d1d96e5d83084625f5dd843b90e77002f6d0745.png"
+    },
+    "uniqueClub": {
+      "id": 2713,
+      "eaId": 209,
+      "game": "25",
+      "slug": "209-sk-sturm-graz",
+      "name": "SK Sturm Graz",
+      "sisterClubEaId": null,
+      "leagueEaId": 80,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/209.ac615095cca7d8ff36c66c5d8d1d96e5d83084625f5dd843b90e77002f6d0745.png",
+      "lightImagePath": "2025/club-light/209.ac615095cca7d8ff36c66c5d8d1d96e5d83084625f5dd843b90e77002f6d0745.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        270050,
+        258437,
+        245058
+      ],
+      "competitionIds": [
+        1
+      ],
+      "fixtureIds": [
+        358,
+        409,
+        336,
+        401,
+        345,
+        442,
+        317,
+        383
+      ],
+      "attackRating": 67,
+      "midfieldRating": 71,
+      "defenseRating": 68,
+      "overallRating": 69,
+      "url": "/clubs/209-sk-sturm-graz/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/209.ac615095cca7d8ff36c66c5d8d1d96e5d83084625f5dd843b90e77002f6d0745.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/209.ac615095cca7d8ff36c66c5d8d1d96e5d83084625f5dd843b90e77002f6d0745.png"
+    },
+    "nation": {
+      "id": 671,
+      "eaId": 20,
+      "slug": "georgia",
+      "name": "Georgia",
+      "imagePath": "2025/nation/20.389ce170e450d2405e71d4eea85d0e4d8f829dd13fb20c8d15412c6eb9874235.png",
+      "url": "/nations/georgia/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/20.389ce170e450d2405e71d4eea85d0e4d8f829dd13fb20c8d15412c6eb9874235.png"
+    },
+    "league": {
+      "id": 198,
+      "eaId": 80,
+      "slug": "osterreichische-fussball-bundesliga",
+      "name": "Österreichische Fußball-Bundesliga",
+      "imagePath": "2025/league/80.332c8a20bc711c177f8a82682962518ccc17a86810a807cb193bb27f4fd0815c.png",
+      "imageLightPath": "2025/league-light/80.332c8a20bc711c177f8a82682962518ccc17a86810a807cb193bb27f4fd0815c.png",
+      "url": "/leagues/osterreichische-fussball-bundesliga/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/80.332c8a20bc711c177f8a82682962518ccc17a86810a807cb193bb27f4fd0815c.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/80.332c8a20bc711c177f8a82682962518ccc17a86810a807cb193bb27f4fd0815c.png"
+    },
     "isSbcItem": false,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 554,
+      "eaId": 11,
+      "slug": "team-of-the-season",
+      "game": "25",
+      "name": "TEAM OF THE SEASON",
+      "alternateName": null,
+      "url": "/rarities/team-of-the-season/",
+      "dominantColor": "104f74",
+      "imagePath": "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+      "imagePaths": [
+        "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+      ],
+      "isSpecial": true,
+      "compactImagePath": "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+      "compactImagePaths": [
+        "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": false,
+      "textColor": [
+        "f8e9b3",
+        "f8e9b3",
+        "f8e9b3"
+      ],
+      "lineColor": [
+        "104f74",
+        "104f74",
+        "104f74"
+      ],
+      "shadowColor": [
+        "",
+        "",
+        ""
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 241,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+    },
     "totalFaceStats": 530,
-    "totalIgs": 2562
+    "totalIgs": 2562,
+    "isFullChemistry": false,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 4,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

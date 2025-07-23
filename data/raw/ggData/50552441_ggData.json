@@ -183,10 +183,172 @@
     "ggRating": null,
     "ggRatingPos": null,
     "ggRatingStr": null,
+    "isHistoricalItem": false,
     "commonName": "Davinson Sánchez",
+    "club": {
+      "id": 2693,
+      "eaId": 325,
+      "game": "25",
+      "slug": "325-galatasaray",
+      "name": "Galatasaray",
+      "sisterClubEaId": null,
+      "leagueEaId": 68,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/325.743e376ba10324956066cc72e783fd3f048f3f3b08e2f96780de9a5a0b01d0d8.png",
+      "lightImagePath": "2025/club-light/325.743e376ba10324956066cc72e783fd3f048f3f3b08e2f96780de9a5a0b01d0d8.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        232293,
+        156616,
+        220793
+      ],
+      "competitionIds": [
+        2
+      ],
+      "fixtureIds": [
+        194,
+        162,
+        231,
+        265,
+        3692,
+        3698,
+        182,
+        216,
+        250,
+        283
+      ],
+      "attackRating": 85,
+      "midfieldRating": 78,
+      "defenseRating": 78,
+      "overallRating": 79,
+      "url": "/clubs/325-galatasaray/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/325.743e376ba10324956066cc72e783fd3f048f3f3b08e2f96780de9a5a0b01d0d8.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/325.743e376ba10324956066cc72e783fd3f048f3f3b08e2f96780de9a5a0b01d0d8.png"
+    },
+    "uniqueClub": {
+      "id": 2693,
+      "eaId": 325,
+      "game": "25",
+      "slug": "325-galatasaray",
+      "name": "Galatasaray",
+      "sisterClubEaId": null,
+      "leagueEaId": 68,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/325.743e376ba10324956066cc72e783fd3f048f3f3b08e2f96780de9a5a0b01d0d8.png",
+      "lightImagePath": "2025/club-light/325.743e376ba10324956066cc72e783fd3f048f3f3b08e2f96780de9a5a0b01d0d8.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        232293,
+        156616,
+        220793
+      ],
+      "competitionIds": [
+        2
+      ],
+      "fixtureIds": [
+        194,
+        162,
+        231,
+        265,
+        3692,
+        3698,
+        182,
+        216,
+        250,
+        283
+      ],
+      "attackRating": 85,
+      "midfieldRating": 78,
+      "defenseRating": 78,
+      "overallRating": 79,
+      "url": "/clubs/325-galatasaray/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/325.743e376ba10324956066cc72e783fd3f048f3f3b08e2f96780de9a5a0b01d0d8.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/325.743e376ba10324956066cc72e783fd3f048f3f3b08e2f96780de9a5a0b01d0d8.png"
+    },
+    "nation": {
+      "id": 706,
+      "eaId": 56,
+      "slug": "colombia",
+      "name": "Colombia",
+      "imagePath": "2025/nation/56.4de6e81de64ff54afc7dd9dc371d930cd079ef8e679645414ac501d59cfd351f.png",
+      "url": "/nations/colombia/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/56.4de6e81de64ff54afc7dd9dc371d930cd079ef8e679645414ac501d59cfd351f.png"
+    },
+    "league": {
+      "id": 196,
+      "eaId": 68,
+      "slug": "trendyol-super-lig",
+      "name": "Trendyol Süper Lig",
+      "imagePath": "2025/league/68.b72bab7165bd125b59c876e6609c8dbf2433de20fe14cca756511946d0bd05a5.png",
+      "imageLightPath": "2025/league-light/68.84305dc146e5cca3edf2625d5709ecd250ececb1fd70a95440a8e0c0669caa9d.png",
+      "url": "/leagues/trendyol-super-lig/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/68.b72bab7165bd125b59c876e6609c8dbf2433de20fe14cca756511946d0bd05a5.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/68.84305dc146e5cca3edf2625d5709ecd250ececb1fd70a95440a8e0c0669caa9d.png"
+    },
     "isSbcItem": false,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 554,
+      "eaId": 11,
+      "slug": "team-of-the-season",
+      "game": "25",
+      "name": "TEAM OF THE SEASON",
+      "alternateName": null,
+      "url": "/rarities/team-of-the-season/",
+      "dominantColor": "104f74",
+      "imagePath": "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+      "imagePaths": [
+        "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+      ],
+      "isSpecial": true,
+      "compactImagePath": "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+      "compactImagePaths": [
+        "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": false,
+      "textColor": [
+        "f8e9b3",
+        "f8e9b3",
+        "f8e9b3"
+      ],
+      "lineColor": [
+        "104f74",
+        "104f74",
+        "104f74"
+      ],
+      "shadowColor": [
+        "",
+        "",
+        ""
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 241,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+    },
     "totalFaceStats": 500,
-    "totalIgs": 2268
+    "totalIgs": 2268,
+    "isFullChemistry": false,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 4,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

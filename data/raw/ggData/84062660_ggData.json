@@ -162,7 +162,7 @@
     "objectiveCampaignLevelId": null,
     "campaignProps": null,
     "contentTypeId": 27,
-    "numberOfEvolutions": 0,
+    "numberOfEvolutions": 7,
     "blurbText": null,
     "smallBlurbText": "Luis Suárez is 38 years old, and plays for Inter Miami CF in the Major League Soccer. Luis Suárez's height stands at 182 cm (6'0'), and the nation he represents is Uruguay. This Flashback Player version of Luis Suárez is a 90 rated ST. He is Right footed, with 5 star skill moves and 5 star weak foot. ",
     "upgrades": null,
@@ -184,10 +184,146 @@
     "ggRating": null,
     "ggRatingPos": null,
     "ggRatingStr": null,
+    "isHistoricalItem": false,
     "commonName": "Luis Suárez",
+    "club": {
+      "id": 2519,
+      "eaId": 112893,
+      "game": "25",
+      "slug": "112893-inter-miami-cf",
+      "name": "Inter Miami CF",
+      "sisterClubEaId": null,
+      "leagueEaId": 39,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/112893.031f4b2b547c1bf3cb7d367e7781a47ea5836b488248d6a4bb248bcdb5646556.png",
+      "lightImagePath": "2025/club-light/112893.031f4b2b547c1bf3cb7d367e7781a47ea5836b488248d6a4bb248bcdb5646556.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        158023,
+        176580,
+        189332
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 76,
+      "midfieldRating": 73,
+      "defenseRating": 72,
+      "overallRating": 73,
+      "url": "/clubs/112893-inter-miami-cf/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/112893.031f4b2b547c1bf3cb7d367e7781a47ea5836b488248d6a4bb248bcdb5646556.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/112893.031f4b2b547c1bf3cb7d367e7781a47ea5836b488248d6a4bb248bcdb5646556.png"
+    },
+    "uniqueClub": {
+      "id": 2519,
+      "eaId": 112893,
+      "game": "25",
+      "slug": "112893-inter-miami-cf",
+      "name": "Inter Miami CF",
+      "sisterClubEaId": null,
+      "leagueEaId": 39,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/112893.031f4b2b547c1bf3cb7d367e7781a47ea5836b488248d6a4bb248bcdb5646556.png",
+      "lightImagePath": "2025/club-light/112893.031f4b2b547c1bf3cb7d367e7781a47ea5836b488248d6a4bb248bcdb5646556.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        158023,
+        176580,
+        189332
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 76,
+      "midfieldRating": 73,
+      "defenseRating": 72,
+      "overallRating": 73,
+      "url": "/clubs/112893-inter-miami-cf/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/112893.031f4b2b547c1bf3cb7d367e7781a47ea5836b488248d6a4bb248bcdb5646556.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/112893.031f4b2b547c1bf3cb7d367e7781a47ea5836b488248d6a4bb248bcdb5646556.png"
+    },
+    "nation": {
+      "id": 710,
+      "eaId": 60,
+      "slug": "uruguay",
+      "name": "Uruguay",
+      "imagePath": "2025/nation/60.02e9be17c2e9731b34b123937f59233df457eb2c18d04bb7ff560f3da037f72a.png",
+      "url": "/nations/uruguay/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/60.02e9be17c2e9731b34b123937f59233df457eb2c18d04bb7ff560f3da037f72a.png"
+    },
+    "league": {
+      "id": 185,
+      "eaId": 39,
+      "slug": "major-league-soccer",
+      "name": "Major League Soccer",
+      "imagePath": "2025/league/39.ea32ac1d4c5aeb379cec48a5132b135cd9c8767b603cd69fe3083092b4ef9eb3.png",
+      "imageLightPath": "2025/league-light/39.ea32ac1d4c5aeb379cec48a5132b135cd9c8767b603cd69fe3083092b4ef9eb3.png",
+      "url": "/leagues/major-league-soccer/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/39.ea32ac1d4c5aeb379cec48a5132b135cd9c8767b603cd69fe3083092b4ef9eb3.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/39.ea32ac1d4c5aeb379cec48a5132b135cd9c8767b603cd69fe3083092b4ef9eb3.png"
+    },
     "isSbcItem": true,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 457,
+      "eaId": 51,
+      "slug": "flashback-player",
+      "game": "25",
+      "name": "Flashback Player",
+      "alternateName": null,
+      "url": "/rarities/flashback-player/",
+      "dominantColor": "2d187f",
+      "imagePath": "2025/rarities-level-0-large/51.1bba7e34b9b246e7008444a0d02c2bc4bdc44145d567277643f5b741e858ed66.png",
+      "imagePaths": [
+        "2025/rarities-level-0-large/51.1bba7e34b9b246e7008444a0d02c2bc4bdc44145d567277643f5b741e858ed66.png",
+        "2025/rarities-level-0-large/51.1bba7e34b9b246e7008444a0d02c2bc4bdc44145d567277643f5b741e858ed66.png",
+        "2025/rarities-level-0-large/51.1bba7e34b9b246e7008444a0d02c2bc4bdc44145d567277643f5b741e858ed66.png"
+      ],
+      "isSpecial": true,
+      "compactImagePath": "2025/rarities-level-0-small/51.21d901f69159c6c452887f404e3f63604ec2e0949d8ee13c92150688af649da8.png",
+      "compactImagePaths": [
+        "2025/rarities-level-0-small/51.21d901f69159c6c452887f404e3f63604ec2e0949d8ee13c92150688af649da8.png",
+        "2025/rarities-level-0-small/51.21d901f69159c6c452887f404e3f63604ec2e0949d8ee13c92150688af649da8.png",
+        "2025/rarities-level-0-small/51.21d901f69159c6c452887f404e3f63604ec2e0949d8ee13c92150688af649da8.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": false,
+      "textColor": [
+        "fcfcf7",
+        "fcfcf7",
+        "fcfcf7"
+      ],
+      "lineColor": [
+        "2d187f",
+        "2d187f",
+        "2d187f"
+      ],
+      "shadowColor": [
+        "",
+        "",
+        ""
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 44,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/51.1bba7e34b9b246e7008444a0d02c2bc4bdc44145d567277643f5b741e858ed66.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/51.1bba7e34b9b246e7008444a0d02c2bc4bdc44145d567277643f5b741e858ed66.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/51.1bba7e34b9b246e7008444a0d02c2bc4bdc44145d567277643f5b741e858ed66.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/51.1bba7e34b9b246e7008444a0d02c2bc4bdc44145d567277643f5b741e858ed66.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-small/51.21d901f69159c6c452887f404e3f63604ec2e0949d8ee13c92150688af649da8.png"
+    },
     "totalFaceStats": 497,
-    "totalIgs": 2419
+    "totalIgs": 2419,
+    "isFullChemistry": false,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 0,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

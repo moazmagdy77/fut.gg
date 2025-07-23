@@ -168,9 +168,9 @@
     "objectiveCampaignLevelId": null,
     "campaignProps": null,
     "contentTypeId": 27,
-    "numberOfEvolutions": 0,
+    "numberOfEvolutions": 4,
     "blurbText": null,
-    "smallBlurbText": "Eli Junior Kroupi is 18 years old, and plays for FC Lorient in the Ligue 2 BKT. Eli Junior Kroupi's height stands at 179 cm (5'10'), and the nation he represents is France. This TEAM OF THE SEASON version of Eli Junior Kroupi is a 92 rated ST. He is Right footed, with 5 star skill moves and 4 star weak foot. ",
+    "smallBlurbText": "Eli Junior Kroupi is 19 years old, and plays for FC Lorient in the Ligue 2 BKT. Eli Junior Kroupi's height stands at 179 cm (5'10'), and the nation he represents is France. This TEAM OF THE SEASON version of Eli Junior Kroupi is a 92 rated ST. He is Right footed, with 5 star skill moves and 4 star weak foot. ",
     "upgrades": null,
     "hasPrice": true,
     "trackerId": null,
@@ -190,10 +190,146 @@
     "ggRating": null,
     "ggRatingPos": null,
     "ggRatingStr": null,
+    "isHistoricalItem": false,
     "commonName": "Eli Junior Kroupi",
+    "club": {
+      "id": 2408,
+      "eaId": 217,
+      "game": "25",
+      "slug": "217-fc-lorient",
+      "name": "FC Lorient",
+      "sisterClubEaId": null,
+      "leagueEaId": 17,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/217.c2bdec09df4b09a1d8dec6aaa4579f42199dd472a6afed91886e17f37531b29c.png",
+      "lightImagePath": "2025/club-light/217.c2bdec09df4b09a1d8dec6aaa4579f42199dd472a6afed91886e17f37531b29c.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        230918,
+        212401,
+        243593
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 71,
+      "midfieldRating": 70,
+      "defenseRating": 71,
+      "overallRating": 71,
+      "url": "/clubs/217-fc-lorient/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/217.c2bdec09df4b09a1d8dec6aaa4579f42199dd472a6afed91886e17f37531b29c.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/217.c2bdec09df4b09a1d8dec6aaa4579f42199dd472a6afed91886e17f37531b29c.png"
+    },
+    "uniqueClub": {
+      "id": 2408,
+      "eaId": 217,
+      "game": "25",
+      "slug": "217-fc-lorient",
+      "name": "FC Lorient",
+      "sisterClubEaId": null,
+      "leagueEaId": 17,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/217.c2bdec09df4b09a1d8dec6aaa4579f42199dd472a6afed91886e17f37531b29c.png",
+      "lightImagePath": "2025/club-light/217.c2bdec09df4b09a1d8dec6aaa4579f42199dd472a6afed91886e17f37531b29c.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        230918,
+        212401,
+        243593
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 71,
+      "midfieldRating": 70,
+      "defenseRating": 71,
+      "overallRating": 71,
+      "url": "/clubs/217-fc-lorient/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/217.c2bdec09df4b09a1d8dec6aaa4579f42199dd472a6afed91886e17f37531b29c.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/217.c2bdec09df4b09a1d8dec6aaa4579f42199dd472a6afed91886e17f37531b29c.png"
+    },
+    "nation": {
+      "id": 669,
+      "eaId": 18,
+      "slug": "france",
+      "name": "France",
+      "imagePath": "2025/nation/18.1913b72e6c1685cc8b67c4126ed88119ac29293b1fc11688ebfb464631a7a654.png",
+      "url": "/nations/france/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/18.1913b72e6c1685cc8b67c4126ed88119ac29293b1fc11688ebfb464631a7a654.png"
+    },
+    "league": {
+      "id": 180,
+      "eaId": 17,
+      "slug": "ligue-2-bkt",
+      "name": "Ligue 2 BKT",
+      "imagePath": "2025/league/17.ead67354db17078c8e753ea53f3fcf0c4d762e26f6fd6c2ba06384a130024e8b.png",
+      "imageLightPath": "2025/league-light/17.da2e28acee32d37dfb8ff2a9ef0a9c046190e4e8752ab2b56659d81e1f8b8c1b.png",
+      "url": "/leagues/ligue-2-bkt/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/17.ead67354db17078c8e753ea53f3fcf0c4d762e26f6fd6c2ba06384a130024e8b.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/17.da2e28acee32d37dfb8ff2a9ef0a9c046190e4e8752ab2b56659d81e1f8b8c1b.png"
+    },
     "isSbcItem": false,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 554,
+      "eaId": 11,
+      "slug": "team-of-the-season",
+      "game": "25",
+      "name": "TEAM OF THE SEASON",
+      "alternateName": null,
+      "url": "/rarities/team-of-the-season/",
+      "dominantColor": "104f74",
+      "imagePath": "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+      "imagePaths": [
+        "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+      ],
+      "isSpecial": true,
+      "compactImagePath": "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+      "compactImagePaths": [
+        "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": false,
+      "textColor": [
+        "f8e9b3",
+        "f8e9b3",
+        "f8e9b3"
+      ],
+      "lineColor": [
+        "104f74",
+        "104f74",
+        "104f74"
+      ],
+      "shadowColor": [
+        "",
+        "",
+        ""
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 241,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-small/11.0dd7722dd988f793c0cf030b1ebf6bc186e22ef91131c47e33e23d4730678b9b.png"
+    },
     "totalFaceStats": 520,
-    "totalIgs": 2492
+    "totalIgs": 2492,
+    "isFullChemistry": false,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 4,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

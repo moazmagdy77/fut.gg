@@ -156,7 +156,7 @@
     "objectiveCampaignLevelId": null,
     "campaignProps": null,
     "contentTypeId": 27,
-    "numberOfEvolutions": 3,
+    "numberOfEvolutions": 10,
     "blurbText": null,
     "smallBlurbText": "Abdulaziz Al Bishi is 31 years old, and plays for Al Ittihad in the ROSHN Saudi League. Abdulaziz Al Bishi's height stands at 176 cm (5'9'), and the nation he represents is Saudi Arabia. This Common version of Abdulaziz Al Bishi is a 65 rated RM. He is Left footed, with 3 star skill moves and 2 star weak foot. ",
     "upgrades": null,
@@ -178,10 +178,146 @@
     "ggRating": null,
     "ggRatingPos": null,
     "ggRatingStr": null,
+    "isHistoricalItem": false,
     "commonName": "Abdulaziz Al Bishi",
+    "club": {
+      "id": 2791,
+      "eaId": 607,
+      "game": "25",
+      "slug": "607-al-ittihad",
+      "name": "Al Ittihad",
+      "sisterClubEaId": null,
+      "leagueEaId": 350,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/607.8e3234d056366e42600de12a6191628c71fbaebac0831ff0e85c70ad627c4a76.png",
+      "lightImagePath": "2025/club-light/607.8e3234d056366e42600de12a6191628c71fbaebac0831ff0e85c70ad627c4a76.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        165153,
+        215914,
+        241852
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 77,
+      "midfieldRating": 78,
+      "defenseRating": 69,
+      "overallRating": 74,
+      "url": "/clubs/607-al-ittihad/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/607.8e3234d056366e42600de12a6191628c71fbaebac0831ff0e85c70ad627c4a76.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/607.8e3234d056366e42600de12a6191628c71fbaebac0831ff0e85c70ad627c4a76.png"
+    },
+    "uniqueClub": {
+      "id": 2791,
+      "eaId": 607,
+      "game": "25",
+      "slug": "607-al-ittihad",
+      "name": "Al Ittihad",
+      "sisterClubEaId": null,
+      "leagueEaId": 350,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/607.8e3234d056366e42600de12a6191628c71fbaebac0831ff0e85c70ad627c4a76.png",
+      "lightImagePath": "2025/club-light/607.8e3234d056366e42600de12a6191628c71fbaebac0831ff0e85c70ad627c4a76.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        165153,
+        215914,
+        241852
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 77,
+      "midfieldRating": 78,
+      "defenseRating": 69,
+      "overallRating": 74,
+      "url": "/clubs/607-al-ittihad/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/607.8e3234d056366e42600de12a6191628c71fbaebac0831ff0e85c70ad627c4a76.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/607.8e3234d056366e42600de12a6191628c71fbaebac0831ff0e85c70ad627c4a76.png"
+    },
+    "nation": {
+      "id": 791,
+      "eaId": 183,
+      "slug": "saudi-arabia",
+      "name": "Saudi Arabia",
+      "imagePath": "2025/nation/183.b48e939d323b1ac256a2c747b7489b1247a5cb5f9699ea3a890f0f4a288f88c1.png",
+      "url": "/nations/saudi-arabia/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/183.b48e939d323b1ac256a2c747b7489b1247a5cb5f9699ea3a890f0f4a288f88c1.png"
+    },
+    "league": {
+      "id": 207,
+      "eaId": 350,
+      "slug": "roshn-saudi-league",
+      "name": "ROSHN Saudi League",
+      "imagePath": "2025/league/350.244e0a9e137630f60ab8b8873969fabf8b9098ee99101678e72d92c26c9e3ad9.png",
+      "imageLightPath": "2025/league-light/350.54e48d8c27b4671a61636c8d01a8b88b2276fb176741f8bb7cda29e268c97bca.png",
+      "url": "/leagues/roshn-saudi-league/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/350.244e0a9e137630f60ab8b8873969fabf8b9098ee99101678e72d92c26c9e3ad9.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/350.54e48d8c27b4671a61636c8d01a8b88b2276fb176741f8bb7cda29e268c97bca.png"
+    },
     "isSbcItem": false,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 433,
+      "eaId": 0,
+      "slug": "common",
+      "game": "25",
+      "name": "Common",
+      "alternateName": null,
+      "url": "/rarities/common/",
+      "dominantColor": "d39570",
+      "imagePath": "2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png",
+      "imagePaths": [
+        "2025/rarities-level-1-large/0.9e74985cc5fa0235bfd1cdf18524886abec80cb940fb87245dc8eb0fe402e68e.png",
+        "2025/rarities-level-2-large/0.bcc3305230ad572a1c35252bfc76d94661378a3cd0bc6f05053ecadb8b4b8dbe.png",
+        "2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png"
+      ],
+      "isSpecial": false,
+      "compactImagePath": "2025/rarities-level-3-small/0.36979d419602c94f76334ef1a76956cfb9ee4d2b8520bee91e554090f1573149.png",
+      "compactImagePaths": [
+        "2025/rarities-level-1-small/0.07fe8673a441822a263a61409f05124a35882cb798e0cd62868d00dc388d25cd.png",
+        "2025/rarities-level-2-small/0.2d3f30416f2b228ddf7e8eef513c1ffb7af5aadea48ff7a9a24cccd90f40889c.png",
+        "2025/rarities-level-3-small/0.36979d419602c94f76334ef1a76956cfb9ee4d2b8520bee91e554090f1573149.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": true,
+      "textColor": [
+        "3f1208",
+        "192228",
+        "31260c"
+      ],
+      "lineColor": [
+        "d39570",
+        "bfcbd3",
+        "c5a96b"
+      ],
+      "shadowColor": [
+        "#000000",
+        "#000000",
+        "#000000"
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 13709,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-1-large/0.9e74985cc5fa0235bfd1cdf18524886abec80cb940fb87245dc8eb0fe402e68e.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-2-large/0.bcc3305230ad572a1c35252bfc76d94661378a3cd0bc6f05053ecadb8b4b8dbe.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-small/0.36979d419602c94f76334ef1a76956cfb9ee4d2b8520bee91e554090f1573149.png"
+    },
     "totalFaceStats": 362,
-    "totalIgs": 1711
+    "totalIgs": 1711,
+    "isFullChemistry": false,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 0,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

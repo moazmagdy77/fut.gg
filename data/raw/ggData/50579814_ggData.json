@@ -191,10 +191,168 @@
     "ggRating": null,
     "ggRatingPos": null,
     "ggRatingStr": null,
+    "isHistoricalItem": false,
     "commonName": "Lasse Berg Johnsen",
+    "club": {
+      "id": 2598,
+      "eaId": 320,
+      "game": "25",
+      "slug": "320-malmo-ff",
+      "name": "Malmö FF",
+      "sisterClubEaId": null,
+      "leagueEaId": 56,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/320.100278629275831e442da196a9d0c76e7960e6612e219ef8ea995970eb3e1719.png",
+      "lightImagePath": "2025/club-light/320.100278629275831e442da196a9d0c76e7960e6612e219ef8ea995970eb3e1719.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        208448,
+        5673,
+        248166
+      ],
+      "competitionIds": [
+        2
+      ],
+      "fixtureIds": [
+        167,
+        299,
+        272,
+        208,
+        241,
+        211,
+        180,
+        250
+      ],
+      "attackRating": 71,
+      "midfieldRating": 69,
+      "defenseRating": 71,
+      "overallRating": 70,
+      "url": "/clubs/320-malmo-ff/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/320.100278629275831e442da196a9d0c76e7960e6612e219ef8ea995970eb3e1719.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/320.100278629275831e442da196a9d0c76e7960e6612e219ef8ea995970eb3e1719.png"
+    },
+    "uniqueClub": {
+      "id": 2598,
+      "eaId": 320,
+      "game": "25",
+      "slug": "320-malmo-ff",
+      "name": "Malmö FF",
+      "sisterClubEaId": null,
+      "leagueEaId": 56,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/320.100278629275831e442da196a9d0c76e7960e6612e219ef8ea995970eb3e1719.png",
+      "lightImagePath": "2025/club-light/320.100278629275831e442da196a9d0c76e7960e6612e219ef8ea995970eb3e1719.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        208448,
+        5673,
+        248166
+      ],
+      "competitionIds": [
+        2
+      ],
+      "fixtureIds": [
+        167,
+        299,
+        272,
+        208,
+        241,
+        211,
+        180,
+        250
+      ],
+      "attackRating": 71,
+      "midfieldRating": 69,
+      "defenseRating": 71,
+      "overallRating": 70,
+      "url": "/clubs/320-malmo-ff/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/320.100278629275831e442da196a9d0c76e7960e6612e219ef8ea995970eb3e1719.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/320.100278629275831e442da196a9d0c76e7960e6612e219ef8ea995970eb3e1719.png"
+    },
+    "nation": {
+      "id": 687,
+      "eaId": 36,
+      "slug": "norway",
+      "name": "Norway",
+      "imagePath": "2025/nation/36.bad78885ca92c601e379ba3640ba2919daa3f774505a480250ae573257a3c647.png",
+      "url": "/nations/norway/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/36.bad78885ca92c601e379ba3640ba2919daa3f774505a480250ae573257a3c647.png"
+    },
+    "league": {
+      "id": 190,
+      "eaId": 56,
+      "slug": "allsvenskan",
+      "name": "Allsvenskan",
+      "imagePath": "2025/league/56.4a1b2581eac7a7802527edaf19ae139e785cc0cc1cdae78f2d84518c092cc819.png",
+      "imageLightPath": "2025/league-light/56.4a1b2581eac7a7802527edaf19ae139e785cc0cc1cdae78f2d84518c092cc819.png",
+      "url": "/leagues/allsvenskan/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/56.4a1b2581eac7a7802527edaf19ae139e785cc0cc1cdae78f2d84518c092cc819.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/56.4a1b2581eac7a7802527edaf19ae139e785cc0cc1cdae78f2d84518c092cc819.png"
+    },
     "isSbcItem": true,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 553,
+      "eaId": 65,
+      "slug": "tots-honourable-mentions",
+      "game": "25",
+      "name": "TOTS Honourable Mentions",
+      "alternateName": null,
+      "url": "/rarities/tots-honourable-mentions/",
+      "dominantColor": "0b3258",
+      "imagePath": "2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+      "imagePaths": [
+        "2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+        "2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+        "2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png"
+      ],
+      "isSpecial": true,
+      "compactImagePath": "2025/rarities-level-0-small/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+      "compactImagePaths": [
+        "2025/rarities-level-0-small/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+        "2025/rarities-level-0-small/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+        "2025/rarities-level-0-small/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": false,
+      "textColor": [
+        "d0fafb",
+        "d0fafb",
+        "d0fafb"
+      ],
+      "lineColor": [
+        "0b3258",
+        "0b3258",
+        "0b3258"
+      ],
+      "shadowColor": [
+        "",
+        "",
+        ""
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 103,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-large/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-0-small/65.10f96f40c8f656625d3539952989ccab9dea0ba00a207202b16ca06a7d92deab.png"
+    },
     "totalFaceStats": 529,
-    "totalIgs": 2502
+    "totalIgs": 2502,
+    "isFullChemistry": false,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 4,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }

@@ -154,9 +154,9 @@
     "objectiveCampaignLevelId": null,
     "campaignProps": null,
     "contentTypeId": 27,
-    "numberOfEvolutions": 2,
+    "numberOfEvolutions": 75,
     "blurbText": null,
-    "smallBlurbText": "Moussa Soumano is 19 years old, and plays for AC Ajaccio in the Ligue 2 BKT. Moussa Soumano's height stands at 185 cm (6'1'), and the nation he represents is France. This Common version of Moussa Soumano is a 65 rated ST. He is Right footed, with 2 star skill moves and 3 star weak foot. ",
+    "smallBlurbText": "Moussa Soumano is 20 years old, and plays for AC Ajaccio in the Ligue 2 BKT. Moussa Soumano's height stands at 185 cm (6'1'), and the nation he represents is France. This Common version of Moussa Soumano is a 65 rated ST. He is Right footed, with 2 star skill moves and 3 star weak foot. ",
     "upgrades": null,
     "hasPrice": true,
     "trackerId": null,
@@ -176,10 +176,146 @@
     "ggRating": null,
     "ggRatingPos": null,
     "ggRatingStr": null,
+    "isHistoricalItem": false,
     "commonName": "Moussa Soumano",
+    "club": {
+      "id": 2410,
+      "eaId": 614,
+      "game": "25",
+      "slug": "614-ac-ajaccio",
+      "name": "AC Ajaccio",
+      "sisterClubEaId": null,
+      "leagueEaId": 17,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/614.90f70bb0d1beacd0a72e5b00b3c29e54bcbd6984b7c5424dd5d55cb23868241a.png",
+      "lightImagePath": "2025/club-light/614.90f70bb0d1beacd0a72e5b00b3c29e54bcbd6984b7c5424dd5d55cb23868241a.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        213367,
+        234824,
+        190674
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 65,
+      "midfieldRating": 65,
+      "defenseRating": 66,
+      "overallRating": 65,
+      "url": "/clubs/614-ac-ajaccio/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/614.90f70bb0d1beacd0a72e5b00b3c29e54bcbd6984b7c5424dd5d55cb23868241a.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/614.90f70bb0d1beacd0a72e5b00b3c29e54bcbd6984b7c5424dd5d55cb23868241a.png"
+    },
+    "uniqueClub": {
+      "id": 2410,
+      "eaId": 614,
+      "game": "25",
+      "slug": "614-ac-ajaccio",
+      "name": "AC Ajaccio",
+      "sisterClubEaId": null,
+      "leagueEaId": 17,
+      "isWomen": false,
+      "isIconClub": false,
+      "imagePath": "2025/club/614.90f70bb0d1beacd0a72e5b00b3c29e54bcbd6984b7c5424dd5d55cb23868241a.png",
+      "lightImagePath": "2025/club-light/614.90f70bb0d1beacd0a72e5b00b3c29e54bcbd6984b7c5424dd5d55cb23868241a.png",
+      "pastAndPresentHighlightedPlayerItemEaIds": [
+        213367,
+        234824,
+        190674
+      ],
+      "competitionIds": [],
+      "fixtureIds": [],
+      "attackRating": 65,
+      "midfieldRating": 65,
+      "defenseRating": 66,
+      "overallRating": 65,
+      "url": "/clubs/614-ac-ajaccio/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club/614.90f70bb0d1beacd0a72e5b00b3c29e54bcbd6984b7c5424dd5d55cb23868241a.png",
+      "lightImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/club-light/614.90f70bb0d1beacd0a72e5b00b3c29e54bcbd6984b7c5424dd5d55cb23868241a.png"
+    },
+    "nation": {
+      "id": 669,
+      "eaId": 18,
+      "slug": "france",
+      "name": "France",
+      "imagePath": "2025/nation/18.1913b72e6c1685cc8b67c4126ed88119ac29293b1fc11688ebfb464631a7a654.png",
+      "url": "/nations/france/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/nation/18.1913b72e6c1685cc8b67c4126ed88119ac29293b1fc11688ebfb464631a7a654.png"
+    },
+    "league": {
+      "id": 180,
+      "eaId": 17,
+      "slug": "ligue-2-bkt",
+      "name": "Ligue 2 BKT",
+      "imagePath": "2025/league/17.ead67354db17078c8e753ea53f3fcf0c4d762e26f6fd6c2ba06384a130024e8b.png",
+      "imageLightPath": "2025/league-light/17.da2e28acee32d37dfb8ff2a9ef0a9c046190e4e8752ab2b56659d81e1f8b8c1b.png",
+      "url": "/leagues/ligue-2-bkt/",
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league/17.ead67354db17078c8e753ea53f3fcf0c4d762e26f6fd6c2ba06384a130024e8b.png",
+      "imageLightUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=100,format=auto,width=80/2025/league-light/17.da2e28acee32d37dfb8ff2a9ef0a9c046190e4e8752ab2b56659d81e1f8b8c1b.png"
+    },
     "isSbcItem": false,
     "isObjectiveItem": false,
+    "rarity": {
+      "id": 433,
+      "eaId": 0,
+      "slug": "common",
+      "game": "25",
+      "name": "Common",
+      "alternateName": null,
+      "url": "/rarities/common/",
+      "dominantColor": "d39570",
+      "imagePath": "2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png",
+      "imagePaths": [
+        "2025/rarities-level-1-large/0.9e74985cc5fa0235bfd1cdf18524886abec80cb940fb87245dc8eb0fe402e68e.png",
+        "2025/rarities-level-2-large/0.bcc3305230ad572a1c35252bfc76d94661378a3cd0bc6f05053ecadb8b4b8dbe.png",
+        "2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png"
+      ],
+      "isSpecial": false,
+      "compactImagePath": "2025/rarities-level-3-small/0.36979d419602c94f76334ef1a76956cfb9ee4d2b8520bee91e554090f1573149.png",
+      "compactImagePaths": [
+        "2025/rarities-level-1-small/0.07fe8673a441822a263a61409f05124a35882cb798e0cd62868d00dc388d25cd.png",
+        "2025/rarities-level-2-small/0.2d3f30416f2b228ddf7e8eef513c1ffb7af5aadea48ff7a9a24cccd90f40889c.png",
+        "2025/rarities-level-3-small/0.36979d419602c94f76334ef1a76956cfb9ee4d2b8520bee91e554090f1573149.png"
+      ],
+      "animatedImagePath": null,
+      "animatedImagesPath": null,
+      "animatedImagesFrameCount": null,
+      "animatedImagesFps": null,
+      "animatedImagesDelay": null,
+      "isBrightColorScheme": true,
+      "textColor": [
+        "3f1208",
+        "192228",
+        "31260c"
+      ],
+      "lineColor": [
+        "d39570",
+        "bfcbd3",
+        "c5a96b"
+      ],
+      "shadowColor": [
+        "#000000",
+        "#000000",
+        "#000000"
+      ],
+      "overallColor": null,
+      "numberOfPlayers": 13709,
+      "imageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png",
+      "imageUrls": [
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-1-large/0.9e74985cc5fa0235bfd1cdf18524886abec80cb940fb87245dc8eb0fe402e68e.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-2-large/0.bcc3305230ad572a1c35252bfc76d94661378a3cd0bc6f05053ecadb8b4b8dbe.png",
+        "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-large/0.bea99d013d67bc41fec729166d783763d98371df14edfbca1b9896562c0b355d.png"
+      ],
+      "animatedImageUrl": null,
+      "animatedImagesUrl": null,
+      "compactImageUrl": "https://game-assets.fut.gg/cdn-cgi/image/quality=90,format=auto,width=400/2025/rarities-level-3-small/0.36979d419602c94f76334ef1a76956cfb9ee4d2b8520bee91e554090f1573149.png"
+    },
     "totalFaceStats": 344,
-    "totalIgs": 1603
+    "totalIgs": 1603,
+    "isFullChemistry": false,
+    "extraNationChemistry": 0,
+    "extraLeagueChemistry": 0,
+    "extraClubChemistry": 0,
+    "extraSquadLeagueChemistry": false,
+    "extraSquadNationChemistry": false
   }
 }
