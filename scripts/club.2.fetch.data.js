@@ -18,7 +18,7 @@ const FUTGG_METARANK_URL_TEMPLATE = (eaId) => `https://www.fut.gg/api/fut/metara
 const EASYSBC_META_URL_TEMPLATE = (eaId, archetypeId) => `https://api.easysbc.io/squad-builder/meta-ratings?archetypeId=${archetypeId}&resourceId=${eaId}`;
 
 // Request Management
-const MAX_CONCURRENT_PLAYERS_IN_BATCH = 5;
+const MAX_CONCURRENT_PLAYERS_IN_BATCH = 10;
 const DELAY_BETWEEN_BATCHES_MS = 2000; // Delay after a batch is processed
 const DELAY_BETWEEN_ARCHETYPE_CALLS_MS = 250; // Polite delay for EasySBC calls for the same player
 const MAX_RETRIES_API = 2;
