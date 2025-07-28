@@ -18,13 +18,13 @@ const FUTGG_METARANK_URL_TEMPLATE = (eaId) => `https://www.fut.gg/api/fut/metara
 const EASYSBC_META_URL_TEMPLATE = (eaId, archetypeId) => `https://api.easysbc.io/squad-builder/meta-ratings?archetypeId=${archetypeId}&resourceId=${eaId}`;
 
 // Request Management
-const MAX_CONCURRENT_PLAYERS_IN_BATCH = 10;
+const MAX_CONCURRENT_PLAYERS_IN_BATCH = 100;
 const DELAY_BETWEEN_BATCHES_MS = 2000; // Delay after a batch is processed
 const DELAY_BETWEEN_ARCHETYPE_CALLS_MS = 250; // Polite delay for EasySBC calls for the same player
 const MAX_RETRIES_API = 2;
 const API_TIMEOUT_MS = 25000; // Timeout for individual API calls (Axios)
 const PUPPETEER_PAGE_TIMEOUT_MS = 30000; // Timeout for Puppeteer page navigation/actions
-const BROWSER_RESTART_INTERVAL_BATCHES = 20; // Restart browser every X batches
+const BROWSER_RESTART_INTERVAL_BATCHES = 1; // Restart browser every X batches
 
 // Logging Configuration
 const VERBOSE_LOGGING = false; // Set to true for more detailed success logs
