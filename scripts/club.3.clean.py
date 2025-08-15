@@ -315,6 +315,8 @@ def process_single_evo_player(evo_player_def_raw, model_manager, maps):
     player_output["PS"] = [maps["playstyles_map"].get(str(p)) for p in evo_player_def_raw.get("playstyles", []) if str(p) in maps["playstyles_map"]]
     player_output["PS+"] = [maps["playstyles_map"].get(str(p)) for p in evo_player_def_raw.get("playstylesPlus", []) if str(p) in maps["playstyles_map"]]
     player_output["bodyType"] = maps["bodytype_code_map"].get(str(evo_player_def_raw.get("bodytypeCode")))
+    player_output["roles+"] = [maps["roles_plus_map"].get(str(r)) for r in evo_player_def_raw.get("rolesPlus", []) if str(r) in maps["roles_plus_map"]]
+    player_output["roles++"] = [maps["roles_plus_plus_map"].get(str(r)) for r in evo_player_def_raw.get("rolesPlusPlus", []) if str(r) in maps["roles_plus_plus_map"]]
     
     player_output["metaRatings"] = []
     parsed_gg_ratings = parse_gg_rating_str(evo_player_def_raw.get("ggRatingStr"))
