@@ -34,7 +34,6 @@ def load_data(file_path):
         st.error(f"Error: `club_final.json` is not a valid JSON file. Please check the file content.")
         return pd.DataFrame()
 
-    # Normalize the nested structure
     df = pd.json_normalize(data, record_path='metaRatings', 
                            meta=['commonName', 'eaId', 'evolution', 'overall', 'height', 'weight', 
                                  'skillMoves', 'weakFoot', 'foot', 'PS', 'PS+', 'roles+', 
@@ -48,11 +47,14 @@ def load_data(file_path):
     df['player_origin_id'] = df['eaId'].astype(str) + '_' + df['evolution'].astype(str)
     df["__true_player_id"] = df["eaId"].astype(str)
     
-    numeric_cols = ['overall', 'height', 'weight', 'skillMoves', 'weakFoot', 
-                    'ggMeta', 'ggMetaSub', 'esMeta', 'esMetaSub', 'avgMeta', 'avgMetaSub'] + attribute_filter_order
-    for col in numeric_cols:
+    # Clean up data types
+    for col in ['overall', 'height', 'weight', 'skillMoves', 'weakFoot'] + attribute_filter_order:
         if col in df.columns:
-            df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0)
+            df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0).astype(int)
+
+    for col in ['ggMeta', 'ggMetaSub', 'esMeta', 'esMetaSub', 'avgMeta', 'avgMetaSub']:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0.0)
 
     # Recompute role familiarity flags based on the current role
     if "roles+" in df.columns and "roles++" in df.columns:
@@ -80,25 +82,27 @@ if st.sidebar.button("🧹 Clear All Filters", key="clear_filters_main_button"):
 
 if st.session_state.get("clear_filters_button_clicked", False):
     st.session_state.clear_filters_button_clicked = False
-    
-    # Reset all filter session state keys to their defaults
     for key in st.session_state.keys():
-        if key.endswith('_min') or key.endswith('_max'):
-            del st.session_state[key]
-        if key.endswith('_filter') or key.endswith('_checkbox'):
+        if key.endswith(('_min', '_max', '_filter', '_checkbox')):
             del st.session_state[key]
     st.rerun()
 
 filters = {}
 
-# --- Filter Widgets ---
-def create_min_max_filter(container, column_name, label, step=1.0):
+# --- MODIFIED: Filter function is now smarter about data types ---
+def create_min_max_filter(container, column_name, label, step):
     if column_name in df.columns and pd.api.types.is_numeric_dtype(df[column_name]):
         numeric_col = df[column_name].dropna()
         if not numeric_col.empty and numeric_col.min() != numeric_col.max():
-            min_val, max_val = float(numeric_col.min()), float(numeric_col.max())
-            is_int = step == 1.0 and min_val.is_integer() and max_val.is_integer()
-            fmt = "%d" if is_int else "%.1f"
+            # Use original dtype to determine if int or float
+            is_int = pd.api.types.is_integer_dtype(df[column_name])
+            
+            if is_int:
+                min_val, max_val = int(numeric_col.min()), int(numeric_col.max())
+                fmt = "%d"
+            else:
+                min_val, max_val = float(numeric_col.min()), float(numeric_col.max())
+                fmt = "%.1f"
             
             c1, c2 = container.columns(2)
             user_min = c1.number_input(f"Min {label}", value=min_val, min_value=min_val, max_value=max_val, step=step, format=fmt, key=f"{column_name}_min")
@@ -112,13 +116,12 @@ if st.session_state.get("evolution_filter") != "All": filters["evolution"] = st.
 
 create_min_max_filter(st.sidebar, "avgMeta", "Avg On-Chem Meta", 0.1)
 create_min_max_filter(st.sidebar, "avgMetaSub", "Avg Sub Meta", 0.1)
-create_min_max_filter(st.sidebar, "overall", "Overall", 1.0)
-create_min_max_filter(st.sidebar, "skillMoves", "Skill Moves", 1.0)
-create_min_max_filter(st.sidebar, "weakFoot", "Weak Foot", 1.0)
-create_min_max_filter(st.sidebar, "height", "Height (cm)", 1.0)
-create_min_max_filter(st.sidebar, "weight", "Weight (kg)", 1.0)
+create_min_max_filter(st.sidebar, "overall", "Overall", 1)
+create_min_max_filter(st.sidebar, "skillMoves", "Skill Moves", 1)
+create_min_max_filter(st.sidebar, "weakFoot", "Weak Foot", 1)
+create_min_max_filter(st.sidebar, "height", "Height (cm)", 1)
+create_min_max_filter(st.sidebar, "weight", "Weight (kg)", 1)
 
-# Other multiselect and checkbox filters...
 if "role" in df.columns:
     st.sidebar.multiselect("Role (Any)", sorted(df["role"].dropna().unique()), key="role_filter")
     if st.session_state.get("role_filter"): filters["role"] = st.session_state.role_filter
@@ -146,7 +149,7 @@ with st.sidebar.expander("Role Familiarity"):
 
 with st.sidebar.expander("In-Game Stats"):
     for attr in attribute_filter_order:
-        create_min_max_filter(st, attr, attr.title(), 1.0)
+        create_min_max_filter(st, attr, attr.replace("_", " ").title(), 1)
 
 # --- Apply filters ---
 filtered_df = df.copy()
@@ -165,7 +168,7 @@ for col, val in filters.items():
         filtered_df = filtered_df[filtered_df[col].isin(val)]
     elif isinstance(val, tuple):
         filtered_df = filtered_df[filtered_df[col].between(val[0], val[1])]
-    else: # Direct match for booleans (like evolution, hasRolePlus)
+    else:
         filtered_df = filtered_df[filtered_df[col] == val]
 
 # --- Default Sort ---
@@ -199,7 +202,6 @@ display_top_metric(col2, filtered_df, "avgMetaSub", "Top Average Sub Meta", n=5)
 st.markdown("---")
 st.markdown(f"### Player List ({filtered_df['player_origin_id'].nunique()} unique players, {len(filtered_df)} total entries)")
 
-# Define columns for the main table
 columns_to_display = [
     "commonName", "role", "overall", "avgMeta", 
     "ggMeta", "ggChemStyle", "ggAccelType", 
@@ -210,13 +212,11 @@ columns_to_display = [
 ]
 final_display_columns = [col for col in columns_to_display if col in df.columns]
 
-# Format boolean columns for display
 display_df = filtered_df.copy()
 for col in ["hasRolePlus", "hasRolePlusPlus"]:
     if col in display_df.columns:
         display_df[col] = display_df[col].apply(lambda x: "✅" if x else "❌")
 
-# Drop internal IDs before displaying
 display_df.drop(columns=[c for c in ["player_origin_id", "__true_player_id"] if c in display_df.columns], inplace=True, errors="ignore")
 
 if display_df.empty:
