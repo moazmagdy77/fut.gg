@@ -35,16 +35,10 @@ def load_data(file_path):
         st.error(f"Error: `club_final.json` is not a valid JSON file. Please check the file content.")
         return pd.DataFrame()
 
-    # --- FIX: Dynamically determine all meta columns to ensure none are missed ---
-    all_meta_keys = set()
-    for p in data:
-        if p.get('metaRatings'):
-            for r in p['metaRatings']:
-                all_meta_keys.update(r.keys())
-    
     # Define the columns that are at the top level of each player object
     top_level_cols = list(data[0].keys() if data else [])
-    top_level_cols.remove('metaRatings')
+    if 'metaRatings' in top_level_cols:
+        top_level_cols.remove('metaRatings')
 
     df = pd.json_normalize(data, record_path='metaRatings', meta=top_level_cols, errors='ignore')
     
@@ -128,20 +122,63 @@ with st.sidebar.expander("Detailed Meta Ratings"):
     create_min_max_filter(st, "esMeta", "ES Meta", 0.1)
     create_min_max_filter(st, "esMetaSub", "ES Meta (Sub)", 0.1)
 
-# (Other filter widgets remain the same...)
-# ...
+if "role" in df.columns:
+    st.sidebar.multiselect("Role (Any)", sorted(df["role"].dropna().unique()), key="role_filter")
+    if st.session_state.get("role_filter"): filters["role"] = st.session_state.role_filter
+
+if "foot" in df.columns:
+    st.sidebar.multiselect("Foot", sorted(df["foot"].dropna().unique()), key="foot_filter")
+    if st.session_state.get("foot_filter"): filters["foot"] = st.session_state.foot_filter
+
+all_ps = set(s for l in df['PS'].dropna() if isinstance(l, list) for s in l)
+all_ps.update(s for l in df['PS+'].dropna() if isinstance(l, list) for s in l)
+if all_ps:
+    st.sidebar.multiselect("PlayStyles (All Selected)", sorted(list(all_ps)), key="playstyles_all_filter")
+    if st.session_state.get("playstyles_all_filter"): filters["playstyles_all"] = st.session_state.playstyles_all_filter
+
+all_ps_plus = set(s for l in df['PS+'].dropna() if isinstance(l, list) for s in l)
+if all_ps_plus:
+    st.sidebar.multiselect("PlayStyles+ (All)", sorted(list(all_ps_plus)), key="playstyles_plus_all_filter")
+    if st.session_state.get("playstyles_plus_all_filter"): filters["playstyles_plus_all"] = st.session_state.playstyles_plus_all_filter
+
+with st.sidebar.expander("Role Familiarity"):
+    st.checkbox("Has Role+", key="hasRolePlus_checkbox")
+    if st.session_state.get("hasRolePlus_checkbox"): filters["hasRolePlus"] = True
+    st.checkbox("Has Role++", key="hasRolePlusPlus_checkbox")
+    if st.session_state.get("hasRolePlusPlus_checkbox"): filters["hasRolePlusPlus"] = True
 
 with st.sidebar.expander("In-Game Stats"):
     for attr in attribute_filter_order:
         create_min_max_filter(st, attr, attr.replace("_", " ").title(), 1)
 
-# --- Apply filters and sort (logic unchanged) ---
-# ...
+# --- FIX: Apply filters BEFORE trying to display anything ---
+filtered_df = df.copy()
+for col, val in filters.items():
+    if val is None or (isinstance(val, list) and not val):
+        continue
+    if col == "playstyles_all":
+        def has_all_styles(row):
+            combined = set((row.get('PS', []) or []) + (row.get('PS+', []) or []))
+            return all(s in combined for s in val)
+        filtered_df = filtered_df[filtered_df.apply(has_all_styles, axis=1)]
+    elif col == "playstyles_plus_all":
+        def has_all_ps_plus(ps_plus_list):
+            return isinstance(ps_plus_list, list) and all(s in ps_plus_list for s in val)
+        filtered_df = filtered_df[filtered_df['PS+'].apply(has_all_ps_plus)]
+    elif isinstance(val, list):
+        filtered_df = filtered_df[filtered_df[col].isin(val)]
+    elif isinstance(val, tuple):
+        filtered_df = filtered_df[filtered_df[col].between(val[0], val[1])]
+    else:
+        filtered_df = filtered_df[filtered_df[col] == val]
+
+# --- Default Sort ---
+default_sort_column = "avgMeta"
+if default_sort_column in filtered_df.columns:
+    filtered_df = filtered_df.sort_values(by=default_sort_column, ascending=False)
 
 # --- Display Logic ---
 st.title("El Mostashar FC - Club Player Database")
-
-# ... (Active filter display logic unchanged) ...
 
 st.subheader("Top Player Ratings")
 col1, col2 = st.columns(2)
