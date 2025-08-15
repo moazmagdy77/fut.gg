@@ -35,10 +35,19 @@ def load_data(file_path):
         st.error(f"Error: `club_final.json` is not a valid JSON file. Please check the file content.")
         return pd.DataFrame()
 
-    # Define the columns that are at the top level of each player object
-    top_level_cols = list(data[0].keys() if data else [])
-    if 'metaRatings' in top_level_cols:
-        top_level_cols.remove('metaRatings')
+    # --- FIX STARTS HERE ---
+    # Explicitly define all top-level columns to ensure attributes are always included.
+    # This is more robust than trying to infer them from the first player.
+    top_level_cols = [
+        'eaId', 'evolution', 'commonName', 'overall', 'height', 'weight', 'skillMoves', 
+        'weakFoot', 'foot', 'PS', 'PS+', 'roles+', 'roles++', 'bodyType', 'positions'
+    ]
+    # Add all possible attribute names to the list of columns to keep
+    for attr in attribute_filter_order:
+        # The processing script removes the "attribute" prefix and lowercases the first letter
+        processed_attr_name = attr[0].lower() + attr[1:]
+        top_level_cols.append(processed_attr_name)
+    # --- FIX ENDS HERE ---
 
     df = pd.json_normalize(data, record_path='metaRatings', meta=top_level_cols, errors='ignore')
     
@@ -76,6 +85,17 @@ if df.empty:
 
 # --- Sidebar filters ---
 st.sidebar.header("Filter Players")
+
+if st.sidebar.button("🧹 Clear All Filters", key="clear_filters_main_button"):
+    st.session_state.clear_filters_button_clicked = True
+    st.rerun()
+
+if st.session_state.get("clear_filters_button_clicked", False):
+    st.session_state.clear_filters_button_clicked = False
+    for key in st.session_state.keys():
+        if key.endswith(('_min', '_max', '_filter', '_checkbox')):
+            del st.session_state[key]
+    st.rerun()
 
 filters = {}
 
@@ -140,7 +160,7 @@ with st.sidebar.expander("In-Game Stats"):
     for attr in attribute_filter_order:
         create_min_max_filter(st, attr, attr.replace("_", " ").title(), 1)
 
-# --- FIX: Apply filters BEFORE trying to display anything ---
+# --- Apply filters ---
 filtered_df = df.copy()
 for col, val in filters.items():
     if val is None or (isinstance(val, list) and not val):
@@ -181,7 +201,7 @@ def display_top_metric(container, df_to_use, metric_col, title, n=5):
                 st.markdown(f"#### {title}")
                 for i, (_, row) in enumerate(top_players.iterrows()):
                     rank_display = f"**{i+1}.**"
-                    if i < 3: rank_display = ["🥇", "🥈", "🥉"][i]
+                    if i < 3: rank_display = ["🥇", "🥈", "�"][i]
                     label = f"{rank_display} {row.get('commonName', 'N/A')} ({row.get('role', 'N/A')})"
                     st.metric(label=label, value=f'{row.get(metric_col, 0.0):.2f}')
 
@@ -207,9 +227,10 @@ for col in ["hasRolePlus", "hasRolePlusPlus"]:
     if col in display_df.columns:
         display_df[col] = display_df[col].apply(lambda x: "✅" if x else "❌")
 
-display_df.drop(columns=[c for c in ["player_origin_id", "__true_player_id"] if c in display_df.columns], inplace=True, errors="ignore")
+display_df.drop(columns=[c for c in ["player_origin_id", "__true_player_id"] if c in df.columns], inplace=True, errors="ignore")
 
 if display_df.empty:
     st.warning("No players found matching the selected filters.")
 else:
     st.dataframe(display_df[final_display_columns], use_container_width=True, hide_index=True)
+�
