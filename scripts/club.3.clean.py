@@ -314,18 +314,27 @@ def process_single_evo_player(evo_player_def_raw, model_manager, maps):
     player_output["foot"] = maps["foot_map"].get(str(evo_player_def_raw.get("foot")))
     player_output["PS"] = [maps["playstyles_map"].get(str(p)) for p in evo_player_def_raw.get("playstyles", []) if str(p) in maps["playstyles_map"]]
     player_output["PS+"] = [maps["playstyles_map"].get(str(p)) for p in evo_player_def_raw.get("playstylesPlus", []) if str(p) in maps["playstyles_map"]]
-    player_output["bodyType"] = maps["bodytype_code_map"].get(str(evo_player_def_raw.get("bodytypeCode")))
+    
+    # --- FIX: Add missing roles+ and roles++ for Evo players ---
     player_output["roles+"] = [maps["roles_plus_map"].get(str(r)) for r in evo_player_def_raw.get("rolesPlus", []) if str(r) in maps["roles_plus_map"]]
     player_output["roles++"] = [maps["roles_plus_plus_map"].get(str(r)) for r in evo_player_def_raw.get("rolesPlusPlus", []) if str(r) in maps["roles_plus_plus_map"]]
     
+    player_output["bodyType"] = maps["bodytype_code_map"].get(str(evo_player_def_raw.get("bodytypeCode")))
+    
     player_output["metaRatings"] = []
     parsed_gg_ratings = parse_gg_rating_str(evo_player_def_raw.get("ggRatingStr"))
+    
+    # --- FIX: Calculate and add subAccelType for Evo players ---
+    sub_accel_type = calculate_acceleration_type(
+        base_attributes.get("attributeAcceleration"), base_attributes.get("attributeAgility"),
+        base_attributes.get("attributeStrength"), player_output.get("height")
+    )
     
     for role_id_str, ratings in parsed_gg_ratings.items():
         role_name = maps["role_id_to_name_map"].get(role_id_str)
         if not role_name: continue
 
-        meta_entry = { "role": role_name, "ggMeta": None, "ggChemStyle": None, "ggAccelType": None, "avgMeta": None, "avgMetaSub": None }
+        meta_entry = { "role": role_name, "ggMeta": None, "ggChemStyle": None, "ggAccelType": None, "avgMeta": None, "avgMetaSub": None, "subAccelType": sub_accel_type }
         best_gg_rating = max(ratings, key=lambda x: x["score"], default=None)
         if best_gg_rating:
             meta_entry["ggMeta"] = round(best_gg_rating["score"], 2)
