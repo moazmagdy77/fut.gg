@@ -1,0 +1,8 @@
+node_modules/
+__pycache__/
+.DS_Store
+.env
+# Ignore generated datasets and models
+data/*.csv
+models/*.pkl
+data/raw
