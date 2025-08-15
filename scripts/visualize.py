@@ -77,17 +77,6 @@ if df.empty:
 # --- Sidebar filters ---
 st.sidebar.header("Filter Players")
 
-if st.sidebar.button("🧹 Clear All Filters", key="clear_filters_main_button"):
-    st.session_state.clear_filters_button_clicked = True
-    st.rerun()
-
-if st.session_state.get("clear_filters_button_clicked", False):
-    st.session_state.clear_filters_button_clicked = False
-    for key in st.session_state.keys():
-        if key.endswith(('_min', '_max', '_filter', '_checkbox')):
-            del st.session_state[key]
-    st.rerun()
-
 filters = {}
 
 def create_min_max_filter(container, column_name, label, step):
