@@ -233,4 +233,3 @@ if display_df.empty:
     st.warning("No players found matching the selected filters.")
 else:
     st.dataframe(display_df[final_display_columns], use_container_width=True, hide_index=True)
-�
