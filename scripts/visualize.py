@@ -5,10 +5,6 @@ from pathlib import Path
 
 st.set_page_config(layout="wide")
 
-# Initialize session state for the clear filters flag if it doesn't exist
-if "clear_filters_button_clicked" not in st.session_state:
-    st.session_state.clear_filters_button_clicked = False
-
 # Define data directory
 data_dir = Path(__file__).resolve().parents[1] / "data"
 
@@ -36,15 +32,22 @@ def load_data(file_path):
         return pd.DataFrame()
 
     # --- FIX STARTS HERE ---
-    # Explicitly define all top-level columns to ensure attributes are always included.
-    # This is more robust than trying to infer them from just the first player.
-    top_level_cols = [
-        'eaId', 'evolution', 'commonName', 'overall', 'height', 'weight', 'skillMoves', 
-        'weakFoot', 'foot', 'PS', 'PS+', 'roles+', 'roles++', 'bodyType', 'positions'
-    ] + attribute_filter_order
-    # --- FIX ENDS HERE ---
+    # The previous method of inferring columns was unreliable. This is the robust method from your old working script.
+    # It normalizes the entire structure first, then handles the nested data.
+    df = pd.json_normalize(data, errors='ignore')
 
-    df = pd.json_normalize(data, record_path='metaRatings', meta=top_level_cols, errors='ignore')
+    # Rename attribute columns from 'attributeAcceleration' to 'acceleration'
+    df.rename(columns={col: col.replace("attribute", "", 1)[0].lower() + col.replace("attribute", "", 1)[1:] 
+                       for col in df.columns if col.startswith("attribute")}, inplace=True)
+
+    # Now, safely explode the metaRatings column
+    df = df.explode('metaRatings').reset_index(drop=True)
+    meta_df = pd.json_normalize(df['metaRatings']).add_prefix('meta.')
+    df = pd.concat([df.drop(columns=['metaRatings']), meta_df], axis=1)
+
+    # Rename the flattened meta columns
+    df.rename(columns={col: col.replace("meta.", "") for col in df.columns if col.startswith("meta.")}, inplace=True)
+    # --- FIX ENDS HERE ---
     
     if df.empty:
         st.warning("No data loaded or normalized from club_final.json.")
