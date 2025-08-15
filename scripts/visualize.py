@@ -37,16 +37,11 @@ def load_data(file_path):
 
     # --- FIX STARTS HERE ---
     # Explicitly define all top-level columns to ensure attributes are always included.
-    # This is more robust than trying to infer them from the first player.
+    # This is more robust than trying to infer them from just the first player.
     top_level_cols = [
         'eaId', 'evolution', 'commonName', 'overall', 'height', 'weight', 'skillMoves', 
         'weakFoot', 'foot', 'PS', 'PS+', 'roles+', 'roles++', 'bodyType', 'positions'
-    ]
-    # Add all possible attribute names to the list of columns to keep
-    for attr in attribute_filter_order:
-        # The processing script removes the "attribute" prefix and lowercases the first letter
-        processed_attr_name = attr[0].lower() + attr[1:]
-        top_level_cols.append(processed_attr_name)
+    ] + attribute_filter_order
     # --- FIX ENDS HERE ---
 
     df = pd.json_normalize(data, record_path='metaRatings', meta=top_level_cols, errors='ignore')
@@ -201,7 +196,7 @@ def display_top_metric(container, df_to_use, metric_col, title, n=5):
                 st.markdown(f"#### {title}")
                 for i, (_, row) in enumerate(top_players.iterrows()):
                     rank_display = f"**{i+1}.**"
-                    if i < 3: rank_display = ["🥇", "🥈", "�"][i]
+                    if i < 3: rank_display = ["🥇", "🥈", "🥉"][i]
                     label = f"{rank_display} {row.get('commonName', 'N/A')} ({row.get('role', 'N/A')})"
                     st.metric(label=label, value=f'{row.get(metric_col, 0.0):.2f}')
 
@@ -227,7 +222,7 @@ for col in ["hasRolePlus", "hasRolePlusPlus"]:
     if col in display_df.columns:
         display_df[col] = display_df[col].apply(lambda x: "✅" if x else "❌")
 
-display_df.drop(columns=[c for c in ["player_origin_id", "__true_player_id"] if c in df.columns], inplace=True, errors="ignore")
+display_df.drop(columns=[c for c in ["player_origin_id", "__true_player_id"] if c in display_df.columns], inplace=True, errors="ignore")
 
 if display_df.empty:
     st.warning("No players found matching the selected filters.")
