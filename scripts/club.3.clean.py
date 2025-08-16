@@ -96,7 +96,7 @@ def prepare_features(player_data, maps, boosts={}):
     features["accelerateType"] = calculate_acceleration_type(features.get("attributeAcceleration"), features.get("attributeAgility"), features.get("attributeStrength"), features.get("height"))
     return features
 
-def predict_rating(model_bundle, feature_dict):
+def predict_rating(model_bundle, feature_dict, player_name, model_name):
     if not model_bundle: return None
     try:
         input_df = pd.DataFrame([feature_dict])
@@ -108,15 +108,10 @@ def predict_rating(model_bundle, feature_dict):
         input_df = input_df.fillna(0).infer_objects(copy=False)
         input_scaled = model_bundle["feature_scaler"].transform(input_df)
         pred_scaled = model_bundle["model"].predict(input_scaled)
-        
-        if "target_scaler" in model_bundle:
-            prediction = model_bundle["target_scaler"].inverse_transform(pred_scaled.reshape(-1, 1))[0][0]
-        else:
-            prediction = pred_scaled[0]
-
+        prediction = model_bundle["target_scaler"].inverse_transform(pred_scaled.reshape(-1, 1))[0][0]
         return round(float(prediction), 2)
     except Exception as e:
-        print(f"⚠️ Prediction failed for {feature_dict.get('commonName')}: {e}")
+        # print(f"⚠️ Prediction failed for {player_name} with model '{model_name}'. Error: {e}")
         return None
 
 # --- Main Player Processing Function ---
@@ -165,23 +160,26 @@ def process_player(player_def, is_evo, model_manager, maps):
         basic_gg_score = next((s for s in scores if maps["gg_chem_style_names_map"].get(str(s.get("chemistryStyle")), "").lower() == 'basic'), None)
         if basic_gg_score:
             meta_entry["ggMetaSub"] = round(basic_gg_score.get("score"), 2)
+        elif "GK" in role_name and meta_entry.get("ggMeta") is not None:
+             meta_entry["ggMetaSub"] = round(meta_entry["ggMeta"] * 0.95, 2)
+
 
         if is_evo:
             es_sub_model = model_manager.get_model(role_name, 'esMetaSub')
             if es_sub_model:
                 base_features = prepare_features(player_output, maps)
-                meta_entry["esMetaSub"] = predict_rating(es_sub_model, base_features)
+                meta_entry["esMetaSub"] = predict_rating(es_sub_model, base_features, player_output['commonName'], f"{role_name}_esMetaSub")
             
             es_model = model_manager.get_model(role_name, 'esMeta')
             if es_model:
                 best_esMeta, best_esChem, best_esAccel = 0, "basic", sub_accel_type
                 for chem_name, boosts in maps["chem_style_boosts_map"].items():
                     boosted_features = prepare_features(player_output, maps, boosts=boosts)
-                    prediction = predict_rating(es_model, boosted_features)
+                    prediction = predict_rating(es_model, boosted_features, player_output['commonName'], f"{role_name}_esMeta")
                     if prediction and prediction > best_esMeta:
                         best_esMeta, best_esChem, best_esAccel = prediction, chem_name.title(), boosted_features.get("accelerateType")
                 meta_entry["esMeta"], meta_entry["esChemStyle"], meta_entry["esAccelType"] = (best_esMeta if best_esMeta > 0 else None), best_esChem, best_esAccel
-        else:
+        else: # Standard player
             es_role_id = maps["roleNameToEsRoleId"].get(role_name)
             if es_role_id and es_meta_raw:
                 es_role_block = next((b for b in es_meta_raw if any(str(r.get("playerRoleId")) == es_role_id for r in b.get("data", {}).get("metaRatings", []))), None)

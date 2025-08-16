@@ -238,8 +238,8 @@
     "attributeGkReflexes": null,
     "attributeGkPositioning": null,
     "positions": [
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -792,8 +792,8 @@
     "attributeGkPositioning": 7,
     "positions": [
       "LW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -4062,12 +4062,13 @@
         "ggMeta": 91.5,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 86.92,
         "esMetaSub": 92.52,
         "esMeta": 93.92,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 92.71,
-        "avgMetaSub": 92.52
+        "avgMetaSub": 89.72
       },
       {
         "role": "GK Sweeper Keeper",
@@ -4075,12 +4076,13 @@
         "ggMeta": 88.4,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 83.98,
         "esMetaSub": 92.42,
         "esMeta": 93.75,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 91.08,
-        "avgMetaSub": 92.42
+        "avgMetaSub": 88.2
       }
     ]
   },
@@ -4158,12 +4160,13 @@
         "ggMeta": 99,
         "ggChemStyle": "gk wall",
         "ggAccelType": "MOSTLY_LENGTHY",
+        "ggMetaSub": 94.05,
         "esMetaSub": 93.37,
         "esMeta": 96.72,
         "esChemStyle": "gk cat",
         "esAccelType": "MOSTLY_LENGTHY",
         "avgMeta": 97.86,
-        "avgMetaSub": 93.37
+        "avgMetaSub": 93.71
       },
       {
         "role": "GK Sweeper Keeper",
@@ -4171,12 +4174,13 @@
         "ggMeta": 99,
         "ggChemStyle": "gk wall",
         "ggAccelType": "MOSTLY_LENGTHY",
+        "ggMetaSub": 94.05,
         "esMetaSub": 93.58,
         "esMeta": 96.76,
         "esChemStyle": "gk basic",
         "esAccelType": "MOSTLY_LENGTHY",
         "avgMeta": 97.88,
-        "avgMetaSub": 93.58
+        "avgMetaSub": 93.81
       }
     ]
   },
@@ -4224,8 +4228,8 @@
     "attributeGkReflexes": 15,
     "attributeGkPositioning": 12,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -4998,12 +5002,13 @@
         "ggMeta": 73.8,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 70.11,
         "esMetaSub": 88.58,
         "esMeta": 91.88,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED",
         "avgMeta": 82.84,
-        "avgMetaSub": 88.58
+        "avgMetaSub": 79.34
       },
       {
         "role": "GK Sweeper Keeper",
@@ -5011,12 +5016,13 @@
         "ggMeta": 73.1,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 69.44,
         "esMetaSub": 87.07,
         "esMeta": 90.25,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED",
         "avgMeta": 81.67,
-        "avgMetaSub": 87.07
+        "avgMetaSub": 78.25
       }
     ]
   },
@@ -5948,8 +5954,8 @@
     "attributeGkReflexes": 15,
     "attributeGkPositioning": 6,
     "positions": [
-      "CB",
-      "CDM"
+      "CDM",
+      "CB"
     ],
     "foot": "Right",
     "PS": [
@@ -6118,9 +6124,9 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 14,
     "positions": [
-      "CM",
+      "CDM",
       "CB",
-      "CDM"
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -6365,8 +6371,8 @@
     "attributeGkReflexes": 7,
     "attributeGkPositioning": 12,
     "positions": [
-      "LB",
-      "CB"
+      "CB",
+      "LB"
     ],
     "foot": "Left",
     "PS": [
@@ -6540,9 +6546,9 @@
     "attributeGkReflexes": 4,
     "attributeGkPositioning": 2,
     "positions": [
-      "LM",
+      "CDM",
       "CM",
-      "CDM"
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -7337,8 +7343,8 @@
     "attributeGkPositioning": 12,
     "positions": [
       "RM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -7592,8 +7598,8 @@
     "attributeGkReflexes": 13,
     "attributeGkPositioning": 9,
     "positions": [
-      "CAM",
       "RM",
+      "CAM",
       "ST"
     ],
     "foot": "Right",
@@ -7955,10 +7961,10 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 13,
     "positions": [
-      "LM",
       "CAM",
       "LW",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -8260,12 +8266,13 @@
         "ggMeta": 73.9,
         "ggChemStyle": "gk cat",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 70.2,
         "esMetaSub": 83.1,
         "esMeta": 87.22,
         "esChemStyle": "gk glove",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 80.56,
-        "avgMetaSub": 83.1
+        "avgMetaSub": 76.65
       },
       {
         "role": "GK Sweeper Keeper",
@@ -8273,12 +8280,13 @@
         "ggMeta": 71,
         "ggChemStyle": "gk basic",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 67.45,
         "esMetaSub": 84.2,
         "esMeta": 88.24,
         "esChemStyle": "gk glove",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 79.62,
-        "avgMetaSub": 84.2
+        "avgMetaSub": 75.83
       }
     ]
   },
@@ -9191,8 +9199,8 @@
     "attributeGkReflexes": 10,
     "attributeGkPositioning": 8,
     "positions": [
-      "LB",
-      "CB"
+      "CB",
+      "LB"
     ],
     "foot": "Left",
     "PS": [
@@ -9366,8 +9374,8 @@
     "attributeGkReflexes": 14,
     "attributeGkPositioning": 5,
     "positions": [
-      "CAM",
       "RM",
+      "CAM",
       "CM"
     ],
     "foot": "Left",
@@ -9865,12 +9873,13 @@
         "ggMeta": 79,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 75.05,
         "esMetaSub": 89.27,
         "esMeta": 92.29,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 85.65,
-        "avgMetaSub": 89.27
+        "avgMetaSub": 82.16
       },
       {
         "role": "GK Sweeper Keeper",
@@ -9878,12 +9887,13 @@
         "ggMeta": 78,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 74.1,
         "esMetaSub": 88.8,
         "esMeta": 91.72,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 84.86,
-        "avgMetaSub": 88.8
+        "avgMetaSub": 81.45
       }
     ]
   },
@@ -10171,8 +10181,8 @@
     "positions": [
       "RM",
       "RW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -11268,9 +11278,9 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 9,
     "positions": [
+      "CB",
       "LB",
-      "CM",
-      "CB"
+      "CM"
     ],
     "foot": "Left",
     "PS": [
@@ -11694,8 +11704,8 @@
     "attributeGkReflexes": 10,
     "attributeGkPositioning": 6,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -12091,9 +12101,9 @@
     "attributeGkReflexes": 15,
     "attributeGkPositioning": 10,
     "positions": [
-      "CM",
       "CB",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -12696,8 +12706,8 @@
     "attributeGkReflexes": 10,
     "attributeGkPositioning": 14,
     "positions": [
-      "LB",
-      "CB"
+      "CB",
+      "LB"
     ],
     "foot": "Left",
     "PS": [
@@ -12896,12 +12906,13 @@
         "ggMeta": 81.3,
         "ggChemStyle": "gk basic",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 77.23,
         "esMetaSub": 83.27,
         "esMeta": 87.0,
         "esChemStyle": "gk glove",
         "esAccelType": "CONTROLLED",
         "avgMeta": 84.15,
-        "avgMetaSub": 83.27
+        "avgMetaSub": 80.25
       },
       {
         "role": "GK Sweeper Keeper",
@@ -12909,12 +12920,13 @@
         "ggMeta": 80.6,
         "ggChemStyle": "gk basic",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 76.57,
         "esMetaSub": 83.82,
         "esMeta": 87.42,
         "esChemStyle": "gk glove",
         "esAccelType": "CONTROLLED",
         "avgMeta": 84.01,
-        "avgMetaSub": 83.82
+        "avgMetaSub": 80.19
       }
     ]
   },
@@ -13532,12 +13544,13 @@
         "ggMeta": 75.9,
         "ggChemStyle": "gk cat",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 72.11,
         "esMetaSub": 88.11,
         "esMeta": 91.84,
         "esChemStyle": "gk glove",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 83.87,
-        "avgMetaSub": 88.11
+        "avgMetaSub": 80.11
       },
       {
         "role": "GK Sweeper Keeper",
@@ -13545,12 +13558,13 @@
         "ggMeta": 74.9,
         "ggChemStyle": "gk cat",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 71.16,
         "esMetaSub": 87.14,
         "esMeta": 90.75,
         "esChemStyle": "gk glove",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 82.83,
-        "avgMetaSub": 87.14
+        "avgMetaSub": 79.15
       }
     ]
   },
@@ -13625,12 +13639,13 @@
         "ggMeta": 81.2,
         "ggChemStyle": "gk wall",
         "ggAccelType": "LENGTHY",
+        "ggMetaSub": 77.14,
         "esMetaSub": 90.94,
         "esMeta": 94.05,
         "esChemStyle": "gk basic",
         "esAccelType": "LENGTHY",
         "avgMeta": 87.62,
-        "avgMetaSub": 90.94
+        "avgMetaSub": 84.04
       },
       {
         "role": "GK Sweeper Keeper",
@@ -13638,12 +13653,13 @@
         "ggMeta": 78.5,
         "ggChemStyle": "gk wall",
         "ggAccelType": "LENGTHY",
+        "ggMetaSub": 74.58,
         "esMetaSub": 90.23,
         "esMeta": 93.21,
         "esChemStyle": "gk basic",
         "esAccelType": "LENGTHY",
         "avgMeta": 85.85,
-        "avgMetaSub": 90.23
+        "avgMetaSub": 82.41
       }
     ]
   },
@@ -13691,8 +13707,8 @@
     "attributeGkReflexes": 11,
     "attributeGkPositioning": 9,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -14010,8 +14026,8 @@
     "attributeGkPositioning": 8,
     "positions": [
       "LW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -14365,8 +14381,8 @@
     "attributeGkReflexes": 11,
     "attributeGkPositioning": 11,
     "positions": [
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -14556,9 +14572,9 @@
     "attributeGkReflexes": 5,
     "attributeGkPositioning": 10,
     "positions": [
-      "LM",
       "LW",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -14988,8 +15004,8 @@
     "attributeGkPositioning": null,
     "positions": [
       "RB",
-      "LB",
-      "CB"
+      "CB",
+      "LB"
     ],
     "foot": "Right",
     "PS": [
@@ -15167,8 +15183,8 @@
     "attributeGkPositioning": 7,
     "positions": [
       "LW",
-      "LM",
-      "CM"
+      "CM",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -15412,8 +15428,8 @@
     "attributeGkPositioning": 8,
     "positions": [
       "LW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -15878,8 +15894,8 @@
     "attributeGkPositioning": 9,
     "positions": [
       "LW",
-      "LB",
-      "CB"
+      "CB",
+      "LB"
     ],
     "foot": "Left",
     "PS": [
@@ -16974,12 +16990,13 @@
         "ggMeta": 80,
         "ggChemStyle": "gk cat",
         "ggAccelType": "MOSTLY_LENGTHY",
+        "ggMetaSub": 76.0,
         "esMetaSub": 84.18,
         "esMeta": 88.79,
         "esChemStyle": "gk glove",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 84.4,
-        "avgMetaSub": 84.18
+        "avgMetaSub": 80.09
       },
       {
         "role": "GK Sweeper Keeper",
@@ -16987,12 +17004,13 @@
         "ggMeta": 75.8,
         "ggChemStyle": "gk cat",
         "ggAccelType": "MOSTLY_LENGTHY",
+        "ggMetaSub": 72.01,
         "esMetaSub": 82.63,
         "esMeta": 87.08,
         "esChemStyle": "gk glove",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 81.44,
-        "avgMetaSub": 82.63
+        "avgMetaSub": 77.32
       }
     ]
   },
@@ -17207,8 +17225,8 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 14,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -17851,8 +17869,8 @@
     "attributeGkReflexes": 12,
     "attributeGkPositioning": 11,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -18056,8 +18074,8 @@
     "attributeGkPositioning": 15,
     "positions": [
       "CAM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -18449,8 +18467,8 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 5,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -18648,8 +18666,8 @@
     "attributeGkPositioning": 9,
     "positions": [
       "CAM",
-      "LM",
-      "CM"
+      "CM",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -18908,8 +18926,8 @@
     "attributeGkReflexes": 6,
     "attributeGkPositioning": 7,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -19225,8 +19243,8 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 12,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -19980,8 +19998,8 @@
     "attributeGkReflexes": 13,
     "attributeGkPositioning": 5,
     "positions": [
-      "LB",
-      "CB"
+      "CB",
+      "LB"
     ],
     "foot": "Left",
     "PS": [
@@ -20156,8 +20174,8 @@
     "attributeGkPositioning": 10,
     "positions": [
       "CAM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Left",
     "PS": [
@@ -20414,8 +20432,8 @@
     "attributeGkPositioning": 84,
     "positions": [
       "CAM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -20937,12 +20955,13 @@
         "ggMeta": 85.7,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 81.41,
         "esMetaSub": 90.47,
         "esMeta": 93.56,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 89.63,
-        "avgMetaSub": 90.47
+        "avgMetaSub": 85.94
       },
       {
         "role": "GK Sweeper Keeper",
@@ -20950,12 +20969,13 @@
         "ggMeta": 82.4,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 78.28,
         "esMetaSub": 89.88,
         "esMeta": 92.84,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 87.62,
-        "avgMetaSub": 89.88
+        "avgMetaSub": 84.08
       }
     ]
   },
@@ -21183,8 +21203,8 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 11,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -21412,12 +21432,13 @@
         "ggMeta": 89.1,
         "ggChemStyle": "gk wall",
         "ggAccelType": "LENGTHY",
+        "ggMetaSub": 84.64,
         "esMetaSub": 96.29,
         "esMeta": 97.94,
         "esChemStyle": "gk glove",
         "esAccelType": "LENGTHY",
         "avgMeta": 93.52,
-        "avgMetaSub": 96.29
+        "avgMetaSub": 90.47
       },
       {
         "role": "GK Sweeper Keeper",
@@ -21425,12 +21446,13 @@
         "ggMeta": 87.8,
         "ggChemStyle": "gk wall",
         "ggAccelType": "LENGTHY",
+        "ggMetaSub": 83.41,
         "esMetaSub": 95.69,
         "esMeta": 97.26,
         "esChemStyle": "gk glove",
         "esAccelType": "LENGTHY",
         "avgMeta": 92.53,
-        "avgMetaSub": 95.69
+        "avgMetaSub": 89.55
       }
     ]
   },
@@ -21667,8 +21689,8 @@
     "attributeGkPositioning": 6,
     "positions": [
       "CDM",
-      "CM",
-      "CB"
+      "CB",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -21908,8 +21930,8 @@
     "attributeGkReflexes": 7,
     "attributeGkPositioning": 8,
     "positions": [
-      "LB",
-      "CB"
+      "CB",
+      "LB"
     ],
     "foot": "Right",
     "PS": [
@@ -22076,9 +22098,9 @@
     "attributeGkPositioning": 9,
     "positions": [
       "CAM",
+      "CDM",
       "ST",
-      "CM",
-      "CDM"
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -23419,9 +23441,9 @@
     "attributeGkReflexes": 6,
     "attributeGkPositioning": 7,
     "positions": [
-      "LM",
       "RM",
-      "RW"
+      "RW",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -23657,8 +23679,8 @@
     "attributeGkPositioning": 6,
     "positions": [
       "CAM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -24806,8 +24828,8 @@
     "attributeGkReflexes": 13,
     "attributeGkPositioning": 11,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -25008,9 +25030,9 @@
     "attributeGkReflexes": 12,
     "attributeGkPositioning": 12,
     "positions": [
+      "CDM",
       "LB",
-      "CM",
-      "CDM"
+      "CM"
     ],
     "foot": "Left",
     "PS": [
@@ -25264,8 +25286,8 @@
     "attributeGkReflexes": 12,
     "attributeGkPositioning": 15,
     "positions": [
-      "LB",
-      "CB"
+      "CB",
+      "LB"
     ],
     "foot": "Left",
     "PS": [
@@ -26607,12 +26629,13 @@
         "ggMeta": 65.6,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 62.32,
         "esMetaSub": 82.73,
         "esMeta": 85.88,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED",
         "avgMeta": 75.74,
-        "avgMetaSub": 82.73
+        "avgMetaSub": 72.53
       },
       {
         "role": "GK Sweeper Keeper",
@@ -26620,12 +26643,13 @@
         "ggMeta": 63.2,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 60.04,
         "esMetaSub": 82.8,
         "esMeta": 85.8,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED",
         "avgMeta": 74.5,
-        "avgMetaSub": 82.8
+        "avgMetaSub": 71.42
       }
     ]
   },
@@ -26700,12 +26724,13 @@
         "ggMeta": 82.5,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 78.38,
         "esMetaSub": 89.44,
         "esMeta": 92.19,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED",
         "avgMeta": 87.34,
-        "avgMetaSub": 89.44
+        "avgMetaSub": 83.91
       },
       {
         "role": "GK Sweeper Keeper",
@@ -26713,12 +26738,13 @@
         "ggMeta": 79.1,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 75.14,
         "esMetaSub": 88.2,
         "esMeta": 90.85,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED",
         "avgMeta": 84.97,
-        "avgMetaSub": 88.2
+        "avgMetaSub": 81.67
       }
     ]
   },
@@ -26794,12 +26820,13 @@
         "ggMeta": 71.5,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 67.92,
         "esMetaSub": 81.31,
         "esMeta": 83.84,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED",
         "avgMeta": 77.67,
-        "avgMetaSub": 81.31
+        "avgMetaSub": 74.62
       },
       {
         "role": "GK Sweeper Keeper",
@@ -26807,12 +26834,13 @@
         "ggMeta": 71.1,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 67.54,
         "esMetaSub": 80.97,
         "esMeta": 83.39,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED",
         "avgMeta": 77.25,
-        "avgMetaSub": 80.97
+        "avgMetaSub": 74.25
       }
     ]
   },
@@ -26860,10 +26888,10 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 14,
     "positions": [
-      "LM",
+      "CM",
       "RW",
       "ST",
-      "CM"
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -27165,8 +27193,8 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 8,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -28048,9 +28076,9 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 10,
     "positions": [
-      "CM",
       "CB",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -28503,8 +28531,8 @@
     "positions": [
       "LW",
       "RW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -28777,8 +28805,8 @@
     "attributeGkReflexes": 10,
     "attributeGkPositioning": 12,
     "positions": [
-      "CAM",
       "RM",
+      "CAM",
       "ST"
     ],
     "foot": "Right",
@@ -29279,8 +29307,8 @@
     "attributeGkReflexes": 15,
     "attributeGkPositioning": 13,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -29660,8 +29688,8 @@
     "positions": [
       "RB",
       "LB",
-      "LM",
-      "CM"
+      "CM",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -30125,12 +30153,13 @@
         "ggMeta": 67.1,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 63.74,
         "esMetaSub": 87.39,
         "esMeta": 90.37,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED",
         "avgMeta": 78.73,
-        "avgMetaSub": 87.39
+        "avgMetaSub": 75.56
       },
       {
         "role": "GK Sweeper Keeper",
@@ -30138,12 +30167,13 @@
         "ggMeta": 66.5,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 63.17,
         "esMetaSub": 85.89,
         "esMeta": 88.76,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED",
         "avgMeta": 77.63,
-        "avgMetaSub": 85.89
+        "avgMetaSub": 74.53
       }
     ]
   },
@@ -30219,12 +30249,13 @@
         "ggMeta": 90.3,
         "ggChemStyle": "gk wall",
         "ggAccelType": "MOSTLY_LENGTHY",
+        "ggMetaSub": 85.78,
         "esMetaSub": 87.13,
         "esMeta": 90.36,
         "esChemStyle": "gk basic",
         "esAccelType": "MOSTLY_LENGTHY",
         "avgMeta": 90.33,
-        "avgMetaSub": 87.13
+        "avgMetaSub": 86.45
       },
       {
         "role": "GK Sweeper Keeper",
@@ -30232,12 +30263,13 @@
         "ggMeta": 89.8,
         "ggChemStyle": "gk wall",
         "ggAccelType": "MOSTLY_LENGTHY",
+        "ggMetaSub": 85.31,
         "esMetaSub": 87.73,
         "esMeta": 90.83,
         "esChemStyle": "gk basic",
         "esAccelType": "MOSTLY_LENGTHY",
         "avgMeta": 90.31,
-        "avgMetaSub": 87.73
+        "avgMetaSub": 86.52
       }
     ]
   },
@@ -30287,8 +30319,8 @@
     "positions": [
       "RM",
       "LW",
-      "LM",
-      "CM"
+      "CM",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -30965,12 +30997,13 @@
         "ggMeta": 77.2,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 73.34,
         "esMetaSub": 92.07,
         "esMeta": 94.37,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED",
         "avgMeta": 85.78,
-        "avgMetaSub": 92.07
+        "avgMetaSub": 82.7
       },
       {
         "role": "GK Sweeper Keeper",
@@ -30978,12 +31011,13 @@
         "ggMeta": 75.9,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 72.11,
         "esMetaSub": 91.57,
         "esMeta": 93.78,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED",
         "avgMeta": 84.84,
-        "avgMetaSub": 91.57
+        "avgMetaSub": 81.84
       }
     ]
   },
@@ -31344,8 +31378,8 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 9,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -31547,9 +31581,9 @@
     "attributeGkReflexes": 12,
     "attributeGkPositioning": 9,
     "positions": [
+      "CDM",
       "ST",
-      "CM",
-      "CDM"
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -31814,8 +31848,8 @@
     "attributeGkReflexes": 7,
     "attributeGkPositioning": 9,
     "positions": [
-      "LB",
-      "CB"
+      "CB",
+      "LB"
     ],
     "foot": "Left",
     "PS": [
@@ -32612,8 +32646,8 @@
     "attributeGkReflexes": 7,
     "attributeGkPositioning": 13,
     "positions": [
-      "LB",
-      "CB"
+      "CB",
+      "LB"
     ],
     "foot": "Right",
     "PS": [
@@ -32786,8 +32820,8 @@
     "attributeGkReflexes": 5,
     "attributeGkPositioning": 6,
     "positions": [
-      "RB",
       "CB",
+      "RB",
       "CDM"
     ],
     "foot": "Right",
@@ -33193,8 +33227,8 @@
     "positions": [
       "RM",
       "LW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -34050,8 +34084,8 @@
     "attributeGkReflexes": null,
     "attributeGkPositioning": null,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -34253,8 +34287,8 @@
     "attributeGkPositioning": 10,
     "positions": [
       "CAM",
-      "LM",
-      "CM"
+      "CM",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -34890,9 +34924,9 @@
     "attributeGkPositioning": 11,
     "positions": [
       "RB",
+      "LW",
       "RW",
-      "LM",
-      "LW"
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -35414,8 +35448,8 @@
     "attributeGkPositioning": 16,
     "positions": [
       "RM",
-      "LW",
       "CAM",
+      "LW",
       "RW"
     ],
     "foot": "Right",
@@ -35833,8 +35867,8 @@
     "attributeGkPositioning": 15,
     "positions": [
       "CAM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -36471,8 +36505,8 @@
     "attributeGkReflexes": 13,
     "attributeGkPositioning": 9,
     "positions": [
-      "CAM",
       "RM",
+      "CAM",
       "ST"
     ],
     "foot": "Right",
@@ -36842,8 +36876,8 @@
     "attributeGkReflexes": 11,
     "attributeGkPositioning": 8,
     "positions": [
-      "CB",
-      "CDM"
+      "CDM",
+      "CB"
     ],
     "foot": "Right",
     "PS": [
@@ -37016,8 +37050,8 @@
     "attributeGkPositioning": 89,
     "positions": [
       "CAM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -37761,8 +37795,8 @@
     "attributeGkPositioning": 7,
     "positions": [
       "RM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -38405,12 +38439,13 @@
         "ggMeta": 90.3,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 85.78,
         "esMetaSub": 89.91,
         "esMeta": 93.23,
         "esChemStyle": "gk glove",
         "esAccelType": "CONTROLLED",
         "avgMeta": 91.77,
-        "avgMetaSub": 89.91
+        "avgMetaSub": 87.84
       },
       {
         "role": "GK Sweeper Keeper",
@@ -38418,12 +38453,13 @@
         "ggMeta": 88.5,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 84.08,
         "esMetaSub": 89.2,
         "esMeta": 92.4,
         "esChemStyle": "gk glove",
         "esAccelType": "CONTROLLED",
         "avgMeta": 90.45,
-        "avgMetaSub": 89.2
+        "avgMetaSub": 86.64
       }
     ]
   },
@@ -39010,8 +39046,8 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 5,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -39326,8 +39362,8 @@
     "attributeGkPositioning": 12,
     "positions": [
       "CAM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -39812,8 +39848,8 @@
     "attributeGkReflexes": 10,
     "attributeGkPositioning": 10,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -40475,12 +40511,13 @@
         "ggMeta": 81,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 76.95,
         "esMetaSub": 91.02,
         "esMeta": 94.28,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 87.64,
-        "avgMetaSub": 91.02
+        "avgMetaSub": 83.98
       },
       {
         "role": "GK Sweeper Keeper",
@@ -40488,12 +40525,13 @@
         "ggMeta": 79.4,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 75.43,
         "esMetaSub": 89.97,
         "esMeta": 93.12,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 86.26,
-        "avgMetaSub": 89.97
+        "avgMetaSub": 82.7
       }
     ]
   },
@@ -41131,8 +41169,8 @@
     "attributeGkReflexes": 15,
     "attributeGkPositioning": 12,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -41992,8 +42030,8 @@
     "attributeGkReflexes": 15,
     "attributeGkPositioning": 6,
     "positions": [
-      "CB",
-      "CDM"
+      "CDM",
+      "CB"
     ],
     "foot": "Right",
     "PS": [
@@ -42389,8 +42427,8 @@
     "attributeGkReflexes": 14,
     "attributeGkPositioning": 10,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Left",
     "PS": [
@@ -43061,12 +43099,13 @@
         "ggMeta": 83.1,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 78.94,
         "esMetaSub": 90.92,
         "esMeta": 94.01,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 88.56,
-        "avgMetaSub": 90.92
+        "avgMetaSub": 84.93
       },
       {
         "role": "GK Sweeper Keeper",
@@ -43074,12 +43113,13 @@
         "ggMeta": 81.7,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 77.61,
         "esMetaSub": 90.22,
         "esMeta": 93.19,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 87.44,
-        "avgMetaSub": 90.22
+        "avgMetaSub": 83.91
       }
     ]
   },
@@ -43127,8 +43167,8 @@
     "attributeGkReflexes": 11,
     "attributeGkPositioning": 13,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -43768,9 +43808,9 @@
     "attributeGkReflexes": null,
     "attributeGkPositioning": null,
     "positions": [
+      "RM",
       "CAM",
       "LW",
-      "RM",
       "RW"
     ],
     "foot": "Right",
@@ -44039,8 +44079,8 @@
     "positions": [
       "CAM",
       "LW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -44352,12 +44392,13 @@
         "ggMeta": 91.5,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 86.92,
         "esMetaSub": 89.05,
         "esMeta": 92.7,
         "esChemStyle": "gk glove",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 92.1,
-        "avgMetaSub": 89.05
+        "avgMetaSub": 87.98
       },
       {
         "role": "GK Sweeper Keeper",
@@ -44365,12 +44406,13 @@
         "ggMeta": 88.4,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 83.98,
         "esMetaSub": 88.95,
         "esMeta": 92.54,
         "esChemStyle": "gk glove",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 90.47,
-        "avgMetaSub": 88.95
+        "avgMetaSub": 86.47
       }
     ]
   },
@@ -44773,12 +44815,13 @@
         "ggMeta": 91.8,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 87.21,
         "esMetaSub": 92.68,
         "esMeta": 95.33,
         "esChemStyle": "gk glove",
         "esAccelType": "CONTROLLED",
         "avgMeta": 93.56,
-        "avgMetaSub": 92.68
+        "avgMetaSub": 89.94
       },
       {
         "role": "GK Sweeper Keeper",
@@ -44786,12 +44829,13 @@
         "ggMeta": 88.6,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 84.17,
         "esMetaSub": 91.24,
         "esMeta": 93.77,
         "esChemStyle": "gk glove",
         "esAccelType": "CONTROLLED",
         "avgMeta": 91.19,
-        "avgMetaSub": 91.24
+        "avgMetaSub": 87.7
       }
     ]
   },
@@ -44839,8 +44883,8 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 15,
     "positions": [
-      "LB",
-      "CB"
+      "CB",
+      "LB"
     ],
     "foot": "Left",
     "PS": [
@@ -45013,8 +45057,8 @@
     "attributeGkPositioning": 15,
     "positions": [
       "CAM",
-      "LM",
-      "CM"
+      "CM",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -45713,9 +45757,9 @@
     "attributeGkReflexes": 11,
     "attributeGkPositioning": 13,
     "positions": [
+      "CM",
       "CAM",
-      "ST",
-      "CM"
+      "ST"
     ],
     "foot": "Left",
     "PS": [
@@ -46946,8 +46990,8 @@
     "attributeGkReflexes": 10,
     "attributeGkPositioning": 9,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -47490,8 +47534,8 @@
     "attributeGkReflexes": 15,
     "attributeGkPositioning": 7,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Left",
     "PS": [
@@ -48149,12 +48193,13 @@
         "ggMeta": 85.5,
         "ggChemStyle": "gk cat",
         "ggAccelType": "MOSTLY_LENGTHY",
+        "ggMetaSub": 81.22,
         "esMetaSub": 89.99,
         "esMeta": 93.81,
         "esChemStyle": "gk glove",
         "esAccelType": "MOSTLY_LENGTHY",
         "avgMeta": 89.66,
-        "avgMetaSub": 89.99
+        "avgMetaSub": 85.6
       },
       {
         "role": "GK Sweeper Keeper",
@@ -48162,12 +48207,13 @@
         "ggMeta": 83,
         "ggChemStyle": "gk cat",
         "ggAccelType": "MOSTLY_LENGTHY",
+        "ggMetaSub": 78.85,
         "esMetaSub": 88.9,
         "esMeta": 92.61,
         "esChemStyle": "gk glove",
         "esAccelType": "MOSTLY_LENGTHY",
         "avgMeta": 87.81,
-        "avgMetaSub": 88.9
+        "avgMetaSub": 83.88
       }
     ]
   },
@@ -48242,12 +48288,13 @@
         "ggMeta": 87.3,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 82.93,
         "esMetaSub": 90.18,
         "esMeta": 93.04,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 90.17,
-        "avgMetaSub": 90.18
+        "avgMetaSub": 86.56
       },
       {
         "role": "GK Sweeper Keeper",
@@ -48255,12 +48302,13 @@
         "ggMeta": 85.7,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 81.41,
         "esMetaSub": 88.75,
         "esMeta": 91.5,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 88.6,
-        "avgMetaSub": 88.75
+        "avgMetaSub": 85.08
       }
     ]
   },
@@ -48484,8 +48532,8 @@
     "attributeGkPositioning": 9,
     "positions": [
       "CAM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -48744,9 +48792,9 @@
     "attributeGkPositioning": null,
     "positions": [
       "CAM",
+      "CDM",
       "ST",
-      "CM",
-      "CDM"
+      "CM"
     ],
     "foot": "Left",
     "PS": [
@@ -49009,8 +49057,8 @@
     "attributeGkPositioning": 10,
     "positions": [
       "CAM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -49397,8 +49445,8 @@
     "attributeGkReflexes": 15,
     "attributeGkPositioning": 10,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -49600,8 +49648,8 @@
     "attributeGkReflexes": 10,
     "attributeGkPositioning": 8,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -50018,12 +50066,13 @@
         "ggMeta": 77.6,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 73.72,
         "esMetaSub": 90.46,
         "esMeta": 93.24,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 85.42,
-        "avgMetaSub": 90.46
+        "avgMetaSub": 82.09
       },
       {
         "role": "GK Sweeper Keeper",
@@ -50031,12 +50080,13 @@
         "ggMeta": 76.1,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 72.29,
         "esMetaSub": 90.25,
         "esMeta": 92.9,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 84.5,
-        "avgMetaSub": 90.25
+        "avgMetaSub": 81.27
       }
     ]
   },
@@ -50589,12 +50639,13 @@
         "ggMeta": 76.9,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 73.06,
         "esMetaSub": 80.77,
         "esMeta": 83.36,
         "esChemStyle": "gk glove",
         "esAccelType": "CONTROLLED",
         "avgMeta": 80.13,
-        "avgMetaSub": 80.77
+        "avgMetaSub": 76.91
       },
       {
         "role": "GK Sweeper Keeper",
@@ -50602,12 +50653,13 @@
         "ggMeta": 75.8,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 72.01,
         "esMetaSub": 81.66,
         "esMeta": 84.14,
         "esChemStyle": "gk glove",
         "esAccelType": "CONTROLLED",
         "avgMeta": 79.97,
-        "avgMetaSub": 81.66
+        "avgMetaSub": 76.84
       }
     ]
   },
@@ -50655,8 +50707,8 @@
     "attributeGkReflexes": 14,
     "attributeGkPositioning": 7,
     "positions": [
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Left",
     "PS": [
@@ -50966,8 +51018,8 @@
     "positions": [
       "RM",
       "RB",
-      "CM",
-      "LW"
+      "LW",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -51596,8 +51648,8 @@
     "attributeGkReflexes": 16,
     "attributeGkPositioning": 14,
     "positions": [
-      "CB",
-      "CDM"
+      "CDM",
+      "CB"
     ],
     "foot": "Right",
     "PS": [
@@ -51898,8 +51950,8 @@
     "attributeGkPositioning": 14,
     "positions": [
       "CAM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -52346,8 +52398,8 @@
     "attributeGkReflexes": 15,
     "attributeGkPositioning": 11,
     "positions": [
-      "CB",
-      "CDM"
+      "CDM",
+      "CB"
     ],
     "foot": "Right",
     "PS": [
@@ -53128,8 +53180,8 @@
     "attributeGkReflexes": 12,
     "attributeGkPositioning": 14,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -53569,8 +53621,8 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 10,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -53897,8 +53949,8 @@
     "attributeGkPositioning": 10,
     "positions": [
       "CDM",
-      "CM",
-      "CB"
+      "CB",
+      "CM"
     ],
     "foot": "Left",
     "PS": [
@@ -54385,9 +54437,9 @@
     "attributeGkReflexes": 13,
     "attributeGkPositioning": 11,
     "positions": [
-      "LM",
       "LW",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -54622,8 +54674,8 @@
     "attributeGkPositioning": 16,
     "positions": [
       "LW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -54853,8 +54905,8 @@
     "positions": [
       "RM",
       "RW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -56209,8 +56261,8 @@
     "attributeGkReflexes": 6,
     "attributeGkPositioning": 12,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -56602,9 +56654,9 @@
     "attributeGkPositioning": 11,
     "positions": [
       "LW",
-      "LM",
       "CDM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -57667,8 +57719,8 @@
     "attributeGkPositioning": 6,
     "positions": [
       "CDM",
-      "CM",
-      "CB"
+      "CB",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -58081,8 +58133,8 @@
     "attributeGkPositioning": 7,
     "positions": [
       "LW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -58307,8 +58359,8 @@
     "attributeGkPositioning": 15,
     "positions": [
       "RM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -58883,8 +58935,8 @@
     "attributeGkReflexes": 14,
     "attributeGkPositioning": 10,
     "positions": [
-      "LB",
-      "CB"
+      "CB",
+      "LB"
     ],
     "foot": "Left",
     "PS": [
@@ -59058,8 +59110,8 @@
     "attributeGkPositioning": 9,
     "positions": [
       "CAM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -59319,8 +59371,8 @@
     "attributeGkReflexes": 10,
     "attributeGkPositioning": 15,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -59546,12 +59598,13 @@
         "ggMeta": 89.9,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 85.41,
         "esMetaSub": 95.1,
         "esMeta": 96.65,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED",
         "avgMeta": 93.28,
-        "avgMetaSub": 95.1
+        "avgMetaSub": 90.25
       },
       {
         "role": "GK Sweeper Keeper",
@@ -59559,12 +59612,13 @@
         "ggMeta": 87.2,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 82.84,
         "esMetaSub": 93.98,
         "esMeta": 95.47,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED",
         "avgMeta": 91.34,
-        "avgMetaSub": 93.98
+        "avgMetaSub": 88.41
       }
     ]
   },
@@ -59614,8 +59668,8 @@
     "positions": [
       "LW",
       "RW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -60065,9 +60119,9 @@
     "attributeGkReflexes": 7,
     "attributeGkPositioning": 12,
     "positions": [
-      "CM",
+      "CDM",
       "CB",
-      "CDM"
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -61091,8 +61145,8 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 8,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -61944,8 +61998,8 @@
     "attributeGkPositioning": 6,
     "positions": [
       "CAM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -62727,8 +62781,8 @@
     "attributeGkPositioning": 10,
     "positions": [
       "CAM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -62988,8 +63042,8 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 6,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Left",
     "PS": [
@@ -63196,8 +63250,8 @@
     "positions": [
       "LW",
       "RW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -63471,8 +63525,8 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 9,
     "positions": [
-      "CB",
-      "CDM"
+      "CDM",
+      "CB"
     ],
     "foot": "Right",
     "PS": [
@@ -63646,9 +63700,9 @@
     "attributeGkReflexes": 10,
     "attributeGkPositioning": 11,
     "positions": [
+      "CDM",
       "RB",
-      "CB",
-      "CDM"
+      "CB"
     ],
     "foot": "Left",
     "PS": [
@@ -64518,8 +64572,8 @@
     "attributeGkReflexes": 13,
     "attributeGkPositioning": 14,
     "positions": [
-      "LB",
-      "CB"
+      "CB",
+      "LB"
     ],
     "foot": "Left",
     "PS": [
@@ -64922,8 +64976,8 @@
     "attributeGkReflexes": null,
     "attributeGkPositioning": null,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -65126,9 +65180,9 @@
     "attributeGkReflexes": 12,
     "attributeGkPositioning": 12,
     "positions": [
+      "CDM",
       "LB",
-      "CM",
-      "CDM"
+      "CM"
     ],
     "foot": "Left",
     "PS": [
@@ -65506,8 +65560,8 @@
     "attributeGkReflexes": 11,
     "attributeGkPositioning": 11,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -66439,12 +66493,13 @@
         "ggMeta": 92.4,
         "ggChemStyle": "gk wall",
         "ggAccelType": "LENGTHY",
+        "ggMetaSub": 87.78,
         "esMetaSub": 90.3,
         "esMeta": 93.56,
         "esChemStyle": "gk glove",
         "esAccelType": "LENGTHY",
         "avgMeta": 92.98,
-        "avgMetaSub": 90.3
+        "avgMetaSub": 89.04
       },
       {
         "role": "GK Sweeper Keeper",
@@ -66452,12 +66507,13 @@
         "ggMeta": 92.1,
         "ggChemStyle": "gk wall",
         "ggAccelType": "LENGTHY",
+        "ggMetaSub": 87.49,
         "esMetaSub": 91.23,
         "esMeta": 94.35,
         "esChemStyle": "gk glove",
         "esAccelType": "LENGTHY",
         "avgMeta": 93.22,
-        "avgMetaSub": 91.23
+        "avgMetaSub": 89.36
       }
     ]
   },
@@ -66907,8 +66963,8 @@
     "attributeGkReflexes": 15,
     "attributeGkPositioning": 12,
     "positions": [
-      "LB",
-      "CB"
+      "CB",
+      "LB"
     ],
     "foot": "Left",
     "PS": [
@@ -67255,8 +67311,8 @@
     "positions": [
       "CAM",
       "LW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -67768,8 +67824,8 @@
     "attributeGkPositioning": 14,
     "positions": [
       "RB",
-      "LB",
-      "CDM"
+      "CDM",
+      "LB"
     ],
     "foot": "Right",
     "PS": [
@@ -68021,8 +68077,8 @@
     "positions": [
       "RM",
       "RB",
-      "CAM",
-      "RW"
+      "RW",
+      "CAM"
     ],
     "foot": "Left",
     "PS": [
@@ -68563,8 +68619,8 @@
     "attributeGkReflexes": 5,
     "attributeGkPositioning": 5,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -68766,8 +68822,8 @@
     "attributeGkReflexes": 13,
     "attributeGkPositioning": 9,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -69252,9 +69308,9 @@
     "attributeGkReflexes": null,
     "attributeGkPositioning": null,
     "positions": [
-      "LB",
+      "CDM",
       "CB",
-      "CDM"
+      "LB"
     ],
     "foot": "Left",
     "PS": [
@@ -69859,12 +69915,13 @@
         "ggMeta": 73.1,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 69.44,
         "esMetaSub": 85.22,
         "esMeta": 87.84,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED",
         "avgMeta": 80.47,
-        "avgMetaSub": 85.22
+        "avgMetaSub": 77.33
       },
       {
         "role": "GK Sweeper Keeper",
@@ -69872,12 +69929,13 @@
         "ggMeta": 72.7,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 69.06,
         "esMetaSub": 84.72,
         "esMeta": 87.2,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED",
         "avgMeta": 79.95,
-        "avgMetaSub": 84.72
+        "avgMetaSub": 76.89
       }
     ]
   },
@@ -70057,8 +70115,8 @@
     "positions": [
       "CAM",
       "LW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -70594,8 +70652,8 @@
     "attributeGkReflexes": 6,
     "attributeGkPositioning": 13,
     "positions": [
-      "CAM",
       "RM",
+      "CAM",
       "ST"
     ],
     "foot": "Right",
@@ -71556,9 +71614,9 @@
     "attributeGkReflexes": 85,
     "attributeGkPositioning": 85,
     "positions": [
-      "CM",
+      "CDM",
       "CB",
-      "CDM"
+      "CM"
     ],
     "foot": "Left",
     "PS": [
@@ -71806,8 +71864,8 @@
     "attributeGkReflexes": 14,
     "attributeGkPositioning": 10,
     "positions": [
-      "LB",
-      "CB"
+      "CB",
+      "LB"
     ],
     "foot": "Left",
     "PS": [
@@ -72323,12 +72381,13 @@
         "ggMeta": 80.8,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 76.76,
         "esMetaSub": 88.4,
         "esMeta": 91.64,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED",
         "avgMeta": 86.22,
-        "avgMetaSub": 88.4
+        "avgMetaSub": 82.58
       },
       {
         "role": "GK Sweeper Keeper",
@@ -72336,12 +72395,13 @@
         "ggMeta": 79.5,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 75.52,
         "esMetaSub": 87.78,
         "esMeta": 90.87,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED",
         "avgMeta": 85.19,
-        "avgMetaSub": 87.78
+        "avgMetaSub": 81.65
       }
     ]
   },
@@ -72389,8 +72449,8 @@
     "attributeGkReflexes": 7,
     "attributeGkPositioning": 15,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -72824,8 +72884,8 @@
     "positions": [
       "LW",
       "RW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -74692,8 +74752,8 @@
     "attributeGkPositioning": 7,
     "positions": [
       "LW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -75431,9 +75491,9 @@
     "attributeGkReflexes": 10,
     "attributeGkPositioning": 12,
     "positions": [
-      "LM",
       "LW",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -75900,8 +75960,8 @@
     "positions": [
       "CAM",
       "RW",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -76869,8 +76929,8 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 13,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -77075,8 +77135,8 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 12,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -77276,8 +77336,8 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 5,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -77478,8 +77538,8 @@
     "attributeGkReflexes": 5,
     "attributeGkPositioning": 6,
     "positions": [
-      "RB",
       "CB",
+      "RB",
       "CDM"
     ],
     "foot": "Right",
@@ -77710,8 +77770,8 @@
     "attributeGkReflexes": 15,
     "attributeGkPositioning": 8,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -77909,8 +77969,8 @@
     "attributeGkReflexes": null,
     "attributeGkPositioning": null,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -78690,9 +78750,9 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 6,
     "positions": [
+      "CDM",
       "LB",
-      "CM",
-      "CDM"
+      "CM"
     ],
     "foot": "Left",
     "PS": [
@@ -79129,8 +79189,8 @@
     "attributeGkReflexes": 13,
     "attributeGkPositioning": 13,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -79506,9 +79566,9 @@
     "attributeGkReflexes": null,
     "attributeGkPositioning": null,
     "positions": [
-      "LB",
+      "CDM",
       "CB",
-      "CDM"
+      "LB"
     ],
     "foot": "Right",
     "PS": [
@@ -80755,10 +80815,10 @@
     "attributeGkReflexes": 12,
     "attributeGkPositioning": 12,
     "positions": [
-      "LM",
       "RM",
       "CAM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -81544,8 +81604,8 @@
     "positions": [
       "RM",
       "RW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Left",
     "PS": [
@@ -81833,8 +81893,8 @@
     "attributeGkPositioning": 16,
     "positions": [
       "RB",
-      "LB",
-      "CDM"
+      "CDM",
+      "LB"
     ],
     "foot": "Right",
     "PS": [
@@ -82084,9 +82144,9 @@
     "attributeGkReflexes": 13,
     "attributeGkPositioning": 9,
     "positions": [
-      "LM",
+      "CDM",
       "CM",
-      "CDM"
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -82352,9 +82412,9 @@
     "attributeGkPositioning": 9,
     "positions": [
       "RB",
+      "CDM",
       "LB",
-      "CM",
-      "CDM"
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -82668,8 +82728,8 @@
     "attributeGkReflexes": 11,
     "attributeGkPositioning": 8,
     "positions": [
-      "CB",
-      "CDM"
+      "CDM",
+      "CB"
     ],
     "foot": "Right",
     "PS": [
@@ -82871,12 +82931,13 @@
         "ggMeta": 92.9,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 88.25,
         "esMetaSub": 91.91,
         "esMeta": 94.39,
         "esChemStyle": "gk glove",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 93.65,
-        "avgMetaSub": 91.91
+        "avgMetaSub": 90.08
       },
       {
         "role": "GK Sweeper Keeper",
@@ -82884,12 +82945,13 @@
         "ggMeta": 90.7,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 86.16,
         "esMetaSub": 90.81,
         "esMeta": 93.16,
         "esChemStyle": "gk glove",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 91.93,
-        "avgMetaSub": 90.81
+        "avgMetaSub": 88.48
       }
     ]
   },
@@ -83113,8 +83175,8 @@
     "attributeGkPositioning": 7,
     "positions": [
       "RM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -83380,8 +83442,8 @@
     "attributeGkPositioning": 10,
     "positions": [
       "CAM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -83647,8 +83709,8 @@
     "attributeGkPositioning": 88,
     "positions": [
       "CAM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Left",
     "PS": [
@@ -84157,8 +84219,8 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 5,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -84834,8 +84896,8 @@
     "positions": [
       "LW",
       "LB",
-      "LM",
-      "CM"
+      "CM",
+      "LM"
     ],
     "foot": "Left",
     "PS": [
@@ -85264,8 +85326,8 @@
     "attributeGkReflexes": 10,
     "attributeGkPositioning": 10,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -85499,12 +85561,13 @@
         "ggMeta": 88.8,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 84.36,
         "esMetaSub": 96.22,
         "esMeta": 97.44,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 93.12,
-        "avgMetaSub": 96.22
+        "avgMetaSub": 90.29
       },
       {
         "role": "GK Sweeper Keeper",
@@ -85512,12 +85575,13 @@
         "ggMeta": 87.2,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 82.84,
         "esMetaSub": 96.37,
         "esMeta": 97.52,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 92.36,
-        "avgMetaSub": 96.37
+        "avgMetaSub": 89.61
       }
     ]
   },
@@ -85695,8 +85759,8 @@
     "attributeGkReflexes": 15,
     "attributeGkPositioning": 12,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -86032,9 +86096,9 @@
     "attributeGkReflexes": 11,
     "attributeGkPositioning": 5,
     "positions": [
-      "LM",
       "LW",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -86552,8 +86616,8 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 14,
     "positions": [
-      "CAM",
       "RM",
+      "CAM",
       "RW",
       "ST"
     ],
@@ -87040,8 +87104,8 @@
     "positions": [
       "LW",
       "RW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -87448,8 +87512,8 @@
     "attributeGkPositioning": 14,
     "positions": [
       "CAM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -88449,10 +88513,10 @@
     "attributeGkReflexes": 11,
     "attributeGkPositioning": 15,
     "positions": [
-      "LM",
       "CAM",
       "LW",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -88732,10 +88796,10 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 13,
     "positions": [
-      "LM",
       "CAM",
       "LW",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -89031,8 +89095,8 @@
     "attributeGkReflexes": 11,
     "attributeGkPositioning": 11,
     "positions": [
-      "CAM",
       "RM",
+      "CAM",
       "RW"
     ],
     "foot": "Left",
@@ -89268,9 +89332,9 @@
     "attributeGkReflexes": 10,
     "attributeGkPositioning": 6,
     "positions": [
-      "LM",
       "LW",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -89522,12 +89586,13 @@
         "ggMeta": 82.8,
         "ggChemStyle": "gk cat",
         "ggAccelType": "MOSTLY_LENGTHY",
+        "ggMetaSub": 78.66,
         "esMetaSub": 89.46,
         "esMeta": 93.47,
         "esChemStyle": "gk glove",
         "esAccelType": "MOSTLY_LENGTHY",
         "avgMeta": 88.13,
-        "avgMetaSub": 89.46
+        "avgMetaSub": 84.06
       },
       {
         "role": "GK Sweeper Keeper",
@@ -89535,12 +89600,13 @@
         "ggMeta": 79.5,
         "ggChemStyle": "gk cat",
         "ggAccelType": "MOSTLY_LENGTHY",
+        "ggMetaSub": 75.52,
         "esMetaSub": 89.23,
         "esMeta": 93.11,
         "esChemStyle": "gk glove",
         "esAccelType": "MOSTLY_LENGTHY",
         "avgMeta": 86.31,
-        "avgMetaSub": 89.23
+        "avgMetaSub": 82.38
       }
     ]
   },
@@ -89700,9 +89766,9 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 10,
     "positions": [
+      "CDM",
       "RB",
-      "CB",
-      "CDM"
+      "CB"
     ],
     "foot": "Right",
     "PS": [
@@ -90916,8 +90982,8 @@
     "positions": [
       "LW",
       "RW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Left",
     "PS": [
@@ -91926,12 +91992,13 @@
         "ggMeta": 88.7,
         "ggChemStyle": "gk wall",
         "ggAccelType": "MOSTLY_LENGTHY",
+        "ggMetaSub": 84.27,
         "esMetaSub": 95.17,
         "esMeta": 96.53,
         "esChemStyle": "gk basic",
         "esAccelType": "MOSTLY_LENGTHY",
         "avgMeta": 92.62,
-        "avgMetaSub": 95.17
+        "avgMetaSub": 89.72
       },
       {
         "role": "GK Sweeper Keeper",
@@ -91939,12 +92006,13 @@
         "ggMeta": 87.9,
         "ggChemStyle": "gk wall",
         "ggAccelType": "MOSTLY_LENGTHY",
+        "ggMetaSub": 83.5,
         "esMetaSub": 94.36,
         "esMeta": 95.67,
         "esChemStyle": "gk basic",
         "esAccelType": "MOSTLY_LENGTHY",
         "avgMeta": 91.78,
-        "avgMetaSub": 94.36
+        "avgMetaSub": 88.93
       }
     ]
   },
@@ -91992,8 +92060,8 @@
     "attributeGkReflexes": 15,
     "attributeGkPositioning": 9,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Left",
     "PS": [
@@ -92746,9 +92814,9 @@
     "attributeGkPositioning": 84,
     "positions": [
       "CAM",
-      "LM",
+      "CDM",
       "CM",
-      "CDM"
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -93753,8 +93821,8 @@
     "attributeGkReflexes": 11,
     "attributeGkPositioning": 14,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -93957,9 +94025,9 @@
     "attributeGkReflexes": null,
     "attributeGkPositioning": null,
     "positions": [
-      "CM",
+      "CDM",
       "CB",
-      "CDM"
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -94600,8 +94668,8 @@
     "attributeGkReflexes": 13,
     "attributeGkPositioning": 13,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Left",
     "PS": [
@@ -95390,8 +95458,8 @@
     "attributeGkReflexes": 15,
     "attributeGkPositioning": 11,
     "positions": [
-      "CB",
-      "CDM"
+      "CDM",
+      "CB"
     ],
     "foot": "Right",
     "PS": [
@@ -95919,8 +95987,8 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 10,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -96119,8 +96187,8 @@
     "attributeGkPositioning": 6,
     "positions": [
       "RB",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -96656,8 +96724,8 @@
     "positions": [
       "RM",
       "RW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -97069,8 +97137,8 @@
     "attributeGkPositioning": 7,
     "positions": [
       "LW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -98057,8 +98125,8 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 5,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -98698,8 +98766,8 @@
     "attributeGkReflexes": 12,
     "attributeGkPositioning": 10,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Left",
     "PS": [
@@ -99174,8 +99242,8 @@
     "attributeGkPositioning": 14,
     "positions": [
       "CAM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Left",
     "PS": [
@@ -99551,8 +99619,8 @@
     "attributeGkPositioning": 14,
     "positions": [
       "CAM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -100125,12 +100193,13 @@
         "ggMeta": 99,
         "ggChemStyle": "gk wall",
         "ggAccelType": "LENGTHY",
+        "ggMetaSub": 94.05,
         "esMetaSub": 96.58,
         "esMeta": 98.71,
         "esChemStyle": "gk basic",
         "esAccelType": "LENGTHY",
         "avgMeta": 98.85,
-        "avgMetaSub": 96.58
+        "avgMetaSub": 95.31
       },
       {
         "role": "GK Sweeper Keeper",
@@ -100138,12 +100207,13 @@
         "ggMeta": 99,
         "ggChemStyle": "gk wall",
         "ggAccelType": "LENGTHY",
+        "ggMetaSub": 94.05,
         "esMetaSub": 96.52,
         "esMeta": 98.53,
         "esChemStyle": "gk basic",
         "esAccelType": "LENGTHY",
         "avgMeta": 98.77,
-        "avgMetaSub": 96.52
+        "avgMetaSub": 95.28
       }
     ]
   },
@@ -100191,9 +100261,9 @@
     "attributeGkReflexes": 13,
     "attributeGkPositioning": 10,
     "positions": [
+      "CDM",
       "LB",
-      "LM",
-      "CDM"
+      "LM"
     ],
     "foot": "Left",
     "PS": [
@@ -101422,8 +101492,8 @@
     "attributeGkReflexes": 15,
     "attributeGkPositioning": 12,
     "positions": [
-      "LB",
-      "CB"
+      "CB",
+      "LB"
     ],
     "foot": "Right",
     "PS": [
@@ -101778,9 +101848,9 @@
     "attributeGkReflexes": 7,
     "attributeGkPositioning": 12,
     "positions": [
-      "CM",
       "CB",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -102032,8 +102102,8 @@
     "positions": [
       "CAM",
       "LW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -102957,8 +103027,8 @@
     "positions": [
       "RM",
       "CAM",
-      "ST",
-      "RW"
+      "RW",
+      "ST"
     ],
     "foot": "Right",
     "PS": [
@@ -103797,8 +103867,8 @@
     "attributeGkReflexes": 14,
     "attributeGkPositioning": 7,
     "positions": [
-      "LB",
-      "CB"
+      "CB",
+      "LB"
     ],
     "foot": "Left",
     "PS": [
@@ -103970,8 +104040,8 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 11,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -104411,8 +104481,8 @@
     "attributeGkReflexes": 11,
     "attributeGkPositioning": 11,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -105725,8 +105795,8 @@
     "positions": [
       "RM",
       "LW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Left",
     "PS": [
@@ -106009,8 +106079,8 @@
     "attributeGkReflexes": 12,
     "attributeGkPositioning": 6,
     "positions": [
-      "CAM",
       "RM",
+      "CAM",
       "CM"
     ],
     "foot": "Right",
@@ -106266,8 +106336,8 @@
     "attributeGkReflexes": null,
     "attributeGkPositioning": null,
     "positions": [
-      "LB",
-      "CB"
+      "CB",
+      "LB"
     ],
     "foot": "Left",
     "PS": [
@@ -106762,8 +106832,8 @@
     "attributeGkPositioning": 11,
     "positions": [
       "LW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Left",
     "PS": [
@@ -107228,8 +107298,8 @@
     "attributeGkPositioning": 8,
     "positions": [
       "CAM",
-      "LM",
-      "CM"
+      "CM",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -107950,9 +108020,9 @@
     "attributeGkReflexes": 6,
     "attributeGkPositioning": 10,
     "positions": [
-      "CM",
+      "CDM",
       "CB",
-      "CDM"
+      "CM"
     ],
     "foot": "Left",
     "PS": [
@@ -108607,12 +108677,13 @@
         "ggMeta": 81.7,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 77.61,
         "esMetaSub": 89.74,
         "esMeta": 92.87,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED",
         "avgMeta": 87.28,
-        "avgMetaSub": 89.74
+        "avgMetaSub": 83.67
       },
       {
         "role": "GK Sweeper Keeper",
@@ -108620,12 +108691,13 @@
         "ggMeta": 80.3,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 76.28,
         "esMetaSub": 89.49,
         "esMeta": 92.49,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED",
         "avgMeta": 86.39,
-        "avgMetaSub": 89.49
+        "avgMetaSub": 82.88
       }
     ]
   },
@@ -109160,9 +109232,9 @@
     "attributeGkReflexes": 10,
     "attributeGkPositioning": 14,
     "positions": [
-      "LM",
       "LW",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Left",
     "PS": [
@@ -110315,8 +110387,8 @@
     "attributeGkPositioning": 6,
     "positions": [
       "RB",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -110581,9 +110653,9 @@
     "attributeGkReflexes": 12,
     "attributeGkPositioning": 8,
     "positions": [
+      "CDM",
       "LB",
-      "LM",
-      "CDM"
+      "LM"
     ],
     "foot": "Left",
     "PS": [
@@ -110835,8 +110907,8 @@
     "positions": [
       "RM",
       "RW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -111132,8 +111204,8 @@
     "attributeGkPositioning": 7,
     "positions": [
       "CAM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -111396,8 +111468,8 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 5,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -111715,9 +111787,9 @@
     "attributeGkPositioning": 15,
     "positions": [
       "CAM",
+      "CDM",
       "ST",
-      "CM",
-      "CDM"
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -112516,8 +112588,8 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 12,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -112945,8 +113017,8 @@
     "attributeGkReflexes": 10,
     "attributeGkPositioning": 9,
     "positions": [
-      "LB",
-      "CB"
+      "CB",
+      "LB"
     ],
     "foot": "Right",
     "PS": [
@@ -114271,9 +114343,9 @@
     "attributeGkPositioning": 9,
     "positions": [
       "RB",
+      "CDM",
       "LB",
-      "CM",
-      "CDM"
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -114626,12 +114698,13 @@
         "ggMeta": 96.1,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 91.29,
         "esMetaSub": 94.88,
         "esMeta": 96.18,
         "esChemStyle": "gk glove",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 96.14,
-        "avgMetaSub": 94.88
+        "avgMetaSub": 93.09
       },
       {
         "role": "GK Sweeper Keeper",
@@ -114639,12 +114712,13 @@
         "ggMeta": 94.5,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED_LENGTHY",
+        "ggMetaSub": 89.77,
         "esMetaSub": 93.94,
         "esMeta": 95.19,
         "esChemStyle": "gk glove",
         "esAccelType": "CONTROLLED_LENGTHY",
         "avgMeta": 94.84,
-        "avgMetaSub": 93.94
+        "avgMetaSub": 91.85
       }
     ]
   },
@@ -114693,8 +114767,8 @@
     "attributeGkPositioning": 15,
     "positions": [
       "RB",
-      "LB",
-      "CB"
+      "CB",
+      "LB"
     ],
     "foot": "Right",
     "PS": [
@@ -115111,8 +115185,8 @@
     "attributeGkReflexes": 5,
     "attributeGkPositioning": 5,
     "positions": [
-      "CB",
-      "CDM"
+      "CDM",
+      "CB"
     ],
     "foot": "Right",
     "PS": [
@@ -115908,9 +115982,9 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 8,
     "positions": [
+      "CM",
       "CAM",
-      "ST",
-      "CM"
+      "ST"
     ],
     "foot": "Right",
     "PS": [
@@ -116176,9 +116250,9 @@
     "attributeGkPositioning": 15,
     "positions": [
       "RB",
+      "LW",
       "LB",
-      "LM",
-      "LW"
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -117024,12 +117098,13 @@
         "ggMeta": 94.8,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 90.06,
         "esMetaSub": 95.33,
         "esMeta": 96.53,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED",
         "avgMeta": 95.66,
-        "avgMetaSub": 95.33
+        "avgMetaSub": 92.69
       },
       {
         "role": "GK Sweeper Keeper",
@@ -117037,12 +117112,13 @@
         "ggMeta": 91.6,
         "ggChemStyle": "gk wall",
         "ggAccelType": "CONTROLLED",
+        "ggMetaSub": 87.02,
         "esMetaSub": 93.79,
         "esMeta": 94.93,
         "esChemStyle": "gk basic",
         "esAccelType": "CONTROLLED",
         "avgMeta": 93.27,
-        "avgMetaSub": 93.79
+        "avgMetaSub": 90.41
       }
     ]
   },
@@ -117392,8 +117468,8 @@
     "attributeGkPositioning": 6,
     "positions": [
       "LW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -118021,8 +118097,8 @@
     "attributeGkPositioning": null,
     "positions": [
       "CAM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Left",
     "PS": [
@@ -118413,8 +118489,8 @@
     "positions": [
       "RM",
       "CAM",
-      "ST",
-      "RW"
+      "RW",
+      "ST"
     ],
     "foot": "Left",
     "PS": [
@@ -119083,8 +119159,8 @@
     "attributeGkPositioning": 8,
     "positions": [
       "RB",
-      "LB",
-      "CB"
+      "CB",
+      "LB"
     ],
     "foot": "Right",
     "PS": [
@@ -119319,8 +119395,8 @@
     "attributeGkReflexes": 14,
     "attributeGkPositioning": 7,
     "positions": [
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Left",
     "PS": [
@@ -119508,8 +119584,8 @@
     "attributeGkReflexes": 13,
     "attributeGkPositioning": 8,
     "positions": [
-      "CAM",
-      "RM"
+      "RM",
+      "CAM"
     ],
     "foot": "Right",
     "PS": [
@@ -120871,8 +120947,8 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 10,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -122536,8 +122612,8 @@
     "attributeGkReflexes": 11,
     "attributeGkPositioning": 10,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -123541,8 +123617,8 @@
     "positions": [
       "RM",
       "CAM",
-      "ST",
-      "RW"
+      "RW",
+      "ST"
     ],
     "foot": "Right",
     "PS": [
@@ -126297,8 +126373,8 @@
     "attributeGkPositioning": 8,
     "positions": [
       "RM",
-      "LW",
       "CAM",
+      "LW",
       "RW"
     ],
     "foot": "Left",
@@ -126574,8 +126650,8 @@
     "positions": [
       "RM",
       "LW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Left",
     "PS": [
@@ -126871,8 +126947,8 @@
     "attributeGkPositioning": 8,
     "positions": [
       "LW",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -127727,8 +127803,8 @@
     "attributeGkReflexes": 5,
     "attributeGkPositioning": 5,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -128166,8 +128242,8 @@
     "attributeGkPositioning": 6,
     "positions": [
       "CAM",
-      "LM",
-      "CM"
+      "CM",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -128422,8 +128498,8 @@
     "attributeGkPositioning": 8,
     "positions": [
       "CAM",
-      "LM",
-      "CM"
+      "CM",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -129733,8 +129809,8 @@
     "attributeGkPositioning": 6,
     "positions": [
       "LW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Left",
     "PS": [
@@ -130192,9 +130268,9 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 14,
     "positions": [
+      "CDM",
       "LB",
-      "CM",
-      "CDM"
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -130460,8 +130536,8 @@
     "attributeGkPositioning": 13,
     "positions": [
       "RB",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -130726,10 +130802,10 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 12,
     "positions": [
+      "CDM",
       "LB",
-      "LM",
       "CM",
-      "CDM"
+      "LM"
     ],
     "foot": "Left",
     "PS": [
@@ -131655,9 +131731,9 @@
     "attributeGkReflexes": 10,
     "attributeGkPositioning": 6,
     "positions": [
-      "LM",
       "LW",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -134393,8 +134469,8 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 5,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -134852,8 +134928,8 @@
     "attributeGkPositioning": 11,
     "positions": [
       "CAM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -135305,8 +135381,8 @@
     "attributeGkPositioning": 7,
     "positions": [
       "LW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -135533,8 +135609,8 @@
     "attributeGkPositioning": 11,
     "positions": [
       "RM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -135801,8 +135877,8 @@
     "positions": [
       "LW",
       "RW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -137553,8 +137629,8 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 11,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -138180,8 +138256,8 @@
     "attributeGkPositioning": 8,
     "positions": [
       "CAM",
-      "LM",
-      "CM"
+      "CM",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -138441,9 +138517,9 @@
     "attributeGkReflexes": 6,
     "attributeGkPositioning": 14,
     "positions": [
+      "CDM",
       "RB",
-      "CB",
-      "CDM"
+      "CB"
     ],
     "foot": "Right",
     "PS": [
@@ -139340,8 +139416,8 @@
     "positions": [
       "RM",
       "RW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -140202,9 +140278,9 @@
     "attributeGkReflexes": 12,
     "attributeGkPositioning": 8,
     "positions": [
-      "LM",
       "LW",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Left",
     "PS": [
@@ -141338,8 +141414,8 @@
     "attributeGkPositioning": null,
     "positions": [
       "LW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -141686,8 +141762,8 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 5,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Left",
     "PS": [
@@ -141891,8 +141967,8 @@
     "attributeGkReflexes": 11,
     "attributeGkPositioning": 14,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -142274,8 +142350,8 @@
     "attributeGkReflexes": 15,
     "attributeGkPositioning": 11,
     "positions": [
-      "CAM",
       "RM",
+      "CAM",
       "CM"
     ],
     "foot": "Right",
@@ -142542,8 +142618,8 @@
     "attributeGkPositioning": 16,
     "positions": [
       "CAM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -143203,8 +143279,8 @@
     "attributeGkPositioning": 7,
     "positions": [
       "CAM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -143878,9 +143954,9 @@
     "attributeGkReflexes": 10,
     "attributeGkPositioning": 7,
     "positions": [
-      "LM",
       "LW",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -145177,9 +145253,9 @@
     "attributeGkReflexes": 13,
     "attributeGkPositioning": 14,
     "positions": [
-      "LM",
       "CAM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Left",
     "PS": [
@@ -145429,8 +145505,8 @@
     "attributeGkPositioning": 8,
     "positions": [
       "LW",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -145881,8 +145957,8 @@
     "attributeGkReflexes": 5,
     "attributeGkPositioning": 5,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -146320,8 +146396,8 @@
     "attributeGkReflexes": 14,
     "attributeGkPositioning": 14,
     "positions": [
-      "CAM",
       "RM",
+      "CAM",
       "RW"
     ],
     "foot": "Left",
@@ -147006,8 +147082,8 @@
     "positions": [
       "RM",
       "CAM",
-      "ST",
-      "RW"
+      "RW",
+      "ST"
     ],
     "foot": "Right",
     "PS": [
@@ -147514,8 +147590,8 @@
     "attributeGkPositioning": 8,
     "positions": [
       "LW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -147972,8 +148048,8 @@
     "attributeGkPositioning": 15,
     "positions": [
       "CAM",
-      "LM",
-      "CM"
+      "CM",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -148354,8 +148430,8 @@
     "attributeGkPositioning": 10,
     "positions": [
       "CAM",
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -148880,8 +148956,8 @@
     "positions": [
       "RM",
       "CAM",
-      "ST",
-      "RW"
+      "RW",
+      "ST"
     ],
     "foot": "Left",
     "PS": [
@@ -149170,8 +149246,8 @@
     "attributeGkPositioning": 7,
     "positions": [
       "LW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -149748,10 +149824,10 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 14,
     "positions": [
-      "LM",
       "RM",
       "LW",
-      "RW"
+      "RW",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -150523,9 +150599,9 @@
     "attributeGkReflexes": 10,
     "attributeGkPositioning": 7,
     "positions": [
-      "LB",
+      "CDM",
       "CB",
-      "CDM"
+      "LB"
     ],
     "foot": "Left",
     "PS": [
@@ -151095,8 +151171,8 @@
     "positions": [
       "CDM",
       "CAM",
-      "CM",
-      "CB"
+      "CB",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -153202,8 +153278,8 @@
     "attributeGkPositioning": 7,
     "positions": [
       "LW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -154047,8 +154123,8 @@
     "attributeGkPositioning": 7,
     "positions": [
       "LW",
-      "LM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -154489,8 +154565,8 @@
     "attributeGkReflexes": 10,
     "attributeGkPositioning": 7,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -155051,8 +155127,8 @@
     "attributeGkPositioning": null,
     "positions": [
       "LB",
-      "LM",
-      "CM"
+      "CM",
+      "LM"
     ],
     "foot": "Left",
     "PS": [
@@ -155355,9 +155431,9 @@
     "attributeGkReflexes": null,
     "attributeGkPositioning": null,
     "positions": [
+      "RM",
       "CAM",
       "LW",
-      "RM",
       "RW"
     ],
     "foot": "Left",
@@ -156136,9 +156212,9 @@
     "attributeGkReflexes": null,
     "attributeGkPositioning": null,
     "positions": [
-      "ST",
+      "CDM",
       "CB",
-      "CDM"
+      "ST"
     ],
     "foot": "Left",
     "PS": [
@@ -156218,9 +156294,9 @@
     "attributeGkReflexes": null,
     "attributeGkPositioning": null,
     "positions": [
-      "CM",
+      "CDM",
       "CB",
-      "CDM"
+      "CM"
     ],
     "foot": "Right",
     "PS": [
@@ -156301,8 +156377,8 @@
     "attributeGkReflexes": null,
     "attributeGkPositioning": null,
     "positions": [
-      "CM",
-      "CDM"
+      "CDM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [
