@@ -157,7 +157,8 @@ def predict_rating(model_bundle, feature_dict):
     if not model_bundle: return None
     try:
         input_df = pd.DataFrame([feature_dict])
-        input_df = pd.get_dummies(input_df, columns=["bodytype", "accelerateType"], dtype=int)
+        input_df = pd.get_dummies(input_df, columns=["bodytype", "foot", "chem_style"], dtype=int)
+        
         model_features = model_bundle["features"]
         for feature in model_features:
             if feature not in input_df.columns: input_df[feature] = 0
@@ -166,8 +167,13 @@ def predict_rating(model_bundle, feature_dict):
         input_df = input_df.fillna(0).infer_objects(copy=False)
 
         input_scaled = model_bundle["feature_scaler"].transform(input_df)
-        pred_scaled = model_bundle["model"].predict(input_scaled)
-        prediction = model_bundle["target_scaler"].inverse_transform(pred_scaled.reshape(-1, 1))[0][0]
+        prediction = model_bundle["model"].predict(input_scaled)
+        
+        if "target_scaler" in model_bundle:
+            prediction = model_bundle["target_scaler"].inverse_transform(prediction.reshape(-1, 1))[0][0]
+        else:
+            prediction = prediction[0]
+
         return round(float(prediction), 2)
     except Exception: return None
 
@@ -175,20 +181,24 @@ def predict_and_inject_ratings(player_output, model_manager, maps):
     for meta_entry in player_output.get("metaRatings", []):
         role_name = meta_entry["role"]
         
-        # --- FIX: Use the new, dedicated ggMetaSub model ---
-        gg_sub_model = model_manager.get_model(role_name, 'ggMetaSub')
-        if gg_sub_model:
-            base_features = prepare_features(player_output, maps, boosts={})
-            gg_sub_pred = predict_rating(gg_sub_model, base_features)
-            if gg_sub_pred: meta_entry["ggMetaSub"] = gg_sub_pred
-        
-        # Handle Goalkeepers with the special rule
-        elif "GK" in role_name and meta_entry.get("ggMeta") is not None:
-            meta_entry["ggMetaSub"] = round(meta_entry["ggMeta"] * 0.9, 2)
+        on_chem_ggmeta = meta_entry.get("ggMeta")
+        if on_chem_ggmeta is not None:
+            delta_model = model_manager.get_model(role_name, 'ggMetaDelta')
+            if delta_model:
+                features = prepare_features(player_output, maps)
+                features["chem_style"] = meta_entry.get("ggChemStyle", "basic").lower()
+                
+                predicted_delta = predict_rating(delta_model, features)
+                if predicted_delta is not None:
+                    meta_entry["ggMetaSub"] = round(on_chem_ggmeta - predicted_delta, 2)
+            
+            if "ggMetaSub" not in meta_entry and "GK" in role_name:
+                meta_entry["ggMetaSub"] = round(on_chem_ggmeta * 0.95, 2)
 
         if player_output.get("evolution"):
             es_sub_model = model_manager.get_model(role_name, 'esMetaSub')
             if es_sub_model:
+                base_features = prepare_features(player_output, maps, boosts={})
                 es_sub_pred = predict_rating(es_sub_model, base_features)
                 if es_sub_pred: meta_entry["esMetaSub"] = es_sub_pred
 
