@@ -18,7 +18,6 @@ attribute_filter_order = [
     "gkDiving", "gkHandling", "gkKicking", "gkPositioning", "gkReflexes"
 ]
 
-@st.cache_data
 def load_data(file_path):
     """Loads and preprocesses the final JSON data."""
     try:
