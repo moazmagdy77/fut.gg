@@ -68,7 +68,7 @@ EVO_PLAYER_DEFINITION_FIELDS_TO_REMOVE = [
     "isSbcItem", "isObjectiveItem", "totalFaceStats", "totalIgs"
 ]
 
-# --- FIX: Re-added the missing helper functions ---
+# --- Helper Functions ---
 def load_json_file(file_path, default_val=None):
     try:
         with open(file_path, 'r', encoding='utf-8') as f: return json.load(f)
@@ -103,7 +103,7 @@ def parse_gg_rating_str(gg_rating_str_raw):
         except (ValueError, IndexError): continue
     return parsed_ratings_by_role
 
-# --- FIX: Re-added the missing ModelManager class and its functions ---
+# --- Model Prediction Engine ---
 class ModelManager:
     def __init__(self, models_dir):
         self.models_dir = models_dir
@@ -220,6 +220,7 @@ def predict_and_inject_ratings(player_output, model_manager, maps):
             
     return player_output
 
+# --- Player Processing Functions ---
 def process_single_club_player(ea_id_str, model_manager, maps):
     ea_id = int(ea_id_str)
     gg_details_raw = load_json_file(GG_DATA_DIR / f"{ea_id}_ggData.json")
@@ -394,9 +395,17 @@ def main():
     
     print("\n--- Scaling Predicted ggMetaSub Ratings ---")
     if processed_players:
-        flat_data = [ {**p, **r} for p in processed_players for r in p.get('metaRatings', []) ]
-        df = pd.DataFrame(flat_data)
+        # Flatten the data into a DataFrame for easy manipulation
+        flat_data = []
+        all_meta_keys = set()
+        for player in processed_players:
+            for rating_entry in player.get('metaRatings', []):
+                all_meta_keys.update(rating_entry.keys())
+                row = {**{k: v for k, v in player.items() if k != 'metaRatings'}, **rating_entry}
+                flat_data.append(row)
         
+        df = pd.DataFrame(flat_data)
+
         TARGET_MAX_SUB_RATING = 95.0
         scaled_dfs = []
         for role, group in df.groupby('role'):
@@ -415,7 +424,6 @@ def main():
         if scaled_dfs:
             df_scaled = pd.concat(scaled_dfs)
             final_players_dict = {}
-            all_meta_keys = {"role", "ggMeta", "ggMetaSub", "ggChemStyle", "ggAccelType", "esMetaSub", "esMeta", "esChemStyle", "esAccelType", "subAccelType", "avgMeta", "avgMetaSub"}
             
             for _, row in df_scaled.iterrows():
                 player_id = row['eaId']
