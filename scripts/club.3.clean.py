@@ -163,7 +163,6 @@ def process_player(player_def, is_evo, model_manager, maps):
         elif "GK" in role_name and meta_entry.get("ggMeta") is not None:
              meta_entry["ggMetaSub"] = round(meta_entry["ggMeta"] * 0.95, 2)
 
-
         if is_evo:
             es_sub_model = model_manager.get_model(role_name, 'esMetaSub')
             if es_sub_model:
