@@ -181,13 +181,14 @@ def predict_and_inject_ratings(player_output, model_manager, maps):
                 meta_entry["ggMetaSub"] = round(meta_entry["ggMeta"] * 0.9, 2)
             # Skip model prediction for GKs
             continue
-        
-        base_features = prepare_features(player_output, maps, boosts={})
-        gg_model = model_manager.get_model(role_name, 'ggMeta')
-        if gg_model:
-            gg_sub_pred = predict_rating(gg_model, base_features)
+
+        # --- FIX: Use the new, dedicated ggMetaSub model ---
+        gg_sub_model = model_manager.get_model(role_name, 'ggMetaSub')
+        if gg_sub_model:
+            base_features = prepare_features(player_output, maps, boosts={})
+            gg_sub_pred = predict_rating(gg_sub_model, base_features)
             if gg_sub_pred: meta_entry["ggMetaSub"] = gg_sub_pred
-            
+
         if player_output.get("evolution"):
             es_sub_model = model_manager.get_model(role_name, 'esMetaSub')
             if es_sub_model:
