@@ -175,19 +175,16 @@ def predict_and_inject_ratings(player_output, model_manager, maps):
     for meta_entry in player_output.get("metaRatings", []):
         role_name = meta_entry["role"]
         
-        # --- FIX: Handle Goalkeepers with a special rule ---
-        if "GK" in role_name:
-            if meta_entry.get("ggMeta") is not None:
-                meta_entry["ggMetaSub"] = round(meta_entry["ggMeta"] * 0.9, 2)
-            # Skip model prediction for GKs
-            continue
-
         # --- FIX: Use the new, dedicated ggMetaSub model ---
         gg_sub_model = model_manager.get_model(role_name, 'ggMetaSub')
         if gg_sub_model:
             base_features = prepare_features(player_output, maps, boosts={})
             gg_sub_pred = predict_rating(gg_sub_model, base_features)
             if gg_sub_pred: meta_entry["ggMetaSub"] = gg_sub_pred
+        
+        # Handle Goalkeepers with the special rule
+        elif "GK" in role_name and meta_entry.get("ggMeta") is not None:
+            meta_entry["ggMetaSub"] = round(meta_entry["ggMeta"] * 0.9, 2)
 
         if player_output.get("evolution"):
             es_sub_model = model_manager.get_model(role_name, 'esMetaSub')

@@ -12,8 +12,7 @@ import os
 # --- Configuration ---
 BASE_DATA_DIR = Path(__file__).resolve().parent / '../data'
 MODEL_DIR = Path(__file__).resolve().parent / '../models'
-DATA_GG_ON_CHEM_FILE = BASE_DATA_DIR / 'training_dataset_gg_on_chem.csv'
-DATA_GG_BASIC_FILE = BASE_DATA_DIR / 'training_dataset_gg_basic.csv'
+DATA_GG_FILE = BASE_DATA_DIR / 'training_dataset_gg.csv'
 
 def train_and_save_model(df_subset, target_col, role_name, model_suffix):
     if len(df_subset) < 50:
@@ -46,29 +45,19 @@ def main():
     print("🚀 Starting ggMeta model training script...")
     MODEL_DIR.mkdir(exist_ok=True)
 
-    # --- Train On-Chem (ggMeta) Models ---
-    print("\n" + "="*50 + "\n L O A D I N G   ggMeta 'On-Chem' D A T A S E T\n" + "="*50)
-    if DATA_GG_ON_CHEM_FILE.exists():
-        df = pd.read_csv(DATA_GG_ON_CHEM_FILE)
-        for role_col in [c for c in df.columns if c.startswith('role_')]:
-            role_name = role_col.replace('role_', '').replace('_', ' ')
-            df_subset = df[df[role_col] == 1].copy()
-            df_subset.drop(columns=[c for c in df_subset.columns if c.startswith(('role_', 'bodytype_', 'accelerateType_', 'foot_'))], inplace=True)
-            train_and_save_model(df_subset, 'target_ggMeta', role_name, 'ggMeta')
-    else:
-        print(f"❌ Error: {DATA_GG_ON_CHEM_FILE.name} not found.")
+    if not DATA_GG_FILE.exists():
+        print(f"❌ Error: {DATA_GG_FILE.name} not found. Please run the build script first.")
+        return
+    
+    df = pd.read_csv(DATA_GG_FILE)
+    role_cols = [col for col in df.columns if col.startswith('role_')]
 
-    # --- Train Basic-Chem (ggMetaSub) Models ---
-    print("\n" + "="*50 + "\n L O A D I N G  ggMeta 'Baseline' D A T A S E T\n" + "="*50)
-    if DATA_GG_BASIC_FILE.exists():
-        df = pd.read_csv(DATA_GG_BASIC_FILE)
-        for role_col in [c for c in df.columns if c.startswith('role_')]:
-            role_name = role_col.replace('role_', '').replace('_', ' ')
-            df_subset = df[df[role_col] == 1].copy()
-            df_subset.drop(columns=[c for c in df_subset.columns if c.startswith(('role_', 'bodytype_', 'accelerateType_', 'foot_'))], inplace=True)
-            train_and_save_model(df_subset, 'target_ggMetaSub', role_name, 'ggMetaSub')
-    else:
-        print(f"❌ Error: {DATA_GG_BASIC_FILE.name} not found.")
+    for role_col in role_cols:
+        role_name = role_col.replace('role_', '').replace('_', ' ')
+        df_subset = df[df[role_col] == 1].copy()
+        cols_to_drop = [c for c in df_subset.columns if c.startswith(('role_', 'bodytype_', 'accelerateType_', 'foot_'))]
+        df_subset.drop(columns=cols_to_drop, inplace=True)
+        train_and_save_model(df_subset, 'target_ggMeta', role_name, 'ggMeta')
         
     print("\n🎉 All ggMeta models trained successfully.")
 

@@ -11,8 +11,9 @@ RAW_DATA_DIR = BASE_DATA_DIR / 'raw'
 GG_DATA_DIR = RAW_DATA_DIR / 'ggData'
 GG_META_DIR = RAW_DATA_DIR / 'ggMeta'
 MAPS_FILE = BASE_DATA_DIR / 'maps.json'
-OUTPUT_GG_ON_CHEM_FILE = BASE_DATA_DIR / 'training_dataset_gg_on_chem.csv'
-OUTPUT_GG_BASIC_FILE = BASE_DATA_DIR / 'training_dataset_gg_basic.csv'
+MANUAL_DATA_FILE = BASE_DATA_DIR / 'manual_gg_data.csv'
+OVERSAMPLE_FACTOR = 50 # Duplicate manual entries to give them more weight
+OUTPUT_GG_FILE = BASE_DATA_DIR / 'training_dataset_gg.csv'
 
 # --- Helper Functions (unchanged) ---
 def load_json_file(file_path, default_val=None):
@@ -40,7 +41,7 @@ def get_attribute_with_boost(base_attributes, attr_name, boost_modifiers, defaul
     return min(int(base_val) + int(boost_val), 99)
 
 def main():
-    print("🚀 Starting script to build ggMeta training datasets...")
+    print("🚀 Starting script to build the ggMeta training dataset...")
     maps = load_json_file(MAPS_FILE)
     if not maps:
         print(f"❌ Critical error: Could not load {MAPS_FILE}. Exiting.")
@@ -49,9 +50,7 @@ def main():
     chem_style_boosts = {item['name'].lower(): item['threeChemistryModifiers'] for item in maps.get("ChemistryStylesBoosts", []) if 'name' in item}
     all_playstyles = list(maps.get("playstyles", {}).values())
 
-    rows_on_chem = []
-    rows_basic = []
-
+    all_rows = []
     player_ids = [f.stem.split('_')[0] for f in GG_DATA_DIR.glob("*_ggData.json")]
     print(f"ℹ️ Found {len(player_ids)} players in raw data directory.")
 
@@ -81,37 +80,39 @@ def main():
             role_name = maps.get("role", {}).get(role_id)
             chem_style_name = maps.get("ggChemistryStyleNames", {}).get(chem_id, "basic").lower()
             if not role_name: continue
-
-            # Create the on-chem row with boosted stats
-            row_on_chem = base_features.copy()
-            row_on_chem["role"] = role_name
+            
+            row = base_features.copy()
+            row["role"] = role_name
             boosts = chem_style_boosts.get(chem_style_name, {})
             for attr in base_attributes:
-                row_on_chem[attr] = get_attribute_with_boost(base_attributes, attr, boosts)
-            row_on_chem["accelerateType"] = calculate_acceleration_type(row_on_chem.get("attributeAcceleration"), row_on_chem.get("attributeAgility"), row_on_chem.get("attributeStrength"), row_on_chem.get("height"))
-            row_on_chem["target_ggMeta"] = score_entry.get("score")
-            rows_on_chem.append(row_on_chem)
+                row[attr] = get_attribute_with_boost(base_attributes, attr, boosts)
+            row["accelerateType"] = calculate_acceleration_type(row.get("attributeAcceleration"), row.get("attributeAgility"), row.get("attributeStrength"), row.get("height"))
+            row["target_ggMeta"] = score_entry.get("score")
+            all_rows.append(row)
 
-            # If this is a 'basic' chem style, create a row for the baseline model
-            if chem_style_name == 'basic':
-                row_basic = base_features.copy()
-                row_basic.update(base_attributes) # Use base attributes
-                row_basic["role"] = role_name
-                row_basic["accelerateType"] = calculate_acceleration_type(row_basic.get("attributeAcceleration"), row_basic.get("attributeAgility"), row_basic.get("attributeStrength"), row_basic.get("height"))
-                row_basic["target_ggMetaSub"] = score_entry.get("score")
-                rows_basic.append(row_basic)
+    print("✅ Finished processing raw player data. Creating DataFrame...")
+    df_large = pd.DataFrame(all_rows)
 
-    print("✅ Finished processing players. Creating DataFrames...")
+    if MANUAL_DATA_FILE.exists():
+        print(f"ℹ️ Found manual data file at {MANUAL_DATA_FILE.name}. Oversampling and merging...")
+        try:
+            df_manual = pd.read_csv(MANUAL_DATA_FILE)
+            df_manual_oversampled = pd.concat([df_manual] * OVERSAMPLE_FACTOR, ignore_index=True)
+            df_final = pd.concat([df_large, df_manual_oversampled], ignore_index=True)
+            print(f"✅ Merged {len(df_large)} auto-generated rows with {len(df_manual_oversampled)} oversampled manual rows.")
+        except Exception as e:
+            print(f"⚠️ Could not process manual data file, using auto-generated data only. Error: {e}")
+            df_final = df_large
+    else:
+        print("ℹ️ No manual data file found. Using auto-generated data only.")
+        df_final = df_large
+
+    df_final.dropna(subset=['target_ggMeta'], inplace=True)
+    df_final.fillna(0, inplace=True)
+    df_final = pd.get_dummies(df_final, columns=["role", "bodytype", "accelerateType", "foot"], dtype=int)
     
-    df_on_chem = pd.DataFrame(rows_on_chem).dropna(subset=['target_ggMeta']).fillna(0)
-    df_on_chem = pd.get_dummies(df_on_chem, columns=["role", "bodytype", "accelerateType", "foot"], dtype=int)
-    df_on_chem.to_csv(OUTPUT_GG_ON_CHEM_FILE, index=False)
-    print(f"💾 Saved ggMeta on-chem training data with {len(df_on_chem)} rows.")
-
-    df_basic = pd.DataFrame(rows_basic).dropna(subset=['target_ggMetaSub']).fillna(0)
-    df_basic = pd.get_dummies(df_basic, columns=["role", "bodytype", "accelerateType", "foot"], dtype=int)
-    df_basic.to_csv(OUTPUT_GG_BASIC_FILE, index=False)
-    print(f"💾 Saved ggMeta baseline (sub) training data with {len(df_basic)} rows.")
+    df_final.to_csv(OUTPUT_GG_FILE, index=False)
+    print(f"💾 Saved combined ggMeta training data with {len(df_final)} rows to {OUTPUT_GG_FILE.name}")
 
 if __name__ == "__main__":
     main()
