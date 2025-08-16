@@ -135,12 +135,16 @@ def process_player(player_def, is_evo, model_manager, maps):
     sub_accel_type = calculate_acceleration_type(base_attributes.get("attributeAcceleration"), base_attributes.get("attributeAgility"), base_attributes.get("attributeStrength"), player_output.get("height"))
 
     es_meta_raw = load_json_file(ES_META_DIR / f"{player_output['eaId']}_esMeta.json", [])
-    gg_meta_raw = load_json_file(GG_META_DIR / f"{player_output['eaId']}_ggMeta.json")
     
-    gg_scores_by_role = defaultdict(list)
-    if gg_meta_raw and "data" in gg_meta_raw and "scores" in gg_meta_raw["data"]:
-        for score in gg_meta_raw["data"]["scores"]:
-            gg_scores_by_role[str(score.get("role"))].append(score)
+    # Determine the source of ggMeta data
+    if is_evo:
+        gg_scores_by_role = parse_gg_rating_str(player_def.get("ggRatingStr"))
+    else:
+        gg_meta_raw = load_json_file(GG_META_DIR / f"{player_output['eaId']}_ggMeta.json")
+        gg_scores_by_role = defaultdict(list)
+        if gg_meta_raw and "data" in gg_meta_raw and "scores" in gg_meta_raw["data"]:
+            for score in gg_meta_raw["data"]["scores"]:
+                gg_scores_by_role[str(score.get("role"))].append(score)
 
     player_output["metaRatings"] = []
     for role_id_str, scores in gg_scores_by_role.items():
@@ -152,12 +156,12 @@ def process_player(player_def, is_evo, model_manager, maps):
         best_gg_score = max(scores, key=lambda x: x.get("score", 0), default=None)
         if best_gg_score:
             meta_entry["ggMeta"] = round(best_gg_score["score"], 2)
-            chem_id = str(best_gg_score.get("chemistryStyle"))
+            chem_id = best_gg_score.get("chem_id_str") if is_evo else str(best_gg_score.get("chemistryStyle"))
             meta_entry["ggChemStyle"] = maps["gg_chem_style_names_map"].get(chem_id)
             boosts = maps["chem_style_boosts_map"].get(meta_entry.get("ggChemStyle", "").lower(), {})
             meta_entry["ggAccelType"] = calculate_acceleration_type(get_attribute_with_boost(base_attributes, "attributeAcceleration", boosts), get_attribute_with_boost(base_attributes, "attributeAgility", boosts), get_attribute_with_boost(base_attributes, "attributeStrength", boosts), player_output.get("height"))
 
-        basic_gg_score = next((s for s in scores if maps["gg_chem_style_names_map"].get(str(s.get("chemistryStyle")), "").lower() == 'basic'), None)
+        basic_gg_score = next((s for s in scores if maps["gg_chem_style_names_map"].get(s.get("chem_id_str") if is_evo else str(s.get("chemistryStyle")), "").lower() == 'basic'), None)
         if basic_gg_score:
             meta_entry["ggMetaSub"] = round(basic_gg_score.get("score"), 2)
         elif "GK" in role_name and meta_entry.get("ggMeta") is not None:
