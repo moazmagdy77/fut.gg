@@ -38,9 +38,12 @@ def train_and_save_model(df_subset, target_col, role_name, model_suffix):
     target_scaler = MinMaxScaler(feature_range=(0, 1))
     y_scaled = target_scaler.fit_transform(y.values.reshape(-1, 1)).ravel()
 
-    # Train the model
-    model = LassoCV(cv=5, random_state=42, n_jobs=-1, max_iter=2000)
+    # Train the model (non-negative weights to enforce monotonicity)
+    model = LassoCV(cv=5, random_state=42, n_jobs=-1, max_iter=2000, positive=True)
     model.fit(X_scaled.values, y_scaled)
+
+    # Convert coefficients to *unscaled-y, unscaled-X* contribution weights:
+    coef_unscaled = (model.coef_ / target_scaler.scale_[0]) / feature_scaler.scale_
 
     # Evaluate the model
     y_pred_scaled = model.predict(X_scaled)
@@ -57,7 +60,8 @@ def train_and_save_model(df_subset, target_col, role_name, model_suffix):
         "model": model,
         "feature_scaler": feature_scaler,
         "target_scaler": target_scaler,
-        "features": X.columns.tolist()
+        "features": X.columns.tolist(),
+        "coef_unscaled": coef_unscaled.tolist()
     }
     
     # Sanitize role_name for filename

@@ -70,61 +70,6 @@ async function checkPlayerDataExists(eaIdStr, ggDataDirAbs, esMetaDirAbs, ggMeta
     }
 }
 
-async function deletePlayerData(eaIdStr, ggDataDirAbs, esMetaDirAbs, ggMetaDirAbs) {
-    const filesToDelete = [
-        path.join(ggDataDirAbs, `${eaIdStr}_ggData.json`),
-        path.join(esMetaDirAbs, `${eaIdStr}_esMeta.json`),
-        path.join(ggMetaDirAbs, `${eaIdStr}_ggMeta.json`)
-    ];
-    for (const filePath of filesToDelete) {
-        try {
-            await fs.unlink(filePath);
-            if (VERBOSE_LOGGING) console.log(`🗑️ Deleted stale file: ${filePath}`);
-        } catch (error) {
-            if (error.code !== 'ENOENT') {
-                console.warn(`⚠️ Error deleting stale file ${filePath}: ${error.message}`);
-            }
-        }
-    }
-}
-
-async function cleanupStalePlayerData(currentPlayerEaIds, ggDataDirAbs, esMetaDirAbs, ggMetaDirAbs) {
-    console.log("\n🧹 Starting cleanup of stale player data...");
-    const currentPlayerEaIdsSet = new Set(currentPlayerEaIds.map(id => String(id)));
-    const existingPlayerIdsInDirs = new Set();
-    const directoriesToScan = [
-        { dir: ggDataDirAbs, suffix: '_ggData.json' },
-        { dir: esMetaDirAbs, suffix: '_esMeta.json' },
-        { dir: ggMetaDirAbs, suffix: '_ggMeta.json' }
-    ];
-    for (const { dir, suffix } of directoriesToScan) {
-        try {
-            const files = await fs.readdir(dir);
-            for (const file of files) {
-                if (file.endsWith(suffix)) {
-                    const eaIdStr = file.substring(0, file.length - suffix.length);
-                    if (eaIdStr && !isNaN(parseInt(eaIdStr, 10))) {
-                        existingPlayerIdsInDirs.add(eaIdStr);
-                    }
-                }
-            }
-        } catch (error) {
-            if (error.code !== 'ENOENT') {
-                console.warn(`⚠️ Error reading directory ${dir} for cleanup: ${error.message}`);
-            }
-        }
-    }
-    let staleCount = 0;
-    for (const existingIdStr of existingPlayerIdsInDirs) {
-        if (!currentPlayerEaIdsSet.has(existingIdStr)) {
-            console.log(`🗑️ Player ID ${existingIdStr} is stale. Deleting its data.`);
-            await deletePlayerData(existingIdStr, ggDataDirAbs, esMetaDirAbs, ggMetaDirAbs);
-            staleCount++;
-        }
-    }
-    console.log(staleCount > 0 ? `✅ Cleanup finished. Deleted data for ${staleCount} stale player(s).` : `✅ No stale player data found to delete.`);
-}
-
 async function fetchFutGgWithPuppeteer(browser, url, identifier, dataType) {
     for (let attempt = 0; attempt <= MAX_RETRIES_API; attempt++) {
         let page;
@@ -237,8 +182,6 @@ async function fetchEasySBCWithAxios(eaId, esRoleId) {
         console.error(`❌ Fatal error creating output directories. Exiting.`);
         return;
     }
-
-    await cleanupStalePlayerData(playerEaIds, ggDataDirAbs, esMetaDirAbs, ggMetaDirAbs);
 
     let browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
     let batchesProcessedSinceRestart = 0;
