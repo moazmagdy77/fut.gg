@@ -7,7 +7,7 @@ import pandas as pd
 import joblib
 import warnings
 
-# --- FIX: Suppress the harmless FutureWarning from pandas ---
+# Suppress the harmless FutureWarning from pandas
 warnings.filterwarnings("ignore", category=FutureWarning)
 
 # --- Configuration ---
@@ -20,11 +20,9 @@ GG_META_DIR = RAW_DATA_DIR / 'ggMeta'
 EVOLAB_FILE = BASE_DATA_DIR / 'evolab.json'
 MAPS_FILE = BASE_DATA_DIR / 'maps.json'
 OUTPUT_FILE = BASE_DATA_DIR / 'club_final.json'
-# --- NEW: Define path to club_ids.json ---
 CLUB_IDS_FILE = BASE_DATA_DIR / 'club_ids.json'
 
-
-# --- Fields to remove (no changes) ---
+# --- Fields to remove ---
 CLUB_PLAYER_FUTGG_FIELDS_TO_REMOVE = [
     "id", "pathHash", "evolutionPath", "numberOfEvolutions", "evolutionId", "playerType", "game", "id", 
     "evolutionId", "cosmeticEvolutionId", "partialEvolutionId", "basePlayerEaId", "basePlayerSlug",
@@ -70,7 +68,7 @@ EVO_PLAYER_DEFINITION_FIELDS_TO_REMOVE = [
     "isSbcItem", "isObjectiveItem", "totalFaceStats", "totalIgs"
 ]
 
-# --- Helper Functions (unchanged) ---
+# --- FIX: Re-added the missing helper functions ---
 def load_json_file(file_path, default_val=None):
     try:
         with open(file_path, 'r', encoding='utf-8') as f: return json.load(f)
@@ -105,7 +103,7 @@ def parse_gg_rating_str(gg_rating_str_raw):
         except (ValueError, IndexError): continue
     return parsed_ratings_by_role
 
-# --- Model Prediction Engine (unchanged) ---
+# --- FIX: Re-added the missing ModelManager class and its functions ---
 class ModelManager:
     def __init__(self, models_dir):
         self.models_dir = models_dir
@@ -157,8 +155,7 @@ def predict_rating(model_bundle, feature_dict):
     if not model_bundle: return None
     try:
         input_df = pd.DataFrame([feature_dict])
-        input_df = pd.get_dummies(input_df, columns=["bodytype", "foot", "chem_style"], dtype=int)
-        
+        input_df = pd.get_dummies(input_df, columns=["bodytype", "accelerateType", "foot"], dtype=int)
         model_features = model_bundle["features"]
         for feature in model_features:
             if feature not in input_df.columns: input_df[feature] = 0
@@ -181,19 +178,14 @@ def predict_and_inject_ratings(player_output, model_manager, maps):
     for meta_entry in player_output.get("metaRatings", []):
         role_name = meta_entry["role"]
         
-        on_chem_ggmeta = meta_entry.get("ggMeta")
-        if on_chem_ggmeta is not None:
-            delta_model = model_manager.get_model(role_name, 'ggMetaDelta')
-            if delta_model:
-                features = prepare_features(player_output, maps)
-                features["chem_style"] = meta_entry.get("ggChemStyle", "basic").lower()
-                
-                predicted_delta = predict_rating(delta_model, features)
-                if predicted_delta is not None:
-                    meta_entry["ggMetaSub"] = round(on_chem_ggmeta - predicted_delta, 2)
-            
-            if "ggMetaSub" not in meta_entry and "GK" in role_name:
-                meta_entry["ggMetaSub"] = round(on_chem_ggmeta * 0.95, 2)
+        gg_sub_model = model_manager.get_model(role_name, 'ggMetaSub')
+        if gg_sub_model:
+            base_features = prepare_features(player_output, maps, boosts={})
+            gg_sub_pred = predict_rating(gg_sub_model, base_features)
+            if gg_sub_pred: meta_entry["ggMetaSub"] = gg_sub_pred
+        
+        elif "GK" in role_name and meta_entry.get("ggMeta") is not None:
+            meta_entry["ggMetaSub"] = round(meta_entry["ggMeta"] * 0.9, 2)
 
         if player_output.get("evolution"):
             es_sub_model = model_manager.get_model(role_name, 'esMetaSub')
@@ -228,7 +220,6 @@ def predict_and_inject_ratings(player_output, model_manager, maps):
             
     return player_output
 
-# --- Player Processing Functions (unchanged) ---
 def process_single_club_player(ea_id_str, model_manager, maps):
     ea_id = int(ea_id_str)
     gg_details_raw = load_json_file(GG_DATA_DIR / f"{ea_id}_ggData.json")
@@ -329,21 +320,17 @@ def process_single_evo_player(evo_player_def_raw, model_manager, maps):
     player_output["foot"] = maps["foot_map"].get(str(evo_player_def_raw.get("foot")))
     player_output["PS"] = [maps["playstyles_map"].get(str(p)) for p in evo_player_def_raw.get("playstyles", []) if str(p) in maps["playstyles_map"]]
     player_output["PS+"] = [maps["playstyles_map"].get(str(p)) for p in evo_player_def_raw.get("playstylesPlus", []) if str(p) in maps["playstyles_map"]]
-    
-    # --- FIX: Add missing roles+ and roles++ for Evo players ---
     player_output["roles+"] = [maps["roles_plus_map"].get(str(r)) for r in evo_player_def_raw.get("rolesPlus", []) if str(r) in maps["roles_plus_map"]]
     player_output["roles++"] = [maps["roles_plus_plus_map"].get(str(r)) for r in evo_player_def_raw.get("rolesPlusPlus", []) if str(r) in maps["roles_plus_plus_map"]]
-    
     player_output["bodyType"] = maps["bodytype_code_map"].get(str(evo_player_def_raw.get("bodytypeCode")))
     
-    player_output["metaRatings"] = []
-    parsed_gg_ratings = parse_gg_rating_str(evo_player_def_raw.get("ggRatingStr"))
-    
-    # --- FIX: Calculate and add subAccelType for Evo players ---
     sub_accel_type = calculate_acceleration_type(
         base_attributes.get("attributeAcceleration"), base_attributes.get("attributeAgility"),
         base_attributes.get("attributeStrength"), player_output.get("height")
     )
+    
+    player_output["metaRatings"] = []
+    parsed_gg_ratings = parse_gg_rating_str(evo_player_def_raw.get("ggRatingStr"))
     
     for role_id_str, ratings in parsed_gg_ratings.items():
         role_name = maps["role_id_to_name_map"].get(role_id_str)
@@ -366,7 +353,6 @@ def process_single_evo_player(evo_player_def_raw, model_manager, maps):
 
     return predict_and_inject_ratings(player_output, model_manager, maps)
 
-# --- Main Processing Logic ---
 def main():
     print("🚀 Starting Player Data Processing Script...")
     maps_data = load_json_file(MAPS_FILE)
@@ -375,18 +361,12 @@ def main():
         return
     
     maps = {
-        "position_map": maps_data.get("position", {}),
-        "foot_map": maps_data.get("foot", {}),
-        "playstyles_map": maps_data.get("playstyles", {}),
-        "roles_plus_map": maps_data.get("rolesPlus", {}),
-        "roles_plus_plus_map": maps_data.get("rolesPlusPlus", {}),
-        "bodytype_code_map": maps_data.get("bodytypeCode", {}),
-        "gg_chem_style_names_map": maps_data.get("ggChemistryStyleNames", {}),
-        "es_chem_style_names_map": maps_data.get("esChemistryStyleNames", {}),
-        "chem_style_boosts_map": {item['name'].lower(): item['threeChemistryModifiers'] 
-                                  for item in maps_data.get("ChemistryStylesBoosts", []) if 'name' in item},
-        "role_id_to_name_map": maps_data.get("role", {}),
-        "esRoleId": maps_data.get("esRoleId", {}),
+        "position_map": maps_data.get("position", {}), "foot_map": maps_data.get("foot", {}),
+        "playstyles_map": maps_data.get("playstyles", {}), "roles_plus_map": maps_data.get("rolesPlus", {}),
+        "roles_plus_plus_map": maps_data.get("rolesPlusPlus", {}), "bodytype_code_map": maps_data.get("bodytypeCode", {}),
+        "gg_chem_style_names_map": maps_data.get("ggChemistryStyleNames", {}), "es_chem_style_names_map": maps_data.get("esChemistryStyleNames", {}),
+        "chem_style_boosts_map": {item['name'].lower(): item['threeChemistryModifiers'] for item in maps_data.get("ChemistryStylesBoosts", []) if 'name' in item},
+        "role_id_to_name_map": maps_data.get("role", {}), "esRoleId": maps_data.get("esRoleId", {}),
         "roleNameToEsRoleId": maps_data.get("roleNameToEsRoleId", {})
     }
 
@@ -394,16 +374,8 @@ def main():
 
     processed_players = []
     print("\n--- Processing Club Players ---")
-    
-    # --- MODIFICATION: Load IDs from club_ids.json instead of scanning directory ---
     club_ids_data = load_json_file(CLUB_IDS_FILE)
-    if not club_ids_data or not isinstance(club_ids_data, list):
-        print(f"⚠️ {CLUB_IDS_FILE.name} not found or is invalid. No club players will be processed.")
-        club_player_ids = []
-    else:
-        club_player_ids = [str(id) for id in club_ids_data]
-    # --- END MODIFICATION ---
-
+    club_player_ids = [str(id) for id in club_ids_data] if isinstance(club_ids_data, list) else []
     print(f"ℹ️ Found {len(club_player_ids)} club players to process from {CLUB_IDS_FILE.name}.")
     for i, ea_id in enumerate(club_player_ids):
         if (i + 1) % 100 == 0: print(f"  - Player {i+1}/{len(club_player_ids)}")
@@ -415,18 +387,53 @@ def main():
     if evolab_data and "data" in evolab_data:
         evo_defs = [item["playerItemDefinition"] for item in evolab_data["data"] if "playerItemDefinition" in item]
         print(f"ℹ️ Found {len(evo_defs)} evo player definitions.")
-        
         for i, evo_def in enumerate(evo_defs):
             if (i + 1) % 100 == 0: print(f"  - Evo {i+1}/{len(evo_defs)}")
             player = process_single_evo_player(evo_def, model_manager, maps)
             if player: processed_players.append(player)
     
+    print("\n--- Scaling Predicted ggMetaSub Ratings ---")
+    if processed_players:
+        flat_data = [ {**p, **r} for p in processed_players for r in p.get('metaRatings', []) ]
+        df = pd.DataFrame(flat_data)
+        
+        TARGET_MAX_SUB_RATING = 95.0
+        scaled_dfs = []
+        for role, group in df.groupby('role'):
+            if 'ggMetaSub' in group.columns and group['ggMetaSub'].max() > 0:
+                current_max = group['ggMetaSub'].max()
+                scaling_factor = TARGET_MAX_SUB_RATING / current_max if current_max > 0 else 1
+                print(f"  - Scaling role '{role}': Max predicted was {current_max:.2f}. Factor is {scaling_factor:.2f}.")
+                group['ggMetaSub'] = (group['ggMetaSub'] * scaling_factor).round(2)
+            
+            gg_sub = group.get('ggMetaSub', pd.Series(0, index=group.index)).fillna(0)
+            es_sub = group.get('esMetaSub', pd.Series(0, index=group.index)).fillna(0)
+            avg_sub = pd.concat([gg_sub, es_sub], axis=1)
+            group['avgMetaSub'] = avg_sub.apply(lambda x: (x[0] + x[1]) / 2 if x[0] > 0 and x[1] > 0 else x[0] or x[1], axis=1).round(2)
+            scaled_dfs.append(group)
+
+        if scaled_dfs:
+            df_scaled = pd.concat(scaled_dfs)
+            final_players_dict = {}
+            all_meta_keys = {"role", "ggMeta", "ggMetaSub", "ggChemStyle", "ggAccelType", "esMetaSub", "esMeta", "esChemStyle", "esAccelType", "subAccelType", "avgMeta", "avgMetaSub"}
+            
+            for _, row in df_scaled.iterrows():
+                player_id = row['eaId']
+                if player_id not in final_players_dict:
+                    player_info = {k: v for k, v in row.items() if k not in all_meta_keys}
+                    player_info['metaRatings'] = []
+                    final_players_dict[player_id] = player_info
+                
+                meta_rating_info = {k: v for k, v in row.items() if k in all_meta_keys}
+                final_players_dict[player_id]['metaRatings'].append(meta_rating_info)
+            processed_players = list(final_players_dict.values())
+
     print("\n--- Deduplicating Players ---")
-    final_players = {}
+    final_players_dedup = {}
     for player in processed_players:
-        if player['eaId'] not in final_players or player.get('evolution'):
-            final_players[player['eaId']] = player
-    final_list = list(final_players.values())
+        if player['eaId'] not in final_players_dedup or player.get('evolution'):
+            final_players_dedup[player['eaId']] = player
+    final_list = list(final_players_dedup.values())
     print(f"ℹ️ Total unique players: {len(final_list)}")
 
     print("\n--- Saving Final Output ---")
