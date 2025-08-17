@@ -58,6 +58,33 @@ const writeJsonAtomic = async (filePath, obj) => {
   await fsp.rename(tmp, filePath);
 };
 
+// Create a version-agnostic isolated browser context
+async function createIsolatedContext(browser) {
+  if (typeof browser.createBrowserContext === 'function') {
+    // Newer Puppeteer (v22+)
+    return await browser.createBrowserContext();
+  }
+  if (typeof browser.createIncognitoBrowserContext === 'function') {
+    // Older Puppeteer
+    return await browser.createIncognitoBrowserContext();
+  }
+  console.warn('⚠️ Multiple contexts not supported by this Puppeteer build; using default context.');
+  return browser.defaultBrowserContext();
+}
+
+function isClosableContext(browser, context) {
+  // Default context generally shouldn't be closed; incognito/custom contexts can be.
+  if (typeof context.isIncognito === 'function') {
+    return context.isIncognito();
+  }
+  // Fallback heuristic: compare with default context
+  try {
+    return context !== browser.defaultBrowserContext();
+  } catch {
+    return true;
+  }
+}
+
 // Create and configure a fresh page
 async function newConfiguredPage(context, browserUserAgent) {
   const page = await context.newPage();
@@ -138,12 +165,10 @@ async function fetchOnePage(i, context, browserUserAgent) {
 
 // Worker that pulls tasks from a shared index
 async function workerLoop(workerId, tasks, browser) {
-  const context = await browser.createIncognitoBrowserContext();
+  const context = await createIsolatedContext(browser);
   const browserUserAgent = await browser.userAgent();
 
-  let next = 0;
   // Sneaky trick: each worker advances an atomic cursor via closure
-  // We'll pass a function that returns next index each time.
   const getNext = tasks.getNext;
 
   try {
@@ -161,7 +186,11 @@ async function workerLoop(workerId, tasks, browser) {
       }
     }
   } finally {
-    try { await context.close(); } catch (_) {}
+    try {
+      if (isClosableContext(browser, context) && typeof context.close === 'function') {
+        await context.close();
+      }
+    } catch (_) {}
   }
 }
 
