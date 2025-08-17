@@ -1,4 +1,4 @@
-# build_gg_boost_delta_dataset.py
+# model.6.build_gg_boost_delta_dataset.py
 
 import json
 from pathlib import Path
@@ -11,16 +11,14 @@ RAW_DATA_DIR = BASE_DATA_DIR / 'raw'
 GG_DATA_DIR = RAW_DATA_DIR / 'ggData'
 GG_META_DIR = RAW_DATA_DIR / 'ggMeta'
 MAPS_FILE = BASE_DATA_DIR / 'maps.json'
-OUTPUT_BOOST_FILE = BASE_DATA_DIR / 'training_dataset_gg_boost_delta.csv'
-OUTPUT_SUB_FILE = BASE_DATA_DIR / 'training_dataset_gg_sub.csv'
+OUTPUT_DELTA_FILE = BASE_DATA_DIR / 'training_dataset_gg_boost_delta.csv'
+OUTPUT_SUB_FILE   = BASE_DATA_DIR / 'training_dataset_gg_sub.csv'
 
 # --- Helpers ---
 def load_json_file(file_path, default_val=None):
     try:
-        with open(file_path, 'r', encoding='utf-8') as f: 
-            return json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
-        return default_val
+        with open(file_path, 'r', encoding='utf-8') as f: return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError): return default_val
 
 def calculate_acceleration_type(accel, agility, strength, height):
     try:
@@ -38,11 +36,10 @@ def calculate_acceleration_type(accel, agility, strength, height):
     return "CONTROLLED"
 
 def familiarity_for_role(role_name, player_def, maps):
-    # 0 = none; 1 = in roles+; 2 = in roles++
-    r_plus = maps.get("rolesPlus", {}) or {}
-    r_pp   = maps.get("rolesPlusPlus", {}) or {}
-    plus_names = {r_plus.get(str(x)) for x in (player_def.get("rolesPlus") or [])}
-    pp_names   = {r_pp.get(str(x))   for x in (player_def.get("rolesPlusPlus") or [])}
+    roles_plus_map = maps.get("rolesPlus", {})            # id -> name
+    roles_pp_map   = maps.get("rolesPlusPlus", {})        # id -> name
+    plus_names = {roles_plus_map.get(str(x)) for x in (player_def.get("rolesPlus") or [])}
+    pp_names   = {roles_pp_map.get(str(x))   for x in (player_def.get("rolesPlusPlus") or [])}
     plus_names = {n for n in plus_names if n}
     pp_names   = {n for n in pp_names if n}
     if role_name in pp_names: return 2
@@ -50,17 +47,15 @@ def familiarity_for_role(role_name, player_def, maps):
     return 0
 
 def main():
-    print("🚀 Starting script to build gg datasets (boost delta + sub)...")
+    print("🚀 Building gg datasets (boost-delta + sub)...")
     maps = load_json_file(MAPS_FILE)
     if not maps:
         print(f"❌ Critical error: Could not load {MAPS_FILE}. Exiting.")
         return
 
+    role_id_to_name = maps.get("role", {})
+    foot_map = maps.get("foot", {})
     all_playstyles = list(maps.get("playstyles", {}).values())
-    role_map = maps.get("role", {}) or {}
-    gg_style_names = maps.get("ggChemistryStyleNames", {}) or {}
-    foot_map = maps.get("foot", {}) or {}
-    bodytype_map = maps.get("bodytypeCode", {}) or {}
 
     rows_delta = []
     rows_sub   = []
@@ -69,99 +64,97 @@ def main():
     print(f"ℹ️ Found {len(player_ids)} players to process.")
 
     for i, ea_id_str in enumerate(player_ids):
-        if (i + 1) % 100 == 0:
-            print(f"⏳ Processing player {i + 1}/{len(player_ids)}...")
+        if (i + 1) % 100 == 0: print(f"⏳ Processing player {i + 1}/{len(player_ids)}...")
 
-        gg_data = load_json_file(GG_DATA_DIR / f"{ea_id_str}_ggData.json")
-        gg_meta = load_json_file(GG_META_DIR / f"{ea_id_str}_ggMeta.json")
+        gg_data  = load_json_file(GG_DATA_DIR / f"{ea_id_str}_ggData.json")
+        gg_meta  = load_json_file(GG_META_DIR / f"{ea_id_str}_ggMeta.json")
         if not gg_data or "data" not in gg_data or not gg_meta or "data" not in gg_meta or "scores" not in gg_meta["data"]:
             continue
 
         player_def = gg_data["data"]
-        base_attributes = {k: v for k, v in player_def.items() if isinstance(k, str) and k.startswith("attribute")}
+        base_attributes = {k: v for k, v in player_def.items() if k.startswith("attribute")}
 
         base_features = {
             "height": player_def.get("height"),
             "weight": player_def.get("weight"),
             "skillMoves": player_def.get("skillMoves"),
             "weakFoot": player_def.get("weakFoot"),
-            "bodytype": bodytype_map.get(str(player_def.get("bodytypeCode"))),
-            "foot": foot_map.get(str(player_def.get("foot"))),
+            "bodytype": maps.get("bodytypeCode", {}).get(str(player_def.get("bodytypeCode"))),
+            "foot": foot_map.get(str(player_def.get("foot")))
         }
 
-        # playstyles (0/1/2)
+        # Playstyles (0=no, 1=PS, 2=PS+)
         ps_map = maps.get("playstyles", {}) or {}
-        ps_set  = {ps_map.get(str(p)) for p in (player_def.get("playstyles") or [])}
-        psp_set = {ps_map.get(str(p)) for p in (player_def.get("playstylesPlus") or [])}
+        player_ps      = {ps_map.get(str(p)) for p in (player_def.get("playstyles") or [])}
+        player_ps_plus = {ps_map.get(str(p)) for p in (player_def.get("playstylesPlus") or [])}
         for ps in all_playstyles:
-            base_features[ps] = 2 if ps in psp_set else 1 if ps in ps_set else 0
+            base_features[ps] = 2 if ps in player_ps_plus else 1 if ps in player_ps else 0
 
-        # organize scores by role id
+        # Role → list of score entries
         scores_by_role = defaultdict(list)
         for s in gg_meta["data"]["scores"]:
             scores_by_role[str(s.get("role"))].append(s)
 
         for role_id_str, scores in scores_by_role.items():
-            role_name = role_map.get(role_id_str)
-            if not role_name:
+            role_name = role_id_to_name.get(role_id_str)
+            if not role_name: 
                 continue
 
-            # familiarity and accel from unboosted attributes
-            accel_type = calculate_acceleration_type(
-                base_attributes.get("attributeAcceleration"), 
+            # Familiarity + accelerateType (unboosted, for sub)
+            fam = familiarity_for_role(role_name, player_def, maps)
+            accel = calculate_acceleration_type(
+                base_attributes.get("attributeAcceleration"),
                 base_attributes.get("attributeAgility"),
                 base_attributes.get("attributeStrength"),
-                player_def.get("height"),
+                base_features.get("height")
             )
-            fam = familiarity_for_role(role_name, player_def, maps)
 
-            # --- SUB (Basic) row ----
+            # ---- SUB dataset row (Basic at chem=0 conceptually) ----
             basic_entry = next(
-                (s for s in scores if gg_style_names.get(str(s.get("chemistryStyle")), "").lower() == "basic"), 
+                (s for s in scores if (maps.get("ggChemistryStyleNames", {}) or {}).get(str(s.get("chemistryStyle")), "").lower() == "basic"),
                 None
             )
             if basic_entry and basic_entry.get("score") is not None:
                 row_sub = base_features.copy()
                 row_sub.update(base_attributes)
                 row_sub["role"] = role_name
-                row_sub["accelerateType"] = accel_type
+                row_sub["accelerateType"] = accel
                 row_sub["familiarity"] = fam
                 row_sub["target_ggMetaSub"] = float(basic_entry["score"])
                 rows_sub.append(row_sub)
 
-            # --- BOOST DELTA rows (for each chem style vs Basic) ---
-            if basic_entry and basic_entry.get("score") is not None:
-                basic_score = float(basic_entry["score"])
-                shared = base_features.copy()
-                shared.update(base_attributes)
-                shared["role"] = role_name
-                shared["accelerateType"] = accel_type
-                shared["familiarity"] = fam
-                for s in scores:
-                    chem_id = str(s.get("chemistryStyle"))
-                    chem_name = gg_style_names.get(chem_id, "basic").lower()
-                    row = shared.copy()
-                    row["chem_style"] = chem_name
-                    row["target_ggMetaBoostDelta"] = float(s.get("score", basic_score)) - basic_score
-                    rows_delta.append(row)
+            # ---- BOOST-DELTA dataset rows (difference from Basic) ----
+            if not scores or not basic_entry or basic_entry.get("score") is None:
+                continue
+            basic_score = float(basic_entry["score"])
+            row_base = base_features.copy()
+            row_base.update(base_attributes)
+            row_base["role"] = role_name
+            for s in scores:
+                chem_id = str(s.get("chemistryStyle"))
+                chem_style_name = (maps.get("ggChemistryStyleNames", {}) or {}).get(chem_id, "basic").lower()
+                final_row = row_base.copy()
+                final_row["chem_style"] = chem_style_name
+                final_row["target_ggMetaBoostDelta"] = float(s.get("score", basic_score)) - basic_score
+                rows_delta.append(final_row)
 
-    # --- Write BOOST DELTA dataset ---
-    if rows_delta:
-        df_delta = pd.DataFrame(rows_delta).dropna(subset=["target_ggMetaBoostDelta"]).fillna(0)
-        df_delta = pd.get_dummies(df_delta, columns=["role", "bodytype", "foot", "accelerateType", "chem_style"], dtype=int)
-        df_delta.to_csv(OUTPUT_BOOST_FILE, index=False)
-        print(f"💾 Saved gg boost-delta data: {len(df_delta)} rows → {OUTPUT_BOOST_FILE.name}")
-    else:
-        print("⚠️ No rows for gg boost-delta (check inputs).")
-
-    # --- Write SUB dataset ---
+    # -- Save SUB dataset
     if rows_sub:
         df_sub = pd.DataFrame(rows_sub).dropna(subset=["target_ggMetaSub"]).fillna(0)
         df_sub = pd.get_dummies(df_sub, columns=["role", "bodytype", "foot", "accelerateType"], dtype=int)
         df_sub.to_csv(OUTPUT_SUB_FILE, index=False)
-        print(f"💾 Saved gg sub data: {len(df_sub)} rows → {OUTPUT_SUB_FILE.name}")
+        print(f"💾 Saved ggMeta SUB training data with {len(df_sub)} rows to {OUTPUT_SUB_FILE.name}")
     else:
-        print("⚠️ No rows for gg sub (check inputs).")
+        print("⚠️ No ggMeta SUB rows produced (check inputs).")
+
+    # -- Save DELTA dataset
+    if rows_delta:
+        df_delta = pd.DataFrame(rows_delta).dropna(subset=["target_ggMetaBoostDelta"]).fillna(0)
+        df_delta = pd.get_dummies(df_delta, columns=["role", "bodytype", "foot", "chem_style"], dtype=int)
+        df_delta.to_csv(OUTPUT_DELTA_FILE, index=False)
+        print(f"💾 Saved ggMeta BOOST DELTA training data with {len(df_delta)} rows to {OUTPUT_DELTA_FILE.name}")
+    else:
+        print("⚠️ No ggMeta BOOST DELTA rows produced (check inputs).")
 
 if __name__ == "__main__":
     main()
