@@ -201,7 +201,7 @@ columns_to_display = [
     "commonName", "role", "overall", "avgMeta", 
     "ggMeta", "ggChemStyle", "ggAccelType", 
     "esMeta", "esChemStyle", "esAccelType",
-    "avgMetaSub", "subAccelType", "ggMetaSub", "esMetaSub",
+    "avgMetaSub", "ggMetaSub", "esMetaSub", "subAccelType",
     "hasRolePlusPlus", "hasRolePlus", "skillMoves", "weakFoot", "foot", "height", "weight", "bodyType",
     "PS+", "PS", "positions", "roles++", "roles+"
 ] + attribute_filter_order
