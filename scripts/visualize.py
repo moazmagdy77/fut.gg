@@ -103,8 +103,6 @@ def create_min_max_filter(container, column_name, label, step):
 st.sidebar.selectbox("Evolution", options=["All", True, False], format_func=lambda x: "Evo Players" if x is True else "Standard Players" if x is False else "All", key="evolution_filter")
 if st.session_state.get("evolution_filter") != "All": filters["evolution"] = st.session_state.evolution_filter
 
-create_min_max_filter(st.sidebar, "avgMeta", "Avg On-Chem Meta", 0.1)
-create_min_max_filter(st.sidebar, "avgMetaSub", "Avg Sub Meta", 0.1)
 create_min_max_filter(st.sidebar, "overall", "Overall", 1)
 create_min_max_filter(st.sidebar, "skillMoves", "Skill Moves", 1)
 create_min_max_filter(st.sidebar, "weakFoot", "Weak Foot", 1)
@@ -112,6 +110,8 @@ create_min_max_filter(st.sidebar, "height", "Height (cm)", 1)
 create_min_max_filter(st.sidebar, "weight", "Weight (kg)", 1)
 
 with st.sidebar.expander("Detailed Meta Ratings"):
+    create_min_max_filter(st.sidebar, "avgMeta", "Avg On-Chem Meta", 0.1)
+    create_min_max_filter(st.sidebar, "avgMetaSub", "Avg Sub Meta", 0.1)
     create_min_max_filter(st, "ggMeta", "GG Meta", 0.1)
     create_min_max_filter(st, "ggMetaSub", "GG Meta (Sub)", 0.1)
     create_min_max_filter(st, "esMeta", "ES Meta", 0.1)
@@ -135,6 +135,27 @@ all_ps_plus = set(s for l in df['PS+'].dropna() if isinstance(l, list) for s in 
 if all_ps_plus:
     st.sidebar.multiselect("PlayStyles+ (All)", sorted(list(all_ps_plus)), key="playstyles_plus_all_filter")
     if st.session_state.get("playstyles_plus_all_filter"): filters["playstyles_plus_all"] = st.session_state.playstyles_plus_all_filter
+
+if "ggAccelType" in df.columns: 
+    unique_gg_accel = sorted(df["ggAccelType"].dropna().unique())
+    if unique_gg_accel:
+        selected_gg_accel = st.sidebar.multiselect("GG Chem Accelerate Type", unique_gg_accel)
+        if selected_gg_accel:
+            filters["ggAccelType"] = selected_gg_accel
+
+if "esAccelType" in df.columns: 
+    unique_es_accel = sorted(df["esAccelType"].dropna().unique())
+    if unique_es_accel:
+        selected_es_accel = st.sidebar.multiselect("ES Chem Accelerate Type", unique_es_accel)
+        if selected_es_accel:
+            filters["esAccelType"] = selected_es_accel
+
+if "subAccelType" in df.columns: 
+    unique_sub_accel = sorted(df["subAccelType"].dropna().unique())
+    if unique_sub_accel:
+        selected_sub_accel = st.sidebar.multiselect("Sub Accelerate Type", unique_sub_accel)
+        if selected_sub_accel:
+            filters["subAccelType"] = selected_sub_accel
 
 with st.sidebar.expander("Role Familiarity"):
     st.checkbox("Has Role+", key="hasRolePlus_checkbox")
@@ -174,6 +195,25 @@ if default_sort_column in filtered_df.columns:
 
 # --- Display Logic ---
 st.title("El Mostashar FC - Club Player Database")
+
+if filters:
+    st.subheader("Active Filters:")
+    filter_tags = []
+    for key, f_val in filters.items():
+        display_name = key.replace("_", " ").title()
+        if key == "playstyles_all": display_name = "PlayStyles (All Selected)" 
+        elif key == "roles+_any": display_name = "Roles+ (Any)"
+        elif key == "roles++_any": display_name = "Roles++ (Any)"
+        
+        if isinstance(f_val, list):
+            val_str = ", ".join(map(str,f_val))
+        elif isinstance(f_val, tuple):
+            val_str = f"{f_val[0]} - {f_val[1]}"
+        else:
+            val_str = str(f_val)
+        filter_tags.append(f"<span style='background-color:#333;color:#f5f5f5;padding:3px 7px;margin:2px;border-radius:12px;display:inline-block;font-size:0.9em;'>{display_name}: {val_str}</span>")
+    st.markdown(" ".join(filter_tags), unsafe_allow_html=True)
+    st.markdown("---")
 
 st.subheader("Top Player Ratings")
 col1, col2 = st.columns(2)
