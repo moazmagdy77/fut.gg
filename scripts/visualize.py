@@ -110,8 +110,8 @@ create_min_max_filter(st.sidebar, "height", "Height (cm)", 1)
 create_min_max_filter(st.sidebar, "weight", "Weight (kg)", 1)
 
 with st.sidebar.expander("Detailed Meta Ratings"):
-    create_min_max_filter(st.sidebar, "avgMeta", "Avg On-Chem Meta", 0.1)
-    create_min_max_filter(st.sidebar, "avgMetaSub", "Avg Sub Meta", 0.1)
+    create_min_max_filter(st, "avgMeta", "Avg On-Chem Meta", 0.1)
+    create_min_max_filter(st, "avgMetaSub", "Avg Sub Meta", 0.1)
     create_min_max_filter(st, "ggMeta", "GG Meta", 0.1)
     create_min_max_filter(st, "ggMetaSub", "GG Meta (Sub)", 0.1)
     create_min_max_filter(st, "esMeta", "ES Meta", 0.1)
