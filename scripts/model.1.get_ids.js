@@ -1,107 +1,242 @@
-// model.1.get_ids.js --> The Robust Fetcher
+// model.1.get_ids.parallel.js --> Parallel Robust Fetcher (Puppeteer + Stealth)
+// Requires: puppeteer-extra, puppeteer-extra-plugin-stealth
+// Usage: CONCURRENCY=4 node model.1.get_ids.parallel.js
+
+'use strict';
 
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const fs = require('fs');
+const fsp = fs.promises;
 const path = require('path');
+const os = require('os');
 
-// Apply the stealth plugin to make the browser harder to detect
 puppeteer.use(StealthPlugin());
 
-// --- Configuration ---
-const TOP_PLAYER_PAGES = 100; // Total pages you want to scrape
-const BATCH_SIZE = 25; // How many pages to scrape before restarting the browser
-const MAX_RETRIES = 3; // Max attempts for each page
+// --- Configuration (env overrides allowed) ---
+const TOP_PLAYER_PAGES = Number(process.env.TOTAL_PAGES || 334); // total pages to scrape
+const BATCH_SIZE       = Number(process.env.BATCH_SIZE   || 25); // pages per browser lifecycle
+const CONCURRENCY      = Math.max(1, Number(process.env.CONCURRENCY || 4)); // parallel workers per batch
+const MAX_RETRIES      = Math.max(1, Number(process.env.MAX_RETRIES  || 3));
+const HEADLESS         = process.env.HEADLESS === 'false' ? false : true; // set HEADLESS=false to watch
+const BLOCK_RESOURCES  = process.env.BLOCK_RESOURCES === 'false' ? false : true; // block heavy assets for speed
 
-const dataDir = path.resolve(__dirname, '..', 'data');
+const baseUrl = 'https://www.fut.gg/players/?page=';
+
+const dataDir   = path.resolve(__dirname, '..', 'data');
 const outputDir = path.join(dataDir, 'raw', 'r_objects');
 
-// --- Main Function ---
-(async () => {
-  let browser;
+const SELECTOR_READY = 'a[href*="/players/"]'; // wait for cards presence
+const NAV_TIMEOUT_MS = 90_000;
+const WAIT_READY_MS  = 60_000;
 
-  // Create the output directory if it doesn't exist
-  if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir, { recursive: true });
+// polite delay (randomized) between page tasks per worker
+const POLITE_DELAY_MIN_MS = 600;
+const POLITE_DELAY_MAX_MS = 1800;
+
+// --- Helpers ---
+const sleep = (ms) => new Promise(res => setTimeout(res, ms));
+const randInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const backoff = (attempt) => (5_000 * Math.pow(2, attempt - 1)) + randInt(0, 1_000);
+
+const ensureDir = async (dir) => {
+  if (!fs.existsSync(dir)) await fsp.mkdir(dir, { recursive: true });
+};
+
+const chunk = (arr, size) => {
+  const out = [];
+  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+  return out;
+};
+
+const outputPathFor = (i) => path.join(outputDir, `page_${i}.json`);
+
+// Write atomically (tmp -> rename) to avoid partial files on crash
+const writeJsonAtomic = async (filePath, obj) => {
+  const tmp = `${filePath}.tmp`;
+  await fsp.writeFile(tmp, JSON.stringify(obj, null, 2), 'utf8');
+  await fsp.rename(tmp, filePath);
+};
+
+// Create and configure a fresh page
+async function newConfiguredPage(context, browserUserAgent) {
+  const page = await context.newPage();
+
+  // Use a UA without "Headless" if present. Stealth handles most bits, this just helps.
+  const ua = (browserUserAgent || '').replace(/Headless/i, '');
+  if (ua) await page.setUserAgent(ua);
+
+  await page.setViewport({ width: 1366, height: 768 });
+
+  if (BLOCK_RESOURCES) {
+    await page.setRequestInterception(true);
+    page.on('request', req => {
+      const type = req.resourceType();
+      // Allow only what's likely needed for app logic
+      if (type === 'image' || type === 'media' || type === 'font') {
+        req.abort();
+      } else {
+        req.continue();
+      }
+    });
   }
 
-  const baseUrl = 'https://www.fut.gg/players/?page=';
+  return page;
+}
 
-  for (let i = 1; i <= TOP_PLAYER_PAGES; i++) {
-    // --- Browser Restart Logic ---
-    // Relaunch the browser at the start and after each batch
-    if ((i - 1) % BATCH_SIZE === 0) {
-      if (browser) {
-        console.log(`\n🔄 Restarting browser after batch of ${BATCH_SIZE} pages...`);
-        await browser.close();
+// Core fetch with retries
+async function fetchOnePage(i, context, browserUserAgent) {
+  const url = `${baseUrl}${i}`;
+  const outputFilePath = outputPathFor(i);
+
+  for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+    let page = null;
+    try {
+      console.log(`🔄 [p${i}] Visiting ${url} (Attempt ${attempt}/${MAX_RETRIES})`);
+      page = await newConfiguredPage(context, browserUserAgent);
+
+      // Go early; we'll still await a specific selector.
+      await page.goto(url, { timeout: NAV_TIMEOUT_MS, waitUntil: 'domcontentloaded' });
+
+      // Wait for an element that reliably indicates the content is there
+      await page.waitForSelector(SELECTOR_READY, { timeout: WAIT_READY_MS });
+      await sleep(3_000); // small settle time for client-side global state
+
+      const R_object = await page.evaluate(() => window.$R);
+
+      if (!R_object) {
+        throw new Error('window.$R not found on the page.');
       }
-      console.log('🚀 Launching new browser instance...');
-      browser = await puppeteer.launch({ headless: true });
+
+      await writeJsonAtomic(outputFilePath, R_object);
+      console.log(`✅ [p${i}] Saved ${path.basename(outputFilePath)}`);
+      return; // success
+    } catch (err) {
+      console.warn(`⚠️ [p${i}] Attempt ${attempt} failed: ${err && err.message ? err.message : err}`);
+      if (attempt === MAX_RETRIES) {
+        const screenshotPath = path.join(process.cwd(), `error_screenshot_page_${i}.png`);
+        try {
+          if (page) await page.screenshot({ path: screenshotPath, fullPage: true });
+          console.log(`📸 [p${i}] Screenshot saved to ${screenshotPath}`);
+        } catch (e) {
+          console.warn(`⚠️ [p${i}] Could not capture screenshot: ${e.message}`);
+        }
+      } else {
+        const wait = backoff(attempt);
+        console.log(`⏳ [p${i}] Backing off for ${wait}ms before retry...`);
+        await sleep(wait);
+      }
+    } finally {
+      if (page) {
+        try { await page.close(); } catch (_) {}
+      }
     }
+  }
 
-    const outputFilePath = path.join(outputDir, `page_${i}.json`);
+  console.error(`❌ [p${i}] All attempts failed. Skipping.`);
+}
 
-    if (fs.existsSync(outputFilePath)) {
-      console.log(`🟡 Page ${i}/${TOP_PLAYER_PAGES} already downloaded. Skipping.`);
+// Worker that pulls tasks from a shared index
+async function workerLoop(workerId, tasks, browser) {
+  const context = await browser.createIncognitoBrowserContext();
+  const browserUserAgent = await browser.userAgent();
+
+  let next = 0;
+  // Sneaky trick: each worker advances an atomic cursor via closure
+  // We'll pass a function that returns next index each time.
+  const getNext = tasks.getNext;
+
+  try {
+    for (;;) {
+      const i = getNext();
+      if (i === null) break;
+
+      const out = outputPathFor(i);
+      if (fs.existsSync(out)) {
+        console.log(`🟡 [p${i}] Already downloaded. Skipping.`);
+      } else {
+        await fetchOnePage(i, context, browserUserAgent);
+        // Polite per-task delay (randomized) to stagger request timing
+        await sleep(randInt(POLITE_DELAY_MIN_MS, POLITE_DELAY_MAX_MS));
+      }
+    }
+  } finally {
+    try { await context.close(); } catch (_) {}
+  }
+}
+
+// Build a simple task dispenser for a batch
+function makeTaskDispenser(pageNumbers) {
+  let idx = 0;
+  return {
+    getNext: () => {
+      if (idx >= pageNumbers.length) return null;
+      return pageNumbers[idx++];
+    }
+  };
+}
+
+// --- Main ---
+(async () => {
+  await ensureDir(outputDir);
+
+  const allPages = Array.from({ length: TOP_PLAYER_PAGES }, (_, k) => k + 1);
+  const batches = chunk(allPages, BATCH_SIZE);
+
+  let browser = null;
+
+  for (let b = 0; b < batches.length; b++) {
+    const batch = batches[b];
+
+    // Filter out pages we already have to avoid launching a browser for nothing
+    const todo = batch.filter(i => !fs.existsSync(outputPathFor(i)));
+    if (todo.length === 0) {
+      console.log(`🧹 Batch ${b + 1}/${batches.length}: nothing to do (all ${batch.length} pages exist).`);
       continue;
     }
 
-    let success = false;
-    for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
-      let page = null;
-      try {
-        console.log(`🔄 Visiting page ${i}/${TOP_PLAYER_PAGES} at ${baseUrl}${i} (Attempt ${attempt}/${MAX_RETRIES})`);
-        page = await browser.newPage();
-        await page.goto(`${baseUrl}${i}`, { timeout: 90000 });
-
-        console.log('... waiting for player cards to render...');
-        await page.waitForSelector('a[href*="/players/"]', { timeout: 60000 });
-        console.log('... cards rendered.');
-        
-        await new Promise(res => setTimeout(res, 3000));
-
-        console.log('... extracting data from global state...');
-        const R_object = await page.evaluate(() => window.$R);
-
-        if (R_object) {
-          fs.writeFileSync(outputFilePath, JSON.stringify(R_object, null, 2));
-          console.log(`✅ Success! Saved data for page ${i}`);
-          success = true;
-          break; // Exit the retry loop on success
-        } else {
-          throw new Error('Could not find window.$R object on the page.');
-        }
-      } catch (err) {
-        console.warn(`⚠️ Attempt ${attempt} failed for page ${i}: ${err.message}`);
-        if (attempt === MAX_RETRIES) {
-          console.error(`❌ All attempts failed for page ${i}. Skipping.`);
-          const screenshotPath = `error_screenshot_page_${i}.png`;
-          if (page) await page.screenshot({ path: screenshotPath, fullPage: true });
-          console.log(`📸 Screenshot saved to ${screenshotPath}`);
-        } else {
-            await new Promise(res => setTimeout(res, 5000)); // Wait before retrying
-        }
-      } finally {
-        if (page) await page.close();
-      }
+    // Launch a fresh browser for this batch (memory & fingerprint reset)
+    if (browser) {
+      console.log(`\n🔄 Restarting browser for batch ${b + 1}...`);
+      try { await browser.close(); } catch (_) {}
     }
-     await new Promise(res => setTimeout(res, 1000)); // Polite delay between pages
+
+    console.log(`🚀 Launching new browser instance for batch ${b + 1}/${batches.length} (pages ${batch[0]}–${batch[batch.length - 1]})...`);
+    browser = await puppeteer.launch({
+      headless: HEADLESS,
+      // TIP: if you run in containers/CI, enable the two flags below:
+      // args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      defaultViewport: null
+    });
+
+    // Spin up workers for this batch
+    const dispenser = makeTaskDispenser(todo);
+    const workerCount = Math.min(CONCURRENCY, Math.max(1, todo.length));
+    console.log(`🏃 Processing ${todo.length} page(s) with concurrency=${workerCount}...`);
+
+    const workers = [];
+    for (let w = 0; w < workerCount; w++) {
+      workers.push(workerLoop(w + 1, dispenser, browser));
+    }
+    await Promise.all(workers);
+    console.log(`✅ Finished batch ${b + 1}/${batches.length}.`);
   }
 
-  // --- Final Shutdown Logic ---
+  // Final shutdown
   if (browser) {
     try {
       console.log('🚪 Closing final browser instance...');
       await Promise.race([
         browser.close(),
-        new Promise((_, reject) => setTimeout(() => reject(new Error('Browser close timed out')), 15000))
+        new Promise((_, reject) => setTimeout(() => reject(new Error('Browser close timed out')), 15_000))
       ]);
       console.log('✅ Browser closed successfully.');
     } catch (e) {
       console.warn(`⚠️ Could not close browser gracefully: ${e.message}.`);
     }
   }
-  
-  console.log(`🎉 Finished fetching raw data objects.`);
-  process.exit(0); // Force exit to prevent hanging
+
+  console.log('🎉 Finished fetching raw data objects.');
+  // Force exit to prevent hanging on stray handles
+  process.exit(0);
 })();
