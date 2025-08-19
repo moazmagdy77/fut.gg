@@ -1,0 +1,51 @@
+field,definition,min,max,filter type
+accelerateType,category,,,dropdown/selection
+attributeAcceleration, in-game attributes for the player,1,99,min/max boxes in one line
+attributeAggression, in-game attributes for the player,1,99,min/max boxes in one line
+attributeAgility, in-game attributes for the player,1,99,min/max boxes in one line
+attributeBalance, in-game attributes for the player,1,99,min/max boxes in one line
+attributeBallControl, in-game attributes for the player,1,99,min/max boxes in one line
+attributeComposure, in-game attributes for the player,1,99,min/max boxes in one line
+attributeCrossing, in-game attributes for the player,1,99,min/max boxes in one line
+attributeCurve, in-game attributes for the player,1,99,min/max boxes in one line
+attributeDefensiveAwareness, in-game attributes for the player,1,99,min/max boxes in one line
+attributeDribbling, in-game attributes for the player,1,99,min/max boxes in one line
+attributeFinishing, in-game attributes for the player,1,99,min/max boxes in one line
+attributeFkAccuracy, in-game attributes for the player,1,99,min/max boxes in one line
+attributeGkDiving, in-game attributes for the player,1,99,min/max boxes in one line
+attributeGkHandling, in-game attributes for the player,1,99,min/max boxes in one line
+attributeGkKicking, in-game attributes for the player,1,99,min/max boxes in one line
+attributeGkPositioning, in-game attributes for the player,1,99,min/max boxes in one line
+attributeGkReflexes, in-game attributes for the player,1,99,min/max boxes in one line
+attributeHeadingAccuracy, in-game attributes for the player,1,99,min/max boxes in one line
+attributeInterceptions, in-game attributes for the player,1,99,min/max boxes in one line
+attributeJumping, in-game attributes for the player,1,99,min/max boxes in one line
+attributeLongPassing, in-game attributes for the player,1,99,min/max boxes in one line
+attributeLongShots, in-game attributes for the player,1,99,min/max boxes in one line
+attributePenalties, in-game attributes for the player,1,99,min/max boxes in one line
+attributePositioning, in-game attributes for the player,1,99,min/max boxes in one line
+attributeReactions, in-game attributes for the player,1,99,min/max boxes in one line
+attributeShortPassing, in-game attributes for the player,1,99,min/max boxes in one line
+attributeShotPower, in-game attributes for the player,1,99,min/max boxes in one line
+attributeSlidingTackle, in-game attributes for the player,1,99,min/max boxes in one line
+attributeSprintSpeed, in-game attributes for the player,1,99,min/max boxes in one line
+attributeStamina, in-game attributes for the player,1,99,min/max boxes in one line
+attributeStandingTackle, in-game attributes for the player,1,99,min/max boxes in one line
+attributeStrength, in-game attributes for the player,1,99,min/max boxes in one line
+attributeVision, in-game attributes for the player,1,99,min/max boxes in one line
+attributeVolleys, in-game attributes for the player,1,99,min/max boxes in one line
+bodytype,category,,,dropdown/selection
+commonName,player name,,,searcheable text by part of all (string in name)
+eaId,player identifier,,,not needed
+foot,category,,,dropdown/selection
+height, player in-game height in centimeters,149,206,bar
+metaRatings,player calculated metarating per archetype,0,99.99,bar
+overall, in-game overall rating for the player,45,99,min/max boxes in one line
+playstyles,list of all playesyles a player has,,,dropdown/selection
+playstylesPlus,list of all playesylesPlus a player has,,,dropdown/selection
+positions,list of all positions a player has,,,dropdown/selection
+rolesPlus,list of all rolesPlus a player has,,,dropdown/selection
+rolesPlusPlus,list of all rolesPlusPlus a player has,,,dropdown/selection
+skillMoves, player skill move rating from 1 to 5,1,5,min/max boxes in one line
+weakFoot, player weak foot rating from 1 to 5,1,5,min/max boxes in one line
+weight, player in-game weight in kilograms,45,105,bar
