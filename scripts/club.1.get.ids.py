@@ -38,7 +38,7 @@ for row in rows[1:]:
         # Get the rating and convert it to an integer for comparison
         rating = int(cols[rating_idx].text.strip())
         # Process only players with a rating of 90 or greater
-        if rating >= 90:
+        if rating >= 0:
             club_ids.append(cols[id_idx].text.strip())
 
 # Save to JSON file
