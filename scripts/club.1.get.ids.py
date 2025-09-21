@@ -35,15 +35,11 @@ for row in rows[1:]:
     cols = row.find_all("td")
     # Check if the row has columns and the location is 'CLUB'
     if cols and cols[location_idx].text.strip() == "CLUB":
-        # Get the rating and convert it to an integer for comparison
-        rating = int(cols[rating_idx].text.strip())
-        # Process only players with a rating of 90 or greater
-        if rating >= 0:
-            club_ids.append(cols[id_idx].text.strip())
+        club_ids.append(cols[id_idx].text.strip())
 
 # Save to JSON file
 output_file_path = data_dir / "club_ids.json"
 with open(output_file_path, "w") as out:
     json.dump(club_ids, out, indent=2)
 
-print(f"Extracted {len(club_ids)} CLUB Player IDs with rating >= 90 and saved them to {output_file_path}")
+print(f"Extracted {len(club_ids)} CLUB Player IDs and saved them to {output_file_path}")
