@@ -636,8 +636,8 @@
     "attributeGkReflexes": 10,
     "attributeGkPositioning": 14,
     "positions": [
-      "CB",
-      "LB"
+      "LB",
+      "CB"
     ],
     "foot": "Left",
     "PS": [
@@ -889,9 +889,9 @@
     "attributeGkReflexes": 7,
     "attributeGkPositioning": 13,
     "positions": [
-      "LM",
+      "CAM",
       "LW",
-      "CAM"
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -1777,8 +1777,8 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 14,
     "positions": [
-      "CM",
-      "CAM"
+      "CAM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [],
@@ -2359,9 +2359,9 @@
     "attributeGkReflexes": 7,
     "attributeGkPositioning": 7,
     "positions": [
-      "CB",
+      "LB",
       "LM",
-      "LB"
+      "CB"
     ],
     "foot": "Left",
     "PS": [
@@ -2552,8 +2552,8 @@
     "attributeGkReflexes": 10,
     "attributeGkPositioning": 6,
     "positions": [
-      "CDM",
-      "CM"
+      "CM",
+      "CDM"
     ],
     "foot": "Right",
     "PS": [
@@ -2589,128 +2589,92 @@
       {
         "role": "CDM Centre-Half",
         "subAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMeta": 48.9,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "MOSTLY_EXPLOSIVE",
-        "ggMetaSub": 46.8,
         "esMetaSub": 81.32,
         "esMeta": 84.61,
         "esChemStyle": "sentinel",
         "esAccelType": "CONTROLLED_EXPLOSIVE",
-        "avgMeta": 66.75,
-        "avgMetaSub": 64.06
+        "avgMeta": 84.61,
+        "avgMetaSub": 81.32
       },
       {
         "role": "CDM Deep-Lying Playmaker",
         "subAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMeta": 61.2,
-        "ggChemStyle": "guardian",
-        "ggAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMetaSub": 60.5,
         "esMetaSub": 87.22,
         "esMeta": 90.0,
         "esChemStyle": "guardian",
         "esAccelType": "CONTROLLED_EXPLOSIVE",
-        "avgMeta": 75.6,
-        "avgMetaSub": 73.86
+        "avgMeta": 90.0,
+        "avgMetaSub": 87.22
       },
       {
         "role": "CDM Holding",
         "subAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMeta": 52.1,
-        "ggChemStyle": "guardian",
-        "ggAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMetaSub": 51.2,
         "esMetaSub": 83.72,
         "esMeta": 86.71,
         "esChemStyle": "sentinel",
         "esAccelType": "CONTROLLED_EXPLOSIVE",
-        "avgMeta": 69.41,
-        "avgMetaSub": 67.46
+        "avgMeta": 86.71,
+        "avgMetaSub": 83.72
       },
       {
         "role": "CDM Wide Half",
         "subAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMeta": 52.6,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "MOSTLY_EXPLOSIVE",
-        "ggMetaSub": 51.5,
         "esMetaSub": 80.67,
         "esMeta": 84.46,
         "esChemStyle": "sentinel",
         "esAccelType": "CONTROLLED_EXPLOSIVE",
-        "avgMeta": 68.53,
-        "avgMetaSub": 66.09
+        "avgMeta": 84.46,
+        "avgMetaSub": 80.67
       },
       {
         "role": "CM Box to Box",
         "subAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMeta": 58.8,
-        "ggChemStyle": "basic",
-        "ggAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMetaSub": 58.8,
         "esMetaSub": 81.89,
         "esMeta": 84.56,
         "esChemStyle": "guardian",
         "esAccelType": "CONTROLLED_EXPLOSIVE",
-        "avgMeta": 71.68,
-        "avgMetaSub": 70.34
+        "avgMeta": 84.56,
+        "avgMetaSub": 81.89
       },
       {
         "role": "CM Deep-Lying Playmaker",
         "subAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMeta": 63.4,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "MOSTLY_EXPLOSIVE",
-        "ggMetaSub": 62.9,
         "esMetaSub": 85.3,
         "esMeta": 88.2,
         "esChemStyle": "guardian",
         "esAccelType": "CONTROLLED_EXPLOSIVE",
-        "avgMeta": 75.8,
-        "avgMetaSub": 74.1
+        "avgMeta": 88.2,
+        "avgMetaSub": 85.3
       },
       {
         "role": "CM Half-Winger",
         "subAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMeta": 56.4,
-        "ggChemStyle": "catalyst",
-        "ggAccelType": "MOSTLY_EXPLOSIVE",
-        "ggMetaSub": 55.6,
         "esMetaSub": 75.64,
         "esMeta": 78.52,
         "esChemStyle": "catalyst",
         "esAccelType": "MOSTLY_EXPLOSIVE",
-        "avgMeta": 67.46,
-        "avgMetaSub": 65.62
+        "avgMeta": 78.52,
+        "avgMetaSub": 75.64
       },
       {
         "role": "CM Holding",
         "subAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMeta": 53.1,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "MOSTLY_EXPLOSIVE",
-        "ggMetaSub": 52.3,
         "esMetaSub": 82.51,
         "esMeta": 85.77,
         "esChemStyle": "sentinel",
         "esAccelType": "CONTROLLED_EXPLOSIVE",
-        "avgMeta": 69.44,
-        "avgMetaSub": 67.41
+        "avgMeta": 85.77,
+        "avgMetaSub": 82.51
       },
       {
         "role": "CM Playmaker",
         "subAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMeta": 60.3,
-        "ggChemStyle": "engine",
-        "ggAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMetaSub": 60.1,
         "esMetaSub": 81.32,
         "esMeta": 83.96,
         "esChemStyle": "guardian",
         "esAccelType": "CONTROLLED_EXPLOSIVE",
-        "avgMeta": 72.13,
-        "avgMetaSub": 70.71
+        "avgMeta": 83.96,
+        "avgMetaSub": 81.32
       }
     ]
   },
@@ -2758,9 +2722,9 @@
     "attributeGkReflexes": 10,
     "attributeGkPositioning": 16,
     "positions": [
-      "CB",
+      "LB",
       "LM",
-      "LB"
+      "CB"
     ],
     "foot": "Left",
     "PS": [],
@@ -2775,44 +2739,32 @@
       {
         "role": "CB Ball-Playing Defender",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 45.2,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 42.9,
         "esMetaSub": 73.17,
         "esMeta": 76.79,
         "esChemStyle": "shadow",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 61.0,
-        "avgMetaSub": 58.03
+        "avgMeta": 76.79,
+        "avgMetaSub": 73.17
       },
       {
         "role": "CB Defender",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 41.9,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 39.2,
         "esMetaSub": 73.73,
         "esMeta": 77.59,
         "esChemStyle": "shadow",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 59.75,
-        "avgMetaSub": 56.47
+        "avgMeta": 77.59,
+        "avgMetaSub": 73.73
       },
       {
         "role": "CB Stopper",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 40.5,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 38.1,
         "esMetaSub": 72.75,
         "esMeta": 76.39,
         "esChemStyle": "shadow",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 58.45,
-        "avgMetaSub": 55.42
+        "avgMeta": 76.39,
+        "avgMetaSub": 72.75
       },
       {
         "role": "CB Wide Back",
@@ -2827,44 +2779,32 @@
       {
         "role": "LB Attacking Wingback",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 41.2,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 39.5,
         "esMetaSub": 64.58,
         "esMeta": 68.32,
         "esChemStyle": "shadow",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 54.76,
-        "avgMetaSub": 52.04
+        "avgMeta": 68.32,
+        "avgMetaSub": 64.58
       },
       {
         "role": "LB Falseback",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 41.3,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 39.9,
         "esMetaSub": 68.1,
         "esMeta": 72.47,
         "esChemStyle": "shadow",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 56.88,
-        "avgMetaSub": 54.0
+        "avgMeta": 72.47,
+        "avgMetaSub": 68.1
       },
       {
         "role": "LB Fullback",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 47.0,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 44.7,
         "esMetaSub": 71.88,
         "esMeta": 76.31,
         "esChemStyle": "shadow",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 61.66,
-        "avgMetaSub": 58.29
+        "avgMeta": 76.31,
+        "avgMetaSub": 71.88
       },
       {
         "role": "LB Inverted Wingback",
@@ -2879,72 +2819,52 @@
       {
         "role": "LB Wingback",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 41.6,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 39.7,
         "esMetaSub": 68.3,
         "esMeta": 72.51,
         "esChemStyle": "shadow",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 57.06,
-        "avgMetaSub": 54.0
+        "avgMeta": 72.51,
+        "avgMetaSub": 68.3
       },
       {
         "role": "LM Inside Forward",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 38.0,
-        "ggChemStyle": "catalyst",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 36.7,
         "esMetaSub": 53.01,
         "esMeta": 56.97,
         "esChemStyle": "finisher",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 47.48,
-        "avgMetaSub": 44.86
+        "avgMeta": 56.97,
+        "avgMetaSub": 53.01
       },
       {
         "role": "LM Wide Midfielder",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 38.6,
-        "ggChemStyle": "catalyst",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 37.3,
         "esMetaSub": 57.13,
         "esMeta": 60.28,
         "esChemStyle": "engine",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 49.44,
-        "avgMetaSub": 47.22
+        "avgMeta": 60.28,
+        "avgMetaSub": 57.13
       },
       {
         "role": "LM Wide Playmaker",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 38.6,
-        "ggChemStyle": "catalyst",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 37.0,
         "esMetaSub": 53.59,
         "esMeta": 57.36,
         "esChemStyle": "finisher",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 47.98,
-        "avgMetaSub": 45.3
+        "avgMeta": 57.36,
+        "avgMetaSub": 53.59
       },
       {
         "role": "LM Winger",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 37.7,
-        "ggChemStyle": "catalyst",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 35.6,
         "esMetaSub": 54.06,
         "esMeta": 57.9,
         "esChemStyle": "finisher",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 47.8,
-        "avgMetaSub": 44.83
+        "avgMeta": 57.9,
+        "avgMetaSub": 54.06
       }
     ]
   },
@@ -2992,9 +2912,9 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 11,
     "positions": [
-      "CDM",
+      "CAM",
       "CM",
-      "CAM"
+      "CDM"
     ],
     "foot": "Right",
     "PS": [
@@ -3323,44 +3243,32 @@
       {
         "role": "CB Ball-Playing Defender",
         "subAccelType": "CONTROLLED_LENGTHY",
-        "ggMeta": 51.6,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "LENGTHY",
-        "ggMetaSub": 50.0,
         "esMetaSub": 75.56,
         "esMeta": 79.29,
         "esChemStyle": "shadow",
         "esAccelType": "LENGTHY",
-        "avgMeta": 65.45,
-        "avgMetaSub": 62.78
+        "avgMeta": 79.29,
+        "avgMetaSub": 75.56
       },
       {
         "role": "CB Defender",
         "subAccelType": "CONTROLLED_LENGTHY",
-        "ggMeta": 56.3,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "LENGTHY",
-        "ggMetaSub": 54.5,
         "esMetaSub": 81.39,
         "esMeta": 85.37,
         "esChemStyle": "shadow",
         "esAccelType": "LENGTHY",
-        "avgMeta": 70.84,
-        "avgMetaSub": 67.94
+        "avgMeta": 85.37,
+        "avgMetaSub": 81.39
       },
       {
         "role": "CB Stopper",
         "subAccelType": "CONTROLLED_LENGTHY",
-        "ggMeta": 47.8,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "LENGTHY",
-        "ggMetaSub": 46.2,
         "esMetaSub": 77.96,
         "esMeta": 81.74,
         "esChemStyle": "shadow",
         "esAccelType": "LENGTHY",
-        "avgMeta": 64.77,
-        "avgMetaSub": 62.08
+        "avgMeta": 81.74,
+        "avgMetaSub": 77.96
       },
       {
         "role": "CB Wide Back",
@@ -3518,8 +3426,8 @@
     "attributeGkReflexes": 14,
     "attributeGkPositioning": 13,
     "positions": [
-      "CDM",
-      "CM"
+      "CM",
+      "CDM"
     ],
     "foot": "Right",
     "PS": [
@@ -3685,9 +3593,9 @@
     "attributeGkReflexes": 7,
     "attributeGkPositioning": 10,
     "positions": [
-      "CB",
       "RM",
-      "RB"
+      "RB",
+      "CB"
     ],
     "foot": "Right",
     "PS": [
@@ -3899,58 +3807,42 @@
       {
         "role": "ST Advanced Forward",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 59.7,
-        "ggChemStyle": "hunter",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 57.7,
         "esMetaSub": 71.32,
         "esMeta": 74.8,
         "esChemStyle": "hunter",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 67.25,
-        "avgMetaSub": 64.51
+        "avgMeta": 74.8,
+        "avgMetaSub": 71.32
       },
       {
         "role": "ST False 9",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 51.8,
-        "ggChemStyle": "engine",
-        "ggAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMetaSub": 51.1,
         "esMetaSub": 68.99,
         "esMeta": 72.08,
         "esChemStyle": "finisher",
         "esAccelType": "CONTROLLED_EXPLOSIVE",
-        "avgMeta": 61.94,
-        "avgMetaSub": 60.05
+        "avgMeta": 72.08,
+        "avgMetaSub": 68.99
       },
       {
         "role": "ST Poacher",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 54.7,
-        "ggChemStyle": "hunter",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 52.1,
         "esMetaSub": 70.6,
         "esMeta": 74.58,
         "esChemStyle": "hunter",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 64.64,
-        "avgMetaSub": 61.35
+        "avgMeta": 74.58,
+        "avgMetaSub": 70.6
       },
       {
         "role": "ST Target Forward",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 53.6,
-        "ggChemStyle": "hunter",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 52.1,
         "esMetaSub": 66.85,
         "esMeta": 69.68,
         "esChemStyle": "hawk",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 61.64,
-        "avgMetaSub": 59.47
+        "avgMeta": 69.68,
+        "avgMetaSub": 66.85
       }
     ]
   },
@@ -4129,8 +4021,8 @@
     "attributeGkReflexes": 7,
     "attributeGkPositioning": 13,
     "positions": [
-      "CDM",
       "CM",
+      "CDM",
       "CB"
     ],
     "foot": "Right",
@@ -4332,9 +4224,9 @@
     "attributeGkReflexes": 10,
     "attributeGkPositioning": 8,
     "positions": [
-      "CB",
+      "LB",
       "LM",
-      "LB"
+      "CB"
     ],
     "foot": "Left",
     "PS": [
@@ -4524,8 +4416,8 @@
     "attributeGkReflexes": 12,
     "attributeGkPositioning": 6,
     "positions": [
-      "LM",
-      "LB"
+      "LB",
+      "LM"
     ],
     "foot": "Left",
     "PS": [
@@ -4676,8 +4568,8 @@
     "attributeGkPositioning": 12,
     "positions": [
       "RM",
-      "RW",
-      "RB"
+      "RB",
+      "RW"
     ],
     "foot": "Right",
     "PS": [],
@@ -4957,8 +4849,8 @@
     "attributeGkReflexes": 11,
     "attributeGkPositioning": 8,
     "positions": [
-      "ST",
-      "CAM"
+      "CAM",
+      "ST"
     ],
     "foot": "Left",
     "PS": [
@@ -5475,8 +5367,8 @@
     "attributeGkReflexes": 14,
     "attributeGkPositioning": 12,
     "positions": [
-      "RM",
       "LB",
+      "RM",
       "RB"
     ],
     "foot": "Right",
@@ -5683,8 +5575,8 @@
     "attributeGkReflexes": 7,
     "attributeGkPositioning": 10,
     "positions": [
-      "CDM",
-      "CM"
+      "CM",
+      "CDM"
     ],
     "foot": "Right",
     "PS": [
@@ -5850,10 +5742,10 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 10,
     "positions": [
-      "LM",
+      "CAM",
       "LW",
       "ST",
-      "CAM"
+      "LM"
     ],
     "foot": "Left",
     "PS": [
@@ -6065,9 +5957,9 @@
     "attributeGkReflexes": 6,
     "attributeGkPositioning": 8,
     "positions": [
-      "CB",
       "RM",
-      "RB"
+      "RB",
+      "CB"
     ],
     "foot": "Right",
     "PS": [
@@ -6349,10 +6241,10 @@
     "attributeGkReflexes": 7,
     "attributeGkPositioning": 13,
     "positions": [
+      "CAM",
       "CM",
       "RM",
-      "ST",
-      "CAM"
+      "ST"
     ],
     "foot": "Left",
     "PS": [
@@ -6786,8 +6678,8 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 10,
     "positions": [
-      "LM",
       "LB",
+      "LM",
       "RB"
     ],
     "foot": "Right",
@@ -6989,9 +6881,9 @@
     "attributeGkReflexes": 11,
     "attributeGkPositioning": 13,
     "positions": [
+      "CAM",
       "CM",
-      "ST",
-      "CAM"
+      "ST"
     ],
     "foot": "Right",
     "PS": [
@@ -7183,9 +7075,9 @@
     "attributeGkReflexes": 10,
     "attributeGkPositioning": 14,
     "positions": [
+      "CAM",
       "LW",
-      "ST",
-      "CAM"
+      "ST"
     ],
     "foot": "Right",
     "PS": [
@@ -7361,9 +7253,9 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 12,
     "positions": [
+      "CAM",
       "CM",
-      "RM",
-      "CAM"
+      "RM"
     ],
     "foot": "Left",
     "PS": [
@@ -7559,8 +7451,8 @@
     "attributeGkReflexes": 6,
     "attributeGkPositioning": 5,
     "positions": [
-      "CDM",
-      "CM"
+      "CM",
+      "CDM"
     ],
     "foot": "Right",
     "PS": [
@@ -7720,8 +7612,8 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 6,
     "positions": [
-      "CDM",
-      "CM"
+      "CM",
+      "CDM"
     ],
     "foot": "Right",
     "PS": [
@@ -7882,9 +7774,9 @@
     "attributeGkReflexes": 14,
     "attributeGkPositioning": 14,
     "positions": [
-      "LM",
+      "LW",
       "RM",
-      "LW"
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -8174,44 +8066,32 @@
       {
         "role": "CB Ball-Playing Defender",
         "subAccelType": "LENGTHY",
-        "ggMeta": 43.7,
-        "ggChemStyle": "sentinel",
-        "ggAccelType": "LENGTHY",
-        "ggMetaSub": 41.9,
         "esMetaSub": 69.83,
         "esMeta": 73.66,
         "esChemStyle": "shadow",
         "esAccelType": "LENGTHY",
-        "avgMeta": 58.68,
-        "avgMetaSub": 55.86
+        "avgMeta": 73.66,
+        "avgMetaSub": 69.83
       },
       {
         "role": "CB Defender",
         "subAccelType": "LENGTHY",
-        "ggMeta": 48.9,
-        "ggChemStyle": "sentinel",
-        "ggAccelType": "LENGTHY",
-        "ggMetaSub": 46.9,
         "esMetaSub": 75.37,
         "esMeta": 79.47,
         "esChemStyle": "shadow",
         "esAccelType": "LENGTHY",
-        "avgMeta": 64.19,
-        "avgMetaSub": 61.14
+        "avgMeta": 79.47,
+        "avgMetaSub": 75.37
       },
       {
         "role": "CB Stopper",
         "subAccelType": "LENGTHY",
-        "ggMeta": 44.1,
-        "ggChemStyle": "sentinel",
-        "ggAccelType": "LENGTHY",
-        "ggMetaSub": 42.0,
         "esMetaSub": 73.48,
         "esMeta": 77.35,
         "esChemStyle": "shadow",
         "esAccelType": "LENGTHY",
-        "avgMeta": 60.72,
-        "avgMetaSub": 57.74
+        "avgMeta": 77.35,
+        "avgMetaSub": 73.48
       },
       {
         "role": "CB Wide Back",
@@ -8499,44 +8379,32 @@
       {
         "role": "CB Ball-Playing Defender",
         "subAccelType": "MOSTLY_LENGTHY",
-        "ggMeta": 55.7,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "MOSTLY_LENGTHY",
-        "ggMetaSub": 53.4,
         "esMetaSub": 81.09,
         "esMeta": 84.45,
         "esChemStyle": "shadow",
         "esAccelType": "MOSTLY_LENGTHY",
-        "avgMeta": 70.08,
-        "avgMetaSub": 67.25
+        "avgMeta": 84.45,
+        "avgMetaSub": 81.09
       },
       {
         "role": "CB Defender",
         "subAccelType": "MOSTLY_LENGTHY",
-        "ggMeta": 58.0,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "MOSTLY_LENGTHY",
-        "ggMetaSub": 55.4,
         "esMetaSub": 84.65,
         "esMeta": 88.22,
         "esChemStyle": "shadow",
         "esAccelType": "MOSTLY_LENGTHY",
-        "avgMeta": 73.11,
-        "avgMetaSub": 70.03
+        "avgMeta": 88.22,
+        "avgMetaSub": 84.65
       },
       {
         "role": "CB Stopper",
         "subAccelType": "MOSTLY_LENGTHY",
-        "ggMeta": 58.4,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "MOSTLY_LENGTHY",
-        "ggMetaSub": 56.0,
         "esMetaSub": 84.0,
         "esMeta": 87.38,
         "esChemStyle": "shadow",
         "esAccelType": "MOSTLY_LENGTHY",
-        "avgMeta": 72.89,
-        "avgMetaSub": 70.0
+        "avgMeta": 87.38,
+        "avgMetaSub": 84.0
       },
       {
         "role": "CB Wide Back",
@@ -8594,8 +8462,8 @@
     "attributeGkReflexes": 17,
     "attributeGkPositioning": 9,
     "positions": [
-      "ST",
-      "CAM"
+      "CAM",
+      "ST"
     ],
     "foot": "Right",
     "PS": [
@@ -8738,10 +8606,10 @@
     "attributeGkReflexes": 7,
     "attributeGkPositioning": 7,
     "positions": [
-      "LM",
+      "CAM",
       "RM",
-      "RW",
-      "CAM"
+      "LM",
+      "RW"
     ],
     "foot": "Left",
     "PS": [
@@ -9109,44 +8977,32 @@
       {
         "role": "RB Attacking Wingback",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 54.0,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 52.5,
         "esMetaSub": 75.02,
         "esMeta": 78.41,
         "esChemStyle": "shadow",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 66.2,
-        "avgMetaSub": 63.76
+        "avgMeta": 78.41,
+        "avgMetaSub": 75.02
       },
       {
         "role": "RB Falseback",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 48.8,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 47.6,
         "esMetaSub": 76.23,
         "esMeta": 80.22,
         "esChemStyle": "shadow",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 64.51,
-        "avgMetaSub": 61.92
+        "avgMeta": 80.22,
+        "avgMetaSub": 76.23
       },
       {
         "role": "RB Fullback",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 50.7,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 48.4,
         "esMetaSub": 77.25,
         "esMeta": 81.3,
         "esChemStyle": "shadow",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 66.0,
-        "avgMetaSub": 62.83
+        "avgMeta": 81.3,
+        "avgMetaSub": 77.25
       },
       {
         "role": "RB Inverted Wingback",
@@ -9161,72 +9017,52 @@
       {
         "role": "RB Wingback",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 53.6,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 51.9,
         "esMetaSub": 76.8,
         "esMeta": 80.64,
         "esChemStyle": "shadow",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 67.12,
-        "avgMetaSub": 64.35
+        "avgMeta": 80.64,
+        "avgMetaSub": 76.8
       },
       {
         "role": "RM Inside Forward",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 47.3,
-        "ggChemStyle": "hunter",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 45.4,
         "esMetaSub": 61.17,
         "esMeta": 65.09,
         "esChemStyle": "finisher",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 56.2,
-        "avgMetaSub": 53.28
+        "avgMeta": 65.09,
+        "avgMetaSub": 61.17
       },
       {
         "role": "RM Wide Midfielder",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 46.6,
-        "ggChemStyle": "catalyst",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 45.6,
         "esMetaSub": 65.75,
         "esMeta": 68.72,
         "esChemStyle": "engine",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 57.66,
-        "avgMetaSub": 55.67
+        "avgMeta": 68.72,
+        "avgMetaSub": 65.75
       },
       {
         "role": "RM Wide Playmaker",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 47.3,
-        "ggChemStyle": "catalyst",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 45.9,
         "esMetaSub": 61.67,
         "esMeta": 65.41,
         "esChemStyle": "finisher",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 56.35,
-        "avgMetaSub": 53.78
+        "avgMeta": 65.41,
+        "avgMetaSub": 61.67
       },
       {
         "role": "RM Winger",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 47.2,
-        "ggChemStyle": "hunter",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 45.4,
         "esMetaSub": 63.54,
         "esMeta": 67.33,
         "esChemStyle": "finisher",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 57.27,
-        "avgMetaSub": 54.47
+        "avgMeta": 67.33,
+        "avgMetaSub": 63.54
       }
     ]
   },
@@ -9274,9 +9110,9 @@
     "attributeGkReflexes": 11,
     "attributeGkPositioning": 13,
     "positions": [
+      "CAM",
       "LW",
-      "ST",
-      "CAM"
+      "ST"
     ],
     "foot": "Right",
     "PS": [
@@ -9806,8 +9642,8 @@
     "attributeGkReflexes": 7,
     "attributeGkPositioning": 8,
     "positions": [
-      "CM",
-      "CAM"
+      "CAM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [],
@@ -9955,9 +9791,9 @@
     "attributeGkReflexes": 15,
     "attributeGkPositioning": 8,
     "positions": [
-      "CDM",
+      "CAM",
       "CM",
-      "CAM"
+      "CDM"
     ],
     "foot": "Right",
     "PS": [
@@ -10161,8 +9997,8 @@
     "attributeGkReflexes": 7,
     "attributeGkPositioning": 9,
     "positions": [
-      "CM",
-      "CAM"
+      "CAM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [],
@@ -10310,10 +10146,10 @@
     "attributeGkReflexes": 7,
     "attributeGkPositioning": 15,
     "positions": [
-      "ST",
+      "CAM",
       "RM",
-      "RW",
-      "CAM"
+      "ST",
+      "RW"
     ],
     "foot": "Left",
     "PS": [
@@ -10531,8 +10367,8 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 5,
     "positions": [
-      "CDM",
-      "CM"
+      "CM",
+      "CDM"
     ],
     "foot": "Right",
     "PS": [
@@ -10697,8 +10533,8 @@
     "attributeGkReflexes": 10,
     "attributeGkPositioning": 14,
     "positions": [
-      "ST",
-      "CAM"
+      "CAM",
+      "ST"
     ],
     "foot": "Right",
     "PS": [
@@ -10840,8 +10676,8 @@
     "attributeGkReflexes": 15,
     "attributeGkPositioning": 5,
     "positions": [
-      "CDM",
-      "CM"
+      "CM",
+      "CDM"
     ],
     "foot": "Right",
     "PS": [
@@ -11005,8 +10841,8 @@
     "attributeGkReflexes": 13,
     "attributeGkPositioning": 10,
     "positions": [
-      "LM",
-      "LB"
+      "LB",
+      "LM"
     ],
     "foot": "Left",
     "PS": [
@@ -11158,9 +10994,9 @@
     "attributeGkReflexes": 5,
     "attributeGkPositioning": 10,
     "positions": [
+      "CAM",
       "CM",
-      "RW",
-      "CAM"
+      "RW"
     ],
     "foot": "Left",
     "PS": [
@@ -11182,170 +11018,122 @@
       {
         "role": "CAM Classic 10",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 54.8,
-        "ggChemStyle": "engine",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 54.2,
         "esMetaSub": 71.29,
         "esMeta": 74.56,
         "esChemStyle": "catalyst",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 64.68,
-        "avgMetaSub": 62.75
+        "avgMeta": 74.56,
+        "avgMetaSub": 71.29
       },
       {
         "role": "CAM Half Winger",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 56.1,
-        "ggChemStyle": "catalyst",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 54.8,
         "esMetaSub": 72.88,
         "esMeta": 75.69,
         "esChemStyle": "finisher",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 65.89,
-        "avgMetaSub": 63.84
+        "avgMeta": 75.69,
+        "avgMetaSub": 72.88
       },
       {
         "role": "CAM Playmaker",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 54.0,
-        "ggChemStyle": "deadeye",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 53.6,
         "esMetaSub": 71.86,
         "esMeta": 74.71,
         "esChemStyle": "catalyst",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 64.35,
-        "avgMetaSub": 62.73
+        "avgMeta": 74.71,
+        "avgMetaSub": 71.86
       },
       {
         "role": "CAM Shadow Striker",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 54.4,
-        "ggChemStyle": "hunter",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 53.4,
         "esMetaSub": 71.45,
         "esMeta": 74.53,
         "esChemStyle": "finisher",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 64.47,
-        "avgMetaSub": 62.42
+        "avgMeta": 74.53,
+        "avgMetaSub": 71.45
       },
       {
         "role": "CM Box to Box",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 52.9,
-        "ggChemStyle": "architect",
-        "ggAccelType": "MOSTLY_LENGTHY",
-        "ggMetaSub": 52.7,
         "esMetaSub": 72.06,
         "esMeta": 74.89,
         "esChemStyle": "guardian",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 63.89,
-        "avgMetaSub": 62.38
+        "avgMeta": 74.89,
+        "avgMetaSub": 72.06
       },
       {
         "role": "CM Deep-Lying Playmaker",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 48.4,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 47.8,
         "esMetaSub": 73.17,
         "esMeta": 76.23,
         "esChemStyle": "guardian",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 62.31,
-        "avgMetaSub": 60.48
+        "avgMeta": 76.23,
+        "avgMetaSub": 73.17
       },
       {
         "role": "CM Half-Winger",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 57.7,
-        "ggChemStyle": "catalyst",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 56.7,
         "esMetaSub": 72.88,
         "esMeta": 75.73,
         "esChemStyle": "catalyst",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 66.72,
-        "avgMetaSub": 64.79
+        "avgMeta": 75.73,
+        "avgMetaSub": 72.88
       },
       {
         "role": "CM Holding",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 45.2,
-        "ggChemStyle": "anchor",
-        "ggAccelType": "CONTROLLED_LENGTHY",
-        "ggMetaSub": 44.1,
         "esMetaSub": 68.81,
         "esMeta": 72.53,
         "esChemStyle": "sentinel",
         "esAccelType": "CONTROLLED_LENGTHY",
-        "avgMeta": 58.87,
-        "avgMetaSub": 56.45
+        "avgMeta": 72.53,
+        "avgMetaSub": 68.81
       },
       {
         "role": "CM Playmaker",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 52.6,
-        "ggChemStyle": "architect",
-        "ggAccelType": "MOSTLY_LENGTHY",
-        "ggMetaSub": 52.3,
         "esMetaSub": 72.76,
         "esMeta": 75.36,
         "esChemStyle": "guardian",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 63.98,
-        "avgMetaSub": 62.53
+        "avgMeta": 75.36,
+        "avgMetaSub": 72.76
       },
       {
         "role": "RW Inside Forward",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 54.9,
-        "ggChemStyle": "hunter",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 52.9,
         "esMetaSub": 72.05,
         "esMeta": 75.48,
         "esChemStyle": "finisher",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 65.19,
-        "avgMetaSub": 62.47
+        "avgMeta": 75.48,
+        "avgMetaSub": 72.05
       },
       {
         "role": "RW Wide Playmaker",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 56.0,
-        "ggChemStyle": "catalyst",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 54.7,
         "esMetaSub": 72.65,
         "esMeta": 76.01,
         "esChemStyle": "finisher",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 66.0,
-        "avgMetaSub": 63.68
+        "avgMeta": 76.01,
+        "avgMetaSub": 72.65
       },
       {
         "role": "RW Winger",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 54.1,
-        "ggChemStyle": "hawk",
-        "ggAccelType": "CONTROLLED_LENGTHY",
-        "ggMetaSub": 52.3,
         "esMetaSub": 71.81,
         "esMeta": 75.15,
         "esChemStyle": "finisher",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 64.62,
-        "avgMetaSub": 62.05
+        "avgMeta": 75.15,
+        "avgMetaSub": 71.81
       }
     ]
   },
@@ -11421,30 +11209,22 @@
       {
         "role": "GK Goalkeeper",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 56.5,
-        "ggChemStyle": "gk basic",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 53.67,
         "esMetaSub": 69.7,
         "esMeta": 73.52,
         "esChemStyle": "gk glove",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 65.01,
-        "avgMetaSub": 61.69
+        "avgMeta": 73.52,
+        "avgMetaSub": 69.7
       },
       {
         "role": "GK Sweeper Keeper",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 54.9,
-        "ggChemStyle": "gk basic",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 52.15,
         "esMetaSub": 69.48,
         "esMeta": 73.32,
         "esChemStyle": "gk glove",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 64.11,
-        "avgMetaSub": 60.81
+        "avgMeta": 73.32,
+        "avgMetaSub": 69.48
       }
     ]
   },
@@ -11492,8 +11272,8 @@
     "attributeGkReflexes": 11,
     "attributeGkPositioning": 7,
     "positions": [
-      "CB",
-      "RB"
+      "RB",
+      "CB"
     ],
     "foot": "Right",
     "PS": [
@@ -11645,8 +11425,8 @@
     "attributeGkReflexes": 13,
     "attributeGkPositioning": 9,
     "positions": [
-      "LM",
-      "LB"
+      "LB",
+      "LM"
     ],
     "foot": "Left",
     "PS": [
@@ -11797,9 +11577,9 @@
     "attributeGkReflexes": 12,
     "attributeGkPositioning": 9,
     "positions": [
-      "CB",
       "RM",
-      "RB"
+      "RB",
+      "CB"
     ],
     "foot": "Right",
     "PS": [
@@ -11991,8 +11771,8 @@
     "attributeGkReflexes": 11,
     "attributeGkPositioning": 13,
     "positions": [
-      "CM",
-      "CAM"
+      "CAM",
+      "CM"
     ],
     "foot": "Right",
     "PS": [],
@@ -12139,8 +11919,8 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 14,
     "positions": [
-      "CDM",
-      "CM"
+      "CM",
+      "CDM"
     ],
     "foot": "Left",
     "PS": [
@@ -12457,10 +12237,10 @@
     "attributeGkReflexes": 14,
     "attributeGkPositioning": 13,
     "positions": [
-      "LM",
       "LW",
       "RM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -12672,8 +12452,8 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 6,
     "positions": [
-      "LM",
-      "LB"
+      "LB",
+      "LM"
     ],
     "foot": "Left",
     "PS": [
@@ -12824,9 +12604,9 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 12,
     "positions": [
+      "CAM",
       "CM",
-      "LW",
-      "CAM"
+      "LW"
     ],
     "foot": "Right",
     "PS": [
@@ -13269,9 +13049,9 @@
     "attributeGkReflexes": 12,
     "attributeGkPositioning": 15,
     "positions": [
-      "LM",
+      "LW",
       "RM",
-      "LW"
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -13534,8 +13314,8 @@
     "attributeGkReflexes": 12,
     "attributeGkPositioning": 9,
     "positions": [
-      "CB",
-      "RB"
+      "RB",
+      "CB"
     ],
     "foot": "Right",
     "PS": [
@@ -13687,9 +13467,9 @@
     "attributeGkReflexes": 9,
     "attributeGkPositioning": 6,
     "positions": [
+      "CAM",
       "CM",
-      "LM",
-      "CAM"
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -13986,8 +13766,8 @@
     "attributeGkReflexes": 7,
     "attributeGkPositioning": 12,
     "positions": [
-      "CDM",
-      "CM"
+      "CM",
+      "CDM"
     ],
     "foot": "Right",
     "PS": [
@@ -14239,9 +14019,9 @@
     "attributeGkReflexes": 14,
     "attributeGkPositioning": 6,
     "positions": [
+      "CAM",
       "CM",
-      "RW",
-      "CAM"
+      "RW"
     ],
     "foot": "Right",
     "PS": [
@@ -14422,8 +14202,8 @@
     "attributeGkReflexes": 13,
     "attributeGkPositioning": 14,
     "positions": [
-      "CDM",
-      "CM"
+      "CM",
+      "CDM"
     ],
     "foot": "Right",
     "PS": [
@@ -14587,8 +14367,8 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 5,
     "positions": [
-      "LM",
-      "LB"
+      "LB",
+      "LM"
     ],
     "foot": "Left",
     "PS": [
@@ -14738,8 +14518,8 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 15,
     "positions": [
-      "LM",
-      "LW"
+      "LW",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -14868,8 +14648,8 @@
     "attributeGkReflexes": 7,
     "attributeGkPositioning": 7,
     "positions": [
-      "LM",
       "RM",
+      "LM",
       "RW"
     ],
     "foot": "Right",
@@ -15171,9 +14951,9 @@
     "attributeGkReflexes": 5,
     "attributeGkPositioning": 6,
     "positions": [
+      "CAM",
       "CM",
-      "ST",
-      "CAM"
+      "ST"
     ],
     "foot": "Right",
     "PS": [
@@ -15363,8 +15143,8 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 12,
     "positions": [
-      "CDM",
-      "CM"
+      "CM",
+      "CDM"
     ],
     "foot": "Right",
     "PS": [
@@ -15528,8 +15308,8 @@
     "attributeGkReflexes": 11,
     "attributeGkPositioning": 9,
     "positions": [
-      "LM",
-      "LB"
+      "LB",
+      "LM"
     ],
     "foot": "Left",
     "PS": [
@@ -15679,10 +15459,10 @@
     "attributeGkReflexes": 12,
     "attributeGkPositioning": 11,
     "positions": [
-      "LM",
       "LW",
       "RM",
-      "ST"
+      "ST",
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -15897,9 +15677,9 @@
     "attributeGkReflexes": 14,
     "attributeGkPositioning": 13,
     "positions": [
-      "LM",
+      "CAM",
       "ST",
-      "CAM"
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -16373,8 +16153,8 @@
     "attributeGkReflexes": 11,
     "attributeGkPositioning": 7,
     "positions": [
-      "ST",
       "RM",
+      "ST",
       "RW"
     ],
     "foot": "Right",
@@ -16544,9 +16324,9 @@
     "attributeGkReflexes": 7,
     "attributeGkPositioning": 14,
     "positions": [
-      "CDM",
+      "CAM",
       "CM",
-      "CAM"
+      "CDM"
     ],
     "foot": "Right",
     "PS": [
@@ -16747,8 +16527,8 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 9,
     "positions": [
-      "CDM",
-      "CM"
+      "CM",
+      "CDM"
     ],
     "foot": "Right",
     "PS": [
@@ -16778,128 +16558,92 @@
       {
         "role": "CDM Centre-Half",
         "subAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMeta": 46.7,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMetaSub": 44.5,
         "esMetaSub": 70.76,
         "esMeta": 74.25,
         "esChemStyle": "sentinel",
         "esAccelType": "CONTROLLED_EXPLOSIVE",
-        "avgMeta": 60.48,
-        "avgMetaSub": 57.63
+        "avgMeta": 74.25,
+        "avgMetaSub": 70.76
       },
       {
         "role": "CDM Deep-Lying Playmaker",
         "subAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMeta": 52.9,
-        "ggChemStyle": "guardian",
-        "ggAccelType": "MOSTLY_EXPLOSIVE",
-        "ggMetaSub": 52.1,
         "esMetaSub": 78.79,
         "esMeta": 81.66,
         "esChemStyle": "guardian",
         "esAccelType": "MOSTLY_EXPLOSIVE",
-        "avgMeta": 67.28,
-        "avgMetaSub": 65.45
+        "avgMeta": 81.66,
+        "avgMetaSub": 78.79
       },
       {
         "role": "CDM Holding",
         "subAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMeta": 51.2,
-        "ggChemStyle": "guardian",
-        "ggAccelType": "MOSTLY_EXPLOSIVE",
-        "ggMetaSub": 50.3,
         "esMetaSub": 75.22,
         "esMeta": 78.43,
         "esChemStyle": "sentinel",
         "esAccelType": "CONTROLLED_EXPLOSIVE",
-        "avgMeta": 64.81,
-        "avgMetaSub": 62.76
+        "avgMeta": 78.43,
+        "avgMetaSub": 75.22
       },
       {
         "role": "CDM Wide Half",
         "subAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMeta": 55.2,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMetaSub": 54.0,
         "esMetaSub": 74.81,
         "esMeta": 78.9,
         "esChemStyle": "sentinel",
         "esAccelType": "CONTROLLED_EXPLOSIVE",
-        "avgMeta": 67.05,
-        "avgMetaSub": 64.41
+        "avgMeta": 78.9,
+        "avgMetaSub": 74.81
       },
       {
         "role": "CM Box to Box",
         "subAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMeta": 54.6,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMetaSub": 54.5,
         "esMetaSub": 75.64,
         "esMeta": 78.45,
         "esChemStyle": "guardian",
         "esAccelType": "MOSTLY_EXPLOSIVE",
-        "avgMeta": 66.53,
-        "avgMetaSub": 65.07
+        "avgMeta": 78.45,
+        "avgMetaSub": 75.64
       },
       {
         "role": "CM Deep-Lying Playmaker",
         "subAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMeta": 57.5,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMetaSub": 56.9,
         "esMetaSub": 77.23,
         "esMeta": 80.27,
         "esChemStyle": "guardian",
         "esAccelType": "MOSTLY_EXPLOSIVE",
-        "avgMeta": 68.88,
-        "avgMetaSub": 67.06
+        "avgMeta": 80.27,
+        "avgMetaSub": 77.23
       },
       {
         "role": "CM Half-Winger",
         "subAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMeta": 51.6,
-        "ggChemStyle": "catalyst",
-        "ggAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMetaSub": 50.6,
         "esMetaSub": 72.81,
         "esMeta": 75.45,
         "esChemStyle": "catalyst",
         "esAccelType": "CONTROLLED_EXPLOSIVE",
-        "avgMeta": 63.53,
-        "avgMetaSub": 61.7
+        "avgMeta": 75.45,
+        "avgMetaSub": 72.81
       },
       {
         "role": "CM Holding",
         "subAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMeta": 54.5,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMetaSub": 53.7,
         "esMetaSub": 75.99,
         "esMeta": 79.49,
         "esChemStyle": "sentinel",
         "esAccelType": "CONTROLLED_EXPLOSIVE",
-        "avgMeta": 67.0,
-        "avgMetaSub": 64.84
+        "avgMeta": 79.49,
+        "avgMetaSub": 75.99
       },
       {
         "role": "CM Playmaker",
         "subAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMeta": 53.0,
-        "ggChemStyle": "catalyst",
-        "ggAccelType": "CONTROLLED_EXPLOSIVE",
-        "ggMetaSub": 52.7,
         "esMetaSub": 75.07,
         "esMeta": 77.75,
         "esChemStyle": "guardian",
         "esAccelType": "MOSTLY_EXPLOSIVE",
-        "avgMeta": 65.38,
-        "avgMetaSub": 63.88
+        "avgMeta": 77.75,
+        "avgMetaSub": 75.07
       }
     ]
   },
@@ -16947,8 +16691,8 @@
     "attributeGkReflexes": 7,
     "attributeGkPositioning": 9,
     "positions": [
-      "CB",
-      "LB"
+      "LB",
+      "CB"
     ],
     "foot": "Left",
     "PS": [
@@ -17200,8 +16944,8 @@
     "attributeGkReflexes": 14,
     "attributeGkPositioning": 8,
     "positions": [
-      "LM",
-      "LB"
+      "LB",
+      "LM"
     ],
     "foot": "Left",
     "PS": [
@@ -17219,44 +16963,32 @@
       {
         "role": "LB Attacking Wingback",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 57.4,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 55.9,
         "esMetaSub": 77.23,
         "esMeta": 80.53,
         "esChemStyle": "shadow",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 68.97,
-        "avgMetaSub": 66.56
+        "avgMeta": 80.53,
+        "avgMetaSub": 77.23
       },
       {
         "role": "LB Falseback",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 50.8,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 49.6,
         "esMetaSub": 76.82,
         "esMeta": 80.74,
         "esChemStyle": "shadow",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 65.77,
-        "avgMetaSub": 63.21
+        "avgMeta": 80.74,
+        "avgMetaSub": 76.82
       },
       {
         "role": "LB Fullback",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 51.2,
-        "ggChemStyle": "shadow",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 48.9,
         "esMetaSub": 79.64,
         "esMeta": 83.62,
         "esChemStyle": "shadow",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 67.41,
-        "avgMetaSub": 64.27
+        "avgMeta": 83.62,
+        "avgMetaSub": 79.64
       },
       {
         "role": "LB Inverted Wingback",
@@ -17271,72 +17003,52 @@
       {
         "role": "LB Wingback",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 55.4,
-        "ggChemStyle": "anchor",
-        "ggAccelType": "CONTROLLED_LENGTHY",
-        "ggMetaSub": 53.4,
         "esMetaSub": 79.56,
         "esMeta": 83.31,
         "esChemStyle": "shadow",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 69.36,
-        "avgMetaSub": 66.48
+        "avgMeta": 83.31,
+        "avgMetaSub": 79.56
       },
       {
         "role": "LM Inside Forward",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 52.6,
-        "ggChemStyle": "hunter",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 51.5,
         "esMetaSub": 68.35,
         "esMeta": 72.05,
         "esChemStyle": "finisher",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 62.33,
-        "avgMetaSub": 59.92
+        "avgMeta": 72.05,
+        "avgMetaSub": 68.35
       },
       {
         "role": "LM Wide Midfielder",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 51.7,
-        "ggChemStyle": "catalyst",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 50.6,
         "esMetaSub": 69.6,
         "esMeta": 72.53,
         "esChemStyle": "engine",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 62.12,
-        "avgMetaSub": 60.1
+        "avgMeta": 72.53,
+        "avgMetaSub": 69.6
       },
       {
         "role": "LM Wide Playmaker",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 53.4,
-        "ggChemStyle": "catalyst",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 52.1,
         "esMetaSub": 67.66,
         "esMeta": 71.26,
         "esChemStyle": "finisher",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 62.33,
-        "avgMetaSub": 59.88
+        "avgMeta": 71.26,
+        "avgMetaSub": 67.66
       },
       {
         "role": "LM Winger",
         "subAccelType": "CONTROLLED",
-        "ggMeta": 52.9,
-        "ggChemStyle": "hunter",
-        "ggAccelType": "CONTROLLED",
-        "ggMetaSub": 51.2,
         "esMetaSub": 70.04,
         "esMeta": 73.64,
         "esChemStyle": "finisher",
         "esAccelType": "CONTROLLED",
-        "avgMeta": 63.27,
-        "avgMetaSub": 60.62
+        "avgMeta": 73.64,
+        "avgMetaSub": 70.04
       }
     ]
   },
@@ -17660,8 +17372,8 @@
     "attributeGkReflexes": 11,
     "attributeGkPositioning": 10,
     "positions": [
-      "LM",
-      "LB"
+      "LB",
+      "LM"
     ],
     "foot": "Left",
     "PS": [
@@ -17921,8 +17633,8 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 12,
     "positions": [
-      "CDM",
-      "CM"
+      "CM",
+      "CDM"
     ],
     "foot": "Right",
     "PS": [
@@ -18086,8 +17798,8 @@
     "attributeGkReflexes": 12,
     "attributeGkPositioning": 5,
     "positions": [
-      "RW",
-      "ST"
+      "ST",
+      "RW"
     ],
     "foot": "Right",
     "PS": [
@@ -18344,9 +18056,9 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 13,
     "positions": [
-      "LM",
+      "LW",
       "RM",
-      "LW"
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -18518,8 +18230,8 @@
     "attributeGkReflexes": 12,
     "attributeGkPositioning": 13,
     "positions": [
-      "LM",
-      "LB"
+      "LB",
+      "LM"
     ],
     "foot": "Left",
     "PS": [],
@@ -18770,9 +18482,9 @@
     "attributeGkReflexes": 10,
     "attributeGkPositioning": 15,
     "positions": [
-      "LM",
       "LW",
       "RM",
+      "LM",
       "RW"
     ],
     "foot": "Left",
@@ -19229,8 +18941,8 @@
     "attributeGkReflexes": 76,
     "attributeGkPositioning": 76,
     "positions": [
-      "RW",
-      "ST"
+      "ST",
+      "RW"
     ],
     "foot": "Right",
     "PS": [
@@ -19366,10 +19078,10 @@
     "attributeGkReflexes": 13,
     "attributeGkPositioning": 16,
     "positions": [
-      "LM",
+      "CAM",
       "RM",
       "ST",
-      "CAM"
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -19591,8 +19303,8 @@
     "attributeGkReflexes": 13,
     "attributeGkPositioning": 16,
     "positions": [
-      "CDM",
-      "CM"
+      "CM",
+      "CDM"
     ],
     "foot": "Right",
     "PS": [
@@ -19853,8 +19565,8 @@
     "attributeGkReflexes": 15,
     "attributeGkPositioning": 11,
     "positions": [
-      "LM",
       "RM",
+      "LM",
       "RW"
     ],
     "foot": "Right",
@@ -20027,9 +19739,9 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 14,
     "positions": [
-      "CDM",
+      "CAM",
       "CM",
-      "CAM"
+      "CDM"
     ],
     "foot": "Right",
     "PS": [
@@ -20234,9 +19946,9 @@
     "attributeGkReflexes": 8,
     "attributeGkPositioning": 13,
     "positions": [
-      "CB",
       "CM",
-      "CDM"
+      "CDM",
+      "CB"
     ],
     "foot": "Left",
     "PS": [],
@@ -20435,8 +20147,8 @@
     "attributeGkReflexes": 5,
     "attributeGkPositioning": 9,
     "positions": [
-      "CDM",
       "CM",
+      "CDM",
       "CB"
     ],
     "foot": "Right",
@@ -20742,9 +20454,9 @@
     "attributeGkReflexes": 12,
     "attributeGkPositioning": 9,
     "positions": [
-      "CB",
       "RM",
-      "RB"
+      "RB",
+      "CB"
     ],
     "foot": "Right",
     "PS": [
@@ -20938,8 +20650,8 @@
     "attributeGkReflexes": 6,
     "attributeGkPositioning": 14,
     "positions": [
-      "CB",
-      "CDM"
+      "CDM",
+      "CB"
     ],
     "foot": "Left",
     "PS": [
@@ -21091,8 +20803,8 @@
     "attributeGkReflexes": 7,
     "attributeGkPositioning": 13,
     "positions": [
-      "CB",
-      "RB"
+      "RB",
+      "CB"
     ],
     "foot": "Right",
     "PS": [
@@ -21247,8 +20959,8 @@
     "attributeGkReflexes": 7,
     "attributeGkPositioning": 8,
     "positions": [
-      "CDM",
-      "CM"
+      "CM",
+      "CDM"
     ],
     "foot": "Left",
     "PS": [
@@ -21412,9 +21124,9 @@
     "attributeGkReflexes": 14,
     "attributeGkPositioning": 13,
     "positions": [
-      "LM",
+      "CAM",
       "ST",
-      "CAM"
+      "LM"
     ],
     "foot": "Right",
     "PS": [
@@ -21599,9 +21311,9 @@
     "attributeGkReflexes": 11,
     "attributeGkPositioning": 8,
     "positions": [
-      "LM",
+      "LW",
       "RM",
-      "LW"
+      "LM"
     ],
     "foot": "Right",
     "PS": [
