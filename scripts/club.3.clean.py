@@ -34,19 +34,60 @@ def load_json_file(file_path: Path, default_val=None):
     except (FileNotFoundError, json.JSONDecodeError):
         return default_val
 
-def calculate_acceleration_type(accel, agility, strength, height):
+def _normalize_gender(gender_val, maps):
+    """
+    Convert numeric gender to text via maps["gender_map"].
+    Default to 'Male' if unknown (most items are male).
+    """
+    try:
+        g = maps.get("gender_map", {}).get(str(gender_val))
+        if isinstance(g, str) and g:
+            return g
+    except Exception:
+        pass
+    return "Male"
+
+def calculate_acceleration_type(accel, agility, strength, height, gender: str = "Male"):
+    """
+    New game rules (gender-specific height thresholds):
+
+    Explosive:
+      - Agility >= 65
+      - (Agility - Strength) >= 10
+      - Acceleration >= 80
+      - Height <= 182 (Male) OR <= 162 (Female)
+
+    Lengthy:
+      - Strength >= 65
+      - (Strength - Agility) >= 4
+      - Acceleration >= 40
+      - Height >= 183 (Male) OR >= 164 (Female)
+
+    Controlled: otherwise.
+    """
     try:
         if accel is None or agility is None or strength is None or height is None:
             return "CONTROLLED"
-        accel, agility, strength, height = int(accel), int(agility), int(strength), int(height)
+        accel = int(accel); agility = int(agility); strength = int(strength); height = int(height)
     except Exception:
         return "CONTROLLED"
-    if (agility - strength) >= 20 and accel >= 80 and height <= 175 and agility >= 80: return "EXPLOSIVE"
-    if (agility - strength) >= 12 and accel >= 80 and height <= 182 and agility >= 70: return "MOSTLY_EXPLOSIVE"
-    if (agility - strength) >= 4 and accel >= 70 and height <= 182 and agility >= 65: return "CONTROLLED_EXPLOSIVE"
-    if (strength - agility) >= 20 and strength >= 80 and height >= 188 and accel >= 55: return "LENGTHY"
-    if (strength - agility) >= 12 and strength >= 75 and height >= 183 and accel >= 55: return "MOSTLY_LENGTHY"
-    if (strength - agility) >= 4 and strength >= 65 and height >= 181 and accel >= 40: return "CONTROLLED_LENGTHY"
+
+    gender_str = (gender or "Male")
+    is_female = str(gender_str).lower().startswith("f")
+
+    # Height thresholds by gender
+    exp_height_ok = (height <= 162) if is_female else (height <= 182)
+    len_height_ok = (height >= 164) if is_female else (height >= 183)
+
+    # Explosive
+    if (agility >= 65 and (agility - strength) >= 10 and accel >= 80 and exp_height_ok):
+        return "EXPLOSIVE"
+
+    # Lengthy
+    if (strength >= 65 and (strength - agility) >= 4 and accel >= 40 and len_height_ok):
+        return "LENGTHY"
+
+    # Otherwise
     return "CONTROLLED"
 
 def get_attribute_with_boost(base_attributes, attr_name, boost_modifiers, default_val=0):
@@ -99,6 +140,8 @@ def to_player_like_from_ggdata(gg_data_obj: Optional[Dict[str, Any]], maps) -> O
     # categorical
     d["foot"] = maps["foot_map"].get(str(gg_data_obj.get("foot")))
     d["bodyType"] = maps["bodytype_code_map"].get(str(gg_data_obj.get("bodytypeCode")))
+    # gender
+    d["gender"] = _normalize_gender(gg_data_obj.get("gender"), maps)
     # playstyles
     d["PS"]  = [maps["playstyles_map"].get(str(p)) for p in (gg_data_obj.get("playstyles") or []) if str(p) in maps["playstyles_map"]]
     d["PS+"] = [maps["playstyles_map"].get(str(p)) for p in (gg_data_obj.get("playstylesPlus") or []) if str(p) in maps["playstyles_map"]]
@@ -180,6 +223,9 @@ def prepare_features(player_data: Dict[str, Any], maps, boosts: Dict[str, int] =
     for key in ["height", "weight", "skillMoves", "weakFoot", "foot"]:
         features[key] = player_data.get(key)
 
+    # ensure gender present for accelerateType calc
+    features["gender"] = player_data.get("gender") or "Male"
+
     # playstyles as 0/1/2
     all_ps = list(maps.get("playstyles", {}).values())
     ps = set(player_data.get("PS", []) or []); ps_plus = set(player_data.get("PS+", []) or [])
@@ -197,8 +243,11 @@ def prepare_features(player_data: Dict[str, Any], maps, boosts: Dict[str, int] =
     # categorical
     features["bodytype"] = player_data.get("bodyType")
     features["accelerateType"] = calculate_acceleration_type(
-        features.get("attributeAcceleration"), features.get("attributeAgility"),
-        features.get("attributeStrength"), features.get("height")
+        features.get("attributeAcceleration"),
+        features.get("attributeAgility"),
+        features.get("attributeStrength"),
+        features.get("height"),
+        features.get("gender")
     )
     return features
 
@@ -322,6 +371,9 @@ def process_player(player_def: Dict[str, Any], is_evo: bool, model_manager: "Mod
         player_output[key] = player_def.get(key)
     player_output.update(base_attributes)
 
+    # gender
+    player_output["gender"] = _normalize_gender(player_def.get("gender"), maps)
+
     # positions and categorical labels
     numeric_positions = [str(p) for p in [player_def.get("position")] + (player_def.get("alternativePositionIds") or []) if p is not None]
     player_output["positions"] = list(set([maps["position_map"].get(p) for p in numeric_positions if p in maps["position_map"]]))
@@ -336,7 +388,8 @@ def process_player(player_def: Dict[str, Any], is_evo: bool, model_manager: "Mod
         base_attributes.get("attributeAcceleration"),
         base_attributes.get("attributeAgility"),
         base_attributes.get("attributeStrength"),
-        player_output.get("height")
+        player_output.get("height"),
+        player_output.get("gender")
     )
 
     es_meta_raw = load_json_file(ES_META_DIR / f"{player_output['eaId']}_esMeta.json", [])
@@ -370,7 +423,8 @@ def process_player(player_def: Dict[str, Any], is_evo: bool, model_manager: "Mod
                 get_attribute_with_boost(base_attributes, "attributeAcceleration", boosts),
                 get_attribute_with_boost(base_attributes, "attributeAgility", boosts),
                 get_attribute_with_boost(base_attributes, "attributeStrength", boosts),
-                player_output.get("height")
+                player_output.get("height"),
+                player_output.get("gender")
             )
 
         # gg basic as sub (standard players use API "Basic"; evos predicted & anchored)
@@ -493,7 +547,8 @@ def process_player(player_def: Dict[str, Any], is_evo: bool, model_manager: "Mod
                             get_attribute_with_boost(base_attributes, "attributeAcceleration", boosts_3),
                             get_attribute_with_boost(base_attributes, "attributeAgility", boosts_3),
                             get_attribute_with_boost(base_attributes, "attributeStrength", boosts_3),
-                            player_output.get("height")
+                            player_output.get("height"),
+                            player_output.get("gender")
                         )
 
         # Final ggMetaSub <= ggMeta safety for all players
@@ -530,7 +585,8 @@ def main():
         "chem_style_boosts_map": {item['name'].lower(): item['threeChemistryModifiers'] for item in maps_data.get("ChemistryStylesBoosts", []) if 'name' in item},
         "role_id_to_name_map": maps_data.get("role", {}),
         "roleNameToEsRoleId": maps_data.get("roleNameToEsRoleId", {}),
-        "playstyles": maps_data.get("playstyles", {})
+        "playstyles": maps_data.get("playstyles", {}),
+        "gender_map": maps_data.get("gender", {})  # NEW: numeric -> text
     }
 
     model_manager = ModelManager(MODELS_DIR)
