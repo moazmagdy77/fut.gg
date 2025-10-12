@@ -1,4 +1,4 @@
-# train_es_models.py
+# model.5.train_es_models.py
 
 import pandas as pd
 import numpy as np
@@ -15,33 +15,29 @@ DATA_0_CHEM_FILE = BASE_DATA_DIR / 'training_dataset_0_chem.csv'
 DATA_3_CHEM_FILE = BASE_DATA_DIR / 'training_dataset_3_chem.csv'
 
 def _clean_columns(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Ensure all feature columns are numeric-friendly.
-    Keep any engineered numeric columns like 'familiarity'.
-    Drop only constant one-hots for the selected subset (handled outside).
-    """
-    # Coerce obvious numeric columns
     for c in df.columns:
         if c.startswith("attribute") or c in ("height", "weight", "skillMoves", "weakFoot", "familiarity"):
             df[c] = pd.to_numeric(df[c], errors="coerce")
     return df
 
 def train_and_save_model(df_subset: pd.DataFrame, target_col: str, role_name: str, model_suffix: str):
-    """Train a single model for a specific role+target, then save it."""
     if len(df_subset) < 50:
         print(f"Skipping '{role_name} - {model_suffix}' due to insufficient data ({len(df_subset)} samples).")
         return
 
     print(f"\n--- Training: {role_name} | {model_suffix} ({len(df_subset)} samples) ---")
 
-    # Keep target, drop constant one-hots for this subset (role/bodytype/accel vary within raw but role_ is constant now)
     X = df_subset.drop(columns=[target_col]).copy()
     y = df_subset[target_col].astype(float)
 
-    # Ensure numeric-compatibility
+    # Ensure numeric features only
     X = _clean_columns(X).fillna(0)
+    non_num = X.select_dtypes(exclude=[np.number]).columns.tolist()
+    if non_num:
+        print(f"  ⚠️ Dropping non-numeric columns: {non_num[:6]}{'...' if len(non_num) > 6 else ''}")
+        X = X.drop(columns=non_num)
 
-    # Scale features and target
+    # Scale features & target
     feature_scaler = StandardScaler()
     X_scaled = pd.DataFrame(feature_scaler.fit_transform(X), columns=X.columns, index=X.index)
 
@@ -54,20 +50,16 @@ def train_and_save_model(df_subset: pd.DataFrame, target_col: str, role_name: st
         cv=5, random_state=42, n_jobs=-1, max_iter=5000, positive=True
     ).fit(X_scaled.values, y_scaled)
 
-    # Evaluate in original scale
+    # Evaluate
     y_pred_scaled = model.predict(X_scaled)
     y_pred = target_scaler.inverse_transform(y_pred_scaled.reshape(-1, 1)).ravel()
-    r2 = r2_score(y, y_pred)
-    rmse = np.sqrt(mean_squared_error(y, y_pred))
+    r2 = r2_score(y, y_pred); rmse = np.sqrt(mean_squared_error(y, y_pred))
     nnz = int((model.coef_ != 0).sum())
     print(f"  R²: {r2:.4f} | RMSE: {rmse:.4f} | Non-zero Coefs: {nnz}/{len(model.coef_)}")
 
-    # Compute unscaled-X, unscaled-y coefficients so we can do safe delta math later
-    # y = (X_scaled @ coef_scaled + intercept) inverse-transformed back
-    # Unscale linear part only: coef_unscaled = (coef_scaled / target_scale) / feature_scale
+    # Unscaled coefficients for anchored deltas
     coef_unscaled = (model.coef_ / target_scaler.scale_[0]) / feature_scaler.scale_
 
-    # Save bundle (KEEP coef_unscaled!)
     model_bundle = {
         "model": model,
         "feature_scaler": feature_scaler,
@@ -83,14 +75,9 @@ def train_and_save_model(df_subset: pd.DataFrame, target_col: str, role_name: st
     print(f"  💾 Model saved to {model_filename}")
 
 def _drop_constant_onehots(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    For a role-specific subset, drop one-hot columns that are constant.
-    We keep engineered numeric columns like 'familiarity'.
-    """
     to_drop = []
     for c in df.columns:
         if c.startswith(("role_", "bodytype_", "accelerateType_", "foot_")):
-            # If constant within this subset, it carries no information for the model
             if df[c].nunique(dropna=False) <= 1:
                 to_drop.append(c)
     return df.drop(columns=to_drop)
@@ -101,21 +88,16 @@ def _train_block(data_file: Path, target_col: str, model_suffix: str):
     for role_col in role_cols:
         role_name = role_col.replace('role_', '').replace('_', ' ')
         df_subset = df[df[role_col] == 1].copy()
-
-        # Drop one-hots that are constant in this subset, keep numeric features (incl. familiarity if present)
         df_subset = _drop_constant_onehots(df_subset)
-
         if target_col not in df_subset.columns:
             print(f"⚠️ {target_col} not found for role '{role_name}'. Skipping.")
             continue
-
         train_and_save_model(df_subset, target_col, role_name, model_suffix)
 
 def main():
     print("🚀 Starting model training script...")
     MODEL_DIR.mkdir(exist_ok=True)
 
-    # --- 0-chem (esMetaSub) ---
     print("\n" + "="*50)
     print(" L O A D I N G   0 - C H E M   D A T A S E T")
     print("="*50)
@@ -124,7 +106,6 @@ def main():
     else:
         print(f"❌ {DATA_0_CHEM_FILE.name} not found. Skipping 0-chem models.")
 
-    # --- 3-chem (esMeta) ---
     print("\n" + "="*50)
     print(" L O A D I N G   3 - C H E M   D A T A S E T")
     print("="*50)

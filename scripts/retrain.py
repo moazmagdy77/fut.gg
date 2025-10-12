@@ -13,8 +13,8 @@ steps = [
     ("📦 Step 3: Scrape player details and metaratings", ["node", "model.3.fetch.data.js"]),
     ("🔍 Step 4: Build esMeta training dataset", ["python", "model.4.build_es_training_dataset.py"]),
     ("🔍 Step 5: Train esMeta and esMetaSub models", ["python", "model.5.train_es_models.py"]),
-    ("🔍 Step 6: Build ggMeta training dataset", ["python", "model.6.build_gg_boost_delta_dataset.py"]),
-    ("🔍 Step 7: Train ggMeta and ggMetaSub models", ["python", "model.7.train_gg_boost_delta_models.py"])
+    ("🔍 Step 6: Build ggMeta training dataset", ["python", "model.6.build_gg_sub_dataset.py"]),
+    ("🔍 Step 7: Train ggMeta and ggMetaSub models", ["python", "model.7.train_gg_sub_models.py"])
 ]
 
 start = time.time()

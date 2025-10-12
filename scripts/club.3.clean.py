@@ -3,7 +3,6 @@
 import json
 from pathlib import Path
 from collections import defaultdict
-import copy
 import numpy as np
 import pandas as pd
 import joblib
@@ -36,7 +35,7 @@ def load_json_file(file_path: Path, default_val=None):
 
 def _normalize_gender(gender_val, maps):
     """
-    Convert numeric gender to text via maps["gender_map"].
+    Convert numeric gender to text via maps["gender_map"] (1->Male, 2->Female).
     Default to 'Male' if unknown (most items are male).
     """
     try:
@@ -324,7 +323,7 @@ def predict_es_with_anchor(
     pred = max(0.0, pred)
     return round(float(pred), 2)
 
-# --- ggMetaSub prediction for EVOS (anchored, never exceeds same-role ggMeta) ---
+# --- ggMetaSub prediction (direct model), monotone for evos, never exceeds same-role ggMeta) ---
 def predict_ggsub_with_anchor(
     model_bundle: Dict[str, Any],
     evo_features: Dict[str, Any],
@@ -333,36 +332,38 @@ def predict_ggsub_with_anchor(
     basic_anchor: Optional[float],
     same_role_ggmeta: Optional[float]
 ) -> Optional[float]:
+    """
+    Direct ggMetaSub predictor using:
+      - absolute model prediction (unboosted features),
+      - optional monotone anchor (evo >= base Basic) via floor,
+      - cap at same-role ggMeta and 99.99, lower bound 0.
+    """
     if not model_bundle:
         return None
 
-    pred_abs_evo = _predict_absolute(model_bundle, evo_features)
+    pred_abs_evo  = _predict_absolute(model_bundle, evo_features)
+    pred_abs_base = _predict_absolute(model_bundle, base_features) if base_features is not None else None
 
+    # Floors (optional): base Basic (API) and/or base absolute prediction
     floors = []
     if basic_anchor is not None:
         floors.append(float(basic_anchor))
-    if base_features is not None:
-        try:
-            base_abs = _predict_absolute(model_bundle, base_features)
-            if base_abs is not None:
-                floors.append(float(base_abs))
-        except Exception:
-            pass
+    if pred_abs_base is not None:
+        floors.append(float(pred_abs_base))
     floor_val = max(floors) if floors else 0.0
 
-    candidates = []
-    if pred_abs_evo is not None:
-        candidates.append(pred_abs_evo)
-    if not candidates:
+    # No delta-weight step here (sub has no boosts); use absolute prediction + optional floor
+    if pred_abs_evo is None:
         return None
+    pred = max(pred_abs_evo, floor_val)
 
-    pred = max(candidates)
-    pred = max(pred, floor_val)
+    # Apply caps
     if same_role_ggmeta is not None:
-        pred = min(pred, float(same_role_ggmeta))  # enforce ggMetaSub ≤ ggMeta
-    pred = min(pred, 99.99)
-    pred = max(0.0, pred)
+        pred = min(pred, float(same_role_ggmeta))  # enforce sub ≤ on-chem for same role
+    pred = min(pred, 99.99)                        # hard cap
+    pred = max(0.0, pred)                          # hard floor
     return round(float(pred), 2)
+
 
 def process_player(player_def: Dict[str, Any], is_evo: bool, model_manager: "ModelManager", maps):
     player_output = {"eaId": player_def.get("eaId"), "evolution": is_evo}
@@ -427,27 +428,21 @@ def process_player(player_def: Dict[str, Any], is_evo: bool, model_manager: "Mod
                 player_output.get("gender")
             )
 
-        # gg basic as sub (standard players use API "Basic"; evos predicted & anchored)
-        if not is_evo:
-            basic_gg = next(
-                (s for s in scores if (maps["gg_chem_style_names_map"].get(str(s.get("chemistryStyle")), "") or "").lower() == 'basic'),
-                None
-            )
-            if basic_gg and basic_gg.get("score") is not None:
-                meta_entry["ggMetaSub"] = round(float(basic_gg["score"]), 2)
-            elif "GK" in role_name and meta_entry.get("ggMeta") is not None:
-                meta_entry["ggMetaSub"] = round(meta_entry["ggMeta"] * 0.95, 2)
-        else:
-            # Evo: predict ggMetaSub and anchor to base Basic + do not exceed same-role ggMeta
-            gg_sub_model = model_manager.get_model(role_name, 'ggMetaSub')
-            if gg_sub_model:
+        # ---------- ggMetaSub for ALL players via model ----------
+        gg_sub_model = model_manager.get_model(role_name, 'ggMetaSub')
+        if gg_sub_model:
+            # Feature dicts
+            evo_features_sub  = prepare_features(player_output, maps, boosts={}, role_name=role_name)
+
+            if is_evo:
+                # For EVOS anchor to base "Basic" (from base card) and never exceed the evo's on-chem ggMeta
                 base_anchor_eaid = resolve_anchor_source_eaid(player_def)  # may equal evo id
                 base_gg_raw = load_json_file(GG_DATA_DIR / f"{base_anchor_eaid}_ggData.json")
                 base_player_like = to_player_like_from_ggdata(
                     base_gg_raw.get("data") if base_gg_raw and "data" in base_gg_raw else None, maps
                 )
 
-                # Retrieve base Basic score for same role (anchor)
+                # Base card "Basic" anchor for the same role
                 basic_anchor = None
                 base_gg_meta = load_json_file(GG_META_DIR / f"{base_anchor_eaid}_ggMeta.json")
                 if base_gg_meta and "data" in base_gg_meta and "scores" in base_gg_meta["data"]:
@@ -462,15 +457,39 @@ def process_player(player_def: Dict[str, Any], is_evo: bool, model_manager: "Mod
                     if base_basic and base_basic.get("score") is not None:
                         basic_anchor = float(base_basic["score"])
 
-                evo_features_sub  = prepare_features(player_output, maps, boosts={}, role_name=role_name)
                 base_features_sub = prepare_features(base_player_like, maps, boosts={}, role_name=role_name) if base_player_like else None
                 meta_entry["ggMetaSub"] = predict_ggsub_with_anchor(
                     gg_sub_model,
                     evo_features_sub,
                     base_features=base_features_sub,
-                    basic_anchor=basic_anchor,
+                    basic_anchor=basic_anchor,                 # floor to base Basic when available
+                    same_role_ggmeta=meta_entry.get("ggMeta")  # sub ≤ on-chem for same role
+                )
+            else:
+                # STANDARD players: predict directly, clamp to ≤ on-chem ggMeta
+                meta_entry["ggMetaSub"] = predict_ggsub_with_anchor(
+                    gg_sub_model,
+                    evo_features_sub,
+                    base_features=None,     # no base floor for standard items
+                    basic_anchor=None,
                     same_role_ggmeta=meta_entry.get("ggMeta")
                 )
+
+        # Fallbacks if no model or prediction failed
+        if meta_entry.get("ggMetaSub") is None:
+            if not is_evo:
+                # Use API "Basic" for standard players
+                basic_gg = next(
+                    (s for s in scores if (maps["gg_chem_style_names_map"].get(str(s.get("chemistryStyle")), "") or "").lower() == 'basic'),
+                    None
+                )
+                if basic_gg and basic_gg.get("score") is not None:
+                    meta_entry["ggMetaSub"] = round(float(basic_gg["score"]), 2)
+                elif "GK" in role_name and meta_entry.get("ggMeta") is not None:
+                    meta_entry["ggMetaSub"] = round(meta_entry["ggMeta"] * 0.95, 2)
+            else:
+                # For evos with no model: keep as None (no safe API Basic for evo items)
+                pass
 
         # ---------- ES handling ----------
         if is_evo:
@@ -487,12 +506,12 @@ def process_player(player_def: Dict[str, Any], is_evo: bool, model_manager: "Mod
             # esMetaSub (chem=0)
             es_sub_model = model_manager.get_model(role_name, 'esMetaSub')
             if es_sub_model:
-                evo_features_sub  = prepare_features(player_output, maps, boosts={}, role_name=role_name)
-                base_features_sub = prepare_features(base_player_like, maps, boosts={}, role_name=role_name) if base_player_like else None
+                evo_features_es_sub  = prepare_features(player_output, maps, boosts={}, role_name=role_name)
+                base_features_es_sub = prepare_features(base_player_like, maps, boosts={}, role_name=role_name) if base_player_like else None
                 meta_entry["esMetaSub"] = predict_es_with_anchor(
                     es_sub_model,
-                    evo_features_sub,
-                    base_features=base_features_sub,
+                    evo_features_es_sub,
+                    base_features=base_features_es_sub,
                     api_anchor=sub_anchor,
                     hard_min=sub_anchor,
                     hard_max=99.99
@@ -551,7 +570,7 @@ def process_player(player_def: Dict[str, Any], is_evo: bool, model_manager: "Mod
                             player_output.get("gender")
                         )
 
-        # Final ggMetaSub <= ggMeta safety for all players
+        # Final ggMetaSub ≤ ggMeta safety for all players (double-check after all logic)
         if meta_entry.get("ggMetaSub") is not None and meta_entry.get("ggMeta") is not None:
             if meta_entry["ggMetaSub"] > meta_entry["ggMeta"]:
                 meta_entry["ggMetaSub"] = round(float(meta_entry["ggMeta"]), 2)
