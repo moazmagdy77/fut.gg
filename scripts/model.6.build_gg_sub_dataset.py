@@ -1,4 +1,8 @@
-# model.6b.build_gg_sub_dataset.py
+# model.6.build_gg_boost_delta_dataset.py
+# Builds an ABSOLUTE ggMeta training dataset (not deltas).
+# We learn ggMeta = f(boosted attributes, familiarity, playstyles, ...).
+# At inference we pass "no-chem" (unboosted) features to predict ggMetaSub.
+
 import json
 from pathlib import Path
 import pandas as pd
@@ -10,7 +14,8 @@ RAW_DATA_DIR = BASE_DATA_DIR / 'raw'
 GG_DATA_DIR = RAW_DATA_DIR / 'ggData'
 GG_META_DIR = RAW_DATA_DIR / 'ggMeta'
 MAPS_FILE = BASE_DATA_DIR / 'maps.json'
-OUTPUT_FILE = BASE_DATA_DIR / 'training_dataset_gg_sub.csv'
+# New absolute dataset filename (we keep the script name for your runner)
+OUTPUT_FILE = BASE_DATA_DIR / 'training_dataset_gg_sub_abs.csv'
 
 # --- Helpers ---
 def load_json_file(file_path, default_val=None):
@@ -20,23 +25,40 @@ def load_json_file(file_path, default_val=None):
 
 def _normalize_gender(gender_val, maps):
     try:
-        g = (maps.get("gender") or {}).get(str(gender_val))
-        if isinstance(g, str) and g: return g
+        g = (maps.get("gender", {}) or {}).get(str(gender_val))
+        if isinstance(g, str) and g:
+            return g
     except Exception:
         pass
     return "Male"
 
 def calculate_acceleration_type(accel, agility, strength, height, gender: str = "Male"):
-    # Gender-aware rules from your latest game update
+    """
+    Gender-specific height rules (new game update):
+
+    Explosive:
+      - Agility >= 65
+      - (Agility - Strength) >= 10
+      - Acceleration >= 80
+      - Height <= 182 (Male) OR <= 162 (Female)
+    Lengthy:
+      - Strength >= 65
+      - (Strength - Agility) >= 4
+      - Acceleration >= 40
+      - Height >= 183 (Male) OR >= 164 (Female)
+    Controlled otherwise.
+    """
     try:
         if accel is None or agility is None or strength is None or height is None:
             return "CONTROLLED"
         accel = int(accel); agility = int(agility); strength = int(strength); height = int(height)
     except Exception:
         return "CONTROLLED"
+
     is_female = str(gender or "Male").lower().startswith("f")
     exp_height_ok = (height <= 162) if is_female else (height <= 182)
     len_height_ok = (height >= 164) if is_female else (height >= 183)
+
     if (agility >= 65 and (agility - strength) >= 10 and accel >= 80 and exp_height_ok):
         return "EXPLOSIVE"
     if (strength >= 65 and (strength - agility) >= 4 and accel >= 40 and len_height_ok):
@@ -44,110 +66,126 @@ def calculate_acceleration_type(accel, agility, strength, height, gender: str = 
     return "CONTROLLED"
 
 def get_attribute_with_boost(base_attributes, attr_name, boost_modifiers, default_val=0):
-    # For ggMetaSub we use NO BOOSTS (chem = Basic), but leave this utility here for parity
     base_val = base_attributes.get(attr_name, default_val)
+    boost_val = (boost_modifiers or {}).get(attr_name, 0)
     try:
         base_val = int(base_val) if base_val is not None else 0
+        boost_val = int(boost_val) if boost_val is not None else 0
     except Exception:
-        base_val = 0
-    return min(base_val, 99)
+        base_val = 0; boost_val = 0
+    return min(base_val + boost_val, 99)
 
 def familiarity_for_role(role_name, player_def, maps):
-    rp = maps.get("rolesPlus", {}); rpp = maps.get("rolesPlusPlus", {})
-    plus_names = {rp.get(str(x)) for x in (player_def.get("rolesPlus") or [])}
-    pp_names   = {rpp.get(str(x)) for x in (player_def.get("rolesPlusPlus") or [])}
-    plus_names = {n for n in plus_names if n}; pp_names = {n for n in pp_names if n}
+    """
+    0 = none, 1 = roles+, 2 = roles++
+    """
+    roles_plus_map = maps.get("rolesPlus", {}) or {}
+    roles_pp_map   = maps.get("rolesPlusPlus", {}) or {}
+    plus_names = {roles_plus_map.get(str(x)) for x in (player_def.get("rolesPlus") or [])}
+    pp_names   = {roles_pp_map.get(str(x))   for x in (player_def.get("rolesPlusPlus") or [])}
+    plus_names = {n for n in plus_names if n}
+    pp_names   = {n for n in pp_names if n}
     if role_name in pp_names: return 2
     if role_name in plus_names: return 1
     return 0
 
 def main():
-    print("🚀 Building ggMetaSub (Basic) training dataset...")
+    print("🚀 Building ABSOLUTE ggMeta training dataset for ggMetaSub...")
+
     maps = load_json_file(MAPS_FILE)
     if not maps:
         print(f"❌ Critical error: Could not load {MAPS_FILE}. Exiting.")
         return
 
-    all_playstyles = list((maps.get("playstyles") or {}).values())
-    foot_map = maps.get("foot", {})
+    gg_style_names = maps.get("ggChemistryStyleNames", {}) or {}
+    chem_style_boosts = {
+        item['name'].lower(): item['threeChemistryModifiers']
+        for item in maps.get("ChemistryStylesBoosts", []) if 'name' in item and 'threeChemistryModifiers' in item
+    }
+    all_playstyles = list(maps.get("playstyles", {}).values())
 
-    rows = []
     player_ids = [f.stem.split('_')[0] for f in GG_DATA_DIR.glob("*_ggData.json")]
     print(f"ℹ️ Found {len(player_ids)} players to process.")
 
+    rows = []
+
     for i, ea_id_str in enumerate(player_ids):
-        if (i + 1) % 100 == 0: print(f"⏳ {i+1}/{len(player_ids)}")
+        if (i + 1) % 200 == 0: print(f"⏳ {i+1}/{len(player_ids)} players...")
 
         gg_data = load_json_file(GG_DATA_DIR / f"{ea_id_str}_ggData.json")
         gg_meta = load_json_file(GG_META_DIR / f"{ea_id_str}_ggMeta.json")
+
         if not gg_data or "data" not in gg_data or not gg_meta or "data" not in gg_meta or "scores" not in gg_meta["data"]:
             continue
 
-        player_def = gg_data["data"]
-        base_attributes = {k: v for k, v in player_def.items() if k.startswith("attribute")}
-        gender_text = _normalize_gender(player_def.get("gender"), maps)
+        pdata = gg_data["data"]
+        gender_txt = _normalize_gender(pdata.get("gender"), maps)
+        base_attributes = {k: v for k, v in pdata.items() if isinstance(k, str) and k.startswith("attribute")}
 
-        base_features = {
-            "height": player_def.get("height"),
-            "weight": player_def.get("weight"),
-            "skillMoves": player_def.get("skillMoves"),
-            "weakFoot": player_def.get("weakFoot"),
-            "bodytype": maps.get("bodytypeCode", {}).get(str(player_def.get("bodytypeCode"))),
-            "foot": foot_map.get(str(player_def.get("foot")))
-            # NOTE: do NOT include a 'gender' feature column
+        # shared base fields
+        base_fields = {
+            "height": pdata.get("height"),
+            "weight": pdata.get("weight"),
+            "skillMoves": pdata.get("skillMoves"),
+            "weakFoot": pdata.get("weakFoot"),
+            "bodytype": (maps.get("bodytypeCode", {}) or {}).get(str(pdata.get("bodytypeCode"))),
+            "foot": (maps.get("foot", {}) or {}).get(str(pdata.get("foot"))),
         }
 
-        # playstyles 0/1/2
+        # PS encodings (0/1/2)
         ps_map = maps.get("playstyles", {}) or {}
-        ps = {ps_map.get(str(p)) for p in (player_def.get("playstyles") or [])}
-        ps_plus = {ps_map.get(str(p)) for p in (player_def.get("playstylesPlus") or [])}
-        for name in all_playstyles:
-            base_features[name] = 2 if name in ps_plus else (1 if name in ps else 0)
+        player_ps = {ps_map.get(str(p)) for p in (pdata.get("playstyles") or [])}
+        player_ps_plus = {ps_map.get(str(p)) for p in (pdata.get("playstylesPlus") or [])}
+        for ps in all_playstyles:
+            base_fields[ps] = 2 if ps in player_ps_plus else 1 if ps in player_ps else 0
 
-        # group GG scores by role and fetch 'Basic' only
-        by_role = defaultdict(list)
-        for s in gg_meta["data"]["scores"]:
-            by_role[str(s.get("role"))].append(s)
+        # scores by role
+        scores_by_role = defaultdict(list)
+        for score_entry in gg_meta["data"]["scores"]:
+            scores_by_role[str(score_entry.get("role"))].append(score_entry)
 
-        for role_id_str, scores in by_role.items():
-            role_name = (maps.get("role") or {}).get(role_id_str)
-            if not role_name: continue
-            basic_row = next(
-                (s for s in scores if ((maps.get("ggChemistryStyleNames") or {}).get(str(s.get("chemistryStyle")), "") or "").lower() == "basic"),
-                None
-            )
-            if not basic_row or basic_row.get("score") is None: continue
-            target_basic = float(basic_row["score"])
+        for role_id_str, scores in scores_by_role.items():
+            role_name = (maps.get("role", {}) or {}).get(role_id_str)
+            if not role_name: 
+                continue
+            fam = familiarity_for_role(role_name, pdata, maps)
 
-            # assemble training row (NO boosts)
-            row = base_features.copy()
-            row["role"] = role_name
-            row["familiarity"] = familiarity_for_role(role_name, player_def, maps)
-            # add raw attributes
-            for attr, v in base_attributes.items():
-                row[attr] = get_attribute_with_boost(base_attributes, attr, None)
-            # gender-aware accelerateType at 0 chem
-            row["accelerateType"] = calculate_acceleration_type(
-                row.get("attributeAcceleration"), row.get("attributeAgility"),
-                row.get("attributeStrength"), row.get("height"), gender_text
-            )
-            row["target_ggMetaSub"] = target_basic
-            rows.append(row)
+            # For *every* chem style's absolute score, create a row with boosted attributes (that produced that score)
+            for s in scores:
+                chem_id = str(s.get("chemistryStyle"))
+                chem_name = (gg_style_names.get(chem_id) or "").lower()
+                boosts = chem_style_boosts.get(chem_name, {})
+
+                row = base_fields.copy()
+                row["role"] = role_name
+                # boosted attributes
+                for attr in base_attributes:
+                    row[attr] = get_attribute_with_boost(base_attributes, attr, boosts)
+                # accel type from boosted attributes using gender-aware rules
+                row["accelerateType"] = calculate_acceleration_type(
+                    row.get("attributeAcceleration"), row.get("attributeAgility"),
+                    row.get("attributeStrength"), row.get("height"), gender_txt
+                )
+                row["familiarity"] = fam
+                # target = absolute ggMeta for that (chem, role)
+                if s.get("score") is not None:
+                    row["target_ggMetaAbs"] = float(s["score"])
+                    rows.append(row)
 
     print("✅ Finished building rows. Creating DataFrame...")
+
     df = pd.DataFrame(rows)
     if df.empty:
-        print("⚠️ No rows created. Check inputs.")
+        print("⚠️ No rows produced. Check inputs.")
         return
 
-    # ensure no stray non-numeric text columns other than those we one-hot
-    if "gender" in df.columns:
-        df.drop(columns=["gender"], inplace=True)
-
+    # One-hot only the categorical columns; gender already used in accel logic; not included as feature to avoid strings.
     df = pd.get_dummies(df, columns=["role", "bodytype", "accelerateType", "foot"], dtype=int)
-    df.dropna(subset=["target_ggMetaSub"], inplace=True)
+    df.dropna(subset=["target_ggMetaAbs"], inplace=True)
+    df.fillna(0, inplace=True)
+
     df.to_csv(OUTPUT_FILE, index=False)
-    print(f"💾 Saved ggMetaSub training data with {len(df)} rows to {OUTPUT_FILE.name}")
+    print(f"💾 Saved ABSOLUTE ggMeta training data with {len(df)} rows to {OUTPUT_FILE.name}")
 
 if __name__ == "__main__":
     main()

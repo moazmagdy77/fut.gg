@@ -1,4 +1,7 @@
-# model.7b.train_gg_sub_models.py
+# model.7.train_gg_boost_delta_models.py
+# Trains per-role ABSOLUTE ggMeta models which we will use to predict ggMetaSub
+# by feeding "no-chem" (unboosted) features at inference.
+
 import pandas as pd
 import numpy as np
 import joblib
@@ -10,50 +13,47 @@ from sklearn.metrics import r2_score, mean_squared_error
 # --- Configuration ---
 BASE_DATA_DIR = Path(__file__).resolve().parent / '../data'
 MODEL_DIR = Path(__file__).resolve().parent / '../models'
-DATA_FILE = BASE_DATA_DIR / 'training_dataset_gg_sub.csv'
+DATA_FILE = BASE_DATA_DIR / 'training_dataset_gg_sub_abs.csv'  # built by step 6
 
-def _clean_columns(df: pd.DataFrame) -> pd.DataFrame:
+def _drop_constant_onehots(df: pd.DataFrame) -> pd.DataFrame:
+    to_drop = []
     for c in df.columns:
-        if c.startswith("attribute") or c in ("height","weight","skillMoves","weakFoot","familiarity"):
-            df[c] = pd.to_numeric(df[c], errors="coerce")
-    return df
+        if c.startswith(("role_", "bodytype_", "accelerateType_", "foot_")):
+            if df[c].nunique(dropna=False) <= 1:
+                to_drop.append(c)
+    return df.drop(columns=to_drop)
 
 def train_and_save_model(df_subset, target_col, role_name, model_suffix):
-    if len(df_subset) < 50:
+    if len(df_subset) < 80:
         print(f"Skipping '{role_name} - {model_suffix}' (only {len(df_subset)} samples).")
         return
 
     print(f"\n--- Training: {role_name} | {model_suffix} ({len(df_subset)} samples) ---")
-    X = df_subset.drop(columns=[target_col]).copy()
-    y = df_subset[target_col].astype(float)
+    X = df_subset.drop(columns=[target_col]).copy().fillna(0)
+    y = df_subset[target_col].astype(float).values
 
-    # numeric guard
-    X = _clean_columns(X).fillna(0)
-    non_num = X.select_dtypes(exclude=[np.number]).columns.tolist()
-    if non_num:
-        print(f"  ⚠️ Dropping non-numeric columns: {non_num[:6]}{'...' if len(non_num)>6 else ''}")
-        X = X.drop(columns=non_num)
-
-    # scale
+    # Scale X, y
     feature_scaler = StandardScaler()
-    X_scaled = pd.DataFrame(feature_scaler.fit_transform(X), columns=X.columns, index=X.index)
+    X_scaled = feature_scaler.fit_transform(X)
 
-    target_scaler = MinMaxScaler((0,1))
-    y_scaled = target_scaler.fit_transform(y.values.reshape(-1,1)).ravel()
+    target_scaler = MinMaxScaler(feature_range=(0, 1))
+    y_scaled = target_scaler.fit_transform(y.reshape(-1,1)).ravel()
 
-    # non-negative linear model
+    # Non-negative linear model (attributes monotonicity)
     model = ElasticNetCV(
         l1_ratio=[0.05,0.1,0.3,0.5,0.8,1.0],
         cv=5, random_state=42, n_jobs=-1, max_iter=5000, positive=True
-    ).fit(X_scaled.values, y_scaled)
+    ).fit(X_scaled, y_scaled)
 
-    # evaluate on train (diagnostic)
-    y_pred_scaled = model.predict(X_scaled.values)
+    # Evaluate back on original scale
+    y_pred_scaled = model.predict(X_scaled)
     y_pred = target_scaler.inverse_transform(y_pred_scaled.reshape(-1,1)).ravel()
-    r2 = r2_score(y, y_pred); rmse = np.sqrt(mean_squared_error(y, y_pred))
-    print(f"  R²: {r2:.4f} | RMSE: {rmse:.4f} | Non-zero: {(model.coef_!=0).sum()}/{len(model.coef_)}")
+    r2 = r2_score(y, y_pred)
+    rmse = np.sqrt(mean_squared_error(y, y_pred))
+    nnz = int((model.coef_ != 0).sum())
+    print(f"  R²: {r2:.4f} | RMSE: {rmse:.4f} | Non-zero Coefs: {nnz}/{len(model.coef_)}")
 
-    # unscaled weights (for delta anchoring)
+    # Unscaled-X, unscaled-y coefficients (for delta math if ever needed)
     coef_unscaled = (model.coef_ / target_scaler.scale_[0]) / feature_scaler.scale_
 
     bundle = {
@@ -64,35 +64,39 @@ def train_and_save_model(df_subset, target_col, role_name, model_suffix):
         "coef_unscaled": coef_unscaled.tolist()
     }
 
-    safe_role = role_name.replace(" ","_").replace("-","_")
-    out = MODEL_DIR / f"{safe_role}_{model_suffix}_model.pkl"
+    safe_role_name = role_name.replace(" ", "_").replace("-", "_")
+    model_filename = f"{safe_role_name}_{model_suffix}_model.pkl"  # e.g., "LM_Inside_Forward_ggMetaSub_model.pkl"
     MODEL_DIR.mkdir(exist_ok=True)
-    joblib.dump(bundle, out)
-    print(f"  💾 Saved {out.name}")
+    joblib.dump(bundle, MODEL_DIR / model_filename)
+    print(f"  💾 Model saved to {model_filename}")
 
 def main():
-    print("🚀 Training ggMetaSub (Basic) models...")
+    print("🚀 Training ABSOLUTE ggMeta models for ggMetaSub...")
+    MODEL_DIR.mkdir(exist_ok=True)
+
     if not DATA_FILE.exists():
-        print(f"❌ {DATA_FILE.name} not found. Run model.6b.build_gg_sub_dataset.py first.")
+        print(f"❌ {DATA_FILE.name} not found. Run step 6 first.")
         return
 
     df = pd.read_csv(DATA_FILE)
-    role_cols = [c for c in df.columns if c.startswith("role_")]
+    # Train PER ROLE (role_* one-hots exist)
+    role_cols = [c for c in df.columns if c.startswith('role_')]
+    if not role_cols:
+        print("❌ No role_* columns found. Check dataset build.")
+        return
 
     for role_col in role_cols:
-        role_name = role_col.replace("role_","").replace("_"," ")
-        df_subset = df[df[role_col]==1].copy()
+        role_name = role_col.replace('role_', '').replace('_', ' ')
+        df_subset = df[df[role_col] == 1].copy()
+        df_subset = _drop_constant_onehots(df_subset)
 
-        # drop constant OHEs for this role subset
-        to_drop = []
-        for c in df_subset.columns:
-            if c.startswith(("role_","bodytype_","accelerateType_","foot_")) and df_subset[c].nunique(dropna=False)<=1:
-                to_drop.append(c)
-        df_subset.drop(columns=to_drop, inplace=True, errors="ignore")
+        if "target_ggMetaAbs" not in df_subset.columns:
+            print(f"⚠️ target_ggMetaAbs missing for role '{role_name}'. Skipping.")
+            continue
 
-        train_and_save_model(df_subset, target_col="target_ggMetaSub", role_name=role_name, model_suffix="ggMetaSub")
+        train_and_save_model(df_subset, target_col='target_ggMetaAbs', role_name=role_name, model_suffix='ggMetaSub')
 
-    print("\n🎉 All ggMetaSub models trained.")
+    print("\n🎉 All ggMetaSub models trained successfully.")
 
 if __name__ == "__main__":
     main()
