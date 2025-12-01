@@ -439,8 +439,8 @@ def process_player(player_def: Dict[str, Any], is_evo: bool, model_manager: "Mod
         # averages
         gg_meta, es_meta = meta_entry.get("ggMeta"), meta_entry.get("esMeta")
         gg_meta_sub, es_meta_sub = meta_entry.get("ggMetaSub"), meta_entry.get("esMetaSub")
-        meta_entry["avgMeta"] = round((gg_meta + es_meta) / 2, 2) if (gg_meta is not None and es_meta is not None) else gg_meta or es_meta
-        meta_entry["avgMetaSub"] = round((gg_meta_sub + es_meta_sub) / 2, 2) if (gg_meta_sub is not None and es_meta_sub is not None) else gg_meta_sub or es_meta_sub
+        meta_entry["avgMeta"] = round((gg_meta + 2*es_meta) / 3, 2) if (gg_meta is not None and es_meta is not None) else gg_meta or es_meta
+        meta_entry["avgMetaSub"] = round((gg_meta_sub + 2*es_meta_sub) / 3, 2) if (gg_meta_sub is not None and es_meta_sub is not None) else gg_meta_sub or es_meta_sub
 
         player_output["metaRatings"].append(meta_entry)
 
