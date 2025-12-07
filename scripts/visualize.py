@@ -30,7 +30,6 @@ def load_data(file_path):
         st.error(f"Error: `club_final.json` is not a valid JSON file. Please check the file content.")
         return pd.DataFrame()
 
-    # --- FIX STARTS HERE ---
     # The previous method of inferring columns was unreliable. This is the robust method from your old working script.
     # It normalizes the entire structure first, then handles the nested data.
     df = pd.json_normalize(data, errors='ignore')
@@ -46,7 +45,6 @@ def load_data(file_path):
 
     # Rename the flattened meta columns
     df.rename(columns={col: col.replace("meta.", "") for col in df.columns if col.startswith("meta.")}, inplace=True)
-    # --- FIX ENDS HERE ---
     
     if df.empty:
         st.warning("No data loaded or normalized from club_final.json.")
@@ -228,7 +226,7 @@ def display_top_metric(container, df_to_use, metric_col, title, n=5):
                 for i, (_, row) in enumerate(top_players.iterrows()):
                     rank_display = f"**{i+1}.**"
                     if i < 3: rank_display = ["🥇", "🥈", "🥉"][i]
-                    label = f"{rank_display} {row.get('commonName', 'N/A')} ({row.get('role', 'N/A')})"
+                    label = f"{rank_display} {row.get('commonName', 'N/A')} ({row.get('role', 'N/A')} - {row.get('esChemStyl', 'N/A')}/{row.get('ggChemStyl', 'N/A')})"
                     st.metric(label=label, value=f'{row.get(metric_col, 0.0):.2f}')
 
 display_top_metric(col1, filtered_df, "avgMeta", "Top Average On-Chem Meta", n=18)
