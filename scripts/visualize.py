@@ -226,7 +226,7 @@ def display_top_metric(container, df_to_use, metric_col, title, n=5):
                 for i, (_, row) in enumerate(top_players.iterrows()):
                     rank_display = f"**{i+1}.**"
                     if i < 3: rank_display = ["🥇", "🥈", "🥉"][i]
-                    label = f"{rank_display} {row.get('commonName', 'N/A')} ({row.get('role', 'N/A')} - {row.get('esChemStyle', 'N/A')}/{row.get('ggChemStyle', 'N/A')})"
+                    label = f"{rank_display} {row.get('commonName', 'N/A')} ({row.get('role', 'N/A')} - {row.get('esChemStyle.proper', 'N/A')}/{row.get('ggChemStyle', 'N/A')})"
                     st.metric(label=label, value=f'{row.get(metric_col, 0.0):.2f}')
 
 display_top_metric(col1, filtered_df, "avgMeta", "Top Average On-Chem Meta", n=18)
