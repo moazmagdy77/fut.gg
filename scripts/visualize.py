@@ -216,6 +216,8 @@ if filters:
 st.subheader("Top Player Ratings")
 col1, col2 = st.columns(2)
 
+import pandas as pd  # already imported at top, just here for clarity
+
 def display_top_metric(container, df_to_use, metric_col, title, n=5):
     if metric_col in df_to_use.columns and not df_to_use.empty:
         df_no_na = df_to_use[df_to_use[metric_col] > 0].dropna(subset=[metric_col])
@@ -225,9 +227,35 @@ def display_top_metric(container, df_to_use, metric_col, title, n=5):
                 st.markdown(f"#### {title}")
                 for i, (_, row) in enumerate(top_players.iterrows()):
                     rank_display = f"**{i+1}.**"
-                    if i < 3: rank_display = ["🥇", "🥈", "🥉"][i]
-                    label = f"{rank_display} {row.get('commonName', 'N/A')} ({row.get('role', 'N/A')} - {row.get('esChemStyle', 'N/A')}/{row.get('ggChemStyle', 'N/A')})"
-                    st.metric(label=label, value=f'{row.get(metric_col, 0.0):.2f}')
+                    if i < 3:
+                        rank_display = ["🥇", "🥈", "🥉"][i]
+
+                    # --- NEW: chem style formatting logic ---
+                    def norm_style(val):
+                        if val is None or (isinstance(val, float) and pd.isna(val)):
+                            return "N/A"
+                        s = str(val).strip()
+                        return "N/A" if not s else s.title()
+
+                    es_style = norm_style(row.get("esChemStyle"))
+                    gg_style = norm_style(row.get("ggChemStyle"))
+
+                    if es_style == "N/A" and gg_style != "N/A":
+                        chem_display = gg_style
+                    elif gg_style == "N/A":
+                        chem_display = es_style
+                    elif es_style == gg_style:
+                        chem_display = es_style
+                    else:
+                        chem_display = f"{es_style}/{gg_style}"
+                    # --- END NEW ---
+
+                    label = (
+                        f"{rank_display} {row.get('commonName', 'N/A')} "
+                        f"({row.get('role', 'N/A')} - {chem_display})"
+                    )
+                    st.metric(label=label, value=f"{row.get(metric_col, 0.0):.2f}")
+
 
 display_top_metric(col1, filtered_df, "avgMeta", "Top Average On-Chem Meta", n=18)
 display_top_metric(col2, filtered_df, "avgMetaSub", "Top Average Sub Meta", n=18)
