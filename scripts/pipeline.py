@@ -8,9 +8,9 @@ base_dir = Path(__file__).resolve().parent
 data_dir = base_dir.parent.parent / "data"
 
 steps = [
-    ("🔎 Step 1: Extract CLUB player IDs", ["python", "club.1.get.ids.py"]),
+    ("🔎 Step 1: Extract CLUB player IDs", [sys.executable, "club.1.get.ids.py"]),
     ("📦 Step 2: Scrape player data", ["node", "club.2.fetch.data.js"]),
-    ("🔍 Step 3: Enrich with evo and all cleaning", ["python", "club.3.clean.py"]),
+    ("🔍 Step 3: Enrich with evo and all cleaning", [sys.executable, "club.3.clean.py"]),
 ]
 
 start = time.time()

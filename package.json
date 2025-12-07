@@ -1,19 +1,19 @@
 {
   "dependencies": {
-    "axios": "^1.8.4",
+    "axios": "^1.13.2",
     "cheerio": "^1.0.0",
     "cli-progress": "^3.12.0",
     "csv-parse": "^5.6.0",
     "jsdom": "^26.0.0",
     "node-fetch": "^3.3.2",
     "playwright": "^1.51.1",
-    "puppeteer": "^24.4.0",
+    "puppeteer": "^24.32.0",
     "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2"
   },
   "name": "fut.gg",
   "version": "1.0.0",
-  "description": "",
+  "description": "A multi-step data pipeline to scrape, clean, enrich, and model FIFA player data using Puppeteer and Python ML.",
   "main": "scrapePlayer.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,5 +21,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moazmagdy77/fut.gg.git"
+  },
+  "bugs": {
+    "url": "https://github.com/moazmagdy77/fut.gg/issues"
+  },
+  "homepage": "https://github.com/moazmagdy77/fut.gg#readme"
 }
