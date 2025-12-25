@@ -17,6 +17,7 @@ start = time.time()
 
 for label, command in steps:
     print(f"\n{label}")
+    print(command)
     result = subprocess.run(command, cwd=base_dir)
 
     if result.returncode != 0:
