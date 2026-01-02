@@ -1,3 +1,5 @@
+// model.3.fetch.data.js
+
 // Required modules
 const fs = require('fs').promises; // Using promises version for async file operations
 const path = require('path');
@@ -19,7 +21,8 @@ const FUTGG_METARANK_URL_TEMPLATE = (eaId) => `https://www.fut.gg/api/fut/metara
 const EASYSBC_META_URL_TEMPLATE = (eaId, esRoleId) => `https://api.easysbc.io/players/${eaId}?player-role-id=${esRoleId}&expanded=false`;
 
 // Request Management
-const MAX_CONCURRENT_PLAYERS_IN_BATCH = 100;
+const MAX_CONCURRENT_PLAYERS_IN_BATCH = 100; // Batch size (memory management)
+const MAX_CONCURRENT_TABS = 5; // How many actual browser tabs to open at once (prevent crash)
 const DELAY_BETWEEN_BATCHES_MS = 2000;
 const DELAY_BETWEEN_ARCHETYPE_CALLS_MS = 250;
 const MAX_RETRIES_API = 2;
@@ -148,17 +151,35 @@ async function fetchEasySBCWithAxios(eaId, esRoleId) {
 
     let playerEaIds, positionIdToEsRoleIds;
 
+    // 1. Load Player IDs and Filter Existing
     try {
         const rawIds = await fs.readFile(clubIdsFilePath, 'utf-8');
-        playerEaIds = JSON.parse(rawIds);
-        if (!Array.isArray(playerEaIds)) throw new Error("Club IDs file is not an array.");
-        console.log(`ℹ️ Loaded ${playerEaIds.length} player EA IDs.`);
+        let allIds = JSON.parse(rawIds);
+        if (!Array.isArray(allIds)) throw new Error("Club IDs file is not an array.");
+
+        // --- OPTIMIZATION: Filter upfront ---
+        console.log("🔍 Checking for existing player data...");
+        // Use concurrency for file checking too, to be safe on OS file handles
+        const checkConcurrency = 50; 
+        const checkedResults = [];
+        for (let i = 0; i < allIds.length; i += checkConcurrency) {
+            const chunk = allIds.slice(i, i + checkConcurrency);
+            const chunkResults = await Promise.all(chunk.map(async (id) => {
+                 const exists = await checkPlayerDataExists(String(id), ggDataDirAbs, esMetaDirAbs, ggMetaDirAbs);
+                 return exists ? null : id;
+            }));
+            checkedResults.push(...chunkResults);
+        }
+        
+        playerEaIds = checkedResults.filter(id => id !== null);
+        console.log(`ℹ️ Loaded ${allIds.length} IDs. Skipping ${allIds.length - playerEaIds.length} existing. Processing ${playerEaIds.length} new players.`);
+        // ------------------------------------
     } catch (error) {
         console.error(`❌ Fatal error reading ${CLUB_IDS_FILE}: ${error.message}\n${error.stack || ''}. Exiting.`);
         return;
     }
 
-    // --- MODIFIED: Load mappings from maps.json ---
+    // 2. Load Mappings
     try {
         const mapsRaw = await fs.readFile(mapsFilePath, 'utf-8');
         const mapsData = JSON.parse(mapsRaw);
@@ -172,6 +193,7 @@ async function fetchEasySBCWithAxios(eaId, esRoleId) {
         return;
     }
 
+    // 3. Ensure Dirs
     try {
         await Promise.all([
             ensureDirExists(ggDataDirAbs),
@@ -190,6 +212,27 @@ async function fetchEasySBCWithAxios(eaId, esRoleId) {
     let skippedExistingCount = 0;
     let fetchedNewCount = 0;
 
+    // --- Helper for concurrency inside batch ---
+    const runWithConcurrency = async (items, concurrency, fn) => {
+        const results = [];
+        const queue = [...items];
+        const workers = Array(concurrency).fill(null).map(async () => {
+            while (queue.length > 0) {
+                const item = queue.shift();
+                try {
+                    const res = await fn(item);
+                    results.push(res);
+                } catch (e) {
+                    console.error("Worker error:", e);
+                    results.push({ success: false, status: 'error', eaId: item });
+                }
+            }
+        });
+        await Promise.all(workers);
+        return results;
+    };
+
+    // 4. Batch Processing Loop
     for (let i = 0; i < playerEaIds.length; i += MAX_CONCURRENT_PLAYERS_IN_BATCH) {
         const batchEaIds = playerEaIds.slice(i, i + MAX_CONCURRENT_PLAYERS_IN_BATCH);
         const batchNumber = Math.floor(i / MAX_CONCURRENT_PLAYERS_IN_BATCH) + 1;
@@ -204,24 +247,22 @@ async function fetchEasySBCWithAxios(eaId, esRoleId) {
             console.log("✅ Browser restarted.");
         }
 
-        const playerPromises = batchEaIds.map(async (eaId) => {
+        // --- The Core Player Processing Function ---
+        const processPlayer = async (eaId) => {
             const eaIdStr = String(eaId);
-
-            const allFilesExist = await checkPlayerDataExists(eaIdStr, ggDataDirAbs, esMetaDirAbs, ggMetaDirAbs);
-            if (allFilesExist) {
-                if (VERBOSE_LOGGING) console.log(`⏭️ [Cache] Data for player ID ${eaIdStr} already exists. Skipping fetch.`);
-                return { eaId: eaIdStr, status: 'skipped_exists', success: true };
-            }
+            // We already checked existence in step 1, so we proceed directly to fetch
 
             if (VERBOSE_LOGGING) console.log(`--- Fetching new data for EA ID: ${eaIdStr} ---`);
             let futGgDetailsData = null;
             let playerSucceeded = true;
 
+            // Fetch Fut.gg Data
             const [detailsResult, metarankResult] = await Promise.allSettled([
                 fetchFutGgWithPuppeteer(browser, FUTGG_PLAYER_DETAILS_URL_TEMPLATE(eaId), eaId, "details"),
                 fetchFutGgWithPuppeteer(browser, FUTGG_METARANK_URL_TEMPLATE(eaId), eaId, "metarank")
             ]);
 
+            // Save GG Data
             if (detailsResult.status === 'fulfilled' && detailsResult.value) {
                 futGgDetailsData = detailsResult.value;
                 try {
@@ -232,6 +273,7 @@ async function fetchEasySBCWithAxios(eaId, esRoleId) {
                 playerSucceeded = false;
             }
 
+            // Save GG Meta
             if (metarankResult.status === 'fulfilled' && metarankResult.value) {
                 try {
                     await saveData(path.join(ggMetaDirAbs, `${eaIdStr}_ggMeta.json`), metarankResult.value);
@@ -241,6 +283,7 @@ async function fetchEasySBCWithAxios(eaId, esRoleId) {
                 playerSucceeded = false;
             }
 
+            // Fetch EasySBC Data
             if (playerSucceeded && futGgDetailsData && futGgDetailsData.data) {
                 const playerDefinition = futGgDetailsData.data;
                 const esRoleIdsToFetch = new Set();
@@ -278,27 +321,25 @@ async function fetchEasySBCWithAxios(eaId, esRoleId) {
                 }
             }
             return { eaId: eaIdStr, status: playerSucceeded ? 'fetched_success' : 'fetched_fail', success: playerSucceeded };
-        });
+        };
 
-        const batchResults = await Promise.allSettled(playerPromises);
+        // --- Execute Batch with Concurrency ---
+        // We use MAX_CONCURRENT_TABS (e.g. 5) to limit active tabs, avoiding crashes
+        const batchResultsArray = await runWithConcurrency(batchEaIds, MAX_CONCURRENT_TABS, processPlayer);
+
+        // Analyze Results
         let currentBatchSuccess = 0;
         let currentBatchFail = 0;
 
-        batchResults.forEach(result => {
-            if (result.status === 'fulfilled') {
-                if (result.value.success) {
-                    successfulPlayerProcessing++;
-                    currentBatchSuccess++;
-                    if (result.value.status === 'skipped_exists') skippedExistingCount++;
-                    else if (result.value.status === 'fetched_success') fetchedNewCount++;
-                } else {
-                    failedPlayerProcessing++;
-                    currentBatchFail++;
-                }
+        batchResultsArray.forEach(result => {
+            if (result.success) {
+                successfulPlayerProcessing++;
+                currentBatchSuccess++;
+                if (result.status === 'skipped_exists') skippedExistingCount++; // Logic handled in step 1, but kept for safety
+                else if (result.status === 'fetched_success') fetchedNewCount++;
             } else {
                 failedPlayerProcessing++;
                 currentBatchFail++;
-                console.error(`❌ Critical error processing a player promise (rejected): ${result.reason?.stack || result.reason}`);
             }
         });
 
@@ -314,9 +355,8 @@ async function fetchEasySBCWithAxios(eaId, esRoleId) {
     await browser.close().catch(e => console.warn("⚠️ Error closing main browser instance:", e.message));
     const overallEndTime = Date.now();
     console.log(`\n🎉 All player ID processing attempts completed in ${((overallEndTime - overallStartTime) / 1000 / 60).toFixed(2)} minutes.`);
-    console.log(`📊 Total Player IDs in input: ${playerEaIds.length}`);
-    console.log(`  Processed Successfully (fetched or already existing): ${successfulPlayerProcessing}`);
-    console.log(`    - Skipped (data already existed): ${skippedExistingCount}`);
+    console.log(`📊 Total Player IDs in input: ${playerEaIds.length}`); // This count is after filtering existing in step 1
+    console.log(`  Processed Successfully: ${successfulPlayerProcessing}`);
     console.log(`    - Newly Fetched & Saved: ${fetchedNewCount}`);
     console.log(`  Failed/Partially Failed during fetch: ${failedPlayerProcessing}`);
     console.log("Script finished.");

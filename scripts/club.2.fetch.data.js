@@ -20,6 +20,7 @@ const EASYSBC_META_URL_TEMPLATE = (eaId, esRoleId) => `https://api.easysbc.io/pl
 
 // Request Management
 const MAX_CONCURRENT_PLAYERS_IN_BATCH = 100;
+const MAX_CONCURRENT_TABS = 5; // New: Limit active tabs to prevent crash
 const DELAY_BETWEEN_BATCHES_MS = 2000;
 const DELAY_BETWEEN_ARCHETYPE_CALLS_MS = 250;
 const MAX_RETRIES_API = 2;
@@ -148,11 +149,28 @@ async function fetchEasySBCWithAxios(eaId, esRoleId) {
 
     let playerEaIds, positionIdToEsRoleIds;
 
+    // 1. Load IDs and Filter Upfront
     try {
         const rawIds = await fs.readFile(clubIdsFilePath, 'utf-8');
-        playerEaIds = JSON.parse(rawIds);
-        if (!Array.isArray(playerEaIds)) throw new Error("Club IDs file is not an array.");
-        console.log(`ℹ️ Loaded ${playerEaIds.length} player EA IDs.`);
+        let allIds = JSON.parse(rawIds);
+        if (!Array.isArray(allIds)) throw new Error("Club IDs file is not an array.");
+        
+        console.log("🔍 Checking for existing player data...");
+        // Use chunks to avoid too many open file handles at once
+        const checkConcurrency = 50; 
+        const checkedResults = [];
+        for (let i = 0; i < allIds.length; i += checkConcurrency) {
+            const chunk = allIds.slice(i, i + checkConcurrency);
+            const chunkResults = await Promise.all(chunk.map(async (id) => {
+                 const exists = await checkPlayerDataExists(String(id), ggDataDirAbs, esMetaDirAbs, ggMetaDirAbs);
+                 return exists ? null : id;
+            }));
+            checkedResults.push(...chunkResults);
+        }
+
+        playerEaIds = checkedResults.filter(id => id !== null);
+        console.log(`ℹ️ Loaded ${allIds.length} player EA IDs. Skipping ${allIds.length - playerEaIds.length} existing. Processing ${playerEaIds.length} new players.`);
+
     } catch (error) {
         console.error(`❌ Fatal error reading ${CLUB_IDS_FILE}: ${error.message}\n${error.stack || ''}. Exiting.`);
         return;
@@ -190,6 +208,26 @@ async function fetchEasySBCWithAxios(eaId, esRoleId) {
     let skippedExistingCount = 0;
     let fetchedNewCount = 0;
 
+    // --- Helper for concurrency inside batch ---
+    const runWithConcurrency = async (items, concurrency, fn) => {
+        const results = [];
+        const queue = [...items];
+        const workers = Array(concurrency).fill(null).map(async () => {
+            while (queue.length > 0) {
+                const item = queue.shift();
+                try {
+                    const res = await fn(item);
+                    results.push(res);
+                } catch (e) {
+                    console.error("Worker error:", e);
+                    results.push({ success: false, status: 'error', eaId: item });
+                }
+            }
+        });
+        await Promise.all(workers);
+        return results;
+    };
+
     for (let i = 0; i < playerEaIds.length; i += MAX_CONCURRENT_PLAYERS_IN_BATCH) {
         const batchEaIds = playerEaIds.slice(i, i + MAX_CONCURRENT_PLAYERS_IN_BATCH);
         const batchNumber = Math.floor(i / MAX_CONCURRENT_PLAYERS_IN_BATCH) + 1;
@@ -204,14 +242,10 @@ async function fetchEasySBCWithAxios(eaId, esRoleId) {
             console.log("✅ Browser restarted.");
         }
 
-        const playerPromises = batchEaIds.map(async (eaId) => {
+        // --- Core Player Processing Logic ---
+        const processPlayer = async (eaId) => {
             const eaIdStr = String(eaId);
-
-            const allFilesExist = await checkPlayerDataExists(eaIdStr, ggDataDirAbs, esMetaDirAbs, ggMetaDirAbs);
-            if (allFilesExist) {
-                if (VERBOSE_LOGGING) console.log(`⏭️ [Cache] Data for player ID ${eaIdStr} already exists. Skipping fetch.`);
-                return { eaId: eaIdStr, status: 'skipped_exists', success: true };
-            }
+            // NOTE: Check already done in step 1, skipping here for speed.
 
             if (VERBOSE_LOGGING) console.log(`--- Fetching new data for EA ID: ${eaIdStr} ---`);
             let futGgDetailsData = null;
@@ -278,28 +312,24 @@ async function fetchEasySBCWithAxios(eaId, esRoleId) {
                 }
             }
             return { eaId: eaIdStr, status: playerSucceeded ? 'fetched_success' : 'fetched_fail', success: playerSucceeded };
-        });
+        };
 
-        const batchResults = await Promise.allSettled(playerPromises);
+        // Execute batch with MAX_CONCURRENT_TABS (e.g. 5)
+        const batchResultsArray = await runWithConcurrency(batchEaIds, MAX_CONCURRENT_TABS, processPlayer);
+        
         let currentBatchSuccess = 0;
         let currentBatchFail = 0;
 
-        batchResults.forEach(result => {
-            if (result.status === 'fulfilled') {
-                if (result.value.success) {
+        batchResultsArray.forEach(result => {
+             if (result.success) {
                     successfulPlayerProcessing++;
                     currentBatchSuccess++;
-                    if (result.value.status === 'skipped_exists') skippedExistingCount++;
-                    else if (result.value.status === 'fetched_success') fetchedNewCount++;
+                    if (result.status === 'skipped_exists') skippedExistingCount++;
+                    else if (result.status === 'fetched_success') fetchedNewCount++;
                 } else {
                     failedPlayerProcessing++;
                     currentBatchFail++;
                 }
-            } else {
-                failedPlayerProcessing++;
-                currentBatchFail++;
-                console.error(`❌ Critical error processing a player promise (rejected): ${result.reason?.stack || result.reason}`);
-            }
         });
 
         batchesProcessedSinceRestart++;
@@ -314,7 +344,7 @@ async function fetchEasySBCWithAxios(eaId, esRoleId) {
     await browser.close().catch(e => console.warn("⚠️ Error closing main browser instance:", e.message));
     const overallEndTime = Date.now();
     console.log(`\n🎉 All player ID processing attempts completed in ${((overallEndTime - overallStartTime) / 1000 / 60).toFixed(2)} minutes.`);
-    console.log(`📊 Total Player IDs in input: ${playerEaIds.length}`);
+    console.log(`📊 Total Player IDs in input: ${playerEaIds.length}`); // This count is AFTER filtering existing
     console.log(`  Processed Successfully (fetched or already existing): ${successfulPlayerProcessing}`);
     console.log(`    - Skipped (data already existed): ${skippedExistingCount}`);
     console.log(`    - Newly Fetched & Saved: ${fetchedNewCount}`);

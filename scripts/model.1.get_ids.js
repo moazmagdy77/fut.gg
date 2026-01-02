@@ -251,7 +251,7 @@ function makeTaskDispenser(pageNumbers) {
     console.log(`✅ Finished batch ${b + 1}/${batches.length}.`);
   }
 
-  // Final shutdown
+  // Final shutdown of the main loop browser
   if (browser) {
     try {
       console.log('🚪 Closing final browser instance...');
@@ -263,6 +263,46 @@ function makeTaskDispenser(pageNumbers) {
     } catch (e) {
       console.warn(`⚠️ Could not close browser gracefully: ${e.message}.`);
     }
+  }
+
+  // --- RETRY LOGIC FOR FAILED PAGES ---
+  const failedPages = allPages.filter(i => !fs.existsSync(outputPathFor(i)));
+  
+  if (failedPages.length > 0) {
+    console.log(`\n⚠️ Found ${failedPages.length} failed pages. Attempting one final retry pass...`);
+    
+    // Launch a dedicated fresh browser for retries to clear any lingering bad state
+    const retryBrowser = await puppeteer.launch({
+      headless: HEADLESS,
+      // args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      defaultViewport: null
+    });
+
+    try {
+        const dispenser = makeTaskDispenser(failedPages);
+        // Use full concurrency for the retry pass to get it done quickly
+        const workerCount = Math.min(CONCURRENCY, Math.max(1, failedPages.length));
+        
+        console.log(`🔄 Starting retry workers for pages: ${failedPages.join(', ')}`);
+        
+        const workers = [];
+        for (let w = 0; w < workerCount; w++) {
+          workers.push(workerLoop(w + 1, dispenser, retryBrowser));
+        }
+        
+        await Promise.all(workers);
+        console.log("✅ Retry pass completed.");
+        
+    } catch (err) {
+        console.error("❌ Retry pass encountered an error:", err);
+    } finally {
+        if (retryBrowser) {
+            await retryBrowser.close();
+            console.log('🚪 Retry browser closed.');
+        }
+    }
+  } else {
+    console.log("\n✨ No failed pages found. Clean run!");
   }
 
   console.log('🎉 Finished fetching raw data objects.');
