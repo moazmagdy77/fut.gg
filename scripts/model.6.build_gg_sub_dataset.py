@@ -45,7 +45,7 @@ def calculate_acceleration_type(accel, agility, strength, height, gender: str = 
       - Strength >= 65
       - (Strength - Agility) >= 4
       - Acceleration >= 40
-      - Height >= 183 (Male) OR >= 164 (Female)
+      - Height >= 185 (Male) OR >= 165 (Female)
     Controlled otherwise.
     """
     try:
@@ -57,7 +57,7 @@ def calculate_acceleration_type(accel, agility, strength, height, gender: str = 
 
     is_female = str(gender or "Male").lower().startswith("f")
     exp_height_ok = (height <= 162) if is_female else (height <= 182)
-    len_height_ok = (height >= 164) if is_female else (height >= 183)
+    len_height_ok = (height >= 165) if is_female else (height >= 185)
 
     if (agility >= 65 and (agility - strength) >= 10 and accel >= 80 and exp_height_ok):
         return "EXPLOSIVE"
