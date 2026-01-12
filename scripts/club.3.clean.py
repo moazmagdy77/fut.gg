@@ -18,6 +18,7 @@ RAW_DATA_DIR = BASE_DATA_DIR / 'raw'
 GG_DATA_DIR = RAW_DATA_DIR / 'ggData'
 ES_META_DIR = RAW_DATA_DIR / 'esMeta'
 GG_META_DIR = RAW_DATA_DIR / 'ggMeta'
+PRICES_DIR  = RAW_DATA_DIR / 'prices'  # <--- NEW
 EVOLAB_FILE = BASE_DATA_DIR / 'evolab.json'
 MAPS_FILE = BASE_DATA_DIR / 'maps.json'
 OUTPUT_FILE = BASE_DATA_DIR / 'club_final.json'
@@ -284,6 +285,18 @@ def process_player(player_def: Dict[str, Any], is_evo: bool, model_manager: "Mod
     player_output["roles+"]  = [maps["roles_plus_map"].get(str(r)) for r in (player_def.get("rolesPlus") or []) if str(r) in maps["roles_plus_map"]]
     player_output["roles++"] = [maps["roles_plus_plus_map"].get(str(r)) for r in (player_def.get("rolesPlusPlus") or []) if str(r) in maps["roles_plus_plus_map"]]
     player_output["bodyType"] = maps["bodytype_code_map"].get(str(player_def.get("bodytypeCode")))
+
+    # --- NEW: Attach Price Data if available ---
+    price_file = PRICES_DIR / f"{player_output['eaId']}.json"
+    if price_file.exists():
+        price_data = load_json_file(price_file)
+        if price_data:
+            player_output["price"] = price_data.get("price")
+            player_output["isExtinct"] = price_data.get("isExtinct")
+    else:
+        player_output["price"] = None
+        player_output["isExtinct"] = None
+    # -------------------------------------------
 
     sub_accel_type = calculate_acceleration_type(
         base_attributes.get("attributeAcceleration"),

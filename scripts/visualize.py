@@ -30,8 +30,6 @@ def load_data(file_path):
         st.error(f"Error: `club_final.json` is not a valid JSON file. Please check the file content.")
         return pd.DataFrame()
 
-    # The previous method of inferring columns was unreliable. This is the robust method from your old working script.
-    # It normalizes the entire structure first, then handles the nested data.
     df = pd.json_normalize(data, errors='ignore')
 
     # Rename attribute columns from 'attributeAcceleration' to 'acceleration'
@@ -59,7 +57,7 @@ def load_data(file_path):
         if col in df.columns:
             df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0).astype(int)
 
-    float_cols = ['ggMeta', 'ggMetaSub', 'esMeta', 'esMetaSub', 'avgMeta', 'avgMetaSub']
+    float_cols = ['ggMeta', 'ggMetaSub', 'esMeta', 'esMetaSub', 'avgMeta', 'avgMetaSub', 'price']
     for col in float_cols:
         if col in df.columns:
             df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0.0)
@@ -213,75 +211,104 @@ if filters:
     st.markdown(" ".join(filter_tags), unsafe_allow_html=True)
     st.markdown("---")
 
-st.subheader("Top Player Ratings")
-col1, col2 = st.columns(2)
 
-import pandas as pd  # already imported at top, just here for clarity
+# --- TABS ---
+tab1, tab2 = st.tabs(["Club Squad", "Sell Now 💰"])
 
-def display_top_metric(container, df_to_use, metric_col, title, n=5):
-    if metric_col in df_to_use.columns and not df_to_use.empty:
-        df_no_na = df_to_use[df_to_use[metric_col] > 0].dropna(subset=[metric_col])
-        if not df_no_na.empty:
-            top_players = df_no_na.loc[df_no_na.groupby("__true_player_id")[metric_col].idxmax()].nlargest(n, metric_col)
-            with container:
-                st.markdown(f"#### {title}")
-                for i, (_, row) in enumerate(top_players.iterrows()):
-                    rank_display = f"**{i+1}.**"
-                    if i < 3:
-                        rank_display = ["🥇", "🥈", "🥉"][i]
+with tab1:
+    st.subheader("Top Player Ratings")
+    col1, col2 = st.columns(2)
 
-                    # --- NEW: chem style formatting logic ---
-                    def norm_style(val):
-                        if val is None or (isinstance(val, float) and pd.isna(val)):
-                            return "N/A"
-                        s = str(val).strip()
-                        return "N/A" if not s else s.title()
+    def display_top_metric(container, df_to_use, metric_col, title, n=5):
+        if metric_col in df_to_use.columns and not df_to_use.empty:
+            df_no_na = df_to_use[df_to_use[metric_col] > 0].dropna(subset=[metric_col])
+            if not df_no_na.empty:
+                top_players = df_no_na.loc[df_no_na.groupby("__true_player_id")[metric_col].idxmax()].nlargest(n, metric_col)
+                with container:
+                    st.markdown(f"#### {title}")
+                    for i, (_, row) in enumerate(top_players.iterrows()):
+                        rank_display = f"**{i+1}.**"
+                        if i < 3:
+                            rank_display = ["🥇", "🥈", "🥉"][i]
 
-                    es_style = norm_style(row.get("esChemStyle"))
-                    gg_style = norm_style(row.get("ggChemStyle"))
+                        def norm_style(val):
+                            if val is None or (isinstance(val, float) and pd.isna(val)):
+                                return "N/A"
+                            s = str(val).strip()
+                            return "N/A" if not s else s.title()
 
-                    if es_style == "N/A" and gg_style != "N/A":
-                        chem_display = gg_style
-                    elif gg_style == "N/A":
-                        chem_display = es_style
-                    elif es_style == gg_style:
-                        chem_display = es_style
-                    else:
-                        chem_display = f"{es_style}/{gg_style}"
-                    # --- END NEW ---
+                        es_style = norm_style(row.get("esChemStyle"))
+                        gg_style = norm_style(row.get("ggChemStyle"))
 
-                    label = (
-                        f"{rank_display} {row.get('commonName', 'N/A')} "
-                        f"({row.get('role', 'N/A')} - {chem_display})"
-                    )
-                    st.metric(label=label, value=f"{row.get(metric_col, 0.0):.2f}")
+                        if es_style == "N/A" and gg_style != "N/A":
+                            chem_display = gg_style
+                        elif gg_style == "N/A":
+                            chem_display = es_style
+                        elif es_style == gg_style:
+                            chem_display = es_style
+                        else:
+                            chem_display = f"{es_style}/{gg_style}"
+
+                        label = (
+                            f"{rank_display} {row.get('commonName', 'N/A')} "
+                            f"({row.get('role', 'N/A')} - {chem_display})"
+                        )
+                        st.metric(label=label, value=f"{row.get(metric_col, 0.0):.2f}")
 
 
-display_top_metric(col1, filtered_df, "avgMeta", "Top Average On-Chem Meta", n=18)
-display_top_metric(col2, filtered_df, "avgMetaSub", "Top Average Sub Meta", n=18)
+    display_top_metric(col1, filtered_df, "avgMeta", "Top Average On-Chem Meta", n=18)
+    display_top_metric(col2, filtered_df, "avgMetaSub", "Top Average Sub Meta", n=18)
 
-st.markdown("---")
-st.markdown(f"### Player List ({filtered_df['player_origin_id'].nunique()} unique players, {len(filtered_df)} total entries)")
+    st.markdown("---")
+    st.markdown(f"### Player List ({filtered_df['player_origin_id'].nunique()} unique players, {len(filtered_df)} total entries)")
 
-columns_to_display = [
-    "commonName", "role", "overall", "avgMeta", 
-    "ggMeta", "ggChemStyle", "ggAccelType", 
-    "esMeta", "esChemStyle", "esAccelType",
-    "avgMetaSub", "ggMetaSub", "esMetaSub", "subAccelType",
-    "hasRolePlusPlus", "hasRolePlus", "skillMoves", "weakFoot", "foot", "height", "weight", "bodyType",
-    "PS+", "PS", "positions", "roles++", "roles+"
-] + attribute_filter_order
+    columns_to_display = [
+        "commonName", "role", "overall", "avgMeta", 
+        "ggMeta", "ggChemStyle", "ggAccelType", 
+        "esMeta", "esChemStyle", "esAccelType",
+        "avgMetaSub", "ggMetaSub", "esMetaSub", "subAccelType",
+        "hasRolePlusPlus", "hasRolePlus", "skillMoves", "weakFoot", "foot", "height", "weight", "bodyType",
+        "PS+", "PS", "positions", "roles++", "roles+"
+    ] + attribute_filter_order
 
-final_display_columns = [col for col in columns_to_display if col in df.columns]
+    final_display_columns = [col for col in columns_to_display if col in df.columns]
 
-display_df = filtered_df.copy()
-for col in ["hasRolePlus", "hasRolePlusPlus"]:
-    if col in display_df.columns:
-        display_df[col] = display_df[col].apply(lambda x: "✅" if x else "❌")
+    display_df = filtered_df.copy()
+    for col in ["hasRolePlus", "hasRolePlusPlus"]:
+        if col in display_df.columns:
+            display_df[col] = display_df[col].apply(lambda x: "✅" if x else "❌")
 
-display_df.drop(columns=[c for c in ["player_origin_id", "__true_player_id"] if c in display_df.columns], inplace=True, errors="ignore")
+    display_df.drop(columns=[c for c in ["player_origin_id", "__true_player_id"] if c in display_df.columns], inplace=True, errors="ignore")
 
-if display_df.empty:
-    st.warning("No players found matching the selected filters.")
-else:
-    st.dataframe(display_df[final_display_columns], use_container_width=True, hide_index=True)
+    if display_df.empty:
+        st.warning("No players found matching the selected filters.")
+    else:
+        st.dataframe(display_df[final_display_columns], use_container_width=True, hide_index=True)
+
+with tab2:
+    st.header("Sell Now")
+    if 'price' in filtered_df.columns:
+        # Filter for players who have a price (greater than 0) and remove duplicates (one row per player ID usually sufficient for selling)
+        sell_df = filtered_df[filtered_df['price'] > 0].copy()
+        
+        if sell_df.empty:
+            st.info("No tradeable players with price data found in the current filtered selection.")
+        else:
+            # Sort by price descending
+            sell_df = sell_df.sort_values(by='price', ascending=False)
+            
+            # Deduplicate by player ID to show one line per card
+            sell_df = sell_df.drop_duplicates(subset=['__true_player_id'])
+
+            st.markdown(f"Found **{len(sell_df)}** tradeable players.")
+
+            # Prepare columns for display
+            sell_cols = ["commonName", "overall", "price", "isExtinct", "avgMeta", "positions"]
+            sell_display = sell_df[sell_cols].copy()
+            
+            # Format price
+            sell_display['price'] = sell_display['price'].apply(lambda x: f"{int(x):,}")
+            
+            st.dataframe(sell_display, use_container_width=True, hide_index=True)
+    else:
+        st.error("Price data not available. Please run the data pipeline.")
