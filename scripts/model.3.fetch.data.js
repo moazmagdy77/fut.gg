@@ -1,363 +1,237 @@
-// model.3.fetch.data.js
+// model.3.fetch.data.js (Turbo Edition)
+// High-Performance Parallel Fetcher
+// Optimizations: Concurrency=25, Async I/O (Axios + Puppeteer parallel), Reduced Delays
 
-// Required modules
-const fs = require('fs').promises; // Using promises version for async file operations
+const fs = require('fs').promises;
 const path = require('path');
 const axios = require('axios');
-const puppeteer = require('puppeteer');
+
+const puppeteer = require('puppeteer-extra');
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+puppeteer.use(StealthPlugin());
 
 // --- Configuration ---
-const CLUB_IDS_FILE = '../data/player_ids.json'; // Relative to script location
-const MAPS_FILE = '../data/maps.json'; // Relative to script location for mappings
+const CONCURRENCY = 25; // Aggressive concurrency for your 32GB RAM
+const RETRIES = 2;
+// Tightened delays (we rely on stealth and concurrency for distribution)
+const DELAY_MIN = 50;   
+const DELAY_MAX = 200; 
 
-// Output Directories (relative to script location)
-const GG_DATA_DIR = '../data/raw/ggData'; // For fut.gg player item definitions
-const ES_META_DIR = '../data/raw/esMeta'; // For EasySBC meta ratings
-const GG_META_DIR = '../data/raw/ggMeta'; // For fut.gg metarank
+const CLUB_IDS_FILE = '../data/player_ids.json';
+const MAPS_FILE = '../data/maps.json';
+const GG_DATA_DIR = '../data/raw/ggData';
+const ES_META_DIR = '../data/raw/esMeta';
+const GG_META_DIR = '../data/raw/ggMeta';
 
-// API Endpoints
-const FUTGG_PLAYER_DETAILS_URL_TEMPLATE = (eaId) => `https://www.fut.gg/api/fut/player-item-definitions/26/${eaId}/`;
-const FUTGG_METARANK_URL_TEMPLATE = (eaId) => `https://www.fut.gg/api/fut/metarank/player/${eaId}/`;
-const EASYSBC_META_URL_TEMPLATE = (eaId, esRoleId) => `https://api.easysbc.io/players/${eaId}?player-role-id=${esRoleId}&expanded=false`;
+// Templates
+const URL_GG_DETAILS = (id) => `https://www.fut.gg/api/fut/player-item-definitions/26/${id}/`;
+const URL_GG_META = (id) => `https://www.fut.gg/api/fut/metarank/player/${id}/`;
+const URL_ES_META = (id, role) => `https://api.easysbc.io/players/${id}?player-role-id=${role}&expanded=false`;
 
-// Request Management
-const MAX_CONCURRENT_PLAYERS_IN_BATCH = 100; // Batch size (memory management)
-const MAX_CONCURRENT_TABS = 5; // How many actual browser tabs to open at once (prevent crash)
-const DELAY_BETWEEN_BATCHES_MS = 2000;
-const DELAY_BETWEEN_ARCHETYPE_CALLS_MS = 250;
-const MAX_RETRIES_API = 2;
-const API_TIMEOUT_MS = 25000;
-const PUPPETEER_PAGE_TIMEOUT_MS = 30000;
-const BROWSER_RESTART_INTERVAL_BATCHES = 1;
+// --- Helpers ---
+const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+const randInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-// Logging Configuration
-const VERBOSE_LOGGING = false;
+async function ensureDir(dir) {
+    await fs.mkdir(dir, { recursive: true }).catch(e => { if (e.code !== 'EEXIST') throw e; });
+}
 
-// --- Helper Functions ---
-
-const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-async function ensureDirExists(dirPath) {
-    try {
-        await fs.mkdir(dirPath, { recursive: true });
-    } catch (error) {
-        if (error.code !== 'EEXIST') {
-            console.error(`❌ Error creating directory ${dirPath}: ${error.message}\n${error.stack || ''}`);
-            throw error;
-        }
-    }
+async function fileExists(filePath) {
+    try { await fs.access(filePath); return true; } catch { return false; }
 }
 
 async function saveData(filePath, data) {
-    try {
-        await fs.writeFile(filePath, JSON.stringify(data, null, 2), 'utf-8');
-    } catch (error) {
-        console.error(`❌ Error saving data to ${filePath}: ${error.message}\n${error.stack || ''}`);
-        throw error;
-    }
+    const tmp = `${filePath}.tmp`;
+    await fs.writeFile(tmp, JSON.stringify(data, null, 2));
+    await fs.rename(tmp, filePath);
 }
 
-async function checkPlayerDataExists(eaIdStr, ggDataDirAbs, esMetaDirAbs, ggMetaDirAbs) {
-    const ggDataPath = path.join(ggDataDirAbs, `${eaIdStr}_ggData.json`);
-    const esMetaPath = path.join(esMetaDirAbs, `${eaIdStr}_esMeta.json`);
-    const ggMetaPath = path.join(ggMetaDirAbs, `${eaIdStr}_ggMeta.json`);
-    try {
-        await Promise.all([
-            fs.access(ggDataPath),
-            fs.access(esMetaPath),
-            fs.access(ggMetaPath)
-        ]);
-        return true;
-    } catch (error) {
-        return false;
+// Robust Context Creator (Handles API differences)
+async function createSafeContext(browser) {
+    if (typeof browser.createBrowserContext === 'function') {
+        return await browser.createBrowserContext();
     }
+    if (typeof browser.createIncognitoBrowserContext === 'function') {
+        return await browser.createIncognitoBrowserContext();
+    }
+    return browser.defaultBrowserContext();
 }
 
-async function fetchFutGgWithPuppeteer(browser, url, identifier, dataType) {
-    for (let attempt = 0; attempt <= MAX_RETRIES_API; attempt++) {
-        let page;
+async function checkSkippability(id, dirs) {
+    const [d1, d2, d3] = await Promise.all([
+        fileExists(path.join(dirs.ggData, `${id}_ggData.json`)),
+        fileExists(path.join(dirs.esMeta, `${id}_esMeta.json`)),
+        fileExists(path.join(dirs.ggMeta, `${id}_ggMeta.json`))
+    ]);
+    return d1 && d2 && d3;
+}
+
+// --- Fetching Logic ---
+
+async function fetchPuppeteer(page, url, type) {
+    for (let i = 0; i <= RETRIES; i++) {
         try {
-            page = await browser.newPage();
-            await page.setRequestInterception(true);
-            page.on('request', (req) => {
-                if (['image', 'stylesheet', 'font', 'media'].includes(req.resourceType())) {
-                    req.abort();
-                } else {
-                    req.continue();
-                }
-            });
-            await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
-            page.setDefaultNavigationTimeout(PUPPETEER_PAGE_TIMEOUT_MS);
-            if (VERBOSE_LOGGING || attempt > 0) {
-                console.log(`📦 [Fut.gg ${dataType}] Attempt ${attempt + 1}/${MAX_RETRIES_API + 1} for ID ${identifier}`);
-            }
-            await page.goto(url, { waitUntil: 'domcontentloaded' });
-            const content = await page.evaluate(() => document.body.innerText);
-            await page.close();
-            if (!content) throw new Error("No content retrieved from page.");
-            return JSON.parse(content);
-        } catch (err) {
-            if (page) await page.close().catch(e => console.warn(`⚠️ Error closing page for ID ${identifier}: ${e.message}`));
-            if (attempt < MAX_RETRIES_API) {
-                console.warn(`⚠️ [Fut.gg ${dataType}] Error for ID ${identifier} (Attempt ${attempt + 1}). Retrying... Error: ${err.message}`);
-                await delay(1000 * (attempt + 1));
-            } else {
-                console.error(`❌ [Fut.gg ${dataType}] Failed for ID ${identifier} after ${MAX_RETRIES_API + 1} attempts. URL: ${url}. Error: ${err.message}`);
+            if (i > 0) await sleep(500 * i);
+            await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 });
+            const text = await page.evaluate(() => document.body.innerText);
+            if (!text) throw new Error("Empty body");
+            return JSON.parse(text);
+        } catch (e) {
+            if (i === RETRIES) {
+                // Suppress logspam for expected occasional failures
+                // console.warn(`⚠️ [${type}] Failed ${url}: ${e.message}`);
                 return null;
             }
         }
     }
-    return null;
 }
 
-async function fetchEasySBCWithAxios(eaId, esRoleId) {
-    const url = EASYSBC_META_URL_TEMPLATE(eaId, esRoleId);
-    for (let attempt = 0; attempt <= MAX_RETRIES_API; attempt++) {
+async function fetchEasySBC(eaId, roleId) {
+    const url = URL_ES_META(eaId, roleId);
+    for (let i = 0; i <= RETRIES; i++) {
         try {
-            if (VERBOSE_LOGGING || attempt > 0) {
-                 console.log(`📦 [EasySBC] Attempt ${attempt + 1}/${MAX_RETRIES_API + 1} for ID ${eaId}, Role ID: ${esRoleId}`);
-            }
-            const response = await axios.get(url, { timeout: API_TIMEOUT_MS });
-            if (typeof response.data === 'object' && response.data !== null && !Array.isArray(response.data)) {
-                return response.data;
-            } else {
-                console.warn(`⚠️ [EasySBC] Unexpected data format for ID ${eaId}, Role ID: ${esRoleId}. Expected object, got: ${typeof response.data}.`);
-                return null;
-            }
-        } catch (err) {
-            if (attempt < MAX_RETRIES_API) {
-                console.warn(`⚠️ [EasySBC] Error for ID ${eaId}, Role ID: ${esRoleId} (Attempt ${attempt + 1}). Retrying... Error: ${err.message}`);
-                await delay(1000 * (attempt + 1));
-            } else {
-                console.error(`❌ [EasySBC] Failed for ID ${eaId}, Role ID: ${esRoleId} after ${MAX_RETRIES_API + 1} attempts. Error: ${err.message}`);
-                return null;
-            }
+            const res = await axios.get(url, { timeout: 8000 });
+            return res.data;
+        } catch (e) {
+            if (i === RETRIES) return null;
+            await sleep(200 * (i + 1));
         }
     }
-    return null;
 }
 
-// --- Main Processing Function ---
-(async () => {
-    console.log("🚀 Starting API data fetching script...");
-    const overallStartTime = Date.now();
-
-    const scriptDir = __dirname;
-    const clubIdsFilePath = path.resolve(scriptDir, CLUB_IDS_FILE);
-    const mapsFilePath = path.resolve(scriptDir, MAPS_FILE);
-    const ggDataDirAbs = path.resolve(scriptDir, GG_DATA_DIR);
-    const esMetaDirAbs = path.resolve(scriptDir, ES_META_DIR);
-    const ggMetaDirAbs = path.resolve(scriptDir, GG_META_DIR);
-
-    let playerEaIds, positionIdToEsRoleIds;
-
-    // 1. Load Player IDs and Filter Existing
+// --- Worker ---
+async function processPlayer(eaId, browser, maps, dirs) {
+    const eaIdStr = String(eaId);
+    let context = null;
+    let page = null;
+    
     try {
-        const rawIds = await fs.readFile(clubIdsFilePath, 'utf-8');
-        let allIds = JSON.parse(rawIds);
-        if (!Array.isArray(allIds)) throw new Error("Club IDs file is not an array.");
-
-        // --- OPTIMIZATION: Filter upfront ---
-        console.log("🔍 Checking for existing player data...");
-        // Use concurrency for file checking too, to be safe on OS file handles
-        const checkConcurrency = 50; 
-        const checkedResults = [];
-        for (let i = 0; i < allIds.length; i += checkConcurrency) {
-            const chunk = allIds.slice(i, i + checkConcurrency);
-            const chunkResults = await Promise.all(chunk.map(async (id) => {
-                 const exists = await checkPlayerDataExists(String(id), ggDataDirAbs, esMetaDirAbs, ggMetaDirAbs);
-                 return exists ? null : id;
-            }));
-            checkedResults.push(...chunkResults);
-        }
+        context = await createSafeContext(browser);
+        page = await context.newPage();
         
-        playerEaIds = checkedResults.filter(id => id !== null);
-        console.log(`ℹ️ Loaded ${allIds.length} IDs. Skipping ${allIds.length - playerEaIds.length} existing. Processing ${playerEaIds.length} new players.`);
-        // ------------------------------------
-    } catch (error) {
-        console.error(`❌ Fatal error reading ${CLUB_IDS_FILE}: ${error.message}\n${error.stack || ''}. Exiting.`);
-        return;
-    }
+        await page.setRequestInterception(true);
+        page.on('request', r => ['image','media','font','stylesheet'].includes(r.resourceType()) ? r.abort() : r.continue());
 
-    // 2. Load Mappings
-    try {
-        const mapsRaw = await fs.readFile(mapsFilePath, 'utf-8');
-        const mapsData = JSON.parse(mapsRaw);
-        if (!mapsData.positionIdToEsRoleIds) {
-            throw new Error("'positionIdToEsRoleIds' key not found in maps.json.");
-        }
-        positionIdToEsRoleIds = mapsData.positionIdToEsRoleIds;
-        console.log("ℹ️ Successfully loaded 'positionIdToEsRoleIds' mapping from maps.json.");
-    } catch (error) {
-        console.error(`❌ Fatal error reading or parsing ${MAPS_FILE}: ${error.message}\n${error.stack || ''}. Exiting.`);
-        return;
-    }
+        // 1. Fetch Details (Must happen first to get Roles)
+        const details = await fetchPuppeteer(page, URL_GG_DETAILS(eaId), "Details");
+        if (!details || !details.data) return { id: eaId, status: 'fail_gg_details' };
 
-    // 3. Ensure Dirs
-    try {
-        await Promise.all([
-            ensureDirExists(ggDataDirAbs),
-            ensureDirExists(esMetaDirAbs),
-            ensureDirExists(ggMetaDirAbs)
-        ]);
-    } catch (error) {
-        console.error(`❌ Fatal error creating output directories. Exiting.`);
-        return;
-    }
+        // 2. Parallel Execution: Run GG Meta (Puppeteer) AND EasySBC (Axios) at the same time
+        // This hides the latency of the Axios calls behind the Puppeteer page load
+        
+        // Task A: Puppeteer fetch for Meta
+        const taskGGMeta = fetchPuppeteer(page, URL_GG_META(eaId), "MetaRank");
 
-    let browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
-    let batchesProcessedSinceRestart = 0;
-    let successfulPlayerProcessing = 0;
-    let failedPlayerProcessing = 0;
-    let skippedExistingCount = 0;
-    let fetchedNewCount = 0;
+        // Task B: Calculate Roles and fetch EasySBC (Axios)
+        const taskESMeta = (async () => {
+            const pDef = details.data;
+            const positions = [pDef.position, ...(pDef.alternativePositionIds || [])];
+            const rolesToFetch = new Set();
+            
+            positions.forEach(pos => {
+                const roles = maps.positionIdToEsRoleIds[String(pos)];
+                if (roles) roles.forEach(r => rolesToFetch.add(r));
+            });
 
-    // --- Helper for concurrency inside batch ---
-    const runWithConcurrency = async (items, concurrency, fn) => {
-        const results = [];
-        const queue = [...items];
-        const workers = Array(concurrency).fill(null).map(async () => {
-            while (queue.length > 0) {
-                const item = queue.shift();
-                try {
-                    const res = await fn(item);
-                    results.push(res);
-                } catch (e) {
-                    console.error("Worker error:", e);
-                    results.push({ success: false, status: 'error', eaId: item });
-                }
-            }
-        });
-        await Promise.all(workers);
-        return results;
-    };
-
-    // 4. Batch Processing Loop
-    for (let i = 0; i < playerEaIds.length; i += MAX_CONCURRENT_PLAYERS_IN_BATCH) {
-        const batchEaIds = playerEaIds.slice(i, i + MAX_CONCURRENT_PLAYERS_IN_BATCH);
-        const batchNumber = Math.floor(i / MAX_CONCURRENT_PLAYERS_IN_BATCH) + 1;
-        console.log(`\n🔄 Processing Batch ${batchNumber}/${Math.ceil(playerEaIds.length / MAX_CONCURRENT_PLAYERS_IN_BATCH)} (Players ${i + 1} to ${Math.min(i + MAX_CONCURRENT_PLAYERS_IN_BATCH, playerEaIds.length)})`);
-        const batchStartTime = Date.now();
-
-        if (batchesProcessedSinceRestart >= BROWSER_RESTART_INTERVAL_BATCHES && BROWSER_RESTART_INTERVAL_BATCHES > 0) {
-            console.log("🔁 Restarting Puppeteer browser to free resources...");
-            await browser.close().catch(e => console.warn("⚠️ Error closing browser during restart:", e.message));
-            browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
-            batchesProcessedSinceRestart = 0;
-            console.log("✅ Browser restarted.");
-        }
-
-        // --- The Core Player Processing Function ---
-        const processPlayer = async (eaId) => {
-            const eaIdStr = String(eaId);
-            // We already checked existence in step 1, so we proceed directly to fetch
-
-            if (VERBOSE_LOGGING) console.log(`--- Fetching new data for EA ID: ${eaIdStr} ---`);
-            let futGgDetailsData = null;
-            let playerSucceeded = true;
-
-            // Fetch Fut.gg Data
-            const [detailsResult, metarankResult] = await Promise.allSettled([
-                fetchFutGgWithPuppeteer(browser, FUTGG_PLAYER_DETAILS_URL_TEMPLATE(eaId), eaId, "details"),
-                fetchFutGgWithPuppeteer(browser, FUTGG_METARANK_URL_TEMPLATE(eaId), eaId, "metarank")
-            ]);
-
-            // Save GG Data
-            if (detailsResult.status === 'fulfilled' && detailsResult.value) {
-                futGgDetailsData = detailsResult.value;
-                try {
-                    await saveData(path.join(ggDataDirAbs, `${eaIdStr}_ggData.json`), futGgDetailsData);
-                } catch (saveError) { playerSucceeded = false; }
-            } else {
-                console.error(`❌ [Fut.gg details] Fetch failed or empty for ${eaIdStr}: ${detailsResult.reason?.message || 'No data returned'}`);
-                playerSucceeded = false;
-            }
-
-            // Save GG Meta
-            if (metarankResult.status === 'fulfilled' && metarankResult.value) {
-                try {
-                    await saveData(path.join(ggMetaDirAbs, `${eaIdStr}_ggMeta.json`), metarankResult.value);
-                } catch (saveError) { playerSucceeded = false; }
-            } else {
-                console.error(`❌ [Fut.gg metarank] Fetch failed or empty for ${eaIdStr}: ${metarankResult.reason?.message || 'No data returned'}`);
-                playerSucceeded = false;
-            }
-
-            // Fetch EasySBC Data
-            if (playerSucceeded && futGgDetailsData && futGgDetailsData.data) {
-                const playerDefinition = futGgDetailsData.data;
-                const esRoleIdsToFetch = new Set();
-
-                const allPositions = [playerDefinition.position, ...(playerDefinition.alternativePositionIds || [])];
-                allPositions.forEach(posId => {
-                    if (posId !== undefined && positionIdToEsRoleIds[String(posId)]) {
-                        positionIdToEsRoleIds[String(posId)].forEach(roleId => esRoleIdsToFetch.add(roleId));
-                    }
+            const esResults = [];
+            if (rolesToFetch.size > 0) {
+                // Fire these requests nearly simultaneously
+                const promises = Array.from(rolesToFetch).map(async (rId) => {
+                    const data = await fetchEasySBC(eaId, rId);
+                    if (data) return { roleId: rId, data };
+                    return null;
                 });
-
-                if (esRoleIdsToFetch.size > 0) {
-                    const allEsApiResponses = [];
-                    let esSbcFetchOverallSuccess = true;
-                    for (const esRoleId of esRoleIdsToFetch) {
-                        const esResponseObject = await fetchEasySBCWithAxios(eaId, esRoleId);
-                        if (esResponseObject) {
-                            allEsApiResponses.push({ roleId: esRoleId, data: esResponseObject });
-                        } else {
-                            esSbcFetchOverallSuccess = false;
-                        }
-                        if (esRoleIdsToFetch.size > 1) await delay(DELAY_BETWEEN_ARCHETYPE_CALLS_MS);
-                    }
-
-                    if (!esSbcFetchOverallSuccess) {
-                        playerSucceeded = false;
-                        console.warn(`⚠️ [EasySBC] One or more role ID fetches failed for ${eaIdStr}. Data might be incomplete.`);
-                    }
-
-                    if (allEsApiResponses.length > 0) {
-                        try {
-                            await saveData(path.join(esMetaDirAbs, `${eaIdStr}_esMeta.json`), allEsApiResponses);
-                        } catch (saveError) { playerSucceeded = false; }
-                    }
-                }
+                const results = await Promise.all(promises);
+                esResults.push(...results.filter(r => r !== null));
             }
-            return { eaId: eaIdStr, status: playerSucceeded ? 'fetched_success' : 'fetched_fail', success: playerSucceeded };
-        };
+            return esResults;
+        })();
 
-        // --- Execute Batch with Concurrency ---
-        // We use MAX_CONCURRENT_TABS (e.g. 5) to limit active tabs, avoiding crashes
-        const batchResultsArray = await runWithConcurrency(batchEaIds, MAX_CONCURRENT_TABS, processPlayer);
+        // Wait for both
+        const [meta, esData] = await Promise.all([taskGGMeta, taskESMeta]);
 
-        // Analyze Results
-        let currentBatchSuccess = 0;
-        let currentBatchFail = 0;
+        // Cleanup Puppeteer immediately
+        await page.close();
+        await context.close();
+        page = null; context = null;
 
-        batchResultsArray.forEach(result => {
-            if (result.success) {
-                successfulPlayerProcessing++;
-                currentBatchSuccess++;
-                if (result.status === 'skipped_exists') skippedExistingCount++; // Logic handled in step 1, but kept for safety
-                else if (result.status === 'fetched_success') fetchedNewCount++;
-            } else {
-                failedPlayerProcessing++;
-                currentBatchFail++;
+        // 3. Save All Data
+        await saveData(path.join(dirs.ggData, `${eaIdStr}_ggData.json`), details);
+        if (meta) await saveData(path.join(dirs.ggMeta, `${eaIdStr}_ggMeta.json`), meta);
+        if (esData && esData.length > 0) await saveData(path.join(dirs.esMeta, `${eaIdStr}_esMeta.json`), esData);
+
+        return { id: eaId, status: 'success' };
+
+    } catch (e) {
+        return { id: eaId, status: 'error' };
+    } finally {
+        if (page && !page.isClosed()) await page.close().catch(() => {});
+        if (context && context !== browser.defaultBrowserContext()) await context.close().catch(() => {});
+    }
+}
+
+// --- Main Runner ---
+(async () => {
+    console.log("🚀 Starting TURBO Data Fetcher...");
+    const start = Date.now();
+
+    const root = __dirname;
+    const dirs = {
+        ggData: path.resolve(root, GG_DATA_DIR),
+        esMeta: path.resolve(root, ES_META_DIR),
+        ggMeta: path.resolve(root, GG_META_DIR)
+    };
+    
+    await Promise.all(Object.values(dirs).map(ensureDir));
+    const ids = JSON.parse(await fs.readFile(path.resolve(root, CLUB_IDS_FILE)));
+    const maps = JSON.parse(await fs.readFile(path.resolve(root, MAPS_FILE)));
+
+    // Fast Filtering
+    const todo = [];
+    const chunk = 250; // Larger chunk for filesystem check
+    for (let i = 0; i < ids.length; i+=chunk) {
+        const batch = ids.slice(i, i+chunk);
+        const results = await Promise.all(batch.map(async id => ({ 
+            id, skip: await checkSkippability(id, dirs) 
+        })));
+        todo.push(...results.filter(r => !r.skip).map(r => r.id));
+    }
+
+    console.log(`📋 Fetching ${todo.length} players. (Skipped ${ids.length - todo.length})`);
+    if (todo.length === 0) return;
+
+    console.log("🕸️ Launching Browser...");
+    const browser = await puppeteer.launch({
+        headless: "new",
+        defaultViewport: null,
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
+
+    let processed = 0;
+    const total = todo.length;
+    
+    async function worker() {
+        while (todo.length > 0) {
+            const id = todo.shift();
+            await processPlayer(id, browser, maps, dirs);
+            
+            processed++;
+            if (processed % 50 === 0) {
+                const pct = ((processed / total) * 100).toFixed(1);
+                const elapsed = (Date.now() - start) / 1000;
+                const rate = (processed / elapsed).toFixed(2); // Players per second
+                console.log(`⚡ ${processed}/${total} (${pct}%) | Rate: ${rate} p/s | Elapsed: ${elapsed.toFixed(0)}s`);
             }
-        });
-
-        batchesProcessedSinceRestart++;
-        const batchEndTime = Date.now();
-        console.log(`⏱ Batch ${batchNumber} completed in ${(batchEndTime - batchStartTime) / 1000}s. Success: ${currentBatchSuccess}, Fail/Partial: ${currentBatchFail}.`);
-
-        if (i + MAX_CONCURRENT_PLAYERS_IN_BATCH < playerEaIds.length) {
-            await delay(DELAY_BETWEEN_BATCHES_MS);
+            
+            // Minimal delay to allow CPU context switching
+            await sleep(randInt(DELAY_MIN, DELAY_MAX));
         }
     }
 
-    await browser.close().catch(e => console.warn("⚠️ Error closing main browser instance:", e.message));
-    const overallEndTime = Date.now();
-    console.log(`\n🎉 All player ID processing attempts completed in ${((overallEndTime - overallStartTime) / 1000 / 60).toFixed(2)} minutes.`);
-    console.log(`📊 Total Player IDs in input: ${playerEaIds.length}`); // This count is after filtering existing in step 1
-    console.log(`  Processed Successfully: ${successfulPlayerProcessing}`);
-    console.log(`    - Newly Fetched & Saved: ${fetchedNewCount}`);
-    console.log(`  Failed/Partially Failed during fetch: ${failedPlayerProcessing}`);
-    console.log("Script finished.");
+    console.log(`🔥 Igniting ${CONCURRENCY} concurrent workers...`);
+    const workers = Array(CONCURRENCY).fill(null).map(() => worker());
+    await Promise.all(workers);
+
+    await browser.close();
+    console.log(`✅ DONE in ${((Date.now() - start)/1000/60).toFixed(2)} minutes.`);
 })();

@@ -1,4 +1,6 @@
-# club.3.clean.py
+# club.3.clean.py (Turbo Edition)
+# Optimization: Multiprocessing (All Cores) + Worker State Caching
+
 import json
 from pathlib import Path
 from collections import defaultdict
@@ -6,8 +8,11 @@ import numpy as np
 import pandas as pd
 import joblib
 import warnings
-from typing import Optional, Dict, Any, Tuple
+import os
+import concurrent.futures
+import multiprocessing
 
+# Suppress warnings in main output
 warnings.filterwarnings("ignore", category=FutureWarning)
 warnings.filterwarnings("ignore", category=UserWarning)
 
@@ -18,11 +23,15 @@ RAW_DATA_DIR = BASE_DATA_DIR / 'raw'
 GG_DATA_DIR = RAW_DATA_DIR / 'ggData'
 ES_META_DIR = RAW_DATA_DIR / 'esMeta'
 GG_META_DIR = RAW_DATA_DIR / 'ggMeta'
-PRICES_DIR  = RAW_DATA_DIR / 'prices'  # <--- NEW
+PRICES_DIR  = RAW_DATA_DIR / 'prices'
 EVOLAB_FILE = BASE_DATA_DIR / 'evolab.json'
 MAPS_FILE = BASE_DATA_DIR / 'maps.json'
 OUTPUT_FILE = BASE_DATA_DIR / 'club_final.json'
 CLUB_IDS_FILE = BASE_DATA_DIR / 'club_ids.json'
+
+# --- Global Worker State (Initialized once per process) ---
+GLOBAL_MAPS = None
+GLOBAL_MODEL_MANAGER = None
 
 # --- Helpers ---
 def load_json_file(file_path: Path, default_val=None):
@@ -69,7 +78,7 @@ def get_attribute_with_boost(base_attributes, attr_name, boost_modifiers, defaul
         base_val = 0; boost_val = 0
     return min(base_val + boost_val, 99)
 
-def parse_gg_rating_str(gg_rating_str_raw: Optional[str]) -> Dict[str, list]:
+def parse_gg_rating_str(gg_rating_str_raw):
     parsed_ratings_by_role = defaultdict(list)
     if not gg_rating_str_raw:
         return parsed_ratings_by_role
@@ -81,7 +90,7 @@ def parse_gg_rating_str(gg_rating_str_raw: Optional[str]) -> Dict[str, list]:
             continue
     return parsed_ratings_by_role
 
-def resolve_anchor_source_eaid(evo_def: Dict[str, Any]) -> Optional[str]:
+def resolve_anchor_source_eaid(evo_def):
     for k in ("baseEaId","originalEaId","rootEaId","rootDefinitionEaId","baseItemEaId","baseCardEaId"):
         v = evo_def.get(k)
         if v is not None:
@@ -90,9 +99,9 @@ def resolve_anchor_source_eaid(evo_def: Dict[str, Any]) -> Optional[str]:
     eid = evo_def.get("eaId")
     return str(int(eid)) if eid is not None else None
 
-def to_player_like_from_ggdata(gg_data_obj: Optional[Dict[str, Any]], maps) -> Optional[Dict[str, Any]]:
+def to_player_like_from_ggdata(gg_data_obj, maps):
     if not gg_data_obj: return None
-    d: Dict[str, Any] = {}
+    d = {}
     for k, v in gg_data_obj.items():
         if isinstance(k, str) and k.startswith("attribute"):
             d[k] = v
@@ -109,7 +118,7 @@ def to_player_like_from_ggdata(gg_data_obj: Optional[Dict[str, Any]], maps) -> O
     d["roles++"] = [maps["roles_plus_plus_map"].get(str(r)) for r in (gg_data_obj.get("rolesPlusPlus") or []) if str(r) in maps["roles_plus_plus_map"]]
     return d
 
-def get_es_anchors_for_role(es_meta_raw, role_name: str, maps):
+def get_es_anchors_for_role(es_meta_raw, role_name, maps):
     es_role_id = maps["roleNameToEsRoleId"].get(role_name)
     if not (es_meta_raw and es_role_id):
         return None, {}
@@ -136,61 +145,52 @@ class ModelManager:
     def _load_models(self, models_dir: Path):
         models = {}
         if not models_dir.exists():
-            print(f"⚠️ Models directory not found: {models_dir}")
             return models
+        # Only load needed models to save RAM/Time if feasible, but here we load all
         for pkl_file in models_dir.glob("*.pkl"):
             try:
                 bundle = joblib.load(pkl_file)
                 models[pkl_file.stem] = bundle
-            except Exception as e:
-                print(f"⚠️ Error loading model {pkl_file.name}: {e}")
-        print(f"✅ Loaded {len(models)} models from disk.")
+            except Exception:
+                pass
         return models
     def get_model(self, role_name: str, model_type: str):
         safe_role_name = role_name.replace(" ", "_").replace("-", "_")
         return self.models.get(f"{safe_role_name}_{model_type}_model")
 
-# --- Feature building (shared: ES + ggSub) ---
-def _familiarity_from_lists(role_name: str, roles_plus: list, roles_pp: list) -> int:
+# --- Feature building ---
+def _familiarity_from_lists(role_name, roles_plus, roles_pp):
     if role_name in (roles_pp or []): return 2
     if role_name in (roles_plus or []): return 1
     return 0
 
-def prepare_features(player_data: Dict[str, Any], maps, boosts: Dict[str, int] = {}, role_name: Optional[str] = None):
+def prepare_features(player_data, maps, boosts={}, role_name=None):
     features = {}
     base_attributes = {k: v for k, v in player_data.items() if k.startswith("attribute")}
     for attr in base_attributes:
         features[attr] = get_attribute_with_boost(base_attributes, attr, boosts)
-
     for key in ["height", "weight", "skillMoves", "weakFoot", "foot"]:
         features[key] = player_data.get(key)
-
-    # gender for accel calc
     features["gender"] = player_data.get("gender") or "Male"
 
-    # playstyles 0/1/2
     all_ps = list(maps.get("playstyles", {}).values())
     ps = set(player_data.get("PS", []) or []); ps_plus = set(player_data.get("PS+", []) or [])
     for name in all_ps:
         features[name] = 2 if name in ps_plus else (1 if name in ps else 0)
 
-    # familiarity
     if role_name is not None:
-        roles_plus = player_data.get("roles+", []) or []
-        roles_pp   = player_data.get("roles++", []) or []
-        features["familiarity"] = _familiarity_from_lists(role_name, roles_plus, roles_pp)
+        features["familiarity"] = _familiarity_from_lists(role_name, player_data.get("roles+", []), player_data.get("roles++", []))
     else:
         features["familiarity"] = 0
 
     features["bodytype"] = player_data.get("bodyType")
     features["accelerateType"] = calculate_acceleration_type(
         features.get("attributeAcceleration"), features.get("attributeAgility"),
-        features.get("attributeStrength"), features.get("height"),
-        features.get("gender")
+        features.get("attributeStrength"), features.get("height"), features.get("gender")
     )
     return features
 
-def _build_model_input(model_bundle: Dict[str, Any], feature_dict: Dict[str, Any]) -> pd.DataFrame:
+def _build_model_input(model_bundle, feature_dict):
     df = pd.DataFrame([feature_dict])
     df = pd.get_dummies(df, columns=["bodytype", "accelerateType", "foot"], dtype=int)
     feats = model_bundle["features"]
@@ -199,7 +199,7 @@ def _build_model_input(model_bundle: Dict[str, Any], feature_dict: Dict[str, Any
     df = df[feats].fillna(0).infer_objects(copy=False)
     return df
 
-def _predict_absolute(model_bundle: Dict[str, Any], feature_dict: Dict[str, Any]) -> Optional[float]:
+def _predict_absolute(model_bundle, feature_dict):
     try:
         X = _build_model_input(model_bundle, feature_dict)
         pred_scaled = model_bundle["model"].predict(model_bundle["feature_scaler"].transform(X))
@@ -208,7 +208,6 @@ def _predict_absolute(model_bundle: Dict[str, Any], feature_dict: Dict[str, Any]
     except Exception:
         return None
 
-# --- ES anchored predictor (unchanged) ---
 def predict_es_with_anchor(model_bundle, evo_features, *, base_features, api_anchor, hard_min=None, hard_max=99.99):
     if not model_bundle: return None
     pred_abs_evo  = _predict_absolute(model_bundle, evo_features)
@@ -239,11 +238,9 @@ def predict_es_with_anchor(model_bundle, evo_features, *, base_features, api_anc
     pred = max(candidates)
     pred = max(pred, floor_val)
     pred = min(pred, hard_max)
-    pred = max(0.0, pred)
     return round(float(pred), 2)
 
-# --- ggMetaSub predictors ---
-def predict_ggsub_absolute(model_bundle, features_no_chem, *, cap_to_ggmeta: Optional[float] = None):
+def predict_ggsub_absolute(model_bundle, features_no_chem, *, cap_to_ggmeta=None):
     if not model_bundle: return None
     pred = _predict_absolute(model_bundle, features_no_chem)
     if pred is None: return None
@@ -252,8 +249,7 @@ def predict_ggsub_absolute(model_bundle, features_no_chem, *, cap_to_ggmeta: Opt
     pred = max(0.0, min(99.99, pred))
     return round(float(pred), 2)
 
-def predict_ggsub_evo_anchored(model_bundle, evo_no_chem, *, base_no_chem, cap_to_ggmeta: Optional[float]):
-    """Ensure evo_sub ≥ base_sub, and ggMetaSub ≤ ggMeta."""
+def predict_ggsub_evo_anchored(model_bundle, evo_no_chem, *, base_no_chem, cap_to_ggmeta):
     if not model_bundle: return None
     evo_pred  = _predict_absolute(model_bundle, evo_no_chem)
     base_pred = _predict_absolute(model_bundle, base_no_chem) if base_no_chem else None
@@ -266,17 +262,16 @@ def predict_ggsub_evo_anchored(model_bundle, evo_no_chem, *, base_no_chem, cap_t
     pred = max(0.0, min(99.99, pred))
     return round(float(pred), 2)
 
-def process_player(player_def: Dict[str, Any], is_evo: bool, model_manager: "ModelManager", maps):
+# --- Core Logic (Runs inside Worker) ---
+def process_player(player_def, is_evo, model_manager, maps):
+    # This function contains the heavy lifting logic
     player_output = {"eaId": player_def.get("eaId"), "evolution": is_evo}
     base_attributes = {k: v for k, v in player_def.items() if k.startswith("attribute")}
     for key in ["commonName","overall","height","weight","skillMoves","weakFoot"]:
         player_output[key] = player_def.get(key)
     player_output.update(base_attributes)
-
-    # gender for accel and feature prep
     player_output["gender"] = _normalize_gender(player_def.get("gender"), maps)
 
-    # positions & categorical
     numeric_positions = [str(p) for p in [player_def.get("position")] + (player_def.get("alternativePositionIds") or []) if p is not None]
     player_output["positions"] = list(set([maps["position_map"].get(p) for p in numeric_positions if p in maps["position_map"]]))
     player_output["foot"] = maps["foot_map"].get(str(player_def.get("foot")))
@@ -286,7 +281,7 @@ def process_player(player_def: Dict[str, Any], is_evo: bool, model_manager: "Mod
     player_output["roles++"] = [maps["roles_plus_plus_map"].get(str(r)) for r in (player_def.get("rolesPlusPlus") or []) if str(r) in maps["roles_plus_plus_map"]]
     player_output["bodyType"] = maps["bodytype_code_map"].get(str(player_def.get("bodytypeCode")))
 
-    # --- NEW: Attach Price Data if available ---
+    # Load Price
     price_file = PRICES_DIR / f"{player_output['eaId']}.json"
     if price_file.exists():
         price_data = load_json_file(price_file)
@@ -296,19 +291,14 @@ def process_player(player_def: Dict[str, Any], is_evo: bool, model_manager: "Mod
     else:
         player_output["price"] = None
         player_output["isExtinct"] = None
-    # -------------------------------------------
 
     sub_accel_type = calculate_acceleration_type(
-        base_attributes.get("attributeAcceleration"),
-        base_attributes.get("attributeAgility"),
-        base_attributes.get("attributeStrength"),
-        player_output.get("height"),
-        player_output.get("gender")
+        base_attributes.get("attributeAcceleration"), base_attributes.get("attributeAgility"),
+        base_attributes.get("attributeStrength"), player_output.get("height"), player_output.get("gender")
     )
 
     es_meta_raw = load_json_file(ES_META_DIR / f"{player_output['eaId']}_esMeta.json", [])
 
-    # gg source
     if is_evo:
         gg_scores_by_role = parse_gg_rating_str(player_def.get("ggRatingStr"))
     else:
@@ -319,13 +309,15 @@ def process_player(player_def: Dict[str, Any], is_evo: bool, model_manager: "Mod
                 gg_scores_by_role[str(score.get("role"))].append(score)
 
     player_output["metaRatings"] = []
+    
+    # Iterate Roles
     for role_id_str, scores in gg_scores_by_role.items():
         role_name = maps["role_id_to_name_map"].get(role_id_str)
         if not role_name: continue
 
         meta_entry = {"role": role_name, "subAccelType": sub_accel_type}
 
-        # gg best on-chem
+        # GG Best
         best_gg = max(scores, key=lambda x: x.get("score", 0), default=None)
         if best_gg:
             meta_entry["ggMeta"] = round(best_gg.get("score", 0.0), 2)
@@ -336,69 +328,46 @@ def process_player(player_def: Dict[str, Any], is_evo: bool, model_manager: "Mod
                 get_attribute_with_boost(base_attributes, "attributeAcceleration", boosts),
                 get_attribute_with_boost(base_attributes, "attributeAgility", boosts),
                 get_attribute_with_boost(base_attributes, "attributeStrength", boosts),
-                player_output.get("height"),
-                player_output.get("gender")
+                player_output.get("height"), player_output.get("gender")
             )
 
-        # ---------- ggMetaSub for ALL players via model ----------
+        # ggMetaSub
         gg_sub_model = model_manager.get_model(role_name, 'ggMetaSub')
         if gg_sub_model:
-            # no-chem features for this role
             evo_features_sub = prepare_features(player_output, maps, boosts={}, role_name=role_name)
-
             if is_evo:
-                # Floor at base card's predicted sub; cap at same-role ggMeta
-                base_anchor_eaid = resolve_anchor_source_eaid(player_def)  # may equal evo id
+                base_anchor_eaid = resolve_anchor_source_eaid(player_def)
                 base_gg_raw = load_json_file(GG_DATA_DIR / f"{base_anchor_eaid}_ggData.json")
-                base_player_like = to_player_like_from_ggdata(
-                    base_gg_raw.get("data") if base_gg_raw and "data" in base_gg_raw else None, maps
-                )
+                base_player_like = to_player_like_from_ggdata(base_gg_raw.get("data") if base_gg_raw else None, maps)
                 base_features_sub = prepare_features(base_player_like, maps, boosts={}, role_name=role_name) if base_player_like else None
                 meta_entry["ggMetaSub"] = predict_ggsub_evo_anchored(
-                    gg_sub_model, evo_features_sub,
-                    base_no_chem=base_features_sub,
-                    cap_to_ggmeta=meta_entry.get("ggMeta")
+                    gg_sub_model, evo_features_sub, base_no_chem=base_features_sub, cap_to_ggmeta=meta_entry.get("ggMeta")
                 )
             else:
-                # Standard player: absolute prediction, then clamp to ggMeta
-                meta_entry["ggMetaSub"] = predict_ggsub_absolute(
-                    gg_sub_model, evo_features_sub, cap_to_ggmeta=meta_entry.get("ggMeta")
-                )
+                meta_entry["ggMetaSub"] = predict_ggsub_absolute(gg_sub_model, evo_features_sub, cap_to_ggmeta=meta_entry.get("ggMeta"))
         else:
-            # Fallback (rare): use Basic if present, else 95% of ggMeta for GK
             if not is_evo:
-                basic_gg = next(
-                    (s for s in scores if (maps["gg_chem_style_names_map"].get(str(s.get("chemistryStyle")), "") or "").lower() == 'basic'),
-                    None
-                )
-                if basic_gg and basic_gg.get("score") is not None:
-                    meta_entry["ggMetaSub"] = round(float(basic_gg["score"]), 2)
-                elif "GK" in role_name and meta_entry.get("ggMeta") is not None:
-                    meta_entry["ggMetaSub"] = round(meta_entry["ggMeta"] * 0.95, 2)
+                # Fallback
+                if "GK" in role_name and meta_entry.get("ggMeta"): meta_entry["ggMetaSub"] = round(meta_entry["ggMeta"] * 0.95, 2)
 
-        # ---------- ES handling ----------
+        # ES Logic
         if is_evo:
             base_anchor_eaid = resolve_anchor_source_eaid(player_def)
             base_es_meta_raw = load_json_file(ES_META_DIR / f"{base_anchor_eaid}_esMeta.json", [])
             sub_anchor, anchor3_by_style = get_es_anchors_for_role(base_es_meta_raw, role_name, maps)
-
             base_gg_raw = load_json_file(GG_DATA_DIR / f"{base_anchor_eaid}_ggData.json")
-            base_player_like = to_player_like_from_ggdata(
-                base_gg_raw.get("data") if base_gg_raw and "data" in base_gg_raw else None, maps
-            )
-
-            # esMetaSub
+            base_player_like = to_player_like_from_ggdata(base_gg_raw.get("data") if base_gg_raw else None, maps)
+            
+            # Sub
             es_sub_model = model_manager.get_model(role_name, 'esMetaSub')
             if es_sub_model:
                 evo_features_sub  = prepare_features(player_output, maps, boosts={}, role_name=role_name)
                 base_features_sub = prepare_features(base_player_like, maps, boosts={}, role_name=role_name) if base_player_like else None
                 meta_entry["esMetaSub"] = predict_es_with_anchor(
-                    es_sub_model, evo_features_sub,
-                    base_features=base_features_sub, api_anchor=sub_anchor,
-                    hard_min=sub_anchor, hard_max=99.99
+                    es_sub_model, evo_features_sub, base_features=base_features_sub, api_anchor=sub_anchor, hard_min=sub_anchor
                 )
-
-            # esMeta (best chemstyle)
+            
+            # Main
             es_model = model_manager.get_model(role_name, 'esMeta')
             if es_model:
                 best_val, best_chem, best_accel = None, None, sub_accel_type
@@ -407,9 +376,7 @@ def process_player(player_def: Dict[str, Any], is_evo: bool, model_manager: "Mod
                     base_features_chem = prepare_features(base_player_like, maps, boosts=boosts, role_name=role_name) if base_player_like else None
                     chem_anchor = (anchor3_by_style or {}).get(chem_name.lower())
                     val = predict_es_with_anchor(
-                        es_model, evo_features_chem,
-                        base_features=base_features_chem,
-                        api_anchor=chem_anchor, hard_min=chem_anchor, hard_max=99.99
+                        es_model, evo_features_chem, base_features=base_features_chem, api_anchor=chem_anchor, hard_min=chem_anchor
                     )
                     if val is not None and (best_val is None or val > best_val):
                         best_val = val; best_chem = chem_name.title(); best_accel = evo_features_chem.get("accelerateType")
@@ -417,7 +384,7 @@ def process_player(player_def: Dict[str, Any], is_evo: bool, model_manager: "Mod
                 meta_entry["esChemStyle"] = best_chem or "basic"
                 meta_entry["esAccelType"] = best_accel
         else:
-            # Standard player: ES from API (filtered by playerRoleId)
+            # Standard
             es_role_id = maps["roleNameToEsRoleId"].get(role_name)
             if es_role_id and es_meta_raw:
                 filtered = []
@@ -425,103 +392,148 @@ def process_player(player_def: Dict[str, Any], is_evo: bool, model_manager: "Mod
                     rs = (b.get("data", {}) or {}).get("metaRatings", []) or []
                     filtered.extend([r for r in rs if str(r.get("playerRoleId")) == str(es_role_id)])
                 if filtered:
-                    rating_0 = next((r for r in filtered if r.get("chemistry") == 0 and r.get("metaRating") is not None), None)
-                    if rating_0: meta_entry["esMetaSub"] = round(float(rating_0["metaRating"]), 2)
-                    best_3 = max(
-                        [r for r in filtered if r.get("chemistry") == 3 and r.get("isBestChemstyleAtChem")],
-                        key=lambda x: x.get("metaRating", -1), default=None
-                    )
-                    if best_3 and best_3.get("metaRating") is not None:
-                        meta_entry["esMeta"] = round(float(best_3["metaRating"]), 2)
-                        chem_id_3 = str(best_3.get("chemstyleId"))
-                        meta_entry["esChemStyle"] = maps["es_chem_style_names_map"].get(chem_id_3)
-                        boosts_3 = maps["chem_style_boosts_map"].get((meta_entry.get("esChemStyle") or "").lower(), {})
+                    r0 = next((r for r in filtered if r.get("chemistry") == 0 and r.get("metaRating")), None)
+                    if r0: meta_entry["esMetaSub"] = round(float(r0["metaRating"]), 2)
+                    best3 = max([r for r in filtered if r.get("chemistry") == 3], key=lambda x: x.get("metaRating", -1), default=None)
+                    if best3 and best3.get("metaRating"):
+                        meta_entry["esMeta"] = round(float(best3["metaRating"]), 2)
+                        meta_entry["esChemStyle"] = maps["es_chem_style_names_map"].get(str(best3.get("chemstyleId")))
+                        boosts = maps["chem_style_boosts_map"].get((meta_entry.get("esChemStyle") or "").lower(), {})
                         meta_entry["esAccelType"] = calculate_acceleration_type(
-                            get_attribute_with_boost(base_attributes, "attributeAcceleration", boosts_3),
-                            get_attribute_with_boost(base_attributes, "attributeAgility", boosts_3),
-                            get_attribute_with_boost(base_attributes, "attributeStrength", boosts_3),
-                            player_output.get("height"),
-                            player_output.get("gender")
+                            get_attribute_with_boost(base_attributes, "attributeAcceleration", boosts),
+                            get_attribute_with_boost(base_attributes, "attributeAgility", boosts),
+                            get_attribute_with_boost(base_attributes, "attributeStrength", boosts),
+                            player_output.get("height"), player_output.get("gender")
                         )
 
-        # Safety: ggMetaSub ≤ ggMeta when both exist
-        if meta_entry.get("ggMetaSub") is not None and meta_entry.get("ggMeta") is not None:
-            if meta_entry["ggMetaSub"] > meta_entry["ggMeta"]:
-                meta_entry["ggMetaSub"] = round(float(meta_entry["ggMeta"]), 2)
-
-        # averages
+        # Average
         gg_meta, es_meta = meta_entry.get("ggMeta"), meta_entry.get("esMeta")
         gg_meta_sub, es_meta_sub = meta_entry.get("ggMetaSub"), meta_entry.get("esMetaSub")
-        meta_entry["avgMeta"] = round((gg_meta + 2*es_meta) / 3, 2) if (gg_meta is not None and es_meta is not None) else gg_meta or es_meta
-        meta_entry["avgMetaSub"] = round((gg_meta_sub + 2*es_meta_sub) / 3, 2) if (gg_meta_sub is not None and es_meta_sub is not None) else gg_meta_sub or es_meta_sub
+        
+        # Safety clamp
+        if gg_meta_sub and gg_meta and gg_meta_sub > gg_meta: gg_meta_sub = gg_meta; meta_entry["ggMetaSub"] = round(gg_meta, 2)
+        
+        meta_entry["avgMeta"] = round((gg_meta + 2*es_meta)/3, 2) if (gg_meta and es_meta) else (gg_meta or es_meta)
+        meta_entry["avgMetaSub"] = round((gg_meta_sub + 2*es_meta_sub)/3, 2) if (gg_meta_sub and es_meta_sub) else (gg_meta_sub or es_meta_sub)
 
         player_output["metaRatings"].append(meta_entry)
 
     return player_output
 
+# --- Multiprocessing Wrapper ---
+def init_worker():
+    """Initializes global state in each worker process."""
+    global GLOBAL_MAPS, GLOBAL_MODEL_MANAGER
+    
+    # Load Maps
+    if GLOBAL_MAPS is None:
+        maps_data = load_json_file(MAPS_FILE)
+        GLOBAL_MAPS = {
+            "position_map": maps_data.get("position", {}),
+            "foot_map": maps_data.get("foot", {}),
+            "playstyles_map": maps_data.get("playstyles", {}),
+            "roles_plus_map": maps_data.get("rolesPlus", {}),
+            "roles_plus_plus_map": maps_data.get("rolesPlusPlus", {}),
+            "bodytype_code_map": maps_data.get("bodytypeCode", {}),
+            "gg_chem_style_names_map": maps_data.get("ggChemistryStyleNames", {}),
+            "es_chem_style_names_map": maps_data.get("esChemistryStyleNames", {}),
+            "chem_style_boosts_map": {item['name'].lower(): item['threeChemistryModifiers'] for item in maps_data.get("ChemistryStylesBoosts", []) if 'name' in item},
+            "role_id_to_name_map": maps_data.get("role", {}),
+            "roleNameToEsRoleId": maps_data.get("roleNameToEsRoleId", {}),
+            "playstyles": maps_data.get("playstyles", {}),
+            "gender_map": maps_data.get("gender", {})
+        }
+    
+    # Load Models
+    if GLOBAL_MODEL_MANAGER is None:
+        GLOBAL_MODEL_MANAGER = ModelManager(MODELS_DIR)
+
+def worker_task(payload):
+    """
+    Payload is a dict: {'type': 'club', 'id': ...} OR {'type': 'evo', 'data': ...}
+    """
+    try:
+        if payload['type'] == 'club':
+            ea_id = payload['id']
+            # Worker loads the JSON from disk to distribute I/O
+            data_file = GG_DATA_DIR / f"{ea_id}_ggData.json"
+            player_def_raw = load_json_file(data_file)
+            if not player_def_raw or "data" not in player_def_raw:
+                return None
+            return process_player(player_def_raw["data"], False, GLOBAL_MODEL_MANAGER, GLOBAL_MAPS)
+        
+        elif payload['type'] == 'evo':
+            # Evo data is passed directly
+            return process_player(payload['data'], True, GLOBAL_MODEL_MANAGER, GLOBAL_MAPS)
+            
+    except Exception as e:
+        return None # Fail silently/gracefully for that one player
+
+# --- Main ---
 def main():
-    print("🚀 Starting Player Data Processing Script...")
-    maps_data = load_json_file(MAPS_FILE)
-    if not maps_data:
-        print("❌ Critical error: Could not load maps.json. Exiting.")
-        return
-
-    maps = {
-        "position_map": maps_data.get("position", {}),
-        "foot_map": maps_data.get("foot", {}),
-        "playstyles_map": maps_data.get("playstyles", {}),
-        "roles_plus_map": maps_data.get("rolesPlus", {}),
-        "roles_plus_plus_map": maps_data.get("rolesPlusPlus", {}),
-        "bodytype_code_map": maps_data.get("bodytypeCode", {}),
-        "gg_chem_style_names_map": maps_data.get("ggChemistryStyleNames", {}),
-        "es_chem_style_names_map": maps_data.get("esChemistryStyleNames", {}),
-        "chem_style_boosts_map": {item['name'].lower(): item['threeChemistryModifiers'] for item in maps_data.get("ChemistryStylesBoosts", []) if 'name' in item},
-        "role_id_to_name_map": maps_data.get("role", {}),
-        "roleNameToEsRoleId": maps_data.get("roleNameToEsRoleId", {}),
-        "playstyles": maps_data.get("playstyles", {}),
-        "gender_map": maps_data.get("gender", {})
-    }
-
-    model_manager = ModelManager(MODELS_DIR)
-    processed_players = []
-
-    print("\n--- Processing Club Players ---")
+    # Windows requires this for multiprocessing
+    multiprocessing.freeze_support()
+    
+    print("🚀 Starting TURBO Cleaning Script (Multiprocessing)...")
+    
+    # Prepare Tasks
+    tasks = []
+    
+    # 1. Club Players (Pass IDs)
     club_ids_data = load_json_file(CLUB_IDS_FILE)
-    club_player_ids = [str(id) for id in club_ids_data] if isinstance(club_ids_data, list) else []
-    print(f"ℹ️ Found {len(club_player_ids)} club players to process from {CLUB_IDS_FILE.name}.")
-    for i, ea_id in enumerate(club_player_ids):
-        if (i + 1) % 50 == 0:
-            print(f"  - Player {i+1}/{len(club_player_ids)}")
-        player_def_raw = load_json_file(GG_DATA_DIR / f"{ea_id}_ggData.json")
-        if player_def_raw and "data" in player_def_raw:
-            player = process_player(player_def_raw["data"], False, model_manager, maps)
-            if player:
-                processed_players.append(player)
-
-    print("\n--- Processing Evo Players ---")
+    if club_ids_data:
+        print(f"ℹ️ Queueing {len(club_ids_data)} club players...")
+        for ea_id in club_ids_data:
+            tasks.append({'type': 'club', 'id': str(ea_id)})
+            
+    # 2. Evo Players (Pass Data)
     evolab_data = load_json_file(EVOLAB_FILE)
     if evolab_data and "data" in evolab_data:
         evo_defs = [item["playerItemDefinition"] for item in evolab_data["data"] if "playerItemDefinition" in item]
-        print(f"ℹ️ Found {len(evo_defs)} evo player definitions.")
-        for i, evo_def in enumerate(evo_defs):
-            if (i + 1) % 50 == 0:
-                print(f"  - Evo {i+1}/{len(evo_defs)}")
-            player = process_player(evo_def, True, model_manager, maps)
-            if player:
-                processed_players.append(player)
+        print(f"ℹ️ Queueing {len(evo_defs)} evo players...")
+        for p_def in evo_defs:
+            tasks.append({'type': 'evo', 'data': p_def})
 
-    print("\n--- Deduplicating Players ---")
+    total_tasks = len(tasks)
+    if total_tasks == 0:
+        print("⚠️ No tasks found.")
+        return
+
+    # Use all CPU cores
+    max_workers = os.cpu_count()
+    print(f"🔥 processing with {max_workers} CPU cores...")
+    
+    results = []
+    completed = 0
+    
+    # Executor with Initializer
+    with concurrent.futures.ProcessPoolExecutor(max_workers=max_workers, initializer=init_worker) as executor:
+        # Submit all tasks
+        futures = [executor.submit(worker_task, t) for t in tasks]
+        
+        # Monitor progress
+        for future in concurrent.futures.as_completed(futures):
+            res = future.result()
+            if res:
+                results.append(res)
+            
+            completed += 1
+            if completed % 100 == 0 or completed == total_tasks:
+                print(f"  - Processed {completed}/{total_tasks} players...")
+
+    # Deduplicate
+    print("\n--- Deduplicating ---")
     final_players = {}
-    for player in processed_players:
+    for player in results:
         if player['eaId'] not in final_players or player.get('evolution'):
             final_players[player['eaId']] = player
+    
     final_list = list(final_players.values())
-    print(f"ℹ️ Total unique players: {len(final_list)}")
-
-    print("\n--- Saving Final Output ---")
+    
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
         json.dump(final_list, f, indent=2, ensure_ascii=False)
-    print(f"\n🎉 Success! Processed {len(final_list)} players to {OUTPUT_FILE}")
+        
+    print(f"\n🎉 Success! Processed {len(final_list)} unique players to {OUTPUT_FILE.name}")
 
 if __name__ == "__main__":
     main()

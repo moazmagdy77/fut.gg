@@ -1,55 +1,121 @@
-// club.2b.fetch.prices.js
+// club.2b.fetch.prices.js (Turbo Edition)
+// High-Performance Parallel Price Fetcher
+// Optimizations: Concurrency 25, Stealth Plugin, Persistent Browser Contexts
+
 const fs = require('fs').promises;
 const path = require('path');
-const puppeteer = require('puppeteer');
+
+// Use puppeteer-extra with stealth (Critical for Fut.gg API access)
+const puppeteer = require('puppeteer-extra');
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+puppeteer.use(StealthPlugin());
 
 // --- Configuration ---
+const CONCURRENCY = 25; // user-preferred concurrency level
+const RETRIES = 2;
+const DELAY_MIN = 50;
+const DELAY_MAX = 200;
+
 const TRADEABLE_IDS_FILE = '../data/tradeable_ids.json';
 const PRICES_DIR = '../data/raw/prices';
 const PRICES_URL_TEMPLATE = (eaId) => `https://www.fut.gg/api/fut/player-prices/26/${eaId}/`;
 
 // --- Helpers ---
-const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+const randInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-async function ensureDirExists(dirPath) {
-    try {
-        await fs.mkdir(dirPath, { recursive: true });
-    } catch (error) {
-        if (error.code !== 'EEXIST') throw error;
+async function ensureDir(dir) {
+    await fs.mkdir(dir, { recursive: true }).catch(e => { if (e.code !== 'EEXIST') throw e; });
+}
+
+async function fileExists(filePath) {
+    try { await fs.access(filePath); return true; } catch { return false; }
+}
+
+// Robust Context Creator
+async function createSafeContext(browser) {
+    if (typeof browser.createBrowserContext === 'function') {
+        return await browser.createBrowserContext();
+    }
+    if (typeof browser.createIncognitoBrowserContext === 'function') {
+        return await browser.createIncognitoBrowserContext();
+    }
+    return browser.defaultBrowserContext();
+}
+
+// --- Fetching Logic ---
+async function fetchPrice(eaId, browser, pricesDir) {
+    let context = null;
+    let page = null;
+    const url = PRICES_URL_TEMPLATE(eaId);
+
+    for (let i = 0; i <= RETRIES; i++) {
+        try {
+            if (i > 0) await sleep(500 * i);
+
+            // Create lightweight context
+            context = await createSafeContext(browser);
+            page = await context.newPage();
+
+            // Block resources for speed (we only need the JSON text)
+            await page.setRequestInterception(true);
+            page.on('request', r => ['image','media','font','stylesheet'].includes(r.resourceType()) ? r.abort() : r.continue());
+
+            await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 10000 });
+            
+            // Extract body text (JSON)
+            const content = await page.evaluate(() => document.body.innerText);
+            if (!content) throw new Error("Empty body");
+            
+            const json = JSON.parse(content);
+            
+            // Close pages immediately
+            await page.close();
+            await context.close();
+            page = null; context = null;
+
+            // Process & Save
+            if (json && json.data && json.data.currentPrice) {
+                const priceData = {
+                    price: json.data.currentPrice.price,
+                    isExtinct: json.data.currentPrice.isExtinct
+                };
+                await fs.writeFile(path.join(pricesDir, `${eaId}.json`), JSON.stringify(priceData, null, 2));
+                return { id: eaId, status: 'success', price: priceData.price };
+            } else {
+                return { id: eaId, status: 'no_price_data' };
+            }
+
+        } catch (e) {
+            // Cleanup on error
+            if (page && !page.isClosed()) await page.close().catch(() => {});
+            if (context) await context.close().catch(() => {});
+
+            if (i === RETRIES) {
+                return { id: eaId, status: 'error', error: e.message };
+            }
+        }
     }
 }
 
-async function fetchWithPuppeteer(browser, url) {
-    const page = await browser.newPage();
-    await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
-    try {
-        await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 });
-        const content = await page.evaluate(() => document.body.innerText);
-        return JSON.parse(content);
-    } catch (err) {
-        console.warn(`⚠️ Failed to fetch ${url}: ${err.message}`);
-        return null;
-    } finally {
-        await page.close();
-    }
-}
-
-// --- Main ---
+// --- Main Runner ---
 (async () => {
-    console.log("💰 Starting Price Fetching Script...");
-    
-    const scriptDir = __dirname;
-    const idsPath = path.resolve(scriptDir, TRADEABLE_IDS_FILE);
-    const pricesDirAbs = path.resolve(scriptDir, PRICES_DIR);
-    
-    await ensureDirExists(pricesDirAbs);
+    console.log("💰 Starting TURBO Price Fetcher...");
+    const start = Date.now();
+    const root = __dirname;
+    const pricesDirAbs = path.resolve(root, PRICES_DIR);
+    const idsPath = path.resolve(root, TRADEABLE_IDS_FILE);
 
+    // Setup
+    await ensureDir(pricesDirAbs);
+
+    // Load IDs
     let tradeableIds = [];
     try {
         const raw = await fs.readFile(idsPath, 'utf-8');
         tradeableIds = JSON.parse(raw);
     } catch (e) {
-        console.log("ℹ️ No tradeable_ids.json found or empty. Skipping price fetch.");
+        console.log("ℹ️ No tradeable_ids.json found. Skipping.");
         return;
     }
 
@@ -58,31 +124,54 @@ async function fetchWithPuppeteer(browser, url) {
         return;
     }
 
-    console.log(`ℹ️ Fetching prices for ${tradeableIds.length} tradeable players...`);
-    
-    const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
-    
-    for (let i = 0; i < tradeableIds.length; i++) {
-        const eaId = tradeableIds[i];
-        const url = PRICES_URL_TEMPLATE(eaId);
-        
-        const json = await fetchWithPuppeteer(browser, url);
-        
-        if (json && json.data && json.data.currentPrice) {
-            const priceData = {
-                price: json.data.currentPrice.price,
-                isExtinct: json.data.currentPrice.isExtinct
-            };
-            await fs.writeFile(path.join(pricesDirAbs, `${eaId}.json`), JSON.stringify(priceData, null, 2));
-            console.log(`✅ [${i+1}/${tradeableIds.length}] Saved price for ${eaId}: ${priceData.price}`);
-        } else {
-            console.log(`❌ [${i+1}/${tradeableIds.length}] Failed/No price for ${eaId}`);
+    // Filter Existing Prices (Optional: Remove if you always want fresh prices)
+    // For prices, you usually want FRESH data, so we might NOT skip existing files.
+    // However, if you are recovering from a crash, skipping is helpful.
+    // Uncomment below to skip existing:
+    /*
+    const todo = [];
+    for (const id of tradeableIds) {
+        if (!await fileExists(path.join(pricesDirAbs, `${id}.json`))) {
+            todo.push(id);
         }
-        
-        // Small delay to be polite
-        await delay(500); 
+    }
+    */
+    const todo = [...tradeableIds]; // Fetch ALL prices fresh
+
+    console.log(`📋 Fetching prices for ${todo.length} players...`);
+
+    // Launch Browser
+    console.log("🕸️ Launching Browser...");
+    const browser = await puppeteer.launch({
+        headless: "new",
+        defaultViewport: null,
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
+
+    // Worker Pool
+    let processed = 0;
+    const total = todo.length;
+    
+    async function worker() {
+        while (todo.length > 0) {
+            const id = todo.shift();
+            await fetchPrice(id, browser, pricesDirAbs);
+            
+            processed++;
+            if (processed % 50 === 0 || processed === total) {
+                const pct = ((processed / total) * 100).toFixed(1);
+                const elapsed = (Date.now() - start) / 1000;
+                const rate = (processed / elapsed).toFixed(2);
+                console.log(`⚡ ${processed}/${total} (${pct}%) | Rate: ${rate} p/s | Elapsed: ${elapsed.toFixed(0)}s`);
+            }
+            await sleep(randInt(DELAY_MIN, DELAY_MAX));
+        }
     }
 
+    console.log(`🔥 Igniting ${CONCURRENCY} concurrent workers...`);
+    const workers = Array(CONCURRENCY).fill(null).map(() => worker());
+    await Promise.all(workers);
+
     await browser.close();
-    console.log("🎉 Price fetching complete.");
+    console.log(`🎉 Prices fetched in ${((Date.now() - start)/1000).toFixed(2)}s.`);
 })();
