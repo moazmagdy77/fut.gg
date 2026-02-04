@@ -1,6 +1,5 @@
-// model.1.get_ids.parallel.js --> Parallel Robust Fetcher (Puppeteer + Stealth)
-// Requires: puppeteer-extra, puppeteer-extra-plugin-stealth
-// Usage: CONCURRENCY=4 node model.1.get_ids.parallel.js
+// model.1.get_ids.js (Fixed: Robust Wait Strategy)
+// Fixes "No IDs found" by waiting for valid Regex matches, not just generic links.
 
 'use strict';
 
@@ -9,35 +8,36 @@ const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const fs = require('fs');
 const fsp = fs.promises;
 const path = require('path');
-const os = require('os');
 
 puppeteer.use(StealthPlugin());
 
-// --- Configuration (env overrides allowed) ---
-const TOP_PLAYER_PAGES = Number(process.env.TOTAL_PAGES || 334); // total pages to scrape
-const BATCH_SIZE       = Number(process.env.BATCH_SIZE   || 25); // pages per browser lifecycle
-const CONCURRENCY      = Math.max(1, Number(process.env.CONCURRENCY || 4)); // parallel workers per batch
-const MAX_RETRIES      = Math.max(1, Number(process.env.MAX_RETRIES  || 3));
-const HEADLESS         = process.env.HEADLESS === 'false' ? false : true; // set HEADLESS=false to watch
-const BLOCK_RESOURCES  = process.env.BLOCK_RESOURCES === 'false' ? false : true; // block heavy assets for speed
+// --- Configuration ---
+const TOP_PLAYER_PAGES = Number(process.env.TOTAL_PAGES || 334);
+const BATCH_SIZE       = Number(process.env.BATCH_SIZE   || 25);
+const CONCURRENCY      = Math.max(1, Number(process.env.CONCURRENCY || 5));
+const MAX_RETRIES      = Math.max(1, Number(process.env.MAX_RETRIES  || 5)); // Increased retries slightly
+const HEADLESS         = process.env.HEADLESS === 'false' ? false : true; 
 
-const baseUrl = 'https://www.fut.gg/players/?page=';
+const BASE_URL = 'https://www.fut.gg/players/?page=';
+// The ID regex we validated: 26-{id} at the end of the string
+const ID_REGEX = /26-(\d+)\/?$/;
 
-const dataDir   = path.resolve(__dirname, '..', 'data');
-const outputDir = path.join(dataDir, 'raw', 'r_objects');
+const DATA_DIR   = path.resolve(__dirname, '..', 'data');
+const TEMP_DIR   = path.join(DATA_DIR, 'raw', 'temp_ids');
+const FINAL_FILE = path.join(DATA_DIR, 'player_ids.json');
 
-const SELECTOR_READY = 'a[href*="/players/"]'; // wait for cards presence
-const NAV_TIMEOUT_MS = 90_000;
-const WAIT_READY_MS  = 60_000;
+// TIMEOUTS
+const NAV_TIMEOUT_MS = 60_000;
+const WAIT_READY_MS  = 30_000;
 
-// polite delay (randomized) between page tasks per worker
-const POLITE_DELAY_MIN_MS = 600;
-const POLITE_DELAY_MAX_MS = 1800;
+// Polite delay
+const POLITE_DELAY_MIN_MS = 500;
+const POLITE_DELAY_MAX_MS = 1500;
 
 // --- Helpers ---
 const sleep = (ms) => new Promise(res => setTimeout(res, ms));
 const randInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-const backoff = (attempt) => (5_000 * Math.pow(2, attempt - 1)) + randInt(0, 1_000);
+const backoff = (attempt) => (3_000 * Math.pow(2, attempt - 1)) + randInt(0, 1_000);
 
 const ensureDir = async (dir) => {
   if (!fs.existsSync(dir)) await fsp.mkdir(dir, { recursive: true });
@@ -49,263 +49,193 @@ const chunk = (arr, size) => {
   return out;
 };
 
-const outputPathFor = (i) => path.join(outputDir, `page_${i}.json`);
+const tempPathFor = (i) => path.join(TEMP_DIR, `ids_page_${i}.json`);
 
-// Write atomically (tmp -> rename) to avoid partial files on crash
 const writeJsonAtomic = async (filePath, obj) => {
   const tmp = `${filePath}.tmp`;
   await fsp.writeFile(tmp, JSON.stringify(obj, null, 2), 'utf8');
   await fsp.rename(tmp, filePath);
 };
 
-// Create a version-agnostic isolated browser context
+// --- Browser Setup ---
 async function createIsolatedContext(browser) {
-  if (typeof browser.createBrowserContext === 'function') {
-    // Newer Puppeteer (v22+)
-    return await browser.createBrowserContext();
-  }
-  if (typeof browser.createIncognitoBrowserContext === 'function') {
-    // Older Puppeteer
-    return await browser.createIncognitoBrowserContext();
-  }
-  console.warn('⚠️ Multiple contexts not supported by this Puppeteer build; using default context.');
+  if (typeof browser.createBrowserContext === 'function') return await browser.createBrowserContext();
+  if (typeof browser.createIncognitoBrowserContext === 'function') return await browser.createIncognitoBrowserContext();
   return browser.defaultBrowserContext();
 }
 
-function isClosableContext(browser, context) {
-  // Default context generally shouldn't be closed; incognito/custom contexts can be.
-  if (typeof context.isIncognito === 'function') {
-    return context.isIncognito();
-  }
-  // Fallback heuristic: compare with default context
-  try {
-    return context !== browser.defaultBrowserContext();
-  } catch {
-    return true;
-  }
-}
-
-// Create and configure a fresh page
-async function newConfiguredPage(context, browserUserAgent) {
+async function newConfiguredPage(context) {
   const page = await context.newPage();
-
-  // Use a UA without "Headless" if present. Stealth handles most bits, this just helps.
-  const ua = (browserUserAgent || '').replace(/Headless/i, '');
-  if (ua) await page.setUserAgent(ua);
-
   await page.setViewport({ width: 1366, height: 768 });
-
-  if (BLOCK_RESOURCES) {
-    await page.setRequestInterception(true);
-    page.on('request', req => {
-      const type = req.resourceType();
-      // Allow only what's likely needed for app logic
-      if (type === 'image' || type === 'media' || type === 'font') {
-        req.abort();
-      } else {
-        req.continue();
-      }
-    });
-  }
-
+  
+  // Aggressive blocking for speed
+  await page.setRequestInterception(true);
+  page.on('request', req => {
+    const type = req.resourceType();
+    if (['image', 'media', 'font', 'stylesheet', 'other'].includes(type)) req.abort();
+    else req.continue();
+  });
   return page;
 }
 
-// Core fetch with retries
-async function fetchOnePage(i, context, browserUserAgent) {
-  const url = `${baseUrl}${i}`;
-  const outputFilePath = outputPathFor(i);
+// --- Core Scraper ---
+async function fetchOnePage(i, context) {
+  const url = `${BASE_URL}${i}`;
+  const outFile = tempPathFor(i);
 
   for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
     let page = null;
     try {
-      console.log(`🔄 [p${i}] Visiting ${url} (Attempt ${attempt}/${MAX_RETRIES})`);
-      page = await newConfiguredPage(context, browserUserAgent);
-
-      // Go early; we'll still await a specific selector.
+      page = await newConfiguredPage(context);
+      
+      // 1. Navigate
       await page.goto(url, { timeout: NAV_TIMEOUT_MS, waitUntil: 'domcontentloaded' });
+      
+      // 2. THE FIX: Wait for DATA, not just selectors.
+      // This waits until the page has at least 5 links that match our specific ID pattern.
+      // It completely ignores the header "Players" link.
+      await page.waitForFunction((regexStr) => {
+          const re = new RegExp(regexStr);
+          const anchors = Array.from(document.querySelectorAll('a[href*="/players/"]'));
+          // Count how many links match the "26-{id}" pattern
+          const validMatches = anchors.filter(a => re.test(a.href)).length;
+          // Only return true if we found a reasonable number (e.g., > 5) implies grid loaded
+          return validMatches > 5; 
+      }, { timeout: WAIT_READY_MS }, ID_REGEX.source);
 
-      // Wait for an element that reliably indicates the content is there
-      await page.waitForSelector(SELECTOR_READY, { timeout: WAIT_READY_MS });
-      await sleep(3_000); // small settle time for client-side global state
+      // 3. Extract (Now guaranteed to have data)
+      const extractedIds = await page.evaluate((regexStr) => {
+        const regex = new RegExp(regexStr); 
+        const links = Array.from(document.querySelectorAll('a[href*="/players/"]'));
+        
+        return links
+          .map(el => {
+            const match = el.getAttribute('href').match(regex);
+            return match ? parseInt(match[1], 10) : null;
+          })
+          .filter(id => id !== null);
+      }, ID_REGEX.source);
 
-      const R_object = await page.evaluate(() => window.$R);
-
-      if (!R_object) {
-        throw new Error('window.$R not found on the page.');
+      if (!extractedIds || extractedIds.length === 0) {
+        throw new Error('Logic error: waitForFunction passed but extraction failed.');
       }
+      
+      const uniqueLocal = [...new Set(extractedIds)];
+      
+      await writeJsonAtomic(outFile, uniqueLocal);
+      console.log(`✅ [p${i}] Got ${uniqueLocal.length} IDs`);
+      return; 
 
-      await writeJsonAtomic(outputFilePath, R_object);
-      console.log(`✅ [p${i}] Saved ${path.basename(outputFilePath)}`);
-      return; // success
     } catch (err) {
-      console.warn(`⚠️ [p${i}] Attempt ${attempt} failed: ${err && err.message ? err.message : err}`);
-      if (attempt === MAX_RETRIES) {
-        const screenshotPath = path.join(process.cwd(), `error_screenshot_page_${i}.png`);
-        try {
-          if (page) await page.screenshot({ path: screenshotPath, fullPage: true });
-          console.log(`📸 [p${i}] Screenshot saved to ${screenshotPath}`);
-        } catch (e) {
-          console.warn(`⚠️ [p${i}] Could not capture screenshot: ${e.message}`);
-        }
-      } else {
-        const wait = backoff(attempt);
-        console.log(`⏳ [p${i}] Backing off for ${wait}ms before retry...`);
-        await sleep(wait);
-      }
+      console.warn(`⚠️ [p${i}] Attempt ${attempt} failed: ${err.message}`);
+      if (attempt < MAX_RETRIES) await sleep(backoff(attempt));
     } finally {
-      if (page) {
-        try { await page.close(); } catch (_) {}
-      }
+      if (page) await page.close().catch(() => {});
     }
   }
-
-  console.error(`❌ [p${i}] All attempts failed. Skipping.`);
+  console.error(`❌ [p${i}] Failed after ${MAX_RETRIES} attempts.`);
 }
 
-// Worker that pulls tasks from a shared index
-async function workerLoop(workerId, tasks, browser) {
+// --- Worker & Orchestration ---
+async function workerLoop(tasks, browser) {
   const context = await createIsolatedContext(browser);
-  const browserUserAgent = await browser.userAgent();
-
-  // Sneaky trick: each worker advances an atomic cursor via closure
-  const getNext = tasks.getNext;
-
   try {
-    for (;;) {
-      const i = getNext();
+    while (true) {
+      const i = tasks.getNext();
       if (i === null) break;
-
-      const out = outputPathFor(i);
-      if (fs.existsSync(out)) {
-        console.log(`🟡 [p${i}] Already downloaded. Skipping.`);
-      } else {
-        await fetchOnePage(i, context, browserUserAgent);
-        // Polite per-task delay (randomized) to stagger request timing
+      if (!fs.existsSync(tempPathFor(i))) {
+        await fetchOnePage(i, context);
         await sleep(randInt(POLITE_DELAY_MIN_MS, POLITE_DELAY_MAX_MS));
       }
     }
   } finally {
-    try {
-      if (isClosableContext(browser, context) && typeof context.close === 'function') {
-        await context.close();
-      }
-    } catch (_) {}
+    if (context.close) await context.close().catch(() => {});
   }
 }
 
-// Build a simple task dispenser for a batch
-function makeTaskDispenser(pageNumbers) {
+function makeTaskDispenser(items) {
   let idx = 0;
-  return {
-    getNext: () => {
-      if (idx >= pageNumbers.length) return null;
-      return pageNumbers[idx++];
+  return { getNext: () => (idx < items.length ? items[idx++] : null) };
+}
+
+// --- Final Merger ---
+async function mergeResults() {
+  console.log('\n🔗 Merging temporary files...');
+  const allIds = new Set();
+  
+  // Ensure the directory exists before reading
+  if (!fs.existsSync(TEMP_DIR)) {
+      console.log("⚠️ Temp directory not found (no new pages fetched).");
+      return;
+  }
+
+  const files = fs.readdirSync(TEMP_DIR).filter(f => f.startsWith('ids_page_') && f.endsWith('.json'));
+
+  if (files.length === 0) {
+    console.log('ℹ️ No new data files found to merge.');
+    return;
+  }
+
+  for (const file of files) {
+    try {
+      const data = JSON.parse(fs.readFileSync(path.join(TEMP_DIR, file)));
+      data.forEach(id => allIds.add(id));
+    } catch (e) {
+      console.warn(`⚠️ Corrupt file skipped: ${file}`);
     }
-  };
+  }
+
+  // Load existing IDs if we want to append (Optional, but safer)
+  if (fs.existsSync(FINAL_FILE)) {
+      try {
+          const existing = JSON.parse(fs.readFileSync(FINAL_FILE));
+          existing.forEach(id => allIds.add(id));
+      } catch(e) {}
+  }
+
+  const sortedIds = Array.from(allIds).sort((a, b) => a - b);
+  await fsp.writeFile(FINAL_FILE, JSON.stringify(sortedIds, null, 2));
+  
+  console.log(`\n🎉 SUCCESS: Total unique IDs: ${sortedIds.length}`);
+  console.log(`📂 Saved to: ${FINAL_FILE}`);
 }
 
 // --- Main ---
 (async () => {
-  await ensureDir(outputDir);
+  console.log("🚀 Starting Unified ID Scraper (Fixed Wait Strategy)...");
+  await ensureDir(TEMP_DIR);
 
   const allPages = Array.from({ length: TOP_PLAYER_PAGES }, (_, k) => k + 1);
   const batches = chunk(allPages, BATCH_SIZE);
 
   let browser = null;
 
-  for (let b = 0; b < batches.length; b++) {
-    const batch = batches[b];
+  try {
+    for (let b = 0; b < batches.length; b++) {
+      const batch = batches[b];
+      const todo = batch.filter(i => !fs.existsSync(tempPathFor(i)));
+      
+      if (todo.length === 0) continue;
 
-    // Filter out pages we already have to avoid launching a browser for nothing
-    const todo = batch.filter(i => !fs.existsSync(outputPathFor(i)));
-    if (todo.length === 0) {
-      console.log(`🧹 Batch ${b + 1}/${batches.length}: nothing to do (all ${batch.length} pages exist).`);
-      continue;
+      if (browser) await browser.close().catch(() => {});
+      browser = await puppeteer.launch({ 
+          headless: HEADLESS, 
+          defaultViewport: null,
+          args: ['--no-sandbox', '--disable-setuid-sandbox'] // Helper for stability
+      });
+
+      console.log(`\n📦 Batch ${b + 1}/${batches.length} (${todo.length} pages)`);
+      
+      const dispenser = makeTaskDispenser(todo);
+      const workers = Array(Math.min(CONCURRENCY, todo.length))
+        .fill(null)
+        .map(() => workerLoop(dispenser, browser));
+      
+      await Promise.all(workers);
     }
-
-    // Launch a fresh browser for this batch (memory & fingerprint reset)
-    if (browser) {
-      console.log(`\n🔄 Restarting browser for batch ${b + 1}...`);
-      try { await browser.close(); } catch (_) {}
-    }
-
-    console.log(`🚀 Launching new browser instance for batch ${b + 1}/${batches.length} (pages ${batch[0]}–${batch[batch.length - 1]})...`);
-    browser = await puppeteer.launch({
-      headless: HEADLESS,
-      // TIP: if you run in containers/CI, enable the two flags below:
-      // args: ['--no-sandbox', '--disable-setuid-sandbox'],
-      defaultViewport: null
-    });
-
-    // Spin up workers for this batch
-    const dispenser = makeTaskDispenser(todo);
-    const workerCount = Math.min(CONCURRENCY, Math.max(1, todo.length));
-    console.log(`🏃 Processing ${todo.length} page(s) with concurrency=${workerCount}...`);
-
-    const workers = [];
-    for (let w = 0; w < workerCount; w++) {
-      workers.push(workerLoop(w + 1, dispenser, browser));
-    }
-    await Promise.all(workers);
-    console.log(`✅ Finished batch ${b + 1}/${batches.length}.`);
+  } finally {
+    if (browser) await browser.close().catch(() => {});
   }
 
-  // Final shutdown of the main loop browser
-  if (browser) {
-    try {
-      console.log('🚪 Closing final browser instance...');
-      await Promise.race([
-        browser.close(),
-        new Promise((_, reject) => setTimeout(() => reject(new Error('Browser close timed out')), 15_000))
-      ]);
-      console.log('✅ Browser closed successfully.');
-    } catch (e) {
-      console.warn(`⚠️ Could not close browser gracefully: ${e.message}.`);
-    }
-  }
-
-  // --- RETRY LOGIC FOR FAILED PAGES ---
-  const failedPages = allPages.filter(i => !fs.existsSync(outputPathFor(i)));
-  
-  if (failedPages.length > 0) {
-    console.log(`\n⚠️ Found ${failedPages.length} failed pages. Attempting one final retry pass...`);
-    
-    // Launch a dedicated fresh browser for retries to clear any lingering bad state
-    const retryBrowser = await puppeteer.launch({
-      headless: HEADLESS,
-      // args: ['--no-sandbox', '--disable-setuid-sandbox'],
-      defaultViewport: null
-    });
-
-    try {
-        const dispenser = makeTaskDispenser(failedPages);
-        // Use full concurrency for the retry pass to get it done quickly
-        const workerCount = Math.min(CONCURRENCY, Math.max(1, failedPages.length));
-        
-        console.log(`🔄 Starting retry workers for pages: ${failedPages.join(', ')}`);
-        
-        const workers = [];
-        for (let w = 0; w < workerCount; w++) {
-          workers.push(workerLoop(w + 1, dispenser, retryBrowser));
-        }
-        
-        await Promise.all(workers);
-        console.log("✅ Retry pass completed.");
-        
-    } catch (err) {
-        console.error("❌ Retry pass encountered an error:", err);
-    } finally {
-        if (retryBrowser) {
-            await retryBrowser.close();
-            console.log('🚪 Retry browser closed.');
-        }
-    }
-  } else {
-    console.log("\n✨ No failed pages found. Clean run!");
-  }
-
-  console.log('🎉 Finished fetching raw data objects.');
-  // Force exit to prevent hanging on stray handles
-  process.exit(0);
+  await mergeResults();
 })();

@@ -9,9 +9,8 @@ base_dir = Path(__file__).resolve().parent
 # Define the initial sequential steps (Fetching & Parsing)
 # NOTE: We use sys.executable to ensure we use the ACTIVE venv python, not the system python
 initial_steps = [
-    ("🔎 Step 1: Scrape FUT.GG to get R objects", ["node", "model.1.get_ids.js"]),
-    ("📦 Step 2: Clean R objects to get player IDs", [sys.executable, "model.2.parse_r_objects.py"]),
-    ("📦 Step 3: Scrape player details and metaratings", ["node", "model.3.fetch.data.js"]),
+    ("🔎 Step 1: Scrape FUT.GG to get Player IDs", ["node", "model.1.get_ids.js"]),
+    ("📦 Step 2: Scrape player details and metaratings", ["node", "model.3.fetch.data.js"]),
 ]
 
 start = time.time()
