@@ -16,6 +16,11 @@ steps = [
     ("🔍 Step 3: Enrich with evo and all cleaning", [sys.executable, "club.3.clean.py"]),
 ]
 
+run_prices = input("\nDo you want to run Step 2b: Fetch prices (Tradeables)? (y/n): ").strip().lower()
+if run_prices != 'y':
+    print("Skipping Step 2b: Fetch prices...\n")
+    steps = [s for s in steps if "club.2b.fetch.prices.js" not in s[1]]
+
 start = time.time()
 
 # --- Run Data Pipeline ---

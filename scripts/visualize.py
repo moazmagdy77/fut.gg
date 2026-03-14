@@ -57,7 +57,14 @@ def load_data(file_path):
         if col in df.columns:
             df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0).astype(int)
 
-    float_cols = ['ggMeta', 'ggMetaSub', 'esMeta', 'esMetaSub', 'avgMeta', 'avgMetaSub', 'price']
+    # Calculate Responsiveness (Average of acceleration, sprintSpeed, agility, balance, reactions)
+    resp_attrs = ['acceleration', 'sprintSpeed', 'agility', 'balance', 'reactions']
+    if all(attr in df.columns for attr in resp_attrs):
+        df['responsiveness'] = df[resp_attrs].mean(axis=1)
+    else:
+        df['responsiveness'] = 0.0
+
+    float_cols = ['ggMeta', 'ggMetaSub', 'esMeta', 'esMetaSub', 'avgMeta', 'avgMetaSub', 'price', 'responsiveness']
     for col in float_cols:
         if col in df.columns:
             df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0.0)
@@ -99,11 +106,12 @@ def create_min_max_filter(container, column_name, label, step):
 st.sidebar.selectbox("Evolution", options=["All", True, False], format_func=lambda x: "Evo Players" if x is True else "Standard Players" if x is False else "All", key="evolution_filter")
 if st.session_state.get("evolution_filter") != "All": filters["evolution"] = st.session_state.evolution_filter
 
-create_min_max_filter(st.sidebar, "overall", "Overall", 1)
-create_min_max_filter(st.sidebar, "skillMoves", "Skill Moves", 1)
-create_min_max_filter(st.sidebar, "weakFoot", "Weak Foot", 1)
-create_min_max_filter(st.sidebar, "height", "Height (cm)", 1)
-create_min_max_filter(st.sidebar, "weight", "Weight (kg)", 1)
+with st.sidebar.expander("Base Characteristics"):
+    create_min_max_filter(st, "overall", "Overall", 1)
+    create_min_max_filter(st, "skillMoves", "Skill Moves", 1)
+    create_min_max_filter(st, "weakFoot", "Weak Foot", 1)
+    create_min_max_filter(st, "height", "Height (cm)", 1)
+    create_min_max_filter(st, "weight", "Weight (kg)", 1)
 
 with st.sidebar.expander("Detailed Meta Ratings"):
     create_min_max_filter(st, "avgMeta", "Avg On-Chem Meta", 0.1)
@@ -132,26 +140,27 @@ if all_ps_plus:
     st.sidebar.multiselect("PlayStyles+ (All)", sorted(list(all_ps_plus)), key="playstyles_plus_all_filter")
     if st.session_state.get("playstyles_plus_all_filter"): filters["playstyles_plus_all"] = st.session_state.playstyles_plus_all_filter
 
-if "ggAccelType" in df.columns: 
-    unique_gg_accel = sorted(df["ggAccelType"].dropna().unique())
-    if unique_gg_accel:
-        selected_gg_accel = st.sidebar.multiselect("GG Chem Accelerate Type", unique_gg_accel)
-        if selected_gg_accel:
-            filters["ggAccelType"] = selected_gg_accel
+with st.sidebar.expander("Accelerate Types"):
+    if "ggAccelType" in df.columns: 
+        unique_gg_accel = sorted(df["ggAccelType"].dropna().unique())
+        if unique_gg_accel:
+            selected_gg_accel = st.multiselect("GG Chem Accelerate Type", unique_gg_accel)
+            if selected_gg_accel:
+                filters["ggAccelType"] = selected_gg_accel
 
-if "esAccelType" in df.columns: 
-    unique_es_accel = sorted(df["esAccelType"].dropna().unique())
-    if unique_es_accel:
-        selected_es_accel = st.sidebar.multiselect("ES Chem Accelerate Type", unique_es_accel)
-        if selected_es_accel:
-            filters["esAccelType"] = selected_es_accel
+    if "esAccelType" in df.columns: 
+        unique_es_accel = sorted(df["esAccelType"].dropna().unique())
+        if unique_es_accel:
+            selected_es_accel = st.multiselect("ES Chem Accelerate Type", unique_es_accel)
+            if selected_es_accel:
+                filters["esAccelType"] = selected_es_accel
 
-if "subAccelType" in df.columns: 
-    unique_sub_accel = sorted(df["subAccelType"].dropna().unique())
-    if unique_sub_accel:
-        selected_sub_accel = st.sidebar.multiselect("Sub Accelerate Type", unique_sub_accel)
-        if selected_sub_accel:
-            filters["subAccelType"] = selected_sub_accel
+    if "subAccelType" in df.columns: 
+        unique_sub_accel = sorted(df["subAccelType"].dropna().unique())
+        if unique_sub_accel:
+            selected_sub_accel = st.multiselect("Sub Accelerate Type", unique_sub_accel)
+            if selected_sub_accel:
+                filters["subAccelType"] = selected_sub_accel
 
 with st.sidebar.expander("Role Familiarity"):
     st.checkbox("Has Role+", key="hasRolePlus_checkbox")
@@ -160,6 +169,7 @@ with st.sidebar.expander("Role Familiarity"):
     if st.session_state.get("hasRolePlusPlus_checkbox"): filters["hasRolePlusPlus"] = True
 
 with st.sidebar.expander("In-Game Stats"):
+    create_min_max_filter(st, "responsiveness", "Responsiveness", 0.1)
     for attr in attribute_filter_order:
         create_min_max_filter(st, attr, attr.replace("_", " ").title(), 1)
 
@@ -263,7 +273,7 @@ with tab1:
     st.markdown(f"### Player List ({filtered_df['player_origin_id'].nunique()} unique players, {len(filtered_df)} total entries)")
 
     columns_to_display = [
-        "commonName", "role", "overall", "avgMeta", 
+        "commonName", "role", "overall", "responsiveness", "avgMeta", 
         "ggMeta", "ggChemStyle", "ggAccelType", 
         "esMeta", "esChemStyle", "esAccelType",
         "avgMetaSub", "ggMetaSub", "esMetaSub", "subAccelType",
