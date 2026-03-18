@@ -83,6 +83,10 @@ df = load_data(data_dir / "club_final.json")
 if df.empty:
     st.stop()
 
+# Only present players with 80+ avgMetaSub
+if "avgMetaSub" in df.columns:
+    df = df[df["avgMetaSub"] >= 80]
+
 # --- Sidebar filters ---
 st.sidebar.header("Filter Players")
 

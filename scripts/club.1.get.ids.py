@@ -37,14 +37,20 @@ tradeable_ids = []
 for row in rows[1:]:
     cols = row.find_all("td")
     if cols and cols[location_idx].text.strip() == "CLUB":
-        ea_id = cols[id_idx].text.strip()
-        club_ids.append(ea_id)
-        
-        # Check if Untradeable is False
-        untradeable_text = cols[untradeable_idx].text.strip()
-        # Checks for "False" string or empty/falsy values depending on HTML format
-        if untradeable_text.lower() == "false":
-            tradeable_ids.append(ea_id)
+        try:
+            rating = int(cols[rating_idx].text.strip())
+        except (ValueError, IndexError):
+            rating = 0
+            
+        if rating >= 75:
+            ea_id = cols[id_idx].text.strip()
+            club_ids.append(ea_id)
+            
+            # Check if Untradeable is False
+            untradeable_text = cols[untradeable_idx].text.strip()
+            # Checks for "False" string or empty/falsy values depending on HTML format
+            if untradeable_text.lower() == "false":
+                tradeable_ids.append(ea_id)
 
 # Save CLUB IDs (Main list for data fetching)
 output_file_path = data_dir / "club_ids.json"
