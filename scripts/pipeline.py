@@ -38,7 +38,11 @@ for label, command in steps:
 print(f"\n🐙 Automating Git Push...")
 
 timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-commit_message = f"new players + prices [{timestamp}]"
+
+if run_prices == 'y':
+    commit_message = f"new players + prices [{timestamp}]"
+else:
+    commit_message = f"new players (prices not updated) [{timestamp}]"
 
 git_commands = [
     ["git", "add", "."],

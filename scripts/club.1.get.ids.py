@@ -42,15 +42,15 @@ for row in rows[1:]:
         except (ValueError, IndexError):
             rating = 0
             
+        ea_id = cols[id_idx].text.strip()
         if rating >= 75:
-            ea_id = cols[id_idx].text.strip()
             club_ids.append(ea_id)
             
-            # Check if Untradeable is False
-            untradeable_text = cols[untradeable_idx].text.strip()
-            # Checks for "False" string or empty/falsy values depending on HTML format
-            if untradeable_text.lower() == "false":
-                tradeable_ids.append(ea_id)
+        # Check if Untradeable is False
+        untradeable_text = cols[untradeable_idx].text.strip()
+        # Checks for "False" string or empty/falsy values depending on HTML format
+        if untradeable_text.lower() == "false":
+            tradeable_ids.append(ea_id)
 
 # Save CLUB IDs (Main list for data fetching)
 output_file_path = data_dir / "club_ids.json"

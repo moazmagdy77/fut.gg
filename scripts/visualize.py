@@ -83,10 +83,6 @@ df = load_data(data_dir / "club_final.json")
 if df.empty:
     st.stop()
 
-# Only present players with 80+ avgMetaSub
-if "avgMetaSub" in df.columns:
-    df = df[df["avgMetaSub"] >= 80]
-
 # --- Sidebar filters ---
 st.sidebar.header("Filter Players")
 
@@ -230,6 +226,8 @@ if filters:
 tab1, tab2 = st.tabs(["Club Squad", "Sell Now 💰"])
 
 with tab1:
+    tab1_df = filtered_df[filtered_df["avgMetaSub"] >= 80] if "avgMetaSub" in filtered_df.columns else filtered_df.copy()
+
     st.subheader("Top Player Ratings")
     col1, col2 = st.columns(2)
 
@@ -270,11 +268,11 @@ with tab1:
                         st.metric(label=label, value=f"{row.get(metric_col, 0.0):.2f}")
 
 
-    display_top_metric(col1, filtered_df, "avgMeta", "Top Average On-Chem Meta", n=18)
-    display_top_metric(col2, filtered_df, "avgMetaSub", "Top Average Sub Meta", n=18)
+    display_top_metric(col1, tab1_df, "avgMeta", "Top Average On-Chem Meta", n=5)
+    display_top_metric(col2, tab1_df, "avgMetaSub", "Top Average Sub Meta", n=5)
 
     st.markdown("---")
-    st.markdown(f"### Player List ({filtered_df['player_origin_id'].nunique()} unique players, {len(filtered_df)} total entries)")
+    st.markdown(f"### Player List ({tab1_df['player_origin_id'].nunique()} unique players, {len(tab1_df)} total entries)")
 
     columns_to_display = [
         "commonName", "role", "overall", "responsiveness", "avgMeta", 
@@ -287,7 +285,7 @@ with tab1:
 
     final_display_columns = [col for col in columns_to_display if col in df.columns]
 
-    display_df = filtered_df.copy()
+    display_df = tab1_df.copy()
     for col in ["hasRolePlus", "hasRolePlusPlus"]:
         if col in display_df.columns:
             display_df[col] = display_df[col].apply(lambda x: "✅" if x else "❌")
@@ -301,6 +299,17 @@ with tab1:
 
 with tab2:
     st.header("Sell Now")
+    
+    import os
+    import datetime
+    prices_dir = data_dir / "raw" / "prices"
+    if prices_dir.exists():
+        latest_file = max(prices_dir.glob('*.json'), key=os.path.getmtime, default=None)
+        if latest_file:
+            last_mod_time = os.path.getmtime(latest_file)
+            dt_str = datetime.datetime.fromtimestamp(last_mod_time).strftime('%Y-%m-%d %H:%M:%S')
+            st.info(f"Prices Last Updated at: **{dt_str}**")
+
     if 'price' in filtered_df.columns:
         # Filter for players who have a price (greater than 0) and remove duplicates (one row per player ID usually sufficient for selling)
         sell_df = filtered_df[filtered_df['price'] > 0].copy()
