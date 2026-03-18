@@ -413,8 +413,8 @@ def process_player(player_def, is_evo, model_manager, maps):
         # Safety clamp
         if gg_meta_sub and gg_meta and gg_meta_sub > gg_meta: gg_meta_sub = gg_meta; meta_entry["ggMetaSub"] = round(gg_meta, 2)
         
-        meta_entry["avgMeta"] = round((gg_meta + 2*es_meta)/3, 2) if (gg_meta and es_meta) else (gg_meta or es_meta)
-        meta_entry["avgMetaSub"] = round((gg_meta_sub + 2*es_meta_sub)/3, 2) if (gg_meta_sub and es_meta_sub) else (gg_meta_sub or es_meta_sub)
+        meta_entry["avgMeta"] = round((gg_meta + es_meta)/2, 2) if (gg_meta and es_meta) else (gg_meta or es_meta)
+        meta_entry["avgMetaSub"] = round((gg_meta_sub + es_meta_sub)/2, 2) if (gg_meta_sub and es_meta_sub) else (gg_meta_sub or es_meta_sub)
 
         player_output["metaRatings"].append(meta_entry)
 
