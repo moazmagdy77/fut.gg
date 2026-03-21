@@ -78,7 +78,8 @@ async function fetchPrice(eaId, browser, pricesDir) {
             if (json && json.data && json.data.currentPrice) {
                 const priceData = {
                     price: json.data.currentPrice.price,
-                    isExtinct: json.data.currentPrice.isExtinct
+                    isExtinct: json.data.currentPrice.isExtinct,
+                    discardValue: json.data.overview ? json.data.overview.discardValue : 0
                 };
                 await fs.writeFile(path.join(pricesDir, `${eaId}.json`), JSON.stringify(priceData, null, 2));
                 return { id: eaId, status: 'success', price: priceData.price };

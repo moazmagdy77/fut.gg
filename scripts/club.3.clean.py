@@ -280,6 +280,7 @@ def process_player(player_def, is_evo, model_manager, maps):
     player_output["roles+"]  = [maps["roles_plus_map"].get(str(r)) for r in (player_def.get("rolesPlus") or []) if str(r) in maps["roles_plus_map"]]
     player_output["roles++"] = [maps["roles_plus_plus_map"].get(str(r)) for r in (player_def.get("rolesPlusPlus") or []) if str(r) in maps["roles_plus_plus_map"]]
     player_output["bodyType"] = maps["bodytype_code_map"].get(str(player_def.get("bodytypeCode")))
+    player_output["rarity"] = player_def.get("rarity", {}).get("name")
 
     # Load Price
     price_file = PRICES_DIR / f"{player_output['eaId']}.json"
@@ -288,9 +289,11 @@ def process_player(player_def, is_evo, model_manager, maps):
         if price_data:
             player_output["price"] = price_data.get("price")
             player_output["isExtinct"] = price_data.get("isExtinct")
+            player_output["discardValue"] = price_data.get("discardValue")
     else:
         player_output["price"] = None
         player_output["isExtinct"] = None
+        player_output["discardValue"] = None
 
     sub_accel_type = calculate_acceleration_type(
         base_attributes.get("attributeAcceleration"), base_attributes.get("attributeAgility"),

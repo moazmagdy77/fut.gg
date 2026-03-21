@@ -64,7 +64,7 @@ def load_data(file_path):
     else:
         df['responsiveness'] = 0.0
 
-    float_cols = ['ggMeta', 'ggMetaSub', 'esMeta', 'esMetaSub', 'avgMeta', 'avgMetaSub', 'price', 'responsiveness']
+    float_cols = ['ggMeta', 'ggMetaSub', 'esMeta', 'esMetaSub', 'avgMeta', 'avgMetaSub', 'price', 'responsiveness', 'discardValue']
     for col in float_cols:
         if col in df.columns:
             df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0.0)
@@ -310,27 +310,53 @@ with tab2:
             dt_str = datetime.datetime.fromtimestamp(last_mod_time).strftime('%Y-%m-%d %H:%M:%S')
             st.info(f"Prices Last Updated at: **{dt_str}**")
 
-    if 'price' in filtered_df.columns:
+    if 'price' in df.columns:
         # Filter for players who have a price (greater than 0) and remove duplicates (one row per player ID usually sufficient for selling)
-        sell_df = filtered_df[filtered_df['price'] > 0].copy()
+        sell_df = df[df['price'] > 0].copy()
         
+        # Deduplicate by player ID to show one line per card
+        sell_df = sell_df.drop_duplicates(subset=['__true_player_id'])
+        
+        # Add Rarity filter
+        if 'rarity' in sell_df.columns:
+            unique_rarities = sorted([r for r in sell_df['rarity'].dropna().unique() if str(r).strip() != ""])
+            if unique_rarities:
+                selected_rarities = st.multiselect("Rarity", unique_rarities, key="sell_now_rarity")
+                if selected_rarities:
+                    sell_df = sell_df[sell_df['rarity'].isin(selected_rarities)]
+        
+        # Calculate sums
+        total_price = sell_df['price'].sum()
+        total_discard = sell_df['discardValue'].sum() if 'discardValue' in sell_df.columns else 0
+        
+        # Show totals
+        col1, col2 = st.columns(2)
+        col1.metric("Total Market Value", f"{int(total_price):,}")
+        col2.metric("Total Discard Value", f"{int(total_discard):,}")
+        
+        st.markdown("---")
+
         if sell_df.empty:
-            st.info("No tradeable players with price data found in the current filtered selection.")
+            st.info("No tradeable players with price data found in the current selection.")
         else:
             # Sort by price descending
             sell_df = sell_df.sort_values(by='price', ascending=False)
             
-            # Deduplicate by player ID to show one line per card
-            sell_df = sell_df.drop_duplicates(subset=['__true_player_id'])
-
             st.markdown(f"Found **{len(sell_df)}** tradeable players.")
 
             # Prepare columns for display
             sell_cols = ["commonName", "overall", "price", "isExtinct", "avgMeta", "positions"]
+            if 'discardValue' in sell_df.columns:
+                sell_cols.insert(3, "discardValue")
+            if 'rarity' in sell_df.columns:
+                sell_cols.insert(2, "rarity")
+            
             sell_display = sell_df[sell_cols].copy()
             
             # Format price
             sell_display['price'] = sell_display['price'].apply(lambda x: f"{int(x):,}")
+            if 'discardValue' in sell_display.columns:
+                sell_display['discardValue'] = sell_display['discardValue'].apply(lambda x: f"{int(x):,}")
             
             st.dataframe(sell_display, use_container_width=True, hide_index=True)
     else:
