@@ -39,6 +39,9 @@ except ValueError: rarity_idx = -1
 try: position_idx = headers.index("Position")
 except ValueError: position_idx = -1
 
+try: discard_idx = headers.index("Discard Value")
+except ValueError: discard_idx = -1
+
 # Extract IDs
 club_ids = []
 tradeable_ids = []
@@ -71,7 +74,7 @@ for row in rows[1:]:
                 "avgMeta": 0.0,
                 "isExtinct": False,
                 "price": 0,
-                "discardValue": 0
+                "discardValue": int(cols[discard_idx].text.strip()) if discard_idx != -1 and cols[discard_idx].text.strip().isdigit() else 0
             })
 
 # Save CLUB IDs (Main list for data fetching)

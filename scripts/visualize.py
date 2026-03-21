@@ -334,14 +334,12 @@ with tab2:
                     try:
                         with open(pfile, "r", encoding="utf-8") as pf:
                             data = json.load(pf)
-                            return data.get("price", 0), data.get("discardValue", 0)
+                            return data.get("price", 0)
                     except:
                         pass
-                return 0, 0
+                return 0
                 
-            prices_discards = trad_df["__true_player_id"].apply(load_price)
-            trad_df["price"] = [p[0] for p in prices_discards]
-            trad_df["discardValue"] = [p[1] for p in prices_discards]
+            trad_df["price"] = trad_df["__true_player_id"].apply(load_price)
             
             sell_df = trad_df.copy()
         else:
