@@ -314,21 +314,37 @@ with tab2:
             st.info(f"Prices Last Updated at: **{dt_str}**")
 
     import json
-    tradeable_file = data_dir / "tradeable_ids.json"
-    tradeable_ids = []
+    tradeable_file = data_dir / "tradeable_details.json"
+    tradeable_details = []
     if tradeable_file.exists():
         try:
-            with open(tradeable_file, "r") as f:
-                tradeable_ids = json.load(f)
+            with open(tradeable_file, "r", encoding="utf-8") as f:
+                tradeable_details = json.load(f)
         except Exception:
             pass
 
     if 'price' in df.columns:
-        if tradeable_ids:
-            # Show all tradeable players, even if their price wasn't fetched/isn't > 0
-            sell_df = df[df['__true_player_id'].isin(map(str, tradeable_ids))].copy()
+        if tradeable_details:
+            trad_df = pd.DataFrame(tradeable_details)
+            prices_dir = data_dir / "raw" / "prices"
+            
+            def load_price(ea_id):
+                pfile = prices_dir / f"{ea_id}.json"
+                if pfile.exists():
+                    try:
+                        with open(pfile, "r", encoding="utf-8") as pf:
+                            data = json.load(pf)
+                            return data.get("price", 0), data.get("discardValue", 0)
+                    except:
+                        pass
+                return 0, 0
+                
+            prices_discards = trad_df["__true_player_id"].apply(load_price)
+            trad_df["price"] = [p[0] for p in prices_discards]
+            trad_df["discardValue"] = [p[1] for p in prices_discards]
+            
+            sell_df = trad_df.copy()
         else:
-            # Fallback for older data
             sell_df = df[df['price'] > 0].copy()
             
         # Deduplicate by player ID to show one line per card

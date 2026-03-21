@@ -30,9 +30,19 @@ try:
 except ValueError:
     untradeable_idx = 12
 
+try: name_idx = headers.index("Name")
+except ValueError: name_idx = -1
+
+try: rarity_idx = headers.index("Rarity")
+except ValueError: rarity_idx = -1
+
+try: position_idx = headers.index("Position")
+except ValueError: position_idx = -1
+
 # Extract IDs
 club_ids = []
 tradeable_ids = []
+tradeable_details = []
 
 for row in rows[1:]:
     cols = row.find_all("td")
@@ -51,6 +61,18 @@ for row in rows[1:]:
         # Checks for "False" string or empty/falsy values depending on HTML format
         if untradeable_text.lower() == "false":
             tradeable_ids.append(ea_id)
+            
+            tradeable_details.append({
+                "__true_player_id": ea_id,
+                "commonName": cols[name_idx].text.strip() if name_idx != -1 else "Unknown",
+                "overall": rating,
+                "rarity": cols[rarity_idx].text.strip() if rarity_idx != -1 else "Unknown",
+                "positions": cols[position_idx].text.strip() if position_idx != -1 else "Unknown",
+                "avgMeta": 0.0,
+                "isExtinct": False,
+                "price": 0,
+                "discardValue": 0
+            })
 
 # Save CLUB IDs (Main list for data fetching)
 output_file_path = data_dir / "club_ids.json"
@@ -62,5 +84,11 @@ tradeable_file_path = data_dir / "tradeable_ids.json"
 with open(tradeable_file_path, "w") as out:
     json.dump(tradeable_ids, out, indent=2)
 
+# Save TRADEABLE Details
+tradeable_details_path = data_dir / "tradeable_details.json"
+with open(tradeable_details_path, "w", encoding="utf-8") as out:
+    json.dump(tradeable_details, out, indent=2)
+
 print(f"Extracted {len(club_ids)} CLUB Player IDs -> {output_file_path}")
 print(f"Extracted {len(tradeable_ids)} Tradeable Player IDs -> {tradeable_file_path}")
+print(f"Extracted {len(tradeable_details)} Tradeable Player Details -> {tradeable_details_path}")
