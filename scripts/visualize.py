@@ -343,8 +343,15 @@ with tab2:
         trad_df["price"] = pd.to_numeric(trad_df["price"], errors="coerce").fillna(0).astype(int)
         trad_df["discardValue"] = pd.to_numeric(trad_df.get("discardValue", 0), errors="coerce").fillna(0).astype(int)
         
+        with open("debug_prices.txt", "w") as dbg:
+            dbg.write(f"prices_dir = {prices_dir}\n")
+            dbg.write(f"total loaded price = {trad_df['price'].sum()}\n")
+            dbg.write(f"missing files = {(trad_df['price'] == 0).sum()}\n")
+
         sell_df = trad_df.copy()
     else:
+        with open("debug_prices.txt", "w") as dbg:
+            dbg.write("tradeable_details was empty!\n")
         sell_df = pd.DataFrame()
         
     # Deduplicate by player ID to show one line per card
@@ -371,9 +378,9 @@ with tab2:
     st.markdown("---")
 
     if sell_df.empty:
-        st.info("No tradeable players with price data found in the current selection.")
+        st.info("No tradeable players found.")
     else:
-        # Sort by price descending
+        # Sort by price descending initially
         sell_df = sell_df.sort_values(by='price', ascending=False)
         
         st.markdown(f"Found **{len(sell_df)}** tradeable players.")
@@ -387,9 +394,13 @@ with tab2:
         
         sell_display = sell_df[sell_cols].copy()
         
-        # Format price
-        sell_display['price'] = sell_display['price'].apply(lambda x: f"{int(x):,}")
-        if 'discardValue' in sell_display.columns:
-            sell_display['discardValue'] = sell_display['discardValue'].apply(lambda x: f"{int(x):,}")
-        
-        st.dataframe(sell_display, use_container_width=True, hide_index=True)
+        # Use native Streamlit column configuration to format numbers properly without breaking sorting
+        st.dataframe(
+            sell_display,
+            use_container_width=True,
+            hide_index=True,
+            column_config={
+                "price": st.column_config.NumberColumn("Price", format="%d", help="Market Price"),
+                "discardValue": st.column_config.NumberColumn("Discard Value", format="%d", help="Quick Sell Value")
+            }
+        )
