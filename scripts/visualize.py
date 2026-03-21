@@ -313,10 +313,24 @@ with tab2:
             dt_str = datetime.datetime.fromtimestamp(last_mod_time).strftime('%Y-%m-%d %H:%M:%S')
             st.info(f"Prices Last Updated at: **{dt_str}**")
 
+    import json
+    tradeable_file = data_dir / "tradeable_ids.json"
+    tradeable_ids = []
+    if tradeable_file.exists():
+        try:
+            with open(tradeable_file, "r") as f:
+                tradeable_ids = json.load(f)
+        except Exception:
+            pass
+
     if 'price' in df.columns:
-        # Filter for players who have a price (greater than 0) and remove duplicates (one row per player ID usually sufficient for selling)
-        sell_df = df[df['price'] > 0].copy()
-        
+        if tradeable_ids:
+            # Show all tradeable players, even if their price wasn't fetched/isn't > 0
+            sell_df = df[df['__true_player_id'].isin(map(str, tradeable_ids))].copy()
+        else:
+            # Fallback for older data
+            sell_df = df[df['price'] > 0].copy()
+            
         # Deduplicate by player ID to show one line per card
         sell_df = sell_df.drop_duplicates(subset=['__true_player_id'])
         
