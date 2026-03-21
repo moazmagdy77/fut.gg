@@ -59,16 +59,16 @@ async function fetchPrice(eaId, browser, pricesDir) {
 
             // Block resources for speed (we only need the JSON text)
             await page.setRequestInterception(true);
-            page.on('request', r => ['image','media','font','stylesheet'].includes(r.resourceType()) ? r.abort() : r.continue());
+            page.on('request', r => ['image', 'media', 'font', 'stylesheet'].includes(r.resourceType()) ? r.abort() : r.continue());
 
             await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 10000 });
-            
+
             // Extract body text (JSON)
             const content = await page.evaluate(() => document.body.innerText);
             if (!content) throw new Error("Empty body");
-            
+
             const json = JSON.parse(content);
-            
+
             // Close pages immediately
             await page.close();
             await context.close();
@@ -76,10 +76,15 @@ async function fetchPrice(eaId, browser, pricesDir) {
 
             // Process & Save
             if (json && json.data && json.data.currentPrice) {
+                const parseWholeNum = val => {
+                    if (val == null) return 0;
+                    const parsed = parseInt(String(val).replace(/,/g, ''), 10);
+                    return isNaN(parsed) ? 0 : parsed;
+                };
                 const priceData = {
-                    price: json.data.currentPrice.price,
+                    price: parseWholeNum(json.data.currentPrice.price),
                     isExtinct: json.data.currentPrice.isExtinct,
-                    discardValue: json.data.overview ? json.data.overview.discardValue : 0
+                    discardValue: json.data.overview ? parseWholeNum(json.data.overview.discardValue) : 0
                 };
                 await fs.writeFile(path.join(pricesDir, `${eaId}.json`), JSON.stringify(priceData, null, 2));
                 return { id: eaId, status: 'success', price: priceData.price };
@@ -89,8 +94,8 @@ async function fetchPrice(eaId, browser, pricesDir) {
 
         } catch (e) {
             // Cleanup on error
-            if (page && !page.isClosed()) await page.close().catch(() => {});
-            if (context) await context.close().catch(() => {});
+            if (page && !page.isClosed()) await page.close().catch(() => { });
+            if (context) await context.close().catch(() => { });
 
             if (i === RETRIES) {
                 return { id: eaId, status: 'error', error: e.message };
@@ -152,12 +157,12 @@ async function fetchPrice(eaId, browser, pricesDir) {
     // Worker Pool
     let processed = 0;
     const total = todo.length;
-    
+
     async function worker() {
         while (todo.length > 0) {
             const id = todo.shift();
             await fetchPrice(id, browser, pricesDirAbs);
-            
+
             processed++;
             if (processed % 50 === 0 || processed === total) {
                 const pct = ((processed / total) * 100).toFixed(1);
@@ -174,5 +179,5 @@ async function fetchPrice(eaId, browser, pricesDir) {
     await Promise.all(workers);
 
     await browser.close();
-    console.log(`🎉 Prices fetched in ${((Date.now() - start)/1000).toFixed(2)}s.`);
+    console.log(`🎉 Prices fetched in ${((Date.now() - start) / 1000).toFixed(2)}s.`);
 })();

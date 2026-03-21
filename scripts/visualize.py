@@ -67,6 +67,9 @@ def load_data(file_path):
     float_cols = ['ggMeta', 'ggMetaSub', 'esMeta', 'esMetaSub', 'avgMeta', 'avgMetaSub', 'price', 'responsiveness', 'discardValue']
     for col in float_cols:
         if col in df.columns:
+            if df[col].dtype == object:
+                # Remove any formatting commas before conversion
+                df[col] = df[col].astype(str).str.replace(',', '', regex=False)
             df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0.0)
 
     # Recompute role familiarity flags based on the current role
