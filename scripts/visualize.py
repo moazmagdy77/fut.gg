@@ -343,15 +343,8 @@ with tab2:
         trad_df["price"] = pd.to_numeric(trad_df["price"], errors="coerce").fillna(0).astype(int)
         trad_df["discardValue"] = pd.to_numeric(trad_df.get("discardValue", 0), errors="coerce").fillna(0).astype(int)
         
-        with open("debug_prices.txt", "w") as dbg:
-            dbg.write(f"prices_dir = {prices_dir}\n")
-            dbg.write(f"total loaded price = {trad_df['price'].sum()}\n")
-            dbg.write(f"missing files = {(trad_df['price'] == 0).sum()}\n")
-
         sell_df = trad_df.copy()
     else:
-        with open("debug_prices.txt", "w") as dbg:
-            dbg.write("tradeable_details was empty!\n")
         sell_df = pd.DataFrame()
         
     # Deduplicate by player ID to show one line per card

@@ -74,7 +74,7 @@ for row in rows[1:]:
                 "avgMeta": 0.0,
                 "isExtinct": False,
                 "price": 0,
-                "discardValue": int(cols[discard_idx].text.strip()) if discard_idx != -1 and cols[discard_idx].text.strip().isdigit() else 0
+                "discardValue": int(cols[discard_idx].text.strip().replace(",", "").replace(".", "")) if discard_idx != -1 and cols[discard_idx].text.strip().replace(",", "").replace(".", "").isdigit() else 0
             })
 
 # Save CLUB IDs (Main list for data fetching)
