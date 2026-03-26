@@ -33,6 +33,9 @@ except ValueError:
 try: name_idx = headers.index("Name")
 except ValueError: name_idx = -1
 
+try: lastname_idx = headers.index("Lastname")
+except ValueError: lastname_idx = -1
+
 try: rarity_idx = headers.index("Rarity")
 except ValueError: rarity_idx = -1
 
@@ -67,7 +70,12 @@ for row in rows[1:]:
             
             tradeable_details.append({
                 "__true_player_id": ea_id,
-                "commonName": cols[name_idx].text.strip() if name_idx != -1 else "Unknown",
+                "commonName": (
+                    (cols[name_idx].text.strip() + " " + cols[lastname_idx].text.strip()).strip()
+                    if name_idx != -1 and lastname_idx != -1
+                    else cols[name_idx].text.strip() if name_idx != -1
+                    else "Unknown"
+                ),
                 "overall": rating,
                 "rarity": cols[rarity_idx].text.strip() if rarity_idx != -1 else "Unknown",
                 "positions": cols[position_idx].text.strip() if position_idx != -1 else "Unknown",
