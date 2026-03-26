@@ -393,6 +393,7 @@ with tab2:
             use_container_width=True,
             hide_index=True,
             column_config={
+                "commonName": st.column_config.TextColumn("Name", width="medium"),
                 "price": st.column_config.NumberColumn("Price", format="%d", help="Market Price"),
                 "discardValue": st.column_config.NumberColumn("Discard Value", format="%d", help="Quick Sell Value")
             }
