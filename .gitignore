@@ -1,13 +1,9 @@
-# Ignore generated datasets
+node_modules/
+__pycache__/
+.DS_Store
+.env
+# Ignore generated datasets and models
 data/*.csv
-data/*.json
+models/*.pkl
 data/raw/*
 !data/raw/prices/
-
-# 🛡️ THE FIX: Explicitly track static configuration inputs!
-!data/maps.json
-!data/evolab.json
-!data/club-analyzer.html
-
-# Ignore ML Models
-models/*.pkl
