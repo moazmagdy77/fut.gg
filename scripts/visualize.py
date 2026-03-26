@@ -325,6 +325,9 @@ with tab2:
 
     if tradeable_details:
         trad_df = pd.DataFrame(tradeable_details)
+        # Override commonName with the full name from API data (club_final.json)
+        api_names = df.drop_duplicates(subset=["__true_player_id"]).set_index("__true_player_id")["commonName"]
+        trad_df["commonName"] = trad_df["__true_player_id"].map(api_names).fillna(trad_df["commonName"])
         prices_dir = data_dir / "raw" / "prices"
         
         def load_price(ea_id):
