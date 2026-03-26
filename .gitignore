@@ -2,12 +2,8 @@ node_modules/
 __pycache__/
 .DS_Store
 .env
-
-# Ignore generated datasets
+# Ignore generated datasets and models
 data/*.csv
-data/*.json
+models/*.pkl
 data/raw/*
 !data/raw/prices/
-
-# Ignore ML Models
-models/*.pkl
