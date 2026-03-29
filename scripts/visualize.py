@@ -156,7 +156,7 @@ else:
 
 filters = {}
 
-def create_min_max_filter(container, column_name, label, step):
+def create_min_max_filter(container, column_name, label, step, key_suffix=""):
     if column_name in df.columns and pd.api.types.is_numeric_dtype(df[column_name]):
         numeric_col = df[column_name].dropna()
         if not numeric_col.empty and numeric_col.min() != numeric_col.max():
@@ -165,8 +165,8 @@ def create_min_max_filter(container, column_name, label, step):
             fmt = "%d" if is_int else "%.1f"
             
             c1, c2 = container.columns(2)
-            user_min = c1.number_input(f"Min {label}", value=min_val, min_value=min_val, max_value=max_val, step=step, format=fmt, key=f"{column_name}_min")
-            user_max = c2.number_input(f"Max {label}", value=max_val, min_value=min_val, max_value=max_val, step=step, format=fmt, key=f"{column_name}_max")
+            user_min = c1.number_input(f"Min {label}", value=min_val, min_value=min_val, max_value=max_val, step=step, format=fmt, key=f"{column_name}_min{key_suffix}")
+            user_max = c2.number_input(f"Max {label}", value=max_val, min_value=min_val, max_value=max_val, step=step, format=fmt, key=f"{column_name}_max{key_suffix}")
             
             if user_min > min_val or user_max < max_val:
                  filters[column_name] = (user_min, user_max)
@@ -182,8 +182,10 @@ with st.sidebar.expander("Base Characteristics"):
     create_min_max_filter(st, "weight", "Weight (kg)", 1)
 
 with st.sidebar.expander("Detailed Meta Ratings"):
-    create_min_max_filter(st, "avgMeta", "Avg On-Chem Meta", 0.1)
-    create_min_max_filter(st, "avgMetaSub", "Avg Sub Meta", 0.1)
+    # Clear session state naturally by linking the slider key to dynamic weights so they reset on change
+    key_suf = f"_{es_weight}_{gg_weight}"
+    create_min_max_filter(st, "avgMeta", "Avg On-Chem Meta", 0.1, key_suffix=key_suf)
+    create_min_max_filter(st, "avgMetaSub", "Avg Sub Meta", 0.1, key_suffix=key_suf)
     create_min_max_filter(st, "ggMeta", "GG Meta", 0.1)
     create_min_max_filter(st, "ggMetaSub", "GG Meta (Sub)", 0.1)
     create_min_max_filter(st, "esMeta", "ES Meta", 0.1)
