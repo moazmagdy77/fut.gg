@@ -8,6 +8,15 @@ st.set_page_config(layout="wide")
 # Define data directory
 data_dir = Path(__file__).resolve().parents[1] / "data"
 
+maps_path = data_dir / "maps.json"
+chem_style_boosts = []
+try:
+    with open(maps_path, 'r', encoding='utf-8') as f:
+        maps_data = json.load(f)
+        chem_style_boosts = maps_data.get("ChemistryStylesBoosts", [])
+except Exception:
+    pass
+
 # This list helps define the order of attributes in the final display
 attribute_filter_order = [
     "acceleration", "sprintSpeed", "positioning", "finishing", "shotPower", "longShots",
@@ -79,6 +88,42 @@ def load_data(file_path):
         
     df['hasRolePlus'] = df.apply(lambda row: row.get('role') in row.get('roles+', []), axis=1)
     df['hasRolePlusPlus'] = df.apply(lambda row: row.get('role') in row.get('roles++', []), axis=1)
+
+    def compute_lengthy(accel, agility, strength, height, gender):
+        try:
+            if pd.isna(accel) or pd.isna(agility) or pd.isna(strength) or pd.isna(height):
+                return False
+            accel = int(accel); agility = int(agility); strength = int(strength); height = int(height)
+        except Exception:
+            return False
+            
+        is_female = str(gender).lower().startswith("f") if pd.notna(gender) else False
+        len_height_ok = (height >= 165) if is_female else (height >= 185)
+        
+        return (strength >= 65 and (strength - agility) >= 4 and accel >= 40 and len_height_ok)
+
+    def row_can_be_lengthy(row):
+        b_accel = row.get("acceleration", 0)
+        b_agil = row.get("agility", 0)
+        b_str = row.get("strength", 0)
+        h = row.get("height", 0)
+        g = row.get("gender", "Male")
+        
+        if compute_lengthy(b_accel, b_agil, b_str, h, g):
+            return True
+        for chem in chem_style_boosts:
+            b = chem.get("threeChemistryModifiers", {})
+            na = min(int(b_accel) + int(b.get("attributeAcceleration", 0)), 99)
+            nag = min(int(b_agil) + int(b.get("attributeAgility", 0)), 99)
+            ns = min(int(b_str) + int(b.get("attributeStrength", 0)), 99)
+            if compute_lengthy(na, nag, ns, h, g):
+                return True
+        return False
+
+    if chem_style_boosts:
+        df['canBeLengthy'] = df.apply(row_can_be_lengthy, axis=1)
+    else:
+        df['canBeLengthy'] = False
 
     return df
 
@@ -164,6 +209,9 @@ with st.sidebar.expander("Accelerate Types"):
             selected_sub_accel = st.multiselect("Sub Accelerate Type", unique_sub_accel)
             if selected_sub_accel:
                 filters["subAccelType"] = selected_sub_accel
+
+    st.checkbox("Can be Lengthy?", key="canBeLengthy_checkbox")
+    if st.session_state.get("canBeLengthy_checkbox"): filters["canBeLengthy"] = True
 
 with st.sidebar.expander("Role Familiarity"):
     st.checkbox("Has Role+", key="hasRolePlus_checkbox")
@@ -281,7 +329,7 @@ with tab1:
         "commonName", "role", "overall", "responsiveness", "avgMeta", 
         "ggMeta", "ggChemStyle", "ggAccelType", 
         "esMeta", "esChemStyle", "esAccelType",
-        "avgMetaSub", "ggMetaSub", "esMetaSub", "subAccelType",
+        "avgMetaSub", "ggMetaSub", "esMetaSub", "subAccelType", "canBeLengthy",
         "hasRolePlusPlus", "hasRolePlus", "skillMoves", "weakFoot", "foot", "height", "weight", "bodyType",
         "PS+", "PS", "positions", "roles++", "roles+"
     ] + attribute_filter_order
@@ -289,7 +337,7 @@ with tab1:
     final_display_columns = [col for col in columns_to_display if col in df.columns]
 
     display_df = tab1_df.copy()
-    for col in ["hasRolePlus", "hasRolePlusPlus"]:
+    for col in ["hasRolePlus", "hasRolePlusPlus", "canBeLengthy"]:
         if col in display_df.columns:
             display_df[col] = display_df[col].apply(lambda x: "✅" if x else "❌")
 
