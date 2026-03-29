@@ -134,6 +134,26 @@ if df.empty:
 # --- Sidebar filters ---
 st.sidebar.header("Filter Players")
 
+with st.sidebar.expander("MetaRating Weights", expanded=True):
+    st.info("Adjust the influence of ES vs GG models on the Average.")
+    es_weight = st.slider("ES Meta Weight", min_value=0.0, max_value=5.0, value=1.0, step=0.1)
+    gg_weight = st.slider("GG Meta Weight", min_value=0.0, max_value=5.0, value=1.0, step=0.1)
+
+if es_weight + gg_weight > 0:
+    # Update avgMeta dynamically!
+    has_both = (df['esMeta'] > 0) & (df['ggMeta'] > 0)
+    df.loc[has_both, 'avgMeta'] = ((df.loc[has_both, 'esMeta'] * es_weight) + (df.loc[has_both, 'ggMeta'] * gg_weight)) / (es_weight + gg_weight)
+    df.loc[(df['esMeta'] > 0) & (df['ggMeta'] <= 0), 'avgMeta'] = df['esMeta']
+    df.loc[(df['ggMeta'] > 0) & (df['esMeta'] <= 0), 'avgMeta'] = df['ggMeta']
+
+    has_both_sub = (df['esMetaSub'] > 0) & (df['ggMetaSub'] > 0)
+    df.loc[has_both_sub, 'avgMetaSub'] = ((df.loc[has_both_sub, 'esMetaSub'] * es_weight) + (df.loc[has_both_sub, 'ggMetaSub'] * gg_weight)) / (es_weight + gg_weight)
+    df.loc[(df['esMetaSub'] > 0) & (df['ggMetaSub'] <= 0), 'avgMetaSub'] = df['esMetaSub']
+    df.loc[(df['ggMetaSub'] > 0) & (df['esMetaSub'] <= 0), 'avgMetaSub'] = df['ggMetaSub']
+else:
+    df['avgMeta'] = 0.0
+    df['avgMetaSub'] = 0.0
+
 filters = {}
 
 def create_min_max_filter(container, column_name, label, step):

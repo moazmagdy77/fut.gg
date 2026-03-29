@@ -19,8 +19,7 @@ except ImportError:
 # --- Configuration ---
 BASE_DATA_DIR = Path(__file__).resolve().parent / '../data'
 MODEL_DIR = Path(__file__).resolve().parent / '../models'
-DATA_0_CHEM_FILE = BASE_DATA_DIR / 'training_dataset_0_chem.csv'
-DATA_3_CHEM_FILE = BASE_DATA_DIR / 'training_dataset_3_chem.csv'
+DATA_FILE = BASE_DATA_DIR / 'training_dataset_es_meta_combined.csv'
 
 def _clean_columns(df: pd.DataFrame) -> pd.DataFrame:
     # Force core attributes to numeric, coercing errors to NaN
@@ -132,20 +131,12 @@ def main():
     MODEL_DIR.mkdir(exist_ok=True)
 
     print("\n" + "="*50)
-    print(" L O A D I N G   0 - C H E M   D A T A S E T")
+    print(" L O A D I N G   C O M B I N E D   D A T A S E T")
     print("="*50)
-    if DATA_0_CHEM_FILE.exists():
-        _train_block(DATA_0_CHEM_FILE, target_col='target_esMetaSub', model_suffix='esMetaSub')
+    if DATA_FILE.exists():
+        _train_block(DATA_FILE, target_col='target_esMeta', model_suffix='esMeta')
     else:
-        print(f"❌ {DATA_0_CHEM_FILE.name} not found. Skipping 0-chem models.")
-
-    print("\n" + "="*50)
-    print(" L O A D I N G   3 - C H E M   D A T A S E T")
-    print("="*50)
-    if DATA_3_CHEM_FILE.exists():
-        _train_block(DATA_3_CHEM_FILE, target_col='target_esMeta', model_suffix='esMeta')
-    else:
-        print(f"❌ {DATA_3_CHEM_FILE.name} not found. Skipping 3-chem models.")
+        print(f"❌ {DATA_FILE.name} not found. Skipping models.")
 
     print("\n🎉 All models trained successfully.")
 

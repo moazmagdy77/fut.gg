@@ -50,10 +50,10 @@ if exit_code_gg != 0:
 # We run these sequentially to allow the heavy ML training (ElasticNet) to utilize full CPU cores 
 # without fighting for resources. Parallelizing these usually slows down the total time.
 
-print("\n🔍 Step 5: Train esMeta and esMetaSub models")
+print("\n🔍 Step 5: Train unified esMeta models")
 res_5 = subprocess.run([sys.executable, "model.5.train_es_models.py"], cwd=base_dir)
 if res_5.returncode != 0:
-    print("\n❌ Failed at: Step 5 (Train esMeta models)")
+    print("\n❌ Failed at: Step 5 (Train unified esMeta models)")
     sys.exit(res_5.returncode)
 
 print("\n🔍 Step 7: Train ggMeta and ggMetaSub models")

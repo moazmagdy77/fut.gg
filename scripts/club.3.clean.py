@@ -362,7 +362,7 @@ def process_player(player_def, is_evo, model_manager, maps):
             base_player_like = to_player_like_from_ggdata(base_gg_raw.get("data") if base_gg_raw else None, maps)
             
             # Sub
-            es_sub_model = model_manager.get_model(role_name, 'esMetaSub')
+            es_sub_model = model_manager.get_model(role_name, 'esMeta')
             if es_sub_model:
                 evo_features_sub  = prepare_features(player_output, maps, boosts={}, role_name=role_name)
                 base_features_sub = prepare_features(base_player_like, maps, boosts={}, role_name=role_name) if base_player_like else None

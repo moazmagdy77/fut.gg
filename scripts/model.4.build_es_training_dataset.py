@@ -12,8 +12,7 @@ RAW_DATA_DIR = BASE_DATA_DIR / 'raw'
 GG_DATA_DIR = RAW_DATA_DIR / 'ggData'
 ES_META_DIR = RAW_DATA_DIR / 'esMeta'
 MAPS_FILE = BASE_DATA_DIR / 'maps.json'
-OUTPUT_0_CHEM_FILE = BASE_DATA_DIR / 'training_dataset_0_chem.csv'
-OUTPUT_3_CHEM_FILE = BASE_DATA_DIR / 'training_dataset_3_chem.csv'
+OUTPUT_COMBINED_FILE = BASE_DATA_DIR / 'training_dataset_es_meta_combined.csv'
 
 # --- Helpers ---
 def load_json_file(file_path, default_val=None):
@@ -84,7 +83,7 @@ def main():
                          for item in maps.get("ChemistryStylesBoosts", []) if 'name' in item and 'threeChemistryModifiers' in item}
     all_playstyles = list(maps.get("playstyles", {}).values())
 
-    rows_0_chem, rows_3_chem = [], []
+    rows_combined = []
     player_ids = [f.stem.split('_')[0] for f in GG_DATA_DIR.glob("*_ggData.json")]
     print(f"ℹ️ Found {len(player_ids)} players in raw data directory.")
 
@@ -139,8 +138,8 @@ def main():
                     row_0.get("attributeStrength"), row_0.get("height"), gender_text
                 )
                 row_0["familiarity"] = fam
-                row_0["target_esMetaSub"] = float(rating_0["metaRating"])
-                rows_0_chem.append(row_0)
+                row_0["target_esMeta"] = float(rating_0["metaRating"])
+                rows_combined.append(row_0)
 
             # 3-chem rows
             ratings_3 = [r for r in ratings if r.get("chemistry") == 3 and str(r.get("playerRoleId")) == es_role_id]
@@ -159,30 +158,20 @@ def main():
                 row_3["familiarity"] = fam
                 if r3.get("metaRating") is not None:
                     row_3["target_esMeta"] = float(r3["metaRating"])
-                    rows_3_chem.append(row_3)
+                    rows_combined.append(row_3)
 
     print("✅ Finished processing all players. Creating DataFrames...")
 
-    df_0_chem = pd.DataFrame(rows_0_chem)
-    if not df_0_chem.empty:
+    df_combined = pd.DataFrame(rows_combined)
+    if not df_combined.empty:
         # ensure no stray 'gender' col
-        if "gender" in df_0_chem.columns: df_0_chem.drop(columns=["gender"], inplace=True)
-        df_0_chem = pd.get_dummies(df_0_chem, columns=["role", "bodytype", "accelerateType", "foot"], dtype=int)
-        df_0_chem.dropna(subset=['target_esMetaSub'], inplace=True)
-        df_0_chem.to_csv(OUTPUT_0_CHEM_FILE, index=False)
-        print(f"💾 Saved 0-chem training data with {len(df_0_chem)} rows to {OUTPUT_0_CHEM_FILE.name}")
+        if "gender" in df_combined.columns: df_combined.drop(columns=["gender"], inplace=True)
+        df_combined = pd.get_dummies(df_combined, columns=["role", "bodytype", "accelerateType", "foot"], dtype=int)
+        df_combined.dropna(subset=['target_esMeta'], inplace=True)
+        df_combined.to_csv(OUTPUT_COMBINED_FILE, index=False)
+        print(f"💾 Saved combined training data with {len(df_combined)} rows to {OUTPUT_COMBINED_FILE.name}")
     else:
-        print("⚠️ No 0-chem rows produced (check inputs).")
-
-    df_3_chem = pd.DataFrame(rows_3_chem)
-    if not df_3_chem.empty:
-        if "gender" in df_3_chem.columns: df_3_chem.drop(columns=["gender"], inplace=True)
-        df_3_chem = pd.get_dummies(df_3_chem, columns=["role", "bodytype", "accelerateType", "foot"], dtype=int)
-        df_3_chem.dropna(subset=['target_esMeta'], inplace=True)
-        df_3_chem.to_csv(OUTPUT_3_CHEM_FILE, index=False)
-        print(f"💾 Saved 3-chem training data with {len(df_3_chem)} rows to {OUTPUT_3_CHEM_FILE.name}")
-    else:
-        print("⚠️ No 3-chem rows produced (check inputs).")
+        print("⚠️ No rows produced (check inputs).")
 
 if __name__ == "__main__":
     main()
