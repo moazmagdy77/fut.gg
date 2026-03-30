@@ -10,10 +10,14 @@ data_dir = Path(__file__).resolve().parents[1] / "data"
 
 maps_path = data_dir / "maps.json"
 chem_style_boosts = []
+roles_order = []
 try:
     with open(maps_path, 'r', encoding='utf-8') as f:
         maps_data = json.load(f)
         chem_style_boosts = maps_data.get("ChemistryStylesBoosts", [])
+        rolesPlus = maps_data.get("rolesPlus", {})
+        if rolesPlus:
+            roles_order = [v for k, v in sorted(rolesPlus.items(), key=lambda item: int(item[0]))]
 except Exception:
     pass
 
@@ -192,12 +196,21 @@ with st.sidebar.expander("Detailed Meta Ratings"):
     create_min_max_filter(st, "esMetaSub", "ES Meta (Sub)", 0.1)
 
 if "role" in df.columns:
-    st.sidebar.multiselect("Role (Any)", sorted(df["role"].dropna().unique()), key="role_filter")
+    unique_roles = df["role"].dropna().unique().tolist()
+    if roles_order:
+        sorted_roles = sorted(unique_roles, key=lambda x: roles_order.index(x) if x in roles_order else len(roles_order) + unique_roles.index(x))
+    else:
+        sorted_roles = sorted(unique_roles)
+    st.sidebar.multiselect("Role (Any)", sorted_roles, key="role_filter")
     if st.session_state.get("role_filter"): filters["role"] = st.session_state.role_filter
 
 if "foot" in df.columns:
     st.sidebar.multiselect("Foot", sorted(df["foot"].dropna().unique()), key="foot_filter")
     if st.session_state.get("foot_filter"): filters["foot"] = st.session_state.foot_filter
+
+if "bodyType" in df.columns:
+    st.sidebar.multiselect("Body Type", sorted(df["bodyType"].dropna().unique()), key="bodytype_filter")
+    if st.session_state.get("bodytype_filter"): filters["bodyType"] = st.session_state.bodytype_filter
 
 all_ps = set(s for l in df['PS'].dropna() if isinstance(l, list) for s in l)
 all_ps.update(s for l in df['PS+'].dropna() if isinstance(l, list) for s in l)
