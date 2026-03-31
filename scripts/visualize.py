@@ -430,9 +430,13 @@ with tab2:
     else:
         sell_df = pd.DataFrame()
         
-    # Deduplicate by player ID to show one line per card
+    # Deduplicate by player ID to show one line per card but keep count
     if not sell_df.empty:
-        sell_df = sell_df.drop_duplicates(subset=['__true_player_id'])
+        item_counts = sell_df['__true_player_id'].value_counts()
+        sell_df = sell_df.drop_duplicates(subset=['__true_player_id']).copy()
+        sell_df['Item Count'] = sell_df['__true_player_id'].map(item_counts)
+        sell_df['Total Value'] = sell_df['price'] * sell_df['Item Count'] * 0.95
+        sell_df['Total Quick Sell Value'] = sell_df['discardValue'] * sell_df['Item Count']
         
     # Add Rarity filter
     if not sell_df.empty and 'rarity' in sell_df.columns:
@@ -443,8 +447,8 @@ with tab2:
                 sell_df = sell_df[sell_df['rarity'].isin(selected_rarities)]
     
     # Calculate sums
-    total_price = sell_df['price'].sum() if not sell_df.empty and 'price' in sell_df.columns else 0
-    total_discard = sell_df['discardValue'].sum() if 'discardValue' in sell_df.columns else 0
+    total_price = sell_df['Total Value'].sum() if not sell_df.empty and 'Total Value' in sell_df.columns else 0
+    total_discard = sell_df['Total Quick Sell Value'].sum() if 'Total Quick Sell Value' in sell_df.columns else 0
     
     # Show totals
     col1, col2 = st.columns(2)
@@ -462,9 +466,10 @@ with tab2:
         st.markdown(f"Found **{len(sell_df)}** tradeable players.")
 
         # Prepare columns for display
-        sell_cols = ["commonName", "overall", "price", "isExtinct"]
-        if 'discardValue' in sell_df.columns:
-            sell_cols.insert(3, "discardValue")
+        sell_cols = ["commonName", "overall", "Item Count", "price", "Total Value", "isExtinct"]
+        if 'Total Quick Sell Value' in sell_df.columns:
+            sell_cols.insert(5, "discardValue")
+            sell_cols.insert(6, "Total Quick Sell Value")
         if 'rarity' in sell_df.columns:
             sell_cols.insert(2, "rarity")
         
@@ -477,7 +482,10 @@ with tab2:
             hide_index=True,
             column_config={
                 "commonName": st.column_config.TextColumn("Name", width="medium"),
-                "price": st.column_config.NumberColumn("Price", format="%d", help="Market Price"),
-                "discardValue": st.column_config.NumberColumn("Discard Value", format="%d", help="Quick Sell Value")
+                "price": st.column_config.NumberColumn("Unit Price", format="%d", help="Market Price for a single card"),
+                "Item Count": st.column_config.NumberColumn("Count", format="%d", help="Number of tradeable duplicates in club"),
+                "Total Value": st.column_config.NumberColumn("Total Value", format="%d", help="Total market value after 5% EA tax"),
+                "discardValue": st.column_config.NumberColumn("Unit Quick Sell", format="%d", help="Quick Sell Value for a single card"),
+                "Total Quick Sell Value": st.column_config.NumberColumn("Total Quick Sell", format="%d", help="Total Quick Sell Value")
             }
         )

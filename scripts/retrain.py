@@ -10,7 +10,7 @@ base_dir = Path(__file__).resolve().parent
 # NOTE: We use sys.executable to ensure we use the ACTIVE venv python, not the system python
 initial_steps = [
     ("🔎 Step 1: Scrape FUT.GG to get Player IDs", ["node", "model.1.get_ids.js"]),
-    ("📦 Step 2: Scrape player details and metaratings", ["node", "model.3.fetch.data.js"]),
+    ("📦 Step 2: Scrape player details and metaratings", ["node", "shared.fetch.data.js", "--file", "../data/player_ids.json", "--mode", "model"]),
 ]
 
 start = time.time()

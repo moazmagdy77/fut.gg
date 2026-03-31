@@ -11,6 +11,7 @@ import warnings
 import os
 import concurrent.futures
 import multiprocessing
+from shared_utils import load_json_file, _normalize_gender, calculate_acceleration_type, get_attribute_with_boost
 
 # Suppress warnings in main output
 warnings.filterwarnings("ignore", category=FutureWarning)
@@ -34,49 +35,7 @@ GLOBAL_MAPS = None
 GLOBAL_MODEL_MANAGER = None
 
 # --- Helpers ---
-def load_json_file(file_path: Path, default_val=None):
-    try:
-        with open(file_path, 'r', encoding='utf-8') as f:
-            return json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
-        return default_val
 
-def _normalize_gender(gender_val, maps):
-    try:
-        g = maps.get("gender_map", {}).get(str(gender_val))
-        if isinstance(g, str) and g:
-            return g
-    except Exception:
-        pass
-    return "Male"
-
-def calculate_acceleration_type(accel, agility, strength, height, gender: str = "Male"):
-    try:
-        if accel is None or agility is None or strength is None or height is None:
-            return "CONTROLLED"
-        accel = int(accel); agility = int(agility); strength = int(strength); height = int(height)
-    except Exception:
-        return "CONTROLLED"
-
-    is_female = str(gender or "Male").lower().startswith("f")
-    exp_height_ok = (height <= 162) if is_female else (height <= 182)
-    len_height_ok = (height >= 165) if is_female else (height >= 185)
-
-    if (agility >= 65 and (agility - strength) >= 10 and accel >= 80 and exp_height_ok):
-        return "EXPLOSIVE"
-    if (strength >= 65 and (strength - agility) >= 4 and accel >= 40 and len_height_ok):
-        return "LENGTHY"
-    return "CONTROLLED"
-
-def get_attribute_with_boost(base_attributes, attr_name, boost_modifiers, default_val=0):
-    base_val = base_attributes.get(attr_name, default_val)
-    boost_val = (boost_modifiers or {}).get(attr_name, 0)
-    try:
-        base_val = int(base_val) if base_val is not None else 0
-        boost_val = int(boost_val) if boost_val is not None else 0
-    except Exception:
-        base_val = 0; boost_val = 0
-    return min(base_val + boost_val, 99)
 
 def parse_gg_rating_str(gg_rating_str_raw):
     parsed_ratings_by_role = defaultdict(list)
@@ -109,17 +68,17 @@ def to_player_like_from_ggdata(gg_data_obj, maps):
     d["weight"] = gg_data_obj.get("weight")
     d["skillMoves"] = gg_data_obj.get("skillMoves")
     d["weakFoot"] = gg_data_obj.get("weakFoot")
-    d["foot"] = maps["foot_map"].get(str(gg_data_obj.get("foot")))
-    d["bodyType"] = maps["bodytype_code_map"].get(str(gg_data_obj.get("bodytypeCode")))
+    d["foot"] = maps.get("foot", {}).get(str(gg_data_obj.get("foot")))
+    d["bodyType"] = maps.get("bodytypeCode", {}).get(str(gg_data_obj.get("bodytypeCode")))
     d["gender"] = _normalize_gender(gg_data_obj.get("gender"), maps)
-    d["PS"]  = [maps["playstyles_map"].get(str(p)) for p in (gg_data_obj.get("playstyles") or []) if str(p) in maps["playstyles_map"]]
-    d["PS+"] = [maps["playstyles_map"].get(str(p)) for p in (gg_data_obj.get("playstylesPlus") or []) if str(p) in maps["playstyles_map"]]
-    d["roles+"]  = [maps["roles_plus_map"].get(str(r)) for r in (gg_data_obj.get("rolesPlus") or []) if str(r) in maps["roles_plus_map"]]
-    d["roles++"] = [maps["roles_plus_plus_map"].get(str(r)) for r in (gg_data_obj.get("rolesPlusPlus") or []) if str(r) in maps["roles_plus_plus_map"]]
+    d["PS"]  = [maps.get("playstyles", {}).get(str(p)) for p in (gg_data_obj.get("playstyles") or []) if str(p) in maps.get("playstyles", {})]
+    d["PS+"] = [maps.get("playstyles", {}).get(str(p)) for p in (gg_data_obj.get("playstylesPlus") or []) if str(p) in maps.get("playstyles", {})]
+    d["roles+"]  = [maps.get("rolesPlus", {}).get(str(r)) for r in (gg_data_obj.get("rolesPlus") or []) if str(r) in maps.get("rolesPlus", {})]
+    d["roles++"] = [maps.get("rolesPlusPlus", {}).get(str(r)) for r in (gg_data_obj.get("rolesPlusPlus") or []) if str(r) in maps.get("rolesPlusPlus", {})]
     return d
 
 def get_es_anchors_for_role(es_meta_raw, role_name, maps):
-    es_role_id = maps["roleNameToEsRoleId"].get(role_name)
+    es_role_id = maps.get("roleNameToEsRoleId", {}).get(role_name)
     if not (es_meta_raw and es_role_id):
         return None, {}
     filtered = []
@@ -130,7 +89,7 @@ def get_es_anchors_for_role(es_meta_raw, role_name, maps):
         return None, {}
     r0 = next((r for r in filtered if r.get("chemistry") == 0 and r.get("metaRating") is not None), None)
     sub_anchor = float(r0["metaRating"]) if r0 else None
-    es_style_map = maps["es_chem_style_names_map"]
+    es_style_map = maps.get("esChemistryStyleNames", {})
     anchor_3_by_style = {}
     for r in filtered:
         if r.get("chemistry") == 3 and r.get("metaRating") is not None:
@@ -273,13 +232,13 @@ def process_player(player_def, is_evo, model_manager, maps):
     player_output["gender"] = _normalize_gender(player_def.get("gender"), maps)
 
     numeric_positions = [str(p) for p in [player_def.get("position")] + (player_def.get("alternativePositionIds") or []) if p is not None]
-    player_output["positions"] = list(set([maps["position_map"].get(p) for p in numeric_positions if p in maps["position_map"]]))
-    player_output["foot"] = maps["foot_map"].get(str(player_def.get("foot")))
-    player_output["PS"] = [maps["playstyles_map"].get(str(p)) for p in (player_def.get("playstyles") or []) if str(p) in maps["playstyles_map"]]
-    player_output["PS+"] = [maps["playstyles_map"].get(str(p)) for p in (player_def.get("playstylesPlus") or []) if str(p) in maps["playstyles_map"]]
-    player_output["roles+"]  = [maps["roles_plus_map"].get(str(r)) for r in (player_def.get("rolesPlus") or []) if str(r) in maps["roles_plus_map"]]
-    player_output["roles++"] = [maps["roles_plus_plus_map"].get(str(r)) for r in (player_def.get("rolesPlusPlus") or []) if str(r) in maps["roles_plus_plus_map"]]
-    player_output["bodyType"] = maps["bodytype_code_map"].get(str(player_def.get("bodytypeCode")))
+    player_output["positions"] = list(set([maps.get("position", {}).get(p) for p in numeric_positions if p in maps.get("position", {})]))
+    player_output["foot"] = maps.get("foot", {}).get(str(player_def.get("foot")))
+    player_output["PS"] = [maps.get("playstyles", {}).get(str(p)) for p in (player_def.get("playstyles") or []) if str(p) in maps.get("playstyles", {})]
+    player_output["PS+"] = [maps.get("playstyles", {}).get(str(p)) for p in (player_def.get("playstylesPlus") or []) if str(p) in maps.get("playstyles", {})]
+    player_output["roles+"]  = [maps.get("rolesPlus", {}).get(str(r)) for r in (player_def.get("rolesPlus") or []) if str(r) in maps.get("rolesPlus", {})]
+    player_output["roles++"] = [maps.get("rolesPlusPlus", {}).get(str(r)) for r in (player_def.get("rolesPlusPlus") or []) if str(r) in maps.get("rolesPlusPlus", {})]
+    player_output["bodyType"] = maps.get("bodytypeCode", {}).get(str(player_def.get("bodytypeCode")))
     player_output["rarity"] = player_def.get("rarity", {}).get("name")
 
     # Load Price
@@ -315,7 +274,7 @@ def process_player(player_def, is_evo, model_manager, maps):
     
     # Iterate Roles
     for role_id_str, scores in gg_scores_by_role.items():
-        role_name = maps["role_id_to_name_map"].get(role_id_str)
+        role_name = maps.get("role", {}).get(role_id_str)
         if not role_name: continue
 
         meta_entry = {"role": role_name, "subAccelType": sub_accel_type}
@@ -325,8 +284,9 @@ def process_player(player_def, is_evo, model_manager, maps):
         if best_gg:
             meta_entry["ggMeta"] = round(best_gg.get("score", 0.0), 2)
             chem_id = best_gg.get("chem_id_str") if is_evo else str(best_gg.get("chemistryStyle"))
-            meta_entry["ggChemStyle"] = maps["gg_chem_style_names_map"].get(chem_id)
-            boosts = maps["chem_style_boosts_map"].get((meta_entry.get("ggChemStyle") or "").lower(), {})
+            meta_entry["ggChemStyle"] = maps.get("ggChemistryStyleNames", {}).get(chem_id)
+            chem_style_boosts_map = {item['name'].lower(): item['threeChemistryModifiers'] for item in maps.get("ChemistryStylesBoosts", []) if 'name' in item}
+            boosts = chem_style_boosts_map.get((meta_entry.get("ggChemStyle") or "").lower(), {})
             meta_entry["ggAccelType"] = calculate_acceleration_type(
                 get_attribute_with_boost(base_attributes, "attributeAcceleration", boosts),
                 get_attribute_with_boost(base_attributes, "attributeAgility", boosts),
@@ -374,7 +334,8 @@ def process_player(player_def, is_evo, model_manager, maps):
             es_model = model_manager.get_model(role_name, 'esMeta')
             if es_model:
                 best_val, best_chem, best_accel = None, None, sub_accel_type
-                for chem_name, boosts in maps["chem_style_boosts_map"].items():
+                chem_style_boosts_map = {item['name'].lower(): item['threeChemistryModifiers'] for item in maps.get("ChemistryStylesBoosts", []) if 'name' in item}
+                for chem_name, boosts in chem_style_boosts_map.items():
                     evo_features_chem  = prepare_features(player_output, maps, boosts=boosts, role_name=role_name)
                     base_features_chem = prepare_features(base_player_like, maps, boosts=boosts, role_name=role_name) if base_player_like else None
                     chem_anchor = (anchor3_by_style or {}).get(chem_name.lower())
@@ -388,7 +349,7 @@ def process_player(player_def, is_evo, model_manager, maps):
                 meta_entry["esAccelType"] = best_accel
         else:
             # Standard
-            es_role_id = maps["roleNameToEsRoleId"].get(role_name)
+            es_role_id = maps.get("roleNameToEsRoleId", {}).get(role_name)
             if es_role_id and es_meta_raw:
                 filtered = []
                 for b in es_meta_raw:
@@ -400,8 +361,9 @@ def process_player(player_def, is_evo, model_manager, maps):
                     best3 = max([r for r in filtered if r.get("chemistry") == 3], key=lambda x: x.get("metaRating", -1), default=None)
                     if best3 and best3.get("metaRating"):
                         meta_entry["esMeta"] = round(float(best3["metaRating"]), 2)
-                        meta_entry["esChemStyle"] = maps["es_chem_style_names_map"].get(str(best3.get("chemstyleId")))
-                        boosts = maps["chem_style_boosts_map"].get((meta_entry.get("esChemStyle") or "").lower(), {})
+                        meta_entry["esChemStyle"] = maps.get("esChemistryStyleNames", {}).get(str(best3.get("chemstyleId")))
+                        chem_style_boosts_map = {item['name'].lower(): item['threeChemistryModifiers'] for item in maps.get("ChemistryStylesBoosts", []) if 'name' in item}
+                        boosts = chem_style_boosts_map.get((meta_entry.get("esChemStyle") or "").lower(), {})
                         meta_entry["esAccelType"] = calculate_acceleration_type(
                             get_attribute_with_boost(base_attributes, "attributeAcceleration", boosts),
                             get_attribute_with_boost(base_attributes, "attributeAgility", boosts),
@@ -430,22 +392,7 @@ def init_worker():
     
     # Load Maps
     if GLOBAL_MAPS is None:
-        maps_data = load_json_file(MAPS_FILE)
-        GLOBAL_MAPS = {
-            "position_map": maps_data.get("position", {}),
-            "foot_map": maps_data.get("foot", {}),
-            "playstyles_map": maps_data.get("playstyles", {}),
-            "roles_plus_map": maps_data.get("rolesPlus", {}),
-            "roles_plus_plus_map": maps_data.get("rolesPlusPlus", {}),
-            "bodytype_code_map": maps_data.get("bodytypeCode", {}),
-            "gg_chem_style_names_map": maps_data.get("ggChemistryStyleNames", {}),
-            "es_chem_style_names_map": maps_data.get("esChemistryStyleNames", {}),
-            "chem_style_boosts_map": {item['name'].lower(): item['threeChemistryModifiers'] for item in maps_data.get("ChemistryStylesBoosts", []) if 'name' in item},
-            "role_id_to_name_map": maps_data.get("role", {}),
-            "roleNameToEsRoleId": maps_data.get("roleNameToEsRoleId", {}),
-            "playstyles": maps_data.get("playstyles", {}),
-            "gender_map": maps_data.get("gender", {})
-        }
+        GLOBAL_MAPS = load_json_file(MAPS_FILE)
     
     # Load Models
     if GLOBAL_MODEL_MANAGER is None:
