@@ -106,7 +106,7 @@ def load_data(file_path):
         
         return (strength >= 65 and (strength - agility) >= 4 and accel >= 40 and len_height_ok)
 
-    def row_can_be_lengthy(row):
+    def get_lengthy_info(row):
         b_accel = row.get("acceleration", 0)
         b_agil = row.get("agility", 0)
         b_str = row.get("strength", 0)
@@ -114,20 +114,31 @@ def load_data(file_path):
         g = row.get("gender", "Male")
         
         if compute_lengthy(b_accel, b_agil, b_str, h, g):
-            return True
-        for chem in chem_style_boosts:
-            b = chem.get("threeChemistryModifiers", {})
-            na = min(int(b_accel) + int(b.get("attributeAcceleration", 0)), 99)
-            nag = min(int(b_agil) + int(b.get("attributeAgility", 0)), 99)
-            ns = min(int(b_str) + int(b.get("attributeStrength", 0)), 99)
-            if compute_lengthy(na, nag, ns, h, g):
-                return True
-        return False
+            return True, "0 (any)"
+            
+        for level_key, level_num in [("oneChemistryModifiers", 1), ("twoChemistryModifiers", 2), ("threeChemistryModifiers", 3)]:
+            matching_chems = []
+            for chem in chem_style_boosts:
+                b = chem.get(level_key, {})
+                na = min(int(b_accel) + int(b.get("attributeAcceleration", 0)), 99)
+                nag = min(int(b_agil) + int(b.get("attributeAgility", 0)), 99)
+                ns = min(int(b_str) + int(b.get("attributeStrength", 0)), 99)
+                if compute_lengthy(na, nag, ns, h, g):
+                    chem_name = chem.get("name", "").lower()
+                    if chem_name:
+                        matching_chems.append(chem_name)
+            if matching_chems:
+                return True, f"{level_num} ({'/'.join(sorted(set(matching_chems)))})"
+        
+        return False, ""
 
     if chem_style_boosts:
-        df['canBeLengthy'] = df.apply(row_can_be_lengthy, axis=1)
+        info_series = df.apply(get_lengthy_info, axis=1)
+        df['canBeLengthy'] = info_series.apply(lambda x: x[0])
+        df['Chem points needed for Lengthy'] = info_series.apply(lambda x: x[1])
     else:
         df['canBeLengthy'] = False
+        df['Chem points needed for Lengthy'] = ""
 
     return df
 
@@ -364,7 +375,7 @@ with tab1:
         "commonName", "role", "overall", "responsiveness", "avgMeta", 
         "ggMeta", "ggChemStyle", "ggAccelType", 
         "esMeta", "esChemStyle", "esAccelType",
-        "avgMetaSub", "ggMetaSub", "esMetaSub", "subAccelType", "canBeLengthy",
+        "avgMetaSub", "ggMetaSub", "esMetaSub", "subAccelType", "canBeLengthy", "Chem points needed for Lengthy",
         "hasRolePlusPlus", "hasRolePlus", "skillMoves", "weakFoot", "foot", "height", "weight", "bodyType",
         "PS+", "PS", "positions", "roles++", "roles+"
     ] + attribute_filter_order
