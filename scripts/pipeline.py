@@ -20,45 +20,54 @@ steps = [
 ]
 
 # --- User Prompts ---
-run_prices = input("\nDo you want to run Step 2b: Fetch prices (Tradeables)? (y/n): ").strip().lower()
-if run_prices != 'y':
-    print("Skipping Step 2b: Fetch prices...\n")
-    steps = [s for s in steps if "club.2b.fetch.prices.js" not in s[1]]
+run_club = input("\nDo you want to run the Club Update pipeline (Steps 1, 2, 3)? (y/n): ").strip().lower()
+
+if run_club == 'y':
+    run_prices = input("Do you want to run Step 2b: Fetch prices (Tradeables)? (y/n): ").strip().lower()
+    if run_prices != 'y':
+        print("Skipping Step 2b: Fetch prices...\n")
+        steps = [s for s in steps if "club.2b.fetch.prices.js" not in s[1]]
+else:
+    run_prices = 'n'
+    print("Skipping Club Update pipeline...\n")
+    steps = []
 
 run_fodder = input("Do you want to update Fodder Prices (futbin-scraper)? (y/n): ").strip().lower()
 
 start = time.time()
 
 # --- Run Data Pipeline (fut.gg) ---
-for label, command in steps:
-    print(f"\n{label}")
-    print(command)
-    # These scripts live in 'scripts/' so we run them from base_dir
-    result = subprocess.run(command, cwd=base_dir)
+if run_club == 'y':
+    for label, command in steps:
+        print(f"\n{label}")
+        print(command)
+        # These scripts live in 'scripts/' so we run them from base_dir
+        result = subprocess.run(command, cwd=base_dir)
 
-    if result.returncode != 0:
-        print(f"\n❌ Failed at: {label}")
-        sys.exit(result.returncode)
+        if result.returncode != 0:
+            print(f"\n❌ Failed at: {label}")
+            sys.exit(result.returncode)
 
 # --- Run Git Automation (fut.gg) ---
-print(f"\n🐙 Automating Git Push...")
+if run_club == 'y':
+    print(f"\n🐙 Automating Git Push...")
 
-timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-if run_prices == 'y':
-    commit_message = f"new players + prices [{timestamp}]"
-else:
-    commit_message = f"new players (prices not updated) [{timestamp}]"
+    if run_prices == 'y':
+        commit_message = f"new players + prices [{timestamp}]"
+    else:
+        commit_message = f"new players (prices not updated) [{timestamp}]"
 
-git_commands = [
-    ["git", "add", "."],
-    ["git", "commit", "-m", commit_message],
-    ["git", "push", "origin", "main"]
-]
+    git_commands = [
+        ["git", "add", "."],
+        ["git", "commit", "-m", commit_message],
+        ["git", "push", "origin", "main"]
+    ]
 
-for cmd in git_commands:
-    print(f"Running: {' '.join(cmd)}")
-    subprocess.run(cmd, cwd=repo_root)
+    for cmd in git_commands:
+        print(f"Running: {' '.join(cmd)}")
+        subprocess.run(cmd, cwd=repo_root)
 
 # --- Run Fodder Scraper (futbin-scraper) ---
 if run_fodder == 'y':
