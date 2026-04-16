@@ -323,7 +323,11 @@ if filters:
 tab1, tab2 = st.tabs(["Club Squad", "Sell Now 💰"])
 
 with tab1:
+    best_role_only = st.checkbox("Show best role only", value=True, key="best_role_only",
+                                 help="When checked, shows each player once at their highest-rated role. Uncheck to see all roles.")
     tab1_df = filtered_df[filtered_df["avgMetaSub"] >= 80] if "avgMetaSub" in filtered_df.columns else filtered_df.copy()
+    if best_role_only:
+        tab1_df = tab1_df.loc[tab1_df.groupby("__true_player_id")["avgMeta"].idxmax()]
 
     st.subheader("Top Player Ratings")
     col1, col2 = st.columns(2)
