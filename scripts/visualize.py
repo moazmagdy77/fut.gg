@@ -328,6 +328,7 @@ with tab1:
     tab1_df = filtered_df[filtered_df["avgMetaSub"] >= 80] if "avgMetaSub" in filtered_df.columns else filtered_df.copy()
     if best_role_only:
         tab1_df = tab1_df.loc[tab1_df.groupby("__true_player_id")["avgMeta"].idxmax()]
+        tab1_df = tab1_df.sort_values(by="avgMeta", ascending=False)
 
     st.subheader("Top Player Ratings")
     col1, col2 = st.columns(2)
