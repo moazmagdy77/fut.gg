@@ -14,9 +14,10 @@ futbin_scraper_dir = Path(r"D:\Dev\futbin-scraper")
 
 steps = [
     ("🔎 Step 1: Extract CLUB player IDs", [sys.executable, "club.1.get.ids.py"]),
-    ("📦 Step 2: Scrape player data", ["node", "shared.fetch.data.js", "--file", "../data/club_ids.json", "--mode", "club"]),
+    ("📦 Step 2a: Scrape player data (≥75 OVR)", ["node", "shared.fetch.data.js", "--file", "../data/club_ids.json", "--mode", "club"]),
+    ("📦 Step 2a+: Scrape player data (All IDs, for tall detection)", ["node", "shared.fetch.data.js", "--file", "../data/all_club_ids.json", "--mode", "club"]),
     ("💰 Step 2b: Fetch prices (Tradeables)", ["node", "club.2b.fetch.prices.js"]),
-    ("🔍 Step 3: Enrich with evo and all cleaning", [sys.executable, "club.3.clean.py"]),
+    # Step 3 command will be built dynamically to include --min-height
 ]
 
 # --- User Prompts ---
@@ -27,8 +28,16 @@ if run_club == 'y':
     if run_prices != 'y':
         print("Skipping Step 2b: Fetch prices...\n")
         steps = [s for s in steps if "club.2b.fetch.prices.js" not in s[1]]
+    
+    min_height_input = input("Minimum height for tall-player group (default 195 cm): ").strip()
+    min_height_cm = int(min_height_input) if min_height_input.isdigit() else 195
+    print(f"Tall-player threshold: {min_height_cm} cm")
+    
+    # Append Step 3 with --min-height argument
+    steps.append(("🔍 Step 3: Enrich with evo and all cleaning", [sys.executable, "club.3.clean.py", "--min-height", str(min_height_cm)]))
 else:
     run_prices = 'n'
+    min_height_cm = 195
     print("Skipping Club Update pipeline...\n")
     steps = []
 

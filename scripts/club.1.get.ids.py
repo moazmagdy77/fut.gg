@@ -47,6 +47,7 @@ except ValueError: discard_idx = -1
 
 # Extract IDs
 club_ids = []
+all_club_ids = []
 tradeable_ids = []
 tradeable_details = []
 
@@ -59,6 +60,7 @@ for row in rows[1:]:
             rating = 0
             
         ea_id = cols[id_idx].text.strip()
+        all_club_ids.append(ea_id)
         if rating >= 75:
             club_ids.append(ea_id)
             
@@ -85,10 +87,15 @@ for row in rows[1:]:
                 "discardValue": int(cols[discard_idx].text.strip().replace(",", "").replace(".", "")) if discard_idx != -1 and cols[discard_idx].text.strip().replace(",", "").replace(".", "").isdigit() else 0
             })
 
-# Save CLUB IDs (Main list for data fetching)
+# Save CLUB IDs (Main list for data fetching, rating >= 75)
 output_file_path = data_dir / "club_ids.json"
 with open(output_file_path, "w") as out:
     json.dump(club_ids, out, indent=2)
+
+# Save ALL CLUB IDs (No rating filter, used for tall-player identification)
+all_club_ids_path = data_dir / "all_club_ids.json"
+with open(all_club_ids_path, "w") as out:
+    json.dump(all_club_ids, out, indent=2)
 
 # Save TRADEABLE IDs (Subset for price fetching)
 tradeable_file_path = data_dir / "tradeable_ids.json"
@@ -100,6 +107,7 @@ tradeable_details_path = data_dir / "tradeable_details.json"
 with open(tradeable_details_path, "w", encoding="utf-8") as out:
     json.dump(tradeable_details, out, indent=2)
 
-print(f"Extracted {len(club_ids)} CLUB Player IDs -> {output_file_path}")
+print(f"Extracted {len(club_ids)} CLUB Player IDs (≥75 OVR) -> {output_file_path}")
+print(f"Extracted {len(all_club_ids)} ALL CLUB Player IDs -> {all_club_ids_path}")
 print(f"Extracted {len(tradeable_ids)} Tradeable Player IDs -> {tradeable_file_path}")
 print(f"Extracted {len(tradeable_details)} Tradeable Player Details -> {tradeable_details_path}")

@@ -9,6 +9,7 @@ import pandas as pd
 import joblib
 import warnings
 import os
+import sys
 import concurrent.futures
 import multiprocessing
 from shared_utils import load_json_file, _normalize_gender, calculate_acceleration_type, get_attribute_with_boost
@@ -28,7 +29,17 @@ PRICES_DIR  = RAW_DATA_DIR / 'prices'
 EVOLAB_FILE = BASE_DATA_DIR / 'evolab.json'
 MAPS_FILE = BASE_DATA_DIR / 'maps.json'
 OUTPUT_FILE = BASE_DATA_DIR / 'club_final.json'
-CLUB_IDS_FILE = BASE_DATA_DIR / 'club_ids.json'
+CLUB_IDS_FILE = BASE_DATA_DIR / 'all_club_ids.json'
+
+# --- CLI Arguments ---
+MIN_HEIGHT_CM = 195  # default
+for i, arg in enumerate(sys.argv):
+    if arg == '--min-height' and i + 1 < len(sys.argv):
+        try:
+            MIN_HEIGHT_CM = int(sys.argv[i + 1])
+        except ValueError:
+            pass
+        break
 
 # --- Global Worker State (Initialized once per process) ---
 GLOBAL_MAPS = None
@@ -222,7 +233,7 @@ def predict_ggsub_evo_anchored(model_bundle, evo_no_chem, *, base_no_chem, cap_t
     return round(float(pred), 2)
 
 # --- Core Logic (Runs inside Worker) ---
-def process_player(player_def, is_evo, model_manager, maps):
+def process_player(player_def, is_evo, model_manager, maps, min_height_cm=195):
     # This function contains the heavy lifting logic
     player_output = {"eaId": player_def.get("eaId"), "evolution": is_evo}
     base_attributes = {k: v for k, v in player_def.items() if k.startswith("attribute")}
@@ -230,6 +241,13 @@ def process_player(player_def, is_evo, model_manager, maps):
         player_output[key] = player_def.get(key)
     player_output.update(base_attributes)
     player_output["gender"] = _normalize_gender(player_def.get("gender"), maps)
+
+    # Tag tall players
+    try:
+        player_height = int(player_output.get("height") or 0)
+    except (ValueError, TypeError):
+        player_height = 0
+    player_output["isTall"] = player_height >= min_height_cm
 
     numeric_positions = [str(p) for p in [player_def.get("position")] + (player_def.get("alternativePositionIds") or []) if p is not None]
     player_output["positions"] = list(set([maps.get("position", {}).get(p) for p in numeric_positions if p in maps.get("position", {})]))
@@ -386,9 +404,11 @@ def process_player(player_def, is_evo, model_manager, maps):
     return player_output
 
 # --- Multiprocessing Wrapper ---
-def init_worker():
+def init_worker(min_height_cm):
     """Initializes global state in each worker process."""
-    global GLOBAL_MAPS, GLOBAL_MODEL_MANAGER
+    global GLOBAL_MAPS, GLOBAL_MODEL_MANAGER, GLOBAL_MIN_HEIGHT
+    
+    GLOBAL_MIN_HEIGHT = min_height_cm
     
     # Load Maps
     if GLOBAL_MAPS is None:
@@ -410,11 +430,11 @@ def worker_task(payload):
             player_def_raw = load_json_file(data_file)
             if not player_def_raw or "data" not in player_def_raw:
                 return None
-            return process_player(player_def_raw["data"], False, GLOBAL_MODEL_MANAGER, GLOBAL_MAPS)
+            return process_player(player_def_raw["data"], False, GLOBAL_MODEL_MANAGER, GLOBAL_MAPS, GLOBAL_MIN_HEIGHT)
         
         elif payload['type'] == 'evo':
             # Evo data is passed directly
-            return process_player(payload['data'], True, GLOBAL_MODEL_MANAGER, GLOBAL_MAPS)
+            return process_player(payload['data'], True, GLOBAL_MODEL_MANAGER, GLOBAL_MAPS, GLOBAL_MIN_HEIGHT)
             
     except Exception as e:
         return None # Fail silently/gracefully for that one player
@@ -424,7 +444,7 @@ def main():
     # Windows requires this for multiprocessing
     multiprocessing.freeze_support()
     
-    print("🚀 Starting TURBO Cleaning Script (Multiprocessing)...")
+    print(f"🚀 Starting TURBO Cleaning Script (Multiprocessing)... [min_height={MIN_HEIGHT_CM}cm]")
     
     # Prepare Tasks
     tasks = []
@@ -457,7 +477,7 @@ def main():
     completed = 0
     
     # Executor with Initializer
-    with concurrent.futures.ProcessPoolExecutor(max_workers=max_workers, initializer=init_worker) as executor:
+    with concurrent.futures.ProcessPoolExecutor(max_workers=max_workers, initializer=init_worker, initargs=(MIN_HEIGHT_CM,)) as executor:
         # Submit all tasks
         futures = [executor.submit(worker_task, t) for t in tasks]
         
@@ -478,12 +498,31 @@ def main():
         if player['eaId'] not in final_players or player.get('evolution'):
             final_players[player['eaId']] = player
     
-    final_list = list(final_players.values())
+    # Filter: include only players with overall >= 75 OR isTall
+    filtered_list = []
+    skipped_count = 0
+    for player in final_players.values():
+        ovr = 0
+        try:
+            ovr = int(player.get('overall') or 0)
+        except (ValueError, TypeError):
+            pass
+        is_tall = player.get('isTall', False)
+        if ovr >= 75 or is_tall:
+            filtered_list.append(player)
+        else:
+            skipped_count += 1
+    
+    final_list = filtered_list
     
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
         json.dump(final_list, f, indent=2, ensure_ascii=False)
-        
+    
+    tall_count = sum(1 for p in final_list if p.get('isTall', False))
     print(f"\n🎉 Success! Processed {len(final_list)} unique players to {OUTPUT_FILE.name}")
+    print(f"   │ {tall_count} tall players (≥{MIN_HEIGHT_CM}cm) included")
+    if skipped_count > 0:
+        print(f"   │ {skipped_count} players skipped (OVR < 75 and not tall)")
 
 if __name__ == "__main__":
     main()

@@ -259,6 +259,9 @@ with st.sidebar.expander("Accelerate Types"):
     st.checkbox("Can be Lengthy?", key="canBeLengthy_checkbox")
     if st.session_state.get("canBeLengthy_checkbox"): filters["canBeLengthy"] = True
 
+st.sidebar.checkbox("Tall Players Only (≥195cm)", key="isTall_checkbox")
+if st.session_state.get("isTall_checkbox"): filters["isTall"] = True
+
 with st.sidebar.expander("Role Familiarity"):
     st.checkbox("Has Role+", key="hasRolePlus_checkbox")
     if st.session_state.get("hasRolePlus_checkbox"): filters["hasRolePlus"] = True
@@ -325,7 +328,12 @@ tab1, tab2 = st.tabs(["Club Squad", "Sell Now 💰"])
 with tab1:
     best_role_only = st.checkbox("Show best role only", value=True, key="best_role_only",
                                  help="When checked, shows each player once at their highest-rated role. Uncheck to see all roles.")
-    tab1_df = filtered_df[filtered_df["avgMetaSub"] >= 80] if "avgMetaSub" in filtered_df.columns else filtered_df.copy()
+    # Include players with avgMetaSub >= 80 OR tall players (isTall == True)
+    if "avgMetaSub" in filtered_df.columns:
+        is_tall_mask = filtered_df["isTall"].fillna(False) if "isTall" in filtered_df.columns else pd.Series(False, index=filtered_df.index)
+        tab1_df = filtered_df[(filtered_df["avgMetaSub"] >= 80) | is_tall_mask]
+    else:
+        tab1_df = filtered_df.copy()
     if best_role_only:
         tab1_df = tab1_df.loc[tab1_df.groupby("__true_player_id")["avgMeta"].idxmax()]
         tab1_df = tab1_df.sort_values(by="avgMeta", ascending=False)
@@ -381,14 +389,14 @@ with tab1:
         "ggMeta", "ggChemStyle", "ggAccelType", 
         "esMeta", "esChemStyle", "esAccelType",
         "avgMetaSub", "ggMetaSub", "esMetaSub", "subAccelType", "canBeLengthy", "Chem points needed for Lengthy",
-        "hasRolePlusPlus", "hasRolePlus", "skillMoves", "weakFoot", "foot", "height", "weight", "bodyType",
+        "hasRolePlusPlus", "hasRolePlus", "isTall", "skillMoves", "weakFoot", "foot", "height", "weight", "bodyType",
         "PS+", "PS", "positions", "roles++", "roles+"
     ] + attribute_filter_order
 
     final_display_columns = [col for col in columns_to_display if col in df.columns]
 
     display_df = tab1_df.copy()
-    for col in ["hasRolePlus", "hasRolePlusPlus", "canBeLengthy"]:
+    for col in ["hasRolePlus", "hasRolePlusPlus", "canBeLengthy", "isTall"]:
         if col in display_df.columns:
             display_df[col] = display_df[col].apply(lambda x: "✅" if x else "❌")
 
