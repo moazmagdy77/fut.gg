@@ -142,7 +142,58 @@ def load_data(file_path):
 
     return df
 
+def load_all_players(file_path):
+    """Loads the pre-built all players summary JSON."""
+    try:
+        with open(file_path, "r", encoding='utf-8') as f:
+            data = json.load(f)
+    except FileNotFoundError:
+        st.warning(f"All players data not found. Run `build_all_players_summary.py` to generate it.")
+        return pd.DataFrame()
+    
+    df = pd.json_normalize(data, errors='ignore')
+    
+    # Explode metaRatings
+    if 'metaRatings' in df.columns:
+        df = df.explode('metaRatings').reset_index(drop=True)
+        meta_df = pd.json_normalize(df['metaRatings']).add_prefix('meta.')
+        df = pd.concat([df.drop(columns=['metaRatings']), meta_df], axis=1)
+        df.rename(columns={col: col.replace("meta.", "") for col in df.columns if col.startswith("meta.")}, inplace=True)
+    
+    if df.empty:
+        return pd.DataFrame()
+
+    # Rename attribute columns from 'attributeAcceleration' to 'acceleration'
+    df.rename(columns={col: col.replace("attribute", "", 1)[0].lower() + col.replace("attribute", "", 1)[1:] 
+                       for col in df.columns if col.startswith("attribute")}, inplace=True)
+
+    df["__true_player_id"] = df["eaId"].astype(str)
+    
+    int_cols = ['overall', 'height', 'weight', 'skillMoves', 'weakFoot'] + attribute_filter_order
+    for col in int_cols:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0).astype(int)
+
+    resp_attrs = ['acceleration', 'sprintSpeed', 'agility', 'balance', 'reactions']
+    if all(attr in df.columns for attr in resp_attrs):
+        df['responsiveness'] = df[resp_attrs].mean(axis=1)
+
+    float_cols = ['ggMeta', 'esMeta', 'esMetaSub', 'avgMeta', 'avgMetaSub', 'responsiveness']
+    for col in float_cols:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0.0)
+
+    for col in ['roles+', 'roles++']:
+        if col not in df.columns: df[col] = pd.Series([[] for _ in range(len(df))])
+        df[col] = df[col].apply(lambda x: x if isinstance(x, list) else [])
+        
+    df['hasRolePlus'] = df.apply(lambda row: row.get('role') in row.get('roles+', []), axis=1)
+    df['hasRolePlusPlus'] = df.apply(lambda row: row.get('role') in row.get('roles++', []), axis=1)
+
+    return df
+
 df = load_data(data_dir / "club_final.json")
+all_players_df = load_all_players(data_dir / "all_players_summary.json")
 if df.empty:
     st.stop()
 
@@ -323,7 +374,7 @@ if filters:
 
 
 # --- TABS ---
-tab1, tab2 = st.tabs(["Club Squad", "Sell Now 💰"])
+tab1, tab2, tab3 = st.tabs(["Club Squad", "Sell Now 💰", "All Players 🌍"])
 
 with tab1:
     best_role_only = st.checkbox("Show best role only", value=True, key="best_role_only",
@@ -513,3 +564,77 @@ with tab2:
                 "Total Quick Sell Value": st.column_config.NumberColumn("Total Quick Sell", format="%d", help="Total Quick Sell Value")
             }
         )
+
+with tab3:
+    st.header("All Players Database")
+    
+    if all_players_df.empty:
+        st.info("No all players data available. Run the build script.")
+    else:
+        best_role_only_all = st.checkbox("Show best role only", value=True, key="best_role_only_all",
+                                         help="When checked, shows each player once at their highest-rated role. Uncheck to see all roles.")
+        
+        # Apply filters to all_players_df
+        filtered_all_df = all_players_df.copy()
+        
+        # Adjust meta weights for all_players_df
+        if es_weight + gg_weight > 0 and not filtered_all_df.empty:
+            has_both = (filtered_all_df['esMeta'] > 0) & (filtered_all_df['ggMeta'] > 0)
+            filtered_all_df.loc[has_both, 'avgMeta'] = ((filtered_all_df.loc[has_both, 'esMeta'] * es_weight) + (filtered_all_df.loc[has_both, 'ggMeta'] * gg_weight)) / (es_weight + gg_weight)
+            filtered_all_df.loc[(filtered_all_df['esMeta'] > 0) & (filtered_all_df['ggMeta'] <= 0), 'avgMeta'] = filtered_all_df['esMeta']
+            filtered_all_df.loc[(filtered_all_df['ggMeta'] > 0) & (filtered_all_df['esMeta'] <= 0), 'avgMeta'] = filtered_all_df['ggMeta']
+
+            # We only have esMetaSub in all_players_df, no ggMetaSub without model
+            filtered_all_df['avgMetaSub'] = filtered_all_df['esMetaSub']
+            
+        for col, val in filters.items():
+            if val is None or (isinstance(val, list) and not val):
+                continue
+            if col not in filtered_all_df.columns and col not in ["playstyles_all", "playstyles_plus_all"]:
+                continue
+            
+            if col == "playstyles_all":
+                def has_all_styles(row):
+                    combined = set((row.get('PS', []) or []) + (row.get('PS+', []) or []))
+                    return all(s in combined for s in val)
+                filtered_all_df = filtered_all_df[filtered_all_df.apply(has_all_styles, axis=1)]
+            elif col == "playstyles_plus_all":
+                def has_all_ps_plus(ps_plus_list):
+                    return isinstance(ps_plus_list, list) and all(s in ps_plus_list for s in val)
+                filtered_all_df = filtered_all_df[filtered_all_df['PS+'].apply(has_all_ps_plus)]
+            elif isinstance(val, list):
+                filtered_all_df = filtered_all_df[filtered_all_df[col].isin(val)]
+            elif isinstance(val, tuple):
+                filtered_all_df = filtered_all_df[filtered_all_df[col].between(val[0], val[1])]
+            else:
+                filtered_all_df = filtered_all_df[filtered_all_df[col] == val]
+        
+        if best_role_only_all and not filtered_all_df.empty:
+            if "avgMeta" in filtered_all_df.columns:
+                filtered_all_df = filtered_all_df.loc[filtered_all_df.groupby("__true_player_id")["avgMeta"].idxmax()]
+                filtered_all_df = filtered_all_df.sort_values(by="avgMeta", ascending=False)
+                
+        st.markdown(f"### Player List ({filtered_all_df['eaId'].nunique()} unique players, {len(filtered_all_df)} total entries)")
+
+        columns_to_display_all = [
+            "commonName", "role", "overall", "responsiveness", "avgMeta", 
+            "ggMeta", "ggChemStyle", "ggAccelType", 
+            "esMeta", "esChemStyle", "esAccelType",
+            "avgMetaSub", "esMetaSub", "subAccelType", 
+            "hasRolePlusPlus", "hasRolePlus", "isTall", "skillMoves", "weakFoot", "foot", "height", "weight", "bodyType",
+            "PS+", "PS", "positions", "roles++", "roles+"
+        ] + attribute_filter_order
+
+        final_display_columns_all = [col for col in columns_to_display_all if col in filtered_all_df.columns]
+
+        display_all_df = filtered_all_df.copy()
+        for col in ["hasRolePlus", "hasRolePlusPlus", "isTall"]:
+            if col in display_all_df.columns:
+                display_all_df[col] = display_all_df[col].apply(lambda x: "✅" if x else "❌")
+
+        display_all_df.drop(columns=[c for c in ["__true_player_id"] if c in display_all_df.columns], inplace=True, errors="ignore")
+
+        if display_all_df.empty:
+            st.warning("No players found matching the selected filters.")
+        else:
+            st.dataframe(display_all_df[final_display_columns_all], use_container_width=True, hide_index=True)
