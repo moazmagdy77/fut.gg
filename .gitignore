@@ -7,5 +7,4 @@ data/*.csv
 models/*.pkl
 data/raw/*
 !data/raw/prices/
-data/all_players_summary.json
 data/responsiveness_output.txt
