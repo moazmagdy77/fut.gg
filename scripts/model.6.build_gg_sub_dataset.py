@@ -12,8 +12,8 @@ from shared_utils import load_json_file, _normalize_gender, calculate_accelerati
 # --- Configuration ---
 BASE_DATA_DIR = Path(__file__).resolve().parent / '../data'
 RAW_DATA_DIR = BASE_DATA_DIR / 'raw'
-GG_DATA_DIR = RAW_DATA_DIR / 'ggData'
-GG_META_DIR = RAW_DATA_DIR / 'ggMeta'
+GG_DATA_DIR = RAW_DATA_DIR / 'training' / 'ggData'
+GG_META_DIR = RAW_DATA_DIR / 'training' / 'ggMeta'
 MAPS_FILE = BASE_DATA_DIR / 'maps.json'
 # New absolute dataset filename (we keep the script name for your runner)
 OUTPUT_FILE = BASE_DATA_DIR / 'training_dataset_gg_sub_abs.csv'

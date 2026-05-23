@@ -73,14 +73,43 @@ async function createSafeContext(browser) {
     return browser.defaultBrowserContext();
 }
 
-async function checkSkippability(id, dirs) {
-    const [d1, d2, d3] = await Promise.all([
-        fileExists(path.join(dirs.ggData, `${id}_ggData.json`)),
-        fileExists(path.join(dirs.esMeta, `${id}_esMeta.json`)),
-        fileExists(path.join(dirs.ggMeta, `${id}_ggMeta.json`))
-    ]);
-    return d1 && d2 && d3;
+async function checkSkippability(id, mode) {
+    const root = __dirname;
+    if (mode === 'model') {
+        const dir_ggData = path.resolve(root, `../data/raw/training/ggData`);
+        const dir_esMeta = path.resolve(root, `../data/raw/training/esMeta`);
+        const dir_ggMeta = path.resolve(root, `../data/raw/training/ggMeta`);
+        const [d1, d2, d3] = await Promise.all([
+            fileExists(path.join(dir_ggData, `${id}_ggData.json`)),
+            fileExists(path.join(dir_esMeta, `${id}_esMeta.json`)),
+            fileExists(path.join(dir_ggMeta, `${id}_ggMeta.json`))
+        ]);
+        return d1 && d2 && d3;
+    } else { // club mode
+        const main_ggData = path.resolve(root, `../data/raw/club - main/ggData`);
+        const main_esMeta = path.resolve(root, `../data/raw/club - main/esMeta`);
+        const main_ggMeta = path.resolve(root, `../data/raw/club - main/ggMeta`);
+        
+        const rest_ggData = path.resolve(root, `../data/raw/club - rest/ggData`);
+        const rest_esMeta = path.resolve(root, `../data/raw/club - rest/esMeta`);
+        const rest_ggMeta = path.resolve(root, `../data/raw/club - rest/ggMeta`);
+
+        const [m1, m2, m3] = await Promise.all([
+            fileExists(path.join(main_ggData, `${id}_ggData.json`)),
+            fileExists(path.join(main_esMeta, `${id}_esMeta.json`)),
+            fileExists(path.join(main_ggMeta, `${id}_ggMeta.json`))
+        ]);
+        if (m1 && m2 && m3) return true;
+
+        const [r1, r2, r3] = await Promise.all([
+            fileExists(path.join(rest_ggData, `${id}_ggData.json`)),
+            fileExists(path.join(rest_esMeta, `${id}_esMeta.json`)),
+            fileExists(path.join(rest_ggMeta, `${id}_ggMeta.json`))
+        ]);
+        return r1 && r2 && r3;
+    }
 }
+
 
 // --- Fetching Logic ---
 
@@ -115,7 +144,7 @@ async function fetchEasySBC(eaId, roleId) {
 }
 
 // --- Worker ---
-async function processPlayer(eaId, browser, maps, dirs) {
+async function processPlayer(eaId, browser, maps) {
     const eaIdStr = String(eaId);
     let context = null;
     let page = null;
@@ -170,10 +199,30 @@ async function processPlayer(eaId, browser, maps, dirs) {
         await context.close();
         page = null; context = null;
 
-        // 3. Save All Data
-        await saveData(path.join(dirs.ggData, `${eaIdStr}_ggData.json`), details);
-        if (meta) await saveData(path.join(dirs.ggMeta, `${eaIdStr}_ggMeta.json`), meta);
-        if (esData && esData.length > 0) await saveData(path.join(dirs.esMeta, `${eaIdStr}_esMeta.json`), esData);
+        // 3. Save All Data (dynamically determine subfolder)
+        let subfolder = 'training';
+        if (MODE === 'club') {
+            const overall = details.data.overall;
+            if (overall >= 75) {
+                subfolder = 'club - main';
+            } else {
+                subfolder = 'club - rest';
+            }
+        }
+        
+        const playerDirs = {
+            ggData: path.resolve(__dirname, `../data/raw/${subfolder}/ggData`),
+            ggMeta: path.resolve(__dirname, `../data/raw/${subfolder}/ggMeta`),
+            esMeta: path.resolve(__dirname, `../data/raw/${subfolder}/esMeta`)
+        };
+        
+        await ensureDir(playerDirs.ggData);
+        await ensureDir(playerDirs.ggMeta);
+        await ensureDir(playerDirs.esMeta);
+
+        await saveData(path.join(playerDirs.ggData, `${eaIdStr}_ggData.json`), details);
+        if (meta) await saveData(path.join(playerDirs.ggMeta, `${eaIdStr}_ggMeta.json`), meta);
+        if (esData && esData.length > 0) await saveData(path.join(playerDirs.esMeta, `${eaIdStr}_esMeta.json`), esData);
 
         return { id: eaId, status: 'success' };
 
@@ -192,13 +241,18 @@ async function processPlayer(eaId, browser, maps, dirs) {
     const start = Date.now();
 
     const root = __dirname;
-    const dirs = {
-        ggData: path.resolve(root, GG_DATA_DIR),
-        esMeta: path.resolve(root, ES_META_DIR),
-        ggMeta: path.resolve(root, GG_META_DIR)
-    };
-    
-    await Promise.all(Object.values(dirs).map(ensureDir));
+    const baseRawDirs = [
+        path.resolve(root, '../data/raw/club - main/ggData'),
+        path.resolve(root, '../data/raw/club - main/ggMeta'),
+        path.resolve(root, '../data/raw/club - main/esMeta'),
+        path.resolve(root, '../data/raw/club - rest/ggData'),
+        path.resolve(root, '../data/raw/club - rest/ggMeta'),
+        path.resolve(root, '../data/raw/club - rest/esMeta'),
+        path.resolve(root, '../data/raw/training/ggData'),
+        path.resolve(root, '../data/raw/training/ggMeta'),
+        path.resolve(root, '../data/raw/training/esMeta')
+    ];
+    await Promise.all(baseRawDirs.map(ensureDir));
     
     // Load IDs and Maps
     const idsPath = path.resolve(root, INPUT_FILE);
@@ -228,7 +282,7 @@ async function processPlayer(eaId, browser, maps, dirs) {
     for (let i = 0; i < ids.length; i+=chunk) {
         const batch = ids.slice(i, i+chunk);
         const results = await Promise.all(batch.map(async id => ({ 
-            id, skip: await checkSkippability(id, dirs) 
+            id, skip: await checkSkippability(id, MODE) 
         })));
         todo.push(...results.filter(r => !r.skip).map(r => r.id));
     }
@@ -252,7 +306,7 @@ async function processPlayer(eaId, browser, maps, dirs) {
     async function worker() {
         while (todo.length > 0) {
             const id = todo.shift();
-            await processPlayer(id, browser, maps, dirs);
+            await processPlayer(id, browser, maps);
             
             processed++;
             if (processed % 50 === 0) {

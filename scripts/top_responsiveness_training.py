@@ -8,7 +8,7 @@ from pathlib import Path
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
-RAW_DIR = Path(r'd:\Dev\fut.gg\data\raw\ggData')
+RAW_DIR = Path(r'd:\Dev\fut.gg\data\raw\training\ggData')
 
 players = []
 files = list(RAW_DIR.glob('*_ggData.json'))

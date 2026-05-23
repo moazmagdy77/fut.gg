@@ -379,12 +379,10 @@ tab1, tab2, tab3 = st.tabs(["Club Squad", "Sell Now 💰", "All Players 🌍"])
 with tab1:
     best_role_only = st.checkbox("Show best role only", value=True, key="best_role_only",
                                  help="When checked, shows each player once at their highest-rated role. Uncheck to see all roles.")
-    # Include players with avgMetaSub >= 80 OR tall players (isTall == True)
-    if "avgMetaSub" in filtered_df.columns:
-        is_tall_mask = filtered_df["isTall"].fillna(False) if "isTall" in filtered_df.columns else pd.Series(False, index=filtered_df.index)
-        tab1_df = filtered_df[(filtered_df["avgMetaSub"] >= 80) | is_tall_mask]
-    else:
-        tab1_df = filtered_df.copy()
+    # Include players with overall >= 75 OR tall players (isTall == True)
+    is_tall_mask = filtered_df["isTall"].fillna(False) if "isTall" in filtered_df.columns else pd.Series(False, index=filtered_df.index)
+    ovr_mask = filtered_df["overall"].fillna(0).astype(int) >= 75 if "overall" in filtered_df.columns else pd.Series(True, index=filtered_df.index)
+    tab1_df = filtered_df[ovr_mask | is_tall_mask]
     if best_role_only:
         tab1_df = tab1_df.loc[tab1_df.groupby("__true_player_id")["avgMeta"].idxmax()]
         tab1_df = tab1_df.sort_values(by="avgMeta", ascending=False)

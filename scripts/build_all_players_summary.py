@@ -47,14 +47,29 @@ def main():
         if 'name' in item and 'threeChemistryModifiers' in item
     }
 
-    gg_files = sorted(GG_DATA_DIR.glob("*_ggData.json"))
-    print(f"ℹ️  Found {len(gg_files)} player files.")
+    # Scan all folders for ggData files and group by player ID (keep latest modified time)
+    player_latest_files = {}
+    for sub in ['club - main', 'club - rest', 'training']:
+        gg_dir = RAW_DATA_DIR / sub / 'ggData'
+        if not gg_dir.exists():
+            continue
+        for f in gg_dir.glob("*_ggData.json"):
+            ea_id = f.name.split('_')[0]
+            try:
+                mtime = f.stat().st_mtime
+            except Exception:
+                mtime = 0
+            if ea_id not in player_latest_files or mtime > player_latest_files[ea_id][1]:
+                player_latest_files[ea_id] = (f, mtime, sub)
+
+    gg_files_info = sorted(player_latest_files.values(), key=lambda x: x[0].name)
+    print(f"ℹ️  Found {len(gg_files_info)} unique player files.")
 
     results = []
 
-    for i, gg_file in enumerate(gg_files):
-        if (i + 1) % 2000 == 0:
-            print(f"  ⏳ {i + 1}/{len(gg_files)}...")
+    for i, (gg_file, mtime, sub) in enumerate(gg_files_info):
+        if (i + 1) % 2000 == 0 or (i + 1) == len(gg_files_info):
+            print(f"  ⏳ {i + 1}/{len(gg_files_info)}...")
 
         try:
             gg_raw = json.loads(gg_file.read_text(encoding='utf-8'))
@@ -120,16 +135,16 @@ def main():
         )
 
         # --- Meta Ratings (API-fetched) ---
-        # Parse ggMeta
+        # Parse ggMeta (from same subfolder as ggData)
         gg_scores_by_role = defaultdict(list)
-        gg_meta_file = GG_META_DIR / f"{ea_id}_ggMeta.json"
+        gg_meta_file = RAW_DATA_DIR / sub / 'ggMeta' / f"{ea_id}_ggMeta.json"
         gg_meta_raw = load_json_file(gg_meta_file)
         if gg_meta_raw and "data" in gg_meta_raw and "scores" in gg_meta_raw["data"]:
             for score in gg_meta_raw["data"]["scores"]:
                 gg_scores_by_role[str(score.get("role"))].append(score)
 
-        # Parse esMeta
-        es_meta_raw = load_json_file(ES_META_DIR / f"{ea_id}_esMeta.json", [])
+        # Parse esMeta (from same subfolder as ggData)
+        es_meta_raw = load_json_file(RAW_DATA_DIR / sub / 'esMeta' / f"{ea_id}_esMeta.json", [])
 
         player["metaRatings"] = []
 

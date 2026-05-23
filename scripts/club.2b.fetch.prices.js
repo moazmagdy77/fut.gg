@@ -18,7 +18,7 @@ const DELAY_MAX = 200;
 
 const TRADEABLE_IDS_FILE = '../data/tradeable_ids.json';
 const PRICES_DIR = '../data/raw/prices';
-const PRICES_URL_TEMPLATE = (eaId) => `https://www.fut.gg/api/fut/player-prices/26/${eaId}/`;
+const PRICES_URL_TEMPLATE = (eaId) => `https://www.fut.gg/api/fut/player-prices/26/?ids=${eaId}&platform=ps5`;
 
 // --- Helpers ---
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
@@ -75,15 +75,16 @@ async function fetchPrice(eaId, browser, pricesDir) {
             page = null; context = null;
 
             // Process & Save
-            if (json && json.data && json.data.currentPrice) {
+            if (json && Array.isArray(json.data) && json.data.length > 0) {
+                const priceInfo = json.data[0];
                 const parseWholeNum = val => {
                     if (val == null) return 0;
                     const parsed = parseInt(String(val).replace(/,/g, ''), 10);
                     return isNaN(parsed) ? 0 : parsed;
                 };
                 const priceData = {
-                    price: parseWholeNum(json.data.currentPrice.price),
-                    isExtinct: json.data.currentPrice.isExtinct
+                    price: parseWholeNum(priceInfo.price),
+                    isExtinct: !!priceInfo.isExtinct
                 };
                 await fs.writeFile(path.join(pricesDir, `${eaId}.json`), JSON.stringify(priceData, null, 2));
                 return { id: eaId, status: 'success', price: priceData.price };

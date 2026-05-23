@@ -31,6 +31,13 @@ MAPS_FILE = BASE_DATA_DIR / 'maps.json'
 OUTPUT_FILE = BASE_DATA_DIR / 'club_final.json'
 CLUB_IDS_FILE = BASE_DATA_DIR / 'all_club_ids.json'
 
+def get_raw_file_path(ea_id, file_type, raw_data_dir):
+    for sub in ['club - main', 'club - rest', 'training']:
+        p = raw_data_dir / sub / file_type / f"{ea_id}_{file_type}.json"
+        if p.exists():
+            return p
+    return raw_data_dir / 'club - main' / file_type / f"{ea_id}_{file_type}.json"
+
 # --- CLI Arguments ---
 MIN_HEIGHT_CM = 195  # default
 for i, arg in enumerate(sys.argv):
@@ -277,12 +284,12 @@ def process_player(player_def, is_evo, model_manager, maps, min_height_cm=195):
         base_attributes.get("attributeStrength"), player_output.get("height"), player_output.get("gender")
     )
 
-    es_meta_raw = load_json_file(ES_META_DIR / f"{player_output['eaId']}_esMeta.json", [])
+    es_meta_raw = load_json_file(get_raw_file_path(player_output['eaId'], 'esMeta', RAW_DATA_DIR), [])
 
     if is_evo:
         gg_scores_by_role = parse_gg_rating_str(player_def.get("ggRatingStr"))
     else:
-        gg_meta_raw = load_json_file(GG_META_DIR / f"{player_output['eaId']}_ggMeta.json")
+        gg_meta_raw = load_json_file(get_raw_file_path(player_output['eaId'], 'ggMeta', RAW_DATA_DIR))
         gg_scores_by_role = defaultdict(list)
         if gg_meta_raw and "data" in gg_meta_raw and "scores" in gg_meta_raw["data"]:
             for score in gg_meta_raw["data"]["scores"]:
@@ -318,7 +325,7 @@ def process_player(player_def, is_evo, model_manager, maps, min_height_cm=195):
             evo_features_sub = prepare_features(player_output, maps, boosts={}, role_name=role_name)
             if is_evo:
                 base_anchor_eaid = resolve_anchor_source_eaid(player_def)
-                base_gg_raw = load_json_file(GG_DATA_DIR / f"{base_anchor_eaid}_ggData.json")
+                base_gg_raw = load_json_file(get_raw_file_path(base_anchor_eaid, 'ggData', RAW_DATA_DIR))
                 base_player_like = to_player_like_from_ggdata(base_gg_raw.get("data") if base_gg_raw else None, maps)
                 base_features_sub = prepare_features(base_player_like, maps, boosts={}, role_name=role_name) if base_player_like else None
                 meta_entry["ggMetaSub"] = predict_ggsub_evo_anchored(
@@ -334,9 +341,9 @@ def process_player(player_def, is_evo, model_manager, maps, min_height_cm=195):
         # ES Logic
         if is_evo:
             base_anchor_eaid = resolve_anchor_source_eaid(player_def)
-            base_es_meta_raw = load_json_file(ES_META_DIR / f"{base_anchor_eaid}_esMeta.json", [])
+            base_es_meta_raw = load_json_file(get_raw_file_path(base_anchor_eaid, 'esMeta', RAW_DATA_DIR), [])
             sub_anchor, anchor3_by_style = get_es_anchors_for_role(base_es_meta_raw, role_name, maps)
-            base_gg_raw = load_json_file(GG_DATA_DIR / f"{base_anchor_eaid}_ggData.json")
+            base_gg_raw = load_json_file(get_raw_file_path(base_anchor_eaid, 'ggData', RAW_DATA_DIR))
             base_player_like = to_player_like_from_ggdata(base_gg_raw.get("data") if base_gg_raw else None, maps)
             
             # Sub
@@ -425,8 +432,7 @@ def worker_task(payload):
     try:
         if payload['type'] == 'club':
             ea_id = payload['id']
-            # Worker loads the JSON from disk to distribute I/O
-            data_file = GG_DATA_DIR / f"{ea_id}_ggData.json"
+            data_file = get_raw_file_path(ea_id, 'ggData', RAW_DATA_DIR)
             player_def_raw = load_json_file(data_file)
             if not player_def_raw or "data" not in player_def_raw:
                 return None
