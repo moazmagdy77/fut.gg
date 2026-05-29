@@ -5,6 +5,11 @@
 
 import json
 import sys
+import io
+try:
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+except Exception:
+    pass
 import time
 from pathlib import Path
 from collections import defaultdict

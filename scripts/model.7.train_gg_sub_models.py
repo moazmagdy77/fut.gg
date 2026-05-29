@@ -4,6 +4,11 @@ import pandas as pd
 import numpy as np
 import joblib
 import sys
+import io
+try:
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+except Exception:
+    pass
 from pathlib import Path
 
 # --- Dependency Check ---

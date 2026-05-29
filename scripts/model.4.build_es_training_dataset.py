@@ -5,6 +5,12 @@ from pathlib import Path
 import pandas as pd
 from collections import defaultdict
 import os
+import sys
+import io
+try:
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+except Exception:
+    pass
 from shared_utils import load_json_file, _normalize_gender, calculate_acceleration_type, get_attribute_with_boost, familiarity_for_role
 
 # --- Configuration ---

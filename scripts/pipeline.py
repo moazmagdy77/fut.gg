@@ -14,6 +14,7 @@ futbin_scraper_dir = Path(r"D:\Dev\futbin-scraper")
 
 steps = [
     ("🔎 Step 1: Extract CLUB player IDs", [sys.executable, "club.1.get.ids.py"]),
+    ("🧹 Step 1.5: Invalidate upgraded/evolved players", [sys.executable, "invalidate_upgraded_players.py"]),
     ("📦 Step 2a: Scrape player data (≥75 OVR)", ["node", "shared.fetch.data.js", "--file", "../data/club_ids.json", "--mode", "club"]),
     ("📦 Step 2a+: Scrape player data (All IDs, for tall detection)", ["node", "shared.fetch.data.js", "--file", "../data/all_club_ids.json", "--mode", "club"]),
     ("💰 Step 2b: Fetch prices (Tradeables)", ["node", "club.2b.fetch.prices.js"]),

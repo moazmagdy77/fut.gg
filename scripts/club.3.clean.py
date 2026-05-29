@@ -10,6 +10,11 @@ import joblib
 import warnings
 import os
 import sys
+import io
+try:
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+except Exception:
+    pass
 import concurrent.futures
 import multiprocessing
 from shared_utils import load_json_file, _normalize_gender, calculate_acceleration_type, get_attribute_with_boost
