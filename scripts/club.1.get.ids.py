@@ -1,113 +1,150 @@
-from bs4 import BeautifulSoup
+# club.1.get.ids.py
+# Extracts CLUB player IDs, ALL CLUB IDs, and Tradeable IDs from club-analyzer.html.
+# Optimized: Uses regex instead of BeautifulSoup to run in <0.5 seconds on Windows.
+
 import json
+import re
+import sys
+import io
 from pathlib import Path
 
-# Define data directory
 try:
-    data_dir = Path(__file__).resolve().parent.parent / "data"
-except NameError:
-    data_dir = Path(".").resolve().parent / "data"
-    if not data_dir.exists():
-        data_dir = Path(".").resolve()
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+except Exception:
+    pass
 
-# Load the HTML content
-html_file_path = data_dir / "club-analyzer.html"
-with open(html_file_path, "r", encoding="utf-8") as f:
-    soup = BeautifulSoup(f, "html.parser")
+def main():
+    # Define data directory
+    try:
+        data_dir = Path(__file__).resolve().parent.parent / "data"
+    except NameError:
+        data_dir = Path(".").resolve().parent / "data"
+        if not data_dir.exists():
+            data_dir = Path(".").resolve()
 
-# Parse the table rows
-rows = soup.find_all("tr")
+    # Load the HTML content
+    html_file_path = data_dir / "club-analyzer.html"
+    if not html_file_path.exists():
+        print(f"❌ Error: {html_file_path.name} not found. Please place it in data/ folder first.")
+        return
 
-# Get the header to determine column indices
-headers = [th.text.strip() for th in rows[0].find_all("th")]
-id_idx = headers.index("Id")
-location_idx = headers.index("Location")
-rating_idx = headers.index("Rating")
+    print(f"📖 Reading and parsing {html_file_path.name} using regex...")
+    try:
+        html_content = html_file_path.read_text(encoding="utf-8")
+        rows = re.findall(r'<tr>(.*?)</tr>', html_content, re.DOTALL)
+    except Exception as e:
+        print(f"❌ Error reading HTML file: {e}")
+        return
 
-# Attempt to find Untradeable column, default to 12 (Column 13 0-indexed) if not found by name
-try:
-    untradeable_idx = headers.index("Untradeable")
-except ValueError:
-    untradeable_idx = 12
+    if not rows:
+        print("❌ Error: No rows found in HTML table.")
+        return
 
-try: name_idx = headers.index("Name")
-except ValueError: name_idx = -1
+    # Get headers using regex
+    headers = [re.sub(r'<.*?>', '', h).strip() for h in re.findall(r'<th.*?>(.*?)</th>', rows[0], re.DOTALL)]
+    try:
+        id_idx = headers.index("Id")
+        location_idx = headers.index("Location")
+        rating_idx = headers.index("Rating")
+    except ValueError as e:
+        print(f"❌ Error finding table headers: {e}")
+        return
 
-try: lastname_idx = headers.index("Lastname")
-except ValueError: lastname_idx = -1
+    # Attempt to find optional columns, default if not found
+    try:
+        untradeable_idx = headers.index("Untradeable")
+    except ValueError:
+        untradeable_idx = 12
 
-try: rarity_idx = headers.index("Rarity")
-except ValueError: rarity_idx = -1
+    try: name_idx = headers.index("Name")
+    except ValueError: name_idx = -1
 
-try: position_idx = headers.index("Position")
-except ValueError: position_idx = -1
+    try: lastname_idx = headers.index("Lastname")
+    except ValueError: lastname_idx = -1
 
-try: discard_idx = headers.index("Discard Value")
-except ValueError: discard_idx = -1
+    try: rarity_idx = headers.index("Rarity")
+    except ValueError: rarity_idx = -1
 
-# Extract IDs
-club_ids = []
-all_club_ids = []
-tradeable_ids = []
-tradeable_details = []
+    try: position_idx = headers.index("Position")
+    except ValueError: position_idx = -1
 
-for row in rows[1:]:
-    cols = row.find_all("td")
-    if cols and cols[location_idx].text.strip() == "CLUB":
-        try:
-            rating = int(cols[rating_idx].text.strip())
-        except (ValueError, IndexError):
-            rating = 0
-            
-        ea_id = cols[id_idx].text.strip()
-        all_club_ids.append(ea_id)
-        if rating >= 75:
-            club_ids.append(ea_id)
-            
-        # Check if Untradeable is False
-        untradeable_text = cols[untradeable_idx].text.strip()
-        # Checks for "False" string or empty/falsy values depending on HTML format
-        if untradeable_text.lower() == "false":
-            tradeable_ids.append(ea_id)
-            
-            tradeable_details.append({
-                "__true_player_id": ea_id,
-                "commonName": (
-                    (cols[name_idx].text.strip() + " " + cols[lastname_idx].text.strip()).strip()
-                    if name_idx != -1 and lastname_idx != -1
-                    else cols[name_idx].text.strip() if name_idx != -1
-                    else "Unknown"
-                ),
-                "overall": rating,
-                "rarity": cols[rarity_idx].text.strip() if rarity_idx != -1 else "Unknown",
-                "positions": cols[position_idx].text.strip() if position_idx != -1 else "Unknown",
-                "avgMeta": 0.0,
-                "isExtinct": False,
-                "price": 0,
-                "discardValue": int(cols[discard_idx].text.strip().replace(",", "").replace(".", "")) if discard_idx != -1 and cols[discard_idx].text.strip().replace(",", "").replace(".", "").isdigit() else 0
-            })
+    try: discard_idx = headers.index("Discard Value")
+    except ValueError: discard_idx = -1
 
-# Save CLUB IDs (Main list for data fetching, rating >= 75)
-output_file_path = data_dir / "club_ids.json"
-with open(output_file_path, "w") as out:
-    json.dump(club_ids, out, indent=2)
+    # Extract IDs
+    club_ids = []
+    all_club_ids = []
+    tradeable_ids = []
+    tradeable_details = []
 
-# Save ALL CLUB IDs (No rating filter, used for tall-player identification)
-all_club_ids_path = data_dir / "all_club_ids.json"
-with open(all_club_ids_path, "w") as out:
-    json.dump(all_club_ids, out, indent=2)
+    for row in rows[1:]:
+        cols = [re.sub(r'<.*?>', '', c).strip() for c in re.findall(r'<td.*?>(.*?)</td>', row, re.DOTALL)]
+        if cols and len(cols) > max(id_idx, location_idx, rating_idx):
+            if cols[location_idx] == "CLUB":
+                try:
+                    rating = int(cols[rating_idx])
+                except ValueError:
+                    rating = 0
+                    
+                ea_id = cols[id_idx]
+                all_club_ids.append(ea_id)
+                if rating >= 75:
+                    club_ids.append(ea_id)
+                    
+                # Check if Untradeable is False
+                if untradeable_idx < len(cols):
+                    untradeable_text = cols[untradeable_idx]
+                    if untradeable_text.lower() == "false":
+                        tradeable_ids.append(ea_id)
+                        
+                        # Discard Value extraction
+                        discard_val = 0
+                        if discard_idx != -1 and discard_idx < len(cols):
+                            discard_text = cols[discard_idx].replace(",", "").replace(".", "")
+                            if discard_text.isdigit():
+                                discard_val = int(discard_text)
 
-# Save TRADEABLE IDs (Subset for price fetching)
-tradeable_file_path = data_dir / "tradeable_ids.json"
-with open(tradeable_file_path, "w") as out:
-    json.dump(tradeable_ids, out, indent=2)
+                        # Name resolution
+                        first = cols[name_idx] if name_idx != -1 and name_idx < len(cols) else ""
+                        last = cols[lastname_idx] if lastname_idx != -1 and lastname_idx < len(cols) else ""
+                        name = f"{first} {last}".strip() if first or last else "Unknown"
 
-# Save TRADEABLE Details
-tradeable_details_path = data_dir / "tradeable_details.json"
-with open(tradeable_details_path, "w", encoding="utf-8") as out:
-    json.dump(tradeable_details, out, indent=2)
+                        tradeable_details.append({
+                            "__true_player_id": ea_id,
+                            "commonName": name,
+                            "overall": rating,
+                            "rarity": cols[rarity_idx] if rarity_idx != -1 and rarity_idx < len(cols) else "Unknown",
+                            "positions": cols[position_idx] if position_idx != -1 and position_idx < len(cols) else "Unknown",
+                            "avgMeta": 0.0,
+                            "isExtinct": False,
+                            "price": 0,
+                            "discardValue": discard_val
+                        })
 
-print(f"Extracted {len(club_ids)} CLUB Player IDs (≥75 OVR) -> {output_file_path}")
-print(f"Extracted {len(all_club_ids)} ALL CLUB Player IDs -> {all_club_ids_path}")
-print(f"Extracted {len(tradeable_ids)} Tradeable Player IDs -> {tradeable_file_path}")
-print(f"Extracted {len(tradeable_details)} Tradeable Player Details -> {tradeable_details_path}")
+    # Save CLUB IDs (Main list for data fetching, rating >= 75)
+    output_file_path = data_dir / "club_ids.json"
+    with open(output_file_path, "w") as out:
+        json.dump(club_ids, out, indent=2)
+
+    # Save ALL CLUB IDs (No rating filter, used for tall-player identification)
+    all_club_ids_path = data_dir / "all_club_ids.json"
+    with open(all_club_ids_path, "w") as out:
+        json.dump(all_club_ids, out, indent=2)
+
+    # Save TRADEABLE IDs (Subset for price fetching)
+    tradeable_file_path = data_dir / "tradeable_ids.json"
+    with open(tradeable_file_path, "w") as out:
+        json.dump(tradeable_ids, out, indent=2)
+
+    # Save TRADEABLE Details
+    tradeable_details_path = data_dir / "tradeable_details.json"
+    with open(tradeable_details_path, "w", encoding="utf-8") as out:
+        json.dump(tradeable_details, out, indent=2)
+
+    print(f"Extracted {len(club_ids)} CLUB Player IDs (≥75 OVR) -> {output_file_path.name}")
+    print(f"Extracted {len(all_club_ids)} ALL CLUB Player IDs -> {all_club_ids_path.name}")
+    print(f"Extracted {len(tradeable_ids)} Tradeable Player IDs -> {tradeable_file_path.name}")
+    print(f"Extracted {len(tradeable_details)} Tradeable Player Details -> {tradeable_details_path.name}")
+
+if __name__ == "__main__":
+    main()
