@@ -204,7 +204,7 @@ def render_squad_builder(df_to_use, available_roles):
         clear_squad_builder_filters()
 
     formation_names = [name for names in FORMATION_GROUPS.values() for name in names]
-    selected_default = st.session_state.get("squad_selected_formation", "4-2-3-1")
+    selected_default = st.session_state.get("squad_selected_formation", "4-4-1-1 (2)")
     if selected_default not in formation_names:
         selected_default = "4-4-1-1 (2)"
 
