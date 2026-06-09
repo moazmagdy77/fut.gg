@@ -246,6 +246,7 @@ def render_squad_builder(df_to_use, available_roles):
         st.session_state["squad_selected_formation"] = selected_formation
         clear_squad_builder_filters()
         st.session_state["squad_players"] = {}
+        st.session_state["custom_squad_roles"] = {}
         st.rerun()
     else:
         st.session_state["squad_selected_formation"] = selected_formation
@@ -269,11 +270,16 @@ def render_squad_builder(df_to_use, available_roles):
                 role_key = f"squad_role_{slot_id}"
                 role_options = role_options_for_position(position, available_roles)
                 default_role = default_role_for_position(position, available_roles)
+                
+                custom_roles = st.session_state.setdefault("custom_squad_roles", {})
+                if slot_id not in custom_roles or custom_roles[slot_id] not in role_options:
+                    custom_roles[slot_id] = default_role
+                
                 if role_key not in st.session_state or st.session_state[role_key] not in role_options:
-                    st.session_state[role_key] = default_role
+                    st.session_state[role_key] = custom_roles[slot_id]
 
                 with slot_col:
-                    selected_role = st.session_state[role_key]
+                    selected_role = custom_roles[slot_id]
                     assigned_player = squad_players.get(slot_id)
                     
                     button_label = f"{label}: {assigned_player['commonName']} ({assigned_player['avgMeta']:.1f})" if assigned_player else label
@@ -296,6 +302,7 @@ def render_squad_builder(df_to_use, available_roles):
                             key=role_key,
                             label_visibility="collapsed",
                         )
+                        custom_roles[slot_id] = selected_role
 
                         signature = f"{slot_id}|{position}|{selected_role}"
                         if active_slot == slot_id and st.session_state.get("squad_applied_signature") != signature:
