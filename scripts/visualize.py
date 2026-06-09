@@ -197,6 +197,27 @@ def render_formation_grid():
                         st.session_state["squad_pending_formation"] = formation_name
                         st.rerun()
 
+@st.dialog("Confirm Add to Squad")
+def confirm_add_dialog(player_info, slot_id, position, role):
+    st.write(f"Do you want to add **{player_info['commonName']}** (Rating: {player_info['avgMeta']:.1f}) to the squad as **{position}** ({role})?")
+    c1, c2 = st.columns(2)
+    if c1.button("Confirm", type="primary", use_container_width=True):
+        st.session_state["squad_players"][slot_id] = player_info
+        clear_squad_builder_filters()
+        # Reset selection keys
+        if "club_players_df" in st.session_state:
+            st.session_state["club_players_df"] = {"selection": {"rows": [], "columns": []}}
+        if "all_players_df" in st.session_state:
+            st.session_state["all_players_df"] = {"selection": {"rows": [], "columns": []}}
+        st.rerun()
+    if c2.button("Cancel", use_container_width=True):
+        clear_squad_builder_filters()
+        if "club_players_df" in st.session_state:
+            st.session_state["club_players_df"] = {"selection": {"rows": [], "columns": []}}
+        if "all_players_df" in st.session_state:
+            st.session_state["all_players_df"] = {"selection": {"rows": [], "columns": []}}
+        st.rerun()
+
 def render_squad_builder(df_to_use, available_roles):
     pending_formation = st.session_state.pop("squad_pending_formation", None)
     if pending_formation in FC26_FORMATIONS:
@@ -224,12 +245,14 @@ def render_squad_builder(df_to_use, available_roles):
         st.session_state["squad_last_formation"] = selected_formation
         st.session_state["squad_selected_formation"] = selected_formation
         clear_squad_builder_filters()
+        st.session_state["squad_players"] = {}
         st.rerun()
     else:
         st.session_state["squad_selected_formation"] = selected_formation
 
     active_slot = st.session_state.get("squad_active_slot")
-    count_col.metric("Slots", sum(len(row) for row in FC26_FORMATIONS[selected_formation]))
+    squad_players = st.session_state.setdefault("squad_players", {})
+    count_col.metric("Slots Remaining", 11 - len(squad_players))
     if clear_col.button("Clear Slot", use_container_width=True):
         clear_squad_builder_filters()
         st.rerun()
@@ -251,22 +274,33 @@ def render_squad_builder(df_to_use, available_roles):
 
                 with slot_col:
                     selected_role = st.session_state[role_key]
+                    assigned_player = squad_players.get(slot_id)
+                    
+                    button_label = f"{label}: {assigned_player['commonName']} ({assigned_player['avgMeta']:.1f})" if assigned_player else label
                     button_type = "primary" if active_slot == slot_id else "secondary"
-                    if st.button(label, key=f"squad_slot_{slot_id}", type=button_type, use_container_width=True):
+                    
+                    if st.button(button_label, key=f"squad_slot_{slot_id}", type=button_type, use_container_width=True):
                         apply_squad_slot_filter(slot_id, position, selected_role)
                         st.rerun()
 
-                    selected_role = st.selectbox(
-                        f"{label} role",
-                        role_options,
-                        key=role_key,
-                        label_visibility="collapsed",
-                    )
+                    if assigned_player:
+                        if st.button("❌ Remove", key=f"remove_squad_slot_{slot_id}", type="secondary", use_container_width=True):
+                            del st.session_state["squad_players"][slot_id]
+                            if active_slot == slot_id:
+                                clear_squad_builder_filters()
+                            st.rerun()
+                    else:
+                        selected_role = st.selectbox(
+                            f"{label} role",
+                            role_options,
+                            key=role_key,
+                            label_visibility="collapsed",
+                        )
 
-                    signature = f"{slot_id}|{position}|{selected_role}"
-                    if active_slot == slot_id and st.session_state.get("squad_applied_signature") != signature:
-                        apply_squad_slot_filter(slot_id, position, selected_role)
-                        st.rerun()
+                        signature = f"{slot_id}|{position}|{selected_role}"
+                        if active_slot == slot_id and st.session_state.get("squad_applied_signature") != signature:
+                            apply_squad_slot_filter(slot_id, position, selected_role)
+                            st.rerun()
             if row_index < len(FC26_FORMATIONS[selected_formation]) - 1:
                 st.write("")
 
@@ -473,8 +507,20 @@ def load_all_players(file_path):
 
     return df
 
+if "squad_players" not in st.session_state:
+    st.session_state["squad_players"] = {}
+
 df = load_data(data_dir / "club_final.json")
 all_players_df = load_all_players(data_dir / "all_players_summary.json")
+
+# Exclude players already in starting squad
+assigned_ea_ids = {str(p["eaId"]) for p in st.session_state["squad_players"].values()}
+if assigned_ea_ids:
+    if not df.empty:
+        df = df[~df["__true_player_id"].astype(str).isin(assigned_ea_ids)]
+    if not all_players_df.empty:
+        all_players_df = all_players_df[~all_players_df["__true_player_id"].astype(str).isin(assigned_ea_ids)]
+
 if df.empty:
     st.stop()
 
@@ -732,7 +778,27 @@ with tab1:
     if display_df.empty:
         st.warning("No players found matching the selected filters.")
     else:
-        st.dataframe(display_df[final_display_columns], use_container_width=True, hide_index=True)
+        event = st.dataframe(
+            display_df[final_display_columns],
+            use_container_width=True,
+            hide_index=True,
+            on_select="rerun",
+            selection_mode="single-row",
+            key="club_players_df"
+        )
+        active_slot = st.session_state.get("squad_active_slot")
+        if active_slot and event.selection.rows:
+            selected_idx = event.selection.rows[0]
+            selected_player = tab1_df.iloc[selected_idx]
+            player_info = {
+                "eaId": str(selected_player["__true_player_id"]) if "__true_player_id" in selected_player else str(selected_player["eaId"]),
+                "commonName": selected_player["commonName"],
+                "avgMeta": selected_player["avgMeta"],
+                "overall": selected_player["overall"],
+                "role": selected_player["role"],
+                "position": selected_player["positions"] if isinstance(selected_player["positions"], list) else [selected_player["positions"]]
+            }
+            confirm_add_dialog(player_info, active_slot, st.session_state.get("squad_applied_position"), st.session_state.get("squad_applied_role"))
 
 with tab2:
     st.header("Sell Now")
@@ -893,4 +959,24 @@ with tab3:
         if display_all_df.empty:
             st.warning("No players found matching the selected filters.")
         else:
-            st.dataframe(display_all_df[final_display_columns_all], use_container_width=True, hide_index=True)
+            event_all = st.dataframe(
+                display_all_df[final_display_columns_all],
+                use_container_width=True,
+                hide_index=True,
+                on_select="rerun",
+                selection_mode="single-row",
+                key="all_players_df"
+            )
+            active_slot = st.session_state.get("squad_active_slot")
+            if active_slot and event_all.selection.rows:
+                selected_idx = event_all.selection.rows[0]
+                selected_player = filtered_all_df.iloc[selected_idx]
+                player_info = {
+                    "eaId": str(selected_player["__true_player_id"]) if "__true_player_id" in selected_player else str(selected_player["eaId"]),
+                    "commonName": selected_player["commonName"],
+                    "avgMeta": selected_player["avgMeta"],
+                    "overall": selected_player["overall"],
+                    "role": selected_player["role"],
+                    "position": selected_player["positions"] if isinstance(selected_player["positions"], list) else [selected_player["positions"]]
+                }
+                confirm_add_dialog(player_info, active_slot, st.session_state.get("squad_applied_position"), st.session_state.get("squad_applied_role"))
