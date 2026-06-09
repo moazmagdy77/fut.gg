@@ -346,6 +346,7 @@ def apply_filters_to_df(source_df, active_filters):
             filtered = filtered[filtered[col] == val]
     return filtered
 
+@st.cache_data
 def load_data(file_path):
     """Loads and preprocesses the final JSON data."""
     try:
@@ -457,6 +458,7 @@ def load_data(file_path):
 
     return df
 
+@st.cache_data
 def load_all_players(file_path):
     """Loads the pre-built all players summary JSON."""
     try:
@@ -510,8 +512,8 @@ def load_all_players(file_path):
 if "squad_players" not in st.session_state:
     st.session_state["squad_players"] = {}
 
-df = load_data(data_dir / "club_final.json")
-all_players_df = load_all_players(data_dir / "all_players_summary.json")
+df = load_data(data_dir / "club_final.json").copy()
+all_players_df = load_all_players(data_dir / "all_players_summary.json").copy()
 
 # Exclude players already in starting squad
 assigned_ea_ids = {str(p["eaId"]) for p in st.session_state["squad_players"].values()}
