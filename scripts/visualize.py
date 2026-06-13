@@ -203,6 +203,7 @@ def confirm_add_dialog(player_info, slot_id, position, role):
     st.write(f"Do you want to add **{player_info['commonName']}** (Rating: {player_info['avgMeta']:.1f}) to the squad as **{position}** ({role})?")
     c1, c2 = st.columns(2)
     if c1.button("Confirm", type="primary", use_container_width=True):
+        player_info["selected_role"] = role
         st.session_state["squad_players"][slot_id] = player_info
         clear_squad_builder_filters()
         # Reset selection keys
@@ -283,7 +284,11 @@ def render_squad_builder(df_to_use, available_roles):
                     selected_role = custom_roles[slot_id]
                     assigned_player = squad_players.get(slot_id)
                     
-                    button_label = f"{label}: {assigned_player['commonName']} ({assigned_player['avgMeta']:.1f})" if assigned_player else label
+                    if assigned_player:
+                        p_role = assigned_player.get('selected_role') or assigned_player.get('role', '')
+                        button_label = f"{label}: {assigned_player['commonName']} ({assigned_player['avgMeta']:.1f} - {p_role})"
+                    else:
+                        button_label = label
                     button_type = "primary" if active_slot == slot_id else "secondary"
                     
                     if st.button(button_label, key=f"squad_slot_{slot_id}", type=button_type, use_container_width=True):
