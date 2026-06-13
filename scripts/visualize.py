@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import json
+import os
 from pathlib import Path
 
 st.set_page_config(layout="wide")
@@ -354,7 +355,7 @@ def apply_filters_to_df(source_df, active_filters):
     return filtered
 
 @st.cache_data
-def load_data(file_path):
+def load_data(file_path, mtime):
     """Loads and preprocesses the final JSON data."""
     try:
         with open(file_path, "r", encoding='utf-8') as f:
@@ -466,7 +467,7 @@ def load_data(file_path):
     return df
 
 @st.cache_data
-def load_all_players(file_path):
+def load_all_players(file_path, mtime):
     """Loads the pre-built all players summary JSON."""
     try:
         with open(file_path, "r", encoding='utf-8') as f:
@@ -519,8 +520,14 @@ def load_all_players(file_path):
 if "squad_players" not in st.session_state:
     st.session_state["squad_players"] = {}
 
-df = load_data(data_dir / "club_final.json").copy()
-all_players_df = load_all_players(data_dir / "all_players_summary.json").copy()
+club_file = data_dir / "club_final.json"
+all_players_file = data_dir / "all_players_summary.json"
+
+club_mtime = os.path.getmtime(club_file) if club_file.exists() else 0
+all_players_mtime = os.path.getmtime(all_players_file) if all_players_file.exists() else 0
+
+df = load_data(club_file, club_mtime).copy()
+all_players_df = load_all_players(all_players_file, all_players_mtime).copy()
 
 # Exclude players already in starting squad
 assigned_ea_ids = {str(p["eaId"]) for p in st.session_state["squad_players"].values()}
@@ -548,6 +555,10 @@ st.markdown("---")
 
 # --- Sidebar filters ---
 st.sidebar.header("Filter Players")
+
+if st.sidebar.button("Clear Cache & Reload Data", use_container_width=True):
+    st.cache_data.clear()
+    st.rerun()
 
 with st.sidebar.expander("MetaRating Weights", expanded=True):
     st.info("Adjust the influence of ES vs GG models on the Average.")
