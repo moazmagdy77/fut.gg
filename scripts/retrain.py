@@ -25,34 +25,29 @@ for label, command in initial_steps:
         print(f"\n❌ Failed at: {label}")
         sys.exit(result.returncode)
 
-# --- Part 2: Parallel Dataset Building ---
-# We run Step 4, Step 6, and All-Players Summary at the same time to save time
-print("\n🔎 Step 6 & All-Players Summary: Building in Parallel...")
-
+# --- Part 2: Build the ggMetaSub training dataset ---
 # esMeta is fetched exact (base API + EasySBC evo), so no ES dataset/model is built here.
-p_gg = subprocess.Popen([sys.executable, "model.6.build_gg_sub_dataset.py"], cwd=base_dir)
-p_all = subprocess.Popen([sys.executable, "build_all_players_summary.py"], cwd=base_dir)
-
-# Wait for both processes to finish
-exit_code_gg = p_gg.wait()
-exit_code_all = p_all.wait()
-
-# Check for errors
-if exit_code_gg != 0:
+print("\n🔎 Step 6: Build ggMetaSub training dataset")
+res_6 = subprocess.run([sys.executable, "model.6.build_gg_sub_dataset.py"], cwd=base_dir)
+if res_6.returncode != 0:
     print("\n❌ Failed at: Step 6 (Build ggMeta dataset)")
-    sys.exit(exit_code_gg)
-
-if exit_code_all != 0:
-    print("\n❌ Failed at: Build All-Players Summary")
-    sys.exit(exit_code_all)
+    sys.exit(res_6.returncode)
 
 # --- Part 3: Model Training ---
-# esMeta is now fetched exact (base API + EasySBC evo), so only the ggMetaSub model remains.
-
-print("\n🔍 Step 7: Train ggMeta and ggMetaSub models")
+print("\n🔍 Step 7: Train ggMetaSub models")
 res_7 = subprocess.run([sys.executable, "model.7.train_gg_sub_models.py"], cwd=base_dir)
 if res_7.returncode != 0:
     print("\n❌ Failed at: Step 7 (Train ggMeta models)")
     sys.exit(res_7.returncode)
+
+# --- Part 4: All-Players Summary ---
+# MUST run AFTER Step 7: build_all_players_summary now predicts ggMetaSub with the
+# freshly-trained models, so building it earlier (the old parallel-with-step-6 layout)
+# would bake in stale or missing models.
+print("\n📊 Step 8: Build All-Players Summary (with ggMetaSub)")
+res_all = subprocess.run([sys.executable, "build_all_players_summary.py"], cwd=base_dir)
+if res_all.returncode != 0:
+    print("\n❌ Failed at: Build All-Players Summary")
+    sys.exit(res_all.returncode)
 
 print(f"\n✅ Club pipeline completed successfully in {round(time.time() - start, 2)} seconds!")

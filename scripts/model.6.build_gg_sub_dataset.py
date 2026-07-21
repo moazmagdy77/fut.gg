@@ -95,6 +95,7 @@ def main():
 
                 row = base_fields.copy()
                 row["role"] = role_name
+                row["eaId"] = ea_id_str  # group key for held-out (by-player) eval in step 7; dropped before training
                 # boosted attributes
                 for attr in base_attributes:
                     row[attr] = get_attribute_with_boost(base_attributes, attr, boosts)

@@ -115,7 +115,10 @@ def main():
         # the vast majority of players that clearly haven't changed.
         if not use_fallback:
             summary_rating = saved_ratings.get(ea_id)
-            if summary_rating is None or summary_rating == club_rating:
+            # Only skip when the summary clearly shows no change. If the player is absent
+            # from the (possibly stale) summary index, fall through to the authoritative
+            # raw check — skipping here missed players fetched since the last summary rebuild.
+            if summary_rating is not None and summary_rating == club_rating:
                 continue
 
         # Authoritative check against the raw ggData that would be refetched.

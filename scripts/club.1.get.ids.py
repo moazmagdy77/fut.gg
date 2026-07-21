@@ -54,7 +54,7 @@ def main():
     try:
         untradeable_idx = headers.index("Untradeable")
     except ValueError:
-        untradeable_idx = 12
+        untradeable_idx = -1  # header absent -> skip tradeable extraction (don't guess a column)
 
     try: name_idx = headers.index("Name")
     except ValueError: name_idx = -1
@@ -91,8 +91,8 @@ def main():
                 if rating >= 75:
                     club_ids.append(ea_id)
                     
-                # Check if Untradeable is False
-                if untradeable_idx < len(cols):
+                # Check if Untradeable is False (skip entirely if the column is absent)
+                if 0 <= untradeable_idx < len(cols):
                     untradeable_text = cols[untradeable_idx]
                     if untradeable_text.lower() == "false":
                         tradeable_ids.append(ea_id)

@@ -16,6 +16,7 @@ try:
     from sklearn.linear_model import ElasticNetCV
     from sklearn.preprocessing import StandardScaler, MinMaxScaler
     from sklearn.metrics import r2_score, mean_squared_error
+    from sklearn.model_selection import GroupShuffleSplit
 except ImportError:
     print("❌ Critical Error: 'scikit-learn' is not installed.")
     print("👉 Run: pip install scikit-learn")
@@ -34,62 +35,71 @@ def _drop_constant_onehots(df: pd.DataFrame) -> pd.DataFrame:
                 to_drop.append(c)
     return df.drop(columns=to_drop)
 
-def train_and_save_model(df_subset, target_col, role_name, model_suffix):
-    if len(df_subset) < 80:
-        print(f"Skipping '{role_name} - {model_suffix}' (only {len(df_subset)} samples).")
-        return
+# Minimum DISTINCT players (not rows) to train a role model. model.6 emits ~19
+# highly-correlated chem-style rows per (player, role), so a row count is a poor
+# proxy for information — 80 rows was only ~4 players.
+MIN_PLAYERS = int(__import__('os').environ.get('MIN_PLAYERS', 30))
 
-    print(f"\n--- Training: {role_name} | {model_suffix} ({len(df_subset)} samples) ---")
-    
-    # Clean data (drop NAs)
-    X = df_subset.drop(columns=[target_col]).copy()
-    y = df_subset[target_col].astype(float)
-    
-    # Align and drop NaNs safely
-    combined = pd.concat([X, y.rename('target')], axis=1).dropna()
-    
-    if combined.empty:
-        print(f"  ⚠️ Skipping: Dataset became empty after dropping NaNs.")
-        return
 
-    X = combined.drop(columns=['target'])
-    y = combined['target']
-
-    # Scale X, y
+def _fit_scaled(X, y):
     feature_scaler = StandardScaler()
     X_scaled = feature_scaler.fit_transform(X)
-
     target_scaler = MinMaxScaler(feature_range=(0, 1))
-    y_scaled = target_scaler.fit_transform(y.values.reshape(-1,1)).ravel()
+    y_scaled = target_scaler.fit_transform(y.values.reshape(-1, 1)).ravel()
+    model = ElasticNetCV(
+        l1_ratio=[0.05, 0.1, 0.3, 0.5, 0.8, 1.0],
+        cv=5, random_state=42, n_jobs=-1, max_iter=5000, positive=False
+    ).fit(X_scaled, y_scaled)
+    return model, feature_scaler, target_scaler
 
-    # Linear model (positive=False allows penalties for height/weight)
+
+def _metrics(model, feature_scaler, target_scaler, X, y):
+    y_pred = target_scaler.inverse_transform(model.predict(feature_scaler.transform(X)).reshape(-1, 1)).ravel()
+    return r2_score(y, y_pred), np.sqrt(mean_squared_error(y, y_pred))
+
+
+def train_and_save_model(df_subset, target_col, role_name, model_suffix):
+    groups = df_subset['eaId'].astype(str) if 'eaId' in df_subset.columns else None
+    n_players = groups.nunique() if groups is not None else len(df_subset)
+    if n_players < MIN_PLAYERS:
+        print(f"Skipping '{role_name} - {model_suffix}' (only {n_players} distinct players).")
+        return
+
+    print(f"\n--- Training: {role_name} | {model_suffix} ({n_players} players / {len(df_subset)} rows) ---")
+
+    X = df_subset.drop(columns=[c for c in (target_col, 'eaId') if c in df_subset.columns]).copy()
+    y = df_subset[target_col].astype(float)
+
+    # Honest out-of-sample metric: hold out 20% of PLAYERS so a player's correlated
+    # chem-style rows never straddle train/test (which would inflate the score).
+    if groups is not None:
+        try:
+            tr, te = next(GroupShuffleSplit(n_splits=1, test_size=0.2, random_state=42).split(X, y, groups))
+            m_cv, fs_cv, ts_cv = _fit_scaled(X.iloc[tr], y.iloc[tr])
+            r2_oos, rmse_oos = _metrics(m_cv, fs_cv, ts_cv, X.iloc[te], y.iloc[te])
+            print(f"  OOS (held-out players): R²={r2_oos:.4f} | RMSE={rmse_oos:.4f} "
+                  f"(train {groups.iloc[tr].nunique()} / test {groups.iloc[te].nunique()} players)")
+        except Exception as e:
+            print(f"  ⚠️ Held-out eval skipped: {e}")
+
+    # Production model: refit on ALL rows.
     try:
-        model = ElasticNetCV(
-            l1_ratio=[0.05,0.1,0.3,0.5,0.8,1.0],
-            cv=5, random_state=42, n_jobs=-1, max_iter=5000, 
-            positive=False
-        ).fit(X_scaled, y_scaled)
+        model, feature_scaler, target_scaler = _fit_scaled(X, y)
     except Exception as e:
         print(f"  ❌ Training failed: {e}")
         return
 
-    # Evaluate back on original scale
-    y_pred_scaled = model.predict(X_scaled)
-    y_pred = target_scaler.inverse_transform(y_pred_scaled.reshape(-1,1)).ravel()
-    r2 = r2_score(y, y_pred)
-    rmse = np.sqrt(mean_squared_error(y, y_pred))
+    r2_in, rmse_in = _metrics(model, feature_scaler, target_scaler, X, y)
     nnz = int((model.coef_ != 0).sum())
-    print(f"  R²: {r2:.4f} | RMSE: {rmse:.4f} | Non-zero Coefs: {nnz}/{len(model.coef_)}")
+    print(f"  In-sample:  R²={r2_in:.4f} | RMSE={rmse_in:.4f} | Non-zero coefs: {nnz}/{len(model.coef_)}")
 
-    # Unscaled coefficients
     coef_unscaled = (model.coef_ / target_scaler.scale_[0]) / feature_scaler.scale_
-
     bundle = {
         "model": model,
         "feature_scaler": feature_scaler,
         "target_scaler": target_scaler,
         "features": X.columns.tolist(),
-        "coef_unscaled": coef_unscaled.tolist()
+        "coef_unscaled": coef_unscaled.tolist(),
     }
 
     safe_role_name = role_name.replace(" ", "_").replace("-", "_")

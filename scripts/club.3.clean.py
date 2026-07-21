@@ -4,9 +4,6 @@
 import json
 from pathlib import Path
 from collections import defaultdict
-import numpy as np
-import pandas as pd
-import joblib
 import warnings
 import os
 import sys
@@ -18,6 +15,7 @@ except Exception:
 import concurrent.futures
 import multiprocessing
 from shared_utils import load_json_file, _normalize_gender, calculate_acceleration_type, get_attribute_with_boost, average_optional
+from model_utils import ModelManager, prepare_features, predict_ggsub_absolute, predict_ggsub_evo_anchored, to_player_like_from_ggdata
 
 # Suppress warnings in main output
 warnings.filterwarnings("ignore", category=FutureWarning)
@@ -72,7 +70,10 @@ def parse_gg_rating_str(gg_rating_str_raw):
     return parsed_ratings_by_role
 
 def resolve_anchor_source_eaid(evo_def):
-    for k in ("baseEaId","originalEaId","rootEaId","rootDefinitionEaId","baseItemEaId","baseCardEaId"):
+    # basePlayerEaId is the actual key fut.gg's evolab uses for the pre-evo base card;
+    # the rest are defensive fallbacks. eaId is the last resort (today it equals
+    # basePlayerEaId, so anchoring only worked by accident before this key was added).
+    for k in ("basePlayerEaId", "baseEaId", "originalEaId", "rootEaId", "rootDefinitionEaId", "baseItemEaId", "baseCardEaId"):
         v = evo_def.get(k)
         if v is not None:
             try: return str(int(v))
@@ -80,116 +81,8 @@ def resolve_anchor_source_eaid(evo_def):
     eid = evo_def.get("eaId")
     return str(int(eid)) if eid is not None else None
 
-def to_player_like_from_ggdata(gg_data_obj, maps):
-    if not gg_data_obj: return None
-    d = {}
-    for k, v in gg_data_obj.items():
-        if isinstance(k, str) and k.startswith("attribute"):
-            d[k] = v
-    d["height"] = gg_data_obj.get("height")
-    d["weight"] = gg_data_obj.get("weight")
-    d["skillMoves"] = gg_data_obj.get("skillMoves")
-    d["weakFoot"] = gg_data_obj.get("weakFoot")
-    d["foot"] = maps.get("foot", {}).get(str(gg_data_obj.get("foot")))
-    d["bodyType"] = maps.get("bodytypeCode", {}).get(str(gg_data_obj.get("bodytypeCode")))
-    d["gender"] = _normalize_gender(gg_data_obj.get("gender"), maps)
-    d["PS"]  = [maps.get("playstyles", {}).get(str(p)) for p in (gg_data_obj.get("playstyles") or []) if str(p) in maps.get("playstyles", {})]
-    d["PS+"] = [maps.get("playstyles", {}).get(str(p)) for p in (gg_data_obj.get("playstylesPlus") or []) if str(p) in maps.get("playstyles", {})]
-    d["roles+"]  = [maps.get("rolesPlus", {}).get(str(r)) for r in (gg_data_obj.get("rolesPlus") or []) if str(r) in maps.get("rolesPlus", {})]
-    d["roles++"] = [maps.get("rolesPlusPlus", {}).get(str(r)) for r in (gg_data_obj.get("rolesPlusPlus") or []) if str(r) in maps.get("rolesPlusPlus", {})]
-    return d
-
-# --- Model Manager ---
-class ModelManager:
-    def __init__(self, models_dir: Path):
-        self.models = self._load_models(models_dir)
-    def _load_models(self, models_dir: Path):
-        models = {}
-        if not models_dir.exists():
-            return models
-        # Only load needed models to save RAM/Time if feasible, but here we load all
-        for pkl_file in models_dir.glob("*.pkl"):
-            try:
-                bundle = joblib.load(pkl_file)
-                models[pkl_file.stem] = bundle
-            except Exception:
-                pass
-        return models
-    def get_model(self, role_name: str, model_type: str):
-        safe_role_name = role_name.replace(" ", "_").replace("-", "_")
-        return self.models.get(f"{safe_role_name}_{model_type}_model")
-
-# --- Feature building ---
-def _familiarity_from_lists(role_name, roles_plus, roles_pp):
-    if role_name in (roles_pp or []): return 2
-    if role_name in (roles_plus or []): return 1
-    return 0
-
-def prepare_features(player_data, maps, boosts={}, role_name=None):
-    features = {}
-    base_attributes = {k: v for k, v in player_data.items() if k.startswith("attribute")}
-    for attr in base_attributes:
-        features[attr] = get_attribute_with_boost(base_attributes, attr, boosts)
-    for key in ["height", "weight", "skillMoves", "weakFoot", "foot"]:
-        features[key] = player_data.get(key)
-    features["gender"] = player_data.get("gender") or "Male"
-
-    all_ps = list(maps.get("playstyles", {}).values())
-    ps = set(player_data.get("PS", []) or []); ps_plus = set(player_data.get("PS+", []) or [])
-    for name in all_ps:
-        features[name] = 2 if name in ps_plus else (1 if name in ps else 0)
-
-    if role_name is not None:
-        features["familiarity"] = _familiarity_from_lists(role_name, player_data.get("roles+", []), player_data.get("roles++", []))
-    else:
-        features["familiarity"] = 0
-
-    features["bodytype"] = player_data.get("bodyType")
-    features["accelerateType"] = calculate_acceleration_type(
-        features.get("attributeAcceleration"), features.get("attributeAgility"),
-        features.get("attributeStrength"), features.get("height"), features.get("gender")
-    )
-    return features
-
-def _build_model_input(model_bundle, feature_dict):
-    df = pd.DataFrame([feature_dict])
-    df = pd.get_dummies(df, columns=["bodytype", "accelerateType", "foot"], dtype=int)
-    feats = model_bundle["features"]
-    for f in feats:
-        if f not in df.columns: df[f] = 0
-    df = df[feats].fillna(0).infer_objects()
-    return df
-
-def _predict_absolute(model_bundle, feature_dict):
-    try:
-        X = _build_model_input(model_bundle, feature_dict)
-        pred_scaled = model_bundle["model"].predict(model_bundle["feature_scaler"].transform(X))
-        y = model_bundle["target_scaler"].inverse_transform(np.array(pred_scaled).reshape(-1,1))[0,0]
-        return float(y)
-    except Exception:
-        return None
-
-def predict_ggsub_absolute(model_bundle, features_no_chem, *, cap_to_ggmeta=None):
-    if not model_bundle: return None
-    pred = _predict_absolute(model_bundle, features_no_chem)
-    if pred is None: return None
-    if cap_to_ggmeta is not None:
-        pred = min(pred, float(cap_to_ggmeta))
-    pred = max(0.0, min(99.99, pred))
-    return round(float(pred), 2)
-
-def predict_ggsub_evo_anchored(model_bundle, evo_no_chem, *, base_no_chem, cap_to_ggmeta):
-    if not model_bundle: return None
-    evo_pred  = _predict_absolute(model_bundle, evo_no_chem)
-    base_pred = _predict_absolute(model_bundle, base_no_chem) if base_no_chem else None
-    if evo_pred is None and base_pred is None: return None
-    pred = evo_pred if evo_pred is not None else 0.0
-    if base_pred is not None:
-        pred = max(pred, base_pred)
-    if cap_to_ggmeta is not None:
-        pred = min(pred, float(cap_to_ggmeta))
-    pred = max(0.0, min(99.99, pred))
-    return round(float(pred), 2)
+# ModelManager, prepare_features, predict_ggsub_*, and to_player_like_from_ggdata
+# now live in model_utils.py (shared with build_all_players_summary.py).
 
 # --- Core Logic (Runs inside Worker) ---
 def process_player(player_def, is_evo, model_manager, maps, evo_esmeta, min_height_cm=195):
@@ -226,11 +119,11 @@ def process_player(player_def, is_evo, model_manager, maps, evo_esmeta, min_heig
         if price_data:
             player_output["price"] = price_data.get("price")
             player_output["isExtinct"] = price_data.get("isExtinct")
-            player_output["discardValue"] = price_data.get("discardValue")
     else:
         player_output["price"] = None
         player_output["isExtinct"] = None
-        player_output["discardValue"] = None
+    # (discardValue lives in tradeable_details.json and is surfaced by the Sell view;
+    #  it was never written into the price files, so there's nothing to merge here.)
 
     sub_accel_type = calculate_acceleration_type(
         base_attributes.get("attributeAcceleration"), base_attributes.get("attributeAgility"),
@@ -252,7 +145,20 @@ def process_player(player_def, is_evo, model_manager, maps, evo_esmeta, min_heig
                 gg_scores_by_role[str(score.get("role"))].append(score)
 
     player_output["metaRatings"] = []
-    
+
+    # Built ONCE per player (not per role): the chem-style boost map and the esMeta
+    # entries indexed by role. The base esMeta file repeats the same block ~10x, so
+    # scanning it inside the role loop was ~10x×(#roles) redundant work.
+    chem_style_boosts_map = {
+        item['name'].lower(): item['threeChemistryModifiers']
+        for item in maps.get("ChemistryStylesBoosts", [])
+        if 'name' in item and 'threeChemistryModifiers' in item
+    }
+    es_by_role = defaultdict(list)
+    for b in es_meta_raw:
+        for r in ((b.get("data", {}) or {}).get("metaRatings", []) or []):
+            es_by_role[str(r.get("playerRoleId"))].append(r)
+
     # Iterate Roles
     for role_id_str, scores in gg_scores_by_role.items():
         role_name = maps.get("role", {}).get(role_id_str)
@@ -266,7 +172,6 @@ def process_player(player_def, is_evo, model_manager, maps, evo_esmeta, min_heig
             meta_entry["ggMeta"] = round(best_gg.get("score", 0.0), 2)
             chem_id = best_gg.get("chem_id_str") if is_evo else str(best_gg.get("chemistryStyle"))
             meta_entry["ggChemStyle"] = maps.get("ggChemistryStyleNames", {}).get(chem_id)
-            chem_style_boosts_map = {item['name'].lower(): item['threeChemistryModifiers'] for item in maps.get("ChemistryStylesBoosts", []) if 'name' in item}
             boosts = chem_style_boosts_map.get((meta_entry.get("ggChemStyle") or "").lower(), {})
             meta_entry["ggAccelType"] = calculate_acceleration_type(
                 get_attribute_with_boost(base_attributes, "attributeAcceleration", boosts),
@@ -278,17 +183,17 @@ def process_player(player_def, is_evo, model_manager, maps, evo_esmeta, min_heig
         # ggMetaSub
         gg_sub_model = model_manager.get_model(role_name, 'ggMetaSub')
         if gg_sub_model:
-            evo_features_sub = prepare_features(player_output, maps, boosts={}, role_name=role_name)
+            features_no_chem = prepare_features(player_output, maps, boosts={}, role_name=role_name)
             if is_evo:
                 base_anchor_eaid = resolve_anchor_source_eaid(player_def)
                 base_gg_raw = load_json_file(get_raw_file_path(base_anchor_eaid, 'ggData', RAW_DATA_DIR))
                 base_player_like = to_player_like_from_ggdata(base_gg_raw.get("data") if base_gg_raw else None, maps)
                 base_features_sub = prepare_features(base_player_like, maps, boosts={}, role_name=role_name) if base_player_like else None
                 meta_entry["ggMetaSub"] = predict_ggsub_evo_anchored(
-                    gg_sub_model, evo_features_sub, base_no_chem=base_features_sub, cap_to_ggmeta=meta_entry.get("ggMeta")
+                    gg_sub_model, features_no_chem, base_no_chem=base_features_sub, cap_to_ggmeta=meta_entry.get("ggMeta")
                 )
             else:
-                meta_entry["ggMetaSub"] = predict_ggsub_absolute(gg_sub_model, evo_features_sub, cap_to_ggmeta=meta_entry.get("ggMeta"))
+                meta_entry["ggMetaSub"] = predict_ggsub_absolute(gg_sub_model, features_no_chem, cap_to_ggmeta=meta_entry.get("ggMeta"))
         else:
             if not is_evo:
                 # Fallback
@@ -297,11 +202,8 @@ def process_player(player_def, is_evo, model_manager, maps, evo_esmeta, min_heig
         # ES Meta — evo and non-evo share the same metaRatings shape
         # (non-evo: base esMeta API; evo: EasySBC evo-detail via evo_esmeta.json).
         es_role_id = maps.get("roleNameToEsRoleId", {}).get(role_name)
-        if es_role_id and es_meta_raw:
-            filtered = []
-            for b in es_meta_raw:
-                rs = (b.get("data", {}) or {}).get("metaRatings", []) or []
-                filtered.extend([r for r in rs if str(r.get("playerRoleId")) == str(es_role_id)])
+        if es_role_id:
+            filtered = es_by_role.get(str(es_role_id), [])
             if filtered:
                 r0 = next((r for r in filtered if r.get("chemistry") == 0 and r.get("metaRating") is not None), None)
                 if r0: meta_entry["esMetaSub"] = round(float(r0["metaRating"]), 2)
@@ -309,7 +211,6 @@ def process_player(player_def, is_evo, model_manager, maps, evo_esmeta, min_heig
                 if best3 and best3.get("metaRating") is not None:
                     meta_entry["esMeta"] = round(float(best3["metaRating"]), 2)
                     meta_entry["esChemStyle"] = maps.get("esChemistryStyleNames", {}).get(str(best3.get("chemstyleId")))
-                    chem_style_boosts_map = {item['name'].lower(): item['threeChemistryModifiers'] for item in maps.get("ChemistryStylesBoosts", []) if 'name' in item}
                     boosts = chem_style_boosts_map.get((meta_entry.get("esChemStyle") or "").lower(), {})
                     meta_entry["esAccelType"] = calculate_acceleration_type(
                         get_attribute_with_boost(base_attributes, "attributeAcceleration", boosts),
@@ -370,7 +271,10 @@ def worker_task(payload):
             return process_player(payload['data'], True, GLOBAL_MODEL_MANAGER, GLOBAL_MAPS, GLOBAL_EVO_ESMETA, GLOBAL_MIN_HEIGHT)
             
     except Exception as e:
-        return None # Fail silently/gracefully for that one player
+        # Surface (don't silently drop) so a systemic regression shrinking club_final
+        # is visible. Main separates these from real results before dedup.
+        pid = payload.get('id') or (payload.get('data') or {}).get('eaId')
+        return {'__error': f"{type(e).__name__}: {e}", '__id': pid}
 
 # --- Main ---
 def main():
@@ -415,16 +319,26 @@ def main():
         futures = [executor.submit(worker_task, t) for t in tasks]
         
         # Monitor progress
+        errors = []
         for future in concurrent.futures.as_completed(futures):
             res = future.result()
-            if res:
+            if res and '__error' in res:
+                errors.append(res)
+            elif res:
                 results.append(res)
-            
+
             completed += 1
             if completed % 100 == 0 or completed == total_tasks:
                 print(f"  - Processed {completed}/{total_tasks} players...")
 
-    # Deduplicate
+        if errors:
+            print(f"⚠️  {len(errors)} player(s) failed during processing. Examples:")
+            for err in errors[:5]:
+                print(f"    - id {err.get('__id')}: {err.get('__error')}")
+
+    # Deduplicate by eaId. Evolutions share their base card's eaId, so the
+    # `or player.get('evolution')` intentionally lets an evo overwrite its base card
+    # (we surface the evolved version). A base card with no evo is kept as-is.
     print("\n--- Deduplicating ---")
     final_players = {}
     for player in results:
