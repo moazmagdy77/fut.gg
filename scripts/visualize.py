@@ -2,9 +2,30 @@ import streamlit as st
 import pandas as pd
 import json
 import os
+import datetime
 from pathlib import Path
+from shared_utils import calculate_acceleration_type
 
 st.set_page_config(layout="wide")
+
+# Keep the Squad Builder formation pitch as a 2D grid on mobile. Streamlit
+# otherwise stacks st.columns vertically on narrow screens, which destroys the
+# on-pitch formation shape. Scoped to the pitch container only (st-key-squad_pitch).
+st.markdown(
+    """
+    <style>
+    .st-key-squad_pitch [data-testid="stHorizontalBlock"] { flex-wrap: nowrap !important; }
+    .st-key-squad_pitch [data-testid="stColumn"] { min-width: 0 !important; }
+    .st-key-squad_pitch [data-testid="stColumn"] > div { min-width: 0 !important; }
+    .st-key-squad_pitch button { padding-left: 2px !important; padding-right: 2px !important; }
+    .st-key-squad_pitch button p {
+        font-size: 0.72rem !important; line-height: 1.1 !important;
+        white-space: normal !important; overflow-wrap: anywhere;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 # Define data directory
 data_dir = Path(__file__).resolve().parents[1] / "data"
@@ -36,6 +57,30 @@ attribute_filter_order = [
     "standingTackle", "slidingTackle", "jumping", "stamina", "strength", "aggression",
     "gkDiving", "gkHandling", "gkKicking", "gkPositioning", "gkReflexes"
 ]
+
+# Compact column set shown by default in the player tables ("Show all attributes" reveals the rest).
+COMPACT_DISPLAY_COLUMNS = [
+    "commonName", "role", "overall", "responsiveness", "avgMeta",
+    "ggMeta", "esMeta", "avgMetaSub", "ggChemStyle", "esChemStyle",
+    "hasRolePlusPlus", "hasRolePlus", "isTall",
+]
+
+# Shared header/help/formatting for the player tables. Columns not present are ignored by Streamlit.
+COLUMN_HELP = {
+    "commonName": st.column_config.TextColumn("Name", width="medium"),
+    "responsiveness": st.column_config.NumberColumn(
+        "Responsiveness", format="%.1f",
+        help="Average of Acceleration, Sprint Speed, Agility, Balance and Reactions (base / 0-chem)."),
+    "avgMeta": st.column_config.NumberColumn(
+        "Avg Meta", format="%.2f", help="Weighted average of ES and GG on-chem meta ratings (weights in the sidebar)."),
+    "avgMetaSub": st.column_config.NumberColumn(
+        "Avg Meta (Sub)", format="%.2f", help="Average sub meta rating (0 chem, no chem style)."),
+    "ggMeta": st.column_config.NumberColumn("GG Meta", format="%.2f", help="fut.gg meta rating at the best chem style."),
+    "esMeta": st.column_config.NumberColumn("ES Meta", format="%.2f", help="EasySBC meta rating at the best chem style."),
+    "ggMetaSub": st.column_config.NumberColumn("GG Meta (Sub)", format="%.2f", help="fut.gg meta rating at 0 chem."),
+    "esMetaSub": st.column_config.NumberColumn("ES Meta (Sub)", format="%.2f", help="EasySBC meta rating at 0 chem."),
+    "overall": st.column_config.NumberColumn("OVR", format="%d"),
+}
 
 FORMATION_GROUPS = {
     "3-back": [
@@ -187,14 +232,14 @@ def apply_squad_slot_filter(slot_id, position, role):
     st.session_state["squad_applied_signature"] = f"{slot_id}|{position}|{role}"
 
 def render_formation_grid():
-    with st.expander("All FC26 Formations", expanded=False):
+    with st.popover("📋 Browse all formations", width='stretch'):
         for group_name, formation_names in FORMATION_GROUPS.items():
             st.markdown(f"#### {group_name}")
             for start in range(0, len(formation_names), 4):
                 cols = st.columns(4)
                 for col, formation_name in zip(cols, formation_names[start:start + 4]):
                     button_type = "primary" if st.session_state.get("squad_selected_formation") == formation_name else "secondary"
-                    if col.button(formation_name, key=f"formation_button_{safe_widget_key(formation_name)}", type=button_type, use_container_width=True):
+                    if col.button(formation_name, key=f"formation_button_{safe_widget_key(formation_name)}", type=button_type, width='stretch'):
                         st.session_state["squad_pending_formation"] = formation_name
                         st.rerun()
 
@@ -202,7 +247,7 @@ def render_formation_grid():
 def confirm_add_dialog(player_info, slot_id, position, role):
     st.write(f"Do you want to add **{player_info['commonName']}** (Rating: {player_info['avgMeta']:.1f}) to the squad as **{position}** ({role})?")
     c1, c2 = st.columns(2)
-    if c1.button("Confirm", type="primary", use_container_width=True):
+    if c1.button("Confirm", type="primary", width='stretch'):
         player_info["selected_role"] = role
         st.session_state["squad_players"][slot_id] = player_info
         clear_squad_builder_filters()
@@ -212,7 +257,7 @@ def confirm_add_dialog(player_info, slot_id, position, role):
         if "all_players_df" in st.session_state:
             st.session_state["all_players_df"] = {"selection": {"rows": [], "columns": []}}
         st.rerun()
-    if c2.button("Cancel", use_container_width=True):
+    if c2.button("Cancel", width='stretch'):
         clear_squad_builder_filters()
         if "club_players_df" in st.session_state:
             st.session_state["club_players_df"] = {"selection": {"rows": [], "columns": []}}
@@ -231,100 +276,101 @@ def render_squad_builder(df_to_use, available_roles):
     if selected_default not in formation_names:
         selected_default = "4-4-1-1 (2)"
 
-    st.markdown("## Squad Builder")
-    selector_col, count_col, clear_col = st.columns([3, 1, 1])
-    selected_formation = selector_col.selectbox(
-        "Formation",
-        formation_names,
-        index=formation_names.index(selected_default),
-    )
+    with st.expander("⚽ Squad Builder", expanded=True):
+        selector_col, count_col, clear_col = st.columns([3, 1, 1])
+        selected_formation = selector_col.selectbox(
+            "Formation",
+            formation_names,
+            index=formation_names.index(selected_default),
+        )
 
-    previous_formation = st.session_state.get("squad_last_formation")
-    if previous_formation is None:
-        st.session_state["squad_last_formation"] = selected_formation
-        st.session_state["squad_selected_formation"] = selected_formation
-    elif previous_formation != selected_formation:
-        st.session_state["squad_last_formation"] = selected_formation
-        st.session_state["squad_selected_formation"] = selected_formation
-        clear_squad_builder_filters()
-        st.session_state["squad_players"] = {}
-        st.session_state["custom_squad_roles"] = {}
-        st.rerun()
-    else:
-        st.session_state["squad_selected_formation"] = selected_formation
+        previous_formation = st.session_state.get("squad_last_formation")
+        if previous_formation is None:
+            st.session_state["squad_last_formation"] = selected_formation
+            st.session_state["squad_selected_formation"] = selected_formation
+        elif previous_formation != selected_formation:
+            st.session_state["squad_last_formation"] = selected_formation
+            st.session_state["squad_selected_formation"] = selected_formation
+            clear_squad_builder_filters()
+            st.session_state["squad_players"] = {}
+            st.session_state["custom_squad_roles"] = {}
+            st.rerun()
+        else:
+            st.session_state["squad_selected_formation"] = selected_formation
 
-    active_slot = st.session_state.get("squad_active_slot")
-    squad_players = st.session_state.setdefault("squad_players", {})
-    count_col.metric("Slots Remaining", 11 - len(squad_players))
-    if clear_col.button("Clear Slot", use_container_width=True):
-        clear_squad_builder_filters()
-        st.rerun()
+        active_slot = st.session_state.get("squad_active_slot")
+        squad_players = st.session_state.setdefault("squad_players", {})
+        count_col.metric("Slots Remaining", 11 - len(squad_players))
+        if clear_col.button("Cancel selection", width='stretch', help="Clear the active slot's position/role filter."):
+            clear_squad_builder_filters()
+            st.rerun()
 
-    render_formation_grid()
+        st.caption("① Pick a formation → ② click a slot below → ③ pick a player from the list, then confirm.")
+        render_formation_grid()
 
-    with st.container(border=True):
-        st.markdown(f"### {selected_formation}")
-        for row_index, row_positions in enumerate(FC26_FORMATIONS[selected_formation]):
-            slot_columns = centered_columns(len(row_positions))
-            row_labels = slot_labels_for_row(row_positions)
-            for slot_index, (slot_col, position, label) in enumerate(zip(slot_columns, row_positions, row_labels)):
-                slot_id = f"{safe_widget_key(selected_formation)}_{row_index}_{slot_index}_{label}_{position}"
-                role_key = f"squad_role_{slot_id}"
-                role_options = role_options_for_position(position, available_roles)
-                default_role = default_role_for_position(position, available_roles)
+        with st.container(border=True, key="squad_pitch"):
+            st.markdown(f"### {selected_formation}")
+            for row_index, row_positions in enumerate(FC26_FORMATIONS[selected_formation]):
+                slot_columns = centered_columns(len(row_positions))
+                row_labels = slot_labels_for_row(row_positions)
+                for slot_index, (slot_col, position, label) in enumerate(zip(slot_columns, row_positions, row_labels)):
+                    slot_id = f"{safe_widget_key(selected_formation)}_{row_index}_{slot_index}_{label}_{position}"
+                    role_key = f"squad_role_{slot_id}"
+                    role_options = role_options_for_position(position, available_roles)
+                    default_role = default_role_for_position(position, available_roles)
                 
-                custom_roles = st.session_state.setdefault("custom_squad_roles", {})
-                if slot_id not in custom_roles or custom_roles[slot_id] not in role_options:
-                    custom_roles[slot_id] = default_role
+                    custom_roles = st.session_state.setdefault("custom_squad_roles", {})
+                    if slot_id not in custom_roles or custom_roles[slot_id] not in role_options:
+                        custom_roles[slot_id] = default_role
                 
-                if role_key not in st.session_state or st.session_state[role_key] not in role_options:
-                    st.session_state[role_key] = custom_roles[slot_id]
+                    if role_key not in st.session_state or st.session_state[role_key] not in role_options:
+                        st.session_state[role_key] = custom_roles[slot_id]
 
-                with slot_col:
-                    selected_role = custom_roles[slot_id]
-                    assigned_player = squad_players.get(slot_id)
+                    with slot_col:
+                        selected_role = custom_roles[slot_id]
+                        assigned_player = squad_players.get(slot_id)
                     
-                    if assigned_player:
-                        p_role = assigned_player.get('selected_role') or assigned_player.get('role', '')
-                        button_label = f"{label}: {assigned_player['commonName']} ({assigned_player['avgMeta']:.1f} - {p_role})"
-                    else:
-                        button_label = label
-                    button_type = "primary" if active_slot == slot_id else "secondary"
+                        if assigned_player:
+                            p_role = assigned_player.get('selected_role') or assigned_player.get('role', '')
+                            button_label = f"{label}: {assigned_player['commonName']} ({assigned_player['avgMeta']:.1f} - {p_role})"
+                        else:
+                            button_label = label
+                        button_type = "primary" if active_slot == slot_id else "secondary"
                     
-                    if st.button(button_label, key=f"squad_slot_{slot_id}", type=button_type, use_container_width=True):
-                        apply_squad_slot_filter(slot_id, position, selected_role)
-                        st.rerun()
-
-                    if assigned_player:
-                        if st.button("❌ Remove", key=f"remove_squad_slot_{slot_id}", type="secondary", use_container_width=True):
-                            del st.session_state["squad_players"][slot_id]
-                            if active_slot == slot_id:
-                                clear_squad_builder_filters()
-                            st.rerun()
-                    else:
-                        selected_role = st.selectbox(
-                            f"{label} role",
-                            role_options,
-                            key=role_key,
-                            label_visibility="collapsed",
-                        )
-                        custom_roles[slot_id] = selected_role
-
-                        signature = f"{slot_id}|{position}|{selected_role}"
-                        if active_slot == slot_id and st.session_state.get("squad_applied_signature") != signature:
+                        if st.button(button_label, key=f"squad_slot_{slot_id}", type=button_type, width='stretch'):
                             apply_squad_slot_filter(slot_id, position, selected_role)
                             st.rerun()
-            if row_index < len(FC26_FORMATIONS[selected_formation]) - 1:
-                st.write("")
 
-    active_position = st.session_state.get("squad_applied_position")
-    active_role = st.session_state.get("squad_applied_role")
-    if active_slot and active_position and active_role:
-        match_count = df_to_use[
-            df_to_use["positions"].apply(lambda vals: isinstance(vals, list) and active_position in vals)
-            & (df_to_use["role"] == active_role)
-        ]["__true_player_id"].nunique()
-        st.caption(f"Selected: {active_position} / {active_role} - {match_count} matching club players before sidebar filters.")
+                        if assigned_player:
+                            if st.button("❌ Remove", key=f"remove_squad_slot_{slot_id}", type="secondary", width='stretch'):
+                                del st.session_state["squad_players"][slot_id]
+                                if active_slot == slot_id:
+                                    clear_squad_builder_filters()
+                                st.rerun()
+                        else:
+                            selected_role = st.selectbox(
+                                f"{label} role",
+                                role_options,
+                                key=role_key,
+                                label_visibility="collapsed",
+                            )
+                            custom_roles[slot_id] = selected_role
+
+                            signature = f"{slot_id}|{position}|{selected_role}"
+                            if active_slot == slot_id and st.session_state.get("squad_applied_signature") != signature:
+                                apply_squad_slot_filter(slot_id, position, selected_role)
+                                st.rerun()
+                if row_index < len(FC26_FORMATIONS[selected_formation]) - 1:
+                    st.write("")
+
+        active_position = st.session_state.get("squad_applied_position")
+        active_role = st.session_state.get("squad_applied_role")
+        if active_slot and active_position and active_role:
+            match_count = df_to_use[
+                df_to_use["positions"].apply(lambda vals: isinstance(vals, list) and active_position in vals)
+                & (df_to_use["role"] == active_role)
+            ]["__true_player_id"].nunique()
+            st.caption(f"Selected: {active_position} / {active_role} - {match_count} matching club players before sidebar filters.")
 
 def positions_match(player_positions, selected_positions):
     if not isinstance(player_positions, list):
@@ -332,14 +378,19 @@ def positions_match(player_positions, selected_positions):
     return bool(set(player_positions).intersection(selected_positions))
 
 def apply_filters_to_df(source_df, active_filters):
-    filtered = source_df.copy()
+    # No initial .copy(): every branch reassigns via a boolean mask (which returns a
+    # new frame) and callers copy before mutating, so source_df is never modified.
+    filtered = source_df
+    special_cols = ("playstyles_all", "playstyles_plus_all", "commonName_contains")
     for col, val in active_filters.items():
         if val is None or (isinstance(val, list) and not val):
             continue
-        if col not in filtered.columns and col not in ["playstyles_all", "playstyles_plus_all"]:
+        if col not in filtered.columns and col not in special_cols:
             continue
 
-        if col == "playstyles_all":
+        if col == "commonName_contains":
+            filtered = filtered[filtered["commonName"].fillna("").astype(str).str.contains(str(val), case=False, na=False)]
+        elif col == "playstyles_all":
             def has_all_styles(row):
                 combined = set((row.get('PS', []) or []) + (row.get('PS+', []) or []))
                 return all(s in combined for s in val)
@@ -378,8 +429,11 @@ def load_data(file_path, mtime):
     df.rename(columns={col: col.replace("attribute", "", 1)[0].lower() + col.replace("attribute", "", 1)[1:] 
                        for col in df.columns if col.startswith("attribute")}, inplace=True)
 
-    # Now, safely explode the metaRatings column
+    # Now, safely explode the metaRatings column.
+    # Drop rows whose metaRatings was an empty list (explode yields NaN there);
+    # otherwise pd.json_normalize would choke on the NaN (float) entries.
     df = df.explode('metaRatings').reset_index(drop=True)
+    df = df[df['metaRatings'].notna()].reset_index(drop=True)
     meta_df = pd.json_normalize(df['metaRatings']).add_prefix('meta.')
     df = pd.concat([df.drop(columns=['metaRatings']), meta_df], axis=1)
 
@@ -423,17 +477,11 @@ def load_data(file_path, mtime):
     df['hasRolePlusPlus'] = df.apply(lambda row: row.get('role') in row.get('roles++', []), axis=1)
 
     def compute_lengthy(accel, agility, strength, height, gender):
-        try:
-            if pd.isna(accel) or pd.isna(agility) or pd.isna(strength) or pd.isna(height):
-                return False
-            accel = int(accel); agility = int(agility); strength = int(strength); height = int(height)
-        except Exception:
-            return False
-            
-        is_female = str(gender).lower().startswith("f") if pd.notna(gender) else False
-        len_height_ok = (height >= 165) if is_female else (height >= 185)
-        
-        return (strength >= 65 and (strength - agility) >= 4 and accel >= 40 and len_height_ok)
+        # Delegate to the canonical AcceleRATE logic in shared_utils so the viewer
+        # can't drift from the pipeline. Lengthy and Explosive are mutually
+        # exclusive, so this equals a standalone lengthy-only check.
+        gender = gender if pd.notna(gender) else "Male"
+        return calculate_acceleration_type(accel, agility, strength, height, gender) == "LENGTHY"
 
     def get_lengthy_info(row):
         b_accel = row.get("acceleration", 0)
@@ -483,9 +531,10 @@ def load_all_players(file_path, mtime):
     
     df = pd.json_normalize(data, errors='ignore')
     
-    # Explode metaRatings
+    # Explode metaRatings (drop empty-list rows so json_normalize doesn't hit NaN)
     if 'metaRatings' in df.columns:
         df = df.explode('metaRatings').reset_index(drop=True)
+        df = df[df['metaRatings'].notna()].reset_index(drop=True)
         meta_df = pd.json_normalize(df['metaRatings']).add_prefix('meta.')
         df = pd.concat([df.drop(columns=['metaRatings']), meta_df], axis=1)
         df.rename(columns={col: col.replace("meta.", "") for col in df.columns if col.startswith("meta.")}, inplace=True)
@@ -561,31 +610,40 @@ st.markdown("---")
 # --- Sidebar filters ---
 st.sidebar.header("Filter Players")
 
-if st.sidebar.button("Clear Cache & Reload Data", use_container_width=True):
+if st.sidebar.button("Clear Cache & Reload Data", width='stretch'):
     st.cache_data.clear()
     st.rerun()
+
+st.sidebar.text_input("🔎 Search player by name", key="name_search", placeholder="e.g. Mbappé")
 
 with st.sidebar.expander("MetaRating Weights", expanded=True):
     st.info("Adjust the influence of ES vs GG models on the Average.")
     es_weight = st.slider("ES Meta Weight", min_value=0.0, max_value=5.0, value=1.0, step=0.1)
     gg_weight = st.slider("GG Meta Weight", min_value=0.0, max_value=5.0, value=1.0, step=0.1)
 
-if es_weight + gg_weight > 0:
-    # Update avgMeta dynamically!
-    has_both = (df['esMeta'] > 0) & (df['ggMeta'] > 0)
-    df.loc[has_both, 'avgMeta'] = ((df.loc[has_both, 'esMeta'] * es_weight) + (df.loc[has_both, 'ggMeta'] * gg_weight)) / (es_weight + gg_weight)
-    df.loc[(df['esMeta'] > 0) & (df['ggMeta'] <= 0), 'avgMeta'] = df['esMeta']
-    df.loc[(df['ggMeta'] > 0) & (df['esMeta'] <= 0), 'avgMeta'] = df['ggMeta']
+# Guard the degenerate case: both weights at 0 would zero out every rating and
+# silently break sorting / "best role". Fall back to equal weighting with a notice.
+if es_weight + gg_weight <= 0:
+    st.sidebar.warning("Both meta weights are 0 — falling back to equal weighting.")
+    es_weight = gg_weight = 1.0
 
-    has_both_sub = (df['esMetaSub'] > 0) & (df['ggMetaSub'] > 0)
-    df.loc[has_both_sub, 'avgMetaSub'] = ((df.loc[has_both_sub, 'esMetaSub'] * es_weight) + (df.loc[has_both_sub, 'ggMetaSub'] * gg_weight)) / (es_weight + gg_weight)
-    df.loc[(df['esMetaSub'] > 0) & (df['ggMetaSub'] <= 0), 'avgMetaSub'] = df['esMetaSub']
-    df.loc[(df['ggMetaSub'] > 0) & (df['esMetaSub'] <= 0), 'avgMetaSub'] = df['ggMetaSub']
-else:
-    df['avgMeta'] = 0.0
-    df['avgMetaSub'] = 0.0
+# Update avgMeta / avgMetaSub dynamically from the ES/GG weights
+has_both = (df['esMeta'] > 0) & (df['ggMeta'] > 0)
+df.loc[has_both, 'avgMeta'] = ((df.loc[has_both, 'esMeta'] * es_weight) + (df.loc[has_both, 'ggMeta'] * gg_weight)) / (es_weight + gg_weight)
+df.loc[(df['esMeta'] > 0) & (df['ggMeta'] <= 0), 'avgMeta'] = df['esMeta']
+df.loc[(df['ggMeta'] > 0) & (df['esMeta'] <= 0), 'avgMeta'] = df['ggMeta']
+
+has_both_sub = (df['esMetaSub'] > 0) & (df['ggMetaSub'] > 0)
+df.loc[has_both_sub, 'avgMetaSub'] = ((df.loc[has_both_sub, 'esMetaSub'] * es_weight) + (df.loc[has_both_sub, 'ggMetaSub'] * gg_weight)) / (es_weight + gg_weight)
+df.loc[(df['esMetaSub'] > 0) & (df['ggMetaSub'] <= 0), 'avgMetaSub'] = df['esMetaSub']
+df.loc[(df['ggMetaSub'] > 0) & (df['esMetaSub'] <= 0), 'avgMetaSub'] = df['ggMetaSub']
 
 filters = {}
+
+# Player name search (rendered at the top of the sidebar; applied here)
+_name_query = st.session_state.get("name_search", "")
+if _name_query and _name_query.strip():
+    filters["commonName_contains"] = _name_query.strip()
 
 def create_min_max_filter(container, column_name, label, step, key_suffix=""):
     if column_name in df.columns and pd.api.types.is_numeric_dtype(df[column_name]):
@@ -705,7 +763,8 @@ if filters:
         elif key == "roles+_any": display_name = "Roles+ (Any)"
         elif key == "roles++_any": display_name = "Roles++ (Any)"
         elif key == "positions": display_name = "Position"
-        
+        elif key == "commonName_contains": display_name = "Name contains"
+
         if isinstance(f_val, list):
             val_str = ", ".join(map(str,f_val))
         elif isinstance(f_val, tuple):
@@ -717,10 +776,22 @@ if filters:
     st.markdown("---")
 
 
-# --- TABS ---
-tab1, tab2, tab3 = st.tabs(["Club Squad", "Sell Now 💰", "All Players 🌍"])
+# --- VIEWS ---
+# A segmented control instead of st.tabs: st.tabs executes ALL tab bodies every
+# rerun (incl. the heavy ~45k-row All Players processing). This runs only the
+# selected view, so switching/filtering stays fast.
+VIEW_CLUB, VIEW_SELL, VIEW_ALL = "Club Squad", "Sell Now 💰", "All Players 🌍"
+active_view = st.segmented_control(
+    "View", [VIEW_CLUB, VIEW_SELL, VIEW_ALL],
+    default=VIEW_CLUB, key="active_view", label_visibility="collapsed",
+)
+if active_view is None:
+    active_view = VIEW_CLUB
 
-with tab1:
+if active_view == VIEW_CLUB:
+    if st.session_state.get("squad_active_slot"):
+        _ap = st.session_state.get("squad_applied_position"); _ar = st.session_state.get("squad_applied_role")
+        st.info(f"🎯 Filling **{_ap}** ({_ar}) — select a player row below to add them (or use 'Cancel selection' in the Squad Builder).")
     best_role_only = st.checkbox("Show best role only", value=True, key="best_role_only",
                                  help="When checked, shows each player once at their highest-rated role. Uncheck to see all roles.")
     # Include players with overall >= 75 OR tall players (isTall == True)
@@ -791,7 +862,12 @@ with tab1:
         "PS+", "PS", "positions", "roles++", "roles+"
     ] + attribute_filter_order
 
-    final_display_columns = [col for col in columns_to_display if col in df.columns]
+    show_all_cols = st.checkbox("Show all attributes", value=False, key="show_all_cols_club",
+                                help="Reveal every attribute column. Off shows a compact set.")
+    if show_all_cols:
+        final_display_columns = [col for col in columns_to_display if col in df.columns]
+    else:
+        final_display_columns = [col for col in COMPACT_DISPLAY_COLUMNS if col in df.columns]
 
     display_df = tab1_df.copy()
     for col in ["hasRolePlus", "hasRolePlusPlus", "canBeLengthy", "isTall"]:
@@ -805,11 +881,12 @@ with tab1:
     else:
         event = st.dataframe(
             display_df[final_display_columns],
-            use_container_width=True,
+            width='stretch',
             hide_index=True,
             on_select="rerun",
             selection_mode="single-row",
-            key="club_players_df"
+            key="club_players_df",
+            column_config=COLUMN_HELP,
         )
         active_slot = st.session_state.get("squad_active_slot")
         if active_slot and event.selection.rows:
@@ -825,11 +902,9 @@ with tab1:
             }
             confirm_add_dialog(player_info, active_slot, st.session_state.get("squad_applied_position"), st.session_state.get("squad_applied_role"))
 
-with tab2:
+elif active_view == VIEW_SELL:
     st.header("Sell Now")
-    
-    import os
-    import datetime
+
     prices_dir = data_dir / "raw" / "prices"
     if prices_dir.exists():
         latest_file = max(prices_dir.glob('*.json'), key=os.path.getmtime, default=None)
@@ -838,7 +913,6 @@ with tab2:
             dt_str = datetime.datetime.fromtimestamp(last_mod_time).strftime('%Y-%m-%d %H:%M:%S')
             st.info(f"Prices Last Updated at: **{dt_str}**")
 
-    import json
     tradeable_file = data_dir / "tradeable_details.json"
     tradeable_details = []
     if tradeable_file.exists():
@@ -920,7 +994,7 @@ with tab2:
         # Use native Streamlit column configuration to format numbers properly without breaking sorting
         st.dataframe(
             sell_display,
-            use_container_width=True,
+            width='stretch',
             hide_index=True,
             column_config={
                 "commonName": st.column_config.TextColumn("Name", width="medium"),
@@ -932,7 +1006,7 @@ with tab2:
             }
         )
 
-with tab3:
+elif active_view == VIEW_ALL:
     st.header("All Players Database")
     
     if all_players_df.empty:
@@ -972,7 +1046,12 @@ with tab3:
             "PS+", "PS", "positions", "roles++", "roles+"
         ] + attribute_filter_order
 
-        final_display_columns_all = [col for col in columns_to_display_all if col in filtered_all_df.columns]
+        show_all_cols_all = st.checkbox("Show all attributes", value=False, key="show_all_cols_all",
+                                        help="Reveal every attribute column. Off shows a compact set.")
+        if show_all_cols_all:
+            final_display_columns_all = [col for col in columns_to_display_all if col in filtered_all_df.columns]
+        else:
+            final_display_columns_all = [col for col in COMPACT_DISPLAY_COLUMNS if col in filtered_all_df.columns]
 
         display_all_df = filtered_all_df.copy()
         for col in ["hasRolePlus", "hasRolePlusPlus", "isTall"]:
@@ -986,11 +1065,12 @@ with tab3:
         else:
             event_all = st.dataframe(
                 display_all_df[final_display_columns_all],
-                use_container_width=True,
+                width='stretch',
                 hide_index=True,
                 on_select="rerun",
                 selection_mode="single-row",
-                key="all_players_df"
+                key="all_players_df",
+                column_config=COLUMN_HELP,
             )
             active_slot = st.session_state.get("squad_active_slot")
             if active_slot and event_all.selection.rows:

@@ -17,7 +17,7 @@ except Exception:
     pass
 import concurrent.futures
 import multiprocessing
-from shared_utils import load_json_file, _normalize_gender, calculate_acceleration_type, get_attribute_with_boost
+from shared_utils import load_json_file, _normalize_gender, calculate_acceleration_type, get_attribute_with_boost, average_optional
 
 # Suppress warnings in main output
 warnings.filterwarnings("ignore", category=FutureWarning)
@@ -27,9 +27,6 @@ warnings.filterwarnings("ignore", category=UserWarning)
 BASE_DATA_DIR = Path(__file__).resolve().parent / '../data'
 MODELS_DIR = Path(__file__).resolve().parent / '../models'
 RAW_DATA_DIR = BASE_DATA_DIR / 'raw'
-GG_DATA_DIR = RAW_DATA_DIR / 'ggData'
-ES_META_DIR = RAW_DATA_DIR / 'esMeta'
-GG_META_DIR = RAW_DATA_DIR / 'ggMeta'
 PRICES_DIR  = RAW_DATA_DIR / 'prices'
 EVOLAB_FILE = BASE_DATA_DIR / 'evolab.json'
 MAPS_FILE = BASE_DATA_DIR / 'maps.json'
@@ -178,7 +175,7 @@ def _build_model_input(model_bundle, feature_dict):
     feats = model_bundle["features"]
     for f in feats:
         if f not in df.columns: df[f] = 0
-    df = df[feats].fillna(0).infer_objects(copy=False)
+    df = df[feats].fillna(0).infer_objects()
     return df
 
 def _predict_absolute(model_bundle, feature_dict):
@@ -269,7 +266,8 @@ def process_player(player_def, is_evo, model_manager, maps, min_height_cm=195):
     player_output["roles+"]  = [maps.get("rolesPlus", {}).get(str(r)) for r in (player_def.get("rolesPlus") or []) if str(r) in maps.get("rolesPlus", {})]
     player_output["roles++"] = [maps.get("rolesPlusPlus", {}).get(str(r)) for r in (player_def.get("rolesPlusPlus") or []) if str(r) in maps.get("rolesPlusPlus", {})]
     player_output["bodyType"] = maps.get("bodytypeCode", {}).get(str(player_def.get("bodytypeCode")))
-    player_output["rarity"] = player_def.get("rarity", {}).get("name")
+    rarity_data = player_def.get("rarity")
+    player_output["rarity"] = rarity_data.get("name") if isinstance(rarity_data, dict) else None
 
     # Load Price
     price_file = PRICES_DIR / f"{player_output['eaId']}.json"
@@ -351,18 +349,18 @@ def process_player(player_def, is_evo, model_manager, maps, min_height_cm=195):
             base_gg_raw = load_json_file(get_raw_file_path(base_anchor_eaid, 'ggData', RAW_DATA_DIR))
             base_player_like = to_player_like_from_ggdata(base_gg_raw.get("data") if base_gg_raw else None, maps)
             
-            # Sub
-            es_sub_model = model_manager.get_model(role_name, 'esMeta')
-            if es_sub_model:
+            # One esMeta model per role serves both sub (unboosted features) and
+            # main (best chem-boosted features) predictions.
+            es_model = model_manager.get_model(role_name, 'esMeta')
+            if es_model:
+                # Sub
                 evo_features_sub  = prepare_features(player_output, maps, boosts={}, role_name=role_name)
                 base_features_sub = prepare_features(base_player_like, maps, boosts={}, role_name=role_name) if base_player_like else None
                 meta_entry["esMetaSub"] = predict_es_with_anchor(
-                    es_sub_model, evo_features_sub, base_features=base_features_sub, api_anchor=sub_anchor, hard_min=sub_anchor
+                    es_model, evo_features_sub, base_features=base_features_sub, api_anchor=sub_anchor, hard_min=sub_anchor
                 )
-            
-            # Main
-            es_model = model_manager.get_model(role_name, 'esMeta')
-            if es_model:
+
+                # Main
                 best_val, best_chem, best_accel = None, None, sub_accel_type
                 chem_style_boosts_map = {item['name'].lower(): item['threeChemistryModifiers'] for item in maps.get("ChemistryStylesBoosts", []) if 'name' in item}
                 for chem_name, boosts in chem_style_boosts_map.items():
@@ -386,10 +384,10 @@ def process_player(player_def, is_evo, model_manager, maps, min_height_cm=195):
                     rs = (b.get("data", {}) or {}).get("metaRatings", []) or []
                     filtered.extend([r for r in rs if str(r.get("playerRoleId")) == str(es_role_id)])
                 if filtered:
-                    r0 = next((r for r in filtered if r.get("chemistry") == 0 and r.get("metaRating")), None)
+                    r0 = next((r for r in filtered if r.get("chemistry") == 0 and r.get("metaRating") is not None), None)
                     if r0: meta_entry["esMetaSub"] = round(float(r0["metaRating"]), 2)
                     best3 = max([r for r in filtered if r.get("chemistry") == 3], key=lambda x: x.get("metaRating", -1), default=None)
-                    if best3 and best3.get("metaRating"):
+                    if best3 and best3.get("metaRating") is not None:
                         meta_entry["esMeta"] = round(float(best3["metaRating"]), 2)
                         meta_entry["esChemStyle"] = maps.get("esChemistryStyleNames", {}).get(str(best3.get("chemstyleId")))
                         chem_style_boosts_map = {item['name'].lower(): item['threeChemistryModifiers'] for item in maps.get("ChemistryStylesBoosts", []) if 'name' in item}
@@ -406,10 +404,11 @@ def process_player(player_def, is_evo, model_manager, maps, min_height_cm=195):
         gg_meta_sub, es_meta_sub = meta_entry.get("ggMetaSub"), meta_entry.get("esMetaSub")
         
         # Safety clamp
-        if gg_meta_sub and gg_meta and gg_meta_sub > gg_meta: gg_meta_sub = gg_meta; meta_entry["ggMetaSub"] = round(gg_meta, 2)
-        
-        meta_entry["avgMeta"] = round((gg_meta + es_meta)/2, 2) if (gg_meta and es_meta) else (gg_meta or es_meta)
-        meta_entry["avgMetaSub"] = round((gg_meta_sub + es_meta_sub)/2, 2) if (gg_meta_sub and es_meta_sub) else (gg_meta_sub or es_meta_sub)
+        if gg_meta_sub is not None and gg_meta is not None and gg_meta_sub > gg_meta:
+            gg_meta_sub = gg_meta; meta_entry["ggMetaSub"] = round(gg_meta, 2)
+
+        meta_entry["avgMeta"] = average_optional(gg_meta, es_meta)
+        meta_entry["avgMetaSub"] = average_optional(gg_meta_sub, es_meta_sub)
 
         player_output["metaRatings"].append(meta_entry)
 

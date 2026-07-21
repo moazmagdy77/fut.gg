@@ -11,6 +11,17 @@ def load_json_file(file_path: Path, default_val=None):
     except (FileNotFoundError, json.JSONDecodeError):
         return default_val
 
+def average_optional(a, b):
+    """Average of two optional numbers, rounded to 2dp.
+
+    Returns the average when both are present, otherwise the one that exists
+    (or None if neither does). Uses explicit None checks so a legitimate 0.0
+    is not treated as missing.
+    """
+    if a is not None and b is not None:
+        return round((a + b) / 2, 2)
+    return a if a is not None else b
+
 def _normalize_gender(gender_val, maps):
     try:
         g = maps.get("gender", {}).get(str(gender_val))

@@ -92,48 +92,58 @@ def main():
     categories = ['club - main', 'club - rest', 'training']
     deleted_count = 0
 
+    def raw_saved_rating(ea_id):
+        """Authoritative overall rating read from the raw ggData files (the data
+        that actually gets refetched). Returns None if no raw file exists yet."""
+        for cat in categories:
+            gg_data_path = raw_dir / cat / "ggData" / f"{ea_id}_ggData.json"
+            if gg_data_path.exists():
+                gg_raw = load_json_file(gg_data_path)
+                if gg_raw and "data" in gg_raw:
+                    ovr = gg_raw["data"].get("overall")
+                    if ovr is not None:
+                        try:
+                            return int(ovr)
+                        except (ValueError, TypeError):
+                            return None
+        return None
+
     # 3. Compare ratings and delete mismatching files
     for ea_id, (club_rating, name) in club_players.items():
-        mismatch_detected = False
-        saved_rating = None
-
+        # Fast pre-filter via the summary index (may be stale between retrains,
+        # since the club pipeline never rebuilds it). Only used to cheaply skip
+        # the vast majority of players that clearly haven't changed.
         if not use_fallback:
-            # O(1) in-memory lookup
-            saved_rating = saved_ratings.get(ea_id)
-            if saved_rating is not None and saved_rating != club_rating:
-                mismatch_detected = True
-        else:
-            # Fallback to slow file system check (only if all_players_summary.json is missing)
-            for cat in categories:
-                gg_data_path = raw_dir / cat / "ggData" / f"{ea_id}_ggData.json"
-                if gg_data_path.exists():
-                    gg_raw = load_json_file(gg_data_path)
-                    if gg_raw and "data" in gg_raw:
-                        saved_rating = gg_raw["data"].get("overall")
-                        if saved_rating is not None and int(saved_rating) != club_rating:
-                            mismatch_detected = True
-                            break
+            summary_rating = saved_ratings.get(ea_id)
+            if summary_rating is None or summary_rating == club_rating:
+                continue
 
-        if mismatch_detected:
-            print(f"🔄 Upgraded Player Detected: {name} (ID: {ea_id})")
-            print(f"   - Saved overall rating: {saved_rating}")
-            print(f"   - Current club rating:  {club_rating}")
-            print(f"   --> Deleting files to force refetch...")
+        # Authoritative check against the raw ggData that would be refetched.
+        # This prevents re-deleting/re-fetching players whose raw files are
+        # already up to date when the summary index is stale.
+        saved_rating = raw_saved_rating(ea_id)
+        if saved_rating is None or saved_rating == club_rating:
+            continue
 
-            # Delete files from all categories
-            for cat in categories:
-                deleted_any = False
-                for sub in ["ggData", "ggMeta", "esMeta"]:
-                    file_to_del = raw_dir / cat / sub / f"{ea_id}_{sub}.json"
-                    if file_to_del.exists():
-                        try:
-                            file_to_del.unlink()
-                            deleted_any = True
-                        except Exception as e:
-                            print(f"      ⚠️ Failed to delete {file_to_del.name}: {e}")
-                if deleted_any:
-                    print(f"   Deleted files from folder: raw/{cat}/")
-            deleted_count += 1
+        print(f"🔄 Upgraded Player Detected: {name} (ID: {ea_id})")
+        print(f"   - Saved overall rating: {saved_rating}")
+        print(f"   - Current club rating:  {club_rating}")
+        print(f"   --> Deleting files to force refetch...")
+
+        # Delete files from all categories
+        for cat in categories:
+            deleted_any = False
+            for sub in ["ggData", "ggMeta", "esMeta"]:
+                file_to_del = raw_dir / cat / sub / f"{ea_id}_{sub}.json"
+                if file_to_del.exists():
+                    try:
+                        file_to_del.unlink()
+                        deleted_any = True
+                    except Exception as e:
+                        print(f"      ⚠️ Failed to delete {file_to_del.name}: {e}")
+            if deleted_any:
+                print(f"   Deleted files from folder: raw/{cat}/")
+        deleted_count += 1
 
     print("\n--- Summary ---")
     if deleted_count > 0:

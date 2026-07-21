@@ -1,4 +1,4 @@
-# model.6.build_gg_boost_delta_dataset.py
+# model.6.build_gg_sub_dataset.py
 # Builds an ABSOLUTE ggMeta training dataset (not deltas).
 # We learn ggMeta = f(boosted attributes, familiarity, playstyles, ...).
 # At inference we pass "no-chem" (unboosted) features to predict ggMetaSub.

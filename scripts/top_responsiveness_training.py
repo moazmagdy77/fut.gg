@@ -6,9 +6,12 @@ Uses base attributes (0-chem) to avoid chem-boosted duplicates.
 import json, sys, io
 from pathlib import Path
 
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+try:
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+except Exception:
+    pass
 
-RAW_DIR = Path(r'd:\Dev\fut.gg\data\raw\training\ggData')
+RAW_DIR = Path(__file__).resolve().parents[1] / 'data' / 'raw' / 'training' / 'ggData'
 
 players = []
 files = list(RAW_DIR.glob('*_ggData.json'))

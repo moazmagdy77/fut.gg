@@ -1,3 +1,4 @@
+import os
 import subprocess
 import sys
 import time
@@ -9,8 +10,9 @@ from pathlib import Path
 base_dir = Path(__file__).resolve().parent
 # Define the repository root (the parent 'fut.gg' folder)
 repo_root = base_dir.parent
-# Define the absolute path to your second repository
-futbin_scraper_dir = Path(r"D:\Dev\futbin-scraper")
+# Path to the sibling futbin-scraper repo (…/<dev>/futbin-scraper by default).
+# Override with the FUTBIN_SCRAPER_DIR env var if it lives elsewhere.
+futbin_scraper_dir = Path(os.environ.get("FUTBIN_SCRAPER_DIR", repo_root.parent / "futbin-scraper"))
 
 steps = [
     ("🔎 Step 1: Extract CLUB player IDs", [sys.executable, "club.1.get.ids.py"]),

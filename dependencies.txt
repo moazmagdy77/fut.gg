@@ -1,5 +1,6 @@
 ## Node.js
-npm install puppeteer axios
+# Installs everything from package.json (puppeteer-extra + stealth, axios, cheerio, jsdom, playwright, etc.)
+npm install
 
 ## Python
-pip install pandas scikit-learn joblib streamlit
+pip install -r requirements.txt

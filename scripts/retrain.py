@@ -34,7 +34,7 @@ p_es = subprocess.Popen([sys.executable, "model.4.build_es_training_dataset.py"]
 p_gg = subprocess.Popen([sys.executable, "model.6.build_gg_sub_dataset.py"], cwd=base_dir)
 p_all = subprocess.Popen([sys.executable, "build_all_players_summary.py"], cwd=base_dir)
 
-# Wait for both processes to finish
+# Wait for all three processes to finish
 exit_code_es = p_es.wait()
 exit_code_gg = p_gg.wait()
 exit_code_all = p_all.wait()

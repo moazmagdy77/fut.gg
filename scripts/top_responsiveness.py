@@ -1,8 +1,13 @@
 import json, sys, io
+from pathlib import Path
 
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+try:
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+except Exception:
+    pass
 
-data = json.load(open(r'd:\Dev\fut.gg\data\club_final.json', encoding='utf-8'))
+data_dir = Path(__file__).resolve().parents[1] / "data"
+data = json.load(open(data_dir / "club_final.json", encoding='utf-8'))
 
 for p in data:
     p['responsiveness'] = (

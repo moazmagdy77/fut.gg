@@ -13,14 +13,11 @@ except Exception:
 import time
 from pathlib import Path
 from collections import defaultdict
-from shared_utils import load_json_file, _normalize_gender, calculate_acceleration_type, get_attribute_with_boost
+from shared_utils import load_json_file, _normalize_gender, calculate_acceleration_type, get_attribute_with_boost, average_optional
 
 # --- Configuration ---
 BASE_DATA_DIR = Path(__file__).resolve().parent / '../data'
 RAW_DATA_DIR = BASE_DATA_DIR / 'raw'
-GG_DATA_DIR = RAW_DATA_DIR / 'ggData'
-ES_META_DIR = RAW_DATA_DIR / 'esMeta'
-GG_META_DIR = RAW_DATA_DIR / 'ggMeta'
 MAPS_FILE = BASE_DATA_DIR / 'maps.json'
 OUTPUT_FILE = BASE_DATA_DIR / 'all_players_summary.json'
 
@@ -186,7 +183,7 @@ def main():
 
                 if filtered:
                     # esMetaSub = 0-chem rating
-                    r0 = next((r for r in filtered if r.get("chemistry") == 0 and r.get("metaRating")), None)
+                    r0 = next((r for r in filtered if r.get("chemistry") == 0 and r.get("metaRating") is not None), None)
                     if r0:
                         meta_entry["esMetaSub"] = round(float(r0["metaRating"]), 2)
 
@@ -196,7 +193,7 @@ def main():
                         key=lambda x: x.get("metaRating", -1),
                         default=None
                     )
-                    if best3 and best3.get("metaRating"):
+                    if best3 and best3.get("metaRating") is not None:
                         meta_entry["esMeta"] = round(float(best3["metaRating"]), 2)
                         meta_entry["esChemStyle"] = es_chem_names.get(str(best3.get("chemstyleId")))
 
@@ -214,10 +211,7 @@ def main():
             es_meta_val = meta_entry.get("esMeta")
             es_meta_sub_val = meta_entry.get("esMetaSub")
 
-            if gg_meta_val and es_meta_val:
-                meta_entry["avgMeta"] = round((gg_meta_val + es_meta_val) / 2, 2)
-            else:
-                meta_entry["avgMeta"] = gg_meta_val or es_meta_val
+            meta_entry["avgMeta"] = average_optional(gg_meta_val, es_meta_val)
 
             # avgMetaSub: we only have esMetaSub (no ggMetaSub without model)
             meta_entry["avgMetaSub"] = es_meta_sub_val

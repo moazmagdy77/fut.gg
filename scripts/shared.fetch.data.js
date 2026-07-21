@@ -35,9 +35,6 @@ const DELAY_MIN = 50;
 const DELAY_MAX = 200; 
 
 const MAPS_FILE = '../data/maps.json';
-const GG_DATA_DIR = '../data/raw/ggData';
-const ES_META_DIR = '../data/raw/esMeta';
-const GG_META_DIR = '../data/raw/ggMeta';
 
 // Templates
 const URL_GG_DETAILS = (id) => `https://www.fut.gg/api/fut/player-item-definitions/26/${id}/`;
