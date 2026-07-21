@@ -80,15 +80,12 @@ async function newConfiguredPage(context) {
 }
 
 // --- Core Scraper ---
-async function fetchOnePage(i, context) {
+async function fetchOnePage(i, page) {
   const url = `${BASE_URL}${i}`;
   const outFile = tempPathFor(i);
 
   for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
-    let page = null;
     try {
-      page = await newConfiguredPage(context);
-      
       // 1. Navigate
       await page.goto(url, { timeout: NAV_TIMEOUT_MS, waitUntil: 'domcontentloaded' });
       
@@ -125,31 +122,37 @@ async function fetchOnePage(i, context) {
       
       await writeJsonAtomic(outFile, uniqueLocal);
       console.log(`✅ [p${i}] Got ${uniqueLocal.length} IDs`);
-      return; 
+      return true;
 
     } catch (err) {
       console.warn(`⚠️ [p${i}] Attempt ${attempt} failed: ${err.message}`);
       if (attempt < MAX_RETRIES) await sleep(backoff(attempt));
-    } finally {
-      if (page) await page.close().catch(() => {});
     }
   }
   console.error(`❌ [p${i}] Failed after ${MAX_RETRIES} attempts.`);
+  return false;
 }
 
 // --- Worker & Orchestration ---
 async function workerLoop(tasks, browser) {
   const context = await createIsolatedContext(browser);
+  let page = await newConfiguredPage(context); // one reused page per worker
   try {
     while (true) {
       const i = tasks.getNext();
       if (i === null) break;
-      if (!fs.existsSync(tempPathFor(i))) {
-        await fetchOnePage(i, context);
-        await sleep(randInt(POLITE_DELAY_MIN_MS, POLITE_DELAY_MAX_MS));
+      if (fs.existsSync(tempPathFor(i))) continue;
+      try {
+        await fetchOnePage(i, page);
+      } catch (e) {
+        // page crashed — recreate in the same context and continue
+        try { await page.close().catch(() => {}); } catch (_) {}
+        page = await newConfiguredPage(context);
       }
+      await sleep(randInt(POLITE_DELAY_MIN_MS, POLITE_DELAY_MAX_MS));
     }
   } finally {
+    try { await page.close().catch(() => {}); } catch (_) {}
     if (context.close) await context.close().catch(() => {});
   }
 }
@@ -203,40 +206,32 @@ async function mergeResults() {
 
 // --- Main ---
 (async () => {
-  console.log("🚀 Starting Unified ID Scraper (Fixed Wait Strategy)...");
+  console.log("🚀 Starting Unified ID Scraper (single browser, page reuse)...");
   await ensureDir(TEMP_DIR);
 
   const allPages = Array.from({ length: TOP_PLAYER_PAGES }, (_, k) => k + 1);
-  const batches = chunk(allPages, BATCH_SIZE);
+  const todo = allPages.filter(i => !fs.existsSync(tempPathFor(i)));
 
-  let browser = null;
-
-  try {
-    for (let b = 0; b < batches.length; b++) {
-      const batch = batches[b];
-      const todo = batch.filter(i => !fs.existsSync(tempPathFor(i)));
-      
-      if (todo.length === 0) continue;
-
-      if (browser) await browser.close().catch(() => {});
-      browser = await puppeteer.launch({
-          headless: HEADLESS,
-          executablePath: resolveChromePath(puppeteer),
-          defaultViewport: null,
-          args: ['--no-sandbox', '--disable-setuid-sandbox'] // Helper for stability
-      });
-
-      console.log(`\n📦 Batch ${b + 1}/${batches.length} (${todo.length} pages)`);
-      
+  if (todo.length > 0) {
+    // Launch Chrome ONCE and reuse it (+ one page per worker). The old version
+    // relaunched the browser and recreated a page per 25-page batch — pure overhead.
+    const browser = await puppeteer.launch({
+        headless: HEADLESS,
+        executablePath: resolveChromePath(puppeteer),
+        defaultViewport: null,
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
+    try {
+      const nWorkers = Math.min(CONCURRENCY, todo.length);
+      console.log(`📦 Scraping ${todo.length} pages with ${nWorkers} workers...`);
       const dispenser = makeTaskDispenser(todo);
-      const workers = Array(Math.min(CONCURRENCY, todo.length))
-        .fill(null)
-        .map(() => workerLoop(dispenser, browser));
-      
+      const workers = Array(nWorkers).fill(null).map(() => workerLoop(dispenser, browser));
       await Promise.all(workers);
+    } finally {
+      if (browser) await browser.close().catch(() => {});
     }
-  } finally {
-    if (browser) await browser.close().catch(() => {});
+  } else {
+    console.log('✅ All pages already cached — merging.');
   }
 
   await mergeResults();
