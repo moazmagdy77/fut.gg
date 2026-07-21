@@ -211,34 +211,42 @@ async function processPlayer(eaId, page, reprime, maps) {
     // sessions rather than one bursty one. Priming is bounded by primeSem to avoid a
     // startup burst; then the page is reused for all of that worker's players.
     async function worker() {
-        let ctx = await createIsolatedContext(browser);
-        let page = await newFetchPage(ctx);
-        let repriming = null;
-        const reprime = () => (repriming ||= (async () => {
-            await primeSem.acquire();
-            try { await primeCloudflare(page, primeUrl); } finally { primeSem.release(); }
-        })().finally(() => { repriming = null; }));
+        let ctx = null;
+        let page = null;
+        try {
+            ctx = await createIsolatedContext(browser);
+            page = await newFetchPage(ctx);
+            let repriming = null;
+            const reprime = () => (repriming ||= (async () => {
+                await primeSem.acquire();
+                try { await primeCloudflare(page, primeUrl); } finally { primeSem.release(); }
+            })().finally(() => { repriming = null; }));
 
-        await reprime(); // initial bounded prime
+            await reprime(); // initial bounded prime
 
-        while (true) {
-            const id = todo.shift();
-            if (id === undefined) break;
-            try {
-                const res = await processPlayer(id, page, reprime, maps);
-                if (res.status === 'success') succeeded++;
-            } catch (e) {
-                // context/page crashed — rebuild and continue (this id refetches on a later run).
-                try { await ctx.close().catch(() => {}); } catch (_) {}
-                ctx = await createIsolatedContext(browser).catch(() => null);
-                page = ctx ? await newFetchPage(ctx).catch(() => null) : null;
-                if (!page) break;
+            while (true) {
+                const id = todo.shift();
+                if (id === undefined) break;
+                try {
+                    const res = await processPlayer(id, page, reprime, maps);
+                    if (res.status === 'success') succeeded++;
+                } catch (e) {
+                    // context/page crashed — rebuild and continue (this id refetches on a later run).
+                    try { await ctx.close().catch(() => {}); } catch (_) {}
+                    ctx = await createIsolatedContext(browser).catch(() => null);
+                    page = ctx ? await newFetchPage(ctx).catch(() => null) : null;
+                    if (!page) break;
+                }
+                processed++;
+                logProgress();
+                await sleep(randInt(DELAY_MIN, DELAY_MAX));
             }
-            processed++;
-            logProgress();
-            await sleep(randInt(DELAY_MIN, DELAY_MAX));
+        } catch (e) {
+            // A worker must never reject the top-level Promise.all — that would crash the run.
+            console.warn(`⚠️ worker aborted: ${e.message}`);
+        } finally {
+            if (ctx) await ctx.close().catch(() => {});
         }
-        if (ctx) await ctx.close().catch(() => {});
     }
 
     const nWorkers = Math.min(CONCURRENCY, total);

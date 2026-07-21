@@ -90,15 +90,17 @@ async function fetchOnePage(i, page, reprime) {
 
 // --- Worker: own context + primed page, reused across all its pages ---
 async function workerLoop(tasks, browser) {
-  const context = await createIsolatedContext(browser);
-  let page = await newConfiguredPage(context);
-  const reprime = async () => {
-    try { await page.goto(FUTGG_ORIGIN, { waitUntil: 'domcontentloaded', timeout: NAV_TIMEOUT_MS }); }
-    catch { /* next fetch attempt will surface the block again */ }
-  };
-  await reprime(); // clear Cloudflare once up front
-
+  let context = null;
+  let page = null;
   try {
+    context = await createIsolatedContext(browser);
+    page = await newConfiguredPage(context);
+    const reprime = async () => {
+      try { await page.goto(FUTGG_ORIGIN, { waitUntil: 'domcontentloaded', timeout: NAV_TIMEOUT_MS }); }
+      catch { /* next fetch attempt will surface the block again */ }
+    };
+    await reprime(); // clear Cloudflare once up front
+
     while (true) {
       const i = tasks.getNext();
       if (i === null) break;
@@ -106,16 +108,22 @@ async function workerLoop(tasks, browser) {
       try {
         await fetchOnePage(i, page, reprime);
       } catch (e) {
-        // page/context crashed — rebuild in the same context and continue.
+        // page/context crashed — rebuild in the same context and continue. If even the
+        // rebuild fails (e.g. a CDP protocol timeout under heavy machine load), bow out
+        // of this worker instead of crashing the run; its pages get retried next run.
         try { await page.close().catch(() => {}); } catch (_) {}
-        page = await newConfiguredPage(context);
+        page = await newConfiguredPage(context).catch(() => null);
+        if (!page) break;
         await reprime();
       }
       await sleep(randInt(POLITE_DELAY_MIN_MS, POLITE_DELAY_MAX_MS));
     }
+  } catch (e) {
+    // A worker must never reject the top-level Promise.all — that would crash the run.
+    console.warn(`⚠️ worker aborted: ${e.message}`);
   } finally {
-    try { await page.close().catch(() => {}); } catch (_) {}
-    if (context.close) await context.close().catch(() => {});
+    try { if (page) await page.close().catch(() => {}); } catch (_) {}
+    try { if (context && context.close) await context.close().catch(() => {}); } catch (_) {}
   }
 }
 
