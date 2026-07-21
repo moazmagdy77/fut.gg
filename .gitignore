@@ -11,3 +11,5 @@ models/*.pkl
 data/raw/*
 !data/raw/prices/
 data/responsiveness_output.txt
+# Local reference spreadsheet (downloaded Fodder sheet), not repo content
+*.xlsx
