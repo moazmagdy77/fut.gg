@@ -35,11 +35,14 @@ if run_club == 'y':
     min_height_input = input("Minimum height for tall-player group (default 195 cm): ").strip()
     min_height_cm = int(min_height_input) if min_height_input.isdigit() else 195
     print(f"Tall-player threshold: {min_height_cm} cm")
-    
+
+    run_evo = input("Refresh evo data (fut.gg Evo Lab + EasySBC esMeta)? (y/n): ").strip().lower()
+
     # Append Step 3 with --min-height argument
     steps.append(("🔍 Step 3: Enrich with evo and all cleaning", [sys.executable, "club.3.clean.py", "--min-height", str(min_height_cm)]))
 else:
     run_prices = 'n'
+    run_evo = 'n'
     min_height_cm = 195
     print("Skipping Club Update pipeline...\n")
     steps = []
@@ -50,6 +53,16 @@ start = time.time()
 
 # --- Run Data Pipeline (fut.gg) ---
 if run_club == 'y':
+    # Refresh evo data first (authed fut.gg + EasySBC). Non-fatal: fall back to existing files.
+    if run_evo == 'y':
+        for label, command in [
+            ("🧬 Fetch Evo Lab (fut.gg)", ["node", "fetch.evolab.js"]),
+            ("🧪 Fetch evo esMeta (EasySBC)", ["node", "fetch.evo.esmeta.js"]),
+        ]:
+            print(f"\n{label}")
+            if subprocess.run(command, cwd=base_dir).returncode != 0:
+                print(f"⚠️ {label} failed — continuing with existing data.")
+
     for label, command in steps:
         print(f"\n{label}")
         print(command)

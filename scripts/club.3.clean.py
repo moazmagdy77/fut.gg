@@ -32,6 +32,7 @@ EVOLAB_FILE = BASE_DATA_DIR / 'evolab.json'
 MAPS_FILE = BASE_DATA_DIR / 'maps.json'
 OUTPUT_FILE = BASE_DATA_DIR / 'club_final.json'
 CLUB_IDS_FILE = BASE_DATA_DIR / 'all_club_ids.json'
+EVO_ESMETA_FILE = RAW_DATA_DIR / 'evo_esmeta.json'
 
 def get_raw_file_path(ea_id, file_type, raw_data_dir):
     for sub in ['club - main', 'club - rest', 'training']:
@@ -53,6 +54,7 @@ for i, arg in enumerate(sys.argv):
 # --- Global Worker State (Initialized once per process) ---
 GLOBAL_MAPS = None
 GLOBAL_MODEL_MANAGER = None
+GLOBAL_EVO_ESMETA = None
 
 # --- Helpers ---
 
@@ -96,26 +98,6 @@ def to_player_like_from_ggdata(gg_data_obj, maps):
     d["roles+"]  = [maps.get("rolesPlus", {}).get(str(r)) for r in (gg_data_obj.get("rolesPlus") or []) if str(r) in maps.get("rolesPlus", {})]
     d["roles++"] = [maps.get("rolesPlusPlus", {}).get(str(r)) for r in (gg_data_obj.get("rolesPlusPlus") or []) if str(r) in maps.get("rolesPlusPlus", {})]
     return d
-
-def get_es_anchors_for_role(es_meta_raw, role_name, maps):
-    es_role_id = maps.get("roleNameToEsRoleId", {}).get(role_name)
-    if not (es_meta_raw and es_role_id):
-        return None, {}
-    filtered = []
-    for b in es_meta_raw:
-        ratings = (b.get("data", {}) or {}).get("metaRatings", []) or []
-        filtered.extend([r for r in ratings if str(r.get("playerRoleId")) == str(es_role_id)])
-    if not filtered:
-        return None, {}
-    r0 = next((r for r in filtered if r.get("chemistry") == 0 and r.get("metaRating") is not None), None)
-    sub_anchor = float(r0["metaRating"]) if r0 else None
-    es_style_map = maps.get("esChemistryStyleNames", {})
-    anchor_3_by_style = {}
-    for r in filtered:
-        if r.get("chemistry") == 3 and r.get("metaRating") is not None:
-            chem_id = str(r.get("chemstyleId")); name = es_style_map.get(chem_id)
-            if name: anchor_3_by_style[name.lower()] = float(r["metaRating"])
-    return sub_anchor, anchor_3_by_style
 
 # --- Model Manager ---
 class ModelManager:
@@ -187,38 +169,6 @@ def _predict_absolute(model_bundle, feature_dict):
     except Exception:
         return None
 
-def predict_es_with_anchor(model_bundle, evo_features, *, base_features, api_anchor, hard_min=None, hard_max=99.99):
-    if not model_bundle: return None
-    pred_abs_evo  = _predict_absolute(model_bundle, evo_features)
-    pred_abs_base = _predict_absolute(model_bundle, base_features) if base_features else None
-    floors = []
-    if api_anchor is not None: floors.append(float(api_anchor))
-    if pred_abs_base is not None: floors.append(float(pred_abs_base))
-    if hard_min is not None: floors.append(float(hard_min))
-    floor_val = max(floors) if floors else 0.0
-
-    anchored_via_delta = None
-    try:
-        if base_features is not None and "coef_unscaled" in model_bundle:
-            Xe = _build_model_input(model_bundle, evo_features).values
-            Xb = _build_model_input(model_bundle, base_features).values
-            dX = np.maximum(0.0, Xe - Xb)
-            w  = np.array(model_bundle["coef_unscaled"], dtype=float).reshape(1,-1)
-            if w.shape[1] == dX.shape[1]:
-                delta_rating = float((dX * w).sum())
-                anchored_via_delta = floor_val + max(0.0, delta_rating)
-    except Exception:
-        anchored_via_delta = None
-
-    candidates = []
-    if pred_abs_evo is not None: candidates.append(pred_abs_evo)
-    if anchored_via_delta is not None: candidates.append(anchored_via_delta)
-    if not candidates: return None
-    pred = max(candidates)
-    pred = max(pred, floor_val)
-    pred = min(pred, hard_max)
-    return round(float(pred), 2)
-
 def predict_ggsub_absolute(model_bundle, features_no_chem, *, cap_to_ggmeta=None):
     if not model_bundle: return None
     pred = _predict_absolute(model_bundle, features_no_chem)
@@ -242,7 +192,7 @@ def predict_ggsub_evo_anchored(model_bundle, evo_no_chem, *, base_no_chem, cap_t
     return round(float(pred), 2)
 
 # --- Core Logic (Runs inside Worker) ---
-def process_player(player_def, is_evo, model_manager, maps, min_height_cm=195):
+def process_player(player_def, is_evo, model_manager, maps, evo_esmeta, min_height_cm=195):
     # This function contains the heavy lifting logic
     player_output = {"eaId": player_def.get("eaId"), "evolution": is_evo}
     base_attributes = {k: v for k, v in player_def.items() if k.startswith("attribute")}
@@ -287,11 +237,14 @@ def process_player(player_def, is_evo, model_manager, maps, min_height_cm=195):
         base_attributes.get("attributeStrength"), player_output.get("height"), player_output.get("gender")
     )
 
-    es_meta_raw = load_json_file(get_raw_file_path(player_output['eaId'], 'esMeta', RAW_DATA_DIR), [])
-
     if is_evo:
+        # Exact evo esMeta from EasySBC — same metaRatings shape as the base esMeta API,
+        # so it flows through the identical parser below (wrapped as a single block).
+        evo_es = (evo_esmeta or {}).get(str(player_output['eaId']))
+        es_meta_raw = [{"data": {"metaRatings": evo_es.get("metaRatings", [])}}] if evo_es else []
         gg_scores_by_role = parse_gg_rating_str(player_def.get("ggRatingStr"))
     else:
+        es_meta_raw = load_json_file(get_raw_file_path(player_output['eaId'], 'esMeta', RAW_DATA_DIR), [])
         gg_meta_raw = load_json_file(get_raw_file_path(player_output['eaId'], 'ggMeta', RAW_DATA_DIR))
         gg_scores_by_role = defaultdict(list)
         if gg_meta_raw and "data" in gg_meta_raw and "scores" in gg_meta_raw["data"]:
@@ -341,63 +294,29 @@ def process_player(player_def, is_evo, model_manager, maps, min_height_cm=195):
                 # Fallback
                 if "GK" in role_name and meta_entry.get("ggMeta"): meta_entry["ggMetaSub"] = round(meta_entry["ggMeta"] * 0.95, 2)
 
-        # ES Logic
-        if is_evo:
-            base_anchor_eaid = resolve_anchor_source_eaid(player_def)
-            base_es_meta_raw = load_json_file(get_raw_file_path(base_anchor_eaid, 'esMeta', RAW_DATA_DIR), [])
-            sub_anchor, anchor3_by_style = get_es_anchors_for_role(base_es_meta_raw, role_name, maps)
-            base_gg_raw = load_json_file(get_raw_file_path(base_anchor_eaid, 'ggData', RAW_DATA_DIR))
-            base_player_like = to_player_like_from_ggdata(base_gg_raw.get("data") if base_gg_raw else None, maps)
-            
-            # One esMeta model per role serves both sub (unboosted features) and
-            # main (best chem-boosted features) predictions.
-            es_model = model_manager.get_model(role_name, 'esMeta')
-            if es_model:
-                # Sub
-                evo_features_sub  = prepare_features(player_output, maps, boosts={}, role_name=role_name)
-                base_features_sub = prepare_features(base_player_like, maps, boosts={}, role_name=role_name) if base_player_like else None
-                meta_entry["esMetaSub"] = predict_es_with_anchor(
-                    es_model, evo_features_sub, base_features=base_features_sub, api_anchor=sub_anchor, hard_min=sub_anchor
-                )
-
-                # Main
-                best_val, best_chem, best_accel = None, None, sub_accel_type
-                chem_style_boosts_map = {item['name'].lower(): item['threeChemistryModifiers'] for item in maps.get("ChemistryStylesBoosts", []) if 'name' in item}
-                for chem_name, boosts in chem_style_boosts_map.items():
-                    evo_features_chem  = prepare_features(player_output, maps, boosts=boosts, role_name=role_name)
-                    base_features_chem = prepare_features(base_player_like, maps, boosts=boosts, role_name=role_name) if base_player_like else None
-                    chem_anchor = (anchor3_by_style or {}).get(chem_name.lower())
-                    val = predict_es_with_anchor(
-                        es_model, evo_features_chem, base_features=base_features_chem, api_anchor=chem_anchor, hard_min=chem_anchor
+        # ES Meta — evo and non-evo share the same metaRatings shape
+        # (non-evo: base esMeta API; evo: EasySBC evo-detail via evo_esmeta.json).
+        es_role_id = maps.get("roleNameToEsRoleId", {}).get(role_name)
+        if es_role_id and es_meta_raw:
+            filtered = []
+            for b in es_meta_raw:
+                rs = (b.get("data", {}) or {}).get("metaRatings", []) or []
+                filtered.extend([r for r in rs if str(r.get("playerRoleId")) == str(es_role_id)])
+            if filtered:
+                r0 = next((r for r in filtered if r.get("chemistry") == 0 and r.get("metaRating") is not None), None)
+                if r0: meta_entry["esMetaSub"] = round(float(r0["metaRating"]), 2)
+                best3 = max([r for r in filtered if r.get("chemistry") == 3], key=lambda x: x.get("metaRating", -1), default=None)
+                if best3 and best3.get("metaRating") is not None:
+                    meta_entry["esMeta"] = round(float(best3["metaRating"]), 2)
+                    meta_entry["esChemStyle"] = maps.get("esChemistryStyleNames", {}).get(str(best3.get("chemstyleId")))
+                    chem_style_boosts_map = {item['name'].lower(): item['threeChemistryModifiers'] for item in maps.get("ChemistryStylesBoosts", []) if 'name' in item}
+                    boosts = chem_style_boosts_map.get((meta_entry.get("esChemStyle") or "").lower(), {})
+                    meta_entry["esAccelType"] = calculate_acceleration_type(
+                        get_attribute_with_boost(base_attributes, "attributeAcceleration", boosts),
+                        get_attribute_with_boost(base_attributes, "attributeAgility", boosts),
+                        get_attribute_with_boost(base_attributes, "attributeStrength", boosts),
+                        player_output.get("height"), player_output.get("gender")
                     )
-                    if val is not None and (best_val is None or val > best_val):
-                        best_val = val; best_chem = chem_name.title(); best_accel = evo_features_chem.get("accelerateType")
-                meta_entry["esMeta"] = best_val
-                meta_entry["esChemStyle"] = best_chem or "basic"
-                meta_entry["esAccelType"] = best_accel
-        else:
-            # Standard
-            es_role_id = maps.get("roleNameToEsRoleId", {}).get(role_name)
-            if es_role_id and es_meta_raw:
-                filtered = []
-                for b in es_meta_raw:
-                    rs = (b.get("data", {}) or {}).get("metaRatings", []) or []
-                    filtered.extend([r for r in rs if str(r.get("playerRoleId")) == str(es_role_id)])
-                if filtered:
-                    r0 = next((r for r in filtered if r.get("chemistry") == 0 and r.get("metaRating") is not None), None)
-                    if r0: meta_entry["esMetaSub"] = round(float(r0["metaRating"]), 2)
-                    best3 = max([r for r in filtered if r.get("chemistry") == 3], key=lambda x: x.get("metaRating", -1), default=None)
-                    if best3 and best3.get("metaRating") is not None:
-                        meta_entry["esMeta"] = round(float(best3["metaRating"]), 2)
-                        meta_entry["esChemStyle"] = maps.get("esChemistryStyleNames", {}).get(str(best3.get("chemstyleId")))
-                        chem_style_boosts_map = {item['name'].lower(): item['threeChemistryModifiers'] for item in maps.get("ChemistryStylesBoosts", []) if 'name' in item}
-                        boosts = chem_style_boosts_map.get((meta_entry.get("esChemStyle") or "").lower(), {})
-                        meta_entry["esAccelType"] = calculate_acceleration_type(
-                            get_attribute_with_boost(base_attributes, "attributeAcceleration", boosts),
-                            get_attribute_with_boost(base_attributes, "attributeAgility", boosts),
-                            get_attribute_with_boost(base_attributes, "attributeStrength", boosts),
-                            player_output.get("height"), player_output.get("gender")
-                        )
 
         # Average
         gg_meta, es_meta = meta_entry.get("ggMeta"), meta_entry.get("esMeta")
@@ -417,17 +336,21 @@ def process_player(player_def, is_evo, model_manager, maps, min_height_cm=195):
 # --- Multiprocessing Wrapper ---
 def init_worker(min_height_cm):
     """Initializes global state in each worker process."""
-    global GLOBAL_MAPS, GLOBAL_MODEL_MANAGER, GLOBAL_MIN_HEIGHT
-    
+    global GLOBAL_MAPS, GLOBAL_MODEL_MANAGER, GLOBAL_MIN_HEIGHT, GLOBAL_EVO_ESMETA
+
     GLOBAL_MIN_HEIGHT = min_height_cm
-    
+
     # Load Maps
     if GLOBAL_MAPS is None:
         GLOBAL_MAPS = load_json_file(MAPS_FILE)
-    
+
     # Load Models
     if GLOBAL_MODEL_MANAGER is None:
         GLOBAL_MODEL_MANAGER = ModelManager(MODELS_DIR)
+
+    # Load exact evo esMeta (from EasySBC via fetch.evo.esmeta.js), keyed by eaId
+    if GLOBAL_EVO_ESMETA is None:
+        GLOBAL_EVO_ESMETA = load_json_file(EVO_ESMETA_FILE, {}) or {}
 
 def worker_task(payload):
     """
@@ -440,11 +363,11 @@ def worker_task(payload):
             player_def_raw = load_json_file(data_file)
             if not player_def_raw or "data" not in player_def_raw:
                 return None
-            return process_player(player_def_raw["data"], False, GLOBAL_MODEL_MANAGER, GLOBAL_MAPS, GLOBAL_MIN_HEIGHT)
-        
+            return process_player(player_def_raw["data"], False, GLOBAL_MODEL_MANAGER, GLOBAL_MAPS, GLOBAL_EVO_ESMETA, GLOBAL_MIN_HEIGHT)
+
         elif payload['type'] == 'evo':
             # Evo data is passed directly
-            return process_player(payload['data'], True, GLOBAL_MODEL_MANAGER, GLOBAL_MAPS, GLOBAL_MIN_HEIGHT)
+            return process_player(payload['data'], True, GLOBAL_MODEL_MANAGER, GLOBAL_MAPS, GLOBAL_EVO_ESMETA, GLOBAL_MIN_HEIGHT)
             
     except Exception as e:
         return None # Fail silently/gracefully for that one player
