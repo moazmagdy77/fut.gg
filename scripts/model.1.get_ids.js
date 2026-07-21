@@ -10,6 +10,7 @@ const fsp = fs.promises;
 const path = require('path');
 
 puppeteer.use(StealthPlugin());
+const { resolveChromePath } = require('./browser');
 
 // --- Configuration ---
 const TOP_PLAYER_PAGES = Number(process.env.TOTAL_PAGES || 334);
@@ -218,8 +219,9 @@ async function mergeResults() {
       if (todo.length === 0) continue;
 
       if (browser) await browser.close().catch(() => {});
-      browser = await puppeteer.launch({ 
-          headless: HEADLESS, 
+      browser = await puppeteer.launch({
+          headless: HEADLESS,
+          executablePath: resolveChromePath(puppeteer),
           defaultViewport: null,
           args: ['--no-sandbox', '--disable-setuid-sandbox'] // Helper for stability
       });

@@ -4,6 +4,7 @@ __pycache__/
 .env
 .venv/
 venv/
+.auth/
 # Ignore generated datasets and models
 data/*.csv
 models/*.pkl

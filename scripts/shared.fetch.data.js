@@ -25,6 +25,7 @@ for (let i = 0; i < args.length; i++) {
 // Use puppeteer-extra with stealth
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+const { resolveChromePath } = require('./browser');
 puppeteer.use(StealthPlugin());
 
 // --- Configuration ---
@@ -293,6 +294,7 @@ async function processPlayer(eaId, browser, maps) {
     console.log("🕸️ Launching Browser...");
     const browser = await puppeteer.launch({
         headless: "new",
+        executablePath: resolveChromePath(puppeteer),
         defaultViewport: null,
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     });

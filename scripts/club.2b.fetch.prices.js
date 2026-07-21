@@ -8,6 +8,7 @@ const path = require('path');
 // Use puppeteer-extra with stealth (Critical for Fut.gg API access)
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+const { resolveChromePath } = require('./browser');
 puppeteer.use(StealthPlugin());
 
 // --- Configuration ---
@@ -150,6 +151,7 @@ async function fetchPrice(eaId, browser, pricesDir) {
     console.log("🕸️ Launching Browser...");
     const browser = await puppeteer.launch({
         headless: "new",
+        executablePath: resolveChromePath(puppeteer),
         defaultViewport: null,
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
