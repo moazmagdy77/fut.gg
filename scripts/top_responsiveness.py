@@ -9,15 +9,14 @@ except Exception:
 data_dir = Path(__file__).resolve().parents[1] / "data"
 data = json.load(open(data_dir / "club_final.json", encoding='utf-8'))
 
+rows = []
 for p in data:
-    p['responsiveness'] = (
-        p['attributeAcceleration'] +
-        p['attributeSprintSpeed'] +
-        p['attributeAgility'] +
-        p['attributeBalance'] +
-        p['attributeReactions']
-    ) / 5.0
-
+    vals = [p.get(k) for k in ('attributeAcceleration', 'attributeSprintSpeed', 'attributeAgility', 'attributeBalance', 'attributeReactions')]
+    if not all(isinstance(v, (int, float)) for v in vals):
+        continue
+    p['responsiveness'] = sum(vals) / 5.0
+    rows.append(p)
+data = rows
 data.sort(key=lambda x: x['responsiveness'], reverse=True)
 
 top100 = data[:100]
@@ -27,8 +26,8 @@ header = f"{'#':<4} {'Name':<30} {'OVR':<5} {'Acc':<5} {'Spd':<5} {'Agi':<5} {'B
 print(header)
 print('-' * len(header))
 for i, p in enumerate(top100, 1):
-    name = p['commonName']
-    ovr = p['overall']
+    name = p.get('commonName') or 'Unknown'
+    ovr = p.get('overall', '?')
     acc = p['attributeAcceleration']
     spd = p['attributeSprintSpeed']
     agi = p['attributeAgility']

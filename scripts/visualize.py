@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import json
 import os
+import re
 import datetime
 from pathlib import Path
 from shared_utils import calculate_acceleration_type
@@ -751,16 +752,25 @@ default_sort_column = "avgMeta"
 if default_sort_column in filtered_df.columns:
     filtered_df = filtered_df.sort_values(by=default_sort_column, ascending=False)
 
+FILTER_LABELS = {
+    "commonName_contains": "Name contains", "positions": "Position", "role": "Role",
+    "foot": "Foot", "bodyType": "Body Type", "evolution": "Evolution",
+    "playstyles_all": "PlayStyles (all)", "playstyles_plus_all": "PlayStyles+ (all)",
+    "ggAccelType": "GG Accel Type", "esAccelType": "ES Accel Type", "subAccelType": "Sub Accel Type",
+    "canBeLengthy": "Can be Lengthy", "isTall": "Tall (≥195cm)",
+    "hasRolePlus": "Has Role+", "hasRolePlusPlus": "Has Role++",
+    "avgMeta": "Avg On-Chem Meta", "avgMetaSub": "Avg Sub Meta",
+    "ggMeta": "GG Meta", "ggMetaSub": "GG Meta (Sub)", "esMeta": "ES Meta", "esMetaSub": "ES Meta (Sub)",
+    "overall": "Overall", "skillMoves": "Skill Moves", "weakFoot": "Weak Foot",
+    "height": "Height", "weight": "Weight", "responsiveness": "Responsiveness",
+}
+
 if filters:
     st.subheader("Active Filters:")
     filter_tags = []
     for key, f_val in filters.items():
-        display_name = key.replace("_", " ").title()
-        if key == "playstyles_all": display_name = "PlayStyles (All Selected)" 
-        elif key == "roles+_any": display_name = "Roles+ (Any)"
-        elif key == "roles++_any": display_name = "Roles++ (Any)"
-        elif key == "positions": display_name = "Position"
-        elif key == "commonName_contains": display_name = "Name contains"
+        # Nice label, or split camelCase / underscores as a fallback (isTall -> "Is Tall").
+        display_name = FILTER_LABELS.get(key) or re.sub(r'(?<=[a-z])(?=[A-Z])', ' ', str(key).replace('_', ' ')).title()
 
         if isinstance(f_val, list):
             val_str = ", ".join(map(str,f_val))

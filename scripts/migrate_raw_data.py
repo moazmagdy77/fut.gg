@@ -1,3 +1,6 @@
+# LEGACY one-time migration: moves an old flat raw/ggData layout into the categorized
+# raw/{club - main,club - rest,training}/ structure the pipeline now uses. Already run;
+# it's a safe no-op if the old flat folder is absent. Kept for reference/recovery only.
 import json
 import shutil
 import sys
