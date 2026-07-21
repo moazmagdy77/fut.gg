@@ -410,6 +410,86 @@ def apply_filters_to_df(source_df, active_filters):
             filtered = filtered[filtered[col] == val]
     return filtered
 
+def recompute_avg_meta(target_df, es_weight, gg_weight):
+    """Recompute avgMeta / avgMetaSub from the ES/GG weights, in place.
+
+    On-chem uses esMeta+ggMeta. Sub uses esMetaSub+ggMetaSub when a ggMetaSub
+    column exists (club_final); otherwise it falls back to esMetaSub alone
+    (all_players_summary has no modeled ggMetaSub yet)."""
+    total = es_weight + gg_weight
+    if total <= 0 or target_df.empty:
+        return target_df
+
+    if 'esMeta' in target_df.columns and 'ggMeta' in target_df.columns:
+        both = (target_df['esMeta'] > 0) & (target_df['ggMeta'] > 0)
+        target_df.loc[both, 'avgMeta'] = (
+            target_df.loc[both, 'esMeta'] * es_weight + target_df.loc[both, 'ggMeta'] * gg_weight
+        ) / total
+        target_df.loc[(target_df['esMeta'] > 0) & (target_df['ggMeta'] <= 0), 'avgMeta'] = target_df['esMeta']
+        target_df.loc[(target_df['ggMeta'] > 0) & (target_df['esMeta'] <= 0), 'avgMeta'] = target_df['ggMeta']
+
+    if 'esMetaSub' in target_df.columns and 'ggMetaSub' in target_df.columns:
+        both_sub = (target_df['esMetaSub'] > 0) & (target_df['ggMetaSub'] > 0)
+        target_df.loc[both_sub, 'avgMetaSub'] = (
+            target_df.loc[both_sub, 'esMetaSub'] * es_weight + target_df.loc[both_sub, 'ggMetaSub'] * gg_weight
+        ) / total
+        target_df.loc[(target_df['esMetaSub'] > 0) & (target_df['ggMetaSub'] <= 0), 'avgMetaSub'] = target_df['esMetaSub']
+        target_df.loc[(target_df['ggMetaSub'] > 0) & (target_df['esMetaSub'] <= 0), 'avgMetaSub'] = target_df['ggMetaSub']
+    elif 'esMetaSub' in target_df.columns:
+        target_df['avgMetaSub'] = target_df['esMetaSub']
+    return target_df
+
+def _normalize_players_df(df):
+    """Shared normalization for both club_final and all_players_summary frames.
+
+    Explodes the per-role `metaRatings` list, flattens attribute/meta columns,
+    coerces dtypes, and computes role-familiarity flags. Callers add their own
+    extras (club: player_origin_id + lengthy info). The float/int coercion lists
+    are supersets — missing columns are simply skipped — so one helper serves both
+    schemas without behavior change."""
+    if 'metaRatings' in df.columns:
+        df = df.explode('metaRatings').reset_index(drop=True)
+        df = df[df['metaRatings'].notna()].reset_index(drop=True)
+        meta_df = pd.json_normalize(df['metaRatings']).add_prefix('meta.')
+        df = pd.concat([df.drop(columns=['metaRatings']), meta_df], axis=1)
+        df.rename(columns={col: col.replace("meta.", "") for col in df.columns if col.startswith("meta.")}, inplace=True)
+
+    if df.empty:
+        return df
+
+    # attributeAcceleration -> acceleration, etc.
+    df.rename(columns={col: col.replace("attribute", "", 1)[0].lower() + col.replace("attribute", "", 1)[1:]
+                       for col in df.columns if col.startswith("attribute")}, inplace=True)
+
+    df["__true_player_id"] = df["eaId"].astype(str)
+
+    int_cols = ['overall', 'height', 'weight', 'skillMoves', 'weakFoot'] + attribute_filter_order
+    for col in int_cols:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0).astype(int)
+
+    resp_attrs = ['acceleration', 'sprintSpeed', 'agility', 'balance', 'reactions']
+    if all(attr in df.columns for attr in resp_attrs):
+        df['responsiveness'] = df[resp_attrs].mean(axis=1)
+    else:
+        df['responsiveness'] = 0.0
+
+    float_cols = ['ggMeta', 'ggMetaSub', 'esMeta', 'esMetaSub', 'avgMeta', 'avgMetaSub', 'price', 'responsiveness', 'discardValue']
+    for col in float_cols:
+        if col in df.columns:
+            if df[col].dtype == object:
+                df[col] = df[col].astype(str).str.replace(',', '', regex=False)
+            df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0.0)
+
+    for col in ['roles+', 'roles++']:
+        if col not in df.columns:
+            df[col] = pd.Series([[] for _ in range(len(df))])
+        df[col] = df[col].apply(lambda x: x if isinstance(x, list) else [])
+
+    df['hasRolePlus'] = df.apply(lambda row: row.get('role') in row.get('roles+', []), axis=1)
+    df['hasRolePlusPlus'] = df.apply(lambda row: row.get('role') in row.get('roles++', []), axis=1)
+    return df
+
 @st.cache_data
 def load_data(file_path, mtime):
     """Loads and preprocesses the final JSON data."""
@@ -423,58 +503,12 @@ def load_data(file_path, mtime):
         st.error(f"Error: `club_final.json` is not a valid JSON file. Please check the file content.")
         return pd.DataFrame()
 
-    df = pd.json_normalize(data, errors='ignore')
-
-    # Rename attribute columns from 'attributeAcceleration' to 'acceleration'
-    df.rename(columns={col: col.replace("attribute", "", 1)[0].lower() + col.replace("attribute", "", 1)[1:] 
-                       for col in df.columns if col.startswith("attribute")}, inplace=True)
-
-    # Now, safely explode the metaRatings column.
-    # Drop rows whose metaRatings was an empty list (explode yields NaN there);
-    # otherwise pd.json_normalize would choke on the NaN (float) entries.
-    df = df.explode('metaRatings').reset_index(drop=True)
-    df = df[df['metaRatings'].notna()].reset_index(drop=True)
-    meta_df = pd.json_normalize(df['metaRatings']).add_prefix('meta.')
-    df = pd.concat([df.drop(columns=['metaRatings']), meta_df], axis=1)
-
-    # Rename the flattened meta columns
-    df.rename(columns={col: col.replace("meta.", "") for col in df.columns if col.startswith("meta.")}, inplace=True)
-    
+    df = _normalize_players_df(pd.json_normalize(data, errors='ignore'))
     if df.empty:
         st.warning("No data loaded or normalized from club_final.json.")
         return pd.DataFrame()
 
     df['player_origin_id'] = df['eaId'].astype(str) + '_' + df['evolution'].astype(str)
-    df["__true_player_id"] = df["eaId"].astype(str)
-    
-    # Clean up data types
-    int_cols = ['overall', 'height', 'weight', 'skillMoves', 'weakFoot'] + attribute_filter_order
-    for col in int_cols:
-        if col in df.columns:
-            df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0).astype(int)
-
-    # Calculate Responsiveness (Average of acceleration, sprintSpeed, agility, balance, reactions)
-    resp_attrs = ['acceleration', 'sprintSpeed', 'agility', 'balance', 'reactions']
-    if all(attr in df.columns for attr in resp_attrs):
-        df['responsiveness'] = df[resp_attrs].mean(axis=1)
-    else:
-        df['responsiveness'] = 0.0
-
-    float_cols = ['ggMeta', 'ggMetaSub', 'esMeta', 'esMetaSub', 'avgMeta', 'avgMetaSub', 'price', 'responsiveness', 'discardValue']
-    for col in float_cols:
-        if col in df.columns:
-            if df[col].dtype == object:
-                # Remove any formatting commas before conversion
-                df[col] = df[col].astype(str).str.replace(',', '', regex=False)
-            df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0.0)
-
-    # Recompute role familiarity flags based on the current role
-    for col in ['roles+', 'roles++']:
-        if col not in df.columns: df[col] = pd.Series([[] for _ in range(len(df))])
-        df[col] = df[col].apply(lambda x: x if isinstance(x, list) else [])
-        
-    df['hasRolePlus'] = df.apply(lambda row: row.get('role') in row.get('roles+', []), axis=1)
-    df['hasRolePlusPlus'] = df.apply(lambda row: row.get('role') in row.get('roles++', []), axis=1)
 
     def compute_lengthy(accel, agility, strength, height, gender):
         # Delegate to the canonical AcceleRATE logic in shared_utils so the viewer
@@ -529,47 +563,7 @@ def load_all_players(file_path, mtime):
         st.warning(f"All players data not found. Run `build_all_players_summary.py` to generate it.")
         return pd.DataFrame()
     
-    df = pd.json_normalize(data, errors='ignore')
-    
-    # Explode metaRatings (drop empty-list rows so json_normalize doesn't hit NaN)
-    if 'metaRatings' in df.columns:
-        df = df.explode('metaRatings').reset_index(drop=True)
-        df = df[df['metaRatings'].notna()].reset_index(drop=True)
-        meta_df = pd.json_normalize(df['metaRatings']).add_prefix('meta.')
-        df = pd.concat([df.drop(columns=['metaRatings']), meta_df], axis=1)
-        df.rename(columns={col: col.replace("meta.", "") for col in df.columns if col.startswith("meta.")}, inplace=True)
-    
-    if df.empty:
-        return pd.DataFrame()
-
-    # Rename attribute columns from 'attributeAcceleration' to 'acceleration'
-    df.rename(columns={col: col.replace("attribute", "", 1)[0].lower() + col.replace("attribute", "", 1)[1:] 
-                       for col in df.columns if col.startswith("attribute")}, inplace=True)
-
-    df["__true_player_id"] = df["eaId"].astype(str)
-    
-    int_cols = ['overall', 'height', 'weight', 'skillMoves', 'weakFoot'] + attribute_filter_order
-    for col in int_cols:
-        if col in df.columns:
-            df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0).astype(int)
-
-    resp_attrs = ['acceleration', 'sprintSpeed', 'agility', 'balance', 'reactions']
-    if all(attr in df.columns for attr in resp_attrs):
-        df['responsiveness'] = df[resp_attrs].mean(axis=1)
-
-    float_cols = ['ggMeta', 'esMeta', 'esMetaSub', 'avgMeta', 'avgMetaSub', 'responsiveness']
-    for col in float_cols:
-        if col in df.columns:
-            df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0.0)
-
-    for col in ['roles+', 'roles++']:
-        if col not in df.columns: df[col] = pd.Series([[] for _ in range(len(df))])
-        df[col] = df[col].apply(lambda x: x if isinstance(x, list) else [])
-        
-    df['hasRolePlus'] = df.apply(lambda row: row.get('role') in row.get('roles+', []), axis=1)
-    df['hasRolePlusPlus'] = df.apply(lambda row: row.get('role') in row.get('roles++', []), axis=1)
-
-    return df
+    return _normalize_players_df(pd.json_normalize(data, errors='ignore'))
 
 if "squad_players" not in st.session_state:
     st.session_state["squad_players"] = {}
@@ -581,15 +575,12 @@ club_mtime = os.path.getmtime(club_file) if club_file.exists() else 0
 all_players_mtime = os.path.getmtime(all_players_file) if all_players_file.exists() else 0
 
 df = load_data(club_file, club_mtime).copy()
-all_players_df = load_all_players(all_players_file, all_players_mtime).copy()
 
-# Exclude players already in starting squad
+# Exclude players already in the starting squad. all_players_df is loaded lazily
+# inside the All Players view so its ~45k-row frame isn't copied on every rerun.
 assigned_ea_ids = {str(p["eaId"]) for p in st.session_state["squad_players"].values()}
-if assigned_ea_ids:
-    if not df.empty:
-        df = df[~df["__true_player_id"].astype(str).isin(assigned_ea_ids)]
-    if not all_players_df.empty:
-        all_players_df = all_players_df[~all_players_df["__true_player_id"].astype(str).isin(assigned_ea_ids)]
+if assigned_ea_ids and not df.empty:
+    df = df[~df["__true_player_id"].astype(str).isin(assigned_ea_ids)]
 
 if df.empty:
     st.stop()
@@ -628,15 +619,7 @@ if es_weight + gg_weight <= 0:
     es_weight = gg_weight = 1.0
 
 # Update avgMeta / avgMetaSub dynamically from the ES/GG weights
-has_both = (df['esMeta'] > 0) & (df['ggMeta'] > 0)
-df.loc[has_both, 'avgMeta'] = ((df.loc[has_both, 'esMeta'] * es_weight) + (df.loc[has_both, 'ggMeta'] * gg_weight)) / (es_weight + gg_weight)
-df.loc[(df['esMeta'] > 0) & (df['ggMeta'] <= 0), 'avgMeta'] = df['esMeta']
-df.loc[(df['ggMeta'] > 0) & (df['esMeta'] <= 0), 'avgMeta'] = df['ggMeta']
-
-has_both_sub = (df['esMetaSub'] > 0) & (df['ggMetaSub'] > 0)
-df.loc[has_both_sub, 'avgMetaSub'] = ((df.loc[has_both_sub, 'esMetaSub'] * es_weight) + (df.loc[has_both_sub, 'ggMetaSub'] * gg_weight)) / (es_weight + gg_weight)
-df.loc[(df['esMetaSub'] > 0) & (df['ggMetaSub'] <= 0), 'avgMetaSub'] = df['esMetaSub']
-df.loc[(df['ggMetaSub'] > 0) & (df['esMetaSub'] <= 0), 'avgMetaSub'] = df['ggMetaSub']
+recompute_avg_meta(df, es_weight, gg_weight)
 
 filters = {}
 
@@ -743,7 +726,16 @@ with st.sidebar.expander("Role Familiarity"):
 
 with st.sidebar.expander("In-Game Stats"):
     create_min_max_filter(st, "responsiveness", "Responsiveness", 0.1)
-    for attr in attribute_filter_order:
+    # Render Min/Max inputs only for attributes the user picks, instead of
+    # instantiating ~70 number_inputs (2 per attribute) on every rerun.
+    attr_choices = [a for a in attribute_filter_order if a in df.columns]
+    picked_attrs = st.multiselect(
+        "Filter by attribute", attr_choices,
+        format_func=lambda a: a.replace("_", " ").title(),
+        key="attr_filter_picker",
+        help="Pick attributes to add Min/Max range filters for.",
+    )
+    for attr in picked_attrs:
         create_min_max_filter(st, attr, attr.replace("_", " ").title(), 1)
 
 # --- Apply filters ---
@@ -774,6 +766,49 @@ if filters:
         filter_tags.append(f"<span style='background-color:#333;color:#f5f5f5;padding:3px 7px;margin:2px;border-radius:12px;display:inline-block;font-size:0.9em;'>{display_name}: {val_str}</span>")
     st.markdown(" ".join(filter_tags), unsafe_allow_html=True)
     st.markdown("---")
+
+
+def render_player_table(view_df, columns_full, bool_cols, table_key, show_all_key):
+    """Render a selectable player table shared by the Club and All Players views:
+    a compact/full column toggle, ✅/❌ for boolean flags, single-row selection,
+    and (when a squad slot is active) the confirm-add dialog. `view_df` must be the
+    same frame the row order comes from so the selection index maps back correctly."""
+    show_all = st.checkbox("Show all attributes", value=False, key=show_all_key,
+                           help="Reveal every attribute column. Off shows a compact set.")
+    cols = columns_full if show_all else COMPACT_DISPLAY_COLUMNS
+    final_cols = [c for c in cols if c in view_df.columns]
+
+    display = view_df.copy()
+    for col in bool_cols:
+        if col in display.columns:
+            display[col] = display[col].apply(lambda x: "✅" if x else "❌")
+    display.drop(columns=[c for c in ["player_origin_id", "__true_player_id"] if c in display.columns],
+                 inplace=True, errors="ignore")
+
+    if display.empty:
+        st.warning("No players found matching the selected filters.")
+        return
+
+    event = st.dataframe(
+        display[final_cols],
+        width='stretch', hide_index=True,
+        on_select="rerun", selection_mode="single-row",
+        key=table_key, column_config=COLUMN_HELP,
+    )
+    active_slot = st.session_state.get("squad_active_slot")
+    if active_slot and event.selection.rows:
+        sel = view_df.iloc[event.selection.rows[0]]
+        player_info = {
+            "eaId": str(sel["__true_player_id"]) if "__true_player_id" in sel else str(sel["eaId"]),
+            "commonName": sel["commonName"],
+            "avgMeta": sel["avgMeta"],
+            "overall": sel["overall"],
+            "role": sel["role"],
+            "position": sel["positions"] if isinstance(sel["positions"], list) else [sel["positions"]],
+        }
+        confirm_add_dialog(player_info, active_slot,
+                           st.session_state.get("squad_applied_position"),
+                           st.session_state.get("squad_applied_role"))
 
 
 # --- VIEWS ---
@@ -862,45 +897,11 @@ if active_view == VIEW_CLUB:
         "PS+", "PS", "positions", "roles++", "roles+"
     ] + attribute_filter_order
 
-    show_all_cols = st.checkbox("Show all attributes", value=False, key="show_all_cols_club",
-                                help="Reveal every attribute column. Off shows a compact set.")
-    if show_all_cols:
-        final_display_columns = [col for col in columns_to_display if col in df.columns]
-    else:
-        final_display_columns = [col for col in COMPACT_DISPLAY_COLUMNS if col in df.columns]
-
-    display_df = tab1_df.copy()
-    for col in ["hasRolePlus", "hasRolePlusPlus", "canBeLengthy", "isTall"]:
-        if col in display_df.columns:
-            display_df[col] = display_df[col].apply(lambda x: "✅" if x else "❌")
-
-    display_df.drop(columns=[c for c in ["player_origin_id", "__true_player_id"] if c in display_df.columns], inplace=True, errors="ignore")
-
-    if display_df.empty:
-        st.warning("No players found matching the selected filters.")
-    else:
-        event = st.dataframe(
-            display_df[final_display_columns],
-            width='stretch',
-            hide_index=True,
-            on_select="rerun",
-            selection_mode="single-row",
-            key="club_players_df",
-            column_config=COLUMN_HELP,
-        )
-        active_slot = st.session_state.get("squad_active_slot")
-        if active_slot and event.selection.rows:
-            selected_idx = event.selection.rows[0]
-            selected_player = tab1_df.iloc[selected_idx]
-            player_info = {
-                "eaId": str(selected_player["__true_player_id"]) if "__true_player_id" in selected_player else str(selected_player["eaId"]),
-                "commonName": selected_player["commonName"],
-                "avgMeta": selected_player["avgMeta"],
-                "overall": selected_player["overall"],
-                "role": selected_player["role"],
-                "position": selected_player["positions"] if isinstance(selected_player["positions"], list) else [selected_player["positions"]]
-            }
-            confirm_add_dialog(player_info, active_slot, st.session_state.get("squad_applied_position"), st.session_state.get("squad_applied_role"))
+    render_player_table(
+        tab1_df, columns_to_display,
+        ["hasRolePlus", "hasRolePlusPlus", "canBeLengthy", "isTall"],
+        "club_players_df", "show_all_cols_club",
+    )
 
 elif active_view == VIEW_SELL:
     st.header("Sell Now")
@@ -924,8 +925,7 @@ elif active_view == VIEW_SELL:
 
     if tradeable_details:
         trad_df = pd.DataFrame(tradeable_details)
-        prices_dir = data_dir / "raw" / "prices"
-        
+
         def load_price(ea_id):
             clean_id = str(ea_id).split(".")[0]
             pfile = prices_dir / f"{clean_id}.json"
@@ -934,7 +934,7 @@ elif active_view == VIEW_SELL:
                     with open(pfile, "r", encoding="utf-8") as pf:
                         data = json.load(pf)
                         return data.get("price", 0)
-                except:
+                except Exception:
                     pass
             return 0
             
@@ -1008,6 +1008,12 @@ elif active_view == VIEW_SELL:
 
 elif active_view == VIEW_ALL:
     st.header("All Players Database")
+
+    # Loaded lazily here (not at module top) so its ~45k-row frame is only built
+    # and copied when this view is actually open.
+    all_players_df = load_all_players(all_players_file, all_players_mtime)
+    if assigned_ea_ids and not all_players_df.empty:
+        all_players_df = all_players_df[~all_players_df["__true_player_id"].astype(str).isin(assigned_ea_ids)]
     
     if all_players_df.empty:
         st.info("No all players data available. Run the build script.")
@@ -1018,16 +1024,9 @@ elif active_view == VIEW_ALL:
         # Apply filters to all_players_df
         filtered_all_df = all_players_df.copy()
         
-        # Adjust meta weights for all_players_df
-        if es_weight + gg_weight > 0 and not filtered_all_df.empty:
-            has_both = (filtered_all_df['esMeta'] > 0) & (filtered_all_df['ggMeta'] > 0)
-            filtered_all_df.loc[has_both, 'avgMeta'] = ((filtered_all_df.loc[has_both, 'esMeta'] * es_weight) + (filtered_all_df.loc[has_both, 'ggMeta'] * gg_weight)) / (es_weight + gg_weight)
-            filtered_all_df.loc[(filtered_all_df['esMeta'] > 0) & (filtered_all_df['ggMeta'] <= 0), 'avgMeta'] = filtered_all_df['esMeta']
-            filtered_all_df.loc[(filtered_all_df['ggMeta'] > 0) & (filtered_all_df['esMeta'] <= 0), 'avgMeta'] = filtered_all_df['ggMeta']
-
-            # We only have esMetaSub in all_players_df, no ggMetaSub without model
-            filtered_all_df['avgMetaSub'] = filtered_all_df['esMetaSub']
-            
+        # Adjust meta weights for all_players_df (helper falls back to esMetaSub
+        # for the Sub column until build_all_players_summary provides ggMetaSub).
+        recompute_avg_meta(filtered_all_df, es_weight, gg_weight)
         filtered_all_df = apply_filters_to_df(filtered_all_df, filters)
         
         if best_role_only_all and not filtered_all_df.empty:
@@ -1038,50 +1037,16 @@ elif active_view == VIEW_ALL:
         st.markdown(f"### Player List ({filtered_all_df['eaId'].nunique()} unique players, {len(filtered_all_df)} total entries)")
 
         columns_to_display_all = [
-            "commonName", "role", "overall", "responsiveness", "avgMeta", 
-            "ggMeta", "ggChemStyle", "ggAccelType", 
+            "commonName", "role", "overall", "responsiveness", "avgMeta",
+            "ggMeta", "ggChemStyle", "ggAccelType",
             "esMeta", "esChemStyle", "esAccelType",
-            "avgMetaSub", "esMetaSub", "subAccelType", 
+            "avgMetaSub", "ggMetaSub", "esMetaSub", "subAccelType",
             "hasRolePlusPlus", "hasRolePlus", "isTall", "skillMoves", "weakFoot", "foot", "height", "weight", "bodyType",
             "PS+", "PS", "positions", "roles++", "roles+"
         ] + attribute_filter_order
 
-        show_all_cols_all = st.checkbox("Show all attributes", value=False, key="show_all_cols_all",
-                                        help="Reveal every attribute column. Off shows a compact set.")
-        if show_all_cols_all:
-            final_display_columns_all = [col for col in columns_to_display_all if col in filtered_all_df.columns]
-        else:
-            final_display_columns_all = [col for col in COMPACT_DISPLAY_COLUMNS if col in filtered_all_df.columns]
-
-        display_all_df = filtered_all_df.copy()
-        for col in ["hasRolePlus", "hasRolePlusPlus", "isTall"]:
-            if col in display_all_df.columns:
-                display_all_df[col] = display_all_df[col].apply(lambda x: "✅" if x else "❌")
-
-        display_all_df.drop(columns=[c for c in ["__true_player_id"] if c in display_all_df.columns], inplace=True, errors="ignore")
-
-        if display_all_df.empty:
-            st.warning("No players found matching the selected filters.")
-        else:
-            event_all = st.dataframe(
-                display_all_df[final_display_columns_all],
-                width='stretch',
-                hide_index=True,
-                on_select="rerun",
-                selection_mode="single-row",
-                key="all_players_df",
-                column_config=COLUMN_HELP,
-            )
-            active_slot = st.session_state.get("squad_active_slot")
-            if active_slot and event_all.selection.rows:
-                selected_idx = event_all.selection.rows[0]
-                selected_player = filtered_all_df.iloc[selected_idx]
-                player_info = {
-                    "eaId": str(selected_player["__true_player_id"]) if "__true_player_id" in selected_player else str(selected_player["eaId"]),
-                    "commonName": selected_player["commonName"],
-                    "avgMeta": selected_player["avgMeta"],
-                    "overall": selected_player["overall"],
-                    "role": selected_player["role"],
-                    "position": selected_player["positions"] if isinstance(selected_player["positions"], list) else [selected_player["positions"]]
-                }
-                confirm_add_dialog(player_info, active_slot, st.session_state.get("squad_applied_position"), st.session_state.get("squad_applied_role"))
+        render_player_table(
+            filtered_all_df, columns_to_display_all,
+            ["hasRolePlus", "hasRolePlusPlus", "isTall"],
+            "all_players_df", "show_all_cols_all",
+        )
