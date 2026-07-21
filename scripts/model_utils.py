@@ -8,7 +8,52 @@ import numpy as np
 import pandas as pd
 import joblib
 from pathlib import Path
-from shared_utils import _normalize_gender, calculate_acceleration_type, get_attribute_with_boost
+from shared_utils import _normalize_gender, calculate_acceleration_type, get_attribute_with_boost, average_optional
+
+
+def compute_meta_entry(role_name, sub_accel_type, *, gg_score, gg_chem_style, gg_meta_sub,
+                       es_entries, base_attributes, height, gender, es_chem_names, chem_boosts):
+    """Assemble one per-role metaRating entry, shared by club.3.clean.py and
+    build_all_players_summary.py so they can't drift. The caller resolves the gg
+    pieces (which differ for evo vs non-evo) and passes them in:
+      - gg_score / gg_chem_style: the best chem-style's ggMeta + style name (or None)
+      - gg_meta_sub: predicted ggMetaSub (absolute or evo-anchored) or None
+      - es_entries: this role's esMeta rows (chemistry 0..3), already filtered
+    Computes gg/es accel types from the chem-style boosts, the on-chem/sub averages,
+    and clamps ggMetaSub <= ggMeta (defensive)."""
+    def accel(chem_style):
+        b = chem_boosts.get((chem_style or "").lower(), {})
+        return calculate_acceleration_type(
+            get_attribute_with_boost(base_attributes, "attributeAcceleration", b),
+            get_attribute_with_boost(base_attributes, "attributeAgility", b),
+            get_attribute_with_boost(base_attributes, "attributeStrength", b),
+            height, gender,
+        )
+
+    entry = {"role": role_name, "subAccelType": sub_accel_type}
+    if gg_score is not None:
+        entry["ggMeta"] = round(gg_score, 2)
+        entry["ggChemStyle"] = gg_chem_style
+        entry["ggAccelType"] = accel(gg_chem_style)
+    if gg_meta_sub is not None:
+        entry["ggMetaSub"] = gg_meta_sub
+
+    if es_entries:
+        r0 = next((r for r in es_entries if r.get("chemistry") == 0 and r.get("metaRating") is not None), None)
+        if r0:
+            entry["esMetaSub"] = round(float(r0["metaRating"]), 2)
+        best3 = max([r for r in es_entries if r.get("chemistry") == 3], key=lambda x: x.get("metaRating", -1), default=None)
+        if best3 and best3.get("metaRating") is not None:
+            entry["esMeta"] = round(float(best3["metaRating"]), 2)
+            entry["esChemStyle"] = es_chem_names.get(str(best3.get("chemstyleId")))
+            entry["esAccelType"] = accel(entry.get("esChemStyle"))
+
+    gm, gms = entry.get("ggMeta"), entry.get("ggMetaSub")
+    if gms is not None and gm is not None and gms > gm:
+        entry["ggMetaSub"] = round(gm, 2)
+    entry["avgMeta"] = average_optional(entry.get("ggMeta"), entry.get("esMeta"))
+    entry["avgMetaSub"] = average_optional(entry.get("ggMetaSub"), entry.get("esMetaSub"))
+    return entry
 
 
 class ModelManager:

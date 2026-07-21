@@ -15,7 +15,7 @@ except Exception:
 import concurrent.futures
 import multiprocessing
 from shared_utils import load_json_file, _normalize_gender, calculate_acceleration_type, get_attribute_with_boost, average_optional
-from model_utils import ModelManager, prepare_features, predict_ggsub_absolute, predict_ggsub_evo_anchored, to_player_like_from_ggdata
+from model_utils import ModelManager, prepare_features, predict_ggsub_absolute, predict_ggsub_evo_anchored, to_player_like_from_ggdata, compute_meta_entry
 
 # Suppress warnings in main output
 warnings.filterwarnings("ignore", category=FutureWarning)
@@ -164,23 +164,18 @@ def process_player(player_def, is_evo, model_manager, maps, evo_esmeta, min_heig
         role_name = maps.get("role", {}).get(role_id_str)
         if not role_name: continue
 
-        meta_entry = {"role": role_name, "subAccelType": sub_accel_type}
-
-        # GG Best
+        # Resolve GG pieces (evo vs non-evo differ), then delegate assembly to the
+        # shared compute_meta_entry (also used by build_all_players_summary).
         best_gg = max(scores, key=lambda x: x.get("score", 0), default=None)
+        gg_score = best_gg.get("score", 0.0) if best_gg else None
+        gg_chem_style = None
         if best_gg:
-            meta_entry["ggMeta"] = round(best_gg.get("score", 0.0), 2)
             chem_id = best_gg.get("chem_id_str") if is_evo else str(best_gg.get("chemistryStyle"))
-            meta_entry["ggChemStyle"] = maps.get("ggChemistryStyleNames", {}).get(chem_id)
-            boosts = chem_style_boosts_map.get((meta_entry.get("ggChemStyle") or "").lower(), {})
-            meta_entry["ggAccelType"] = calculate_acceleration_type(
-                get_attribute_with_boost(base_attributes, "attributeAcceleration", boosts),
-                get_attribute_with_boost(base_attributes, "attributeAgility", boosts),
-                get_attribute_with_boost(base_attributes, "attributeStrength", boosts),
-                player_output.get("height"), player_output.get("gender")
-            )
+            gg_chem_style = maps.get("ggChemistryStyleNames", {}).get(chem_id)
+        gg_meta_cap = round(gg_score, 2) if gg_score is not None else None
 
-        # ggMetaSub
+        # ggMetaSub: evo -> anchored to the base card; non-evo -> absolute; GK fallback.
+        gg_meta_sub = None
         gg_sub_model = model_manager.get_model(role_name, 'ggMetaSub')
         if gg_sub_model:
             features_no_chem = prepare_features(player_output, maps, boosts={}, role_name=role_name)
@@ -189,48 +184,22 @@ def process_player(player_def, is_evo, model_manager, maps, evo_esmeta, min_heig
                 base_gg_raw = load_json_file(get_raw_file_path(base_anchor_eaid, 'ggData', RAW_DATA_DIR))
                 base_player_like = to_player_like_from_ggdata(base_gg_raw.get("data") if base_gg_raw else None, maps)
                 base_features_sub = prepare_features(base_player_like, maps, boosts={}, role_name=role_name) if base_player_like else None
-                meta_entry["ggMetaSub"] = predict_ggsub_evo_anchored(
-                    gg_sub_model, features_no_chem, base_no_chem=base_features_sub, cap_to_ggmeta=meta_entry.get("ggMeta")
-                )
+                gg_meta_sub = predict_ggsub_evo_anchored(gg_sub_model, features_no_chem, base_no_chem=base_features_sub, cap_to_ggmeta=gg_meta_cap)
             else:
-                meta_entry["ggMetaSub"] = predict_ggsub_absolute(gg_sub_model, features_no_chem, cap_to_ggmeta=meta_entry.get("ggMeta"))
-        else:
-            if not is_evo:
-                # Fallback
-                if "GK" in role_name and meta_entry.get("ggMeta"): meta_entry["ggMetaSub"] = round(meta_entry["ggMeta"] * 0.95, 2)
+                gg_meta_sub = predict_ggsub_absolute(gg_sub_model, features_no_chem, cap_to_ggmeta=gg_meta_cap)
+        elif not is_evo and "GK" in role_name and gg_meta_cap:
+            gg_meta_sub = round(gg_meta_cap * 0.95, 2)
 
-        # ES Meta — evo and non-evo share the same metaRatings shape
-        # (non-evo: base esMeta API; evo: EasySBC evo-detail via evo_esmeta.json).
         es_role_id = maps.get("roleNameToEsRoleId", {}).get(role_name)
-        if es_role_id:
-            filtered = es_by_role.get(str(es_role_id), [])
-            if filtered:
-                r0 = next((r for r in filtered if r.get("chemistry") == 0 and r.get("metaRating") is not None), None)
-                if r0: meta_entry["esMetaSub"] = round(float(r0["metaRating"]), 2)
-                best3 = max([r for r in filtered if r.get("chemistry") == 3], key=lambda x: x.get("metaRating", -1), default=None)
-                if best3 and best3.get("metaRating") is not None:
-                    meta_entry["esMeta"] = round(float(best3["metaRating"]), 2)
-                    meta_entry["esChemStyle"] = maps.get("esChemistryStyleNames", {}).get(str(best3.get("chemstyleId")))
-                    boosts = chem_style_boosts_map.get((meta_entry.get("esChemStyle") or "").lower(), {})
-                    meta_entry["esAccelType"] = calculate_acceleration_type(
-                        get_attribute_with_boost(base_attributes, "attributeAcceleration", boosts),
-                        get_attribute_with_boost(base_attributes, "attributeAgility", boosts),
-                        get_attribute_with_boost(base_attributes, "attributeStrength", boosts),
-                        player_output.get("height"), player_output.get("gender")
-                    )
+        es_entries = es_by_role.get(str(es_role_id), []) if es_role_id else []
 
-        # Average
-        gg_meta, es_meta = meta_entry.get("ggMeta"), meta_entry.get("esMeta")
-        gg_meta_sub, es_meta_sub = meta_entry.get("ggMetaSub"), meta_entry.get("esMetaSub")
-        
-        # Safety clamp
-        if gg_meta_sub is not None and gg_meta is not None and gg_meta_sub > gg_meta:
-            gg_meta_sub = gg_meta; meta_entry["ggMetaSub"] = round(gg_meta, 2)
-
-        meta_entry["avgMeta"] = average_optional(gg_meta, es_meta)
-        meta_entry["avgMetaSub"] = average_optional(gg_meta_sub, es_meta_sub)
-
-        player_output["metaRatings"].append(meta_entry)
+        player_output["metaRatings"].append(compute_meta_entry(
+            role_name, sub_accel_type,
+            gg_score=gg_score, gg_chem_style=gg_chem_style, gg_meta_sub=gg_meta_sub,
+            es_entries=es_entries, base_attributes=base_attributes,
+            height=player_output.get("height"), gender=player_output.get("gender"),
+            es_chem_names=maps.get("esChemistryStyleNames", {}), chem_boosts=chem_style_boosts_map,
+        ))
 
     return player_output
 

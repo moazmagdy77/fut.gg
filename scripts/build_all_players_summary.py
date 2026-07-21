@@ -18,7 +18,7 @@ import multiprocessing
 from pathlib import Path
 from collections import defaultdict
 from shared_utils import load_json_file, _normalize_gender, calculate_acceleration_type, get_attribute_with_boost, average_optional
-from model_utils import ModelManager, prepare_features, predict_ggsub_absolute
+from model_utils import ModelManager, prepare_features, predict_ggsub_absolute, compute_meta_entry
 
 # --- Configuration ---
 BASE_DATA_DIR = Path(__file__).resolve().parent / '../data'
@@ -135,49 +135,27 @@ def process_one(file_info):
         if not role_name:
             continue
 
-        meta_entry = {"role": role_name, "subAccelType": sub_accel_type}
-
         best_gg = max(scores, key=lambda x: x.get("score", 0), default=None)
-        if best_gg:
-            meta_entry["ggMeta"] = round(best_gg.get("score", 0.0), 2)
-            meta_entry["ggChemStyle"] = GLOBAL['ggChem'].get(str(best_gg.get("chemistryStyle")))
-            boosts = chem_boosts.get((meta_entry.get("ggChemStyle") or "").lower(), {})
-            meta_entry["ggAccelType"] = calculate_acceleration_type(
-                get_attribute_with_boost(base_attributes, "attributeAcceleration", boosts),
-                get_attribute_with_boost(base_attributes, "attributeAgility", boosts),
-                get_attribute_with_boost(base_attributes, "attributeStrength", boosts),
-                player.get("height"), gender_text
-            )
+        gg_score = best_gg.get("score", 0.0) if best_gg else None
+        gg_chem_style = GLOBAL['ggChem'].get(str(best_gg.get("chemistryStyle"))) if best_gg else None
+        gg_meta_cap = round(gg_score, 2) if gg_score is not None else None
 
-        # ggMetaSub via the anchored GG model (same model club.3 uses for non-evo)
+        gg_meta_sub = None
         gg_sub_model = models.get_model(role_name, 'ggMetaSub')
         if gg_sub_model:
             features_no_chem = prepare_features(player, maps, boosts={}, role_name=role_name)
-            meta_entry["ggMetaSub"] = predict_ggsub_absolute(gg_sub_model, features_no_chem, cap_to_ggmeta=meta_entry.get("ggMeta"))
+            gg_meta_sub = predict_ggsub_absolute(gg_sub_model, features_no_chem, cap_to_ggmeta=gg_meta_cap)
 
-        # ES Meta for this role
         es_role_id = GLOBAL['roleToEs'].get(role_name)
-        if es_role_id:
-            filtered = es_by_role.get(str(es_role_id), [])
-            if filtered:
-                r0 = next((r for r in filtered if r.get("chemistry") == 0 and r.get("metaRating") is not None), None)
-                if r0:
-                    meta_entry["esMetaSub"] = round(float(r0["metaRating"]), 2)
-                best3 = max([r for r in filtered if r.get("chemistry") == 3], key=lambda x: x.get("metaRating", -1), default=None)
-                if best3 and best3.get("metaRating") is not None:
-                    meta_entry["esMeta"] = round(float(best3["metaRating"]), 2)
-                    meta_entry["esChemStyle"] = GLOBAL['esChem'].get(str(best3.get("chemstyleId")))
-                    es_boosts = chem_boosts.get((meta_entry.get("esChemStyle") or "").lower(), {})
-                    meta_entry["esAccelType"] = calculate_acceleration_type(
-                        get_attribute_with_boost(base_attributes, "attributeAcceleration", es_boosts),
-                        get_attribute_with_boost(base_attributes, "attributeAgility", es_boosts),
-                        get_attribute_with_boost(base_attributes, "attributeStrength", es_boosts),
-                        player.get("height"), gender_text
-                    )
+        es_entries = es_by_role.get(str(es_role_id), []) if es_role_id else []
 
-        meta_entry["avgMeta"] = average_optional(meta_entry.get("ggMeta"), meta_entry.get("esMeta"))
-        meta_entry["avgMetaSub"] = average_optional(meta_entry.get("ggMetaSub"), meta_entry.get("esMetaSub"))
-        player["metaRatings"].append(meta_entry)
+        player["metaRatings"].append(compute_meta_entry(
+            role_name, sub_accel_type,
+            gg_score=gg_score, gg_chem_style=gg_chem_style, gg_meta_sub=gg_meta_sub,
+            es_entries=es_entries, base_attributes=base_attributes,
+            height=player.get("height"), gender=gender_text,
+            es_chem_names=GLOBAL['esChem'], chem_boosts=chem_boosts,
+        ))
 
     return player
 
