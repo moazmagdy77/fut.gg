@@ -6,6 +6,9 @@
 //
 // Usage:  node fetch.evolab.js            (headless)
 //         HEADLESS=false node fetch.evolab.js   (visible, for debugging)
+//
+// NOTE: shares the .auth/browser-profile Chrome profile with fetch.evo.esmeta.js.
+// Chrome locks a profile directory, so run those two sequentially, not concurrently.
 'use strict';
 
 const fs = require('fs').promises;
@@ -13,19 +16,14 @@ const path = require('path');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const { resolveChromePath } = require('./browser');
+const { writeJsonAtomic } = require('./scrape_utils');
 puppeteer.use(StealthPlugin());
 
 const PROFILE_DIR = path.resolve(__dirname, '..', '.auth', 'browser-profile');
 const OUT_FILE = path.resolve(__dirname, '..', 'data', 'evolab.json');
 const EVOLAB_API = 'https://www.fut.gg/api/fut/evo-lab/';
 const PAGE_URL = 'https://www.fut.gg/evo-lab/my-players/';
-const HEADLESS = process.env.HEADLESS === 'false' ? false : true;
-
-async function saveAtomic(file, data) {
-  const tmp = `${file}.tmp`;
-  await fs.writeFile(tmp, JSON.stringify(data, null, 2));
-  await fs.rename(tmp, file);
-}
+const HEADLESS = process.env.HEADLESS === 'false' ? false : 'new';
 
 (async () => {
   console.log('🧬 Fetching fut.gg Evo Lab via your saved session...');
@@ -39,6 +37,12 @@ async function saveAtomic(file, data) {
 
   try {
     const page = await browser.newPage();
+    // Block heavy sub-resources so the SPA hydrates faster and networkidle2 is reachable.
+    await page.setRequestInterception(true);
+    page.on('request', (r) => {
+      const t = r.resourceType();
+      (['image', 'media', 'font', 'stylesheet'].includes(t) ? r.abort() : r.continue()).catch(() => {});
+    });
 
     // 1) Capture the SPA's own authenticated call if it fires during navigation.
     let captured = null;
@@ -50,7 +54,12 @@ async function saveAtomic(file, data) {
       } catch (_) { /* ignore non-JSON / races */ }
     });
 
-    await page.goto(PAGE_URL, { waitUntil: 'networkidle2', timeout: 60000 });
+    // A real-time SPA can hold long-poll/WebSocket connections open, so networkidle2
+    // may never settle and time out — that's fine; the localStorage-token fallback
+    // below still runs. Without this try/catch the timeout would skip the fallback.
+    try {
+      await page.goto(PAGE_URL, { waitUntil: 'networkidle2', timeout: 60000 });
+    } catch (_) { /* fall through to token fallback */ }
     await new Promise((r) => setTimeout(r, 1500));
 
     // 2) Fallback: call the API from the page context using the fresh Supabase
@@ -79,7 +88,7 @@ async function saveAtomic(file, data) {
       return;
     }
 
-    await saveAtomic(OUT_FILE, captured);
+    await writeJsonAtomic(OUT_FILE, captured);
     const n = Array.isArray(captured.data) ? captured.data.length : '?';
     console.log(`✅ Saved ${n} evo entries to ${path.relative(process.cwd(), OUT_FILE)}`);
   } finally {

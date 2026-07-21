@@ -18,6 +18,7 @@ const axios = require('axios');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const { resolveChromePath } = require('./browser');
+const { sleep, randInt, ensureDir, fileExists, writeJsonAtomic, createIsolatedContext, makeSemaphore, blocked } = require('./scrape_utils');
 puppeteer.use(StealthPlugin());
 
 // --- Process Arguments ---
@@ -46,33 +47,7 @@ const URL_GG_DETAILS = (id) => `https://www.fut.gg/api/fut/player-item-definitio
 const URL_GG_META = (id) => `https://www.fut.gg/api/fut/metarank/player/${id}/`;
 const URL_ES_META = (id, role) => `https://api.easysbc.io/players/${id}?player-role-id=${role}&expanded=false`;
 
-// --- Helpers ---
-const sleep = (ms) => new Promise(r => setTimeout(r, ms));
-const randInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-
-async function ensureDir(dir) { await fs.mkdir(dir, { recursive: true }).catch(e => { if (e.code !== 'EEXIST') throw e; }); }
-async function fileExists(filePath) { try { await fs.access(filePath); return true; } catch { return false; } }
-async function saveData(filePath, data) {
-    const tmp = `${filePath}.tmp`;
-    await fs.writeFile(tmp, JSON.stringify(data, null, 2));
-    await fs.rename(tmp, filePath);
-}
-
-async function createSafeContext(browser) {
-    if (typeof browser.createBrowserContext === 'function') return await browser.createBrowserContext();
-    if (typeof browser.createIncognitoBrowserContext === 'function') return await browser.createIncognitoBrowserContext();
-    return browser.defaultBrowserContext();
-}
-
-// Bounded concurrency for Cloudflare priming navigations (avoids a startup burst).
-function makeSemaphore(max) {
-    let active = 0; const q = [];
-    return {
-        acquire: () => new Promise((res) => { const go = () => { if (active < max) { active++; res(); } else q.push(go); }; go(); }),
-        release: () => { active--; if (q.length) q.shift()(); },
-    };
-}
-
+// --- Helpers (generic ones live in scrape_utils; below are fut.gg-specific) ---
 async function checkSkippability(id, mode) {
     const root = __dirname;
     const trip = async (base) => {
@@ -113,10 +88,6 @@ async function newFetchPage(context) {
         (['image', 'media', 'font', 'stylesheet'].includes(t) ? r.abort() : r.continue()).catch(() => {});
     });
     return page;
-}
-
-function blocked(obj) {
-    return !obj || obj.__err || obj.__status === 403 || obj.__status === 429 || obj.__status === 503 || obj.__status === 'nonjson';
 }
 
 // Fetch details + metarank in a single in-page round-trip, in parallel.
@@ -170,9 +141,13 @@ async function processPlayer(eaId, page, reprime, maps) {
     let subfolder = 'training';
     if (MODE === 'club') subfolder = (details.data.overall >= 75) ? 'club - main' : 'club - rest';
     const base = path.resolve(__dirname, `../data/raw/${subfolder}`);
-    await saveData(path.join(base, 'ggData', `${eaIdStr}_ggData.json`), details);
-    if (meta) await saveData(path.join(base, 'ggMeta', `${eaIdStr}_ggMeta.json`), meta);
-    if (esData.length > 0) await saveData(path.join(base, 'esMeta', `${eaIdStr}_esMeta.json`), esData);
+    await writeJsonAtomic(path.join(base, 'ggData', `${eaIdStr}_ggData.json`), details);
+    // Always write ggMeta/esMeta — an empty sentinel when the player isn't ranked
+    // (no metarank) or has no ES roles. checkSkippability requires all three files, so
+    // gating these behind `if (meta)` / `if (esData.length)` left such players missing a
+    // file and re-fetched on EVERY run. club.3.clean handles empty {} / [] gracefully.
+    await writeJsonAtomic(path.join(base, 'ggMeta', `${eaIdStr}_ggMeta.json`), meta || {});
+    await writeJsonAtomic(path.join(base, 'esMeta', `${eaIdStr}_esMeta.json`), esData);
     return { id: eaId, status: 'success' };
 }
 
@@ -236,7 +211,7 @@ async function processPlayer(eaId, page, reprime, maps) {
     // sessions rather than one bursty one. Priming is bounded by primeSem to avoid a
     // startup burst; then the page is reused for all of that worker's players.
     async function worker() {
-        let ctx = await createSafeContext(browser);
+        let ctx = await createIsolatedContext(browser);
         let page = await newFetchPage(ctx);
         let repriming = null;
         const reprime = () => (repriming ||= (async () => {
@@ -255,7 +230,7 @@ async function processPlayer(eaId, page, reprime, maps) {
             } catch (e) {
                 // context/page crashed — rebuild and continue (this id refetches on a later run).
                 try { await ctx.close().catch(() => {}); } catch (_) {}
-                ctx = await createSafeContext(browser).catch(() => null);
+                ctx = await createIsolatedContext(browser).catch(() => null);
                 page = ctx ? await newFetchPage(ctx).catch(() => null) : null;
                 if (!page) break;
             }

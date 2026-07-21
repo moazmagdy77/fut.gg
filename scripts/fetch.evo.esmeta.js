@@ -10,6 +10,9 @@
 //
 // Auth (plain Bearer API, no Cloudflare): EASYSBC_TOKEN env -> .auth/easysbc.token -> profile session.
 // Usage:  EASYSBC_TOKEN=... node fetch.evo.esmeta.js
+//
+// NOTE: the token-capture fallback shares the .auth/browser-profile Chrome profile with
+// fetch.evolab.js; run those two sequentially (Chrome locks the profile directory).
 'use strict';
 
 const fs = require('fs').promises;
@@ -19,6 +22,7 @@ const axios = require('axios');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const { resolveChromePath } = require('./browser');
+const { sleep, writeJsonAtomic } = require('./scrape_utils');
 puppeteer.use(StealthPlugin());
 
 const ROOT = path.resolve(__dirname, '..');
@@ -27,11 +31,9 @@ const TOKEN_FILE = path.join(ROOT, '.auth', 'easysbc.token');
 const OUT_FILE = path.join(ROOT, 'data', 'raw', 'evo_esmeta.json');
 
 const API = 'https://api-fc26.easysbc.io';
-const HEADLESS = process.env.HEADLESS === 'false' ? false : true;
+const HEADLESS = process.env.HEADLESS === 'false' ? false : 'new';
 const DELAY_MS = 150;
 const HEADERS_BASE = { Accept: 'application/json', Platform: 'Playstation', Origin: 'https://www.easysbc.io', Referer: 'https://www.easysbc.io/' };
-
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function getToken() {
   if (process.env.EASYSBC_TOKEN) return process.env.EASYSBC_TOKEN.trim();
@@ -112,30 +114,35 @@ async function apiGet(url, token) {
   if (!Array.isArray(list)) { console.error('❌ Unexpected evolved-players response.'); process.exit(1); }
   console.log(`Evos to fetch: ${list.length}`);
 
+  // Bounded concurrency — EasySBC has no Cloudflare, so a few parallel detail fetches
+  // are safe and ~Nx faster than strictly sequential.
+  const CONCURRENCY = Math.max(1, Number(process.env.CONCURRENCY || 4));
+  const valid = list.filter((p) => p.resourceId != null && p.manualEvolvedPlayerId);
   const out = {};
-  let i = 0, ok = 0;
-  for (const p of list) {
-    const rid = p.resourceId, mid = p.manualEvolvedPlayerId;
-    i += 1;
-    if (rid == null || !mid) continue;
-    try {
-      const d = await apiGet(`${API}/players/${rid}?v2&type=manual-evolved-player&manualEvolvedPlayerId=${encodeURIComponent(mid)}`, token);
-      out[String(rid)] = {
-        name: p.name, assetId: p.assetId, bestPlayerRoleId: d.bestPlayerRoleId,
-        metaRatings: Array.isArray(d.metaRatings) ? d.metaRatings : [],
-      };
-      ok += 1;
-    } catch (e) {
-      console.warn(`  ${p.name} (${rid}): ${e.response ? 'HTTP ' + e.response.status : e.message}`);
+  let done = 0, ok = 0, idx = 0;
+  async function worker() {
+    while (idx < valid.length) {
+      const p = valid[idx++];
+      const rid = p.resourceId, mid = p.manualEvolvedPlayerId;
+      try {
+        const d = await apiGet(`${API}/players/${rid}?v2&type=manual-evolved-player&manualEvolvedPlayerId=${encodeURIComponent(mid)}`, token);
+        out[String(rid)] = {
+          name: p.name, assetId: p.assetId, bestPlayerRoleId: d.bestPlayerRoleId,
+          metaRatings: Array.isArray(d.metaRatings) ? d.metaRatings : [],
+        };
+        ok += 1;
+      } catch (e) {
+        console.warn(`  ${p.name} (${rid}): ${e.response ? 'HTTP ' + e.response.status : e.message}`);
+      }
+      done += 1;
+      if (done % 10 === 0) console.log(`  ...${done}/${valid.length}`);
+      await sleep(DELAY_MS);
     }
-    if (i % 10 === 0) console.log(`  ...${i}/${list.length}`);
-    await sleep(DELAY_MS);
   }
+  await Promise.all(Array.from({ length: Math.min(CONCURRENCY, valid.length) }, () => worker()));
 
   await fs.mkdir(path.dirname(OUT_FILE), { recursive: true });
-  const tmp = OUT_FILE + '.tmp';
-  await fs.writeFile(tmp, JSON.stringify(out, null, 2));
-  await fs.rename(tmp, OUT_FILE);
+  await writeJsonAtomic(OUT_FILE, out);
   const rows = Object.values(out).reduce((s, e) => s + e.metaRatings.length, 0);
-  console.log(`✅ ${ok}/${list.length} evos, ${rows} metaRating rows → ${path.relative(process.cwd(), OUT_FILE)}`);
+  console.log(`✅ ${ok}/${valid.length} evos, ${rows} metaRating rows → ${path.relative(process.cwd(), OUT_FILE)}`);
 })().catch((e) => { console.error('❌', e.message); process.exit(1); });
