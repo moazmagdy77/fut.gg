@@ -574,6 +574,11 @@ all_players_file = data_dir / "all_players_summary.json"
 club_mtime = os.path.getmtime(club_file) if club_file.exists() else 0
 all_players_mtime = os.path.getmtime(all_players_file) if all_players_file.exists() else 0
 
+fodder_prices_file = data_dir / "fodder_prices.json"
+club_analyzer_file = data_dir / "club-analyzer.html"
+fodder_prices_mtime = os.path.getmtime(fodder_prices_file) if fodder_prices_file.exists() else 0
+club_analyzer_mtime = os.path.getmtime(club_analyzer_file) if club_analyzer_file.exists() else 0
+
 df = load_data(club_file, club_mtime).copy()
 
 # Exclude players already in the starting squad. all_players_df is loaded lazily
@@ -811,13 +816,115 @@ def render_player_table(view_df, columns_full, bool_cols, table_key, show_all_ke
                            st.session_state.get("squad_applied_role"))
 
 
+# --- Fodder Value helpers ---
+GOLD_COMMON_PRICE = 350  # 75+ commons — the overview API starts at 81; near-floor & stable
+GOLD_RARE_PRICE = 600    # 75–80 rares
+
+
+@st.cache_data
+def load_fodder_prices(file_path, mtime):
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            return (json.load(f) or {}).get("byRating", {})
+    except Exception:
+        return {}
+
+
+@st.cache_data
+def load_fodder_source(html_path, mtime):
+    """Parse club-analyzer.html into per-card rows (rating/location/untradeable/rarity/
+    discard) for the Fodder valuation. Mirrors club.1.get.ids.py's regex parse."""
+    import re
+    try:
+        txt = Path(html_path).read_text(encoding="utf-8")
+    except Exception:
+        return pd.DataFrame()
+    rows = re.findall(r'<tr>(.*?)</tr>', txt, re.DOTALL)
+    if not rows:
+        return pd.DataFrame()
+    headers = [re.sub(r'<.*?>', '', h).strip() for h in re.findall(r'<th.*?>(.*?)</th>', rows[0], re.DOTALL)]
+
+    def idx(name):
+        try:
+            return headers.index(name)
+        except ValueError:
+            return -1
+
+    i_r, i_loc, i_unt, i_rar, i_disc = idx("Rating"), idx("Location"), idx("Untradeable"), idx("Rarity"), idx("Discard Value")
+    recs = []
+    for row in rows[1:]:
+        cols = [re.sub(r'<.*?>', '', c).strip() for c in re.findall(r'<td.*?>(.*?)</td>', row, re.DOTALL)]
+        if not cols or not (0 <= i_loc < len(cols)):
+            continue
+        try:
+            rating = int(cols[i_r]) if 0 <= i_r < len(cols) else 0
+        except ValueError:
+            rating = 0
+        disc = 0
+        if 0 <= i_disc < len(cols):
+            dt = cols[i_disc].replace(",", "").replace(".", "")
+            if dt.isdigit():
+                disc = int(dt)
+        recs.append({
+            "rating": rating,
+            "location": cols[i_loc],
+            "untradeable": (cols[i_unt].lower() == "true") if 0 <= i_unt < len(cols) else False,
+            "rarity": cols[i_rar] if 0 <= i_rar < len(cols) else "",
+            "discard": disc,
+        })
+    return pd.DataFrame(recs)
+
+
+def build_fodder_table(src, prices, include_starting=True):
+    """Reproduce the fodder valuation: per rating/tier, Value (cheapest BIN) × Count of
+    owned cards. Club = untradeable-in-club, SS = SBC storage (per the source sheet)."""
+    required = {"location", "untradeable", "rating", "rarity", "discard"}
+    if src.empty or not required.issubset(src.columns):
+        return pd.DataFrame()
+
+    club = src[(src["location"] == "CLUB") & (src["untradeable"])]
+    ss = src[src["location"] == "SBCSTORAGE"]
+    rows = []
+
+    # Bronze / Silver: tradeable club cards valued at their quick-sell (discard) total.
+    tc = src[(src["location"] == "CLUB") & (~src["untradeable"]) & (src["discard"] > 0)]
+    rows.append({"Rating": "Bronze (Tradeable)", "Value": None, "Count": None, "Club": None, "SS": None,
+                 "Starting": None, "Total Value": int(tc[tc["rating"] < 65]["discard"].sum())})
+    rows.append({"Rating": "Silvers (Tradeable)", "Value": None, "Count": None, "Club": None, "SS": None,
+                 "Starting": None, "Total Value": int(tc[(tc["rating"] >= 65) & (tc["rating"] < 75)]["discard"].sum())})
+
+    def add(label, value, club_mask, ss_mask):
+        c = int(club_mask.sum())
+        s = int(ss_mask.sum())
+        starting = 0  # not tracked in the club export
+        billable = (c + s) if include_starting else (c + s - starting)
+        total = int(round((value or 0) * billable))
+        rows.append({"Rating": label, "Value": value, "Count": c + s, "Club": c, "SS": s, "Starting": starting, "Total Value": total})
+
+    add("Gold Commons", GOLD_COMMON_PRICE,
+        (club["rating"] >= 75) & (club["rarity"] == "Common"), (ss["rating"] >= 75) & (ss["rarity"] == "Common"))
+    add("Gold Rares", GOLD_RARE_PRICE,
+        (club["rating"] >= 75) & (club["rating"] < 81) & (club["rarity"] == "Rare"),
+        (ss["rating"] >= 75) & (ss["rating"] < 81) & (ss["rarity"] == "Rare"))
+    for r in range(81, 100):
+        val = prices.get(str(r))
+        if r in (81, 82):  # only rares exist as fodder at these ratings (per the sheet)
+            cm = (club["rating"] == r) & (club["rarity"] == "Rare")
+            sm = (ss["rating"] == r) & (ss["rarity"] == "Rare")
+        else:
+            cm = (club["rating"] == r)
+            sm = (ss["rating"] == r)
+        add(str(r), val, cm, sm)
+    return pd.DataFrame(rows)
+
+
 # --- VIEWS ---
 # A segmented control instead of st.tabs: st.tabs executes ALL tab bodies every
 # rerun (incl. the heavy ~45k-row All Players processing). This runs only the
 # selected view, so switching/filtering stays fast.
-VIEW_CLUB, VIEW_SELL, VIEW_ALL = "Club Squad", "Sell Now 💰", "All Players 🌍"
+VIEW_CLUB, VIEW_SELL, VIEW_ALL, VIEW_FODDER = "Club Squad", "Sell Now 💰", "All Players 🌍", "Fodder Value 🍞"
 active_view = st.segmented_control(
-    "View", [VIEW_CLUB, VIEW_SELL, VIEW_ALL],
+    "View", [VIEW_CLUB, VIEW_SELL, VIEW_ALL, VIEW_FODDER],
     default=VIEW_CLUB, key="active_view", label_visibility="collapsed",
 )
 if active_view is None:
@@ -1050,3 +1157,42 @@ elif active_view == VIEW_ALL:
             ["hasRolePlus", "hasRolePlusPlus", "isTall"],
             "all_players_df", "show_all_cols_all",
         )
+
+elif active_view == VIEW_FODDER:
+    st.header("Fodder Value 🍞")
+    prices = load_fodder_prices(fodder_prices_file, fodder_prices_mtime)
+    src = load_fodder_source(club_analyzer_file, club_analyzer_mtime)
+    if src.empty:
+        st.info("No `club-analyzer.html` found — can't value fodder. Run the club pipeline first.")
+    elif not prices:
+        st.warning("No fodder prices yet. Run `node scripts/fetch.fodder.prices.js` (or the pipeline's Fodder step).")
+    else:
+        if fodder_prices_mtime:
+            st.caption(f"Prices as of {datetime.datetime.fromtimestamp(fodder_prices_mtime).strftime('%Y-%m-%d %H:%M')}")
+        include_starting = st.toggle(
+            "Include Starting?", value=True,
+            help="Starting-XI cards aren't tracked in the club export, so Starting = 0 and this is currently informational.",
+        )
+        ft = build_fodder_table(src, prices, include_starting)
+        if ft.empty:
+            st.warning("Could not compute fodder counts from club-analyzer.html.")
+        else:
+            grand_count = int(ft["Count"].fillna(0).sum())
+            grand_total = int(ft["Total Value"].fillna(0).sum())
+            c1, c2 = st.columns(2)
+            c1.metric("Total Fodder Value", f"{grand_total:,}")
+            c2.metric("Cards Counted", f"{grand_count:,}")
+            st.caption("Value = cheapest BIN per rating (fut.gg). **Club** = untradeable, in club · **SS** = SBC storage · "
+                       "Bronze/Silver = quick-sell total of tradeable club cards.")
+            st.dataframe(
+                ft, width='stretch', hide_index=True,
+                column_config={
+                    "Rating": st.column_config.TextColumn("Rating / Tier", width="medium"),
+                    "Value": st.column_config.NumberColumn("Value", format="%d", help="Cheapest BIN at this rating"),
+                    "Count": st.column_config.NumberColumn("Count", format="%d", help="Club + SS"),
+                    "Club": st.column_config.NumberColumn("Club", format="%d", help="Untradeable, in club"),
+                    "SS": st.column_config.NumberColumn("SS", format="%d", help="In SBC storage"),
+                    "Starting": st.column_config.NumberColumn("Starting", format="%d"),
+                    "Total Value": st.column_config.NumberColumn("Total Value", format="%d", help="Value × Count"),
+                },
+            )

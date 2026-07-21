@@ -10,9 +10,6 @@ from pathlib import Path
 base_dir = Path(__file__).resolve().parent
 # Define the repository root (the parent 'fut.gg' folder)
 repo_root = base_dir.parent
-# Path to the sibling futbin-scraper repo (…/<dev>/futbin-scraper by default).
-# Override with the FUTBIN_SCRAPER_DIR env var if it lives elsewhere.
-futbin_scraper_dir = Path(os.environ.get("FUTBIN_SCRAPER_DIR", repo_root.parent / "futbin-scraper"))
 
 steps = [
     ("🔎 Step 1: Extract CLUB player IDs", [sys.executable, "club.1.get.ids.py"]),
@@ -47,7 +44,7 @@ else:
     print("Skipping Club Update pipeline...\n")
     steps = []
 
-run_fodder = input("Do you want to update Fodder Prices (futbin-scraper)? (y/n): ").strip().lower()
+run_fodder = input("Do you want to update Fodder prices (fut.gg cheapest-by-rating)? (y/n): ").strip().lower()
 
 start = time.time()
 
@@ -73,16 +70,23 @@ if run_club == 'y':
             print(f"\n❌ Failed at: {label}")
             sys.exit(result.returncode)
 
+# --- Fodder prices (fut.gg cheapest-by-rating) ---
+if run_fodder == 'y':
+    print(f"\n🍞 Updating fodder prices (fut.gg cheapest-by-rating)...")
+    if subprocess.run(["node", "fetch.fodder.prices.js"], cwd=base_dir).returncode != 0:
+        print("⚠️ Fodder price fetch failed — continuing (existing fodder_prices.json kept).")
+
 # --- Run Git Automation (fut.gg) ---
-if run_club == 'y':
+if run_club == 'y' or run_fodder == 'y':
     print(f"\n🐙 Automating Git Push...")
 
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-    if run_prices == 'y':
-        commit_message = f"new players + prices [{timestamp}]"
-    else:
-        commit_message = f"new players (prices not updated) [{timestamp}]"
+    parts = []
+    if run_club == 'y':
+        parts.append("new players + prices" if run_prices == 'y' else "new players (prices not updated)")
+    if run_fodder == 'y':
+        parts.append("fodder prices")
+    commit_message = f"{', '.join(parts)} [{timestamp}]"
 
     git_commands = [
         ["git", "add", "."],
@@ -93,18 +97,5 @@ if run_club == 'y':
     for cmd in git_commands:
         print(f"Running: {' '.join(cmd)}")
         subprocess.run(cmd, cwd=repo_root)
-
-# --- Run Fodder Scraper (futbin-scraper) ---
-if run_fodder == 'y':
-    print(f"\n📈 Updating Fodder Prices via futbin-scraper...")
-    # We change the cwd to the other repository so Node finds the correct .env and index.js
-    scraper_result = subprocess.run(["node", "index.js"], cwd=futbin_scraper_dir)
-    
-    if scraper_result.returncode != 0:
-        print(f"\n⚠️ futbin-scraper encountered an error, but the main pipeline is safe.")
-    else:
-        print(f"\n✅ Fodder prices updated in Google Sheets!")
-else:
-    print("\nSkipping futbin-scraper...")
 
 print(f"\n✅ Master pipeline & sync completed successfully in {round(time.time() - start, 2)} seconds!")
