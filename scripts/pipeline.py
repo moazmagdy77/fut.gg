@@ -88,14 +88,18 @@ if run_club == 'y' or run_fodder == 'y':
         parts.append("fodder prices")
     commit_message = f"{', '.join(parts)} [{timestamp}]"
 
-    git_commands = [
-        ["git", "add", "."],
-        ["git", "commit", "-m", commit_message],
-        ["git", "push", "origin", "main"]
-    ]
-
-    for cmd in git_commands:
-        print(f"Running: {' '.join(cmd)}")
-        subprocess.run(cmd, cwd=repo_root)
+    print("Running: git add .")
+    subprocess.run(["git", "add", "."], cwd=repo_root)
+    print("Running: git commit")
+    committed = subprocess.run(["git", "commit", "-m", commit_message], cwd=repo_root).returncode == 0
+    if not committed:
+        print("ℹ️ Nothing new to commit — skipping push.")
+    else:
+        print("Running: git push origin main")
+        if subprocess.run(["git", "push", "origin", "main"], cwd=repo_root).returncode == 0:
+            print("✅ Pushed to origin/main — the deployed app will update shortly.")
+        else:
+            print("⚠️ git push FAILED (see error above). Your commit is saved LOCALLY only.")
+            print("   Fix GitHub auth (e.g. `gh auth login` as the repo owner) and run `git push origin main`.")
 
 print(f"\n✅ Master pipeline & sync completed successfully in {round(time.time() - start, 2)} seconds!")
